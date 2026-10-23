@@ -1,0 +1,47 @@
+{
+  "schema": "maintenance-superinteligence.fmea-source-lock.v1",
+  "producerRepository": "pedromaintenance/fmea-database-mining",
+  "producerCommit": "06541f688773f101e586cceed848d0140e73ba09",
+  "contentVersion": "1.0.0",
+  "contractVersion": "1.0.0",
+  "previewSchema": "fmea-mining.public-knowledge-preview.v1",
+  "previewVersion": "1.3.12",
+  "snapshotPath": "data/governance/snapshots/public-knowledge.content-1.0.0.json",
+  "sha256": "b780a1c95e6f2ab5b3fb1f9acd20a63a1a5abd0e3f3ed111f61052b2e8c59c65",
+  "recordCount": 24,
+  "sourceCount": 20,
+  "recordFields": [
+    "id",
+    "title",
+    "family",
+    "operatingFunction",
+    "functionalFailureId",
+    "failureMode",
+    "mechanismIds",
+    "sourceIds",
+    "causalLevels",
+    "localEffect",
+    "systemEffect",
+    "competingHypotheses",
+    "investigations",
+    "applicability",
+    "reviewStatus",
+    "nature",
+    "confirmedRootCause",
+    "empiricalOccurrences"
+  ],
+  "sourceFields": [
+    "id",
+    "title",
+    "organization",
+    "url",
+    "role",
+    "limitation"
+  ],
+  "approval": {
+    "approvedForOperationalUse": false,
+    "rootCausesConfirmed": 0,
+    "empiricalOccurrences": 0
+  },
+  "notes": "Pinned to FMEA public content registry v1.0.0. No automatic upgrade; this is a didactic hypothesis snapshot, not an operationally approved FMEA."
+}
