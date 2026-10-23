@@ -48,36 +48,7 @@
     "contextStates": {
       "type": "array",
       "items": {
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/discrimination-context-state.schema.json",
-        "title": "Context state",
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "key",
-          "state",
-          "sourceRef"
-        ],
-        "properties": {
-          "key": {
-            "type": "string",
-            "minLength": 1
-          },
-          "state": {
-            "enum": [
-              "unknown",
-              "available_simulated",
-              "contradicted",
-              "not_applicable"
-            ]
-          },
-          "sourceRef": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        }
+        "$ref": "test-precondition.schema.json"
       }
     },
     "oemGate": {
