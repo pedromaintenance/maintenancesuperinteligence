@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HypothesisAssessment v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "hypothesisId",
+    "evidenceIds",
+    "disposition",
+    "rootCauseConfirmed",
+    "confidence",
+    "reviewStatus"
+  ],
+  "properties": {
+    "hypothesisId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidenceIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "disposition": {
+      "enum": [
+        "open_not_confirmed",
+        "mixed_evidence_open_not_confirmed",
+        "indications_only_not_confirmed",
+        "weakened_not_excluded"
+      ]
+    },
+    "rootCauseConfirmed": {
+      "const": false
+    },
+    "confidence": {
+      "type": "null"
+    },
+    "reviewStatus": {
+      "const": "pending_independent_review"
+    }
+  },
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/hypothesis-assessment.schema.json"
+}
