@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/hypothesis-pair.schema.json",
+  "title": "Conditional hypothesis pair v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pairId",
+    "firstHypothesisId",
+    "secondHypothesisId",
+    "question",
+    "methodIds",
+    "requiredContextKeys",
+    "conditionalOutcomes",
+    "knowledgeNature",
+    "testStatus",
+    "hasObservedOutcome",
+    "sourceRefs"
+  ],
+  "properties": {
+    "pairId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "firstHypothesisId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "secondHypothesisId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1
+    },
+    "methodIds": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "requiredContextKeys": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "conditionalOutcomes": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "outcomeId",
+          "conditionalReading"
+        ],
+        "properties": {
+          "outcomeId": {
+            "enum": [
+              "pattern_first",
+              "pattern_second",
+              "indeterminate"
+            ]
+          },
+          "conditionalReading": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "knowledgeNature": {
+      "const": "didactic_conditional_not_validated"
+    },
+    "testStatus": {
+      "const": "not_performed"
+    },
+    "hasObservedOutcome": {
+      "const": false
+    },
+    "sourceRefs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}
