@@ -1,0 +1,62 @@
+[
+  {
+    "sourceId": "ISO55001_2024",
+    "title": "Asset management — Asset management system — Requirements",
+    "publisher": "ISO",
+    "url": "https://www.iso.org/standard/83054.html",
+    "documentVersion": "2024",
+    "accessedAt": "2026-10-22",
+    "sourceType": "standard",
+    "licenseStatus": "metadata_only",
+    "notes": "Sem reproduzir a norma; norma de gestão de ativos.",
+    "applicability": "Princípios de gestão para organizações e ativos."
+  },
+  {
+    "sourceId": "IEC60812_2018",
+    "title": "Failure modes and effects analysis (FMEA and FMECA)",
+    "publisher": "IEC",
+    "url": "https://webstore.iec.ch/en/publication/26359",
+    "documentVersion": "2018",
+    "accessedAt": "2026-10-22",
+    "sourceType": "standard",
+    "licenseStatus": "metadata_only",
+    "notes": "Escopo e metadados públicos; sem transcrever conteúdo protegido.",
+    "applicability": "Método de análise de modos e efeitos de falha."
+  },
+  {
+    "sourceId": "ISO17359_2018",
+    "title": "Condition monitoring and diagnostics of machines — General guidelines",
+    "publisher": "ISO",
+    "url": "https://www.iso.org/standard/71194.html",
+    "documentVersion": "2018",
+    "accessedAt": "2026-10-22",
+    "sourceType": "standard",
+    "licenseStatus": "metadata_only",
+    "notes": "Estruturação de programa de monitoramento.",
+    "applicability": "Máquinas em geral; efetividade de limites por OEM não coberta."
+  },
+  {
+    "sourceId": "FMEA_MINING",
+    "title": "FMEA Database Mining — banco e contrato público",
+    "publisher": "pedromaintenance",
+    "url": "https://github.com/pedromaintenance/fmea-database-mining",
+    "documentVersion": "repository 1.3.49 / public contract 1.0.0",
+    "accessedAt": "2026-10-22",
+    "sourceType": "repository",
+    "licenseStatus": "rights_unverified",
+    "notes": "Somente apontador; consultar políticas de exportação por versão.",
+    "applicability": "Conhecimento taxonômico, causal e didático, não liberação operacional."
+  },
+  {
+    "sourceId": "PORCARIA_GAME",
+    "title": "P.O.R.C.A.R.I.A. - engine.js skill catalog",
+    "publisher": "pedromaintenance",
+    "url": "https://github.com/pedromaintenance/porcaria-voce-quebra-eu-conserto/blob/main/engine.js",
+    "documentVersion": "accessed 2026-10-22",
+    "accessedAt": "2026-10-22",
+    "sourceType": "repository",
+    "licenseStatus": "rights_unverified",
+    "notes": "56 habilidades didáticas: 22 disciplinas, 25 sistemas, 9 máquinas.",
+    "applicability": "Matriz de competências de jogo, não certificação de profissionais."
+  }
+]
