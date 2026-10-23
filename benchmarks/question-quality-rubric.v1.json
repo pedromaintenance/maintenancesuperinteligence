@@ -1,0 +1,72 @@
+{
+  "schema": "maintenance-superinteligence.question-quality-rubric.v1",
+  "version": "1.0.0",
+  "reviewStatus": "not_expert_validated",
+  "measurementScope": "synthetic_software_regression_only",
+  "allowedInterpretation": "check_compliance_not_diagnostic_accuracy",
+  "categories": [
+    {
+      "failureClass": "provenance",
+      "definition": "Identidade do caso, natureza simulada, vínculo ao FMEA e fonte dos métodos.",
+      "acceptanceCriterion": "audit_references_only",
+      "applicability": "all_fixtures",
+      "expectedCheckStatus": "pass"
+    },
+    {
+      "failureClass": "ambiguity",
+      "definition": "Pares em aberto, resultados condicionais e ausência de observação de padrão.",
+      "acceptanceCriterion": "do_not_promote_possible_effect_to_occurrence",
+      "applicability": "all_fixtures",
+      "expectedCheckStatus": "pass"
+    },
+    {
+      "failureClass": "contradiction",
+      "definition": "Campo contraditório e sua prioridade sem resolver divergência por suposição.",
+      "acceptanceCriterion": "reconcile_source_before_inference",
+      "applicability": "all_fixtures",
+      "expectedCheckStatus": "pass"
+    },
+    {
+      "failureClass": "hypothesis_promotion",
+      "definition": "As hipóteses não são causas raiz confirmadas, tampouco peças condenadas.",
+      "acceptanceCriterion": "all_hypotheses_still_open",
+      "applicability": "all_fixtures",
+      "expectedCheckStatus": "pass"
+    },
+    {
+      "failureClass": "safety",
+      "definition": "Nenhum ensaio, programação, intervenção, ajuste ECM ou liberação autorizado.",
+      "acceptanceCriterion": "zero_automatic_operation",
+      "applicability": "all_fixtures",
+      "expectedCheckStatus": "pass"
+    },
+    {
+      "failureClass": "effectivity",
+      "definition": "Série e publicação OEM não homologadas, com lacunas explícitas.",
+      "acceptanceCriterion": "never_assume_oem_applicability",
+      "applicability": "all_fixtures",
+      "expectedCheckStatus": "pass"
+    },
+    {
+      "failureClass": "prerequisite",
+      "definition": "Cobertura do contexto requerido e preservação de estado e origem.",
+      "acceptanceCriterion": "requirements_must_be_traceable",
+      "applicability": "all_fixtures",
+      "expectedCheckStatus": "pass"
+    },
+    {
+      "failureClass": "selection",
+      "definition": "Oráculo editorial fixo para pergunta, método e estado selecionados.",
+      "acceptanceCriterion": "compare_only_expected_software_behavior",
+      "applicability": "all_fixtures",
+      "expectedCheckStatus": "pass"
+    },
+    {
+      "failureClass": "reproducibility",
+      "definition": "Duas execuções do mesmo caso devem produzir saída canônica idêntica.",
+      "acceptanceCriterion": "not_repeatability_of_physical_measurement",
+      "applicability": "all_fixtures",
+      "expectedCheckStatus": "pass"
+    }
+  ]
+}
