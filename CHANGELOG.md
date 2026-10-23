@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.0 — 2026-10-23 — Ciclo 06
+
+- Adicionada matriz editorial versionada de dez pares de hipóteses concorrentes em comando final, hidráulica e eletrônica.
+- Implementada seleção determinística de perguntas com distinção entre contexto desconhecido, contraditório, não aplicável e simulado disponível, sem ranking probabilístico arbitrário.
+- Criados três cenários didáticos, quatro schemas, testes de referências circulares, origem falsa, resultados inventados, informação OEM não verificada e emissão de ordens.
+- CI produz três artefatos temporários e verifica que métodos e resultados permanecem pendentes de teste/revisão humana.
+
+**Não implementado:** estimativa validada de acurácia, custos ou decisão real de manutenção.
+
+
 ## 0.5.0 — 2026-10-23 — Ciclo 05
 
 - Criado catálogo de 14 métodos diagnósticos conceituais nas áreas de óleo, hidráulica, mecânica, vibração e eletrônica.
