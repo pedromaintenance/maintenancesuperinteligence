@@ -40,17 +40,25 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Primeiro caso vertical para testar a arquitetura](docs/CASO_PILOTO.md)
 - [Fontes públicas prioritárias](docs/FONTES.md)
 
-## Esqueleto de dados e software (alvo, não implementado)
+## Estrutura inicial e arquitetura futura
 
 ```text
-contracts/        # JSON Schema dos objetos de conhecimento e contratos
-knowledge/        # sínteses autorais, metadados e índices públicos
-connectors/       # adaptadores de leitura; nenhum login/segredo embutido
-research/         # perguntas, fontes, lacunas e resultados de revisão
-evaluation/       # casos conhecidos, testes adversariais e medições de qualidade
-services/         # buscas híbridas, raciocínio com ferramentas, APIs (futuro)
-docs/             # arquitetura e especificações
+contracts/        # dois JSON Schemas versionados (presentes); outros planejados
+data/             # fontes e afirmações atômicas propostas (presente)
+research/         # lacunas de conhecimento (presente)
+scripts/          # validador offline de integridade mínima (presente)
+.github/workflows # validação GitHub Actions (presente)
+docs/             # arquitetura e especificações (presente)
+connectors/       # importador público do FMEA (futuro)
+evaluation/       # benchmark adversarial (futuro)
+services/         # busca e orquestração assistiva (futuro)
 ```
+
+## Verificação e desenvolvimento
+
+A rotina **Validate public knowledge metadata** executa o validador básico de estrutura e referências. É uma proteção inicial contra registros malformados e fontes órfãs, **não** validação técnica de diagnósticos ou JSON Schema completo. [Ver CI](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/workflows/validate.yml).
+
+**Backlog criado:** [#1 Ontologia e schemas](https://github.com/pedromaintenance/maintenancesuperinteligence/issues/1) · [#2 Importador FMEA](https://github.com/pedromaintenance/maintenancesuperinteligence/issues/2) · [#3 Piloto 777E](https://github.com/pedromaintenance/maintenancesuperinteligence/issues/3) · [#4 Currículo](https://github.com/pedromaintenance/maintenancesuperinteligence/issues/4) · [#5 Governança](https://github.com/pedromaintenance/maintenancesuperinteligence/issues/5).
 
 ## O que podemos fazer primeiro
 
