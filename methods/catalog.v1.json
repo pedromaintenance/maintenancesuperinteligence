@@ -1,0 +1,1075 @@
+{
+  "schema": "maintenance-superinteligence.diagnostic-method-catalog.v1",
+  "version": "1.0.0",
+  "knowledgeScope": "general_research_not_oem_procedure",
+  "approvedForOperationalUse": false,
+  "sourceRegistry": "data/diagnostic-method-sources.v1.json",
+  "methods": [
+    {
+      "methodId": "MET-OIL-SAMPLING",
+      "domain": "oil",
+      "title": "Rastreabilidade da coleta",
+      "diagnosticQuestion": "A amostra pertence ao compartimento e ao período declarados?",
+      "fmeaMethodId": null,
+      "sourceIds": [
+        "CAT-FLUID-ANALYSIS-101"
+      ],
+      "prerequisites": [
+        {
+          "prerequisiteId": "MET-OIL-SAMPLING-P1",
+          "category": "equipment_reference",
+          "description": "Registrar/verificar equipment reference antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-OIL-SAMPLING-P2",
+          "category": "sample_point",
+          "description": "Registrar/verificar sample point antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-OIL-SAMPLING-P3",
+          "category": "collection_event",
+          "description": "Registrar/verificar collection event antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-OIL-SAMPLING-P4",
+          "category": "sample_chain",
+          "description": "Registrar/verificar sample chain antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-OIL-SAMPLING-P5",
+          "category": "recent_service",
+          "description": "Registrar/verificar recent service antes de interpretar dados."
+        }
+      ],
+      "expectedObservations": [
+        {
+          "observationId": "MET-OIL-SAMPLING-O1",
+          "field": "sample_identity",
+          "question": "Quais dados de sample identity estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        },
+        {
+          "observationId": "MET-OIL-SAMPLING-O2",
+          "field": "sampling_history",
+          "question": "Quais dados de sampling history estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        }
+      ],
+      "interpretationLimits": [
+        {
+          "limitId": "MET-OIL-SAMPLING-L1",
+          "description": "A identificação isolada não comprova condição interna nem defeito.",
+          "permittedInference": "question_or_hypothesis_only"
+        }
+      ],
+      "applicabilityGate": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "technicalPublication": null,
+        "revision": null,
+        "status": "not_verified",
+        "approvedForOperationalUse": false
+      },
+      "safetyGates": [
+        "environmental_containment",
+        "fluid_temperature_and_pressure",
+        "safe_access",
+        "sampling_procedure"
+      ],
+      "reviewStatus": "generic_conceptual_not_oem",
+      "executionStatus": "proposed_not_executed",
+      "thresholds": null,
+      "parameterValues": null,
+      "outputNature": "investigation_questions_only"
+    },
+    {
+      "methodId": "MET-OIL-TREND",
+      "domain": "oil",
+      "title": "Comparação de tendências de fluidos",
+      "diagnosticQuestion": "Há alteração comparável de metais, partículas e condição do óleo ao longo do tempo?",
+      "fmeaMethodId": "EV-08",
+      "sourceIds": [
+        "CAT-FLUID-ANALYSIS-101"
+      ],
+      "prerequisites": [
+        {
+          "prerequisiteId": "MET-OIL-TREND-P1",
+          "category": "compartment",
+          "description": "Registrar/verificar compartment antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-OIL-TREND-P2",
+          "category": "sampling_method",
+          "description": "Registrar/verificar sampling method antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-OIL-TREND-P3",
+          "category": "oil_hours",
+          "description": "Registrar/verificar oil hours antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-OIL-TREND-P4",
+          "category": "laboratory_method",
+          "description": "Registrar/verificar laboratory method antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-OIL-TREND-P5",
+          "category": "prior_results",
+          "description": "Registrar/verificar prior results antes de interpretar dados."
+        }
+      ],
+      "expectedObservations": [
+        {
+          "observationId": "MET-OIL-TREND-O1",
+          "field": "trend_series",
+          "question": "Quais dados de trend series estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        },
+        {
+          "observationId": "MET-OIL-TREND-O2",
+          "field": "comparability",
+          "question": "Quais dados de comparability estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        }
+      ],
+      "interpretationLimits": [
+        {
+          "limitId": "MET-OIL-TREND-L1",
+          "description": "Uma amostra isolada não distingue abrasão, erro de coleta, troca de formulação ou origem de partículas.",
+          "permittedInference": "question_or_hypothesis_only"
+        }
+      ],
+      "applicabilityGate": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "technicalPublication": null,
+        "revision": null,
+        "status": "not_verified",
+        "approvedForOperationalUse": false
+      },
+      "safetyGates": [
+        "environmental_containment",
+        "fluid_temperature_and_pressure",
+        "safe_access",
+        "sampling_procedure"
+      ],
+      "reviewStatus": "generic_conceptual_not_oem",
+      "executionStatus": "proposed_not_executed",
+      "thresholds": null,
+      "parameterValues": null,
+      "outputNature": "investigation_questions_only"
+    },
+    {
+      "methodId": "MET-OIL-WATER",
+      "domain": "oil",
+      "title": "Verificação conceitual de água no lubrificante",
+      "diagnosticQuestion": "O sinal de água se reproduz em amostra representativa e sob método conhecido?",
+      "fmeaMethodId": "EV-10",
+      "sourceIds": [
+        "CAT-FLUID-ANALYSIS-101"
+      ],
+      "prerequisites": [
+        {
+          "prerequisiteId": "MET-OIL-WATER-P1",
+          "category": "sampling_trace",
+          "description": "Registrar/verificar sampling trace antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-OIL-WATER-P2",
+          "category": "retest_plan",
+          "description": "Registrar/verificar retest plan antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-OIL-WATER-P3",
+          "category": "method_reference",
+          "description": "Registrar/verificar method reference antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-OIL-WATER-P4",
+          "category": "fluid_identity",
+          "description": "Registrar/verificar fluid identity antes de interpretar dados."
+        }
+      ],
+      "expectedObservations": [
+        {
+          "observationId": "MET-OIL-WATER-O1",
+          "field": "water_retest_result",
+          "question": "Quais dados de water retest result estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        },
+        {
+          "observationId": "MET-OIL-WATER-O2",
+          "field": "sampling_comparability",
+          "question": "Quais dados de sampling comparability estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        }
+      ],
+      "interpretationLimits": [
+        {
+          "limitId": "MET-OIL-WATER-L1",
+          "description": "Água indicada em laudo não prova ingresso via vedação; coleta pode ser a origem.",
+          "permittedInference": "question_or_hypothesis_only"
+        }
+      ],
+      "applicabilityGate": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "technicalPublication": null,
+        "revision": null,
+        "status": "not_verified",
+        "approvedForOperationalUse": false
+      },
+      "safetyGates": [
+        "environmental_containment",
+        "fluid_temperature_and_pressure",
+        "safe_access",
+        "sampling_procedure"
+      ],
+      "reviewStatus": "generic_conceptual_not_oem",
+      "executionStatus": "proposed_not_executed",
+      "thresholds": null,
+      "parameterValues": null,
+      "outputNature": "investigation_questions_only"
+    },
+    {
+      "methodId": "MET-OIL-PRODUCT",
+      "domain": "oil",
+      "title": "Reconciliação de produto e baseline",
+      "diagnosticQuestion": "O produto e a composição aditiva mudaram de forma documentada?",
+      "fmeaMethodId": "EV-13",
+      "sourceIds": [
+        "CAT-FLUID-ANALYSIS-101"
+      ],
+      "prerequisites": [
+        {
+          "prerequisiteId": "MET-OIL-PRODUCT-P1",
+          "category": "fluid_product_id",
+          "description": "Registrar/verificar fluid product id antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-OIL-PRODUCT-P2",
+          "category": "service_record",
+          "description": "Registrar/verificar service record antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-OIL-PRODUCT-P3",
+          "category": "prior_formulation",
+          "description": "Registrar/verificar prior formulation antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-OIL-PRODUCT-P4",
+          "category": "oil_hours",
+          "description": "Registrar/verificar oil hours antes de interpretar dados."
+        }
+      ],
+      "expectedObservations": [
+        {
+          "observationId": "MET-OIL-PRODUCT-O1",
+          "field": "product_history",
+          "question": "Quais dados de product history estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        },
+        {
+          "observationId": "MET-OIL-PRODUCT-O2",
+          "field": "baseline_alignment",
+          "question": "Quais dados de baseline alignment estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        }
+      ],
+      "interpretationLimits": [
+        {
+          "limitId": "MET-OIL-PRODUCT-L1",
+          "description": "Aditivos divergentes não demonstram falha; especificação OEM depende de série e contexto.",
+          "permittedInference": "question_or_hypothesis_only"
+        }
+      ],
+      "applicabilityGate": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "technicalPublication": null,
+        "revision": null,
+        "status": "not_verified",
+        "approvedForOperationalUse": false
+      },
+      "safetyGates": [
+        "environmental_containment",
+        "fluid_temperature_and_pressure",
+        "safe_access",
+        "sampling_procedure"
+      ],
+      "reviewStatus": "generic_conceptual_not_oem",
+      "executionStatus": "proposed_not_executed",
+      "thresholds": null,
+      "parameterValues": null,
+      "outputNature": "investigation_questions_only"
+    },
+    {
+      "methodId": "MET-HYD-PRESSURE",
+      "domain": "hydraulics",
+      "title": "Mapeamento de pressão e condição de carga",
+      "diagnosticQuestion": "A condição de pressão relatada pode ser distinguida de alteração de carga e ponto?",
+      "fmeaMethodId": null,
+      "sourceIds": [
+        "BOSCH-REXROTH-CYTRO"
+      ],
+      "prerequisites": [
+        {
+          "prerequisiteId": "MET-HYD-PRESSURE-P1",
+          "category": "hydraulic_schematic",
+          "description": "Registrar/verificar hydraulic schematic antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-HYD-PRESSURE-P2",
+          "category": "test_port_definition",
+          "description": "Registrar/verificar test port definition antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-HYD-PRESSURE-P3",
+          "category": "load_context",
+          "description": "Registrar/verificar load context antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-HYD-PRESSURE-P4",
+          "category": "instrument_scope",
+          "description": "Registrar/verificar instrument scope antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-HYD-PRESSURE-P5",
+          "category": "isolation_plan",
+          "description": "Registrar/verificar isolation plan antes de interpretar dados."
+        }
+      ],
+      "expectedObservations": [
+        {
+          "observationId": "MET-HYD-PRESSURE-O1",
+          "field": "pressure_context",
+          "question": "Quais dados de pressure context estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        },
+        {
+          "observationId": "MET-HYD-PRESSURE-O2",
+          "field": "pressure_comparability",
+          "question": "Quais dados de pressure comparability estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        }
+      ],
+      "interpretationLimits": [
+        {
+          "limitId": "MET-HYD-PRESSURE-L1",
+          "description": "Pressão isolada não identifica bomba, válvula ou atuador; nenhum valor OEM é conhecido.",
+          "permittedInference": "question_or_hypothesis_only"
+        }
+      ],
+      "applicabilityGate": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "technicalPublication": null,
+        "revision": null,
+        "status": "not_verified",
+        "approvedForOperationalUse": false
+      },
+      "safetyGates": [
+        "lockout_isolation",
+        "stored_hydraulic_energy",
+        "pressure_release",
+        "rated_instruments",
+        "authorized_test_setup"
+      ],
+      "reviewStatus": "generic_conceptual_not_oem",
+      "executionStatus": "proposed_not_executed",
+      "thresholds": null,
+      "parameterValues": null,
+      "outputNature": "investigation_questions_only"
+    },
+    {
+      "methodId": "MET-HYD-FLOW",
+      "domain": "hydraulics",
+      "title": "Mapeamento de vazão e perda de desempenho",
+      "diagnosticQuestion": "O desempenho do circuito pode ser separado de restrição, temperatura ou demanda?",
+      "fmeaMethodId": null,
+      "sourceIds": [
+        "BOSCH-REXROTH-CYTRO"
+      ],
+      "prerequisites": [
+        {
+          "prerequisiteId": "MET-HYD-FLOW-P1",
+          "category": "flow_path_schematic",
+          "description": "Registrar/verificar flow path schematic antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-HYD-FLOW-P2",
+          "category": "method_approval",
+          "description": "Registrar/verificar method approval antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-HYD-FLOW-P3",
+          "category": "fluid_temperature",
+          "description": "Registrar/verificar fluid temperature antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-HYD-FLOW-P4",
+          "category": "load_context",
+          "description": "Registrar/verificar load context antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-HYD-FLOW-P5",
+          "category": "instrument_scope",
+          "description": "Registrar/verificar instrument scope antes de interpretar dados."
+        }
+      ],
+      "expectedObservations": [
+        {
+          "observationId": "MET-HYD-FLOW-O1",
+          "field": "flow_context",
+          "question": "Quais dados de flow context estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        },
+        {
+          "observationId": "MET-HYD-FLOW-O2",
+          "field": "flow_repeatability",
+          "question": "Quais dados de flow repeatability estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        }
+      ],
+      "interpretationLimits": [
+        {
+          "limitId": "MET-HYD-FLOW-L1",
+          "description": "Vazão observada sem configuração e requisito não prova deficiência de bomba.",
+          "permittedInference": "question_or_hypothesis_only"
+        }
+      ],
+      "applicabilityGate": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "technicalPublication": null,
+        "revision": null,
+        "status": "not_verified",
+        "approvedForOperationalUse": false
+      },
+      "safetyGates": [
+        "lockout_isolation",
+        "stored_hydraulic_energy",
+        "pressure_release",
+        "rated_instruments",
+        "authorized_test_setup"
+      ],
+      "reviewStatus": "generic_conceptual_not_oem",
+      "executionStatus": "proposed_not_executed",
+      "thresholds": null,
+      "parameterValues": null,
+      "outputNature": "investigation_questions_only"
+    },
+    {
+      "methodId": "MET-HYD-TEMP",
+      "domain": "hydraulics",
+      "title": "Tendência térmica hidráulica",
+      "diagnosticQuestion": "A evolução térmica pode ser contextualizada por ambiente, carga e regime?",
+      "fmeaMethodId": null,
+      "sourceIds": [
+        "BOSCH-REXROTH-CYTRO"
+      ],
+      "prerequisites": [
+        {
+          "prerequisiteId": "MET-HYD-TEMP-P1",
+          "category": "circuit_identity",
+          "description": "Registrar/verificar circuit identity antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-HYD-TEMP-P2",
+          "category": "ambient_context",
+          "description": "Registrar/verificar ambient context antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-HYD-TEMP-P3",
+          "category": "duty_cycle",
+          "description": "Registrar/verificar duty cycle antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-HYD-TEMP-P4",
+          "category": "measurement_location",
+          "description": "Registrar/verificar measurement location antes de interpretar dados."
+        }
+      ],
+      "expectedObservations": [
+        {
+          "observationId": "MET-HYD-TEMP-O1",
+          "field": "temperature_trend",
+          "question": "Quais dados de temperature trend estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        },
+        {
+          "observationId": "MET-HYD-TEMP-O2",
+          "field": "duty_cycle_comparison",
+          "question": "Quais dados de duty cycle comparison estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        }
+      ],
+      "interpretationLimits": [
+        {
+          "limitId": "MET-HYD-TEMP-L1",
+          "description": "Temperatura alta isolada não distingue ineficiência, resfriamento e operação severa.",
+          "permittedInference": "question_or_hypothesis_only"
+        }
+      ],
+      "applicabilityGate": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "technicalPublication": null,
+        "revision": null,
+        "status": "not_verified",
+        "approvedForOperationalUse": false
+      },
+      "safetyGates": [
+        "lockout_isolation",
+        "stored_hydraulic_energy",
+        "pressure_release",
+        "rated_instruments",
+        "authorized_test_setup"
+      ],
+      "reviewStatus": "generic_conceptual_not_oem",
+      "executionStatus": "proposed_not_executed",
+      "thresholds": null,
+      "parameterValues": null,
+      "outputNature": "investigation_questions_only"
+    },
+    {
+      "methodId": "MET-MECH-MAGNET",
+      "domain": "mechanics",
+      "title": "Depósitos magnéticos e morfologia",
+      "diagnosticQuestion": "Os depósitos diferem de condição histórica e apontam para quais mecanismos alternativos?",
+      "fmeaMethodId": "EV-11",
+      "sourceIds": [
+        "CAT-DRIVE-MAGNET-PLUG",
+        "SKF-ISO15243-BEARING"
+      ],
+      "prerequisites": [
+        {
+          "prerequisiteId": "MET-MECH-MAGNET-P1",
+          "category": "compartment_isolation",
+          "description": "Registrar/verificar compartment isolation antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-MECH-MAGNET-P2",
+          "category": "plug_identity",
+          "description": "Registrar/verificar plug identity antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-MECH-MAGNET-P3",
+          "category": "prior_records",
+          "description": "Registrar/verificar prior records antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-MECH-MAGNET-P4",
+          "category": "oem_inspection_reference",
+          "description": "Registrar/verificar oem inspection reference antes de interpretar dados."
+        }
+      ],
+      "expectedObservations": [
+        {
+          "observationId": "MET-MECH-MAGNET-O1",
+          "field": "deposit_description",
+          "question": "Quais dados de deposit description estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        },
+        {
+          "observationId": "MET-MECH-MAGNET-O2",
+          "field": "temporal_comparison",
+          "question": "Quais dados de temporal comparison estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        }
+      ],
+      "interpretationLimits": [
+        {
+          "limitId": "MET-MECH-MAGNET-L1",
+          "description": "Depósito magnético não identifica engrenagem versus rolamento sem evidência adicional.",
+          "permittedInference": "question_or_hypothesis_only"
+        }
+      ],
+      "applicabilityGate": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "technicalPublication": null,
+        "revision": null,
+        "status": "not_verified",
+        "approvedForOperationalUse": false
+      },
+      "safetyGates": [
+        "lockout_isolation",
+        "hot_surfaces",
+        "stored_mechanical_energy",
+        "safe_access"
+      ],
+      "reviewStatus": "generic_conceptual_not_oem",
+      "executionStatus": "proposed_not_executed",
+      "thresholds": null,
+      "parameterValues": null,
+      "outputNature": "investigation_questions_only"
+    },
+    {
+      "methodId": "MET-MECH-SEAL",
+      "domain": "mechanics",
+      "title": "Inspeção de caminhos de contaminação",
+      "diagnosticQuestion": "Existe rota plausível de entrada de água ou partículas por vedação, tampas e respiros?",
+      "fmeaMethodId": "EV-01",
+      "sourceIds": [
+        "CAT-FLUID-ANALYSIS-101"
+      ],
+      "prerequisites": [
+        {
+          "prerequisiteId": "MET-MECH-SEAL-P1",
+          "category": "safe_isolation",
+          "description": "Registrar/verificar safe isolation antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-MECH-SEAL-P2",
+          "category": "component_arrangement",
+          "description": "Registrar/verificar component arrangement antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-MECH-SEAL-P3",
+          "category": "washdown_history",
+          "description": "Registrar/verificar washdown history antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-MECH-SEAL-P4",
+          "category": "access_method",
+          "description": "Registrar/verificar access method antes de interpretar dados."
+        }
+      ],
+      "expectedObservations": [
+        {
+          "observationId": "MET-MECH-SEAL-O1",
+          "field": "seal_condition",
+          "question": "Quais dados de seal condition estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        },
+        {
+          "observationId": "MET-MECH-SEAL-O2",
+          "field": "breather_condition",
+          "question": "Quais dados de breather condition estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        }
+      ],
+      "interpretationLimits": [
+        {
+          "limitId": "MET-MECH-SEAL-L1",
+          "description": "Vedação visualmente alterada não comprova ingresso nem origem de contaminante.",
+          "permittedInference": "question_or_hypothesis_only"
+        }
+      ],
+      "applicabilityGate": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "technicalPublication": null,
+        "revision": null,
+        "status": "not_verified",
+        "approvedForOperationalUse": false
+      },
+      "safetyGates": [
+        "lockout_isolation",
+        "hot_surfaces",
+        "stored_mechanical_energy",
+        "safe_access"
+      ],
+      "reviewStatus": "generic_conceptual_not_oem",
+      "executionStatus": "proposed_not_executed",
+      "thresholds": null,
+      "parameterValues": null,
+      "outputNature": "investigation_questions_only"
+    },
+    {
+      "methodId": "MET-MECH-METROLOGY",
+      "domain": "mechanics",
+      "title": "Inspeção dimensional de superfície",
+      "diagnosticQuestion": "A geometria aparente diverge de padrão documentado e medição reproduzível?",
+      "fmeaMethodId": null,
+      "sourceIds": [
+        "SKF-ISO15243-BEARING"
+      ],
+      "prerequisites": [
+        {
+          "prerequisiteId": "MET-MECH-METROLOGY-P1",
+          "category": "component_identification",
+          "description": "Registrar/verificar component identification antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-MECH-METROLOGY-P2",
+          "category": "drawing_revision",
+          "description": "Registrar/verificar drawing revision antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-MECH-METROLOGY-P3",
+          "category": "measurement_method",
+          "description": "Registrar/verificar measurement method antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-MECH-METROLOGY-P4",
+          "category": "calibration_record",
+          "description": "Registrar/verificar calibration record antes de interpretar dados."
+        }
+      ],
+      "expectedObservations": [
+        {
+          "observationId": "MET-MECH-METROLOGY-O1",
+          "field": "dimensional_record",
+          "question": "Quais dados de dimensional record estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        },
+        {
+          "observationId": "MET-MECH-METROLOGY-O2",
+          "field": "reference_comparison",
+          "question": "Quais dados de reference comparison estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        }
+      ],
+      "interpretationLimits": [
+        {
+          "limitId": "MET-MECH-METROLOGY-L1",
+          "description": "Sem tolerâncias efetivas por peça/série, dimensão isolada não condena componente.",
+          "permittedInference": "question_or_hypothesis_only"
+        }
+      ],
+      "applicabilityGate": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "technicalPublication": null,
+        "revision": null,
+        "status": "not_verified",
+        "approvedForOperationalUse": false
+      },
+      "safetyGates": [
+        "lockout_isolation",
+        "hot_surfaces",
+        "stored_mechanical_energy",
+        "safe_access"
+      ],
+      "reviewStatus": "generic_conceptual_not_oem",
+      "executionStatus": "proposed_not_executed",
+      "thresholds": null,
+      "parameterValues": null,
+      "outputNature": "investigation_questions_only"
+    },
+    {
+      "methodId": "MET-VIB-LOCALIZE",
+      "domain": "vibration",
+      "title": "Localização de ruído e vibração",
+      "diagnosticQuestion": "A origem do ruído é distinguível do freio, pneu ou demais conjuntos?",
+      "fmeaMethodId": "EV-04",
+      "sourceIds": [
+        "SKF-VIBRATION-CONDITION"
+      ],
+      "prerequisites": [
+        {
+          "prerequisiteId": "MET-VIB-LOCALIZE-P1",
+          "category": "safe_access",
+          "description": "Registrar/verificar safe access antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-VIB-LOCALIZE-P2",
+          "category": "machine_operating_state",
+          "description": "Registrar/verificar machine operating state antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-VIB-LOCALIZE-P3",
+          "category": "sensor_location",
+          "description": "Registrar/verificar sensor location antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-VIB-LOCALIZE-P4",
+          "category": "frequency_method",
+          "description": "Registrar/verificar frequency method antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-VIB-LOCALIZE-P5",
+          "category": "speed_context",
+          "description": "Registrar/verificar speed context antes de interpretar dados."
+        }
+      ],
+      "expectedObservations": [
+        {
+          "observationId": "MET-VIB-LOCALIZE-O1",
+          "field": "noise_location",
+          "question": "Quais dados de noise location estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        },
+        {
+          "observationId": "MET-VIB-LOCALIZE-O2",
+          "field": "spectral_context",
+          "question": "Quais dados de spectral context estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        }
+      ],
+      "interpretationLimits": [
+        {
+          "limitId": "MET-VIB-LOCALIZE-L1",
+          "description": "Ruído percebido não comprova fadiga nem localiza sozinho um rolamento.",
+          "permittedInference": "question_or_hypothesis_only"
+        }
+      ],
+      "applicabilityGate": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "technicalPublication": null,
+        "revision": null,
+        "status": "not_verified",
+        "approvedForOperationalUse": false
+      },
+      "safetyGates": [
+        "rotating_machinery",
+        "safe_access",
+        "authorized_operation",
+        "sensor_attachment"
+      ],
+      "reviewStatus": "generic_conceptual_not_oem",
+      "executionStatus": "proposed_not_executed",
+      "thresholds": null,
+      "parameterValues": null,
+      "outputNature": "investigation_questions_only"
+    },
+    {
+      "methodId": "MET-VIB-TREND",
+      "domain": "vibration",
+      "title": "Tendência vibracional comparável",
+      "diagnosticQuestion": "Existe mudança de assinatura vibratória sob contexto de medição comparável?",
+      "fmeaMethodId": null,
+      "sourceIds": [
+        "SKF-VIBRATION-CONDITION"
+      ],
+      "prerequisites": [
+        {
+          "prerequisiteId": "MET-VIB-TREND-P1",
+          "category": "measurement_point",
+          "description": "Registrar/verificar measurement point antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-VIB-TREND-P2",
+          "category": "instrument",
+          "description": "Registrar/verificar instrument antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-VIB-TREND-P3",
+          "category": "operating_speed",
+          "description": "Registrar/verificar operating speed antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-VIB-TREND-P4",
+          "category": "load_context",
+          "description": "Registrar/verificar load context antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-VIB-TREND-P5",
+          "category": "historical_baseline",
+          "description": "Registrar/verificar historical baseline antes de interpretar dados."
+        }
+      ],
+      "expectedObservations": [
+        {
+          "observationId": "MET-VIB-TREND-O1",
+          "field": "time_series",
+          "question": "Quais dados de time series estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        },
+        {
+          "observationId": "MET-VIB-TREND-O2",
+          "field": "measurement_reproducibility",
+          "question": "Quais dados de measurement reproducibility estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        }
+      ],
+      "interpretationLimits": [
+        {
+          "limitId": "MET-VIB-TREND-L1",
+          "description": "Alerta vibracional sem velocidade/carga/ponto não identifica causa nem limiar seguro.",
+          "permittedInference": "question_or_hypothesis_only"
+        }
+      ],
+      "applicabilityGate": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "technicalPublication": null,
+        "revision": null,
+        "status": "not_verified",
+        "approvedForOperationalUse": false
+      },
+      "safetyGates": [
+        "rotating_machinery",
+        "safe_access",
+        "authorized_operation",
+        "sensor_attachment"
+      ],
+      "reviewStatus": "generic_conceptual_not_oem",
+      "executionStatus": "proposed_not_executed",
+      "thresholds": null,
+      "parameterValues": null,
+      "outputNature": "investigation_questions_only"
+    },
+    {
+      "methodId": "MET-ECM-CODES",
+      "domain": "electronics",
+      "title": "Leitura conceitual de códigos ativos/registrados",
+      "diagnosticQuestion": "O evento eletrônico é ativo, histórico ou contextual e a qual ECM pertence?",
+      "fmeaMethodId": null,
+      "sourceIds": [
+        "CAT-ET-OVERVIEW"
+      ],
+      "prerequisites": [
+        {
+          "prerequisiteId": "MET-ECM-CODES-P1",
+          "category": "ecm_identity",
+          "description": "Registrar/verificar ecm identity antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-ECM-CODES-P2",
+          "category": "authorized_read_access",
+          "description": "Registrar/verificar authorized read access antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-ECM-CODES-P3",
+          "category": "code_type",
+          "description": "Registrar/verificar code type antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-ECM-CODES-P4",
+          "category": "timestamp_context",
+          "description": "Registrar/verificar timestamp context antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-ECM-CODES-P5",
+          "category": "literature_revision",
+          "description": "Registrar/verificar literature revision antes de interpretar dados."
+        }
+      ],
+      "expectedObservations": [
+        {
+          "observationId": "MET-ECM-CODES-O1",
+          "field": "code_identity",
+          "question": "Quais dados de code identity estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        },
+        {
+          "observationId": "MET-ECM-CODES-O2",
+          "field": "active_or_logged",
+          "question": "Quais dados de active or logged estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        }
+      ],
+      "interpretationLimits": [
+        {
+          "limitId": "MET-ECM-CODES-L1",
+          "description": "DTC não condena sensor, chicote, ECM ou componente sem procedimento aplicável.",
+          "permittedInference": "question_or_hypothesis_only"
+        }
+      ],
+      "applicabilityGate": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "technicalPublication": null,
+        "revision": null,
+        "status": "not_verified",
+        "approvedForOperationalUse": false
+      },
+      "safetyGates": [
+        "electrical_safety",
+        "authorized_diagnostic_access",
+        "read_only",
+        "configuration_control"
+      ],
+      "reviewStatus": "generic_conceptual_not_oem",
+      "executionStatus": "proposed_not_executed",
+      "thresholds": null,
+      "parameterValues": null,
+      "outputNature": "investigation_questions_only"
+    },
+    {
+      "methodId": "MET-ECM-CONTEXT",
+      "domain": "electronics",
+      "title": "Contextualização de dados eletrônicos",
+      "diagnosticQuestion": "O sinal e condições de ocorrência do código discriminam defeito, intermitência ou contexto?",
+      "fmeaMethodId": null,
+      "sourceIds": [
+        "CAT-ET-OVERVIEW"
+      ],
+      "prerequisites": [
+        {
+          "prerequisiteId": "MET-ECM-CONTEXT-P1",
+          "category": "ecm_software_revision",
+          "description": "Registrar/verificar ecm software revision antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-ECM-CONTEXT-P2",
+          "category": "authorized_read_access",
+          "description": "Registrar/verificar authorized read access antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-ECM-CONTEXT-P3",
+          "category": "machine_configuration",
+          "description": "Registrar/verificar machine configuration antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-ECM-CONTEXT-P4",
+          "category": "sensor_units",
+          "description": "Registrar/verificar sensor units antes de interpretar dados."
+        },
+        {
+          "prerequisiteId": "MET-ECM-CONTEXT-P5",
+          "category": "diagnostic_tree",
+          "description": "Registrar/verificar diagnostic tree antes de interpretar dados."
+        }
+      ],
+      "expectedObservations": [
+        {
+          "observationId": "MET-ECM-CONTEXT-O1",
+          "field": "event_context",
+          "question": "Quais dados de event context estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        },
+        {
+          "observationId": "MET-ECM-CONTEXT-O2",
+          "field": "configuration_trace",
+          "question": "Quais dados de configuration trace estão documentados e comparáveis?",
+          "nature": "potential_not_measured"
+        }
+      ],
+      "interpretationLimits": [
+        {
+          "limitId": "MET-ECM-CONTEXT-L1",
+          "description": "Leitura eletrônica não autoriza ajuste, flash ou calibração de ECM.",
+          "permittedInference": "question_or_hypothesis_only"
+        }
+      ],
+      "applicabilityGate": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "technicalPublication": null,
+        "revision": null,
+        "status": "not_verified",
+        "approvedForOperationalUse": false
+      },
+      "safetyGates": [
+        "electrical_safety",
+        "authorized_diagnostic_access",
+        "read_only",
+        "configuration_control"
+      ],
+      "reviewStatus": "generic_conceptual_not_oem",
+      "executionStatus": "proposed_not_executed",
+      "thresholds": null,
+      "parameterValues": null,
+      "outputNature": "investigation_questions_only"
+    }
+  ]
+}
