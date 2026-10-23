@@ -23,6 +23,7 @@ from methods.library import (
 
 ROOT = Path(__file__).resolve().parent.parent
 BENCHMARK_PATH = ROOT / "benchmarks/question-quality.v1.json"
+RUBRIC_PATH = ROOT / "benchmarks/question-quality-rubric.v1.json"
 CATEGORIES = (
     "provenance", "ambiguity", "contradiction", "hypothesis_promotion",
     "safety", "effectivity", "prerequisite", "selection", "reproducibility",
@@ -54,6 +55,36 @@ def require_fields(obj: object, fields: set[str], label: str) -> dict:
     require(isinstance(obj, dict) and set(obj) == fields,
             f"{label}: expected exact fields, no extra information")
     return obj
+
+
+def validate_rubric(rubric: object) -> dict:
+    r = require_fields(rubric, {"schema", "version", "reviewStatus",
+                                "measurementScope", "allowedInterpretation",
+                                "categories"}, "rubric")
+    require(r["schema"] == "maintenance-superinteligence.question-quality-rubric.v1"
+            and r["version"] == "1.0.0"
+            and r["reviewStatus"] == "not_expert_validated"
+            and r["measurementScope"] == "synthetic_software_regression_only"
+            and r["allowedInterpretation"] == "check_compliance_not_diagnostic_accuracy",
+            "rubric: unsupported claims of field or expert validation")
+    require(isinstance(r["categories"], list)
+            and len(r["categories"]) == len(CATEGORIES),
+            "rubric: all failure classes required")
+    seen = set()
+    for c in r["categories"]:
+        require_fields(c, {"failureClass", "definition", "acceptanceCriterion",
+                           "applicability", "expectedCheckStatus"}, "rubric category")
+        require(c["failureClass"] in CATEGORIES
+                and c["failureClass"] not in seen
+                and isinstance(c["definition"], str) and c["definition"].strip()
+                and isinstance(c["acceptanceCriterion"], str)
+                and c["acceptanceCriterion"].strip()
+                and c["applicability"] == "all_fixtures"
+                and c["expectedCheckStatus"] == "pass",
+                "rubric: duplicate, missing, or unverified class")
+        seen.add(c["failureClass"])
+    require(seen == set(CATEGORIES), "rubric: failure classes incomplete")
+    return r
 
 
 def validate_manifest(manifest: object, families: dict) -> list[dict]:
@@ -307,7 +338,9 @@ def eval_one(fixture: dict, output: object, families: dict, methods: dict,
 
 
 def execute_benchmark(manifest: dict, matrix: dict, methods: dict,
-                      snapshot: dict) -> dict:
+                      snapshot: dict, rubric: dict | None = None) -> dict:
+    rubric = rubric or json.loads(RUBRIC_PATH.read_text(encoding="utf-8"))
+    validate_rubric(rubric)
     families = validate_matrix(matrix, methods, snapshot)
     fixtures = validate_manifest(manifest, families)
     reports = []
@@ -331,6 +364,7 @@ def execute_benchmark(manifest: dict, matrix: dict, methods: dict,
         "fmeaContentVersion": "1.0.0",
         "fmeaSourceLocked": True,
         "manifestSha256": digest(manifest),
+        "rubricSha256": digest(rubric),
         "matrixSha256": digest(matrix),
         "fixturesEvaluated": len(reports),
         "fixturesPassed": sum(row["passes"] for row in reports),
@@ -363,6 +397,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--snapshot", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, default=BENCHMARK_PATH)
+    parser.add_argument("--rubric", type=Path, default=RUBRIC_PATH)
     parser.add_argument("--matrix", type=Path, default=MATRIX_PATH)
     parser.add_argument("--catalog", type=Path, default=CATALOG_PATH)
     parser.add_argument("--sources", type=Path, default=SOURCES_PATH)
@@ -375,7 +410,8 @@ def main(argv: list[str] | None = None) -> int:
                                    registry, source)
         matrix = json.loads(args.matrix.read_text(encoding="utf-8"))
         manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
-        report = execute_benchmark(manifest, matrix, methods, source)
+        rubric = json.loads(args.rubric.read_text(encoding="utf-8"))
+        report = execute_benchmark(manifest, matrix, methods, source, rubric)
         serialized = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
         if args.output:
             args.output.parent.mkdir(parents=True, exist_ok=True)
