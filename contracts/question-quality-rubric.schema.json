@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/question-quality-rubric.schema.json",
+  "title": "QuestionQualityRubric v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "reviewStatus",
+    "measurementScope",
+    "allowedInterpretation",
+    "categories"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.question-quality-rubric.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "reviewStatus": {
+      "const": "not_expert_validated"
+    },
+    "measurementScope": {
+      "const": "synthetic_software_regression_only"
+    },
+    "allowedInterpretation": {
+      "const": "check_compliance_not_diagnostic_accuracy"
+    },
+    "categories": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/rubric-category.schema.json",
+        "title": "Rubric category",
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "failureClass",
+          "definition",
+          "acceptanceCriterion",
+          "applicability",
+          "expectedCheckStatus"
+        ],
+        "properties": {
+          "failureClass": {
+            "enum": [
+              "provenance",
+              "ambiguity",
+              "contradiction",
+              "hypothesis_promotion",
+              "safety",
+              "effectivity",
+              "prerequisite",
+              "selection",
+              "reproducibility"
+            ]
+          },
+          "definition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "acceptanceCriterion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "applicability": {
+            "const": "all_fixtures"
+          },
+          "expectedCheckStatus": {
+            "const": "pass"
+          }
+        }
+      }
+    }
+  }
+}

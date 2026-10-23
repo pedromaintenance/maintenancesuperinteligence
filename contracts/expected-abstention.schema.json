@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/expected-abstention.schema.json",
+  "title": "ExpectedAbstention and golden selection v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "selectedPairId",
+    "selectedMethodId",
+    "selectionStatus",
+    "nextQuestionContains",
+    "openHypotheses",
+    "unresolvedPairs",
+    "mustAbstain"
+  ],
+  "properties": {
+    "selectedPairId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selectedMethodId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selectionStatus": {
+      "enum": [
+        "reconcile_contradiction",
+        "ask_missing_context",
+        "review_applicability",
+        "prepare_human_method_review"
+      ]
+    },
+    "nextQuestionContains": {
+      "type": "string",
+      "minLength": 1
+    },
+    "openHypotheses": {
+      "type": "integer",
+      "minimum": 2
+    },
+    "unresolvedPairs": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "mustAbstain": {
+      "const": true
+    }
+  }
+}

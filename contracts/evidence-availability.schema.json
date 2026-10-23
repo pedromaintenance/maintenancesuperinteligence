@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-availability.schema.json",
+  "title": "EvidenceAvailability v1 — synthetic context",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "key",
+    "state",
+    "sourceRef"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "enum": [
+        "unknown",
+        "available_simulated",
+        "contradicted",
+        "not_applicable"
+      ]
+    },
+    "sourceRef": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^SIM-[A-Z0-9-]+$"
+    }
+  }
+}

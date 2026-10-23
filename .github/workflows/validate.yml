@@ -1,4 +1,4 @@
-name: Validate public knowledge, investigation and methods
+name: Validate public knowledge, investigation, methods and question quality
 
 on:
   push:
@@ -271,6 +271,88 @@ jobs:
         with:
           name: discrimination-three-training-domains
           path: build/discrimination/
+          retention-days: 14
+      - name: Run locked-source synthetic question benchmark
+        run: |
+          mkdir -p build/benchmarks
+          python -m benchmarks.quality \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --output build/benchmarks/question-quality.v1.report.json > /dev/null
+      - name: Assert regression categories and explicitly non-empirical metrics
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r = json.loads(Path("build/benchmarks/question-quality.v1.report.json").read_text())
+          assert r["schema"] == "maintenance-superinteligence.question-benchmark-report.v1"
+          assert r["fixturesEvaluated"] == 15 and r["fixturesPassed"] == 15
+          assert r["acceptance"] == "regression_pass"
+          assert r["syntheticAbstentionRate"] == {"abstained": 15, "total": 15}
+          assert r["canonicalReproducibility"] == {"passed": 15, "total": 15}
+          assert r["diagnosticAccuracyMeasured"] is False
+          assert r["technicalExpertReviewComplete"] is False
+          assert r["operationalValidation"] is False
+          assert r["benchmarkNature"] == "synthetic_regression_not_diagnostic_accuracy"
+          expected_classes = {"provenance", "ambiguity", "contradiction",
+            "hypothesis_promotion", "safety", "effectivity", "prerequisite",
+            "selection", "reproducibility"}
+          assert set(r["checkComplianceByCategory"]) == expected_classes
+          for category, checks in r["checkComplianceByCategory"].items():
+              assert checks["passed"] == checks["total"] and checks["total"] > 0
+              assert r["failureCountsByClass"][category] == 0
+          assert all(x["passes"] and not x["failureClasses"] for x in r["cases"])
+          assert len({x["outputDigestSha256"] for x in r["cases"]}) == 15
+          print("PASS: 15 authored synthetic regressions; zero authority promotion")
+          PY
+      - name: Reject benchmark with fabricated approval as safety gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("benchmarks/question-quality.v1.json")
+          manifest = json.loads(p.read_text())
+          manifest["reviewStatus"] = "expert_validated"
+          Path("build/benchmarks/forged-benchmark.json").write_text(json.dumps(manifest))
+          PY
+          if python -m benchmarks.quality \
+             --snapshot build/fmea-public/fmea-public.snapshot.json \
+             --manifest build/benchmarks/forged-benchmark.json > /dev/null 2>&1; then
+            echo "SECURITY FAIL: falsely approved benchmark accepted"
+            exit 1
+          fi
+          rm build/benchmarks/forged-benchmark.json
+      - name: Ensure intentionally incorrect golden label produces failing regression
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          src = Path("benchmarks/question-quality.v1.json")
+          m = json.loads(src.read_text())
+          m["fixtures"][0]["expected"]["nextQuestionContains"] = "UNOBSERVED-EXPERT-CONCLUSION"
+          Path("build/benchmarks/poisoned-golden.json").write_text(json.dumps(m))
+          PY
+          if python -m benchmarks.quality \
+             --snapshot build/fmea-public/fmea-public.snapshot.json \
+             --manifest build/benchmarks/poisoned-golden.json \
+             --output build/benchmarks/poisoned-result.json > /dev/null 2>&1; then
+            echo "REGRESSION FAIL: poisoned golden label was accepted"
+            exit 1
+          fi
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r = json.loads(Path("build/benchmarks/poisoned-result.json").read_text())
+          assert r["acceptance"] == "regression_fail"
+          assert r["failureCountsByClass"]["selection"] > 0
+          assert r["fixturesPassed"] == 14
+          print("PASS: failed semantic selection is counted, not mistaken for diagnostic accuracy")
+          PY
+          rm build/benchmarks/poisoned-golden.json build/benchmarks/poisoned-result.json
+      - name: Publish synthetic regression benchmark report
+        uses: actions/upload-artifact@v4
+        with:
+          name: diagnostic-question-regression-benchmark
+          path: build/benchmarks/question-quality.v1.report.json
           retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4

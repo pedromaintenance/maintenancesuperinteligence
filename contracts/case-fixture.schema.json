@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/case-fixture.schema.json",
+  "title": "Synthetic CaseFixture v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "fixtureId",
+    "familyId",
+    "case",
+    "expected",
+    "editorialReviewStatus",
+    "tags",
+    "note"
+  ],
+  "properties": {
+    "fixtureId": {
+      "type": "string",
+      "pattern": "^(FD|HYD|ECM)-[A-Z-]+$"
+    },
+    "familyId": {
+      "enum": [
+        "final_drive",
+        "hydraulics",
+        "electronics"
+      ]
+    },
+    "case": {
+      "$ref": "discrimination-case.schema.json"
+    },
+    "expected": {
+      "$ref": "expected-abstention.schema.json"
+    },
+    "editorialReviewStatus": {
+      "const": "synthetic_regression_not_expert_validated"
+    },
+    "tags": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "note": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

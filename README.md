@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de seleção discriminante P&D v0.6.0 (23/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de benchmark de perguntas P&D v0.7.0 (23/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -44,6 +44,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 04 — Modelo de evidências auditáveis](docs/CICLO_2026-10-22_MODELO_EVIDENCIAS.md)
 - [Ciclo 05 — Biblioteca de métodos diagnósticos](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md)
 - [Ciclo 06 — Seleção discriminante de perguntas](docs/CICLO_2026-10-23_SELECAO_DISCRIMINANTE.md)
+- [Ciclo 07 — Benchmark de qualidade de perguntas](docs/CICLO_2026-10-23_BENCHMARK_PERGUNTAS.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -135,3 +136,15 @@ python -m methods.discrimination --snapshot build/fmea-public/fmea-public.snapsh
 ```
 
 O cenário hidráulico parte de carga contraditória e não condena bomba; o eletrônico parte de DTC não caracterizado e não condena sensor/ECM. Fontes gerais de fabricantes permanecem **não específicas para série**. Leia [o relatório do Ciclo 06](docs/CICLO_2026-10-23_SELECAO_DISCRIMINANTE.md).
+
+
+## Ciclo 07 — Benchmark sintético de qualidade das perguntas
+
+O pacote `benchmarks/question-quality.v1.json` reúne **15 casos editoriais sintéticos** (5 por família) com expectativas de escolha e abstenção. A rubrica `benchmarks/question-quality-rubric.v1.json` cobre nove classes de regressão, incluindo proveniência, contradições, dados faltantes, interpretação indevida, segurança, efetividade OEM e reprodutibilidade. O executável `benchmarks/quality.py` constrói relatório com falhas por categoria, denominadores e SHA-256, valendo-se do snapshot público FMEA original e dos métodos do projeto.
+
+```bash
+python connectors/fmea_public.py --fetch --output build/fmea-public
+python -m benchmarks.quality --snapshot build/fmea-public/fmea-public.snapshot.json --output build/benchmarks/question-quality.v1.report.json
+```
+
+**Atenção:** conformidade no benchmark é **regressão de software**, não sensibilidade/especificidade de detecção de falha nem aprovação por especialista. Acurácia diagnóstica real, critérios OEM por série e autorizações operacionais continuam fora do escopo. Veja [relatório técnico](docs/CICLO_2026-10-23_BENCHMARK_PERGUNTAS.md).
