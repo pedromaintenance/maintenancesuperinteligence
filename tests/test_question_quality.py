@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 from connectors.fmea_public import ImportRejected
 from benchmarks.quality import (
-    ROOT, CATEGORIES, eval_one, execute_benchmark, main, validate_manifest
+    ROOT, CATEGORIES, eval_one, execute_benchmark, main, validate_manifest, validate_rubric
 )
 from methods.discrimination import select_questions, validate_matrix
 from methods.library import validate_catalog, validate_sources
@@ -20,6 +20,8 @@ class QualityBenchmarkTests(unittest.TestCase):
     def setUp(self):
         self.manifest = json.loads(
             (ROOT / "benchmarks/question-quality.v1.json").read_text())
+        self.rubric = json.loads(
+            (ROOT / "benchmarks/question-quality-rubric.v1.json").read_text())
         self.matrix = json.loads(
             (ROOT / "methods/discrimination-matrix.v1.json").read_text())
         sources = json.loads(
@@ -120,6 +122,37 @@ class QualityBenchmarkTests(unittest.TestCase):
                                  "prepare_human_method_review")
                 self.assertFalse(report["mayRunTests"])
                 self.assertIsNone(report["confirmedComponent"])
+
+    def test_rubric_version_and_all_nine_classes(self):
+        validated = validate_rubric(self.rubric)
+        self.assertEqual(len(validated["categories"]), 9)
+        self.assertEqual({x["failureClass"] for x in validated["categories"]},
+                         set(CATEGORIES))
+        report = execute_benchmark(self.manifest, self.matrix,
+                                   self.methods, self.snapshot, self.rubric)
+        self.assertEqual(len(report["rubricSha256"]), 64)
+        self.assertFalse(report["diagnosticAccuracyMeasured"])
+
+    def test_rubric_rejects_false_accuracy_claim(self):
+        self.rubric["allowedInterpretation"] = "validated_failure_detection"
+        with self.assertRaises(ImportRejected):
+            validate_rubric(self.rubric)
+
+    def test_rubric_rejects_omitted_failure_class(self):
+        self.rubric["categories"].pop()
+        with self.assertRaises(ImportRejected):
+            validate_rubric(self.rubric)
+
+    def test_rubric_rejects_duplicate_failure_class(self):
+        self.rubric["categories"][1]["failureClass"] = (
+            self.rubric["categories"][0]["failureClass"])
+        with self.assertRaises(ImportRejected):
+            validate_rubric(self.rubric)
+
+    def test_rubric_rejects_decorative_pass_from_unreviewed_result(self):
+        self.rubric["categories"][0]["expectedCheckStatus"] = "already_validated"
+        with self.assertRaises(ImportRejected):
+            validate_rubric(self.rubric)
 
     def test_golden_label_mutation_produces_selection_failure(self):
         altered = copy.deepcopy(self.manifest)
