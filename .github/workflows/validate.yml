@@ -1,4 +1,4 @@
-name: Validate public knowledge and FMEA importer
+name: Validate public knowledge, investigation and methods
 
 on:
   push:
@@ -154,6 +154,7 @@ jobs:
               echo "SECURITY FAIL: forged investigation method accepted"
               exit 1
           fi
+          rm build/investigations/forged-method-input.json
       - name: Publish conceptual methods and checklist artifacts
         uses: actions/upload-artifact@v4
         with:
