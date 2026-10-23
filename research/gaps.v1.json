@@ -1,0 +1,55 @@
+[
+  {
+    "gapId": "GAP-001",
+    "question": "Como validar por série o procedimento de diagnóstico do comando final do CAT 777E?",
+    "domain": "mechanical_diagnostics",
+    "priority": "high",
+    "requiredEvidence": [
+      "série e arranjo aplicáveis",
+      "publicação OEM efetiva",
+      "métodos de inspeção discriminantes"
+    ],
+    "status": "open",
+    "decisionAffected": "diagnóstico específico"
+  },
+  {
+    "gapId": "GAP-002",
+    "question": "Qual pacote exportável do FMEA possui autorização, versão de conteúdo, schema e hash atual?",
+    "domain": "integration",
+    "priority": "high",
+    "requiredEvidence": [
+      "manifesto público",
+      "licença de uso",
+      "revisão do contrato",
+      "hash do pacote"
+    ],
+    "status": "open",
+    "decisionAffected": "importação controlada"
+  },
+  {
+    "gapId": "GAP-003",
+    "question": "Quais competências além das 56 do jogo precisam de critérios independentes de avaliação?",
+    "domain": "competencies",
+    "priority": "medium",
+    "requiredEvidence": [
+      "currículo por disciplina",
+      "rubricas de avaliação",
+      "validação por especialista"
+    ],
+    "status": "open",
+    "decisionAffected": "maturidade do ensino"
+  },
+  {
+    "gapId": "GAP-004",
+    "question": "Quais plataformas OEM de serviço da frota Sandvik são efetivamente utilizadas, em quais versões e com quais direitos de acesso?",
+    "domain": "embedded_software",
+    "priority": "medium",
+    "requiredEvidence": [
+      "documentação OEM autorizada",
+      "versões e compatibilidade",
+      "alçadas de uso"
+    ],
+    "status": "open",
+    "decisionAffected": "atlas de software embarcado"
+  }
+]
