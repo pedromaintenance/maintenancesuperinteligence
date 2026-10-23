@@ -1,11 +1,11 @@
-name: Validate public knowledge metadata
+name: Validate public knowledge and FMEA importer
 
 on:
   push:
   pull_request:
 
 jobs:
-  validate:
+  knowledge-and-fmea:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -14,5 +14,36 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate schema metadata and provenance references
+      - name: Validate existing knowledge metadata
         run: python scripts/validate.py
+      - name: Compile Python sources
+        run: python -m compileall -q connectors scripts tests
+      - name: Run offline adversarial tests
+        run: python -m unittest discover -s tests -v
+      - name: Import pinned FMEA public snapshot
+        run: python connectors/fmea_public.py --fetch --output build/fmea-public
+      - name: Check public import receipt without promoting evidence
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          receipt = json.loads(Path("build/fmea-public/import-receipt.json").read_text())
+          index = json.loads(Path("build/fmea-public/fmea-public.index.json").read_text())
+          assert receipt["recordsAccepted"] == 24
+          assert receipt["sourcesAccepted"] == 20
+          assert receipt["confirmedRootCauses"] == 0
+          assert receipt["empiricalOccurrences"] == 0
+          assert receipt["operationalApproval"] is False
+          assert index["approvedForOperationalUse"] is False
+          assert all(rec["approvedForOperationalUse"] is False for rec in index["records"])
+          assert all(not rec["confirmedRootCause"] for rec in index["records"])
+          assert all(test["status"] == "not_performed"
+                     for rec in index["records"] for test in rec["plannedInvestigations"])
+          print("PASS: 24 public inferred records; zero promotion to evidence or operational authority")
+          PY
+      - name: Publish non-operational index and import receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: fmea-public-inferred-index
+          path: build/fmea-public/
+          retention-days: 14

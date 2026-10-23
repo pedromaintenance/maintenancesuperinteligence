@@ -32,6 +32,12 @@ A superinteligência **não edita silenciosamente** o FMEA, não promove hipóte
 | Revisor e efetividade OEM ausentes | `blocked_for_operational_specificity` |
 | Resultado real autorizado | `operational_evidence` em ambiente privado, com auditoria |
 
+## Implementação parcial — ciclo 02
+
+O importador de leitura **já existe** em [`connectors/fmea_public.py`](../connectors/fmea_public.py) e usa [lock imutável](../connectors/fmea-source-lock.v1.json). A execução usa o snapshot de conteúdo público **1.0.0**, de **preview 1.3.12**, hash do registro upstream e commit fixo. A versão interna do FMEA pode evoluir independentemente. O consumidor preserva IDs do produtor em campos `fmeaId`/`sourceIds`; namespacing universal ainda é um trabalho de evolução, não uma conversão já implementada.
+
+Esta versão somente produz um índice de hipóteses e recibo; **não implementa** `investigate(...)`, importação de eventos reais, sincronização automática, metrologia OEM ou revisão humana de campo. [Registro de execução e limites](CICLO_2026-10-22_IMPORTADOR_FMEA.md).
+
 ## Contrato de importação
 
 1. Ler `data/governance/public-contract.v1.json` e política de exportação do FMEA.
@@ -43,7 +49,7 @@ A superinteligência **não edita silenciosamente** o FMEA, não promove hipóte
 7. Gerar relatório de importação com versão, data, registros aceitos/rejeitados, lacunas e hash.
 8. Não publicar nova versão do conhecimento nem atualizar consumidores automaticamente.
 
-**Atenção:** o snapshot público citado no contrato do FMEA permanece na versão de conteúdo 1.3.12, embora o repositório tenha evoluído para v1.3.49. Estes números **não** devem ser confundidos.
+**Atenção:** versão do **conteúdo público = 1.0.0**, versão do **contrato público = 1.0.0**; o campo histórico **preview.version = 1.3.12**. A versão interna do repositório FMEA (1.3.49 no registro consultado) é independente destas três. Não há promoção operacional.
 
 ## Primeira funcionalidade
 
