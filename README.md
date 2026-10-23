@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de métodos diagnósticos P&D v0.5.0 (23/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de seleção discriminante P&D v0.6.0 (23/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -43,6 +43,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 03 — Investigador didático CAT 777E](docs/CICLO_2026-10-22_INVESTIGADOR_777E.md)
 - [Ciclo 04 — Modelo de evidências auditáveis](docs/CICLO_2026-10-22_MODELO_EVIDENCIAS.md)
 - [Ciclo 05 — Biblioteca de métodos diagnósticos](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md)
+- [Ciclo 06 — Seleção discriminante de perguntas](docs/CICLO_2026-10-23_SELECAO_DISCRIMINANTE.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -57,7 +58,7 @@ connectors/       # importador público do FMEA e lock de fonte (presentes)
 tests/            # testes unitários adversariais do importador e do piloto (presentes)
 investigations/   # investigador diferencial didático CAT 777E (presente)
 evidence/         # ontologia de observação, teste e evidência + auditoria (presente)
-methods/          # catálogo de métodos e gerador de perguntas diagnósticas (presente)
+methods/          # catálogo, matriz de hipóteses e seletores didáticos (presentes)
 examples/         # quatro cenários sintéticos (presentes)
 evaluation/       # benchmark de diagnóstico amplo (futuro)
 services/         # busca e orquestração assistiva (futuro)
@@ -122,3 +123,15 @@ Licença **a definir**. Até a escolha formal, não se deve presumir permissão 
 
 ---
 **MaintenanceSuperinteligence não substitui o técnico, o engenheiro, o manual do fabricante ou o procedimento de segurança. Seu propósito é ampliar a capacidade humana de compreender, decidir e aprender.**
+
+
+## Ciclo 06 — Próxima pergunta para discriminar hipóteses
+
+A matriz `methods/discrimination-matrix.v1.json` compara dez pares de hipóteses em **três famílias sintéticas**: comando final, hidráulica e diagnóstico eletrônico. `methods/discrimination.py` seleciona deterministicamente **uma pergunta** a partir de contradições e lacunas, sem executar testes e sem probabilidades/custos inventados.
+
+```bash
+python connectors/fmea_public.py --fetch --output build/fmea-public
+python -m methods.discrimination --snapshot build/fmea-public/fmea-public.snapshot.json --case examples/discrimination_hydraulics.json --output build/discrimination/hydraulics.selection.json
+```
+
+O cenário hidráulico parte de carga contraditória e não condena bomba; o eletrônico parte de DTC não caracterizado e não condena sensor/ECM. Fontes gerais de fabricantes permanecem **não específicas para série**. Leia [o relatório do Ciclo 06](docs/CICLO_2026-10-23_SELECAO_DISCRIMINANTE.md).
