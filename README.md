@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: fundação de P&D v0.1.0 (22/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de integração P&D v0.2.0 (22/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -39,6 +39,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Plano de desenvolvimento e entregáveis](docs/ROADMAP.md)
 - [Primeiro caso vertical para testar a arquitetura](docs/CASO_PILOTO.md)
 - [Fontes públicas prioritárias](docs/FONTES.md)
+- [Ciclo 02 — Importação verificável do FMEA](docs/CICLO_2026-10-22_IMPORTADOR_FMEA.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -49,21 +50,34 @@ research/         # lacunas de conhecimento (presente)
 scripts/          # validador offline de integridade mínima (presente)
 .github/workflows # validação GitHub Actions (presente)
 docs/             # arquitetura e especificações (presente)
-connectors/       # importador público do FMEA (futuro)
-evaluation/       # benchmark adversarial (futuro)
+connectors/       # importador público do FMEA e lock de fonte (presentes)
+tests/            # testes unitários adversariais do importador (presentes)
+evaluation/       # benchmark de diagnóstico amplo (futuro)
 services/         # busca e orquestração assistiva (futuro)
 ```
 
+## Importador público do FMEA — ciclo 02
+
+O importador `connectors/fmea_public.py` consome **somente o snapshot público do release 1.0.0**, pinado por commit e SHA-256. Ele rejeita promoções para causa raiz confirmada, evento real, teste executado e aplicabilidade OEM ou aprovação operacional sem evidência. O resultado é um **índice didático de hipóteses**, não um banco de falhas reais.
+
+```bash
+python scripts/validate.py
+python -m unittest discover -s tests -v
+python connectors/fmea_public.py --fetch --output build/fmea-public
+```
+
+O CI verifica o pacote real: **24 cadeias, 20 fontes, zero ocorrências reais**, com artefato temporário de índice e recibo. A fonte original permanece no repositório FMEA. [Consultar ciclo 02](docs/CICLO_2026-10-22_IMPORTADOR_FMEA.md).
+
 ## Verificação e desenvolvimento
 
-A rotina **Validate public knowledge metadata** executa o validador básico de estrutura e referências. É uma proteção inicial contra registros malformados e fontes órfãs, **não** validação técnica de diagnósticos ou JSON Schema completo. [Ver CI](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/workflows/validate.yml).
+A rotina **Validate public knowledge and FMEA importer** executa testes de metadados, testes adversariais e importação controlada. **Isso não constitui validação técnica OEM de diagnósticos nem JSON Schema completo.** [Ver CI](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/workflows/validate.yml).
 
 **Backlog criado:** [#1 Ontologia e schemas](https://github.com/pedromaintenance/maintenancesuperinteligence/issues/1) · [#2 Importador FMEA](https://github.com/pedromaintenance/maintenancesuperinteligence/issues/2) · [#3 Piloto 777E](https://github.com/pedromaintenance/maintenancesuperinteligence/issues/3) · [#4 Currículo](https://github.com/pedromaintenance/maintenancesuperinteligence/issues/4) · [#5 Governança](https://github.com/pedromaintenance/maintenancesuperinteligence/issues/5).
 
 ## O que podemos fazer primeiro
 
 1. Converter as **56 competências reais do jogo** em um catálogo rastreável e extensível, sem converter pontos de jogo em habilitação profissional.
-2. Consumir **somente a exportação pública versionada** do FMEA com verificações de integridade, sem misturar combinações heurísticas, cenários didáticos e observações reais.
+2. **Concluído no ciclo 02:** consumir o snapshot público versionado do FMEA com verificação de hash, sem misturar combinações heurísticas, cenários didáticos e observações reais.
 3. Desenvolver um primeiro fluxo end-to-end: `sintoma → hipóteses concorrentes → teste discriminante → evidência → decisão assistiva`.
 4. Registrar lacunas OEM/SAP/segurança antes de afirmar especificações, frequências, torques, pressões ou peças.
 5. Criar testes de qualidade para evitar respostas causais circularmente justificadas ou citações falsas.
