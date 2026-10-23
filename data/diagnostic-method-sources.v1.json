@@ -1,0 +1,61 @@
+{
+  "schema": "maintenance-superinteligence.diagnostic-method-sources.v1",
+  "version": "1.0.0",
+  "purpose": "general_sources_not_model_specific_procedures",
+  "sources": [
+    {
+      "id": "CAT-FLUID-ANALYSIS-101",
+      "organization": "Caterpillar",
+      "title": "Fluid Analysis 101",
+      "url": "https://www.cat.com/en_US/support/maintenance/sos-services/analysis-101.html/",
+      "role": "manufacturer_general_oil_analysis",
+      "limitation": "Amostras, tendência e parâmetros precisam de método, baseline e documentação efetiva; não é OMM por série.",
+      "origin": "fmea_public_reference"
+    },
+    {
+      "id": "CAT-DRIVE-MAGNET-PLUG",
+      "organization": "Caterpillar",
+      "title": "How to Inspect Cat Drive Train Magnetic Plugs",
+      "url": "https://www.cat.com/en_US/blog/inspect-drive-train-magnetic-plugs.html",
+      "role": "manufacturer_general_inspection",
+      "limitation": "Orientação genérica, não extrapolar critérios de bujão ou procedimentos de intervenção para 777E.",
+      "origin": "fmea_public_reference"
+    },
+    {
+      "id": "SKF-ISO15243-BEARING",
+      "organization": "SKF",
+      "title": "How to understand ISO 15243 — Bearing damage analysis",
+      "url": "https://evolution.skf.com/us/bearing-damage-analysis-iso-15243-is-here-to-help-you/",
+      "role": "manufacturer_general_failure_analysis",
+      "limitation": "Mecanismo de rolamento geral não identifica peça, posição, série ou dano confirmado.",
+      "origin": "fmea_public_reference"
+    },
+    {
+      "id": "SKF-VIBRATION-CONDITION",
+      "organization": "SKF",
+      "title": "Parallel condition monitoring",
+      "url": "https://evolution.skf.com/parallel-condition-monitoring/",
+      "role": "manufacturer_general_condition_monitoring",
+      "limitation": "Princípios de monitoramento não homologam sensor, limite ou frequência de coleta na CAT 777E.",
+      "origin": "public_independent"
+    },
+    {
+      "id": "BOSCH-REXROTH-CYTRO",
+      "organization": "Bosch Rexroth",
+      "title": "CytroConnect Solutions",
+      "url": "https://www.boschrexroth.com/pt/br/connected-hydraulics/produtos/cytroconnect-solutions/",
+      "role": "manufacturer_general_hydraulic_monitoring",
+      "limitation": "Exemplo geral de monitoramento por pressão, temperatura e vazão; não é procedimento de pressão/fluxo para frota CAT.",
+      "origin": "public_independent"
+    },
+    {
+      "id": "CAT-ET-OVERVIEW",
+      "organization": "Caterpillar",
+      "title": "Caterpillar Electronic Technician (CAT ET) Overview",
+      "url": "https://www.cat.com/en_US/by-industry/oil-and-gas/learning/program/caterpillar-electronic-technician-cat-et-overview.html/",
+      "role": "manufacturer_general_diagnostic_training",
+      "limitation": "Descreve capacidade genérica do ET; não transfere acesso, licença, efetividade ECM ou autorização de calibração.",
+      "origin": "public_independent"
+    }
+  ]
+}
