@@ -12,7 +12,8 @@ import json
 from pathlib import Path
 import sys
 
-from connectors.fmea_public import ImportRejected, load_lock, require
+from connectors.fmea_public import (ImportRejected, load_lock, require,
+                                    validate_snapshot, build_consumer_index)
 
 
 PILOT_SCHEMA = "maintenance-superinteligence.final-drive-case.v1"
@@ -311,14 +312,24 @@ def investigate(case: dict, index: dict, lock: dict | None = None) -> dict:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--index", type=Path, required=True)
+    parser.add_argument("--snapshot", type=Path, required=True,
+                        help="Snapshot original FMEA cujo SHA-256 é validado contra o lock")
+    parser.add_argument("--index", type=Path,
+                        help="Índice opcional para comparação integral contra snapshot verificado")
     parser.add_argument("--case", type=Path, required=True)
     parser.add_argument("--output", type=Path, help="Saída JSON opcional; imprime no stdout também")
     args = parser.parse_args(argv)
     try:
-        index = json.loads(args.index.read_text(encoding="utf-8"))
+        lock = load_lock()
+        raw = args.snapshot.read_bytes()
+        source = validate_snapshot(raw, lock)
+        expected_index = build_consumer_index(source, lock)
+        if args.index:
+            candidate = json.loads(args.index.read_text(encoding="utf-8"))
+            require(candidate == expected_index,
+                    "índice divergente dos bytes do snapshot público verificado")
         case = json.loads(args.case.read_text(encoding="utf-8"))
-        result = investigate(case, index)
+        result = investigate(case, expected_index, lock)
         data = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
         if args.output:
             args.output.parent.mkdir(parents=True, exist_ok=True)
