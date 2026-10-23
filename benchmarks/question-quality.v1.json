@@ -1,0 +1,793 @@
+{
+  "schema": "maintenance-superinteligence.question-benchmark.v1",
+  "version": "1.0.0",
+  "nature": "synthetic_editorial_regression_not_field_accuracy",
+  "reviewStatus": "not_expert_validated",
+  "sourceAnchor": "fmea_public_1.0.0_checksum_verified_at_runtime",
+  "methodCatalogVersion": "1.0.0",
+  "matrixVersion": "1.0.0",
+  "fixtures": [
+    {
+      "fixtureId": "FD-ADDITIVES-UNKNOWN",
+      "familyId": "final_drive",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-FD-ADDITIVES-UNKNOWN",
+        "familyId": "final_drive",
+        "scenario": "Perfil aditivo isolado, amostra e baseline desconhecidos.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "additive_profile_changed"
+        ],
+        "contextStates": [],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "FD-P01",
+        "selectedMethodId": "MET-OIL-PRODUCT",
+        "selectionStatus": "ask_missing_context",
+        "nextQuestionContains": "fluid_product_id",
+        "openHypotheses": 7,
+        "unresolvedPairs": 4,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "final_drive",
+        "ask_missing_context"
+      ],
+      "note": "Perfil aditivo isolado, amostra e baseline desconhecidos."
+    },
+    {
+      "fixtureId": "FD-FORMULATION-RECORDED",
+      "familyId": "final_drive",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-FD-FORMULATION-RECORDED",
+        "familyId": "final_drive",
+        "scenario": "Troca de óleo narrada no exercício; identidade de amostra incerta.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "lubricant_change_documented"
+        ],
+        "contextStates": [
+          {
+            "key": "fluid_product_id",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-FORMULATION-RECORDED-FLUID-PRODUCT-ID"
+          },
+          {
+            "key": "service_record",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-FORMULATION-RECORDED-SERVICE-RECORD"
+          }
+        ],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "FD-P02",
+        "selectedMethodId": "MET-OIL-SAMPLING",
+        "selectionStatus": "ask_missing_context",
+        "nextQuestionContains": "sample_chain",
+        "openHypotheses": 7,
+        "unresolvedPairs": 4,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "final_drive",
+        "ask_missing_context"
+      ],
+      "note": "Troca de óleo narrada no exercício; identidade de amostra incerta."
+    },
+    {
+      "fixtureId": "FD-SAMPLE-CONTRADICTION",
+      "familyId": "final_drive",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-FD-SAMPLE-CONTRADICTION",
+        "familyId": "final_drive",
+        "scenario": "Identificações simuladas de amostra mutuamente inconsistentes.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "sample_identity_disputed"
+        ],
+        "contextStates": [
+          {
+            "key": "sample_chain",
+            "state": "contradicted",
+            "sourceRef": "SIM-BENCH-FD-SAMPLE-CONTRADICTION-SAMPLE-CHAIN"
+          }
+        ],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "FD-P02",
+        "selectedMethodId": "MET-OIL-SAMPLING",
+        "selectionStatus": "reconcile_contradiction",
+        "nextQuestionContains": "sample_chain",
+        "openHypotheses": 7,
+        "unresolvedPairs": 4,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "final_drive",
+        "reconcile_contradiction"
+      ],
+      "note": "Identificações simuladas de amostra mutuamente inconsistentes."
+    },
+    {
+      "fixtureId": "FD-SAMPLE-NOT-APPLICABLE",
+      "familyId": "final_drive",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-FD-SAMPLE-NOT-APPLICABLE",
+        "familyId": "final_drive",
+        "scenario": "Campo de cadeia de amostragem marcado não aplicável; precisa justificar.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "lubricant_change_documented"
+        ],
+        "contextStates": [
+          {
+            "key": "fluid_product_id",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-SAMPLE-NOT-APPLICABLE-FLUID-PRODUCT-ID"
+          },
+          {
+            "key": "service_record",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-SAMPLE-NOT-APPLICABLE-SERVICE-RECORD"
+          },
+          {
+            "key": "sample_chain",
+            "state": "not_applicable",
+            "sourceRef": "SIM-BENCH-FD-SAMPLE-NOT-APPLICABLE-SAMPLE-CHAIN"
+          },
+          {
+            "key": "sample_point",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-SAMPLE-NOT-APPLICABLE-SAMPLE-POINT"
+          },
+          {
+            "key": "sensor_location",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-SAMPLE-NOT-APPLICABLE-SENSOR-LOCATION"
+          },
+          {
+            "key": "speed_context",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-SAMPLE-NOT-APPLICABLE-SPEED-CONTEXT"
+          },
+          {
+            "key": "plug_identity",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-SAMPLE-NOT-APPLICABLE-PLUG-IDENTITY"
+          },
+          {
+            "key": "prior_records",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-SAMPLE-NOT-APPLICABLE-PRIOR-RECORDS"
+          }
+        ],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "FD-P02",
+        "selectedMethodId": "MET-OIL-SAMPLING",
+        "selectionStatus": "review_applicability",
+        "nextQuestionContains": "sample_chain",
+        "openHypotheses": 7,
+        "unresolvedPairs": 4,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "final_drive",
+        "review_applicability"
+      ],
+      "note": "Campo de cadeia de amostragem marcado não aplicável; precisa justificar."
+    },
+    {
+      "fixtureId": "FD-ALL-SIMULATED",
+      "familyId": "final_drive",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-FD-ALL-SIMULATED",
+        "familyId": "final_drive",
+        "scenario": "Contexto didático preenchido, mas não há teste realizado ou OEM efetivo.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "additive_profile_changed"
+        ],
+        "contextStates": [
+          {
+            "key": "fluid_product_id",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-ALL-SIMULATED-FLUID-PRODUCT-ID"
+          },
+          {
+            "key": "service_record",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-ALL-SIMULATED-SERVICE-RECORD"
+          },
+          {
+            "key": "sample_chain",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-ALL-SIMULATED-SAMPLE-CHAIN"
+          },
+          {
+            "key": "sample_point",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-ALL-SIMULATED-SAMPLE-POINT"
+          },
+          {
+            "key": "sensor_location",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-ALL-SIMULATED-SENSOR-LOCATION"
+          },
+          {
+            "key": "speed_context",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-ALL-SIMULATED-SPEED-CONTEXT"
+          },
+          {
+            "key": "plug_identity",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-ALL-SIMULATED-PLUG-IDENTITY"
+          },
+          {
+            "key": "prior_records",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-FD-ALL-SIMULATED-PRIOR-RECORDS"
+          }
+        ],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "FD-P01",
+        "selectedMethodId": "MET-OIL-PRODUCT",
+        "selectionStatus": "prepare_human_method_review",
+        "nextQuestionContains": "O produto e a composição",
+        "openHypotheses": 7,
+        "unresolvedPairs": 4,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "final_drive",
+        "prepare_human_method_review"
+      ],
+      "note": "Contexto didático preenchido, mas não há teste realizado ou OEM efetivo."
+    },
+    {
+      "fixtureId": "HYD-LOAD-DISPUTED",
+      "familyId": "hydraulics",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-HYD-LOAD-DISPUTED",
+        "familyId": "hydraulics",
+        "scenario": "Carga divergente invalida inferência de falha de bomba.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "slow_actuation_reported"
+        ],
+        "contextStates": [
+          {
+            "key": "load_context",
+            "state": "contradicted",
+            "sourceRef": "SIM-BENCH-HYD-LOAD-DISPUTED-LOAD-CONTEXT"
+          }
+        ],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "HYD-P01",
+        "selectedMethodId": "MET-HYD-PRESSURE",
+        "selectionStatus": "reconcile_contradiction",
+        "nextQuestionContains": "load_context",
+        "openHypotheses": 4,
+        "unresolvedPairs": 3,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "hydraulics",
+        "reconcile_contradiction"
+      ],
+      "note": "Carga divergente invalida inferência de falha de bomba."
+    },
+    {
+      "fixtureId": "HYD-CONTEXT-UNKNOWN",
+      "familyId": "hydraulics",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-HYD-CONTEXT-UNKNOWN",
+        "familyId": "hydraulics",
+        "scenario": "Atuação lenta com circuito e condição desconhecidos.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "slow_actuation_reported"
+        ],
+        "contextStates": [],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "HYD-P01",
+        "selectedMethodId": "MET-HYD-PRESSURE",
+        "selectionStatus": "ask_missing_context",
+        "nextQuestionContains": "hydraulic_schematic",
+        "openHypotheses": 4,
+        "unresolvedPairs": 3,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "hydraulics",
+        "ask_missing_context"
+      ],
+      "note": "Atuação lenta com circuito e condição desconhecidos."
+    },
+    {
+      "fixtureId": "HYD-LOAD-NOT-APPLICABLE",
+      "familyId": "hydraulics",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-HYD-LOAD-NOT-APPLICABLE",
+        "familyId": "hydraulics",
+        "scenario": "Carga declarada não aplicável exige justificar requisito de contexto.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "slow_actuation_reported"
+        ],
+        "contextStates": [
+          {
+            "key": "hydraulic_schematic",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-HYD-LOAD-NOT-APPLICABLE-HYDRAULIC-SCHEMATIC"
+          },
+          {
+            "key": "load_context",
+            "state": "not_applicable",
+            "sourceRef": "SIM-BENCH-HYD-LOAD-NOT-APPLICABLE-LOAD-CONTEXT"
+          },
+          {
+            "key": "test_port_definition",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-HYD-LOAD-NOT-APPLICABLE-TEST-PORT-DEFINITION"
+          },
+          {
+            "key": "fluid_temperature",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-HYD-LOAD-NOT-APPLICABLE-FLUID-TEMPERATURE"
+          },
+          {
+            "key": "duty_cycle",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-HYD-LOAD-NOT-APPLICABLE-DUTY-CYCLE"
+          }
+        ],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "HYD-P01",
+        "selectedMethodId": "MET-HYD-PRESSURE",
+        "selectionStatus": "review_applicability",
+        "nextQuestionContains": "load_context",
+        "openHypotheses": 4,
+        "unresolvedPairs": 3,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "hydraulics",
+        "review_applicability"
+      ],
+      "note": "Carga declarada não aplicável exige justificar requisito de contexto."
+    },
+    {
+      "fixtureId": "HYD-TEMPERATURE-DISPUTED",
+      "familyId": "hydraulics",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-HYD-TEMPERATURE-DISPUTED",
+        "familyId": "hydraulics",
+        "scenario": "Medição térmica contraditória é anterior à escolha de componente.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "slow_actuation_reported"
+        ],
+        "contextStates": [
+          {
+            "key": "fluid_temperature",
+            "state": "contradicted",
+            "sourceRef": "SIM-BENCH-HYD-TEMPERATURE-DISPUTED-FLUID-TEMPERATURE"
+          }
+        ],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "HYD-P03",
+        "selectedMethodId": "MET-HYD-TEMP",
+        "selectionStatus": "reconcile_contradiction",
+        "nextQuestionContains": "fluid_temperature",
+        "openHypotheses": 4,
+        "unresolvedPairs": 3,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "hydraulics",
+        "reconcile_contradiction"
+      ],
+      "note": "Medição térmica contraditória é anterior à escolha de componente."
+    },
+    {
+      "fixtureId": "HYD-ALL-SIMULATED",
+      "familyId": "hydraulics",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-HYD-ALL-SIMULATED",
+        "familyId": "hydraulics",
+        "scenario": "Todos contextos hipotéticos disponíveis; nenhuma homologação de teste.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "slow_actuation_reported"
+        ],
+        "contextStates": [
+          {
+            "key": "hydraulic_schematic",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-HYD-ALL-SIMULATED-HYDRAULIC-SCHEMATIC"
+          },
+          {
+            "key": "load_context",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-HYD-ALL-SIMULATED-LOAD-CONTEXT"
+          },
+          {
+            "key": "test_port_definition",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-HYD-ALL-SIMULATED-TEST-PORT-DEFINITION"
+          },
+          {
+            "key": "fluid_temperature",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-HYD-ALL-SIMULATED-FLUID-TEMPERATURE"
+          },
+          {
+            "key": "duty_cycle",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-HYD-ALL-SIMULATED-DUTY-CYCLE"
+          }
+        ],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "HYD-P01",
+        "selectedMethodId": "MET-HYD-PRESSURE",
+        "selectionStatus": "prepare_human_method_review",
+        "nextQuestionContains": "A condição de pressão",
+        "openHypotheses": 4,
+        "unresolvedPairs": 3,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "hydraulics",
+        "prepare_human_method_review"
+      ],
+      "note": "Todos contextos hipotéticos disponíveis; nenhuma homologação de teste."
+    },
+    {
+      "fixtureId": "ECM-LOGGED-UNKNOWN",
+      "familyId": "electronics",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-ECM-LOGGED-UNKNOWN",
+        "familyId": "electronics",
+        "scenario": "DTC armazenado sem ECM, tempo ou condição não condena sensor.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "generic_logged_dtc"
+        ],
+        "contextStates": [],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "EL-P01",
+        "selectedMethodId": "MET-ECM-CODES",
+        "selectionStatus": "ask_missing_context",
+        "nextQuestionContains": "ecm_identity",
+        "openHypotheses": 4,
+        "unresolvedPairs": 3,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "electronics",
+        "ask_missing_context"
+      ],
+      "note": "DTC armazenado sem ECM, tempo ou condição não condena sensor."
+    },
+    {
+      "fixtureId": "ECM-ACTIVE-CONTEXT-MISSING",
+      "familyId": "electronics",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-ECM-ACTIVE-CONTEXT-MISSING",
+        "familyId": "electronics",
+        "scenario": "DTC ativo em narrativa sintética; carência de contexto temporal.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "generic_active_dtc"
+        ],
+        "contextStates": [
+          {
+            "key": "ecm_identity",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-ECM-ACTIVE-CONTEXT-MISSING-ECM-IDENTITY"
+          },
+          {
+            "key": "sensor_units",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-ECM-ACTIVE-CONTEXT-MISSING-SENSOR-UNITS"
+          }
+        ],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "EL-P02",
+        "selectedMethodId": "MET-ECM-CODES",
+        "selectionStatus": "ask_missing_context",
+        "nextQuestionContains": "code_type",
+        "openHypotheses": 4,
+        "unresolvedPairs": 3,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "electronics",
+        "ask_missing_context"
+      ],
+      "note": "DTC ativo em narrativa sintética; carência de contexto temporal."
+    },
+    {
+      "fixtureId": "ECM-TIMESTAMP-DISPUTED",
+      "familyId": "electronics",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-ECM-TIMESTAMP-DISPUTED",
+        "familyId": "electronics",
+        "scenario": "Relatos conflitantes do instante de registro.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "generic_logged_dtc"
+        ],
+        "contextStates": [
+          {
+            "key": "timestamp_context",
+            "state": "contradicted",
+            "sourceRef": "SIM-BENCH-ECM-TIMESTAMP-DISPUTED-TIMESTAMP-CONTEXT"
+          }
+        ],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "EL-P02",
+        "selectedMethodId": "MET-ECM-CODES",
+        "selectionStatus": "reconcile_contradiction",
+        "nextQuestionContains": "timestamp_context",
+        "openHypotheses": 4,
+        "unresolvedPairs": 3,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "electronics",
+        "reconcile_contradiction"
+      ],
+      "note": "Relatos conflitantes do instante de registro."
+    },
+    {
+      "fixtureId": "ECM-EVENT-NOT-APPLICABLE",
+      "familyId": "electronics",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-ECM-EVENT-NOT-APPLICABLE",
+        "familyId": "electronics",
+        "scenario": "Tipo de evento marcado não aplicável precisa revisão.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "generic_active_dtc"
+        ],
+        "contextStates": [
+          {
+            "key": "ecm_identity",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-ECM-EVENT-NOT-APPLICABLE-ECM-IDENTITY"
+          },
+          {
+            "key": "sensor_units",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-ECM-EVENT-NOT-APPLICABLE-SENSOR-UNITS"
+          },
+          {
+            "key": "code_type",
+            "state": "not_applicable",
+            "sourceRef": "SIM-BENCH-ECM-EVENT-NOT-APPLICABLE-CODE-TYPE"
+          },
+          {
+            "key": "timestamp_context",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-ECM-EVENT-NOT-APPLICABLE-TIMESTAMP-CONTEXT"
+          },
+          {
+            "key": "machine_configuration",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-ECM-EVENT-NOT-APPLICABLE-MACHINE-CONFIGURATION"
+          },
+          {
+            "key": "event_context",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-ECM-EVENT-NOT-APPLICABLE-EVENT-CONTEXT"
+          }
+        ],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "EL-P02",
+        "selectedMethodId": "MET-ECM-CODES",
+        "selectionStatus": "review_applicability",
+        "nextQuestionContains": "code_type",
+        "openHypotheses": 4,
+        "unresolvedPairs": 3,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "electronics",
+        "review_applicability"
+      ],
+      "note": "Tipo de evento marcado não aplicável precisa revisão."
+    },
+    {
+      "fixtureId": "ECM-ALL-SIMULATED",
+      "familyId": "electronics",
+      "case": {
+        "schema": "maintenance-superinteligence.discrimination-case.v1",
+        "caseId": "SIM-BENCH-ECM-ALL-SIMULATED",
+        "familyId": "electronics",
+        "scenario": "ECM fictício documentado sem ensaio real ou validação por série.",
+        "evidenceNature": "simulation",
+        "reportedSignals": [
+          "generic_logged_dtc"
+        ],
+        "contextStates": [
+          {
+            "key": "ecm_identity",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-ECM-ALL-SIMULATED-ECM-IDENTITY"
+          },
+          {
+            "key": "sensor_units",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-ECM-ALL-SIMULATED-SENSOR-UNITS"
+          },
+          {
+            "key": "code_type",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-ECM-ALL-SIMULATED-CODE-TYPE"
+          },
+          {
+            "key": "timestamp_context",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-ECM-ALL-SIMULATED-TIMESTAMP-CONTEXT"
+          },
+          {
+            "key": "machine_configuration",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-ECM-ALL-SIMULATED-MACHINE-CONFIGURATION"
+          },
+          {
+            "key": "event_context",
+            "state": "available_simulated",
+            "sourceRef": "SIM-BENCH-ECM-ALL-SIMULATED-EVENT-CONTEXT"
+          }
+        ],
+        "oemGate": {
+          "serialOrArrangement": null,
+          "technicalPublication": null,
+          "revision": null,
+          "approved": false
+        }
+      },
+      "expected": {
+        "selectedPairId": "EL-P01",
+        "selectedMethodId": "MET-ECM-CODES",
+        "selectionStatus": "prepare_human_method_review",
+        "nextQuestionContains": "O evento eletrônico",
+        "openHypotheses": 4,
+        "unresolvedPairs": 3,
+        "mustAbstain": true
+      },
+      "editorialReviewStatus": "synthetic_regression_not_expert_validated",
+      "tags": [
+        "electronics",
+        "prepare_human_method_review"
+      ],
+      "note": "ECM fictício documentado sem ensaio real ou validação por série."
+    }
+  ]
+}
