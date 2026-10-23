@@ -60,3 +60,8 @@ O piloto só será aprovado quando responder adequadamente a casos **completos, 
 O protótipo executável está em [`investigations/final_drive.py`](../investigations/final_drive.py), com entrada formal em [`contracts/final-drive-case.schema.json`](../contracts/final-drive-case.schema.json) e quatro cenários de [`examples/`](../examples/). Leia o [relatório do ciclo](CICLO_2026-10-22_INVESTIGADOR_777E.md).
 
 A implementação trabalha **exclusivamente com observações simuladas** e não possui evidência real, procedimento OEM por série nem autoridade para autorizar serviço. `ready_for_human_review` não é concedido nesta versão: o sistema responde `needs_evidence` ou `escalate_to_specialist`; em ambos a revisão humana é obrigatória. O FMEA define hipóteses de manutenção gerais, não defeitos específicos da CAT 777E.
+
+
+## Ciclo 04 — Integridade das evidências
+
+O relatório foi ampliado para `maintenance-superinteligence.final-drive-investigation.v2`, com `evidenceLedger` auditável: relato do operador, sinais codificados, métodos de teste, interpretações e avaliações individuais de hipótese. Veja [o relatório técnico do ciclo 04](CICLO_2026-10-22_MODELO_EVIDENCIAS.md). A evolução é **estritamente didática**: resultados reais e liberação de equipamento permanecem bloqueados.

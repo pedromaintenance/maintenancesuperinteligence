@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.0 — 2026-10-22 — Ciclo 04
+
+- Criados cinco contratos versionados para observação, método de teste, resultado, evidência e avaliação de hipótese, além do contrato agregador `EvidenceLedger`.
+- Ampliado o investigador didático CAT 777E para saída v2 contendo observações com origem, oito métodos propostos, interpretações vinculadas, sete hipóteses abertas e revisão humana pendente.
+- Incluída possibilidade de `TestResult` explicitamente sintético, sem inferir execução OEM, causalidade confirmada ou nova liberação operacional.
+- Adicionada cadeia determinística de seis hashes SHA-256 e validação cruzada com o caso original e as hipóteses, inclusive contra adulterações localmente recalculadas.
+- Estendidos os testes adversariais e a execução CI para validar os quatro cenários e um resultado simulado separado.
+
+**Limite:** hashes não substituem autenticação, assinatura digital nem cadeia de custódia de evidência de campo.
+
+
 ## 0.3.0 — 2026-10-22 — Ciclo 03
 
 - Implementado primeiro investigador diferencial **estritamente didático** de comandos finais, contextualizado à CAT 777E sem fingir homologação OEM.

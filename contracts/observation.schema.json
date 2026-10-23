@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Observation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "observationId",
+    "kind",
+    "signalCode",
+    "result",
+    "description",
+    "sourceRef",
+    "evidenceNature",
+    "context",
+    "limitations"
+  ],
+  "properties": {
+    "observationId": {
+      "type": "string",
+      "pattern": "^OBS-[0-9]{3}$"
+    },
+    "kind": {
+      "enum": [
+        "operator_report",
+        "coded_report"
+      ]
+    },
+    "signalCode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "result": {
+      "enum": [
+        "reported",
+        "present",
+        "absent",
+        "inconclusive"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceRef": {
+      "type": "string",
+      "pattern": "^SIM-[A-Za-z0-9_-]+$"
+    },
+    "evidenceNature": {
+      "const": "simulation"
+    },
+    "context": {
+      "$ref": "#/$defs/context"
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/observation.schema.json",
+  "$defs": {
+    "context": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Measurement context",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "machineCondition",
+        "samplePoint",
+        "observedAt",
+        "meterHours",
+        "instrumentId",
+        "calibrationReference"
+      ],
+      "properties": {
+        "machineCondition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "samplePoint": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "observedAt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "meterHours": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "instrumentId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "calibrationReference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

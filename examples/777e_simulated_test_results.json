@@ -1,0 +1,26 @@
+{
+  "schema": "maintenance-superinteligence.simulated-test-results.v1",
+  "caseId": "SIM-777E-WATER-CONFLICT",
+  "results": [
+    {
+      "testResultId": "SIM-TR-777E-001",
+      "testMethodId": "TM-003",
+      "nature": "simulation",
+      "status": "simulated_execution",
+      "result": "inconclusive",
+      "sourceRef": "SIM-TRAINING-LAB-001",
+      "context": {
+        "machineCondition": "SIMULAÇÃO: equipamento imobilizado, nenhuma máquina real envolvida",
+        "samplePoint": "SIMULAÇÃO: compartimento fictício",
+        "observedAt": "2026-10-22T17:00:00-03:00",
+        "meterHours": 1000,
+        "instrumentId": "SIM-INSTRUMENT-01",
+        "calibrationReference": "SIM-CALIBRATION-01"
+      },
+      "limitations": [
+        "Resultado fictício; não comprova água, defeito nem realização de teste real.",
+        "Método FMEA de origem permanece apenas proposto; este ensaio é simulado de maneira independente."
+      ]
+    }
+  ]
+}

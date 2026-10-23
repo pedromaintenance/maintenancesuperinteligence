@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EvidenceLedger v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "caseId",
+    "sourceBinding",
+    "caseDigest",
+    "observations",
+    "testMethods",
+    "testResults",
+    "evidence",
+    "hypothesisAssessments",
+    "humanReview",
+    "auditTrail"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.evidence-ledger.v1"
+    },
+    "caseId": {
+      "type": "string",
+      "pattern": "^SIM-[A-Za-z0-9_-]+$"
+    },
+    "sourceBinding": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Source binding",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fmeaInputSha256",
+        "contentVersion",
+        "sourceKind"
+      ],
+      "properties": {
+        "fmeaInputSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "contentVersion": {
+          "const": "1.0.0"
+        },
+        "sourceKind": {
+          "const": "pinned_public_hypotheses"
+        }
+      }
+    },
+    "caseDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "observations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "observation.schema.json"
+      }
+    },
+    "testMethods": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "$ref": "test-method.schema.json"
+      }
+    },
+    "testResults": {
+      "type": "array",
+      "items": {
+        "$ref": "test-result.schema.json"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "evidence.schema.json"
+      }
+    },
+    "hypothesisAssessments": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "$ref": "hypothesis-assessment.schema.json"
+      }
+    },
+    "humanReview": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Review status",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "status",
+        "reviewerId",
+        "oemApplicabilityVerified",
+        "operationalReleaseAuthorized"
+      ],
+      "properties": {
+        "required": {
+          "const": true
+        },
+        "status": {
+          "const": "pending"
+        },
+        "reviewerId": {
+          "type": "null"
+        },
+        "oemApplicabilityVerified": {
+          "const": false
+        },
+        "operationalReleaseAuthorized": {
+          "const": false
+        }
+      }
+    },
+    "auditTrail": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "title": "Chained audit event",
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sequence",
+          "kind",
+          "payloadSha256",
+          "previousSha256",
+          "eventSha256"
+        ],
+        "properties": {
+          "sequence": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "kind": {
+            "enum": [
+              "case_input",
+              "observation_register",
+              "planned_tests",
+              "simulated_test_results",
+              "qualitative_evidence",
+              "hypothesis_review"
+            ]
+          },
+          "payloadSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "previousSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "eventSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    }
+  },
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-ledger.schema.json"
+}
