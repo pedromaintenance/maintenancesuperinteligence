@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/question-benchmark.schema.json",
+  "title": "Question benchmark 15 synthetic fixtures v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "reviewStatus",
+    "sourceAnchor",
+    "methodCatalogVersion",
+    "matrixVersion",
+    "fixtures"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.question-benchmark.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "synthetic_editorial_regression_not_field_accuracy"
+    },
+    "reviewStatus": {
+      "const": "not_expert_validated"
+    },
+    "sourceAnchor": {
+      "const": "fmea_public_1.0.0_checksum_verified_at_runtime"
+    },
+    "methodCatalogVersion": {
+      "const": "1.0.0"
+    },
+    "matrixVersion": {
+      "const": "1.0.0"
+    },
+    "fixtures": {
+      "type": "array",
+      "minItems": 15,
+      "maxItems": 15,
+      "items": {
+        "$ref": "case-fixture.schema.json"
+      }
+    }
+  }
+}
