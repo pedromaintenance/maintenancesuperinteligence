@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/diagnostic-method.schema.json",
+  "title": "diagnostic-method",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "methodId",
+    "domain",
+    "title",
+    "diagnosticQuestion",
+    "fmeaMethodId",
+    "sourceIds",
+    "prerequisites",
+    "expectedObservations",
+    "interpretationLimits",
+    "applicabilityGate",
+    "safetyGates",
+    "reviewStatus",
+    "executionStatus",
+    "thresholds",
+    "parameterValues",
+    "outputNature"
+  ],
+  "properties": {
+    "methodId": {
+      "type": "string",
+      "pattern": "^MET-[A-Z]+-[A-Z]+$"
+    },
+    "domain": {
+      "enum": [
+        "oil",
+        "hydraulics",
+        "mechanics",
+        "vibration",
+        "electronics"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "diagnosticQuestion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "fmeaMethodId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sourceIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      }
+    },
+    "prerequisites": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "prerequisite.schema.json"
+      }
+    },
+    "expectedObservations": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "expected-observation.schema.json"
+      }
+    },
+    "interpretationLimits": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "interpretation-limit.schema.json"
+      }
+    },
+    "applicabilityGate": {
+      "$ref": "applicability-gate.schema.json"
+    },
+    "safetyGates": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      }
+    },
+    "reviewStatus": {
+      "const": "generic_conceptual_not_oem"
+    },
+    "executionStatus": {
+      "const": "proposed_not_executed"
+    },
+    "thresholds": {
+      "type": "null"
+    },
+    "parameterValues": {
+      "type": "null"
+    },
+    "outputNature": {
+      "const": "investigation_questions_only"
+    }
+  }
+}
