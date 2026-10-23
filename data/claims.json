@@ -1,0 +1,71 @@
+[
+  {
+    "claimId": "CLM-0001",
+    "statement": "Um programa de monitoramento de condição requer definição de métodos e procedimentos de monitoramento aplicáveis ao maquinário, considerando seu contexto.",
+    "domain": "condition_monitoring",
+    "kind": "technical_principle",
+    "evidenceNature": "literature",
+    "reviewStatus": "proposed",
+    "sourceIds": [
+      "ISO17359_2018"
+    ],
+    "applicability": {
+      "manufacturer": null,
+      "model": null,
+      "serialRange": null,
+      "softwareVersion": null
+    },
+    "limitations": [
+      "Princípio genérico; não define sensores, frequências ou limites por modelo."
+    ],
+    "reviewerId": null,
+    "contradictoryClaimIds": [],
+    "verifiedAt": null
+  },
+  {
+    "claimId": "CLM-0002",
+    "statement": "A análise FMEA relaciona possíveis modos de falha com efeitos funcionais para fundamentar decisões sobre tratamentos.",
+    "domain": "reliability",
+    "kind": "technical_principle",
+    "evidenceNature": "literature",
+    "reviewStatus": "proposed",
+    "sourceIds": [
+      "IEC60812_2018"
+    ],
+    "applicability": {
+      "manufacturer": null,
+      "model": null,
+      "serialRange": null,
+      "softwareVersion": null
+    },
+    "limitations": [
+      "Afirmação metodológica, sem FMEA individual validada ou RPN calculado."
+    ],
+    "reviewerId": null,
+    "contradictoryClaimIds": [],
+    "verifiedAt": null
+  },
+  {
+    "claimId": "CLM-0003",
+    "statement": "A matriz didática do jogo contém categorias distintas de disciplina, sistema e modelo; seus escores não medem competência operacional de profissionais reais.",
+    "domain": "learning",
+    "kind": "method",
+    "evidenceNature": "catalogued",
+    "reviewStatus": "proposed",
+    "sourceIds": [
+      "PORCARIA_GAME"
+    ],
+    "applicability": {
+      "manufacturer": null,
+      "model": null,
+      "serialRange": null,
+      "softwareVersion": null
+    },
+    "limitations": [
+      "Mecânica fictícia de treinamento; não usar como habilitação real."
+    ],
+    "reviewerId": null,
+    "contradictoryClaimIds": [],
+    "verifiedAt": null
+  }
+]
