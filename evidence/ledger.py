@@ -378,9 +378,46 @@ def validate_ledger(ledger: object, *, case: dict | None = None,
             expected_observations = len(case["signals"]) + 1
             require(len(ledger["observations"]) == expected_observations,
                     "ledger: missing or invented observations")
-            require([o["signalCode"] for o in ledger["observations"][1:]]
-                    == [x["code"] for x in case["signals"]],
-                    "ledger: observation signal drift")
+            report = ledger["observations"][0]
+            require(report["description"] == case["complaint"]
+                    and report["sourceRef"] == f"SIM-{case['caseId']}",
+                    "ledger: operator report provenance drift")
+            for obs, signal in zip(ledger["observations"][1:], case["signals"]):
+                require(obs["kind"] == "coded_report"
+                        and obs["signalCode"] == signal["code"]
+                        and obs["result"] == signal["result"]
+                        and obs["sourceRef"] == signal["sourceRef"],
+                        "ledger: observation and case signal provenance drift")
+            expected_relations = set()
+            for hyp in investigation["hypotheses"]:
+                expected_relations.update(
+                    (code, "consistent_with", hyp["id"])
+                    for code in hyp["supportingSignals"])
+                expected_relations.update(
+                    (code, "inconsistent_with", hyp["id"])
+                    for code in hyp["weakeningSignals"])
+            actual_relations = set()
+            for ev in ledger["evidence"]:
+                if ev["observationId"] is not None:
+                    observed = next(o for o in ledger["observations"]
+                                    if o["observationId"] == ev["observationId"])
+                    require(ev["sourceRef"] == observed["sourceRef"],
+                            "ledger: evidence source reference drift")
+                    require(observed["kind"] == "coded_report",
+                            "ledger: operator narrative cannot act as measured evidence")
+                    if ev["relation"] != "not_discriminating":
+                        actual_relations.add(
+                            (observed["signalCode"], ev["relation"], ev["hypothesisId"]))
+            require(actual_relations == expected_relations,
+                    "ledger: evidence causal mapping differs from pilot rubric")
+            interpreted_codes = {code for code, _, _ in expected_relations}
+            neutral_expected = {s["code"] for s in case["signals"]} - interpreted_codes
+            neutral_actual = {next(o["signalCode"] for o in ledger["observations"]
+                                   if o["observationId"] == e["observationId"])
+                              for e in ledger["evidence"]
+                              if e["relation"] == "not_discriminating"}
+            require(neutral_expected == neutral_actual,
+                    "ledger: missing or invented neutral observations")
     trail = ledger["auditTrail"]
     require(isinstance(trail, list) and len(trail) == len(EVENT_NAMES),
             "ledger: audit trail missing")
