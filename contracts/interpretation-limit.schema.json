@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/interpretation-limit.schema.json",
+  "title": "interpretation-limit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "limitId",
+    "description",
+    "permittedInference"
+  ],
+  "properties": {
+    "limitId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "permittedInference": {
+      "const": "question_or_hypothesis_only"
+    }
+  }
+}
