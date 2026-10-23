@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.7.0 — 2026-10-23 — Ciclo 07
+
+- Introduzido benchmark versionado de **15 casos sintéticos**, cinco para cada domínio (comando final, hidráulica e eletrônica), com respostas esperadas editoriais independentes da função que executa a seleção.
+- Criada rubrica com nove classes de falha e contratos JSON Schema: fixture, evidência disponível, abstenção, rubrica e manifesto.
+- Implementado avaliador determinístico de regressões (`benchmarks/quality.py`) para proveniência, ambiguidade, contradições, segurança, efetividade, pré-requisitos, escolha e reprodutibilidade; relatório com hashes e métricas sempre rotuladas como não empíricas.
+- Adicionados testes adversariais de manipulação de oráculo, falsa autoridade, vínculos de evidência, contextualização e hipóteses promovidas.
+- CI valida casos originais e detecta propositalmente um oráculo corrompido; publica relatório temporário de regressões.
+
+**Limite:** nenhum ground truth de campo, especialista revisor independente, medida de acurácia diagnóstica ou autorização OEM foi adquirido.
+
+
 ## 0.6.0 — 2026-10-23 — Ciclo 06
 
 - Adicionada matriz editorial versionada de dez pares de hipóteses concorrentes em comando final, hidráulica e eletrônica.
