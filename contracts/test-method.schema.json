@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TestMethod v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "testMethodId",
+    "fmeaChainId",
+    "methodId",
+    "purpose",
+    "status",
+    "applicability",
+    "safetyGate",
+    "sourceVersion"
+  ],
+  "properties": {
+    "testMethodId": {
+      "type": "string",
+      "pattern": "^TM-[0-9]{3}$"
+    },
+    "fmeaChainId": {
+      "type": "string",
+      "pattern": "^FC-"
+    },
+    "methodId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "const": "proposed_not_executed"
+    },
+    "applicability": {
+      "const": "unverified_oem_series"
+    },
+    "safetyGate": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceVersion": {
+      "const": "1.0.0"
+    }
+  },
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/test-method.schema.json"
+}
