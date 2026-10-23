@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/source.schema.json",
+  "title": "Research Source v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sourceId",
+    "title",
+    "publisher",
+    "url",
+    "documentVersion",
+    "accessedAt",
+    "licenseStatus",
+    "sourceType"
+  ],
+  "properties": {
+    "sourceId": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_-]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "publisher": {
+      "type": "string",
+      "minLength": 2
+    },
+    "url": {
+      "type": "string",
+      "pattern": "^https://"
+    },
+    "documentVersion": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "accessedAt": {
+      "type": "string",
+      "format": "date"
+    },
+    "sourceType": {
+      "enum": [
+        "standard",
+        "oem",
+        "technical_reference",
+        "repository",
+        "research",
+        "internal_authorised"
+      ]
+    },
+    "licenseStatus": {
+      "enum": [
+        "metadata_only",
+        "open_licensed",
+        "authorised_restricted",
+        "rights_unverified"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    },
+    "applicability": {
+      "type": "string"
+    }
+  }
+}
