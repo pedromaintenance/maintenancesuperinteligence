@@ -8,6 +8,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 ## Fase 1 — Núcleo de conhecimento (MVP)
 
+**Progresso (ciclo 02):** item 4 implementado e verificado com importação real do snapshot público FMEA 1.0.0; parte do item 6 implementada com testes adversariais de integridade e semântica. Os demais itens continuam em desenvolvimento.
+
 **Backlog:**
 1. Schemas para `Source`, `Claim`, `AssetContext`, `Evidence`, `Hypothesis`, `DiagnosticTest`, `KnowledgeGap`.
 2. Um registro inicial de fontes e 10–20 afirmações técnicas pequenas e verificáveis.
