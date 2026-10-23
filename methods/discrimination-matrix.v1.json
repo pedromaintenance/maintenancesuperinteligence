@@ -1,0 +1,453 @@
+{
+  "schema": "maintenance-superinteligence.discrimination-matrix.v1",
+  "version": "1.0.0",
+  "purpose": "synthetic_question_selection_only",
+  "reviewStatus": "author_didactic_rubric_not_oem",
+  "approvedForOperationalUse": false,
+  "sourceVersion": "1.0.0",
+  "families": [
+    {
+      "familyId": "final_drive",
+      "label": "Comando final CAT 777E (somente referência didática)",
+      "hypotheses": [
+        {
+          "hypothesisId": "PILOT-FORMULATION",
+          "title": "Variação de formulação/baseline sem dano comprovado",
+          "nature": "unconfirmed_training_alternative"
+        },
+        {
+          "hypothesisId": "FC-FD-003",
+          "title": "Inadequação de lubrificação/deterioração possível",
+          "nature": "unconfirmed_training_alternative"
+        },
+        {
+          "hypothesisId": "PILOT-SAMPLE",
+          "title": "Erro de coleta ou identificação",
+          "nature": "unconfirmed_training_alternative"
+        },
+        {
+          "hypothesisId": "FC-FD-002",
+          "title": "Água dentro do lubrificante (não confirmada)",
+          "nature": "unconfirmed_training_alternative"
+        },
+        {
+          "hypothesisId": "PILOT-OTHER-NOISE",
+          "title": "Ruído originado de outro conjunto",
+          "nature": "unconfirmed_training_alternative"
+        },
+        {
+          "hypothesisId": "FC-FD-004",
+          "title": "Fadiga de contato do rolamento (hipótese genérica)",
+          "nature": "unconfirmed_training_alternative"
+        },
+        {
+          "hypothesisId": "FC-FD-001",
+          "title": "Desgaste abrasivo por partículas (hipótese genérica)",
+          "nature": "unconfirmed_training_alternative"
+        }
+      ],
+      "pairs": [
+        {
+          "pairId": "FD-P01",
+          "firstHypothesisId": "PILOT-FORMULATION",
+          "secondHypothesisId": "FC-FD-003",
+          "question": "Diferenciar produto/baseline alterado de deterioração lubrificante",
+          "methodIds": [
+            "MET-OIL-PRODUCT",
+            "MET-OIL-TREND"
+          ],
+          "requiredContextKeys": [
+            "fluid_product_id",
+            "service_record"
+          ],
+          "conditionalOutcomes": [
+            {
+              "outcomeId": "pattern_first",
+              "conditionalReading": "Se houver mudança documental consistente, manter formulação como alternativa"
+            },
+            {
+              "outcomeId": "pattern_second",
+              "conditionalReading": "Se houver tendência anormal persistente e contexto correto, investigar mecanismo de lubrificação"
+            },
+            {
+              "outcomeId": "indeterminate",
+              "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas."
+            }
+          ],
+          "knowledgeNature": "didactic_conditional_not_validated",
+          "testStatus": "not_performed",
+          "hasObservedOutcome": false,
+          "sourceRefs": [
+            "fmea_public_1.0.0",
+            "methods_catalog_1.0.0"
+          ]
+        },
+        {
+          "pairId": "FD-P02",
+          "firstHypothesisId": "PILOT-SAMPLE",
+          "secondHypothesisId": "FC-FD-002",
+          "question": "Diferenciar erro de coleta de água persistente no compartimento",
+          "methodIds": [
+            "MET-OIL-SAMPLING",
+            "MET-OIL-WATER"
+          ],
+          "requiredContextKeys": [
+            "sample_chain",
+            "sample_point"
+          ],
+          "conditionalOutcomes": [
+            {
+              "outcomeId": "pattern_first",
+              "conditionalReading": "Recoleta rastreável não reproduz indício; avaliar cadeia de amostragem"
+            },
+            {
+              "outcomeId": "pattern_second",
+              "conditionalReading": "Resultados reproduzidos exigem apurar ingresso sem presumir origem por vedação"
+            },
+            {
+              "outcomeId": "indeterminate",
+              "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas."
+            }
+          ],
+          "knowledgeNature": "didactic_conditional_not_validated",
+          "testStatus": "not_performed",
+          "hasObservedOutcome": false,
+          "sourceRefs": [
+            "fmea_public_1.0.0",
+            "methods_catalog_1.0.0"
+          ]
+        },
+        {
+          "pairId": "FD-P03",
+          "firstHypothesisId": "PILOT-OTHER-NOISE",
+          "secondHypothesisId": "FC-FD-004",
+          "question": "Localizar ruído em fontes externas ou no conjunto redutor",
+          "methodIds": [
+            "MET-VIB-LOCALIZE",
+            "MET-MECH-MAGNET"
+          ],
+          "requiredContextKeys": [
+            "sensor_location",
+            "speed_context"
+          ],
+          "conditionalOutcomes": [
+            {
+              "outcomeId": "pattern_first",
+              "conditionalReading": "Ruído externo consistente mantém freio/pneu como hipótese"
+            },
+            {
+              "outcomeId": "pattern_second",
+              "conditionalReading": "Ruído consistente no redutor ainda não identifica rolamento"
+            },
+            {
+              "outcomeId": "indeterminate",
+              "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas."
+            }
+          ],
+          "knowledgeNature": "didactic_conditional_not_validated",
+          "testStatus": "not_performed",
+          "hasObservedOutcome": false,
+          "sourceRefs": [
+            "fmea_public_1.0.0",
+            "methods_catalog_1.0.0"
+          ]
+        },
+        {
+          "pairId": "FD-P04",
+          "firstHypothesisId": "FC-FD-001",
+          "secondHypothesisId": "FC-FD-004",
+          "question": "Separar partículas externas de dano interno e origem rolamento/engrenagem",
+          "methodIds": [
+            "MET-MECH-MAGNET",
+            "MET-OIL-TREND"
+          ],
+          "requiredContextKeys": [
+            "plug_identity",
+            "prior_records"
+          ],
+          "conditionalOutcomes": [
+            {
+              "outcomeId": "pattern_first",
+              "conditionalReading": "Traços de ingresso orientam inspeção de rotas, sem causa confirmada"
+            },
+            {
+              "outcomeId": "pattern_second",
+              "conditionalReading": "Fragmentos internos exigem morfologia e inspeção antes de identificar rolamento"
+            },
+            {
+              "outcomeId": "indeterminate",
+              "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas."
+            }
+          ],
+          "knowledgeNature": "didactic_conditional_not_validated",
+          "testStatus": "not_performed",
+          "hasObservedOutcome": false,
+          "sourceRefs": [
+            "fmea_public_1.0.0",
+            "methods_catalog_1.0.0"
+          ]
+        }
+      ]
+    },
+    {
+      "familyId": "hydraulics",
+      "label": "Circuito hidráulico genérico (simulado, sem marca/série)",
+      "hypotheses": [
+        {
+          "hypothesisId": "HYD-PUMP",
+          "title": "Capacidade da bomba possivelmente insuficiente",
+          "nature": "unconfirmed_training_alternative"
+        },
+        {
+          "hypothesisId": "HYD-VALVE",
+          "title": "Restrição ou regulação por válvula possível",
+          "nature": "unconfirmed_training_alternative"
+        },
+        {
+          "hypothesisId": "HYD-LOAD",
+          "title": "Demanda/carga fora do contexto do registro",
+          "nature": "unconfirmed_training_alternative"
+        },
+        {
+          "hypothesisId": "HYD-THERMAL",
+          "title": "Efeito térmico/viscosidade ou dissipação possível",
+          "nature": "unconfirmed_training_alternative"
+        }
+      ],
+      "pairs": [
+        {
+          "pairId": "HYD-P01",
+          "firstHypothesisId": "HYD-PUMP",
+          "secondHypothesisId": "HYD-VALVE",
+          "question": "A falha de desempenho acompanha pressão/vazão ou elemento de controle?",
+          "methodIds": [
+            "MET-HYD-PRESSURE",
+            "MET-HYD-FLOW"
+          ],
+          "requiredContextKeys": [
+            "hydraulic_schematic",
+            "load_context"
+          ],
+          "conditionalOutcomes": [
+            {
+              "outcomeId": "pattern_first",
+              "conditionalReading": "Dados reproduzíveis podem manter bomba como hipótese"
+            },
+            {
+              "outcomeId": "pattern_second",
+              "conditionalReading": "Diferenças entre ramos de fluxo mantêm válvula/restrição como hipótese"
+            },
+            {
+              "outcomeId": "indeterminate",
+              "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas."
+            }
+          ],
+          "knowledgeNature": "didactic_conditional_not_validated",
+          "testStatus": "not_performed",
+          "hasObservedOutcome": false,
+          "sourceRefs": [
+            "methods_catalog_1.0.0"
+          ]
+        },
+        {
+          "pairId": "HYD-P02",
+          "firstHypothesisId": "HYD-LOAD",
+          "secondHypothesisId": "HYD-PUMP",
+          "question": "A condição de carga mudou e explica desempenho antes de se atribuir falha à bomba?",
+          "methodIds": [
+            "MET-HYD-PRESSURE",
+            "MET-HYD-FLOW"
+          ],
+          "requiredContextKeys": [
+            "load_context",
+            "test_port_definition"
+          ],
+          "conditionalOutcomes": [
+            {
+              "outcomeId": "pattern_first",
+              "conditionalReading": "Mudança na demanda permanece alternativa não-mecânica de falha"
+            },
+            {
+              "outcomeId": "pattern_second",
+              "conditionalReading": "Desempenho sob condições comparáveis exige mais investigação sem condenação"
+            },
+            {
+              "outcomeId": "indeterminate",
+              "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas."
+            }
+          ],
+          "knowledgeNature": "didactic_conditional_not_validated",
+          "testStatus": "not_performed",
+          "hasObservedOutcome": false,
+          "sourceRefs": [
+            "methods_catalog_1.0.0"
+          ]
+        },
+        {
+          "pairId": "HYD-P03",
+          "firstHypothesisId": "HYD-THERMAL",
+          "secondHypothesisId": "HYD-VALVE",
+          "question": "Há dependência térmica que confunde restrição ou regulação?",
+          "methodIds": [
+            "MET-HYD-TEMP",
+            "MET-HYD-FLOW"
+          ],
+          "requiredContextKeys": [
+            "fluid_temperature",
+            "duty_cycle"
+          ],
+          "conditionalOutcomes": [
+            {
+              "outcomeId": "pattern_first",
+              "conditionalReading": "Dependência térmica indica investigar viscosidade/resfriamento"
+            },
+            {
+              "outcomeId": "pattern_second",
+              "conditionalReading": "Restrição ainda é possível e depende de medição revisada"
+            },
+            {
+              "outcomeId": "indeterminate",
+              "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas."
+            }
+          ],
+          "knowledgeNature": "didactic_conditional_not_validated",
+          "testStatus": "not_performed",
+          "hasObservedOutcome": false,
+          "sourceRefs": [
+            "methods_catalog_1.0.0"
+          ]
+        }
+      ]
+    },
+    {
+      "familyId": "electronics",
+      "label": "Evento ECM/DTC genérico (simulado, read-only)",
+      "hypotheses": [
+        {
+          "hypothesisId": "EL-SENSOR",
+          "title": "Medição/sensor ou circuito com anomalia possível",
+          "nature": "unconfirmed_training_alternative"
+        },
+        {
+          "hypothesisId": "EL-PHYSICAL",
+          "title": "Fenômeno físico real monitorado",
+          "nature": "unconfirmed_training_alternative"
+        },
+        {
+          "hypothesisId": "EL-TRANSIENT",
+          "title": "Intermitência ou contexto operacional",
+          "nature": "unconfirmed_training_alternative"
+        },
+        {
+          "hypothesisId": "EL-HISTORICAL",
+          "title": "Registro histórico sem falha ativa atual",
+          "nature": "unconfirmed_training_alternative"
+        }
+      ],
+      "pairs": [
+        {
+          "pairId": "EL-P01",
+          "firstHypothesisId": "EL-SENSOR",
+          "secondHypothesisId": "EL-PHYSICAL",
+          "question": "Código isolado reflete circuito de medição ou condição física real?",
+          "methodIds": [
+            "MET-ECM-CODES",
+            "MET-ECM-CONTEXT"
+          ],
+          "requiredContextKeys": [
+            "ecm_identity",
+            "sensor_units"
+          ],
+          "conditionalOutcomes": [
+            {
+              "outcomeId": "pattern_first",
+              "conditionalReading": "Discordância com medida independente mantém sensor/circuito possível"
+            },
+            {
+              "outcomeId": "pattern_second",
+              "conditionalReading": "Convergência com medida física exige verificar mecanismo e instrumento"
+            },
+            {
+              "outcomeId": "indeterminate",
+              "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas."
+            }
+          ],
+          "knowledgeNature": "didactic_conditional_not_validated",
+          "testStatus": "not_performed",
+          "hasObservedOutcome": false,
+          "sourceRefs": [
+            "methods_catalog_1.0.0"
+          ]
+        },
+        {
+          "pairId": "EL-P02",
+          "firstHypothesisId": "EL-TRANSIENT",
+          "secondHypothesisId": "EL-HISTORICAL",
+          "question": "Evento foi ativo/contextual ou apenas armazenado em histórico?",
+          "methodIds": [
+            "MET-ECM-CODES",
+            "MET-ECM-CONTEXT"
+          ],
+          "requiredContextKeys": [
+            "code_type",
+            "timestamp_context"
+          ],
+          "conditionalOutcomes": [
+            {
+              "outcomeId": "pattern_first",
+              "conditionalReading": "Evento contextual e repetição condicional mantém intermitência possível"
+            },
+            {
+              "outcomeId": "pattern_second",
+              "conditionalReading": "Somente registro anterior pode não representar falha atual"
+            },
+            {
+              "outcomeId": "indeterminate",
+              "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas."
+            }
+          ],
+          "knowledgeNature": "didactic_conditional_not_validated",
+          "testStatus": "not_performed",
+          "hasObservedOutcome": false,
+          "sourceRefs": [
+            "methods_catalog_1.0.0"
+          ]
+        },
+        {
+          "pairId": "EL-P03",
+          "firstHypothesisId": "EL-PHYSICAL",
+          "secondHypothesisId": "EL-TRANSIENT",
+          "question": "Há evidências de alteração física reproduzível ou oscilação de sinal?",
+          "methodIds": [
+            "MET-ECM-CONTEXT",
+            "MET-ECM-CODES"
+          ],
+          "requiredContextKeys": [
+            "machine_configuration",
+            "event_context"
+          ],
+          "conditionalOutcomes": [
+            {
+              "outcomeId": "pattern_first",
+              "conditionalReading": "Convergência independente pode motivar investigação física"
+            },
+            {
+              "outcomeId": "pattern_second",
+              "conditionalReading": "Oscilação não define se falha é sensor, chicote ou ruído"
+            },
+            {
+              "outcomeId": "indeterminate",
+              "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas."
+            }
+          ],
+          "knowledgeNature": "didactic_conditional_not_validated",
+          "testStatus": "not_performed",
+          "hasObservedOutcome": false,
+          "sourceRefs": [
+            "methods_catalog_1.0.0"
+          ]
+        }
+      ]
+    }
+  ]
+}
