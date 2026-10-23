@@ -44,7 +44,7 @@ jobs:
       - name: Run educational CAT 777E differential scenarios
         run: |
           mkdir -p build/investigations
-          for path in examples/777e_*.json; do
+          for path in examples/777e_additives_only.json examples/777e_change_documented.json examples/777e_water_disputed.json examples/777e_debris_and_noise.json; do
             name=$(basename "$path" .json)
             python -m investigations.final_drive \
               --snapshot build/fmea-public/fmea-public.snapshot.json \
@@ -76,6 +76,51 @@ jobs:
           assert by_name["777e_water_disputed"]["decision"] == "escalate_to_specialist"
           assert by_name["777e_debris_and_noise"]["decision"] == "escalate_to_specialist"
           print("PASS: four 777E didactic investigations, no confirmed defects or machine release")
+          PY
+      - name: Verify provenance and evidence ledgers from four pilots
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from evidence.ledger import validate_ledger
+          paths = sorted(Path("build/investigations").glob("*.json"))
+          assert len(paths) == 4
+          for path in paths:
+              report = json.loads(path.read_text())
+              assert report["schema"] == "maintenance-superinteligence.final-drive-investigation.v2"
+              ledger = report["evidenceLedger"]
+              case = json.loads((Path("examples") / path.name).read_text())
+              validate_ledger(ledger, case=case, investigation=report)
+              assert len(ledger["testMethods"]) == 8
+              assert ledger["testResults"] == []
+              assert len(ledger["auditTrail"]) == 6
+              assert all(x["confidence"] is None and not x["rootCauseConfirmed"]
+                         for x in ledger["hypothesisAssessments"])
+              assert ledger["humanReview"]["status"] == "pending"
+              assert not ledger["humanReview"]["operationalReleaseAuthorized"]
+          print("PASS: validated evidence provenance and six chained audit events per scenario")
+          PY
+      - name: Verify explicit simulated test is separate from executed OEM test
+        run: |
+          python -m investigations.final_drive \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --index build/fmea-public/fmea-public.index.json \
+            --case examples/777e_water_disputed.json \
+            --simulated-test-results examples/777e_simulated_test_results.json \
+            --output build/investigations/supplementary_simulation.json > /dev/null
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from evidence.ledger import validate_ledger
+          report = json.loads(Path("build/investigations/supplementary_simulation.json").read_text())
+          case = json.loads(Path("examples/777e_water_disputed.json").read_text())
+          ledger = report["evidenceLedger"]
+          validate_ledger(ledger, case=case, investigation=report)
+          assert len(ledger["testResults"]) == 1
+          assert ledger["testResults"][0]["status"] == "simulated_execution"
+          assert all(t["status"] == "proposed_not_executed" for t in ledger["testMethods"])
+          assert report["confirmedRootCause"] is None and report["mayReleaseEquipment"] is False
+          print("PASS: synthetic test result cannot promote source method or authorize field repair")
           PY
       - name: Reject manipulated consumer index even with valid snapshot
         run: |
