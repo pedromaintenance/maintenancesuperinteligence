@@ -40,6 +40,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 ## Fase 4 — Estratégia de ativos, manutenção e PCM
 
+**Progresso (ciclo 07):** benchmark de regressão de 15 casos sintéticos e nove categorias auditáveis. A qualidade medida é a preservação de lógica, origem, lacunas e abstenção, **não** acurácia de diagnóstico de campo. A fase seguinte depende de qualificação de fontes e revisão técnica independente para permitir qualquer alegação de validade mecânica.
+
 **Progresso (ciclo 06):** dez comparações hipotéticas divididas entre comando final, hidráulica e eletrônica. O seletor escolhe perguntas com justificativa explícita e bloqueia atuação operacional. Ainda são necessários estudos de sensibilidade, especificidade, custos reais, literatura por série e validação técnica em casos autorizados.
 
 Construir modelos assistivos de política preventiva/por condição/corretiva deliberada; criticidade; oportunidades de inspeção; estoque MRO; prazos; programação; custo de ciclo de vida; desempenho operacional e integridade de notas SAP.
