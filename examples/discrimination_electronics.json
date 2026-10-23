@@ -1,0 +1,38 @@
+{
+  "schema": "maintenance-superinteligence.discrimination-case.v1",
+  "caseId": "SIM-ECM-DIFFERENTIAL",
+  "familyId": "electronics",
+  "scenario": "DTC de exercício reportado sem ECM/série ou evidência independente; evento pode ser ativo, histórico ou intermitente.",
+  "evidenceNature": "simulation",
+  "reportedSignals": [
+    "generic_logged_dtc"
+  ],
+  "contextStates": [
+    {
+      "key": "ecm_identity",
+      "state": "unknown",
+      "sourceRef": null
+    },
+    {
+      "key": "sensor_units",
+      "state": "unknown",
+      "sourceRef": null
+    },
+    {
+      "key": "code_type",
+      "state": "unknown",
+      "sourceRef": null
+    },
+    {
+      "key": "timestamp_context",
+      "state": "unknown",
+      "sourceRef": null
+    }
+  ],
+  "oemGate": {
+    "serialOrArrangement": null,
+    "technicalPublication": null,
+    "revision": null,
+    "approved": false
+  }
+}

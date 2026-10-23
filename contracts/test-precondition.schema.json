@@ -1,0 +1,33 @@
+{
+  "title": "TestPrecondition — didactic context state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "key",
+    "state",
+    "sourceRef"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "enum": [
+        "unknown",
+        "available_simulated",
+        "contradicted",
+        "not_applicable"
+      ]
+    },
+    "sourceRef": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^SIM-[A-Z0-9-]+$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/test-precondition.schema.json"
+}

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/discrimination-matrix.schema.json",
+  "title": "Discrimination matrix v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "reviewStatus",
+    "approvedForOperationalUse",
+    "sourceVersion",
+    "families"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.discrimination-matrix.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "synthetic_question_selection_only"
+    },
+    "reviewStatus": {
+      "const": "author_didactic_rubric_not_oem"
+    },
+    "approvedForOperationalUse": {
+      "const": false
+    },
+    "sourceVersion": {
+      "const": "1.0.0"
+    },
+    "families": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "familyId",
+          "label",
+          "hypotheses",
+          "pairs"
+        ],
+        "properties": {
+          "familyId": {
+            "enum": [
+              "final_drive",
+              "hydraulics",
+              "electronics"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "hypotheses": {
+            "type": "array",
+            "minItems": 4,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "hypothesisId",
+                "title",
+                "nature"
+              ],
+              "properties": {
+                "hypothesisId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "title": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "nature": {
+                  "const": "unconfirmed_training_alternative"
+                }
+              }
+            }
+          },
+          "pairs": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "$ref": "hypothesis-pair.schema.json"
+            }
+          }
+        }
+      }
+    }
+  }
+}

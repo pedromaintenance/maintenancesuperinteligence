@@ -1,0 +1,43 @@
+{
+  "schema": "maintenance-superinteligence.discrimination-case.v1",
+  "caseId": "SIM-HYD-DIFFERENTIAL",
+  "familyId": "hydraulics",
+  "scenario": "Cilindro fictício lento sob condição de carga indeterminada, sem circuito ou medição OEM; não indica bomba defeituosa.",
+  "evidenceNature": "simulation",
+  "reportedSignals": [
+    "slow_actuation_reported"
+  ],
+  "contextStates": [
+    {
+      "key": "hydraulic_schematic",
+      "state": "unknown",
+      "sourceRef": null
+    },
+    {
+      "key": "load_context",
+      "state": "contradicted",
+      "sourceRef": "SIM-CONFLICT-LOAD"
+    },
+    {
+      "key": "test_port_definition",
+      "state": "unknown",
+      "sourceRef": null
+    },
+    {
+      "key": "fluid_temperature",
+      "state": "unknown",
+      "sourceRef": null
+    },
+    {
+      "key": "duty_cycle",
+      "state": "not_applicable",
+      "sourceRef": "SIM-NOT-APPLICABLE-DUTY"
+    }
+  ],
+  "oemGate": {
+    "serialOrArrangement": null,
+    "technicalPublication": null,
+    "revision": null,
+    "approved": false
+  }
+}

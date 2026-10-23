@@ -1,0 +1,38 @@
+{
+  "schema": "maintenance-superinteligence.discrimination-case.v1",
+  "caseId": "SIM-FD-DIFFERENTIAL",
+  "familyId": "final_drive",
+  "scenario": "Mudança hipotética de aditivos em comando final 777E, sem série OEM, amostra ou histórico conclusivo.",
+  "evidenceNature": "simulation",
+  "reportedSignals": [
+    "additive_profile_changed"
+  ],
+  "contextStates": [
+    {
+      "key": "fluid_product_id",
+      "state": "unknown",
+      "sourceRef": null
+    },
+    {
+      "key": "service_record",
+      "state": "unknown",
+      "sourceRef": null
+    },
+    {
+      "key": "sample_chain",
+      "state": "unknown",
+      "sourceRef": null
+    },
+    {
+      "key": "sample_point",
+      "state": "unknown",
+      "sourceRef": null
+    }
+  ],
+  "oemGate": {
+    "serialOrArrangement": null,
+    "technicalPublication": null,
+    "revision": null,
+    "approved": false
+  }
+}

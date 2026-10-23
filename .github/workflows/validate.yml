@@ -206,6 +206,72 @@ jobs:
           name: final-drive-777e-didactic-investigations
           path: build/investigations/
           retention-days: 14
+      - name: Select next research questions for three synthetic domains
+        run: |
+          mkdir -p build/discrimination
+          for key in 777e hydraulics electronics; do
+            python -m methods.discrimination \
+              --snapshot build/fmea-public/fmea-public.snapshot.json \
+              --case "examples/discrimination_$key.json" \
+              --output "build/discrimination/$key.selection.json" > /dev/null
+          done
+      - name: Verify discrimination, abstention and deterministic rationale
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          results = {x.name.split(".")[0]: json.loads(x.read_text())
+                     for x in Path("build/discrimination").glob("*.selection.json")}
+          assert set(results) == {"777e", "hydraulics", "electronics"}
+          assert results["777e"]["familyId"] == "final_drive"
+          assert len(results["777e"]["hypotheses"]) == 7
+          assert len(results["777e"]["comparisons"]) == 4
+          assert results["hydraulics"]["selectionRationale"]["selectionStatus"] == "reconcile_contradiction"
+          assert results["hydraulics"]["selectionRationale"]["selectedPairId"] == "HYD-P01"
+          assert results["electronics"]["reportedSignalsAreMeasurements"] is False
+          for key, result in results.items():
+              assert result["fmeaVerifiedBySnapshot"] is True
+              assert all(h["status"] == "open_not_confirmed"
+                         and h["confirmedRootCause"] is False
+                         for h in result["hypotheses"])
+              assert all(c["observedOutcome"] is None and c["bothRemainOpen"]
+                         for c in result["comparisons"])
+              assert all(x["executionStatus"] == "proposed_not_executed"
+                         and x["oemApplicability"] == "not_verified"
+                         and x["status"] == "question_only"
+                         and not x["mayExecute"] for x in result["candidateQuestions"])
+              assert result["mayRunTests"] is False
+              assert result["mayModifyECM"] is False
+              assert result["mayCreateWorkOrder"] is False
+              assert result["mayReleaseEquipment"] is False
+              assert result["confirmedComponent"] is None
+              assert result["selectionRationale"]["noInformationGainOrCostScores"] is True
+          print("PASS: didactic discrimination only; no diagnosis, OEM claims, or work authorization")
+          PY
+      - name: Reject forged confirmed causal pattern
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          src = Path("methods/discrimination-matrix.v1.json")
+          data = json.loads(src.read_text())
+          data["families"][0]["pairs"][0]["hasObservedOutcome"] = True
+          Path("build/discrimination/forged-matrix.json").write_text(json.dumps(data))
+          PY
+          if python -m methods.discrimination \
+               --snapshot build/fmea-public/fmea-public.snapshot.json \
+               --case examples/discrimination_777e.json \
+               --matrix build/discrimination/forged-matrix.json > /dev/null 2>&1; then
+             echo "SECURITY FAIL: false observed outcome accepted"
+             exit 1
+          fi
+          rm build/discrimination/forged-matrix.json
+      - name: Publish didactic differential planning artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: discrimination-three-training-domains
+          path: build/discrimination/
+          retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4
         with:
