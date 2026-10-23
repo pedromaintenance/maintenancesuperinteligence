@@ -155,7 +155,7 @@ class EvidenceLedgerTests(unittest.TestCase):
 
     def test_mutating_observation_detected_without_resealing(self):
         self.ledger["observations"][0]["description"] = "Forged interpretation"
-        self.rejects("hash chain")
+        self.rejects("operator report provenance drift")
 
     def test_case_digest_detects_modified_original(self):
         self.case["complaint"] = "different source complaint"
@@ -231,6 +231,34 @@ class EvidenceLedgerTests(unittest.TestCase):
         target["evidenceIds"] = []
         self.reseal()
         self.rejects("assessment missing backlink")
+
+    def test_resealed_observation_source_forgery_is_blocked(self):
+        self.case["signals"] = [present("particle_trend_increasing")]
+        self.rebuild()
+        self.ledger["observations"][1]["sourceRef"] = "SIM-FORGED"
+        self.reseal()
+        self.rejects("observation and case signal provenance drift")
+
+    def test_resealed_evidence_causal_reversal_is_blocked(self):
+        self.case["signals"] = [present("particle_trend_increasing")]
+        self.rebuild()
+        self.ledger["evidence"][0]["relation"] = "inconsistent_with"
+        self.reseal()
+        self.rejects("causal mapping differs from pilot rubric")
+
+    def test_resealed_evidence_source_forgery_is_blocked(self):
+        self.case["signals"] = [present("particle_trend_increasing")]
+        self.rebuild()
+        self.ledger["evidence"][0]["sourceRef"] = "SIM-FORGED"
+        self.reseal()
+        self.rejects("evidence source reference drift")
+
+    def test_resealed_neutral_evidence_omission_is_blocked(self):
+        self.case["signals"] = [present("additive_profile_changed")]
+        self.rebuild()
+        self.ledger["evidence"] = []
+        self.reseal()
+        self.rejects("missing or invented neutral observations")
 
     def test_audit_reorder_rejected(self):
         self.ledger["auditTrail"][1], self.ledger["auditTrail"][2] = (
