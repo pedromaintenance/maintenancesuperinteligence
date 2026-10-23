@@ -1,0 +1,26 @@
+{
+  "schema": "maintenance-superinteligence.final-drive-case.v1",
+  "caseId": "SIM-777E-ADDITIVES-ONLY",
+  "purpose": "training_simulation",
+  "machine": {
+    "manufacturer": "Caterpillar",
+    "model": "777E",
+    "serialOrArrangement": null,
+    "finalDrivePosition": null
+  },
+  "complaint": "Laudo didático reporta somente perfil de aditivos diferente. Não há histórico de trocas nem tendência comparável.",
+  "signals": [
+    {
+      "code": "additive_profile_changed",
+      "result": "present",
+      "evidenceNature": "simulation",
+      "sourceRef": "SIM-777E-ADDITIVES-ONLY-1"
+    }
+  ],
+  "availableContext": {
+    "oilHistoryAvailable": false,
+    "sampleMetadataAvailable": false,
+    "trendBaselineAvailable": false,
+    "oemReferenceAvailable": false
+  }
+}
