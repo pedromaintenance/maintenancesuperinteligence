@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de integração P&D v0.2.0 (22/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de investigação P&D v0.3.0 (22/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -40,6 +40,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Primeiro caso vertical para testar a arquitetura](docs/CASO_PILOTO.md)
 - [Fontes públicas prioritárias](docs/FONTES.md)
 - [Ciclo 02 — Importação verificável do FMEA](docs/CICLO_2026-10-22_IMPORTADOR_FMEA.md)
+- [Ciclo 03 — Investigador didático CAT 777E](docs/CICLO_2026-10-22_INVESTIGADOR_777E.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -51,7 +52,9 @@ scripts/          # validador offline de integridade mínima (presente)
 .github/workflows # validação GitHub Actions (presente)
 docs/             # arquitetura e especificações (presente)
 connectors/       # importador público do FMEA e lock de fonte (presentes)
-tests/            # testes unitários adversariais do importador (presentes)
+tests/            # testes unitários adversariais do importador e do piloto (presentes)
+investigations/   # investigador diferencial didático CAT 777E (presente)
+examples/         # quatro cenários sintéticos (presentes)
 evaluation/       # benchmark de diagnóstico amplo (futuro)
 services/         # busca e orquestração assistiva (futuro)
 ```
@@ -68,6 +71,21 @@ python connectors/fmea_public.py --fetch --output build/fmea-public
 
 O CI verifica o pacote real: **24 cadeias, 20 fontes, zero ocorrências reais**, com artefato temporário de índice e recibo. A fonte original permanece no repositório FMEA. [Consultar ciclo 02](docs/CICLO_2026-10-22_IMPORTADOR_FMEA.md).
 
+## Primeiro investigador didático — ciclo 03
+
+A CLI `investigations/final_drive.py` analisa **somente casos sintéticos CAT 777E**, via quatro cadeias genéricas de comandos finais do FMEA e três alternativas do piloto (formulação, coleta, ruído externo). Ela preserva hipóteses concorrentes, identifica resultados divergentes, lista lacunas OEM e sugere investigação **não executada**. Não diagnostica, não condena peças e não libera máquinas.
+
+```bash
+python connectors/fmea_public.py --fetch --output build/fmea-public
+python -m investigations.final_drive \
+  --snapshot build/fmea-public/fmea-public.snapshot.json \
+  --index build/fmea-public/fmea-public.index.json \
+  --case examples/777e_additives_only.json \
+  --output build/investigations/777e_additives_only.json
+```
+
+A execução **revalida o hash real do snapshot**, e, se houver índice informado, compara todo o seu conteúdo com a reconstrução autenticada. Quatro cenários sintéticos integram o CI. [Documentação e limites](docs/CICLO_2026-10-22_INVESTIGADOR_777E.md).
+
 ## Verificação e desenvolvimento
 
 A rotina **Validate public knowledge and FMEA importer** executa testes de metadados, testes adversariais e importação controlada. **Isso não constitui validação técnica OEM de diagnósticos nem JSON Schema completo.** [Ver CI](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/workflows/validate.yml).
@@ -78,7 +96,7 @@ A rotina **Validate public knowledge and FMEA importer** executa testes de metad
 
 1. Converter as **56 competências reais do jogo** em um catálogo rastreável e extensível, sem converter pontos de jogo em habilitação profissional.
 2. **Concluído no ciclo 02:** consumir o snapshot público versionado do FMEA com verificação de hash, sem misturar combinações heurísticas, cenários didáticos e observações reais.
-3. Desenvolver um primeiro fluxo end-to-end: `sintoma → hipóteses concorrentes → teste discriminante → evidência → decisão assistiva`.
+3. **Protótipo didático no ciclo 03:** observações simuladas → hipóteses concorrentes → investigações propostas → lacunas → recomendação de revisão humana. O fluxo real de evidências e decisão operacional permanece pendente.
 4. Registrar lacunas OEM/SAP/segurança antes de afirmar especificações, frequências, torques, pressões ou peças.
 5. Criar testes de qualidade para evitar respostas causais circularmente justificadas ou citações falsas.
 
