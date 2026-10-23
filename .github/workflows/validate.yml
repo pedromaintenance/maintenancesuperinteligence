@@ -1,4 +1,4 @@
-name: Validate public knowledge, investigation and methods
+name: Validate public knowledge, investigation, methods and question quality
 
 on:
   push:
@@ -321,6 +321,33 @@ jobs:
             exit 1
           fi
           rm build/benchmarks/forged-benchmark.json
+      - name: Ensure intentionally incorrect golden label produces failing regression
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          src = Path("benchmarks/question-quality.v1.json")
+          m = json.loads(src.read_text())
+          m["fixtures"][0]["expected"]["nextQuestionContains"] = "UNOBSERVED-EXPERT-CONCLUSION"
+          Path("build/benchmarks/poisoned-golden.json").write_text(json.dumps(m))
+          PY
+          if python -m benchmarks.quality \
+             --snapshot build/fmea-public/fmea-public.snapshot.json \
+             --manifest build/benchmarks/poisoned-golden.json \
+             --output build/benchmarks/poisoned-result.json > /dev/null 2>&1; then
+            echo "REGRESSION FAIL: poisoned golden label was accepted"
+            exit 1
+          fi
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r = json.loads(Path("build/benchmarks/poisoned-result.json").read_text())
+          assert r["acceptance"] == "regression_fail"
+          assert r["failureCountsByClass"]["selection"] > 0
+          assert r["fixturesPassed"] == 14
+          print("PASS: failed semantic selection is counted, not mistaken for diagnostic accuracy")
+          PY
+          rm build/benchmarks/poisoned-golden.json build/benchmarks/poisoned-result.json
       - name: Publish synthetic regression benchmark report
         uses: actions/upload-artifact@v4
         with:
