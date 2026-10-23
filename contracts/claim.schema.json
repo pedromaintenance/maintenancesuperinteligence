@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/claim.schema.json",
+  "title": "Atomic Knowledge Claim v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "claimId",
+    "statement",
+    "domain",
+    "kind",
+    "evidenceNature",
+    "reviewStatus",
+    "sourceIds",
+    "applicability",
+    "limitations",
+    "reviewerId"
+  ],
+  "properties": {
+    "claimId": {
+      "type": "string",
+      "pattern": "^CLM-[0-9]{4}$"
+    },
+    "statement": {
+      "type": "string",
+      "minLength": 15
+    },
+    "domain": {
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "definition",
+        "method",
+        "technical_principle",
+        "specific_procedure",
+        "hypothesis"
+      ]
+    },
+    "evidenceNature": {
+      "enum": [
+        "literature",
+        "catalogued",
+        "inferred",
+        "simulation",
+        "empirical_authorised"
+      ]
+    },
+    "reviewStatus": {
+      "enum": [
+        "proposed",
+        "reviewed",
+        "didactic_validated",
+        "oem_applicability_verified",
+        "operationally_approved"
+      ]
+    },
+    "sourceIds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "applicability": {
+      "type": "object",
+      "required": [
+        "manufacturer",
+        "model",
+        "serialRange",
+        "softwareVersion"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "manufacturer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "serialRange": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "softwareVersion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "reviewerId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "contradictoryClaimIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verifiedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    }
+  }
+}
