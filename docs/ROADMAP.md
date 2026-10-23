@@ -30,6 +30,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 ## Fase 3 — Atlas de máquinas e disciplinas
 
+**Progresso transversal (ciclo 04):** contratos e validador de evidências implementados exclusivamente nos casos didáticos da CAT 777E. Esse núcleo permite estender o modelo de observações e ensaios a outros sistemas sem confundir relatos, dados simulados, medições e hipóteses. A etapa de dados reais e validação OEM permanece pendente.
+
 **Prioridade inicial:** 777E, 6030, DR410i, D9, além de sistemas transversais (hidráulico, arrefecimento, rodante, elétrico/eletrônico). Avançar por **circuito e função**, não por documento inteiro.
 
 **Entrega por submódulo:** mapa funcional, princípios, desenhos conceituais próprios, modos de falha, sintomas, testes, segurança, fontes, variantes de modelo, biblioteca didática e lacunas. **Aceite:** revisão técnica + casos adversariais.
