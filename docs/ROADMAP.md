@@ -22,6 +22,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 ## Fase 2 — Primeiro fluxo vertical ponta-a-ponta
 
+**Progresso (ciclo 03):** investigador e quatro casos sintéticos implementados; quatro cadeias FMEA consultadas em índice verificado, sete hipóteses abertas, oito testes apenas propostos. Foram realizados testes adversariais da estrutura e rejeição de conhecimento adulterado. A execução de testes reais, documentação OEM efetiva e a avaliação por especialista **continuam pendentes**.
+
 **Caso:** diagnóstico de condição de comando final em caminhão de mineração, distinguindo mudança de formulação do óleo, contaminação e desgaste como hipóteses **não equivalentes**.
 
 **Entrega:** entrada estruturada → seleção de fontes → geração de diferenciais → escolha justificada de testes → registro de observações *simuladas* → revisão humana → saída técnica com risco e pendências. **Aceite:** nenhum componente condenado só por metal ou diferença de aditivos; nenhum limite inventado; contraprovas documentadas.

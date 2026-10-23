@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/final-drive-case.schema.json",
+  "title": "CAT 777E simulated final-drive differential input v1",
+  "description": "Contrato didático restrito. A execução revalida estrutura, unicidade dos códigos e a natureza dos dados.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "caseId",
+    "purpose",
+    "machine",
+    "complaint",
+    "signals",
+    "availableContext"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.final-drive-case.v1"
+    },
+    "caseId": {
+      "type": "string",
+      "pattern": "^SIM-[A-Za-z0-9_-]+$"
+    },
+    "purpose": {
+      "const": "training_simulation"
+    },
+    "machine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manufacturer",
+        "model",
+        "serialOrArrangement",
+        "finalDrivePosition"
+      ],
+      "properties": {
+        "manufacturer": {
+          "const": "Caterpillar"
+        },
+        "model": {
+          "const": "777E"
+        },
+        "serialOrArrangement": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 100
+        },
+        "finalDrivePosition": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 100
+        }
+      }
+    },
+    "complaint": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "signals": {
+      "type": "array",
+      "maxItems": 13,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "result",
+          "evidenceNature",
+          "sourceRef"
+        ],
+        "properties": {
+          "code": {
+            "enum": [
+              "additive_profile_changed",
+              "lubricant_change_documented",
+              "sample_identity_disputed",
+              "water_retest_confirmed",
+              "water_retest_not_reproduced",
+              "particle_trend_increasing",
+              "magnetic_debris_increasing",
+              "noise_localized_final_drive",
+              "noise_localized_external",
+              "oil_level_below_reference",
+              "lubricant_history_unchanged",
+              "viscosity_outlier",
+              "reported_loss_of_function"
+            ]
+          },
+          "result": {
+            "enum": [
+              "present",
+              "absent",
+              "inconclusive"
+            ]
+          },
+          "evidenceNature": {
+            "const": "simulation"
+          },
+          "sourceRef": {
+            "type": "string",
+            "pattern": "^SIM-[A-Za-z0-9_-]+$",
+            "maxLength": 100
+          }
+        }
+      }
+    },
+    "availableContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "oilHistoryAvailable",
+        "sampleMetadataAvailable",
+        "trendBaselineAvailable",
+        "oemReferenceAvailable"
+      ],
+      "properties": {
+        "oilHistoryAvailable": {
+          "type": "boolean"
+        },
+        "sampleMetadataAvailable": {
+          "type": "boolean"
+        },
+        "trendBaselineAvailable": {
+          "type": "boolean"
+        },
+        "oemReferenceAvailable": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "maintenance-superinteligence.final-drive-case.v1",
+  "caseId": "SIM-777E-WATER-CONFLICT",
+  "purpose": "training_simulation",
+  "machine": {
+    "manufacturer": "Caterpillar",
+    "model": "777E",
+    "serialOrArrangement": null,
+    "finalDrivePosition": null
+  },
+  "complaint": "Resultados simulados de água são divergentes entre coletas. A causa de possível ingresso continua aberta.",
+  "signals": [
+    {
+      "code": "water_retest_confirmed",
+      "result": "present",
+      "evidenceNature": "simulation",
+      "sourceRef": "SIM-777E-WATER-CONFLICT-1"
+    },
+    {
+      "code": "water_retest_not_reproduced",
+      "result": "present",
+      "evidenceNature": "simulation",
+      "sourceRef": "SIM-777E-WATER-CONFLICT-2"
+    },
+    {
+      "code": "sample_identity_disputed",
+      "result": "present",
+      "evidenceNature": "simulation",
+      "sourceRef": "SIM-777E-WATER-CONFLICT-3"
+    }
+  ],
+  "availableContext": {
+    "oilHistoryAvailable": true,
+    "sampleMetadataAvailable": true,
+    "trendBaselineAvailable": false,
+    "oemReferenceAvailable": false
+  }
+}

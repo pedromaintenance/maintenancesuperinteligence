@@ -53,3 +53,10 @@ Nenhuma hipótese está confirmada. Observações semelhantes podem ser produzid
 ## Critério de sucesso
 
 O piloto só será aprovado quando responder adequadamente a casos **completos, incompletos, contraditórios e de risco**, usando fontes controladas e revisão humana. Conclusão correta pode ser **não determinar a causa**.
+
+
+## Implementação didática — Ciclo 03
+
+O protótipo executável está em [`investigations/final_drive.py`](../investigations/final_drive.py), com entrada formal em [`contracts/final-drive-case.schema.json`](../contracts/final-drive-case.schema.json) e quatro cenários de [`examples/`](../examples/). Leia o [relatório do ciclo](CICLO_2026-10-22_INVESTIGADOR_777E.md).
+
+A implementação trabalha **exclusivamente com observações simuladas** e não possui evidência real, procedimento OEM por série nem autoridade para autorizar serviço. `ready_for_human_review` não é concedido nesta versão: o sistema responde `needs_evidence` ou `escalate_to_specialist`; em ambos a revisão humana é obrigatória. O FMEA define hipóteses de manutenção gerais, não defeitos específicos da CAT 777E.

@@ -1,0 +1,44 @@
+{
+  "schema": "maintenance-superinteligence.final-drive-case.v1",
+  "caseId": "SIM-777E-DEBRIS-NOISE",
+  "purpose": "training_simulation",
+  "machine": {
+    "manufacturer": "Caterpillar",
+    "model": "777E",
+    "serialOrArrangement": null,
+    "finalDrivePosition": null
+  },
+  "complaint": "Cenário hipotético com partículas crescentes, depósitos magnéticos e ruído localizado; também foi relatada perda de função.",
+  "signals": [
+    {
+      "code": "particle_trend_increasing",
+      "result": "present",
+      "evidenceNature": "simulation",
+      "sourceRef": "SIM-777E-DEBRIS-NOISE-1"
+    },
+    {
+      "code": "magnetic_debris_increasing",
+      "result": "present",
+      "evidenceNature": "simulation",
+      "sourceRef": "SIM-777E-DEBRIS-NOISE-2"
+    },
+    {
+      "code": "noise_localized_final_drive",
+      "result": "present",
+      "evidenceNature": "simulation",
+      "sourceRef": "SIM-777E-DEBRIS-NOISE-3"
+    },
+    {
+      "code": "reported_loss_of_function",
+      "result": "present",
+      "evidenceNature": "simulation",
+      "sourceRef": "SIM-777E-DEBRIS-NOISE-4"
+    }
+  ],
+  "availableContext": {
+    "oilHistoryAvailable": true,
+    "sampleMetadataAvailable": true,
+    "trendBaselineAvailable": true,
+    "oemReferenceAvailable": false
+  }
+}

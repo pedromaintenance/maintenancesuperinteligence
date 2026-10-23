@@ -41,6 +41,65 @@ jobs:
                      for rec in index["records"] for test in rec["plannedInvestigations"])
           print("PASS: 24 public inferred records; zero promotion to evidence or operational authority")
           PY
+      - name: Run educational CAT 777E differential scenarios
+        run: |
+          mkdir -p build/investigations
+          for path in examples/777e_*.json; do
+            name=$(basename "$path" .json)
+            python -m investigations.final_drive \
+              --snapshot build/fmea-public/fmea-public.snapshot.json \
+              --index build/fmea-public/fmea-public.index.json \
+              --case "$path" --output "build/investigations/$name.json" > /dev/null
+          done
+      - name: Verify all educational scenarios abstain from confirming faults
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          cases = sorted(Path("build/investigations").glob("*.json"))
+          assert len(cases) == 4, f"Expected 4 pilots, got {len(cases)}"
+          for path in cases:
+              result = json.loads(path.read_text())
+              assert result["humanReviewRequired"] is True
+              assert result["confirmedRootCause"] is None
+              assert result["condemnedComponent"] is None
+              assert result["mayReleaseEquipment"] is False
+              assert result["mayCreateWorkOrder"] is False
+              assert result["machineContext"]["oemApplicabilityVerified"] is False
+              assert result["decision"] in ("needs_evidence", "escalate_to_specialist")
+              assert len(result["hypotheses"]) == 7
+              assert len(result["plannedInvestigations"]) == 8
+              assert all(t["status"] == "not_performed" for t in result["plannedInvestigations"])
+          by_name = {path.stem: json.loads(path.read_text()) for path in cases}
+          assert by_name["777e_additives_only"]["decision"] == "needs_evidence"
+          assert by_name["777e_change_documented"]["decision"] == "needs_evidence"
+          assert by_name["777e_water_disputed"]["decision"] == "escalate_to_specialist"
+          assert by_name["777e_debris_and_noise"]["decision"] == "escalate_to_specialist"
+          print("PASS: four 777E didactic investigations, no confirmed defects or machine release")
+          PY
+      - name: Reject manipulated consumer index even with valid snapshot
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("build/fmea-public/fmea-public.index.json")
+          data = json.loads(p.read_text())
+          data["records"][0]["title"] = "FAKE - altered locally"
+          Path("build/fmea-public/forged-index.json").write_text(json.dumps(data))
+          PY
+          if python -m investigations.final_drive \
+              --snapshot build/fmea-public/fmea-public.snapshot.json \
+              --index build/fmea-public/forged-index.json \
+              --case examples/777e_additives_only.json > /dev/null 2>&1; then
+            echo "SECURITY FAIL: forged index accepted"
+            exit 1
+          fi
+      - name: Publish educational pilot results
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-drive-777e-didactic-investigations
+          path: build/investigations/
+          retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4
         with:

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0 — 2026-10-22 — Ciclo 03
+
+- Implementado primeiro investigador diferencial **estritamente didático** de comandos finais, contextualizado à CAT 777E sem fingir homologação OEM.
+- Usadas quatro cadeias FMEA do snapshot público pinado; mantidas três alternativas autorais explícitas e oito investigações não executadas.
+- Criados contrato JSON Schema, 4 cenários sintéticos, testes de ausência de diagnósticos indevidos e avaliação de divergência.
+- Implementado vínculo forte entre o snapshot SHA-256 real e o índice de consumo para evitar resultados de arquivo local adulterado.
+- CI gera relatórios JSON didáticos como artefatos temporários, sem confundir testes simulados com resultados de campo.
+
+**Fora de escopo:** telemetria real, laudos corporativos, interpretação livre por LLM, efetividade OEM por série, decisões SAP e autorização operacional.
+
+
 ## 0.2.0 — 2026-10-22 — Ciclo 02
 
 - Implementado importador **read-only** do snapshot público FMEA Mining conteúdo 1.0.0 (preview histórico 1.3.12), pinado por commit e SHA-256.

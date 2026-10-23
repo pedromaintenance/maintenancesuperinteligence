@@ -307,6 +307,7 @@ def main(argv: list[str] | None = None) -> int:
         receipt = build_receipt(data, lock)
         if args.output:
             args.output.mkdir(parents=True, exist_ok=True)
+            (args.output / "fmea-public.snapshot.json").write_bytes(raw)
             (args.output / "fmea-public.index.json").write_text(
                 json.dumps(build_consumer_index(data, lock), ensure_ascii=False, indent=2) + "\n",
                 encoding="utf-8")
