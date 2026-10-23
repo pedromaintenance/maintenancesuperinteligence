@@ -100,6 +100,66 @@ jobs:
               assert not ledger["humanReview"]["operationalReleaseAuthorized"]
           print("PASS: validated evidence provenance and six chained audit events per scenario")
           PY
+      - name: Generate eight source-linked CAT 777E method checklists
+        run: |
+          mkdir -p build/methods
+          for path in examples/777e_additives_only.json examples/777e_change_documented.json examples/777e_water_disputed.json examples/777e_debris_and_noise.json; do
+            name=$(basename "$path" .json)
+            python -m methods.library \
+              --snapshot build/fmea-public/fmea-public.snapshot.json \
+              --case "$path" \
+              --investigation "build/investigations/$name.json" \
+              --output "build/methods/$name.methods.json" > /dev/null
+          done
+      - name: Assert method coverage, FMEA lineage and absence of OEM approval
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          plans = list(Path("build/methods").glob("*.methods.json"))
+          assert len(plans) == 4
+          for path in plans:
+              p = json.loads(path.read_text())
+              assert p["methodsCataloged"] == 14
+              assert p["fmeaMethodsLinked"] == 6
+              assert p["fmeaInvestigationsLinked"] == 8
+              assert p["coverage"] == {"oil": 4, "hydraulics": 3, "mechanics": 3,
+                                        "vibration": 2, "electronics": 2}
+              assert p["mayExecuteTests"] is False
+              assert p["approvedForOperationalUse"] is False
+              assert p["confirmedComponentFailure"] is None
+              assert all(m["executionStatus"] == "proposed_not_executed"
+                         and m["oemApplicability"] == "not_verified"
+                         and not m["mayExecuteAutomatically"]
+                         and m["requiredContextQuestions"]
+                         and m["expectedObservationFields"]
+                         and all(o["status"] == "not_measured" for o in m["expectedObservationFields"])
+                         for m in p["suggestedQuestions"])
+          print("PASS: method catalogue, eight FMEA references, zero invented OEM authority")
+          PY
+      - name: Reject forged investigation in method planning
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          src = Path("build/investigations/777e_additives_only.json")
+          report = json.loads(src.read_text())
+          report["plannedInvestigations"][0]["purposeFromSource"] = "AUTO-APPROVED OEM"
+          Path("build/investigations/forged-method-input.json").write_text(json.dumps(report))
+          PY
+          if python -m methods.library \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --case examples/777e_additives_only.json \
+            --investigation build/investigations/forged-method-input.json > /dev/null 2>&1; then
+              echo "SECURITY FAIL: forged investigation method accepted"
+              exit 1
+          fi
+      - name: Publish conceptual methods and checklist artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: diagnostic-methods-777e-training-checklists
+          path: build/methods/
+          retention-days: 14
       - name: Verify explicit simulated test is separate from executed OEM test
         run: |
           python -m investigations.final_drive \
