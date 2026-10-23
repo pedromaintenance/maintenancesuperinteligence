@@ -14,10 +14,11 @@ import sys
 
 from connectors.fmea_public import (ImportRejected, load_lock, require,
                                     validate_snapshot, build_consumer_index)
+from evidence.ledger import build_ledger
 
 
 PILOT_SCHEMA = "maintenance-superinteligence.final-drive-case.v1"
-OUTPUT_SCHEMA = "maintenance-superinteligence.final-drive-investigation.v1"
+OUTPUT_SCHEMA = "maintenance-superinteligence.final-drive-investigation.v2"
 ALLOWED_CHAIN_IDS = ("FC-FD-001", "FC-FD-002", "FC-FD-003", "FC-FD-004")
 EXTRA_HYPOTHESES = {
     "PILOT-FORMULATION": "Mudança de formulação ou baseline sem dano demonstrado",
@@ -166,7 +167,8 @@ def validate_index(index: object, lock: dict) -> tuple[dict, dict]:
     return records, source_map
 
 
-def investigate(case: dict, index: dict, lock: dict | None = None) -> dict:
+def investigate(case: dict, index: dict, lock: dict | None = None,
+                simulated_test_results: list | None = None) -> dict:
     lock = lock or load_lock()
     case = validate_case(case)
     records, source_map = validate_index(index, lock)
@@ -261,7 +263,7 @@ def investigate(case: dict, index: dict, lock: dict | None = None) -> dict:
          "url": source_map[sid]["url"], "limitation": source_map[sid]["limitation"]}
         for sid in sorted({sid for rid in ALLOWED_CHAIN_IDS for sid in records[rid]["sourceIds"]})
     ]
-    return {
+    report = {
         "schema": OUTPUT_SCHEMA,
         "caseId": case["caseId"],
         "purpose": "didactic_hypothesis_discussion_only",
@@ -308,6 +310,8 @@ def investigate(case: dict, index: dict, lock: dict | None = None) -> dict:
             "Dados informados são exclusivamente simulados; não representam medições de frota.",
         ],
     }
+    report["evidenceLedger"] = build_ledger(case, report, simulated_test_results)
+    return report
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -318,6 +322,8 @@ def main(argv: list[str] | None = None) -> int:
                         help="Índice opcional para comparação integral contra snapshot verificado")
     parser.add_argument("--case", type=Path, required=True)
     parser.add_argument("--output", type=Path, help="Saída JSON opcional; imprime no stdout também")
+    parser.add_argument("--simulated-test-results", type=Path,
+                        help="Arquivo opcional com resultados exclusivamente sintéticos")
     args = parser.parse_args(argv)
     try:
         lock = load_lock()
@@ -329,7 +335,17 @@ def main(argv: list[str] | None = None) -> int:
             require(candidate == expected_index,
                     "índice divergente dos bytes do snapshot público verificado")
         case = json.loads(args.case.read_text(encoding="utf-8"))
-        result = investigate(case, expected_index, lock)
+        supplementary_results = None
+        if args.simulated_test_results:
+            packet = json.loads(args.simulated_test_results.read_text(encoding="utf-8"))
+            require(isinstance(packet, dict) and set(packet) ==
+                    {"schema", "caseId", "results"}, "pacote de testes sintéticos inválido")
+            require(packet["schema"] == "maintenance-superinteligence.simulated-test-results.v1"
+                    and packet["caseId"] == case.get("caseId")
+                    and isinstance(packet["results"], list),
+                    "pacote de testes não pertence ao caso ou contém dados não reconhecidos")
+            supplementary_results = packet["results"]
+        result = investigate(case, expected_index, lock, supplementary_results)
         data = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
         if args.output:
             args.output.parent.mkdir(parents=True, exist_ok=True)
