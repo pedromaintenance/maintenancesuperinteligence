@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/discrimination-case.schema.json",
+  "title": "Synthetic discrimination case v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "caseId",
+    "familyId",
+    "scenario",
+    "evidenceNature",
+    "reportedSignals",
+    "contextStates",
+    "oemGate"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.discrimination-case.v1"
+    },
+    "caseId": {
+      "type": "string",
+      "pattern": "^SIM-[A-Z0-9-]+$"
+    },
+    "familyId": {
+      "enum": [
+        "final_drive",
+        "hydraulics",
+        "electronics"
+      ]
+    },
+    "scenario": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidenceNature": {
+      "const": "simulation"
+    },
+    "reportedSignals": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "contextStates": {
+      "type": "array",
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/discrimination-context-state.schema.json",
+        "title": "Context state",
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "state",
+          "sourceRef"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "enum": [
+              "unknown",
+              "available_simulated",
+              "contradicted",
+              "not_applicable"
+            ]
+          },
+          "sourceRef": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "oemGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "serialOrArrangement",
+        "technicalPublication",
+        "revision",
+        "approved"
+      ],
+      "properties": {
+        "serialOrArrangement": {
+          "type": "null"
+        },
+        "technicalPublication": {
+          "type": "null"
+        },
+        "revision": {
+          "type": "null"
+        },
+        "approved": {
+          "const": false
+        }
+      }
+    }
+  }
+}
