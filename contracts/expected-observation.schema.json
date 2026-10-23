@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/expected-observation.schema.json",
+  "title": "expected-observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "observationId",
+    "field",
+    "question",
+    "nature"
+  ],
+  "properties": {
+    "observationId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "field": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "nature": {
+      "const": "potential_not_measured"
+    }
+  }
+}

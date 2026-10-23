@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/diagnostic-method-catalog.schema.json",
+  "title": "diagnostic-method-catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "knowledgeScope",
+    "approvedForOperationalUse",
+    "sourceRegistry",
+    "methods"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.diagnostic-method-catalog.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "knowledgeScope": {
+      "const": "general_research_not_oem_procedure"
+    },
+    "approvedForOperationalUse": {
+      "const": false
+    },
+    "sourceRegistry": {
+      "const": "data/diagnostic-method-sources.v1.json"
+    },
+    "methods": {
+      "type": "array",
+      "minItems": 14,
+      "items": {
+        "$ref": "diagnostic-method.schema.json"
+      }
+    }
+  }
+}

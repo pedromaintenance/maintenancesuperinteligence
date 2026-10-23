@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de investigação P&D v0.4.0 (22/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de métodos diagnósticos P&D v0.5.0 (23/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -42,6 +42,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 02 — Importação verificável do FMEA](docs/CICLO_2026-10-22_IMPORTADOR_FMEA.md)
 - [Ciclo 03 — Investigador didático CAT 777E](docs/CICLO_2026-10-22_INVESTIGADOR_777E.md)
 - [Ciclo 04 — Modelo de evidências auditáveis](docs/CICLO_2026-10-22_MODELO_EVIDENCIAS.md)
+- [Ciclo 05 — Biblioteca de métodos diagnósticos](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -56,6 +57,7 @@ connectors/       # importador público do FMEA e lock de fonte (presentes)
 tests/            # testes unitários adversariais do importador e do piloto (presentes)
 investigations/   # investigador diferencial didático CAT 777E (presente)
 evidence/         # ontologia de observação, teste e evidência + auditoria (presente)
+methods/          # catálogo de métodos e gerador de perguntas diagnósticas (presente)
 examples/         # quatro cenários sintéticos (presentes)
 evaluation/       # benchmark de diagnóstico amplo (futuro)
 services/         # busca e orquestração assistiva (futuro)
@@ -93,6 +95,12 @@ A execução **revalida o hash real do snapshot**, e, se houver índice informad
 O relatório de investigação **v2** inclui um `evidenceLedger` com cinco entidades distintas: `Observation`, `TestMethod`, `TestResult`, `Evidence` e `HypothesisAssessment`. Relatos codificados não viram automaticamente medições ou resultados de ensaio. O ledger possui seis etapas de hash encadeado e validação cruzada contra o caso e a rubrica de hipóteses; isso **não constitui assinatura ou prova de autenticidade da fonte**.
 
 O parâmetro opcional `--simulated-test-results examples/777e_simulated_test_results.json` demonstra um resultado de **execução fictícia explícita**. Não há testes reais nem mudança de aprovação dos métodos genéricos do FMEA. [Relatório completo](docs/CICLO_2026-10-22_MODELO_EVIDENCIAS.md).
+
+## Biblioteca de métodos — Ciclo 05
+
+O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em cinco disciplinas: óleo (4), hidráulica (3), mecânica (3), vibração (2) e eletrônica (2). Seis códigos de método do FMEA (`EV-*`) são reconciliados com as **oito investigações** do caso CAT 777E; as fontes de referência e limitações são rastreadas em `data/diagnostic-method-sources.v1.json`.
+
+A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
 
 ## Verificação e desenvolvimento
 

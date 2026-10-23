@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.0 — 2026-10-23 — Ciclo 05
+
+- Criado catálogo de 14 métodos diagnósticos conceituais nas áreas de óleo, hidráulica, mecânica, vibração e eletrônica.
+- Criados seis contratos JSON Schema para método, pré-requisito, observação esperada, limite de interpretação, efetividade e catálogo, além de schema do registro de fontes.
+- Criado registro de seis fontes técnicas gerais de fabricantes, preservando limitações e procedência FMEA onde aplicável.
+- Vinculados os seis códigos únicos `EV-*` às oito investigações das quatro cadeias de comandos finais no snapshot FMEA público pinado.
+- Implementada CLI que reconstrói a investigação validada, confere a procedência, emite perguntas e lacunas sem realizar testes nem importar parâmetros OEM.
+- Adicionados testes adversariais por disciplina e geração automatizada dos quatro planos conceituais no CI.
+
+**Limite:** biblioteca não é um manual de execução; métodos sem literatura por série permanecem não homologados.
+
+
 ## 0.4.0 — 2026-10-22 — Ciclo 04
 
 - Criados cinco contratos versionados para observação, método de teste, resultado, evidência e avaliação de hipótese, além do contrato agregador `EvidenceLedger`.

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/prerequisite.schema.json",
+  "title": "prerequisite",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prerequisiteId",
+    "category",
+    "description"
+  ],
+  "properties": {
+    "prerequisiteId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    }
+  }
+}

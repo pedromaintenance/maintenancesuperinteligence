@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/applicability-gate.schema.json",
+  "title": "applicability-gate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manufacturer",
+    "model",
+    "serialOrArrangement",
+    "technicalPublication",
+    "revision",
+    "status",
+    "approvedForOperationalUse"
+  ],
+  "properties": {
+    "manufacturer": {
+      "type": "null"
+    },
+    "model": {
+      "type": "null"
+    },
+    "serialOrArrangement": {
+      "type": "null"
+    },
+    "technicalPublication": {
+      "type": "null"
+    },
+    "revision": {
+      "type": "null"
+    },
+    "status": {
+      "const": "not_verified"
+    },
+    "approvedForOperationalUse": {
+      "const": false
+    }
+  }
+}
