@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/diagnostic-method-sources.schema.json",
+  "title": "diagnostic-method-sources",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "sources"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.diagnostic-method-sources.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "general_sources_not_model_specific_procedures"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "organization",
+          "title",
+          "url",
+          "role",
+          "limitation",
+          "origin"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "organization": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://"
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "limitation": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "origin": {
+            "enum": [
+              "fmea_public_reference",
+              "public_independent"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
