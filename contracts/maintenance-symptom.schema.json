@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/maintenance-symptom.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "description",
+    "sourceNature",
+    "physicallyObserved",
+    "assetSystem",
+    "functionalRequirement"
+  ],
+  "properties": {
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceNature": {
+      "const": "fictional_report_not_field_measurement"
+    },
+    "physicallyObserved": {
+      "const": false
+    },
+    "assetSystem": {
+      "type": "string",
+      "minLength": 1
+    },
+    "functionalRequirement": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
