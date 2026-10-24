@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/notification-training-spec.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "sourceTree",
+    "sourceCases",
+    "sapIntegrationEnabled",
+    "operationalDispatchEnabled",
+    "entries"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.notification-training-spec.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "public_synthetic_training_only"
+    },
+    "sourceTree": {
+      "const": "trees/spec.v1.json"
+    },
+    "sourceCases": {
+      "const": "casefiles/technical-cases.v1.json"
+    },
+    "sapIntegrationEnabled": {
+      "const": false
+    },
+    "operationalDispatchEnabled": {
+      "const": false
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseFileId",
+          "draftId",
+          "title",
+          "discipline",
+          "investigationScope",
+          "technicalNote",
+          "fieldObserved",
+          "actionPerformed",
+          "mayIssueRealNotification"
+        ],
+        "properties": {
+          "caseFileId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "draftId": {
+            "type": "string",
+            "pattern": "^SIM-NOTE-00[1-4]$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 15,
+            "maxLength": 40,
+            "pattern": "^SIMULAÇÃO - "
+          },
+          "discipline": {
+            "enum": [
+              "Mecânica / Lubrificação",
+              "Mecânica / Hidráulica",
+              "Elétrica / Eletrônica"
+            ]
+          },
+          "investigationScope": {
+            "type": "string",
+            "minLength": 80,
+            "maxLength": 380
+          },
+          "technicalNote": {
+            "type": "string",
+            "minLength": 60,
+            "maxLength": 300
+          },
+          "fieldObserved": {
+            "const": false
+          },
+          "actionPerformed": {
+            "const": false
+          },
+          "mayIssueRealNotification": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}
