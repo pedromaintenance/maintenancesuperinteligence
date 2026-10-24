@@ -17,7 +17,11 @@
     "fieldDiagnosticAccuracyMeasured",
     "privateDeploymentApproved",
     "mayCreateWorkOrder",
-    "mayReleaseEquipment"
+    "mayReleaseEquipment",
+    "observedSupportingEvidence",
+    "observedWeakeningEvidence",
+    "hypothesesExcluded",
+    "counterexamples"
   ],
   "properties": {
     "schema": {
@@ -69,6 +73,18 @@
     },
     "mayReleaseEquipment": {
       "const": false
+    },
+    "observedSupportingEvidence": {
+      "const": 0
+    },
+    "observedWeakeningEvidence": {
+      "const": 0
+    },
+    "hypothesesExcluded": {
+      "const": 0
+    },
+    "counterexamples": {
+      "const": 26
     }
   }
 }
