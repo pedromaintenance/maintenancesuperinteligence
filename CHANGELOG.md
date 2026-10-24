@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.0 — 2026-10-24 — Ciclo 10
+
+- Definidos oito contratos de integração futura (principal, asserção, competência, versão de afirmação, revisão, evidência, auditoria e efetividade OEM).
+- Criada política de sete papéis com segregação de responsabilidades, dez provas externas obrigatórias e negação explícita de atos operacionais.
+- Adicionado adaptador fictício de testes: aceita apenas identidades SIM, pareceres sintéticos e referências públicas; nunca declara aprovação ou autenticação.
+- Incluídos testes adversariais de duplicidade, falsificação de assinatura, competência, efetividade, adulteração de campos e versão.
+- CI verifica contratos e publica exclusivamente relatório sintético; nenhuma integração corporativa foi estabelecida.
+
+**Limite:** não existem identidade autenticada, assinatura verificada, documentação por série qualificada nem autorização real.
+
+
 ## 0.9.0 — 2026-10-24 — Ciclo 09
 
 - Documentada arquitetura **proposta** de revisão técnica restrita, separando conhecimento público, credenciais, evidências, séries, dados SAP/ECM e literatura OEM licenciada.
