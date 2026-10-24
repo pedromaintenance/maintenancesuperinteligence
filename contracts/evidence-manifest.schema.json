@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-manifest.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifestId",
+    "claimId",
+    "classification",
+    "sourceReferenceIds",
+    "sourceAccessVerified",
+    "realDataIncluded",
+    "licensedContentIncluded",
+    "retentionVerified"
+  ],
+  "properties": {
+    "manifestId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claimId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "classification": {
+      "const": "public_synthetic"
+    },
+    "sourceReferenceIds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "sourceAccessVerified": {
+      "const": false
+    },
+    "realDataIncluded": {
+      "const": false
+    },
+    "licensedContentIncluded": {
+      "const": false
+    },
+    "retentionVerified": {
+      "const": false
+    }
+  }
+}
