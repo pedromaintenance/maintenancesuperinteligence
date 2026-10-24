@@ -24,6 +24,7 @@ from benchmarks.quality import (BENCHMARK_PATH, execute_benchmark,
 from governance.readiness_dossier import (DOSSIER_PATH, READINESS_PATH,
                                          POLICY_PATH, build_dossier)
 from evidence.qualitative import (MATRIX_PATH as EVIDENCE_MATRIX_PATH,
+                                  ORACLE_PATH, validate_oracle,
                                   validate_qualitative_matrix, assess_case)
 
 FIXTURE_PATH = ROOT / "casefiles/technical-cases.v1.json"
@@ -169,7 +170,10 @@ def load_dependencies(snapshot: dict) -> dict:
             and gate["deploymentApproved"] is False
             and gate["humanReviewAuthenticated"] is False,
             "casefile: review/deployment incorrectly authorized")
-    return {"sources": registry, "methods": methods, "matrix": matrix,
+    oracle = json.loads(ORACLE_PATH.read_text(encoding="utf-8"))
+    return {"qualitativeOracle": oracle,
+            "qualitativeOracleSha256": sha(oracle),
+            "sources": registry, "methods": methods, "matrix": matrix,
             "families": families, "qualitativeMatrix": qualitative,
             "qualitativeInputSha256": sha(evidence_matrix),
             "benchmark": benchmark,
@@ -366,11 +370,13 @@ def assemble_case(row: dict, deps: dict, snapshot: dict) -> dict:
 def build_collection(fixture: dict, deps: dict, snapshot: dict) -> dict:
     cases = validate_fixture(fixture)
     result = [assemble_case(cases[k], deps, snapshot) for k in ALLOWED]
+    validate_oracle(deps["qualitativeOracle"], result)
     return {
         "schema": "maintenance-superinteligence.technical-casefile-collection.v1",
         "version": "1.0.0",
         "purpose": "four_synthetic_independent_differentials",
         "sourceFixtureSha256": sha(fixture),
+        "qualitativeOracleSha256": deps["qualitativeOracleSha256"],
         "pinnedFmeaSnapshotSha256": load_lock()["sha256"],
         "cases": result, "caseCount": 4,
         "hypothesesOpen": sum(len(x["hypotheses"]) for x in result),
