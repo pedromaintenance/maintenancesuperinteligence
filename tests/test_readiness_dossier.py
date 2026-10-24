@@ -259,6 +259,31 @@ class ReadinessDossierTests(unittest.TestCase):
         with self.assertRaises(ImportRejected):
             render_html(report)
 
+    def test_html_rejects_tampered_finding_even_if_global_denial_remains(self):
+        result = self.result()
+        result["findings"][0]["evidenceReceived"] = True
+        with self.assertRaises(ImportRejected):
+            render_html(result)
+
+    def test_html_rejects_tampered_exception_even_if_global_denial_remains(self):
+        result = self.result()
+        result["exceptions"][0]["waiveControl"] = True
+        with self.assertRaises(ImportRejected):
+            render_html(result)
+
+    def test_html_rejects_scenario_with_auto_reapproval(self):
+        result = self.result()
+        result["changeScenarios"][0]["automaticReapproval"] = True
+        with self.assertRaises(ImportRejected):
+            render_html(result)
+
+    def test_report_includes_unverified_review_gate(self):
+        gate = self.result()["independentReviewGate"]
+        self.assertEqual(gate["status"], "blocked_pending_private_review")
+        self.assertFalse(gate["approvalGranted"])
+        self.assertFalse(gate["twoIndependentRealReviewers"])
+        self.assertFalse(gate["sourceOemEffectivityVerified"])
+
     def test_cli_writes_json_html_only_for_valid_source(self):
         with tempfile.TemporaryDirectory() as tmp:
             jsonpath = Path(tmp) / "dossier.json"
