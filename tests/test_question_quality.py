@@ -247,6 +247,32 @@ class QualityBenchmarkTests(unittest.TestCase):
         self.mutant("provenance",
                     lambda r: r.update(operationApproved=True))
 
+    def test_technical_review_gate_requires_real_experts(self):
+        result = execute_benchmark(self.manifest, self.matrix,
+                                   self.methods, self.snapshot)
+        gate = result["technicalReviewGate"]
+        self.assertEqual(gate["claimsWithTraceability"], 8)
+        self.assertEqual(gate["editoriallySupportedWithTwoFictionalPersonas"], 2)
+        self.assertEqual(gate["unresolvedSyntheticDisagreements"], 2)
+        self.assertFalse(gate["realReviewerIdentityAuthenticated"])
+        self.assertFalse(gate["realReviewerIndependenceVerified"])
+        self.assertFalse(gate["oemSeriesEffectivityVerified"])
+        self.assertFalse(gate["mayClaimFieldDiagnosticValidity"])
+
+    def test_benchmark_rejects_fake_oem_review_packet(self):
+        packet = json.loads((ROOT / "governance/review-packet.v1.json").read_text())
+        packet["claims"][0]["applicabilityEvidence"]["verificationStatus"] = "oem_series_verified"
+        with self.assertRaises(ImportRejected):
+            execute_benchmark(self.manifest, self.matrix,
+                              self.methods, self.snapshot, review_packet=packet)
+
+    def test_benchmark_rejects_same_person_double_review(self):
+        packet = json.loads((ROOT / "governance/review-packet.v1.json").read_text())
+        packet["assessments"][1]["reviewerId"] = packet["assessments"][0]["reviewerId"]
+        with self.assertRaises(ImportRejected):
+            execute_benchmark(self.manifest, self.matrix,
+                              self.methods, self.snapshot, review_packet=packet)
+
     def test_benchmark_cli_rejects_corrupted_snapshot(self):
         with tempfile.TemporaryDirectory() as temp:
             p = Path(temp) / "forged-snapshot.json"
