@@ -72,12 +72,13 @@ python -m casefiles.integrated \
 
 python -m notifications.drafts \
   --source build/trees/technical-cases.v1.json \
+  --snapshot build/fmea-public/fmea-public.snapshot.json \
   --spec notifications/training-spec.v1.json \
   --output build/notifications/maintenance-drafts.v1.json \
   --html build/notifications/maintenance-drafts.v1.html
 ```
 
-O HTML fica disponível localmente para leitura e impressão. Não há JavaScript, formulário, requisição externa, botão de envio para SAP ou exportação para um conector empresarial.
+O gerador também exige o snapshot FMEA público fixado por SHA-256 para **reconstituir a coleção de dossiês de origem e compará-la integralmente ao arquivo solicitado**. Substituição de sintomas, inclusão de identificadores reais ou alteração de escopo editorial são rejeitadas antes da exportação. O HTML fica disponível localmente para leitura e impressão. Não há JavaScript, formulário, requisição externa, botão de envio para SAP ou exportação para um conector empresarial.
 
 ## Limites e próxima investigação
 
