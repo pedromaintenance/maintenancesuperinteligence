@@ -40,6 +40,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 ## Fase 4 — Estratégia de ativos, manutenção e PCM
 
+**Ciclo 14:** modelo causal e matriz de observações qualitativas para 10 pares de hipóteses, incluindo 20 contraexemplos por mecanismo e 30 padrões condicionais (sem resultado observado). Dossiês exibem 13 comparações instanciadas com contextos desconhecidos ou contraditórios; nenhuma hipótese é excluída e nenhum parâmetro físico é presumido. Próximo: árvore didática de decisão com gates de abstenção e revisão técnica.
+
 **Ciclo 13:** aplicação demonstrativa dos contratos à engenharia de manutenção: quatro casos diferenciais sintéticos (CAT 777E, hidráulica e ECM registrado/ativo), fontes públicas rastreadas, 19 instâncias de hipóteses abertas, saída HTML/JSON e proteção contra diagnóstico confirmado indevidamente. Próximo investimento recomendado: enriquecer os mecanismos de diferenciação com testes editoriais validados por especialistas, sem ingressar dados reais no repositório público.
 
 **Ciclo 12:** dossiê estático JSON/HTML para revisão de arquitetura, dez evidências solicitadas mas não recebidas, duas exceções rejeitadas, seis cenários sintéticos de requalificação. Cinco referências de compatibilidade pública sem migração aprovada; a documentação não substitui parecer corporativo.
