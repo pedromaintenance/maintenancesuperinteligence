@@ -23,6 +23,8 @@ from benchmarks.quality import (BENCHMARK_PATH, execute_benchmark,
                                 validate_manifest)
 from governance.readiness_dossier import (DOSSIER_PATH, READINESS_PATH,
                                          POLICY_PATH, build_dossier)
+from evidence.qualitative import (MATRIX_PATH as EVIDENCE_MATRIX_PATH,
+                                  validate_qualitative_matrix, assess_case)
 
 FIXTURE_PATH = ROOT / "casefiles/technical-cases.v1.json"
 ALLOWED = {
@@ -148,6 +150,8 @@ def load_dependencies(snapshot: dict) -> dict:
                                registry, snapshot)
     matrix = json.loads(MATRIX_PATH.read_text(encoding="utf-8"))
     families = validate_matrix(matrix, methods, snapshot)
+    evidence_matrix = json.loads(EVIDENCE_MATRIX_PATH.read_text(encoding="utf-8"))
+    qualitative = validate_qualitative_matrix(evidence_matrix, families, methods, registry)
     benchmark = json.loads(BENCHMARK_PATH.read_text(encoding="utf-8"))
     checks = execute_benchmark(benchmark, matrix, methods, snapshot)
     require(checks["acceptance"] == "regression_pass"
@@ -166,7 +170,9 @@ def load_dependencies(snapshot: dict) -> dict:
             and gate["humanReviewAuthenticated"] is False,
             "casefile: review/deployment incorrectly authorized")
     return {"sources": registry, "methods": methods, "matrix": matrix,
-            "families": families, "benchmark": benchmark,
+            "families": families, "qualitativeMatrix": qualitative,
+            "qualitativeInputSha256": sha(evidence_matrix),
+            "benchmark": benchmark,
             "fixtures": {x["fixtureId"]: x for x in validated},
             "checks": checks, "gate": gate, "readiness": readiness,
             "reviewFixture": review_fixture}
@@ -228,6 +234,13 @@ def assemble_case(row: dict, deps: dict, snapshot: dict) -> dict:
         "limitation": deps["sources"][sid]["limitation"],
     } for sid in sorted(source_ids)]
     context = CONTEXT[row["editorialContextKey"]]
+    evidence_assessment = assess_case(case, selection, deps["qualitativeMatrix"],
+                                      deps["methods"])
+    require(evidence_assessment["observedSupportCount"] == 0
+            and evidence_assessment["observedWeakeningCount"] == 0
+            and evidence_assessment["hypothesesExcluded"] == 0
+            and evidence_assessment["testsPerformed"] == 0,
+            "casefile: synthetic evidence promoted into physical conclusion")
     pilot = None
     pilot_hash = None
     if row["pilotCasePath"] is not None:
@@ -287,6 +300,7 @@ def assemble_case(row: dict, deps: dict, snapshot: dict) -> dict:
             "probability": None,
         } for i, h in enumerate(selection["hypotheses"])],
         "hypothesisComparisons": list(selection["comparisons"]),
+        "qualitativeEvidence": evidence_assessment,
         "selectedQuestion": {
             "pairId": selected["selectedPairId"],
             "methodId": selected["selectedMethodId"],
@@ -321,6 +335,7 @@ def assemble_case(row: dict, deps: dict, snapshot: dict) -> dict:
             "originalFmeaSnapshotSha256": load_lock()["sha256"],
             "fmeaContentVerifiedAgainstLock": True,
             "matrixSha256": sha(deps["matrix"]),
+            "qualitativeEvidenceMatrixSha256": deps["qualitativeInputSha256"],
             "methodsCatalogSha256": sha(json.loads(CATALOG_PATH.read_text(encoding="utf-8"))),
             "benchmarkManifestSha256": sha(deps["benchmark"]),
             "caseBenchmarkFixtureId": fixture["fixtureId"],
@@ -360,6 +375,11 @@ def build_collection(fixture: dict, deps: dict, snapshot: dict) -> dict:
         "cases": result, "caseCount": 4,
         "hypothesesOpen": sum(len(x["hypotheses"]) for x in result),
         "testsExecuted": 0,
+        "observedSupportingEvidence": 0,
+        "observedWeakeningEvidence": 0,
+        "hypothesesExcluded": 0,
+        "counterexamples": sum(len(p["alternativeExplanations"])
+                               for c in result for p in c["qualitativeEvidence"]["comparisons"]),
         "confirmedRootCauses": 0,
         "fieldDiagnosticAccuracyMeasured": False,
         "privateDeploymentApproved": False,
@@ -380,6 +400,10 @@ def render_html(collection: dict) -> str:
             and collection.get("caseCount") == 4
             and collection.get("confirmedRootCauses") == 0
             and collection.get("testsExecuted") == 0
+            and collection.get("observedSupportingEvidence") == 0
+            and collection.get("observedWeakeningEvidence") == 0
+            and collection.get("hypothesesExcluded") == 0
+            and collection.get("counterexamples") == 20
             and collection.get("privateDeploymentApproved") is False
             and collection.get("mayCreateWorkOrder") is False
             and collection.get("mayReleaseEquipment") is False
@@ -387,6 +411,18 @@ def render_html(collection: dict) -> str:
             and all(c.get("approvedForOperationalUse") is False
                     and c.get("confirmedComponent") is None
                     and c.get("decision") == "needs_human_review_and_discriminating_evidence"
+                    and c.get("qualitativeEvidence", {}).get("testsPerformed") == 0
+                    and c.get("qualitativeEvidence", {}).get("hypothesesExcluded") == 0
+                    and c.get("qualitativeEvidence", {}).get("observedSupportCount") == 0
+                    and c.get("qualitativeEvidence", {}).get("observedWeakeningCount") == 0
+                    and all(p.get("cannotDismissEitherHypothesis") is True
+                            and p.get("observedPhysicalEvidence") is False
+                            and p.get("currentEvidenceState") in {"not_measured", "contradicted", "inconclusive"}
+                            and p.get("testsPerformed") == 0
+                            and all(q.get("hasBeenObserved") is False
+                                    and q.get("mayExcludeHypothesis") is False
+                                    for q in p.get("conditionalObservations", []))
+                            for p in c["qualitativeEvidence"].get("comparisons", []))
                     and c.get("reviewGates", {}).get("mayRunPhysicalTests") is False
                     and c.get("reviewGates", {}).get("mayConfirmRootCause") is False
                     and c.get("reviewGates", {}).get("mayReleaseEquipment") is False
@@ -410,6 +446,21 @@ def render_html(collection: dict) -> str:
                           +e(", ".join(m["safetyPrerequisites"]))+"</td><td>"
                           +e(", ".join(m["interpretationLimits"]))
                           +"</td></tr>" for m in c["methods"])
+        comparisons = "".join(
+            "<tr><td>" + e(p["pairId"]) + "</td><td>"
+            + e(" / ".join(p["hypothesisIds"])) + "</td><td>"
+            + e(p["currentEvidenceState"]) + "</td><td>"
+            + e(" | ".join(o["conditionalReading"] + " [SE: "
+                          + o["effectOnFirstIfObserved"] + " / "
+                          + o["effectOnSecondIfObserved"] + "]"
+                          for o in p["conditionalObservations"])) + "</td><td>"
+            + e(" | ".join(a["statement"] for a in p["alternativeExplanations"]))
+            + "</td><td>"
+            + e(", ".join(k["key"] for k in p["contextRequirements"]
+                          if k["state"] in ("unknown", "contradicted", "not_applicable"))
+                or "Dados físicos ainda não medidos")
+            + "</td></tr>"
+            for p in c["qualitativeEvidence"]["comparisons"])
         refs = "".join("<li>"+e(x["organization"])+": "+e(x["title"])
                        +" — "+e(x["limitation"])+"</li>" for x in c["technicalReferences"])
         gaps = "".join("<li>"+e(x)+"</li>" for x in c["knowledgeGaps"])
@@ -432,6 +483,13 @@ def render_html(collection: dict) -> str:
             " — <strong>Estado:</strong> "+e(c["selectedQuestion"]["status"])+"</p>"
             "<p><strong>Ação proposta de investigação:</strong> "
             +e(c["selectedQuestion"]["recommendedAction"])+"</p>"
+            "<h3>Evidência discriminante condicional — NÃO observada</h3>"
+            "<p>supports/weakens indicam somente o que um resultado hipotético poderia sugerir;"
+            " indeterminado e não medido nunca descartam hipóteses.</p>"
+            "<div class='scroll'><table><tr><th>Par</th><th>Hipóteses abertas</th>"
+            "<th>Estado dos dados</th><th>Observações que poderiam discriminar</th>"
+            "<th>Contraexemplos</th><th>Lacuna</th></tr>"
+            +comparisons+"</table></div>"
             "<h3>Métodos conceituais (não executar sem revisão humana)</h3>"
             "<div class='scroll'><table><tr><th>Método</th><th>Questão</th><th>Segurança</th>"
             "<th>Limites</th></tr>"+methods+"</table></div>"
