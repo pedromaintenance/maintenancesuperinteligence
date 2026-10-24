@@ -240,6 +240,7 @@ def build_dossier(fixture: dict, readiness: dict, policy: dict) -> dict:
         "readinessSourceSha256": digest(readiness),
         "dossierFixtureSha256": digest(fixture),
         "findings": findings,
+        "independentReviewGate": fixture["independentReviewGate"],
         "findingCount": len(findings),
         "criticalFindings": sum(f["criticality"] == "critical" for f in findings),
         "highFindings": sum(f["criticality"] == "high" for f in findings),
@@ -288,7 +289,26 @@ def render_html(report: dict) -> str:
     """Offline, no JS/remote assets; all varying text encoded as text nodes."""
     require(report.get("schema")
             == "maintenance-superinteligence.readiness-review-dossier.v1"
-            and report.get("deploymentApproved") is False,
+            and report.get("deploymentApproved") is False
+            and report.get("humanReviewAuthenticated") is False
+            and report.get("mayCreateWorkOrder") is False
+            and report.get("mayReleaseEquipment") is False
+            and isinstance(report.get("findings"), list)
+            and len(report["findings"]) == 10
+            and all(x.get("evidenceReceived") is False
+                    and x.get("verifiedByRealPerson") is False
+                    and x.get("decision") == "blocked_pending_private_evidence"
+                    for x in report["findings"])
+            and isinstance(report.get("exceptions"), list)
+            and len(report["exceptions"]) == 2
+            and all(x.get("waiveControl") is False
+                    and x.get("mayDeploy") is False
+                    for x in report["exceptions"])
+            and isinstance(report.get("changeScenarios"), list)
+            and len(report["changeScenarios"]) == 6
+            and all(x.get("automaticReapproval") is False
+                    and x.get("reopenReview") is True
+                    for x in report["changeScenarios"]),
             "html: invalid or falsely approved dossier")
     def e(v: object) -> str:
         return escape(str(v), quote=True)
