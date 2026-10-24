@@ -1,4 +1,4 @@
-name: Validate research knowledge, methods, benchmark and review governance
+name: Validate maintenance research and offline trust-boundary design
 
 on:
   push:
@@ -427,6 +427,88 @@ jobs:
         with:
           name: synthetic-technical-review-and-disagreement-report
           path: build/governance/technical-review.v1.report.json
+          retention-days: 14
+      - name: Run offline restricted-review security blueprint
+        run: |
+          mkdir -p build/restricted-review
+          python -m governance.restricted_blueprint \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --output build/restricted-review/threat-fixture.report.json > /dev/null
+      - name: Assert roles, source lineage and absence of real authentication
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("build/restricted-review/threat-fixture.report.json").read_text())
+          assert data["schema"] == "maintenance-superinteligence.restricted-review-simulation-report.v1"
+          assert data["mode"] == "OFFLINE_SIMULATION_NOT_AUTHENTICATION"
+          assert data["caseCount"] == 3
+          assert data["eventCount"] == 9
+          assert data["derivedStates"] == {
+              "needs_evidence": 1, "qualified_general_claim_simulation": 1,
+              "under_review": 1}
+          assert data["authenticatedIdentityCount"] == 0
+          assert data["verifiedReviewSignatureCount"] == 0
+          assert data["qualifiedClaimsForRealWorldUse"] == 0
+          assert data["reviewAuthenticity"] == "not_achieved"
+          assert all(not data[k] for k in (
+            "externalAuditAnchorConfigured", "trustedClockConfigured",
+            "oemEffectivityVerified", "canWriteSap", "canModifyEcm",
+            "canApproveMaintenance", "canReleaseEquipment"))
+          assert all(not x["mayAuthorizeMaintenance"] and not x["mayVerifyOemSeries"]
+                     and not x["mayPublishGeneralClaimAsReal"]
+                     and not x["externalAnchorVerified"] and x["validReviewSignatures"] == 0
+                     for x in data["cases"])
+          print("PASS: three synthetic review sequences, no real identity or OEM qualification")
+          PY
+      - name: Detect forged offline review event after resealing
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from connectors.fmea_public import ImportRejected, load_lock, validate_snapshot
+          from governance.restricted_blueprint import verify_report
+          from methods.discrimination import validate_matrix
+          from methods.library import validate_catalog, validate_sources
+          root = Path(".")
+          snapshot = validate_snapshot(Path("build/fmea-public/fmea-public.snapshot.json").read_bytes(),
+                                       load_lock())
+          src = validate_sources(json.loads(Path("data/diagnostic-method-sources.v1.json").read_text()))
+          methods = validate_catalog(json.loads(Path("methods/catalog.v1.json").read_text()), src, snapshot)
+          families = validate_matrix(json.loads(Path("methods/discrimination-matrix.v1.json").read_text()),
+                                     methods, snapshot)
+          fixture = json.loads(Path("examples/restricted-review-threat-fixture.v1.json").read_text())
+          packet = json.loads(Path("governance/review-packet.v1.json").read_text())
+          report = json.loads(Path("build/restricted-review/threat-fixture.report.json").read_text())
+          report["cases"][0]["auditEvents"][1]["stateAfter"] = "oem_series_verified"
+          try:
+              verify_report(report, fixture, packet, methods, src, families, snapshot)
+          except ImportRejected:
+              print("PASS: forged promoted approval differs from source-derived chain")
+          else:
+              raise AssertionError("SECURITY FAIL: forged OEM promotion passed audit check")
+          PY
+      - name: Reject replayed nonce before deriving review state
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          f = json.loads(Path("examples/restricted-review-threat-fixture.v1.json").read_text())
+          f["cases"][1]["events"][0]["nonce"] = f["cases"][0]["events"][0]["nonce"]
+          Path("build/restricted-review/replayed-input.json").write_text(json.dumps(f))
+          PY
+          if python -m governance.restricted_blueprint \
+             --snapshot build/fmea-public/fmea-public.snapshot.json \
+             --fixture build/restricted-review/replayed-input.json > /dev/null 2>&1; then
+            echo "SECURITY FAIL: replayed nonce accepted"
+            exit 1
+          fi
+          rm build/restricted-review/replayed-input.json
+      - name: Publish offline trust-boundary audit artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: offline-restricted-review-threat-simulation
+          path: build/restricted-review/threat-fixture.report.json
           retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4
