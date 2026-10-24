@@ -374,12 +374,15 @@ def build_collection(fixture: dict, deps: dict, snapshot: dict) -> dict:
     cases = validate_fixture(fixture)
     result = [assemble_case(cases[k], deps, snapshot) for k in ALLOWED]
     validate_oracle(deps["qualitativeOracle"], result)
+    tree_spec = json.loads(TREE_SPEC_PATH.read_text(encoding="utf-8"))
+    trees = build_trees(tree_spec, result)
     return {
         "schema": "maintenance-superinteligence.technical-casefile-collection.v1",
         "version": "1.0.0",
         "purpose": "four_synthetic_independent_differentials",
         "sourceFixtureSha256": sha(fixture),
         "qualitativeOracleSha256": deps["qualitativeOracleSha256"],
+        "investigationTrees": trees,
         "pinnedFmeaSnapshotSha256": load_lock()["sha256"],
         "cases": result, "caseCount": 4,
         "hypothesesOpen": sum(len(x["hypotheses"]) for x in result),
