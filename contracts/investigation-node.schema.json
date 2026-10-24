@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/investigation-node.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "nodeId",
+    "nodeType",
+    "pairId",
+    "hypothesisIds",
+    "question",
+    "methodIds",
+    "publicSources",
+    "counterexamples",
+    "evidenceGate",
+    "conditionalBranches",
+    "reviewCheckpoint",
+    "testStatus",
+    "mayExecute"
+  ],
+  "properties": {
+    "nodeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nodeType": {
+      "const": "investigation_question"
+    },
+    "pairId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "hypothesisIds": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1
+    },
+    "methodIds": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "publicSources": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "counterexamples": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "evidenceGate": {
+      "$ref": "evidence-gate.schema.json"
+    },
+    "conditionalBranches": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "$ref": "branch-interpretation.schema.json"
+      }
+    },
+    "reviewCheckpoint": {
+      "$ref": "human-review-checkpoint.schema.json"
+    },
+    "testStatus": {
+      "const": "not_performed"
+    },
+    "mayExecute": {
+      "const": false
+    }
+  }
+}
