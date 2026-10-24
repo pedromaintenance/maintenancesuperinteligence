@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de benchmark de perguntas P&D v0.7.0 (23/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de governança de afirmações P&D v0.8.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -45,6 +45,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 05 — Biblioteca de métodos diagnósticos](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md)
 - [Ciclo 06 — Seleção discriminante de perguntas](docs/CICLO_2026-10-23_SELECAO_DISCRIMINANTE.md)
 - [Ciclo 07 — Benchmark de qualidade de perguntas](docs/CICLO_2026-10-23_BENCHMARK_PERGUNTAS.md)
+- [Ciclo 08 — Governança de revisão técnica simulada](docs/CICLO_2026-10-24_GOVERNANCA_REVISAO.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -148,3 +149,17 @@ python -m benchmarks.quality --snapshot build/fmea-public/fmea-public.snapshot.j
 ```
 
 **Atenção:** conformidade no benchmark é **regressão de software**, não sensibilidade/especificidade de detecção de falha nem aprovação por especialista. Acurácia diagnóstica real, critérios OEM por série e autorizações operacionais continuam fora do escopo. Veja [relatório técnico](docs/CICLO_2026-10-23_BENCHMARK_PERGUNTAS.md).
+
+
+## Ciclo 08 — Governança de afirmações e revisão técnica
+
+O núcleo `governance/review.py` valida referências gerais de fabricantes, oito afirmações editoriais e pareceres **exclusivamente simulados**. O pacote `governance/review-packet.v1.json` conserva duas divergências, controla IDs distintos, disciplina, referências e rodadas de reavaliação. **Não há engenheiro real revisando ou assinando.** O status `general_reference_supported` é apenas ilustrativo, nunca aprovação operacional/OEM.
+
+O benchmark do Ciclo 07 ganhou um gate explícito de qualificação técnica: por mais que os casos sintéticos passem, `mayClaimFieldDiagnosticValidity=false` até existir revisão independente real e aplicabilidade OEM documentada em ambiente autorizado.
+
+```bash
+python connectors/fmea_public.py --fetch --output build/fmea-public
+python -m governance.review --snapshot build/fmea-public/fmea-public.snapshot.json --output build/governance/technical-review.v1.report.json
+```
+
+Leia o [relatório do Ciclo 08](docs/CICLO_2026-10-24_GOVERNANCA_REVISAO.md).
