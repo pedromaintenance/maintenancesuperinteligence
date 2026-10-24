@@ -1,0 +1,393 @@
+{
+  "schema": "maintenance-superinteligence.deployment-readiness-fixture.v1",
+  "version": "1.0.0",
+  "mode": "public_synthetic_no_external_attestation",
+  "tenant": "SIM-TENANT-TRAINING",
+  "controls": [
+    {
+      "controlId": "corporate_identity_provider_server_validation",
+      "ownerRole": "TI / Segurança da Informação",
+      "dependsOn": [],
+      "riskOnMissing": "critical",
+      "acceptanceCriterion": "Verificar emissor, audiência, assinatura, expiração e revogação por backend autorizado.",
+      "status": "not_implemented",
+      "privateSourceRequired": true,
+      "publicEvidenceAuthoritative": false,
+      "reviewerApprovalReal": false,
+      "evidenceId": "SIM-EVIDENCE-01"
+    },
+    {
+      "controlId": "unique_human_identity_and_active_role",
+      "ownerRole": "TI / Gestão de Acessos",
+      "dependsOn": [
+        "corporate_identity_provider_server_validation"
+      ],
+      "riskOnMissing": "critical",
+      "acceptanceCriterion": "Comprovar identidade única, vínculo ativo, papéis e prevenção de aliases.",
+      "status": "planned",
+      "privateSourceRequired": true,
+      "publicEvidenceAuthoritative": false,
+      "reviewerApprovalReal": false,
+      "evidenceId": "SIM-EVIDENCE-02"
+    },
+    {
+      "controlId": "competence_verified_from_corporate_source",
+      "ownerRole": "Engenharia / Gestão de Competências",
+      "dependsOn": [
+        "unique_human_identity_and_active_role"
+      ],
+      "riskOnMissing": "high",
+      "acceptanceCriterion": "Validar qualificação por disciplina em fonte corporativa independente.",
+      "status": "available_unverified",
+      "privateSourceRequired": true,
+      "publicEvidenceAuthoritative": false,
+      "reviewerApprovalReal": false,
+      "evidenceId": "SIM-EVIDENCE-03"
+    },
+    {
+      "controlId": "author_reviewers_adjudicator_separated",
+      "ownerRole": "Engenharia / Governança",
+      "dependsOn": [
+        "competence_verified_from_corporate_source"
+      ],
+      "riskOnMissing": "critical",
+      "acceptanceCriterion": "Comprovar autor, dois revisores e adjudicador distintos por sujeito corporativo.",
+      "status": "planned",
+      "privateSourceRequired": true,
+      "publicEvidenceAuthoritative": false,
+      "reviewerApprovalReal": false,
+      "evidenceId": "SIM-EVIDENCE-04"
+    },
+    {
+      "controlId": "no_conflict_record",
+      "ownerRole": "Compliance / Engenharia",
+      "dependsOn": [
+        "competence_verified_from_corporate_source"
+      ],
+      "riskOnMissing": "high",
+      "acceptanceCriterion": "Controlar conflito de interesses e relações de supervisão/benefício.",
+      "status": "not_implemented",
+      "privateSourceRequired": true,
+      "publicEvidenceAuthoritative": false,
+      "reviewerApprovalReal": false,
+      "evidenceId": "SIM-EVIDENCE-05"
+    },
+    {
+      "controlId": "two_independent_reviewers",
+      "ownerRole": "Engenharia / Revisão Técnica",
+      "dependsOn": [
+        "author_reviewers_adjudicator_separated",
+        "no_conflict_record"
+      ],
+      "riskOnMissing": "critical",
+      "acceptanceCriterion": "Conferir dois pareceres independentes, assinados para a mesma revisão.",
+      "status": "available_unverified",
+      "privateSourceRequired": true,
+      "publicEvidenceAuthoritative": false,
+      "reviewerApprovalReal": false,
+      "evidenceId": "SIM-EVIDENCE-06"
+    },
+    {
+      "controlId": "immutable_claim_revision_and_source_manifest",
+      "ownerRole": "Gestão Documental / Engenharia",
+      "dependsOn": [
+        "corporate_identity_provider_server_validation"
+      ],
+      "riskOnMissing": "critical",
+      "acceptanceCriterion": "Associar versão de claim a evidências classificadas, direitos de acesso e retenção.",
+      "status": "planned",
+      "privateSourceRequired": true,
+      "publicEvidenceAuthoritative": false,
+      "reviewerApprovalReal": false,
+      "evidenceId": "SIM-EVIDENCE-07"
+    },
+    {
+      "controlId": "verified_audit_timestamp_and_protected_storage",
+      "ownerRole": "Segurança / Auditoria",
+      "dependsOn": [
+        "immutable_claim_revision_and_source_manifest"
+      ],
+      "riskOnMissing": "critical",
+      "acceptanceCriterion": "Demonstrar tempo e cadeia de eventos com âncora externa independente.",
+      "status": "not_implemented",
+      "privateSourceRequired": true,
+      "publicEvidenceAuthoritative": false,
+      "reviewerApprovalReal": false,
+      "evidenceId": "SIM-EVIDENCE-08"
+    },
+    {
+      "controlId": "qualified_document_entitlement_and_oem_effectivity",
+      "ownerRole": "Engenharia / Gestão Documental",
+      "dependsOn": [
+        "competence_verified_from_corporate_source",
+        "verified_audit_timestamp_and_protected_storage"
+      ],
+      "riskOnMissing": "critical",
+      "acceptanceCriterion": "Verificar licença, publicação, revisão e efetividade por série sem publicar o documento.",
+      "status": "available_unverified",
+      "privateSourceRequired": true,
+      "publicEvidenceAuthoritative": false,
+      "reviewerApprovalReal": false,
+      "evidenceId": "SIM-EVIDENCE-09"
+    },
+    {
+      "controlId": "separate_operational_authorization",
+      "ownerRole": "Operação / Manutenção / Segurança",
+      "dependsOn": [
+        "two_independent_reviewers",
+        "qualified_document_entitlement_and_oem_effectivity",
+        "verified_audit_timestamp_and_protected_storage"
+      ],
+      "riskOnMissing": "critical",
+      "acceptanceCriterion": "Autorizar operação por fluxo separado, nunca pela aprovação da afirmação.",
+      "status": "not_implemented",
+      "privateSourceRequired": true,
+      "publicEvidenceAuthoritative": false,
+      "reviewerApprovalReal": false,
+      "evidenceId": "SIM-EVIDENCE-10"
+    }
+  ],
+  "evidences": [
+    {
+      "evidenceId": "SIM-EVIDENCE-01",
+      "controlId": "corporate_identity_provider_server_validation",
+      "nature": "synthetic_placeholder_only",
+      "reference": "SIM-PLAN-01",
+      "provenanceAuthenticated": false,
+      "identityVerified": false,
+      "accessRightVerified": false,
+      "sourceDigest": null,
+      "verifiedByIndependentPerson": false,
+      "containsPrivateData": false,
+      "containsLicensedMaterial": false
+    },
+    {
+      "evidenceId": "SIM-EVIDENCE-02",
+      "controlId": "unique_human_identity_and_active_role",
+      "nature": "synthetic_placeholder_only",
+      "reference": null,
+      "provenanceAuthenticated": false,
+      "identityVerified": false,
+      "accessRightVerified": false,
+      "sourceDigest": null,
+      "verifiedByIndependentPerson": false,
+      "containsPrivateData": false,
+      "containsLicensedMaterial": false
+    },
+    {
+      "evidenceId": "SIM-EVIDENCE-03",
+      "controlId": "competence_verified_from_corporate_source",
+      "nature": "synthetic_placeholder_only",
+      "reference": null,
+      "provenanceAuthenticated": false,
+      "identityVerified": false,
+      "accessRightVerified": false,
+      "sourceDigest": null,
+      "verifiedByIndependentPerson": false,
+      "containsPrivateData": false,
+      "containsLicensedMaterial": false
+    },
+    {
+      "evidenceId": "SIM-EVIDENCE-04",
+      "controlId": "author_reviewers_adjudicator_separated",
+      "nature": "synthetic_placeholder_only",
+      "reference": "SIM-PLAN-04",
+      "provenanceAuthenticated": false,
+      "identityVerified": false,
+      "accessRightVerified": false,
+      "sourceDigest": null,
+      "verifiedByIndependentPerson": false,
+      "containsPrivateData": false,
+      "containsLicensedMaterial": false
+    },
+    {
+      "evidenceId": "SIM-EVIDENCE-05",
+      "controlId": "no_conflict_record",
+      "nature": "synthetic_placeholder_only",
+      "reference": null,
+      "provenanceAuthenticated": false,
+      "identityVerified": false,
+      "accessRightVerified": false,
+      "sourceDigest": null,
+      "verifiedByIndependentPerson": false,
+      "containsPrivateData": false,
+      "containsLicensedMaterial": false
+    },
+    {
+      "evidenceId": "SIM-EVIDENCE-06",
+      "controlId": "two_independent_reviewers",
+      "nature": "synthetic_placeholder_only",
+      "reference": null,
+      "provenanceAuthenticated": false,
+      "identityVerified": false,
+      "accessRightVerified": false,
+      "sourceDigest": null,
+      "verifiedByIndependentPerson": false,
+      "containsPrivateData": false,
+      "containsLicensedMaterial": false
+    },
+    {
+      "evidenceId": "SIM-EVIDENCE-07",
+      "controlId": "immutable_claim_revision_and_source_manifest",
+      "nature": "synthetic_placeholder_only",
+      "reference": "SIM-PLAN-07",
+      "provenanceAuthenticated": false,
+      "identityVerified": false,
+      "accessRightVerified": false,
+      "sourceDigest": null,
+      "verifiedByIndependentPerson": false,
+      "containsPrivateData": false,
+      "containsLicensedMaterial": false
+    },
+    {
+      "evidenceId": "SIM-EVIDENCE-08",
+      "controlId": "verified_audit_timestamp_and_protected_storage",
+      "nature": "synthetic_placeholder_only",
+      "reference": null,
+      "provenanceAuthenticated": false,
+      "identityVerified": false,
+      "accessRightVerified": false,
+      "sourceDigest": null,
+      "verifiedByIndependentPerson": false,
+      "containsPrivateData": false,
+      "containsLicensedMaterial": false
+    },
+    {
+      "evidenceId": "SIM-EVIDENCE-09",
+      "controlId": "qualified_document_entitlement_and_oem_effectivity",
+      "nature": "synthetic_placeholder_only",
+      "reference": null,
+      "provenanceAuthenticated": false,
+      "identityVerified": false,
+      "accessRightVerified": false,
+      "sourceDigest": null,
+      "verifiedByIndependentPerson": false,
+      "containsPrivateData": false,
+      "containsLicensedMaterial": false
+    },
+    {
+      "evidenceId": "SIM-EVIDENCE-10",
+      "controlId": "separate_operational_authorization",
+      "nature": "synthetic_placeholder_only",
+      "reference": "SIM-PLAN-10",
+      "provenanceAuthenticated": false,
+      "identityVerified": false,
+      "accessRightVerified": false,
+      "sourceDigest": null,
+      "verifiedByIndependentPerson": false,
+      "containsPrivateData": false,
+      "containsLicensedMaterial": false
+    }
+  ],
+  "compatibilityMatrix": {
+    "schema": "maintenance-superinteligence.contract-compatibility.v1",
+    "entries": [
+      {
+        "cycle": "cycle08",
+        "path": "governance/review-packet.v1.json",
+        "requiredSchema": "maintenance-superinteligence.technical-review-packet.v1",
+        "requiredVersion": "1.0.0",
+        "migrationRequiredIfChanged": true
+      },
+      {
+        "cycle": "cycle09",
+        "path": "examples/restricted-review-threat-fixture.v1.json",
+        "requiredSchema": "maintenance-superinteligence.restricted-review-threat-fixture.v1",
+        "requiredVersion": "1.0.0",
+        "migrationRequiredIfChanged": true
+      },
+      {
+        "cycle": "cycle10",
+        "path": "examples/integration-fixture.v1.json",
+        "requiredSchema": "maintenance-superinteligence.integration-fixture.v1",
+        "requiredVersion": "1.0.0",
+        "migrationRequiredIfChanged": true
+      },
+      {
+        "cycle": "cycle10",
+        "path": "governance/integration-policy.v1.json",
+        "requiredSchema": "maintenance-superinteligence.integration-policy.v1",
+        "requiredVersion": "1.0.0",
+        "migrationRequiredIfChanged": true
+      }
+    ],
+    "authorisedPrivateMigration": false
+  },
+  "changeImpacts": [
+    {
+      "eventType": "claim_revision_changed",
+      "invalidates": [
+        "immutable_claim_revision_and_source_manifest",
+        "two_independent_reviewers",
+        "verified_audit_timestamp_and_protected_storage",
+        "separate_operational_authorization"
+      ],
+      "reopenDecision": true,
+      "previousApprovalValid": false,
+      "allowAutomaticReapproval": false,
+      "changeReference": "SIM-CHANGE-CLAIM-REVISION-CHANGED"
+    },
+    {
+      "eventType": "oem_publication_revision_changed",
+      "invalidates": [
+        "qualified_document_entitlement_and_oem_effectivity",
+        "two_independent_reviewers",
+        "separate_operational_authorization"
+      ],
+      "reopenDecision": true,
+      "previousApprovalValid": false,
+      "allowAutomaticReapproval": false,
+      "changeReference": "SIM-CHANGE-OEM-PUBLICATION-REVISION-CHANGED"
+    },
+    {
+      "eventType": "equipment_configuration_changed",
+      "invalidates": [
+        "qualified_document_entitlement_and_oem_effectivity",
+        "two_independent_reviewers",
+        "separate_operational_authorization"
+      ],
+      "reopenDecision": true,
+      "previousApprovalValid": false,
+      "allowAutomaticReapproval": false,
+      "changeReference": "SIM-CHANGE-EQUIPMENT-CONFIGURATION-CHANGED"
+    },
+    {
+      "eventType": "identity_revoked",
+      "invalidates": [
+        "unique_human_identity_and_active_role",
+        "two_independent_reviewers",
+        "author_reviewers_adjudicator_separated",
+        "separate_operational_authorization"
+      ],
+      "reopenDecision": true,
+      "previousApprovalValid": false,
+      "allowAutomaticReapproval": false,
+      "changeReference": "SIM-CHANGE-IDENTITY-REVOKED"
+    },
+    {
+      "eventType": "qualification_changed",
+      "invalidates": [
+        "competence_verified_from_corporate_source",
+        "two_independent_reviewers",
+        "separate_operational_authorization"
+      ],
+      "reopenDecision": true,
+      "previousApprovalValid": false,
+      "allowAutomaticReapproval": false,
+      "changeReference": "SIM-CHANGE-QUALIFICATION-CHANGED"
+    }
+  ],
+  "acceptanceDecision": {
+    "schema": "maintenance-superinteligence.deployment-acceptance.v1",
+    "status": "blocked",
+    "approverIdentityVerified": false,
+    "engineeringApproved": false,
+    "securityApproved": false,
+    "privacyApproved": false,
+    "recordsManagementApproved": false,
+    "oemApprovalVerified": false,
+    "mayDeploy": false,
+    "mayImportCorporateData": false,
+    "mayReleaseEquipment": false
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/deployment-control.schema.json",
+  "title": "DeploymentControl (unverified public)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "controlId",
+    "ownerRole",
+    "dependsOn",
+    "riskOnMissing",
+    "acceptanceCriterion",
+    "status",
+    "privateSourceRequired",
+    "publicEvidenceAuthoritative",
+    "reviewerApprovalReal",
+    "evidenceId"
+  ],
+  "properties": {
+    "controlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ownerRole": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dependsOn": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "riskOnMissing": {
+      "enum": [
+        "critical",
+        "high"
+      ]
+    },
+    "acceptanceCriterion": {
+      "type": "string",
+      "minLength": 20
+    },
+    "status": {
+      "enum": [
+        "not_implemented",
+        "planned",
+        "available_unverified"
+      ]
+    },
+    "privateSourceRequired": {
+      "const": true
+    },
+    "publicEvidenceAuthoritative": {
+      "const": false
+    },
+    "reviewerApprovalReal": {
+      "const": false
+    },
+    "evidenceId": {
+      "type": "string",
+      "pattern": "^SIM-EVIDENCE-[0-9]{2}$"
+    }
+  }
+}

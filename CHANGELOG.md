@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.0 — 2026-10-24 — Ciclo 11
+
+- Criados dez controles de prontidão com responsáveis funcionais genéricos, riscos de ausência, dependências e critérios de aceite; todos permanecem sem comprovação externa.
+- Publicados seis JSON Schemas (DeploymentControl, ControlEvidence, AcceptanceDecision, CompatibilityMatrix, ChangeImpact e pacote versionado).
+- Avaliador offline gera lista ordenada por dependências, contagens de status, bloqueios, referências de versão e hashes dos quatro arquivos públicos relacionados aos Ciclos 08–10.
+- Cinco mudanças exigem reabertura de qualificação: afirmação, revisão OEM, configuração do equipamento, identidade revogada e competência alterada.
+- Testes adversariais e CI verificam rejeição de status falsamente verificado, evidência corporativa, contrato incompatível, ciclo de dependência, alterações de efetividade e aprovação operacional simulada.
+
+**Limite:** software de avaliação sintética, não avaliação real de maturidade corporativa nem autorização de implantação.
+
+
 ## 1.0.0 — 2026-10-24 — Ciclo 10
 
 - Definidos oito contratos de integração futura (principal, asserção, competência, versão de afirmação, revisão, evidência, auditoria e efetividade OEM).

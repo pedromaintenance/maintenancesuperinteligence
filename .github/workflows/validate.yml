@@ -1,4 +1,4 @@
-name: Validate maintenance research and untrusted integration contracts
+name: Validate maintenance research and synthetic deployment readiness
 
 on:
   push:
@@ -572,6 +572,71 @@ jobs:
         with:
           name: cycle10-untrusted-integration-contracts
           path: build/integration/contracts.report.json
+          retention-days: 14
+      - name: Generate synthetic deployment readiness assessment
+        run: |
+          mkdir -p build/readiness
+          python -m governance.deployment_readiness \
+            --fixture governance/deployment-readiness.v1.json \
+            --policy governance/integration-policy.v1.json \
+            --output build/readiness/deployment-readiness.v1.report.json > /dev/null
+      - name: Assert ten unsatisfied private controls and locked public compatibility
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("build/readiness/deployment-readiness.v1.report.json").read_text())
+          assert report["schema"] == "maintenance-superinteligence.deployment-readiness-report.v1"
+          assert report["controlsTotal"] == 10
+          assert report["controlStatusCounts"] == {
+              "not_implemented": 4, "planned": 3, "available_unverified": 3,
+              "independently_verified": 0, "revoked": 0}
+          assert report["independentlyVerifiedControls"] == 0
+          assert report["publicSyntheticPlaceholders"] == 10
+          assert len(report["compatibility"]) == 4
+          assert len(report["changeRequalification"]) == 5
+          assert report["compatibilityConsistentWithPublicFiles"] is True
+          assert report["privateCompatibilityApproved"] is False
+          assert report["allControlsSatisfied"] is False
+          assert report["acceptance"] == "blocked_private_deployment"
+          for key in ("engineeringApproved", "informationSecurityApproved",
+                      "privacyLegalApproved", "documentCustodyApproved",
+                      "mayConnectCorporateSystems", "mayImportRealEvidence",
+                      "mayApproveOemEffectivity", "mayCreateWorkOrder",
+                      "mayReleaseEquipment"):
+              assert report[key] is False
+          order = {row["controlId"]: i for i, row in enumerate(report["implementationOrder"])}
+          assert len(order) == 10
+          assert all(all(order[dep] < order[row["controlId"]] for dep in row["blockedBy"])
+                     for row in report["implementationOrder"])
+          print("PASS: ten private prerequisites blocked; no approval, OEM or operation")
+          PY
+      - name: Reject counterfeit verified status and source version drift
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          original = json.loads(Path("governance/deployment-readiness.v1.json").read_text())
+          counterfeit = json.loads(json.dumps(original))
+          counterfeit["controls"][0]["status"] = "independently_verified"
+          Path("build/readiness/forged-approval.json").write_text(json.dumps(counterfeit))
+          incompatible = json.loads(json.dumps(original))
+          incompatible["compatibilityMatrix"]["entries"][0]["requiredVersion"] = "9.9.9"
+          Path("build/readiness/forged-migration.json").write_text(json.dumps(incompatible))
+          PY
+          for filename in forged-approval forged-migration; do
+            if python -m governance.deployment_readiness \
+                --fixture "build/readiness/$filename.json" > /dev/null 2>&1; then
+              echo "SECURITY FAIL: forged private deployment approval or contract migration accepted"
+              exit 1
+            fi
+          done
+          rm build/readiness/forged-approval.json build/readiness/forged-migration.json
+      - name: Publish synthetic deployment-blocker assessment
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle11-private-readiness-blockers
+          path: build/readiness/deployment-readiness.v1.report.json
           retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4

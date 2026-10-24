@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/deployment-readiness-fixture.schema.json",
+  "title": "Deployment readiness public synthetic input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "tenant",
+    "controls",
+    "evidences",
+    "compatibilityMatrix",
+    "changeImpacts",
+    "acceptanceDecision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.deployment-readiness-fixture.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "public_synthetic_no_external_attestation"
+    },
+    "tenant": {
+      "const": "SIM-TENANT-TRAINING"
+    },
+    "controls": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "deployment-control.schema.json"
+      }
+    },
+    "evidences": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "control-evidence.schema.json"
+      }
+    },
+    "compatibilityMatrix": {
+      "$ref": "contract-compatibility.schema.json"
+    },
+    "changeImpacts": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "$ref": "change-impact.schema.json"
+      }
+    },
+    "acceptanceDecision": {
+      "$ref": "deployment-acceptance.schema.json"
+    }
+  }
+}
