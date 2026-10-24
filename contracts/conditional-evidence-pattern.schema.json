@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/conditional-evidence-pattern.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "observationId",
+    "conditionalReading",
+    "effectOnFirstIfObserved",
+    "effectOnSecondIfObserved",
+    "observationNature",
+    "hasBeenObserved",
+    "provesRootCause",
+    "mayExcludeHypothesis"
+  ],
+  "properties": {
+    "observationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "conditionalReading": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effectOnFirstIfObserved": {
+      "type": "string",
+      "enum": [
+        "supports",
+        "weakens",
+        "inconclusive"
+      ]
+    },
+    "effectOnSecondIfObserved": {
+      "type": "string",
+      "enum": [
+        "supports",
+        "weakens",
+        "inconclusive"
+      ]
+    },
+    "observationNature": {
+      "const": "counterfactual_not_observed"
+    },
+    "hasBeenObserved": {
+      "const": false
+    },
+    "provesRootCause": {
+      "const": false
+    },
+    "mayExcludeHypothesis": {
+      "const": false
+    }
+  }
+}
