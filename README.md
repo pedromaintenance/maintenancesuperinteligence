@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de fronteiras de confiança P&D v0.9.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de contratos de integração P&D v1.0.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -47,6 +47,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 07 — Benchmark de qualidade de perguntas](docs/CICLO_2026-10-23_BENCHMARK_PERGUNTAS.md)
 - [Ciclo 08 — Governança de revisão técnica simulada](docs/CICLO_2026-10-24_GOVERNANCA_REVISAO.md)
 - [Ciclo 09 — Arquitetura restrita, identidade e modelo de ameaças](docs/CICLO_2026-10-24_ARQUITETURA_RESTRITA.md)
+- [Ciclo 10 — Contratos de integração restrita e testes de confiança](docs/CICLO_2026-10-24_CONTRATOS_INTEGRACAO.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -178,3 +179,16 @@ python -m governance.restricted_blueprint --snapshot build/fmea-public/fmea-publ
 ```
 
 O CI demonstra consistência e gates de um fluxo de simulação; não avalia conformidade NIST, OWASP, LGPD ou eficácia de segurança real.
+
+
+## Ciclo 10 — Contratos de integração futura (sem implantação)
+
+O projeto definiu **oito contratos JSON Schema** para principal, asserção de credencial, qualificação técnica, versão de afirmação, decisão independente, manifesto de evidência, âncora de auditoria e efetividade OEM. A política `governance/integration-policy.v1.json` separa sete papéis, seus atos propostos e ações operacionais expressamente negadas.
+
+O adaptador fake `governance/integration_contracts.py` valida `examples/integration-fixture.v1.json` com oito personagens sintéticos, dois pareceres divergentes e dez requisitos externos não implementados. A saída **não valida credenciais**, **não homologa documentos OEM**, **não decide serviço de manutenção** e **não interage com sistemas corporativos**.
+
+```bash
+python -m governance.integration_contracts --output build/integration/contracts.report.json
+```
+
+Consulte o [relatório completo do Ciclo 10](docs/CICLO_2026-10-24_CONTRATOS_INTEGRACAO.md) antes de propor qualquer implantação privada.

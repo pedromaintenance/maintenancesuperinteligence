@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/independent-review-decision.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decisionId",
+    "claimId",
+    "principalId",
+    "claimRevision",
+    "position",
+    "signatureVerified",
+    "independenceVerified",
+    "operationalApproval"
+  ],
+  "properties": {
+    "decisionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claimId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "principalId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claimRevision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "position": {
+      "enum": [
+        "support_general",
+        "insufficient",
+        "challenge"
+      ]
+    },
+    "signatureVerified": {
+      "const": false
+    },
+    "independenceVerified": {
+      "const": false
+    },
+    "operationalApproval": {
+      "const": false
+    }
+  }
+}

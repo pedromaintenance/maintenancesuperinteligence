@@ -1,0 +1,309 @@
+{
+  "schema": "maintenance-superinteligence.integration-fixture.v1",
+  "version": "1.0.0",
+  "nature": "untrusted_synthetic_contract_testing",
+  "tenantId": "SIM-TENANT-TRAINING",
+  "principals": [
+    {
+      "principalId": "SIM-USER-AUTHOR",
+      "role": "author",
+      "discipline": "oil",
+      "identityAuthenticated": false,
+      "serverVerified": false,
+      "reviewAuthority": false
+    },
+    {
+      "principalId": "SIM-USER-REVIEW-A",
+      "role": "reviewer",
+      "discipline": "oil",
+      "identityAuthenticated": false,
+      "serverVerified": false,
+      "reviewAuthority": false
+    },
+    {
+      "principalId": "SIM-USER-REVIEW-B",
+      "role": "reviewer",
+      "discipline": "oil",
+      "identityAuthenticated": false,
+      "serverVerified": false,
+      "reviewAuthority": false
+    },
+    {
+      "principalId": "SIM-USER-ADJUDICATOR",
+      "role": "adjudicator",
+      "discipline": "oil",
+      "identityAuthenticated": false,
+      "serverVerified": false,
+      "reviewAuthority": false
+    },
+    {
+      "principalId": "SIM-USER-AUDITOR",
+      "role": "auditor",
+      "discipline": "oil",
+      "identityAuthenticated": false,
+      "serverVerified": false,
+      "reviewAuthority": false
+    },
+    {
+      "principalId": "SIM-USER-CUSTODIAN",
+      "role": "custodian",
+      "discipline": "oil",
+      "identityAuthenticated": false,
+      "serverVerified": false,
+      "reviewAuthority": false
+    },
+    {
+      "principalId": "SIM-USER-ADMIN",
+      "role": "administrator",
+      "discipline": "oil",
+      "identityAuthenticated": false,
+      "serverVerified": false,
+      "reviewAuthority": false
+    },
+    {
+      "principalId": "SIM-USER-OEM",
+      "role": "oem_specialist",
+      "discipline": "oil",
+      "identityAuthenticated": false,
+      "serverVerified": false,
+      "reviewAuthority": false
+    }
+  ],
+  "credentialAssertions": [
+    {
+      "principalId": "SIM-USER-AUTHOR",
+      "issuer": null,
+      "audience": null,
+      "issuedAt": null,
+      "expiresAt": null,
+      "nonce": null,
+      "issuerVerified": false,
+      "audienceVerified": false,
+      "signatureVerified": false,
+      "expiryVerified": false,
+      "revocationChecked": false
+    },
+    {
+      "principalId": "SIM-USER-REVIEW-A",
+      "issuer": null,
+      "audience": null,
+      "issuedAt": null,
+      "expiresAt": null,
+      "nonce": null,
+      "issuerVerified": false,
+      "audienceVerified": false,
+      "signatureVerified": false,
+      "expiryVerified": false,
+      "revocationChecked": false
+    },
+    {
+      "principalId": "SIM-USER-REVIEW-B",
+      "issuer": null,
+      "audience": null,
+      "issuedAt": null,
+      "expiresAt": null,
+      "nonce": null,
+      "issuerVerified": false,
+      "audienceVerified": false,
+      "signatureVerified": false,
+      "expiryVerified": false,
+      "revocationChecked": false
+    },
+    {
+      "principalId": "SIM-USER-ADJUDICATOR",
+      "issuer": null,
+      "audience": null,
+      "issuedAt": null,
+      "expiresAt": null,
+      "nonce": null,
+      "issuerVerified": false,
+      "audienceVerified": false,
+      "signatureVerified": false,
+      "expiryVerified": false,
+      "revocationChecked": false
+    },
+    {
+      "principalId": "SIM-USER-AUDITOR",
+      "issuer": null,
+      "audience": null,
+      "issuedAt": null,
+      "expiresAt": null,
+      "nonce": null,
+      "issuerVerified": false,
+      "audienceVerified": false,
+      "signatureVerified": false,
+      "expiryVerified": false,
+      "revocationChecked": false
+    },
+    {
+      "principalId": "SIM-USER-CUSTODIAN",
+      "issuer": null,
+      "audience": null,
+      "issuedAt": null,
+      "expiresAt": null,
+      "nonce": null,
+      "issuerVerified": false,
+      "audienceVerified": false,
+      "signatureVerified": false,
+      "expiryVerified": false,
+      "revocationChecked": false
+    },
+    {
+      "principalId": "SIM-USER-ADMIN",
+      "issuer": null,
+      "audience": null,
+      "issuedAt": null,
+      "expiresAt": null,
+      "nonce": null,
+      "issuerVerified": false,
+      "audienceVerified": false,
+      "signatureVerified": false,
+      "expiryVerified": false,
+      "revocationChecked": false
+    },
+    {
+      "principalId": "SIM-USER-OEM",
+      "issuer": null,
+      "audience": null,
+      "issuedAt": null,
+      "expiresAt": null,
+      "nonce": null,
+      "issuerVerified": false,
+      "audienceVerified": false,
+      "signatureVerified": false,
+      "expiryVerified": false,
+      "revocationChecked": false
+    }
+  ],
+  "technicalQualifications": [
+    {
+      "principalId": "SIM-USER-AUTHOR",
+      "discipline": "oil",
+      "competenceVerified": false,
+      "independenceVerified": false,
+      "conflictClearVerified": false,
+      "qualificationSource": null
+    },
+    {
+      "principalId": "SIM-USER-REVIEW-A",
+      "discipline": "oil",
+      "competenceVerified": false,
+      "independenceVerified": false,
+      "conflictClearVerified": false,
+      "qualificationSource": null
+    },
+    {
+      "principalId": "SIM-USER-REVIEW-B",
+      "discipline": "oil",
+      "competenceVerified": false,
+      "independenceVerified": false,
+      "conflictClearVerified": false,
+      "qualificationSource": null
+    },
+    {
+      "principalId": "SIM-USER-ADJUDICATOR",
+      "discipline": "oil",
+      "competenceVerified": false,
+      "independenceVerified": false,
+      "conflictClearVerified": false,
+      "qualificationSource": null
+    },
+    {
+      "principalId": "SIM-USER-AUDITOR",
+      "discipline": "oil",
+      "competenceVerified": false,
+      "independenceVerified": false,
+      "conflictClearVerified": false,
+      "qualificationSource": null
+    },
+    {
+      "principalId": "SIM-USER-CUSTODIAN",
+      "discipline": "oil",
+      "competenceVerified": false,
+      "independenceVerified": false,
+      "conflictClearVerified": false,
+      "qualificationSource": null
+    },
+    {
+      "principalId": "SIM-USER-ADMIN",
+      "discipline": "oil",
+      "competenceVerified": false,
+      "independenceVerified": false,
+      "conflictClearVerified": false,
+      "qualificationSource": null
+    },
+    {
+      "principalId": "SIM-USER-OEM",
+      "discipline": "oil",
+      "competenceVerified": false,
+      "independenceVerified": false,
+      "conflictClearVerified": false,
+      "qualificationSource": null
+    }
+  ],
+  "claimVersion": {
+    "claimId": "CLM-OIL-WATER",
+    "revision": 1,
+    "claimDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "immutableVersionVerified": false,
+    "realEquipmentRef": null
+  },
+  "independentReviewDecisions": [
+    {
+      "decisionId": "SIM-DECISION-A",
+      "claimId": "CLM-OIL-WATER",
+      "principalId": "SIM-USER-REVIEW-A",
+      "claimRevision": 1,
+      "position": "support_general",
+      "signatureVerified": false,
+      "independenceVerified": false,
+      "operationalApproval": false
+    },
+    {
+      "decisionId": "SIM-DECISION-B",
+      "claimId": "CLM-OIL-WATER",
+      "principalId": "SIM-USER-REVIEW-B",
+      "claimRevision": 1,
+      "position": "challenge",
+      "signatureVerified": false,
+      "independenceVerified": false,
+      "operationalApproval": false
+    }
+  ],
+  "evidenceManifest": {
+    "manifestId": "SIM-MANIFEST-WATER",
+    "claimId": "CLM-OIL-WATER",
+    "classification": "public_synthetic",
+    "sourceReferenceIds": [
+      "CIT-OIL-WATER-1"
+    ],
+    "sourceAccessVerified": false,
+    "realDataIncluded": false,
+    "licensedContentIncluded": false,
+    "retentionVerified": false
+  },
+  "auditAnchor": {
+    "anchorId": "SIM-ANCHOR-NONE",
+    "claimId": "CLM-OIL-WATER",
+    "sourceDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "externalTimestampVerified": false,
+    "externalStoreVerified": false,
+    "appendOnlyVerified": false,
+    "signerVerified": false
+  },
+  "oemEffectivityAttestation": {
+    "attestationId": "SIM-OEM-NOT-VERIFIED",
+    "claimId": "CLM-OIL-WATER",
+    "manufacturer": null,
+    "model": null,
+    "serialOrArrangement": null,
+    "publication": null,
+    "revision": null,
+    "entitlementVerified": false,
+    "documentVerified": false,
+    "effectivityVerified": false,
+    "qualifiedApproverVerified": false,
+    "operationalApproval": false
+  },
+  "operationalAuthorizations": []
+}

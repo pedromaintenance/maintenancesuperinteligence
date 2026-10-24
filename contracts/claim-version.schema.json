@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/claim-version.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "claimId",
+    "revision",
+    "claimDigest",
+    "immutableVersionVerified",
+    "realEquipmentRef"
+  ],
+  "properties": {
+    "claimId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "claimDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "immutableVersionVerified": {
+      "const": false
+    },
+    "realEquipmentRef": {
+      "type": "null"
+    }
+  }
+}

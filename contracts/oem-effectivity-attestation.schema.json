@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/oem-effectivity-attestation.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "attestationId",
+    "claimId",
+    "manufacturer",
+    "model",
+    "serialOrArrangement",
+    "publication",
+    "revision",
+    "entitlementVerified",
+    "documentVerified",
+    "effectivityVerified",
+    "qualifiedApproverVerified",
+    "operationalApproval"
+  ],
+  "properties": {
+    "attestationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claimId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manufacturer": {
+      "type": "null"
+    },
+    "model": {
+      "type": "null"
+    },
+    "serialOrArrangement": {
+      "type": "null"
+    },
+    "publication": {
+      "type": "null"
+    },
+    "revision": {
+      "type": "null"
+    },
+    "entitlementVerified": {
+      "const": false
+    },
+    "documentVerified": {
+      "const": false
+    },
+    "effectivityVerified": {
+      "const": false
+    },
+    "qualifiedApproverVerified": {
+      "const": false
+    },
+    "operationalApproval": {
+      "const": false
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/technical-qualification.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "principalId",
+    "discipline",
+    "competenceVerified",
+    "independenceVerified",
+    "conflictClearVerified",
+    "qualificationSource"
+  ],
+  "properties": {
+    "principalId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "discipline": {
+      "type": "string",
+      "minLength": 1
+    },
+    "competenceVerified": {
+      "const": false
+    },
+    "independenceVerified": {
+      "const": false
+    },
+    "conflictClearVerified": {
+      "const": false
+    },
+    "qualificationSource": {
+      "type": "null"
+    }
+  }
+}

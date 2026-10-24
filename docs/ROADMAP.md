@@ -40,6 +40,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 ## Fase 4 — Estratégia de ativos, manutenção e PCM
 
+**Ciclo 10:** contratos para integração futura, matriz de sete papéis e dez provas de confiança, validados apenas por testes sintéticos. Os ambientes de identidade, revisão, evidência, auditoria e OEM reais não estão implantados. A próxima etapa deverá avaliar formalmente prontidão e dependências institucionais, sem coletar dados corporativos no repositório público.
+
 **Progresso (ciclo 09):** arquitetura segregada proposta para revisão autenticada, com ameaças/controles, rastreabilidade de versões e um ensaio estritamente sintético de papéis, replay e auditoria. Ainda não há IdP, vault restrito, trilha imutável, assinatura real ou competência pessoal verificada. Os contratos públicos não substituem validação de TI, Engenharia, Jurídico e fabricantes.
 
 **Progresso (ciclo 08):** qualificação editorial de afirmações, referências e pareceres simulados com divergências explicitadas. Não existe identidade autenticada de engenheiro, parecer técnico real, OEM por série ou autorização de serviço. O benchmark passou a recusar alegações de validade diagnóstica sem gate humano/efetividade autorizado.
