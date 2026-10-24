@@ -1,0 +1,55 @@
+{
+  "schema": "maintenance-superinteligence.notification-training-spec.v1",
+  "version": "1.0.0",
+  "mode": "public_synthetic_training_only",
+  "sourceTree": "trees/spec.v1.json",
+  "sourceCases": "casefiles/technical-cases.v1.json",
+  "sapIntegrationEnabled": false,
+  "operationalDispatchEnabled": false,
+  "entries": [
+    {
+      "caseFileId": "SIM-TECH-FD-01",
+      "draftId": "SIM-NOTE-001",
+      "title": "SIMULAÇÃO - VERIF. ÓLEO COMANDO FINAL",
+      "discipline": "Mecânica / Lubrificação",
+      "investigationScope": "Revisar identificação do produto, consistência do histórico e rastreabilidade das amostras sintéticas antes de decidir se há necessidade de inspeção.",
+      "technicalNote": "Aditivos/formulação, amostragem, ingresso externo e desgaste permanecem hipóteses não diferenciadas.",
+      "fieldObserved": false,
+      "actionPerformed": false,
+      "mayIssueRealNotification": false
+    },
+    {
+      "caseFileId": "SIM-TECH-HYD-01",
+      "draftId": "SIM-NOTE-002",
+      "title": "SIMULAÇÃO - INVEST. CARGA HIDRÁULICA",
+      "discipline": "Mecânica / Hidráulica",
+      "investigationScope": "Reconciliar condição fictícia de carga, configuração e documentação do circuito antes de especificar verificações técnicas.",
+      "technicalNote": "Demanda/carga, controle hidráulico, alimentação e temperatura permanecem hipóteses concorrentes.",
+      "fieldObserved": false,
+      "actionPerformed": false,
+      "mayIssueRealNotification": false
+    },
+    {
+      "caseFileId": "SIM-TECH-ECM-LOG-01",
+      "draftId": "SIM-NOTE-003",
+      "title": "SIMULAÇÃO - INVEST. DTC REGISTRADO",
+      "discipline": "Elétrica / Eletrônica",
+      "investigationScope": "Solicitar contexto de registro, identidade genérica do ECM e documentação aplicável; comparar com evidência física independente apenas após revisão.",
+      "technicalNote": "Evento histórico/intermitente e falha elétrica ou física permanecem hipóteses não diferenciadas.",
+      "fieldObserved": false,
+      "actionPerformed": false,
+      "mayIssueRealNotification": false
+    },
+    {
+      "caseFileId": "SIM-TECH-ECM-ACT-01",
+      "draftId": "SIM-NOTE-004",
+      "title": "SIMULAÇÃO - INVEST. DTC ATIVO",
+      "discipline": "Elétrica / Eletrônica",
+      "investigationScope": "Diferenciar indicação ativa fictícia de histórico e contexto operacional; solicitar evidências de tempo, configuração e medição independente.",
+      "technicalNote": "Indicação ativa fictícia não condena sensor, ECM ou componente mecânico.",
+      "fieldObserved": false,
+      "actionPerformed": false,
+      "mayIssueRealNotification": false
+    }
+  ]
+}
