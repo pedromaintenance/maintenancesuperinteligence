@@ -209,6 +209,27 @@ class QualitativeEvidenceTests(unittest.TestCase):
         with self.assertRaises(ImportRejected):
             render_html(r)
 
+    def test_html_rejects_forged_oem_provenance(self):
+        r = self.mocked_build()
+        r["cases"][0]["qualitativeEvidence"]["comparisons"][0][
+            "evidenceProvenance"]["sourceClaimsOemEffectivity"] = True
+        with self.assertRaises(ImportRejected):
+            render_html(r)
+
+    def test_html_rejects_causal_mechanism_falsification(self):
+        r = self.mocked_build()
+        r["cases"][0]["qualitativeEvidence"]["comparisons"][0][
+            "evidenceClaim"]["rootCauseVerified"] = True
+        with self.assertRaises(ImportRejected):
+            render_html(r)
+
+    def test_html_rejects_method_execution_claim(self):
+        r = self.mocked_build()
+        r["cases"][1]["qualitativeEvidence"]["comparisons"][0][
+            "methodPlanning"][0]["testStatus"] = "performed"
+        with self.assertRaises(ImportRejected):
+            render_html(r)
+
     def test_html_rejects_assigned_probability(self):
         r = self.mocked_build()
         r["cases"][0]["hypotheses"][0]["probability"] = 0.9
