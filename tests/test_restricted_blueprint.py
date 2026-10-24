@@ -182,10 +182,10 @@ class RestrictedReviewBlueprintTests(unittest.TestCase):
         self.rejects("invalid review state")
 
     def test_case_double_submission_is_rejected(self):
-        e = copy.deepcopy(self.event(0, 0))
-        e["eventId"] = "SIM-EVENT-WATER-99"
-        e["nonce"] = "SIM-NONCE-WATER-99"
-        self.fixture["cases"][0]["events"].insert(1, e)
+        e = copy.deepcopy(self.event(1, 0))
+        e["eventId"] = "SIM-EVENT-FORM-99"
+        e["nonce"] = "SIM-NONCE-FORM-99"
+        self.fixture["cases"][1]["events"].insert(1, e)
         self.rejects("must submit a draft")
 
     def test_revision_change_after_review_rejected(self):
