@@ -93,11 +93,11 @@ class IntegrationContractsTests(unittest.TestCase):
 
     def test_real_personal_identifier_not_allowed(self):
         self.fixture["principals"][0]["principalId"] = "employee123"
-        self.rejects("synthetic")
+        self.rejects("invalid/duplicated")
 
     def test_role_escalation(self):
         self.fixture["principals"][1]["role"] = "administrator"
-        self.rejects("incomplete role")
+        self.rejects("wrong role/revision")
 
     def test_reviewer_cannot_be_author(self):
         self.fixture["independentReviewDecisions"][0]["principalId"] = "SIM-USER-AUTHOR"
