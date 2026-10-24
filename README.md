@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de dossiês diagnósticos P&D v1.3.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de evidência discriminante P&D v1.4.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -51,6 +51,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 11 — Matriz de prontidão e compatibilidade](docs/CICLO_2026-10-24_PRONTIDAO_IMPLANTACAO.md)
 - [Ciclo 12 — Dossiê de aceite técnico e revisão de prontidão](docs/CICLO_2026-10-24_DOSSIE_ACEITE.md)
 - [Ciclo 13 — Dossiês integrados de investigação de manutenção](docs/CICLO_2026-10-24_DOSSIES_DIAGNOSTICOS.md)
+- [Ciclo 14 — Evidência discriminante, níveis causais e contraexemplos](docs/CICLO_2026-10-24_EVIDENCIA_DISCRIMINANTE.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -233,3 +234,19 @@ python -m casefiles.integrated --snapshot build/fmea-public/fmea-public.snapshot
 ```
 
 Consulte o [relatório do Ciclo 13](docs/CICLO_2026-10-24_DOSSIES_DIAGNOSTICOS.md) para escopo técnico, fontes, limitação de inferências e execução.
+
+
+## Ciclo 14 — Matriz de evidência qualitativa e alternativas concorrentes
+
+O arquivo `evidence/qualitative-discrimination.v1.json` acrescenta **10 pares de hipóteses**, **30 observações condicionais** e **20 contraexemplos diferentes**, todos vinculados à matriz discriminante e aos métodos públicos. Como quatro dossiês compartilham alguns pares, a visualização final exibe **13 comparações e 26 contraexemplos instanciados**.
+
+Um oráculo sintético independente em `benchmarks/qualitative-oracle.v1.json` registra as respostas esperadas de quatro casos para detectar alterações silenciosas de estado/contexto e seleção, sem alegar veracidade mecânica.
+
+Cada dossiê apresenta quais padrões *poderiam* fortalecer ou enfraquecer uma interpretação, quais explicações alternativas permanecem possíveis e qual informação ainda precisa ser obtida. O módulo `evidence/qualitative.py` não aceita promover tais padrões a resultados medidos: `supports`/`weakens` são apenas condicionais; estados presentes no caso são `not_measured`, `contradicted` e `inconclusive`. **Nenhuma hipótese é descartada, nenhum teste é considerado executado e não existe aprovação de equipamento.**
+
+```bash
+python connectors/fmea_public.py --fetch --output build/fmea-public
+python -m casefiles.integrated --snapshot build/fmea-public/fmea-public.snapshot.json --output build/casefiles/integrated-differential.v1.json --html build/casefiles/integrated-differential.v1.html
+```
+
+Veja a [documentação do Ciclo 14](docs/CICLO_2026-10-24_EVIDENCIA_DISCRIMINANTE.md) para a interpretação correta dos estados, hipóteses mecânicas e limitações de campo.

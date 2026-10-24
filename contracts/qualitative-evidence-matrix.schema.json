@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/qualitative-evidence-matrix.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "sourceMatrix",
+    "sourceMethods",
+    "approvedForOperationalUse",
+    "observedPhysicalEvidence",
+    "independentClinicalOrFieldValidation",
+    "pairs"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.evidence-discrimination-matrix.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "qualitative_counterfactual_reasoning_only"
+    },
+    "sourceMatrix": {
+      "const": "methods/discrimination-matrix.v1.json"
+    },
+    "sourceMethods": {
+      "const": "methods/catalog.v1.json"
+    },
+    "approvedForOperationalUse": {
+      "const": false
+    },
+    "observedPhysicalEvidence": {
+      "const": false
+    },
+    "independentClinicalOrFieldValidation": {
+      "const": false
+    },
+    "pairs": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "qualitative-evidence-pair.schema.json"
+      }
+    }
+  }
+}

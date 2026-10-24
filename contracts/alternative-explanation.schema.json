@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/alternative-explanation.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "explanationId",
+    "statement",
+    "cannotExcludeHypotheses",
+    "verifiedAsRealMechanism"
+  ],
+  "properties": {
+    "explanationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "statement": {
+      "type": "string",
+      "minLength": 35
+    },
+    "cannotExcludeHypotheses": {
+      "const": true
+    },
+    "verifiedAsRealMechanism": {
+      "const": false
+    }
+  }
+}

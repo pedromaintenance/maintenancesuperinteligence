@@ -1,4 +1,4 @@
-name: Validate synthetic maintenance differential and technical casefiles
+name: Validate qualitative evidence and synthetic mechanical casefiles
 
 on:
   push:
@@ -797,6 +797,102 @@ jobs:
             build/casefiles/integrated-differential.v1.json
             build/casefiles/integrated-differential.v1.html
           retention-days: 14
+      - name: Evaluate unobserved qualitative comparison matrix and case evidence
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from connectors.fmea_public import load_lock
+          from evidence.qualitative import validate_qualitative_matrix
+          from methods.discrimination import validate_matrix
+          from methods.library import validate_sources, validate_catalog
+          from connectors.fmea_public import validate_snapshot
+          snapshot = validate_snapshot(Path("build/fmea-public/fmea-public.snapshot.json").read_bytes(), load_lock())
+          sources = validate_sources(json.loads(Path("data/diagnostic-method-sources.v1.json").read_text()))
+          methods = validate_catalog(json.loads(Path("methods/catalog.v1.json").read_text()), sources, snapshot)
+          matrix = json.loads(Path("methods/discrimination-matrix.v1.json").read_text())
+          families = validate_matrix(matrix, methods, snapshot)
+          raw = json.loads(Path("evidence/qualitative-discrimination.v1.json").read_text())
+          qual = validate_qualitative_matrix(raw, families, methods, sources)
+          assert len(qual) == 10
+          assert sum(len(x["conditionalObservations"]) for x in qual.values()) == 30
+          assert sum(len(x["alternativeExplanations"]) for x in qual.values()) == 20
+          assert all(x["observedOutcome"] is None and x["testStatus"] == "not_performed"
+                     and not x["mayExcludeEitherHypothesis"] for x in qual.values())
+          doc = json.loads(Path("build/casefiles/integrated-differential.v1.json").read_text())
+          assert doc["caseCount"] == 4
+          assert doc["hypothesesOpen"] == 19
+          assert doc["counterexamples"] == 26
+          assert doc["observedSupportingEvidence"] == 0
+          assert doc["observedWeakeningEvidence"] == 0
+          assert doc["hypothesesExcluded"] == 0
+          assert doc["testsExecuted"] == 0 and doc["confirmedRootCauses"] == 0
+          assert sum(len(c["qualitativeEvidence"]["comparisons"])
+                     for c in doc["cases"]) == 13
+          for c in doc["cases"]:
+              a = c["qualitativeEvidence"]
+              assert a["evidenceNature"] == "simulation"
+              assert a["observedSupportCount"] == 0
+              assert a["observedWeakeningCount"] == 0
+              assert a["hypothesesExcluded"] == 0
+              assert a["testsPerformed"] == 0
+              assert all(not a[k] for k in (
+                  "mayExecuteTests","mayConfirmRootCause","mayApproveWorkOrder",
+                  "mayReleaseEquipment"))
+              for row in a["comparisons"]:
+                  assert row["currentEvidenceState"] in (
+                     "contradicted","not_measured","inconclusive")
+                  assert row["cannotDismissEitherHypothesis"]
+                  assert row["testsPerformed"] == 0
+                  assert len(row["conditionalObservations"]) == 3
+                  assert len(row["alternativeExplanations"]) == 2
+                  assert all(not x["hasBeenObserved"] and not x["provesRootCause"]
+                             and not x["mayExcludeHypothesis"]
+                             for x in row["conditionalObservations"])
+                  assert all(not x["verifiedAsRealMechanism"]
+                             for x in row["alternativeExplanations"])
+                  assert all(not m["mayExecute"] and m["testStatus"] == "not_performed"
+                             for m in row["methodPlanning"])
+          html = Path("build/casefiles/integrated-differential.v1.html").read_text()
+          assert html.count("Evidência discriminante condicional") == 4
+          assert "<script" not in html and "<form" not in html
+          print("PASS: 10 unique pairs, 13 case comparisons, 26 unverified confounders; no measurements")
+          PY
+      - name: Reject forged empirical finding and automatic exclusion in evidence
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          src = json.loads(Path("evidence/qualitative-discrimination.v1.json").read_text())
+          field = json.loads(json.dumps(src))
+          field["pairs"][0]["conditionalObservations"][0]["nature"] = "measured"
+          excluded = json.loads(json.dumps(src))
+          excluded["pairs"][0]["mayExcludeEitherHypothesis"] = True
+          Path("build/casefiles/forged-measured-evidence.json").write_text(json.dumps(field))
+          Path("build/casefiles/forged-exclusion.json").write_text(json.dumps(excluded))
+          PY
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from connectors.fmea_public import load_lock, validate_snapshot, ImportRejected
+          from evidence.qualitative import validate_qualitative_matrix
+          from methods.discrimination import validate_matrix
+          from methods.library import validate_sources, validate_catalog
+          snapshot = validate_snapshot(Path("build/fmea-public/fmea-public.snapshot.json").read_bytes(), load_lock())
+          registry = validate_sources(json.loads(Path("data/diagnostic-method-sources.v1.json").read_text()))
+          methods = validate_catalog(json.loads(Path("methods/catalog.v1.json").read_text()), registry, snapshot)
+          families = validate_matrix(json.loads(Path("methods/discrimination-matrix.v1.json").read_text()),
+                                     methods, snapshot)
+          for name in ("forged-measured-evidence", "forged-exclusion"):
+              fake = json.loads(Path("build/casefiles", name+".json").read_text())
+              try:
+                  validate_qualitative_matrix(fake, families, methods, registry)
+              except ImportRejected:
+                  print("PASS: blocked", name)
+              else:
+                  raise AssertionError("SECURITY FAIL: fabricated physical evidence was promoted")
+          PY
+          rm build/casefiles/forged-measured-evidence.json build/casefiles/forged-exclusion.json
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4
         with:

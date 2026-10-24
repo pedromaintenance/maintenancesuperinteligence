@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/causal-level-assessment.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "symptomReported",
+    "effectObservedByMeasurement",
+    "immediateMechanismEstablished",
+    "rootCauseEstablished",
+    "observationMaturity"
+  ],
+  "properties": {
+    "symptomReported": {
+      "const": true
+    },
+    "effectObservedByMeasurement": {
+      "const": false
+    },
+    "immediateMechanismEstablished": {
+      "const": false
+    },
+    "rootCauseEstablished": {
+      "const": false
+    },
+    "observationMaturity": {
+      "const": "unmeasured_context_only"
+    }
+  }
+}

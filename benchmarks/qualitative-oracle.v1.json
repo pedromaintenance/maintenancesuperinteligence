@@ -1,0 +1,150 @@
+{
+  "schema": "maintenance-superinteligence.qualitative-oracle.v1",
+  "version": "1.0.0",
+  "purpose": "independently_authored_synthetic_regression_expectations_not_mechanical_truth",
+  "modelSource": "evidence/qualitative-discrimination.v1.json",
+  "sourceBenchmark": "benchmarks/question-quality.v1.json",
+  "realFieldValidityEstablished": false,
+  "canUseToExcludeHypotheses": false,
+  "expected": [
+    {
+      "caseFileId": "SIM-TECH-FD-01",
+      "benchmarkFixtureId": "FD-ADDITIVES-UNKNOWN",
+      "selectedPairId": "FD-P01",
+      "selectedMethodId": "MET-OIL-PRODUCT",
+      "comparisonStates": [
+        {
+          "pairId": "FD-P01",
+          "currentEvidenceState": "not_measured",
+          "observedPhysicalEvidence": false,
+          "bothHypothesesOpen": true,
+          "conditionalPatternsAreMeasurements": false
+        },
+        {
+          "pairId": "FD-P02",
+          "currentEvidenceState": "not_measured",
+          "observedPhysicalEvidence": false,
+          "bothHypothesesOpen": true,
+          "conditionalPatternsAreMeasurements": false
+        },
+        {
+          "pairId": "FD-P03",
+          "currentEvidenceState": "not_measured",
+          "observedPhysicalEvidence": false,
+          "bothHypothesesOpen": true,
+          "conditionalPatternsAreMeasurements": false
+        },
+        {
+          "pairId": "FD-P04",
+          "currentEvidenceState": "not_measured",
+          "observedPhysicalEvidence": false,
+          "bothHypothesesOpen": true,
+          "conditionalPatternsAreMeasurements": false
+        }
+      ],
+      "observedSupportCount": 0,
+      "observedWeakeningCount": 0,
+      "hypothesesExcluded": 0,
+      "testsPerformed": 0
+    },
+    {
+      "caseFileId": "SIM-TECH-HYD-01",
+      "benchmarkFixtureId": "HYD-LOAD-DISPUTED",
+      "selectedPairId": "HYD-P01",
+      "selectedMethodId": "MET-HYD-PRESSURE",
+      "comparisonStates": [
+        {
+          "pairId": "HYD-P01",
+          "currentEvidenceState": "contradicted",
+          "observedPhysicalEvidence": false,
+          "bothHypothesesOpen": true,
+          "conditionalPatternsAreMeasurements": false
+        },
+        {
+          "pairId": "HYD-P02",
+          "currentEvidenceState": "contradicted",
+          "observedPhysicalEvidence": false,
+          "bothHypothesesOpen": true,
+          "conditionalPatternsAreMeasurements": false
+        },
+        {
+          "pairId": "HYD-P03",
+          "currentEvidenceState": "not_measured",
+          "observedPhysicalEvidence": false,
+          "bothHypothesesOpen": true,
+          "conditionalPatternsAreMeasurements": false
+        }
+      ],
+      "observedSupportCount": 0,
+      "observedWeakeningCount": 0,
+      "hypothesesExcluded": 0,
+      "testsPerformed": 0
+    },
+    {
+      "caseFileId": "SIM-TECH-ECM-LOG-01",
+      "benchmarkFixtureId": "ECM-LOGGED-UNKNOWN",
+      "selectedPairId": "EL-P01",
+      "selectedMethodId": "MET-ECM-CODES",
+      "comparisonStates": [
+        {
+          "pairId": "EL-P01",
+          "currentEvidenceState": "not_measured",
+          "observedPhysicalEvidence": false,
+          "bothHypothesesOpen": true,
+          "conditionalPatternsAreMeasurements": false
+        },
+        {
+          "pairId": "EL-P02",
+          "currentEvidenceState": "not_measured",
+          "observedPhysicalEvidence": false,
+          "bothHypothesesOpen": true,
+          "conditionalPatternsAreMeasurements": false
+        },
+        {
+          "pairId": "EL-P03",
+          "currentEvidenceState": "not_measured",
+          "observedPhysicalEvidence": false,
+          "bothHypothesesOpen": true,
+          "conditionalPatternsAreMeasurements": false
+        }
+      ],
+      "observedSupportCount": 0,
+      "observedWeakeningCount": 0,
+      "hypothesesExcluded": 0,
+      "testsPerformed": 0
+    },
+    {
+      "caseFileId": "SIM-TECH-ECM-ACT-01",
+      "benchmarkFixtureId": "ECM-ACTIVE-CONTEXT-MISSING",
+      "selectedPairId": "EL-P02",
+      "selectedMethodId": "MET-ECM-CODES",
+      "comparisonStates": [
+        {
+          "pairId": "EL-P01",
+          "currentEvidenceState": "inconclusive",
+          "observedPhysicalEvidence": false,
+          "bothHypothesesOpen": true,
+          "conditionalPatternsAreMeasurements": false
+        },
+        {
+          "pairId": "EL-P02",
+          "currentEvidenceState": "not_measured",
+          "observedPhysicalEvidence": false,
+          "bothHypothesesOpen": true,
+          "conditionalPatternsAreMeasurements": false
+        },
+        {
+          "pairId": "EL-P03",
+          "currentEvidenceState": "not_measured",
+          "observedPhysicalEvidence": false,
+          "bothHypothesesOpen": true,
+          "conditionalPatternsAreMeasurements": false
+        }
+      ],
+      "observedSupportCount": 0,
+      "observedWeakeningCount": 0,
+      "hypothesesExcluded": 0,
+      "testsPerformed": 0
+    }
+  ]
+}

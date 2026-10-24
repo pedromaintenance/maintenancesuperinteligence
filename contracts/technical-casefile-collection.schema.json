@@ -17,7 +17,12 @@
     "fieldDiagnosticAccuracyMeasured",
     "privateDeploymentApproved",
     "mayCreateWorkOrder",
-    "mayReleaseEquipment"
+    "mayReleaseEquipment",
+    "observedSupportingEvidence",
+    "observedWeakeningEvidence",
+    "hypothesesExcluded",
+    "counterexamples",
+    "qualitativeOracleSha256"
   ],
   "properties": {
     "schema": {
@@ -69,6 +74,22 @@
     },
     "mayReleaseEquipment": {
       "const": false
+    },
+    "observedSupportingEvidence": {
+      "const": 0
+    },
+    "observedWeakeningEvidence": {
+      "const": 0
+    },
+    "hypothesesExcluded": {
+      "const": 0
+    },
+    "counterexamples": {
+      "const": 26
+    },
+    "qualitativeOracleSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
     }
   }
 }
