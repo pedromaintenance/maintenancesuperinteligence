@@ -425,6 +425,18 @@ def render_html(collection: dict) -> str:
                             and p.get("observedPhysicalEvidence") is False
                             and p.get("currentEvidenceState") in {"not_measured", "contradicted", "inconclusive"}
                             and p.get("testsPerformed") == 0
+                            and p.get("fieldResult") is None
+                            and p.get("evidenceClaim", {}).get("rootCauseVerified") is False
+                            and p.get("evidenceClaim", {}).get("mechanismVerified") is False
+                            and p.get("evidenceClaim", {}).get("bothHypothesesRemainOpen") is True
+                            and p.get("evidenceProvenance", {}).get("sourceClaimsOemEffectivity") is False
+                            and p.get("evidenceProvenance", {}).get("externalAuthenticityVerified") is False
+                            and all(a.get("verifiedAsRealMechanism") is False
+                                    and a.get("cannotExcludeHypotheses") is True
+                                    for a in p.get("alternativeExplanations", []))
+                            and all(m.get("mayExecute") is False
+                                    and m.get("testStatus") == "not_performed"
+                                    for m in p.get("methodPlanning", []))
                             and all(q.get("hasBeenObserved") is False
                                     and q.get("mayExcludeHypothesis") is False
                                     for q in p.get("conditionalObservations", []))
