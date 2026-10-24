@@ -259,14 +259,72 @@ class NotificationDraftTests(unittest.TestCase):
     def test_cli_rejects_untrusted_source_without_output(self):
         with tempfile.TemporaryDirectory() as tmp:
             p=Path(tmp)/"source.json"
+            lock=Path(tmp)/"snapshot.json"
             out=Path(tmp)/"output.html"
-            s=self.source()
-            s["cases"][0]["assetContext"]["realMachineIdentifier"]="PRIVATE-007"
-            p.write_text(json.dumps(s))
-            with patch("sys.stderr"):
-                result=main(["--source",str(p),"--html",str(out)])
+            canonical=self.source()
+            changed=copy.deepcopy(canonical)
+            changed["cases"][0]["assetContext"]["realMachineIdentifier"]="PRIVATE-007"
+            p.write_text(json.dumps(changed))
+            lock.write_bytes(b"MOCK-ONLY-NOT-A-FMEA-SNAPSHOT")
+            with (patch("notifications.drafts.validate_snapshot",
+                        return_value=self.snapshot),
+                  patch("notifications.drafts.load_dependencies",
+                        return_value=self.deps),
+                  patch("notifications.drafts.build_collection",
+                        return_value=canonical),
+                  patch("sys.stderr")):
+                result=main(["--source",str(p),"--snapshot",str(lock),
+                             "--html",str(out)])
             self.assertEqual(result,2)
             self.assertFalse(out.exists())
+
+    def test_cli_rejects_unreviewed_editorial_text(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            src=Path(tmp)/"source.json"
+            spec=Path(tmp)/"spec.json"
+            lock=Path(tmp)/"snapshot.json"
+            out=Path(tmp)/"output.json"
+            canonical=self.source()
+            src.write_text(json.dumps(canonical))
+            changed=copy.deepcopy(self.spec)
+            changed["entries"][0]["investigationScope"] += " Confirmar peça danificada."
+            spec.write_text(json.dumps(changed))
+            lock.write_bytes(b"MOCK-ONLY-NOT-A-FMEA-SNAPSHOT")
+            with (patch("notifications.drafts.validate_snapshot",
+                        return_value=self.snapshot),
+                  patch("notifications.drafts.load_dependencies",
+                        return_value=self.deps),
+                  patch("notifications.drafts.build_collection",
+                        return_value=canonical),
+                  patch("sys.stderr")):
+                result=main(["--source",str(src),"--spec",str(spec),
+                             "--snapshot",str(lock),"--output",str(out)])
+            self.assertEqual(result,2)
+            self.assertFalse(out.exists())
+
+    def test_cli_writes_documents_for_canonical_public_fixture(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            src=Path(tmp)/"source.json"
+            lock=Path(tmp)/"snapshot.json"
+            out=Path(tmp)/"output.json"
+            html=Path(tmp)/"notes.html"
+            canonical=self.source()
+            src.write_text(json.dumps(canonical))
+            lock.write_bytes(b"MOCK-ONLY-NOT-A-FMEA-SNAPSHOT")
+            with (patch("notifications.drafts.validate_snapshot",
+                        return_value=self.snapshot),
+                  patch("notifications.drafts.load_dependencies",
+                        return_value=self.deps),
+                  patch("notifications.drafts.build_collection",
+                        return_value=canonical),
+                  patch("builtins.print")):
+                result=main(["--source",str(src),"--snapshot",str(lock),
+                             "--output",str(out),"--html",str(html)])
+            self.assertEqual(result,0)
+            self.assertTrue(out.is_file())
+            self.assertTrue(html.is_file())
+            self.assertEqual(json.loads(out.read_text())["draftCount"],4)
+
 
 if __name__=="__main__":
     unittest.main()
