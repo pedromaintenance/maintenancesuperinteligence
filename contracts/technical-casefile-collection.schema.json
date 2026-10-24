@@ -21,7 +21,8 @@
     "observedSupportingEvidence",
     "observedWeakeningEvidence",
     "hypothesesExcluded",
-    "counterexamples"
+    "counterexamples",
+    "qualitativeOracleSha256"
   ],
   "properties": {
     "schema": {
@@ -85,6 +86,10 @@
     },
     "counterexamples": {
       "const": 26
+    },
+    "qualitativeOracleSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
     }
   }
 }
