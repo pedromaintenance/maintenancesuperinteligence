@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "entries",
+    "authorisedPrivateMigration"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.contract-compatibility.v1"
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "cycle",
+          "path",
+          "requiredSchema",
+          "requiredVersion",
+          "migrationRequiredIfChanged"
+        ],
+        "properties": {
+          "cycle": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "requiredSchema": {
+            "type": "string"
+          },
+          "requiredVersion": {
+            "const": "1.0.0"
+          },
+          "migrationRequiredIfChanged": {
+            "const": true
+          }
+        }
+      }
+    },
+    "authorisedPrivateMigration": {
+      "const": false
+    }
+  }
+}
