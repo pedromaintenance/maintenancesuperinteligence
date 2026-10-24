@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/branch-interpretation.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "branchId",
+    "branchNature",
+    "interpretation",
+    "effectFirstIfObserved",
+    "effectSecondIfObserved",
+    "observed",
+    "hypothesesExcluded",
+    "toNodeId"
+  ],
+  "properties": {
+    "branchId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "branchNature": {
+      "const": "hypothetical_unobserved"
+    },
+    "interpretation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effectFirstIfObserved": {
+      "enum": [
+        "supports",
+        "weakens",
+        "inconclusive"
+      ]
+    },
+    "effectSecondIfObserved": {
+      "enum": [
+        "supports",
+        "weakens",
+        "inconclusive"
+      ]
+    },
+    "observed": {
+      "const": false
+    },
+    "hypothesesExcluded": {
+      "const": 0
+    },
+    "toNodeId": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
