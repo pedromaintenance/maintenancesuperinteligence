@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/technical-review-packet.schema.json",
+  "title": "Technical review packet v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "sourceRegistryVersion",
+    "methodCatalogVersion",
+    "matrixVersion",
+    "reviewers",
+    "citations",
+    "claims",
+    "assessments",
+    "approvalEvidence",
+    "humanApprovalAuthority",
+    "mayChangeEquipmentStatus",
+    "operationalValidation"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.technical-review-packet.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "simulation_only_independent_review_workflow"
+    },
+    "sourceRegistryVersion": {
+      "const": "1.0.0"
+    },
+    "methodCatalogVersion": {
+      "const": "1.0.0"
+    },
+    "matrixVersion": {
+      "const": "1.0.0"
+    },
+    "reviewers": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "synthetic-reviewer.schema.json"
+      }
+    },
+    "citations": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "$ref": "evidence-citation.schema.json"
+      }
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "$ref": "technical-claim.schema.json"
+      }
+    },
+    "assessments": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "$ref": "reviewer-assessment.schema.json"
+      }
+    },
+    "approvalEvidence": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "humanApprovalAuthority": {
+      "const": false
+    },
+    "mayChangeEquipmentStatus": {
+      "const": false
+    },
+    "operationalValidation": {
+      "const": false
+    }
+  }
+}
