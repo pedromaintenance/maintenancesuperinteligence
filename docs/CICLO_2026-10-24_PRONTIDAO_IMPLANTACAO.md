@@ -12,7 +12,7 @@ O avaliador `governance/deployment_readiness.py` consome `governance/deployment-
 
 ## Os dez controles para o ambiente futuro
 
-| Ordem de dependência | Controle | Responsável genérico | Risco de ausência |
+| Item | Controle | Responsável genérico | Risco de ausência |
 | --- | --- | --- | --- |
 | 1 | IdP corporativo com verificação server-side | TI / Segurança da Informação | Crítico |
 | 2 | Identidade humana única e função ativa | TI / Gestão de Acessos | Crítico |
