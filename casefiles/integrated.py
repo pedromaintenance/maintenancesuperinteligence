@@ -407,6 +407,7 @@ def verify_report(report: dict, fixture: dict, deps: dict, snapshot: dict) -> di
 
 
 def render_html(collection: dict) -> str:
+    render_tree_html(collection.get("investigationTrees", {}))
     require(collection.get("schema")
             == "maintenance-superinteligence.technical-casefile-collection.v1"
             and collection.get("caseCount") == 4
