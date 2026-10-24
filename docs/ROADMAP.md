@@ -40,6 +40,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 ## Fase 4 — Estratégia de ativos, manutenção e PCM
 
+**Ciclo 16:** rascunhos técnicos sintéticos de notificações de manutenção para quatro dossiês, contemplando sintomas, hipóteses abertas, disciplina, escopo de investigação, evidências pendentes e risco qualitativo de postergação. Exportações offline JSON/HTML não possuem integração SAP, dados privados, materiais, HH, ou autorização operacional. Próximo: rubrica didática de qualidade de notificações e integridade documental.
+
 **Ciclo 15:** árvores didáticas para os quatro dossiês técnicos, preservando 13 comparações, 39 alternativas não observadas e 26 contraexemplos instanciados. Pontos de abstenção e revisão humana impedem avançar da ausência de evidência à condenação de componente. Próxima etapa: transformar perguntas e lacunas em descrições de notificações didáticas, sem criar ordens reais.
 
 **Ciclo 14:** modelo causal e matriz de observações qualitativas para 10 pares de hipóteses, incluindo 20 contraexemplos por mecanismo e 30 padrões condicionais (sem resultado observado). Dossiês exibem 13 comparações instanciadas com contextos desconhecidos ou contraditórios; nenhuma hipótese é excluída e nenhum parâmetro físico é presumido. Próximo: árvore didática de decisão com gates de abstenção e revisão técnica.

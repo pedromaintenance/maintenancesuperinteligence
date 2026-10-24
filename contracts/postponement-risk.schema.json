@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/postponement-risk.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "qualitativeDescription",
+    "quantifiedRisk",
+    "fieldRiskAssessed",
+    "continuedOperationApproved"
+  ],
+  "properties": {
+    "qualitativeDescription": {
+      "type": "string",
+      "minLength": 1
+    },
+    "quantifiedRisk": {
+      "type": "null"
+    },
+    "fieldRiskAssessed": {
+      "const": false
+    },
+    "continuedOperationApproved": {
+      "const": false
+    }
+  }
+}

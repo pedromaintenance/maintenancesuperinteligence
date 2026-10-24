@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.6.0 — 2026-10-24 — Ciclo 16
+
+- Convertidos os quatro dossiês/árvores de investigação em rascunhos técnicos fictícios, com sintomas, efeitos, hipóteses abertas, escopo delimitado, disciplina e lacunas de evidência.
+- Criados `notifications/training-spec.v1.json` e `notifications/drafts.py`, gerando JSON/HTML de treinamento com rastreabilidade ao nó original e às fontes públicas.
+- Publicados oito contratos JSON Schema para sintomas, hipóteses, escopo, planejamento, risco de postergação, rascunho e seus envelopes.
+- O planejamento mantém HH, peças, prioridade, custo, equipamento, número SAP e procedimentos de execução deliberadamente ausentes; nenhuma operação é permitida.
+- Adicionados testes adversariais e CI para rejeitar observação física inventada, causa confirmada, efetividade OEM fictícia, número SAP, peças/HH, falso registro de ordem e liberação de máquina.
+- Relatório técnico do Ciclo 16 especifica fronteira entre exercício documental e processos corporativos reais.
+
+**Limite:** não há criação de notas SAP, teste físico, diagnóstico real ou revisão profissional autenticada.
+
+
 ## 1.5.0 — 2026-10-24 — Ciclo 15
 
 - Criadas quatro árvores didáticas de investigação com seleção de pergunta editorial, perguntas concorrentes, três ramos contrafactuais por comparação e checkpoints obrigatórios de revisão humana.

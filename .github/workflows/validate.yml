@@ -1,4 +1,4 @@
-name: Validate educational investigation trees and human abstention gates
+name: Validate fictional maintenance notification drafts and investigation trees
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       - name: Validate existing knowledge metadata
         run: python scripts/validate.py
       - name: Compile Python sources
-        run: python -m compileall -q connectors scripts tests casefiles trees
+        run: python -m compileall -q connectors scripts tests casefiles trees notifications
       - name: Run offline adversarial tests
         run: python -m unittest discover -s tests -v
       - name: Import pinned FMEA public snapshot
@@ -947,6 +947,91 @@ jobs:
           path: |
             build/trees/technical-cases.v1.json
             build/trees/investigation-trees.v1.html
+          retention-days: 14
+      - name: Generate four synthetic maintenance notification training drafts
+        run: |
+          mkdir -p build/notifications
+          python -m notifications.drafts \
+            --source build/trees/technical-cases.v1.json \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --spec notifications/training-spec.v1.json \
+            --output build/notifications/maintenance-drafts.v1.json \
+            --html build/notifications/maintenance-drafts.v1.html > /dev/null
+      - name: Validate causal distinctions and deny SAP-related automation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from notifications.drafts import verify_notifications
+          source = json.loads(Path("build/trees/technical-cases.v1.json").read_text())
+          spec = json.loads(Path("notifications/training-spec.v1.json").read_text())
+          bundle = json.loads(Path("build/notifications/maintenance-drafts.v1.json").read_text())
+          assert bundle["draftCount"] == 4
+          assert bundle["realNotificationsCreated"] == 0
+          assert bundle["workOrdersCreated"] == 0
+          assert bundle["physicalTestsExecuted"] == 0
+          assert bundle["allHypothesesRemainOpen"]
+          assert not bundle["mayConnectToSap"] and not bundle["mayReleaseEquipment"]
+          assert [d["inspectionScope"]["dataState"] for d in bundle["drafts"]] == [
+              "not_measured","contradicted","not_measured","not_measured"]
+          for d, case, tree in zip(bundle["drafts"],source["cases"],
+                                   source["investigationTrees"]["trees"]):
+              assert d["trainingBanner"] == "SIMULAÇÃO EDUCACIONAL — NÃO É NOTA OU ORDEM SAP"
+              assert d["draftKind"] == "training_only_not_sap_importable"
+              assert not d["mayExportToSap"] and not d["approvedForMaintenance"]
+              assert not d["symptom"]["physicallyObserved"]
+              assert d["causalAssessment"]["rootCauseStatus"] == "unknown_not_established"
+              assert d["causalAssessment"]["confirmedDefect"] is None
+              assert d["hypothesisRegister"]["allOpen"]
+              assert d["hypothesisRegister"]["hypothesisIds"] == (
+                  tree["unresolvedHypothesisSet"]["hypothesisIds"])
+              assert d["inspectionScope"]["originTreeNodeId"] == tree["rootNodeId"]
+              assert not d["inspectionScope"]["executed"]
+              assert d["requestedEvidence"]["presentMeasurementCount"] == 0
+              assert d["planningConstraint"]["workHours"] is None
+              assert d["planningConstraint"]["materials"] == []
+              assert d["planningConstraint"]["numericPriority"] is None
+              assert d["planningConstraint"]["equipmentSerial"] is None
+              assert d["planningConstraint"]["sapNotificationNumber"] is None
+              assert not d["postponementRisk"]["continuedOperationApproved"]
+              assert all(x is False for x in d["reviewGates"].values())
+          verify_notifications(bundle,spec,source["cases"],source["investigationTrees"])
+          html = Path("build/notifications/maintenance-drafts.v1.html").read_text()
+          assert html.count("<section>") == 4
+          assert "<script" not in html and "<form" not in html
+          assert "SIMULAÇÃO EDUCACIONAL" in html
+          print("PASS: 4 synthetic notes, zero physical findings, zero SAP permissions")
+          PY
+      - name: Reject fabricated note authorization and work hours
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          f = json.loads(Path("notifications/training-spec.v1.json").read_text())
+          spoof = json.loads(json.dumps(f))
+          spoof["sapIntegrationEnabled"] = True
+          Path("build/notifications/spoof-sap.json").write_text(json.dumps(spoof))
+          altered = json.loads(json.dumps(f))
+          altered["entries"][0]["actionPerformed"] = True
+          Path("build/notifications/spoof-performed.json").write_text(json.dumps(altered))
+          PY
+          for scenario in spoof-sap spoof-performed; do
+            if python -m notifications.drafts \
+               --source build/trees/technical-cases.v1.json \
+               --snapshot build/fmea-public/fmea-public.snapshot.json \
+               --spec "build/notifications/$scenario.json" > /dev/null 2>&1; then
+              echo "SECURITY FAIL: fictional notification promoted into real SAP action"
+              exit 1
+            fi
+          done
+          rm build/notifications/spoof-sap.json build/notifications/spoof-performed.json
+      - name: Publish educational notification drafts (no corporate evidence)
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle16-training-notification-drafts
+          path: |
+            build/notifications/maintenance-drafts.v1.json
+            build/notifications/maintenance-drafts.v1.html
           retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4

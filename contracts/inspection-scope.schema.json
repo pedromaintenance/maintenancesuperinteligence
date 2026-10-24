@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/inspection-scope.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "activity",
+    "description",
+    "originTreeNodeId",
+    "originQuestion",
+    "methodIds",
+    "genericPublicSourceIds",
+    "dataState",
+    "physicalTestScheduled",
+    "executed",
+    "requiresOemMethodReview"
+  ],
+  "properties": {
+    "activity": {
+      "const": "plan_human_investigation_only"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 80
+    },
+    "originTreeNodeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "originQuestion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "methodIds": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "genericPublicSourceIds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "dataState": {
+      "enum": [
+        "not_measured",
+        "contradicted",
+        "inconclusive"
+      ]
+    },
+    "physicalTestScheduled": {
+      "const": false
+    },
+    "executed": {
+      "const": false
+    },
+    "requiresOemMethodReview": {
+      "const": true
+    }
+  }
+}

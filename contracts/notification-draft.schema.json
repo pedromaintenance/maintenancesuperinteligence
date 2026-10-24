@@ -1,0 +1,258 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/notification-draft.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "draftId",
+    "caseFileId",
+    "draftKind",
+    "title",
+    "symptom",
+    "causalAssessment",
+    "hypothesisRegister",
+    "inspectionScope",
+    "requestedEvidence",
+    "planningConstraint",
+    "postponementRisk",
+    "decisionTrace",
+    "provenance",
+    "reviewGates",
+    "trainingBanner",
+    "mayExportToSap",
+    "approvedForMaintenance"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.notification-draft.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "draftId": {
+      "type": "string",
+      "pattern": "^SIM-NOTE-00[1-4]$"
+    },
+    "caseFileId": {
+      "type": "string",
+      "pattern": "^SIM-TECH-"
+    },
+    "draftKind": {
+      "const": "training_only_not_sap_importable"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 15,
+      "maxLength": 40,
+      "pattern": "^SIMULAÇÃO - "
+    },
+    "symptom": {
+      "$ref": "maintenance-symptom.schema.json"
+    },
+    "causalAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "potentialEffect",
+        "immediateMechanismsAreOnlyHypotheses",
+        "rootCauseStatus",
+        "confirmedDefect"
+      ],
+      "properties": {
+        "potentialEffect": {
+          "type": "string",
+          "minLength": 1
+        },
+        "immediateMechanismsAreOnlyHypotheses": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rootCauseStatus": {
+          "const": "unknown_not_established"
+        },
+        "confirmedDefect": {
+          "type": "null"
+        }
+      }
+    },
+    "hypothesisRegister": {
+      "$ref": "hypothesis-register.schema.json"
+    },
+    "inspectionScope": {
+      "$ref": "inspection-scope.schema.json"
+    },
+    "requestedEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "items",
+        "unresolvedContextState",
+        "presentMeasurementCount",
+        "comparabilityVerified",
+        "externalOriginalEvidenceReferences"
+      ],
+      "properties": {
+        "items": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "unresolvedContextState": {
+          "enum": [
+            "not_measured",
+            "contradicted",
+            "inconclusive"
+          ]
+        },
+        "presentMeasurementCount": {
+          "const": 0
+        },
+        "comparabilityVerified": {
+          "const": false
+        },
+        "externalOriginalEvidenceReferences": {
+          "type": "array",
+          "maxItems": 0
+        }
+      }
+    },
+    "planningConstraint": {
+      "$ref": "planning-constraint.schema.json"
+    },
+    "postponementRisk": {
+      "$ref": "postponement-risk.schema.json"
+    },
+    "decisionTrace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceCaseFileId",
+        "sourceTreeRootNodeId",
+        "currentContextState",
+        "decision",
+        "conditionalBranchTaken",
+        "sourceCasefileStatus"
+      ],
+      "properties": {
+        "sourceCaseFileId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceTreeRootNodeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "currentContextState": {
+          "enum": [
+            "not_measured",
+            "contradicted",
+            "inconclusive"
+          ]
+        },
+        "decision": {
+          "const": "abstain_pending_verified_evidence"
+        },
+        "conditionalBranchTaken": {
+          "const": false
+        },
+        "sourceCasefileStatus": {
+          "const": "needs_human_review_and_discriminating_evidence"
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "casefileBenchmarkFixtureId",
+        "qualitativeEvidenceMatrixSha256",
+        "sourceReviewDossierSha256",
+        "sourceTreeQuestionId",
+        "claimedSeriesSpecificOemEvidence",
+        "provenanceAuthenticatedFromPrivateSystem"
+      ],
+      "properties": {
+        "casefileBenchmarkFixtureId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "qualitativeEvidenceMatrixSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "sourceReviewDossierSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "sourceTreeQuestionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claimedSeriesSpecificOemEvidence": {
+          "const": false
+        },
+        "provenanceAuthenticatedFromPrivateSystem": {
+          "const": false
+        }
+      }
+    },
+    "reviewGates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "externalHumanReviewComplete",
+        "oemApplicabilityVerified",
+        "riskAnalysisCompleted",
+        "safeExecutionAuthorized",
+        "mayWriteToSap",
+        "mayCreateWorkOrder",
+        "mayOrderParts",
+        "mayAlterEcm",
+        "mayReleaseEquipment"
+      ],
+      "properties": {
+        "externalHumanReviewComplete": {
+          "const": false
+        },
+        "oemApplicabilityVerified": {
+          "const": false
+        },
+        "riskAnalysisCompleted": {
+          "const": false
+        },
+        "safeExecutionAuthorized": {
+          "const": false
+        },
+        "mayWriteToSap": {
+          "const": false
+        },
+        "mayCreateWorkOrder": {
+          "const": false
+        },
+        "mayOrderParts": {
+          "const": false
+        },
+        "mayAlterEcm": {
+          "const": false
+        },
+        "mayReleaseEquipment": {
+          "const": false
+        }
+      }
+    },
+    "trainingBanner": {
+      "const": "SIMULAÇÃO EDUCACIONAL — NÃO É NOTA OU ORDEM SAP"
+    },
+    "mayExportToSap": {
+      "const": false
+    },
+    "approvedForMaintenance": {
+      "const": false
+    }
+  }
+}

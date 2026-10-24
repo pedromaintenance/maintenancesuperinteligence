@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de árvores didáticas P&D v1.5.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de notificações didáticas P&D v1.6.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -53,6 +53,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 13 — Dossiês integrados de investigação de manutenção](docs/CICLO_2026-10-24_DOSSIES_DIAGNOSTICOS.md)
 - [Ciclo 14 — Evidência discriminante, níveis causais e contraexemplos](docs/CICLO_2026-10-24_EVIDENCIA_DISCRIMINANTE.md)
 - [Ciclo 15 — Árvores de investigação e abstenção](docs/CICLO_2026-10-24_ARVORES_INVESTIGACAO.md)
+- [Ciclo 16 — Rascunhos didáticos de notificações de manutenção](docs/CICLO_2026-10-24_NOTIFICACOES_DIDATICAS.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -263,3 +264,16 @@ python -m casefiles.integrated --snapshot build/fmea-public/fmea-public.snapshot
 ```
 
 Consulte o [relatório completo do Ciclo 15](docs/CICLO_2026-10-24_ARVORES_INVESTIGACAO.md).
+
+
+## Ciclo 16 — Notificações técnicas para treinamento
+
+O gerador `notifications/drafts.py` transforma os **quatro dossiês/árvores sintéticos** em rascunhos completos de descrição de sintoma, hipótese aberta, escopo de investigação, disciplina, evidências a levantar e risco qualitativo. Todos são identificados como `SIM-NOTE-001` a `SIM-NOTE-004`, com banner de **simulação educacional**, sem número SAP, série, materiais, HH, custo, prioridade numérica ou procedimento de execução inventado.
+
+```bash
+python connectors/fmea_public.py --fetch --output build/fmea-public
+python -m casefiles.integrated --snapshot build/fmea-public/fmea-public.snapshot.json --output build/trees/technical-cases.v1.json
+python -m notifications.drafts --source build/trees/technical-cases.v1.json --snapshot build/fmea-public/fmea-public.snapshot.json --output build/notifications/maintenance-drafts.v1.json --html build/notifications/maintenance-drafts.v1.html
+```
+
+Antes da geração, o programa reconstitui o corpus didático com o snapshot FMEA público fixado e rejeita qualquer fonte externa alterada ou texto editorial não correspondente ao exemplar do projeto. O HTML é standalone, somente leitura e sem interface SAP. Nenhum rascunho tem autoridade para abrir notas/ordens, condenar componente ou liberar equipamento. Consulte o [relatório técnico do Ciclo 16](docs/CICLO_2026-10-24_NOTIFICACOES_DIDATICAS.md).
