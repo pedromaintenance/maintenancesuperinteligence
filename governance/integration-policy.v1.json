@@ -1,0 +1,16 @@
+{
+  "schema": "maintenance-superinteligence.integration-policy.v1",
+  "version": "1.0.0",
+  "mode": "simulation_only",
+  "roles": [
+    "author",
+    "reviewer",
+    "adjudicator",
+    "auditor",
+    "custodian",
+    "administrator",
+    "oem_specialist"
+  ],
+  "decisions": "always_reject_in_public",
+  "verificationAvailable": false
+}
