@@ -953,6 +953,7 @@ jobs:
           mkdir -p build/notifications
           python -m notifications.drafts \
             --source build/trees/technical-cases.v1.json \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
             --spec notifications/training-spec.v1.json \
             --output build/notifications/maintenance-drafts.v1.json \
             --html build/notifications/maintenance-drafts.v1.html > /dev/null
@@ -1017,6 +1018,7 @@ jobs:
           for scenario in spoof-sap spoof-performed; do
             if python -m notifications.drafts \
                --source build/trees/technical-cases.v1.json \
+               --snapshot build/fmea-public/fmea-public.snapshot.json \
                --spec "build/notifications/$scenario.json" > /dev/null 2>&1; then
               echo "SECURITY FAIL: fictional notification promoted into real SAP action"
               exit 1
