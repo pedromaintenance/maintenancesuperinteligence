@@ -31,6 +31,30 @@ CYCLES = {
     "cycle10-policy": ("governance/integration-policy.v1.json",
                         "maintenance-superinteligence.integration-policy.v1"),
 }
+EXPECTED_DEPENDENCIES = {
+    "corporate_identity_provider_server_validation": set(),
+    "unique_human_identity_and_active_role": {
+        "corporate_identity_provider_server_validation"},
+    "competence_verified_from_corporate_source": {
+        "unique_human_identity_and_active_role"},
+    "author_reviewers_adjudicator_separated": {
+        "competence_verified_from_corporate_source"},
+    "no_conflict_record": {"competence_verified_from_corporate_source"},
+    "two_independent_reviewers": {
+        "author_reviewers_adjudicator_separated", "no_conflict_record"},
+    "immutable_claim_revision_and_source_manifest": {
+        "corporate_identity_provider_server_validation"},
+    "verified_audit_timestamp_and_protected_storage": {
+        "immutable_claim_revision_and_source_manifest"},
+    "qualified_document_entitlement_and_oem_effectivity": {
+        "competence_verified_from_corporate_source",
+        "verified_audit_timestamp_and_protected_storage"},
+    "separate_operational_authorization": {
+        "two_independent_reviewers",
+        "qualified_document_entitlement_and_oem_effectivity",
+        "verified_audit_timestamp_and_protected_storage"},
+}
+
 CHANGES = {
     "claim_revision_changed", "oem_publication_revision_changed",
     "equipment_configuration_changed", "identity_revoked",
@@ -125,6 +149,11 @@ def check_compatibility(value: object) -> list[dict]:
                         if path == row["path"]), None)
         require(row["requiredSchema"] == allowed,
                 "compatibility: schema drift requires migration")
+        expected_cycle = "cycle10" if row["path"] in (
+            CYCLES["cycle10-fixture"][0], CYCLES["cycle10-policy"][0]
+        ) else ("cycle08" if row["path"] == CYCLES["cycle08"][0] else "cycle09")
+        require(row["cycle"] == expected_cycle,
+                "compatibility: source cycle misattributed")
         file_path = ROOT / row["path"]
         require(file_path.is_file() and file_path.resolve().is_relative_to(ROOT.resolve()),
                 "compatibility: referenced public source not found or outside root")
@@ -163,6 +192,8 @@ def validate_readiness(packet: object, policy: dict) -> dict:
         require(cid in REQUIRED_PROOFS and cid not in controls,
                 "control: unknown or duplicate proof")
         identifiers(c["dependsOn"], "control dependsOn")
+        require(set(c["dependsOn"]) == EXPECTED_DEPENDENCIES[cid],
+                "control: baseline dependency drift requires versioned design review")
         require(text(c["ownerRole"]) and text(c["acceptanceCriterion"], 20)
                 and c["riskOnMissing"] in {"critical", "high"}
                 and c["status"] in PUBLIC_STATES
