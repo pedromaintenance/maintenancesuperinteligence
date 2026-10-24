@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/deployment-acceptance.schema.json",
+  "title": "AcceptanceDecision (always blocked)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "status",
+    "approverIdentityVerified",
+    "engineeringApproved",
+    "securityApproved",
+    "privacyApproved",
+    "recordsManagementApproved",
+    "oemApprovalVerified",
+    "mayDeploy",
+    "mayImportCorporateData",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.deployment-acceptance.v1"
+    },
+    "status": {
+      "const": "blocked"
+    },
+    "approverIdentityVerified": {
+      "const": false
+    },
+    "engineeringApproved": {
+      "const": false
+    },
+    "securityApproved": {
+      "const": false
+    },
+    "privacyApproved": {
+      "const": false
+    },
+    "recordsManagementApproved": {
+      "const": false
+    },
+    "oemApprovalVerified": {
+      "const": false
+    },
+    "mayDeploy": {
+      "const": false
+    },
+    "mayImportCorporateData": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}
