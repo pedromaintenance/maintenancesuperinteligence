@@ -40,6 +40,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 ## Fase 4 — Estratégia de ativos, manutenção e PCM
 
+**Progresso (ciclo 08):** qualificação editorial de afirmações, referências e pareceres simulados com divergências explicitadas. Não existe identidade autenticada de engenheiro, parecer técnico real, OEM por série ou autorização de serviço. O benchmark passou a recusar alegações de validade diagnóstica sem gate humano/efetividade autorizado.
+
 **Progresso (ciclo 07):** benchmark de regressão de 15 casos sintéticos e nove categorias auditáveis. A qualidade medida é a preservação de lógica, origem, lacunas e abstenção, **não** acurácia de diagnóstico de campo. A fase seguinte depende de qualificação de fontes e revisão técnica independente para permitir qualquer alegação de validade mecânica.
 
 **Progresso (ciclo 06):** dez comparações hipotéticas divididas entre comando final, hidráulica e eletrônica. O seletor escolhe perguntas com justificativa explícita e bloqueia atuação operacional. Ainda são necessários estudos de sensibilidade, especificidade, custos reais, literatura por série e validação técnica em casos autorizados.
