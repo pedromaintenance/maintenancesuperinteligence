@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de contratos de integração P&D v1.0.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de prontidão de implantação P&D v1.1.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -48,6 +48,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 08 — Governança de revisão técnica simulada](docs/CICLO_2026-10-24_GOVERNANCA_REVISAO.md)
 - [Ciclo 09 — Arquitetura restrita, identidade e modelo de ameaças](docs/CICLO_2026-10-24_ARQUITETURA_RESTRITA.md)
 - [Ciclo 10 — Contratos de integração restrita e testes de confiança](docs/CICLO_2026-10-24_CONTRATOS_INTEGRACAO.md)
+- [Ciclo 11 — Matriz de prontidão e compatibilidade](docs/CICLO_2026-10-24_PRONTIDAO_IMPLANTACAO.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -192,3 +193,16 @@ python -m governance.integration_contracts --output build/integration/contracts.
 ```
 
 Consulte o [relatório completo do Ciclo 10](docs/CICLO_2026-10-24_CONTRATOS_INTEGRACAO.md) antes de propor qualquer implantação privada.
+
+
+## Ciclo 11 — Prontidão, dependências e compatibilidade contratual
+
+O protótipo `governance/deployment_readiness.py` mantém **dez controles de infraestrutura privada** como pendências, organiza dependências em ordem topológica, testa compatibilidade dos esquemas e versões públicas dos Ciclos 08–10 e define **cinco gatilhos de requalificação** (afirmação, revisão OEM, configuração, identidade e competência).
+
+A avaliação `governance/deployment-readiness.v1.json` contém somente planos e metadados **sintéticos**. O relatório preserva `acceptance=blocked_private_deployment` e `independentlyVerifiedControls=0` mesmo se alguns controles estão marcados `available_unverified`. Nenhum IdP ou backend empresarial foi configurado.
+
+```bash
+python -m governance.deployment_readiness --output build/readiness/deployment-readiness.v1.report.json
+```
+
+Os [detalhes do Ciclo 11](docs/CICLO_2026-10-24_PRONTIDAO_IMPLANTACAO.md) explicam matriz, donos por função, critérios e limites de confiança.
