@@ -30,6 +30,8 @@ class QualitativeEvidenceTests(unittest.TestCase):
             cls.deps = load_dependencies(cls.snapshot)
 
     def setUp(self):
+        # Mutable oracle expectations are isolated per test to prevent cross-test pollution.
+        self.deps = copy.deepcopy(type(self).deps)
         self.matrix = json.loads(MATRIX_PATH.read_text(encoding="utf-8"))
         self.fixtures = json.loads(
             (ROOT / "casefiles/technical-cases.v1.json").read_text())
