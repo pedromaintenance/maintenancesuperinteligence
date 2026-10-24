@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/authenticated-principal.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "principalId",
+    "role",
+    "discipline",
+    "identityAuthenticated",
+    "serverVerified",
+    "reviewAuthority"
+  ],
+  "properties": {
+    "principalId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "role": {
+      "enum": [
+        "author",
+        "reviewer",
+        "adjudicator",
+        "auditor",
+        "custodian",
+        "administrator",
+        "oem_specialist"
+      ]
+    },
+    "discipline": {
+      "enum": [
+        "oil",
+        "hydraulics",
+        "electronics",
+        "mechanics",
+        "vibration"
+      ]
+    },
+    "identityAuthenticated": {
+      "const": false
+    },
+    "serverVerified": {
+      "const": false
+    },
+    "reviewAuthority": {
+      "const": false
+    }
+  }
+}
