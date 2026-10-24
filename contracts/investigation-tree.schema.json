@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/investigation-tree.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "caseFileId",
+    "rootNodeId",
+    "nodes",
+    "decisionTrace",
+    "unresolvedHypothesisSet",
+    "traceSelectedRoot",
+    "fieldAccuracyMeasured",
+    "testsExecuted",
+    "mayCreateWorkOrder",
+    "mayModifyECM",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.investigation-tree.v1"
+    },
+    "caseFileId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rootNodeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "$ref": "investigation-node.schema.json"
+      }
+    },
+    "decisionTrace": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "$ref": "decision-trace.schema.json"
+      }
+    },
+    "unresolvedHypothesisSet": {
+      "$ref": "unresolved-hypothesis-set.schema.json"
+    },
+    "traceSelectedRoot": {
+      "$ref": "decision-trace.schema.json"
+    },
+    "fieldAccuracyMeasured": {
+      "const": false
+    },
+    "testsExecuted": {
+      "const": 0
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayModifyECM": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "abstain_pending_verified_evidence"
+    }
+  }
+}
