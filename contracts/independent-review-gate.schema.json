@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/independent-review-gate.schema.json",
+  "title": "IndependentReviewGate — not authenticated",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "status",
+    "engineerIdentityVerified",
+    "securityIdentityVerified",
+    "privacyIdentityVerified",
+    "custodianIdentityVerified",
+    "twoIndependentRealReviewers",
+    "evidenceProtectedExternally",
+    "sourceOemEffectivityVerified",
+    "approvalGranted",
+    "mayDeploy",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.independent-review-gate.v1"
+    },
+    "status": {
+      "const": "blocked_pending_private_review"
+    },
+    "engineerIdentityVerified": {
+      "const": false
+    },
+    "securityIdentityVerified": {
+      "const": false
+    },
+    "privacyIdentityVerified": {
+      "const": false
+    },
+    "custodianIdentityVerified": {
+      "const": false
+    },
+    "twoIndependentRealReviewers": {
+      "const": false
+    },
+    "evidenceProtectedExternally": {
+      "const": false
+    },
+    "sourceOemEffectivityVerified": {
+      "const": false
+    },
+    "approvalGranted": {
+      "const": false
+    },
+    "mayDeploy": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}
