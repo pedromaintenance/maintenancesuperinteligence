@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "modelSource",
+    "sourceBenchmark",
+    "realFieldValidityEstablished",
+    "canUseToExcludeHypotheses",
+    "expected"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.qualitative-oracle.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "independently_authored_synthetic_regression_expectations_not_mechanical_truth"
+    },
+    "modelSource": {
+      "const": "evidence/qualitative-discrimination.v1.json"
+    },
+    "sourceBenchmark": {
+      "const": "benchmarks/question-quality.v1.json"
+    },
+    "realFieldValidityEstablished": {
+      "const": false
+    },
+    "canUseToExcludeHypotheses": {
+      "const": false
+    },
+    "expected": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseFileId",
+          "benchmarkFixtureId",
+          "selectedPairId",
+          "selectedMethodId",
+          "comparisonStates",
+          "observedSupportCount",
+          "observedWeakeningCount",
+          "hypothesesExcluded",
+          "testsPerformed"
+        ],
+        "properties": {
+          "caseFileId": {
+            "type": "string",
+            "pattern": "^SIM-TECH-"
+          },
+          "benchmarkFixtureId": {
+            "type": "string"
+          },
+          "selectedPairId": {
+            "type": "string"
+          },
+          "selectedMethodId": {
+            "type": "string"
+          },
+          "comparisonStates": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "pairId",
+                "currentEvidenceState",
+                "observedPhysicalEvidence",
+                "bothHypothesesOpen",
+                "conditionalPatternsAreMeasurements"
+              ],
+              "properties": {
+                "pairId": {
+                  "type": "string"
+                },
+                "currentEvidenceState": {
+                  "enum": [
+                    "contradicted",
+                    "not_measured",
+                    "inconclusive"
+                  ]
+                },
+                "observedPhysicalEvidence": {
+                  "const": false
+                },
+                "bothHypothesesOpen": {
+                  "const": true
+                },
+                "conditionalPatternsAreMeasurements": {
+                  "const": false
+                }
+              }
+            }
+          },
+          "observedSupportCount": {
+            "const": 0
+          },
+          "observedWeakeningCount": {
+            "const": 0
+          },
+          "hypothesesExcluded": {
+            "const": 0
+          },
+          "testsPerformed": {
+            "const": 0
+          }
+        }
+      }
+    }
+  }
+}
