@@ -1,4 +1,4 @@
-name: Validate public knowledge, investigation, methods and question quality
+name: Validate research knowledge, methods, benchmark and review governance
 
 on:
   push:
@@ -353,6 +353,80 @@ jobs:
         with:
           name: diagnostic-question-regression-benchmark
           path: build/benchmarks/question-quality.v1.report.json
+          retention-days: 14
+      - name: Validate synthetic technical claims and reviewer workflow
+        run: |
+          mkdir -p build/governance
+          python -m governance.review \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --output build/governance/technical-review.v1.report.json > /dev/null
+      - name: Verify source links, derived statuses, fictional personas, and no OEM approval
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("build/governance/technical-review.v1.report.json").read_text())
+          assert report["reviewMode"] == "synthetic_only"
+          assert report["claimsEvaluated"] == 8
+          assert report["citationsLinked"] == 9
+          assert report["fictionalAssessments"] == 13
+          assert report["statusCounts"] == {
+              "draft": 1, "needs_evidence": 2, "under_review": 1,
+              "disputed": 2, "general_reference_supported": 2,
+              "oem_series_verified": 0}
+          assert len(report["disagreements"]) == 2
+          assert all(d["requiresRealTechnicalReview"]
+                     and not d["reviewerIdentityVerified"]
+                     and not d["reviewerIndependenceVerified"]
+                     and not d["oemSeriesVerified"]
+                     and not d["approvedForOperationalUse"]
+                     and not d["rootCauseConfirmed"]
+                     for d in report["decisions"])
+          assert not report["hasAuthenticatedExpertReviews"]
+          assert not report["discriminationScientificallyValidated"]
+          assert not report["mayAuthorizeWork"]
+          assert not report["mayCreateWorkOrder"]
+          assert not report["mayReleaseEquipment"]
+          print("PASS: 8 editorial claims with provenance and zero real technical approvals")
+          PY
+      - name: Check question benchmark review qualification gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("build/benchmarks/question-quality.v1.report.json").read_text())
+          gate = report["technicalReviewGate"]
+          assert gate["claimsWithTraceability"] == 8
+          assert gate["editoriallySupportedWithTwoFictionalPersonas"] == 2
+          assert gate["unresolvedSyntheticDisagreements"] == 2
+          assert gate["status"] == "blocked_pending_independent_real_expert_review"
+          assert not gate["realReviewerIdentityAuthenticated"]
+          assert not gate["realReviewerIndependenceVerified"]
+          assert not gate["oemSeriesEffectivityVerified"]
+          assert not gate["mayClaimFieldDiagnosticValidity"]
+          print("PASS: synthetic software benchmark not mistaken for independently verified diagnostic accuracy")
+          PY
+      - name: Reject counterfeit signed expert review in synthetic packet
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path("governance/review-packet.v1.json").read_text())
+          p["reviewers"][0]["credentialsVerified"] = True
+          Path("build/governance/fake-credentials.json").write_text(json.dumps(p))
+          PY
+          if python -m governance.review \
+              --snapshot build/fmea-public/fmea-public.snapshot.json \
+              --packet build/governance/fake-credentials.json > /dev/null 2>&1; then
+            echo "SECURITY FAIL: unverified reviewer credentials promoted to real technical approval"
+            exit 1
+          fi
+          rm build/governance/fake-credentials.json
+      - name: Publish synthetic governance decision report
+        uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-technical-review-and-disagreement-report
+          path: build/governance/technical-review.v1.report.json
           retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4

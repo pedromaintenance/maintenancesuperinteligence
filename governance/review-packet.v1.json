@@ -1,0 +1,594 @@
+{
+  "schema": "maintenance-superinteligence.technical-review-packet.v1",
+  "version": "1.0.0",
+  "purpose": "simulation_only_independent_review_workflow",
+  "sourceRegistryVersion": "1.0.0",
+  "methodCatalogVersion": "1.0.0",
+  "matrixVersion": "1.0.0",
+  "reviewers": [
+    {
+      "reviewerId": "SIM-REVIEWER-OIL-A",
+      "discipline": "oil",
+      "identityNature": "fictional_persona_no_real_signature",
+      "credentialsVerified": false,
+      "independenceVerified": false,
+      "organization": null
+    },
+    {
+      "reviewerId": "SIM-REVIEWER-OIL-B",
+      "discipline": "oil",
+      "identityNature": "fictional_persona_no_real_signature",
+      "credentialsVerified": false,
+      "independenceVerified": false,
+      "organization": null
+    },
+    {
+      "reviewerId": "SIM-REVIEWER-HYD-A",
+      "discipline": "hydraulics",
+      "identityNature": "fictional_persona_no_real_signature",
+      "credentialsVerified": false,
+      "independenceVerified": false,
+      "organization": null
+    },
+    {
+      "reviewerId": "SIM-REVIEWER-HYD-B",
+      "discipline": "hydraulics",
+      "identityNature": "fictional_persona_no_real_signature",
+      "credentialsVerified": false,
+      "independenceVerified": false,
+      "organization": null
+    },
+    {
+      "reviewerId": "SIM-REVIEWER-ECM-A",
+      "discipline": "electronics",
+      "identityNature": "fictional_persona_no_real_signature",
+      "credentialsVerified": false,
+      "independenceVerified": false,
+      "organization": null
+    },
+    {
+      "reviewerId": "SIM-REVIEWER-ECM-B",
+      "discipline": "electronics",
+      "identityNature": "fictional_persona_no_real_signature",
+      "credentialsVerified": false,
+      "independenceVerified": false,
+      "organization": null
+    },
+    {
+      "reviewerId": "SIM-REVIEWER-MECH-A",
+      "discipline": "mechanics",
+      "identityNature": "fictional_persona_no_real_signature",
+      "credentialsVerified": false,
+      "independenceVerified": false,
+      "organization": null
+    },
+    {
+      "reviewerId": "SIM-REVIEWER-MECH-B",
+      "discipline": "mechanics",
+      "identityNature": "fictional_persona_no_real_signature",
+      "credentialsVerified": false,
+      "independenceVerified": false,
+      "organization": null
+    },
+    {
+      "reviewerId": "SIM-REVIEWER-VIB-A",
+      "discipline": "vibration",
+      "identityNature": "fictional_persona_no_real_signature",
+      "credentialsVerified": false,
+      "independenceVerified": false,
+      "organization": null
+    },
+    {
+      "reviewerId": "SIM-REVIEWER-VIB-B",
+      "discipline": "vibration",
+      "identityNature": "fictional_persona_no_real_signature",
+      "credentialsVerified": false,
+      "independenceVerified": false,
+      "organization": null
+    },
+    {
+      "reviewerId": "SIM-REVIEWER-OIL-C",
+      "discipline": "oil",
+      "identityNature": "fictional_persona_no_real_signature",
+      "credentialsVerified": false,
+      "independenceVerified": false,
+      "organization": null
+    },
+    {
+      "reviewerId": "SIM-REVIEWER-OIL-D",
+      "discipline": "oil",
+      "identityNature": "fictional_persona_no_real_signature",
+      "credentialsVerified": false,
+      "independenceVerified": false,
+      "organization": null
+    }
+  ],
+  "citations": [
+    {
+      "citationId": "CIT-OIL-FORMULATION-1",
+      "sourceId": "CAT-FLUID-ANALYSIS-101",
+      "methodId": "MET-OIL-PRODUCT",
+      "pairId": "FD-P01",
+      "interpretationRole": "public_general_context_only",
+      "quotedPassage": null,
+      "sourceApplicability": "generic_not_oem_series",
+      "licenseCopyIncluded": false
+    },
+    {
+      "citationId": "CIT-OIL-WATER-1",
+      "sourceId": "CAT-FLUID-ANALYSIS-101",
+      "methodId": "MET-OIL-WATER",
+      "pairId": "FD-P02",
+      "interpretationRole": "public_general_context_only",
+      "quotedPassage": null,
+      "sourceApplicability": "generic_not_oem_series",
+      "licenseCopyIncluded": false
+    },
+    {
+      "citationId": "CIT-HYD-LOAD-1",
+      "sourceId": "BOSCH-REXROTH-CYTRO",
+      "methodId": "MET-HYD-PRESSURE",
+      "pairId": "HYD-P02",
+      "interpretationRole": "public_general_context_only",
+      "quotedPassage": null,
+      "sourceApplicability": "generic_not_oem_series",
+      "licenseCopyIncluded": false
+    },
+    {
+      "citationId": "CIT-ECM-EVENT-1",
+      "sourceId": "CAT-ET-OVERVIEW",
+      "methodId": "MET-ECM-CODES",
+      "pairId": "EL-P02",
+      "interpretationRole": "public_general_context_only",
+      "quotedPassage": null,
+      "sourceApplicability": "generic_not_oem_series",
+      "licenseCopyIncluded": false
+    },
+    {
+      "citationId": "CIT-MECH-MAGNET-1",
+      "sourceId": "CAT-DRIVE-MAGNET-PLUG",
+      "methodId": "MET-MECH-MAGNET",
+      "pairId": "FD-P04",
+      "interpretationRole": "public_general_context_only",
+      "quotedPassage": null,
+      "sourceApplicability": "generic_not_oem_series",
+      "licenseCopyIncluded": false
+    },
+    {
+      "citationId": "CIT-MECH-MAGNET-2",
+      "sourceId": "SKF-ISO15243-BEARING",
+      "methodId": "MET-MECH-MAGNET",
+      "pairId": "FD-P04",
+      "interpretationRole": "public_general_context_only",
+      "quotedPassage": null,
+      "sourceApplicability": "generic_not_oem_series",
+      "licenseCopyIncluded": false
+    },
+    {
+      "citationId": "CIT-VIB-CONTEXT-1",
+      "sourceId": "SKF-VIBRATION-CONDITION",
+      "methodId": "MET-VIB-LOCALIZE",
+      "pairId": "FD-P03",
+      "interpretationRole": "public_general_context_only",
+      "quotedPassage": null,
+      "sourceApplicability": "generic_not_oem_series",
+      "licenseCopyIncluded": false
+    },
+    {
+      "citationId": "CIT-HYD-THERMAL-1",
+      "sourceId": "BOSCH-REXROTH-CYTRO",
+      "methodId": "MET-HYD-TEMP",
+      "pairId": "HYD-P03",
+      "interpretationRole": "public_general_context_only",
+      "quotedPassage": null,
+      "sourceApplicability": "generic_not_oem_series",
+      "licenseCopyIncluded": false
+    },
+    {
+      "citationId": "CIT-ECM-PHYSICAL-1",
+      "sourceId": "CAT-ET-OVERVIEW",
+      "methodId": "MET-ECM-CONTEXT",
+      "pairId": "EL-P01",
+      "interpretationRole": "public_general_context_only",
+      "quotedPassage": null,
+      "sourceApplicability": "generic_not_oem_series",
+      "licenseCopyIncluded": false
+    }
+  ],
+  "claims": [
+    {
+      "claimId": "CLM-OIL-FORMULATION",
+      "domain": "oil",
+      "methodId": "MET-OIL-PRODUCT",
+      "pairId": "FD-P01",
+      "statement": "Diferenças de aditivos devem ser contextualizadas com o histórico de formulação do lubrificante.",
+      "counterexample": "Perfil alterado também pode coexistir com problema de lubrificação.",
+      "interpretationLimit": "Não confirma dano nem se determinada formulação atende ao modelo e à série.",
+      "citationIds": [
+        "CIT-OIL-FORMULATION-1"
+      ],
+      "evidenceNature": "author_editorial_claim_not_field_fact",
+      "applicabilityEvidence": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "publicationId": null,
+        "revision": null,
+        "verificationStatus": "not_verified",
+        "operationallyApproved": false
+      },
+      "rootCauseConfirmed": false,
+      "mayAuthorizeMaintenance": false
+    },
+    {
+      "claimId": "CLM-OIL-WATER",
+      "domain": "oil",
+      "methodId": "MET-OIL-WATER",
+      "pairId": "FD-P02",
+      "statement": "Um indício de água requer avaliar a representatividade e a rastreabilidade da amostragem.",
+      "counterexample": "Contaminação de frasco ou ponto de coleta pode simular ingresso no compartimento.",
+      "interpretationLimit": "Repetibilidade e caminho de ingresso ainda exigem métodos e documentação aplicáveis.",
+      "citationIds": [
+        "CIT-OIL-WATER-1"
+      ],
+      "evidenceNature": "author_editorial_claim_not_field_fact",
+      "applicabilityEvidence": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "publicationId": null,
+        "revision": null,
+        "verificationStatus": "not_verified",
+        "operationallyApproved": false
+      },
+      "rootCauseConfirmed": false,
+      "mayAuthorizeMaintenance": false
+    },
+    {
+      "claimId": "CLM-HYD-LOAD",
+      "domain": "hydraulics",
+      "methodId": "MET-HYD-PRESSURE",
+      "pairId": "HYD-P02",
+      "statement": "A interpretação de pressão hidráulica exige conhecer condição de carga e ponto de observação.",
+      "counterexample": "Uma alteração de demanda pode mimetizar deficiência de alimentação.",
+      "interpretationLimit": "A referência geral não fornece ponto ou pressão admissível por série.",
+      "citationIds": [
+        "CIT-HYD-LOAD-1"
+      ],
+      "evidenceNature": "author_editorial_claim_not_field_fact",
+      "applicabilityEvidence": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "publicationId": null,
+        "revision": null,
+        "verificationStatus": "not_verified",
+        "operationallyApproved": false
+      },
+      "rootCauseConfirmed": false,
+      "mayAuthorizeMaintenance": false
+    },
+    {
+      "claimId": "CLM-ECM-EVENT",
+      "domain": "electronics",
+      "methodId": "MET-ECM-CODES",
+      "pairId": "EL-P02",
+      "statement": "Um código de evento registrado não constitui, isoladamente, confirmação de defeito do componente associado.",
+      "counterexample": "Eventos históricos podem persistir após cessar condição operacional.",
+      "interpretationLimit": "Leitura e interpretação dependem de ECM, software, contexto e literatura aplicável.",
+      "citationIds": [
+        "CIT-ECM-EVENT-1"
+      ],
+      "evidenceNature": "author_editorial_claim_not_field_fact",
+      "applicabilityEvidence": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "publicationId": null,
+        "revision": null,
+        "verificationStatus": "not_verified",
+        "operationallyApproved": false
+      },
+      "rootCauseConfirmed": false,
+      "mayAuthorizeMaintenance": false
+    },
+    {
+      "claimId": "CLM-MECH-MAGNET",
+      "domain": "mechanics",
+      "methodId": "MET-MECH-MAGNET",
+      "pairId": "FD-P04",
+      "statement": "Depósitos magnéticos sem histórico comparável não identificam isoladamente a origem do desgaste.",
+      "counterexample": "Partículas podem provir de diferentes conjuntos e materiais.",
+      "interpretationLimit": "Não localizar rolamento ou engrenagem sem outras evidências.",
+      "citationIds": [
+        "CIT-MECH-MAGNET-1",
+        "CIT-MECH-MAGNET-2"
+      ],
+      "evidenceNature": "author_editorial_claim_not_field_fact",
+      "applicabilityEvidence": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "publicationId": null,
+        "revision": null,
+        "verificationStatus": "not_verified",
+        "operationallyApproved": false
+      },
+      "rootCauseConfirmed": false,
+      "mayAuthorizeMaintenance": false
+    },
+    {
+      "claimId": "CLM-VIB-CONTEXT",
+      "domain": "vibration",
+      "methodId": "MET-VIB-LOCALIZE",
+      "pairId": "FD-P03",
+      "statement": "A interpretação de ruído ou vibração depende de localização e contexto de operação.",
+      "counterexample": "Freio ou pneu podem ser fontes alternativas de ruído.",
+      "interpretationLimit": "Assinatura e limites de alarme não estão homologados para a frota.",
+      "citationIds": [
+        "CIT-VIB-CONTEXT-1"
+      ],
+      "evidenceNature": "author_editorial_claim_not_field_fact",
+      "applicabilityEvidence": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "publicationId": null,
+        "revision": null,
+        "verificationStatus": "not_verified",
+        "operationallyApproved": false
+      },
+      "rootCauseConfirmed": false,
+      "mayAuthorizeMaintenance": false
+    },
+    {
+      "claimId": "CLM-HYD-THERMAL",
+      "domain": "hydraulics",
+      "methodId": "MET-HYD-TEMP",
+      "pairId": "HYD-P03",
+      "statement": "Mudanças térmicas devem ser comparadas sob condições operacionais compatíveis.",
+      "counterexample": "Ciclo de carga variável pode explicar alterações térmicas.",
+      "interpretationLimit": "Não diferencia bomba, restrição ou arrefecimento sem outros dados.",
+      "citationIds": [
+        "CIT-HYD-THERMAL-1"
+      ],
+      "evidenceNature": "author_editorial_claim_not_field_fact",
+      "applicabilityEvidence": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "publicationId": null,
+        "revision": null,
+        "verificationStatus": "not_verified",
+        "operationallyApproved": false
+      },
+      "rootCauseConfirmed": false,
+      "mayAuthorizeMaintenance": false
+    },
+    {
+      "claimId": "CLM-ECM-PHYSICAL",
+      "domain": "electronics",
+      "methodId": "MET-ECM-CONTEXT",
+      "pairId": "EL-P01",
+      "statement": "Confrontar informações eletrônicas e físicas pode formular hipóteses concorrentes sobre anomalias.",
+      "counterexample": "Intermitência de circuito e variação física podem produzir sinais parecidos.",
+      "interpretationLimit": "Não autoriza parametrizar, calibrar ou substituir sensor ou ECM.",
+      "citationIds": [
+        "CIT-ECM-PHYSICAL-1"
+      ],
+      "evidenceNature": "author_editorial_claim_not_field_fact",
+      "applicabilityEvidence": {
+        "manufacturer": null,
+        "model": null,
+        "serialOrArrangement": null,
+        "publicationId": null,
+        "revision": null,
+        "verificationStatus": "not_verified",
+        "operationallyApproved": false
+      },
+      "rootCauseConfirmed": false,
+      "mayAuthorizeMaintenance": false
+    }
+  ],
+  "assessments": [
+    {
+      "reviewId": "REV-OIL-FORMULATION-R1-1",
+      "claimId": "CLM-OIL-FORMULATION",
+      "reviewerId": "SIM-REVIEWER-OIL-A",
+      "round": 1,
+      "assessment": "support_general",
+      "rationale": "Leitura didática considera a afirmação compatível com princípio geral, sem validação de campo.",
+      "citationIds": [
+        "CIT-OIL-FORMULATION-1"
+      ],
+      "nature": "synthetic_training_review_not_signed",
+      "conflictOfInterestDeclared": false,
+      "competenceDeclaredDomain": "oil",
+      "signature": null
+    },
+    {
+      "reviewId": "REV-OIL-FORMULATION-R1-2",
+      "claimId": "CLM-OIL-FORMULATION",
+      "reviewerId": "SIM-REVIEWER-OIL-B",
+      "round": 1,
+      "assessment": "support_general",
+      "rationale": "Leitura didática considera a afirmação compatível com princípio geral, sem validação de campo.",
+      "citationIds": [
+        "CIT-OIL-FORMULATION-1"
+      ],
+      "nature": "synthetic_training_review_not_signed",
+      "conflictOfInterestDeclared": false,
+      "competenceDeclaredDomain": "oil",
+      "signature": null
+    },
+    {
+      "reviewId": "REV-OIL-WATER-R1-1",
+      "claimId": "CLM-OIL-WATER",
+      "reviewerId": "SIM-REVIEWER-OIL-A",
+      "round": 1,
+      "assessment": "support_general",
+      "rationale": "Leitura didática considera a afirmação compatível com princípio geral, sem validação de campo.",
+      "citationIds": [
+        "CIT-OIL-WATER-1"
+      ],
+      "nature": "synthetic_training_review_not_signed",
+      "conflictOfInterestDeclared": false,
+      "competenceDeclaredDomain": "oil",
+      "signature": null
+    },
+    {
+      "reviewId": "REV-OIL-WATER-R1-2",
+      "claimId": "CLM-OIL-WATER",
+      "reviewerId": "SIM-REVIEWER-OIL-B",
+      "round": 1,
+      "assessment": "challenge",
+      "rationale": "Parecer didático contesta a suficiência da afirmação sem casos contrários independentes.",
+      "citationIds": [
+        "CIT-OIL-WATER-1"
+      ],
+      "nature": "synthetic_training_review_not_signed",
+      "conflictOfInterestDeclared": false,
+      "competenceDeclaredDomain": "oil",
+      "signature": null
+    },
+    {
+      "reviewId": "REV-HYD-LOAD-R1-1",
+      "claimId": "CLM-HYD-LOAD",
+      "reviewerId": "SIM-REVIEWER-HYD-A",
+      "round": 1,
+      "assessment": "support_general",
+      "rationale": "Leitura didática considera a afirmação compatível com princípio geral, sem validação de campo.",
+      "citationIds": [
+        "CIT-HYD-LOAD-1"
+      ],
+      "nature": "synthetic_training_review_not_signed",
+      "conflictOfInterestDeclared": false,
+      "competenceDeclaredDomain": "hydraulics",
+      "signature": null
+    },
+    {
+      "reviewId": "REV-HYD-LOAD-R1-2",
+      "claimId": "CLM-HYD-LOAD",
+      "reviewerId": "SIM-REVIEWER-HYD-B",
+      "round": 1,
+      "assessment": "insufficient",
+      "rationale": "Parecer didático exige evidência e contexto complementares.",
+      "citationIds": [
+        "CIT-HYD-LOAD-1"
+      ],
+      "nature": "synthetic_training_review_not_signed",
+      "conflictOfInterestDeclared": false,
+      "competenceDeclaredDomain": "hydraulics",
+      "signature": null
+    },
+    {
+      "reviewId": "REV-ECM-EVENT-R1-1",
+      "claimId": "CLM-ECM-EVENT",
+      "reviewerId": "SIM-REVIEWER-ECM-A",
+      "round": 1,
+      "assessment": "support_general",
+      "rationale": "Leitura didática considera a afirmação compatível com princípio geral, sem validação de campo.",
+      "citationIds": [
+        "CIT-ECM-EVENT-1"
+      ],
+      "nature": "synthetic_training_review_not_signed",
+      "conflictOfInterestDeclared": false,
+      "competenceDeclaredDomain": "electronics",
+      "signature": null
+    },
+    {
+      "reviewId": "REV-ECM-EVENT-R1-2",
+      "claimId": "CLM-ECM-EVENT",
+      "reviewerId": "SIM-REVIEWER-ECM-B",
+      "round": 1,
+      "assessment": "support_general",
+      "rationale": "Leitura didática considera a afirmação compatível com princípio geral, sem validação de campo.",
+      "citationIds": [
+        "CIT-ECM-EVENT-1"
+      ],
+      "nature": "synthetic_training_review_not_signed",
+      "conflictOfInterestDeclared": false,
+      "competenceDeclaredDomain": "electronics",
+      "signature": null
+    },
+    {
+      "reviewId": "REV-MECH-MAGNET-R1-1",
+      "claimId": "CLM-MECH-MAGNET",
+      "reviewerId": "SIM-REVIEWER-MECH-A",
+      "round": 1,
+      "assessment": "support_general",
+      "rationale": "Leitura didática considera a afirmação compatível com princípio geral, sem validação de campo.",
+      "citationIds": [
+        "CIT-MECH-MAGNET-1"
+      ],
+      "nature": "synthetic_training_review_not_signed",
+      "conflictOfInterestDeclared": false,
+      "competenceDeclaredDomain": "mechanics",
+      "signature": null
+    },
+    {
+      "reviewId": "REV-HYD-THERMAL-R1-1",
+      "claimId": "CLM-HYD-THERMAL",
+      "reviewerId": "SIM-REVIEWER-HYD-A",
+      "round": 1,
+      "assessment": "insufficient",
+      "rationale": "Parecer didático exige evidência e contexto complementares.",
+      "citationIds": [
+        "CIT-HYD-THERMAL-1"
+      ],
+      "nature": "synthetic_training_review_not_signed",
+      "conflictOfInterestDeclared": false,
+      "competenceDeclaredDomain": "hydraulics",
+      "signature": null
+    },
+    {
+      "reviewId": "REV-HYD-THERMAL-R1-2",
+      "claimId": "CLM-HYD-THERMAL",
+      "reviewerId": "SIM-REVIEWER-HYD-B",
+      "round": 1,
+      "assessment": "insufficient",
+      "rationale": "Parecer didático exige evidência e contexto complementares.",
+      "citationIds": [
+        "CIT-HYD-THERMAL-1"
+      ],
+      "nature": "synthetic_training_review_not_signed",
+      "conflictOfInterestDeclared": false,
+      "competenceDeclaredDomain": "hydraulics",
+      "signature": null
+    },
+    {
+      "reviewId": "REV-ECM-PHYSICAL-R1-1",
+      "claimId": "CLM-ECM-PHYSICAL",
+      "reviewerId": "SIM-REVIEWER-ECM-A",
+      "round": 1,
+      "assessment": "challenge",
+      "rationale": "Parecer didático contesta a suficiência da afirmação sem casos contrários independentes.",
+      "citationIds": [
+        "CIT-ECM-PHYSICAL-1"
+      ],
+      "nature": "synthetic_training_review_not_signed",
+      "conflictOfInterestDeclared": false,
+      "competenceDeclaredDomain": "electronics",
+      "signature": null
+    },
+    {
+      "reviewId": "REV-ECM-PHYSICAL-R1-2",
+      "claimId": "CLM-ECM-PHYSICAL",
+      "reviewerId": "SIM-REVIEWER-ECM-B",
+      "round": 1,
+      "assessment": "support_general",
+      "rationale": "Leitura didática considera a afirmação compatível com princípio geral, sem validação de campo.",
+      "citationIds": [
+        "CIT-ECM-PHYSICAL-1"
+      ],
+      "nature": "synthetic_training_review_not_signed",
+      "conflictOfInterestDeclared": false,
+      "competenceDeclaredDomain": "electronics",
+      "signature": null
+    }
+  ],
+  "approvalEvidence": [],
+  "humanApprovalAuthority": false,
+  "mayChangeEquipmentStatus": false,
+  "operationalValidation": false
+}

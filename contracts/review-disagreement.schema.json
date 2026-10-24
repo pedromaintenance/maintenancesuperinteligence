@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/review-disagreement.schema.json",
+  "title": "ReviewDisagreement unresolved v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "claimId",
+    "round",
+    "reviewIds",
+    "positions",
+    "counterexample",
+    "resolution",
+    "requiresNewSourcesOrIndependentReview"
+  ],
+  "properties": {
+    "claimId": {
+      "type": "string",
+      "pattern": "^CLM-[A-Z-]+$"
+    },
+    "round": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "reviewIds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^REV-[A-Z0-9-]+$"
+      }
+    },
+    "positions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "support_general",
+          "insufficient",
+          "challenge"
+        ]
+      }
+    },
+    "counterexample": {
+      "type": "string",
+      "minLength": 1
+    },
+    "resolution": {
+      "const": "not_adjudicated"
+    },
+    "requiresNewSourcesOrIndependentReview": {
+      "const": true
+    }
+  }
+}

@@ -20,6 +20,7 @@ from methods.discrimination import (
 from methods.library import (
     CATALOG_PATH, SOURCES_PATH, validate_catalog, validate_sources
 )
+from governance.review import PACKET_PATH, validate_packet
 
 ROOT = Path(__file__).resolve().parent.parent
 BENCHMARK_PATH = ROOT / "benchmarks/question-quality.v1.json"
@@ -338,11 +339,21 @@ def eval_one(fixture: dict, output: object, families: dict, methods: dict,
 
 
 def execute_benchmark(manifest: dict, matrix: dict, methods: dict,
-                      snapshot: dict, rubric: dict | None = None) -> dict:
+                      snapshot: dict, rubric: dict | None = None,
+                      review_packet: dict | None = None) -> dict:
     rubric = rubric or json.loads(RUBRIC_PATH.read_text(encoding="utf-8"))
     validate_rubric(rubric)
     families = validate_matrix(matrix, methods, snapshot)
     fixtures = validate_manifest(manifest, families)
+    # O benchmark regressivo requer governança íntegra, mas nunca autentica
+    # revisão humana através de dados fictícios de pares de revisores.
+    review_packet = review_packet if review_packet is not None else json.loads(
+        PACKET_PATH.read_text(encoding="utf-8"))
+    review_sources = validate_sources(json.loads(SOURCES_PATH.read_text(encoding="utf-8")))
+    reviewer_data = validate_packet(review_packet, methods, review_sources, families)
+    decisions = reviewer_data["decisions"]
+    simulated_supported = sum(d["derivedStatus"] == "general_reference_supported"
+                              for d in decisions)
     reports = []
     for fixture in fixtures:
         first = select_questions(fixture["case"], matrix, methods, snapshot)
@@ -366,6 +377,18 @@ def execute_benchmark(manifest: dict, matrix: dict, methods: dict,
         "manifestSha256": digest(manifest),
         "rubricSha256": digest(rubric),
         "matrixSha256": digest(matrix),
+        "technicalReviewGate": {
+            "schema": "maintenance-superinteligence.technical-review-gate.v1",
+            "packetSha256": digest(review_packet),
+            "claimsWithTraceability": len(reviewer_data["claims"]),
+            "editoriallySupportedWithTwoFictionalPersonas": simulated_supported,
+            "unresolvedSyntheticDisagreements": len(reviewer_data["disagreements"]),
+            "realReviewerIdentityAuthenticated": False,
+            "realReviewerIndependenceVerified": False,
+            "oemSeriesEffectivityVerified": False,
+            "mayClaimFieldDiagnosticValidity": False,
+            "status": "blocked_pending_independent_real_expert_review",
+        },
         "fixturesEvaluated": len(reports),
         "fixturesPassed": sum(row["passes"] for row in reports),
         "canonicalReproducibility": {
@@ -398,6 +421,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--snapshot", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, default=BENCHMARK_PATH)
     parser.add_argument("--rubric", type=Path, default=RUBRIC_PATH)
+    parser.add_argument("--review-packet", type=Path, default=PACKET_PATH)
     parser.add_argument("--matrix", type=Path, default=MATRIX_PATH)
     parser.add_argument("--catalog", type=Path, default=CATALOG_PATH)
     parser.add_argument("--sources", type=Path, default=SOURCES_PATH)
@@ -411,7 +435,9 @@ def main(argv: list[str] | None = None) -> int:
         matrix = json.loads(args.matrix.read_text(encoding="utf-8"))
         manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
         rubric = json.loads(args.rubric.read_text(encoding="utf-8"))
-        report = execute_benchmark(manifest, matrix, methods, source, rubric)
+        review_packet = json.loads(args.review_packet.read_text(encoding="utf-8"))
+        report = execute_benchmark(manifest, matrix, methods, source, rubric,
+                                   review_packet)
         serialized = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
         if args.output:
             args.output.parent.mkdir(parents=True, exist_ok=True)

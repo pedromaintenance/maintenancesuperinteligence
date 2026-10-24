@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/reviewer-assessment.schema.json",
+  "title": "ReviewerAssessment simulated opinion v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "reviewId",
+    "claimId",
+    "reviewerId",
+    "round",
+    "assessment",
+    "rationale",
+    "citationIds",
+    "nature",
+    "conflictOfInterestDeclared",
+    "competenceDeclaredDomain",
+    "signature"
+  ],
+  "properties": {
+    "reviewId": {
+      "type": "string",
+      "pattern": "^REV-[A-Z0-9-]+$"
+    },
+    "claimId": {
+      "type": "string",
+      "pattern": "^CLM-[A-Z-]+$"
+    },
+    "reviewerId": {
+      "type": "string",
+      "pattern": "^SIM-REVIEWER-[A-Z-]+$"
+    },
+    "round": {
+      "type": "integer",
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "assessment": {
+      "enum": [
+        "support_general",
+        "insufficient",
+        "challenge"
+      ]
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "citationIds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9-]+$"
+      }
+    },
+    "nature": {
+      "const": "synthetic_training_review_not_signed"
+    },
+    "conflictOfInterestDeclared": {
+      "const": false
+    },
+    "competenceDeclaredDomain": {
+      "enum": [
+        "oil",
+        "hydraulics",
+        "mechanics",
+        "vibration",
+        "electronics"
+      ]
+    },
+    "signature": {
+      "type": "null"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/applicability-evidence.schema.json",
+  "title": "Synthetic ApplicabilityEvidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manufacturer",
+    "model",
+    "serialOrArrangement",
+    "publicationId",
+    "revision",
+    "verificationStatus",
+    "operationallyApproved"
+  ],
+  "properties": {
+    "manufacturer": {
+      "type": "null"
+    },
+    "model": {
+      "type": "null"
+    },
+    "serialOrArrangement": {
+      "type": "null"
+    },
+    "publicationId": {
+      "type": "null"
+    },
+    "revision": {
+      "type": "null"
+    },
+    "verificationStatus": {
+      "const": "not_verified"
+    },
+    "operationallyApproved": {
+      "const": false
+    }
+  }
+}

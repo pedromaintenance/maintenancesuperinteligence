@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/review-decision.schema.json",
+  "title": "ReviewDecision simulation only v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "claimId",
+    "derivedStatus",
+    "reviewRound",
+    "reviewIds",
+    "reviewCount",
+    "reviewersInLatestRound",
+    "reviewerIdentityVerified",
+    "reviewerIndependenceVerified",
+    "requiresRealTechnicalReview",
+    "technicalQualification",
+    "basis",
+    "oemSeriesVerified",
+    "approvedForOperationalUse",
+    "rootCauseConfirmed"
+  ],
+  "properties": {
+    "claimId": {
+      "type": "string",
+      "pattern": "^CLM-[A-Z-]+$"
+    },
+    "derivedStatus": {
+      "enum": [
+        "draft",
+        "needs_evidence",
+        "under_review",
+        "disputed",
+        "general_reference_supported"
+      ]
+    },
+    "reviewRound": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "reviewIds": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "string",
+        "pattern": "^REV-[A-Z0-9-]+$"
+      }
+    },
+    "reviewCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "reviewersInLatestRound": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "reviewerIdentityVerified": {
+      "const": false
+    },
+    "reviewerIndependenceVerified": {
+      "const": false
+    },
+    "requiresRealTechnicalReview": {
+      "const": true
+    },
+    "technicalQualification": {
+      "const": "synthetic_workflow_only"
+    },
+    "basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "oemSeriesVerified": {
+      "const": false
+    },
+    "approvedForOperationalUse": {
+      "const": false
+    },
+    "rootCauseConfirmed": {
+      "const": false
+    }
+  }
+}

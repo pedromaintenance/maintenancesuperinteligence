@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-citation.schema.json",
+  "title": "EvidenceCitation general reference v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "citationId",
+    "sourceId",
+    "methodId",
+    "pairId",
+    "interpretationRole",
+    "quotedPassage",
+    "sourceApplicability",
+    "licenseCopyIncluded"
+  ],
+  "properties": {
+    "citationId": {
+      "type": "string",
+      "pattern": "^CIT-[A-Z0-9-]+$"
+    },
+    "sourceId": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9-]+$"
+    },
+    "methodId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pairId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "interpretationRole": {
+      "const": "public_general_context_only"
+    },
+    "quotedPassage": {
+      "type": "null"
+    },
+    "sourceApplicability": {
+      "const": "generic_not_oem_series"
+    },
+    "licenseCopyIncluded": {
+      "const": false
+    }
+  }
+}

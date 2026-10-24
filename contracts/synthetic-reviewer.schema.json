@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/synthetic-reviewer.schema.json",
+  "title": "Fictional reviewer persona not a certified human v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "reviewerId",
+    "discipline",
+    "identityNature",
+    "credentialsVerified",
+    "independenceVerified",
+    "organization"
+  ],
+  "properties": {
+    "reviewerId": {
+      "type": "string",
+      "pattern": "^SIM-REVIEWER-[A-Z-]+$"
+    },
+    "discipline": {
+      "enum": [
+        "oil",
+        "hydraulics",
+        "mechanics",
+        "vibration",
+        "electronics"
+      ]
+    },
+    "identityNature": {
+      "const": "fictional_persona_no_real_signature"
+    },
+    "credentialsVerified": {
+      "const": false
+    },
+    "independenceVerified": {
+      "const": false
+    },
+    "organization": {
+      "type": "null"
+    }
+  }
+}
