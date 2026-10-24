@@ -87,6 +87,38 @@ class QualitativeEvidenceTests(unittest.TestCase):
             with patch("casefiles.integrated.investigate", return_value=mock):
                 return build_collection(self.fixtures, self.deps, self.snapshot)
 
+    def test_versioned_oracle_matches_all_four_case_outcomes(self):
+        r = self.mocked_build()
+        self.assertEqual(len(r["qualitativeOracleSha256"]), 64)
+        self.assertEqual(len(self.deps["qualitativeOracle"]["expected"]), 4)
+        for row in self.deps["qualitativeOracle"]["expected"]:
+            self.assertTrue(all(x["currentEvidenceState"] in (
+                "not_measured", "contradicted", "inconclusive")
+                for x in row["comparisonStates"]))
+            self.assertEqual(row["hypothesesExcluded"], 0)
+
+    def test_oracle_cannot_invent_support_observed(self):
+        self.deps["qualitativeOracle"]["expected"][0]["observedSupportCount"] = 1
+        with self.assertRaises(ImportRejected):
+            self.mocked_build()
+
+    def test_oracle_cannot_promote_missing_to_negative(self):
+        self.deps["qualitativeOracle"]["expected"][0]["comparisonStates"][0][
+            "currentEvidenceState"] = "weakens"
+        with self.assertRaises(ImportRejected):
+            self.mocked_build()
+
+    def test_oracle_cannot_hide_load_contradiction(self):
+        self.deps["qualitativeOracle"]["expected"][1]["comparisonStates"][0][
+            "currentEvidenceState"] = "inconclusive"
+        with self.assertRaises(ImportRejected):
+            self.mocked_build()
+
+    def test_oracle_cannot_change_selected_pair_without_review(self):
+        self.deps["qualitativeOracle"]["expected"][3]["selectedPairId"] = "EL-P01"
+        with self.assertRaises(ImportRejected):
+            self.mocked_build()
+
     def test_all_ten_original_pairs_and_twenty_distinct_counterexamples(self):
         m = self.validate()
         self.assertEqual(len(m), 10)
