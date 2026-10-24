@@ -132,6 +132,8 @@ def check_compatibility(value: object) -> list[dict]:
         require(obj.get("schema") == row["requiredSchema"]
                 and obj.get("version") == row["requiredVersion"],
                 "compatibility: source schema/version mismatch; manual migration required")
+        require(row["path"] not in actual,
+                "compatibility: duplicate source")
         actual[row["path"]] = {
             "path": row["path"], "cycle": row["cycle"],
             "schema": row["requiredSchema"], "version": row["requiredVersion"],
