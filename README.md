@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de governança de afirmações P&D v0.8.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de fronteiras de confiança P&D v0.9.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -46,6 +46,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 06 — Seleção discriminante de perguntas](docs/CICLO_2026-10-23_SELECAO_DISCRIMINANTE.md)
 - [Ciclo 07 — Benchmark de qualidade de perguntas](docs/CICLO_2026-10-23_BENCHMARK_PERGUNTAS.md)
 - [Ciclo 08 — Governança de revisão técnica simulada](docs/CICLO_2026-10-24_GOVERNANCA_REVISAO.md)
+- [Ciclo 09 — Arquitetura restrita, identidade e modelo de ameaças](docs/CICLO_2026-10-24_ARQUITETURA_RESTRITA.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -163,3 +164,17 @@ python -m governance.review --snapshot build/fmea-public/fmea-public.snapshot.js
 ```
 
 Leia o [relatório do Ciclo 08](docs/CICLO_2026-10-24_GOVERNANCA_REVISAO.md).
+
+
+## Ciclo 09 — Especificação de ambiente restrito (não implantado)
+
+A arquitetura `docs/CICLO_2026-10-24_ARQUITETURA_RESTRITA.md` separa contratos públicos de identidade, laudos, séries, registros ECM/SAP e conteúdo OEM que devem permanecer em **ambiente privado autorizado**. Inclui critérios de autenticação, atribuição de papéis, assinatura, custódia, retenção e LGPD, além de um modelo de ameaças com controles propostos.
+
+O protótipo `governance/restricted_blueprint.py` executa três sequências e nove eventos **estritamente fictícios** a partir de `examples/restricted-review-threat-fixture.v1.json`. Ele modela atribuição de papéis, revisão independente apenas por ID, conflitos, nonces contra replay e vínculo à versão da afirmação. O validador rejeita parecer adulterado em comparação à entrada original. **Não existe IdP, assinatura, auditoria externa, aplicação privada nem autorização operacional implantados neste projeto.**
+
+```bash
+python connectors/fmea_public.py --fetch --output build/fmea-public
+python -m governance.restricted_blueprint --snapshot build/fmea-public/fmea-public.snapshot.json --output build/restricted-review/threat-fixture.report.json
+```
+
+O CI demonstra consistência e gates de um fluxo de simulação; não avalia conformidade NIST, OWASP, LGPD ou eficácia de segurança real.
