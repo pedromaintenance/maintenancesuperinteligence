@@ -1,0 +1,402 @@
+{
+  "schema": "maintenance-superinteligence.readiness-dossier-fixture.v1",
+  "version": "1.0.0",
+  "nature": "public_synthetic_dossier_only",
+  "sourceReadinessSchema": "maintenance-superinteligence.deployment-readiness-fixture.v1",
+  "sourceReadinessVersion": "1.0.0",
+  "evidenceRequests": [
+    {
+      "requestId": "SIM-REQ-01",
+      "controlId": "corporate_identity_provider_server_validation",
+      "requestedProofType": "identity_federation",
+      "acceptanceCriterion": "Verificar emissor, audiência, assinatura, expiração e revogação por backend autorizado.",
+      "evidenceSource": "private_corporate_system_required",
+      "requestedByRole": "TI / Segurança da Informação",
+      "privateEvidenceLocation": null,
+      "authenticatedEvidence": false,
+      "licensingVerified": false,
+      "retentionReviewed": false,
+      "signatureVerified": false,
+      "status": "not_received"
+    },
+    {
+      "requestId": "SIM-REQ-02",
+      "controlId": "unique_human_identity_and_active_role",
+      "requestedProofType": "identity_role",
+      "acceptanceCriterion": "Comprovar identidade única, vínculo ativo, papéis e prevenção de aliases.",
+      "evidenceSource": "private_corporate_system_required",
+      "requestedByRole": "TI / Gestão de Acessos",
+      "privateEvidenceLocation": null,
+      "authenticatedEvidence": false,
+      "licensingVerified": false,
+      "retentionReviewed": false,
+      "signatureVerified": false,
+      "status": "not_received"
+    },
+    {
+      "requestId": "SIM-REQ-03",
+      "controlId": "competence_verified_from_corporate_source",
+      "requestedProofType": "competence_register",
+      "acceptanceCriterion": "Validar qualificação por disciplina em fonte corporativa independente.",
+      "evidenceSource": "private_corporate_system_required",
+      "requestedByRole": "Engenharia / Gestão de Competências",
+      "privateEvidenceLocation": null,
+      "authenticatedEvidence": false,
+      "licensingVerified": false,
+      "retentionReviewed": false,
+      "signatureVerified": false,
+      "status": "not_received"
+    },
+    {
+      "requestId": "SIM-REQ-04",
+      "controlId": "author_reviewers_adjudicator_separated",
+      "requestedProofType": "separation_of_duties",
+      "acceptanceCriterion": "Comprovar autor, dois revisores e adjudicador distintos por sujeito corporativo.",
+      "evidenceSource": "private_corporate_system_required",
+      "requestedByRole": "Engenharia / Governança",
+      "privateEvidenceLocation": null,
+      "authenticatedEvidence": false,
+      "licensingVerified": false,
+      "retentionReviewed": false,
+      "signatureVerified": false,
+      "status": "not_received"
+    },
+    {
+      "requestId": "SIM-REQ-05",
+      "controlId": "no_conflict_record",
+      "requestedProofType": "conflict_of_interest",
+      "acceptanceCriterion": "Controlar conflito de interesses e relações de supervisão/benefício.",
+      "evidenceSource": "private_corporate_system_required",
+      "requestedByRole": "Compliance / Engenharia",
+      "privateEvidenceLocation": null,
+      "authenticatedEvidence": false,
+      "licensingVerified": false,
+      "retentionReviewed": false,
+      "signatureVerified": false,
+      "status": "not_received"
+    },
+    {
+      "requestId": "SIM-REQ-06",
+      "controlId": "two_independent_reviewers",
+      "requestedProofType": "double_review",
+      "acceptanceCriterion": "Conferir dois pareceres independentes, assinados para a mesma revisão.",
+      "evidenceSource": "private_corporate_system_required",
+      "requestedByRole": "Engenharia / Revisão Técnica",
+      "privateEvidenceLocation": null,
+      "authenticatedEvidence": false,
+      "licensingVerified": false,
+      "retentionReviewed": false,
+      "signatureVerified": false,
+      "status": "not_received"
+    },
+    {
+      "requestId": "SIM-REQ-07",
+      "controlId": "immutable_claim_revision_and_source_manifest",
+      "requestedProofType": "document_version",
+      "acceptanceCriterion": "Associar versão de claim a evidências classificadas, direitos de acesso e retenção.",
+      "evidenceSource": "private_corporate_system_required",
+      "requestedByRole": "Gestão Documental / Engenharia",
+      "privateEvidenceLocation": null,
+      "authenticatedEvidence": false,
+      "licensingVerified": false,
+      "retentionReviewed": false,
+      "signatureVerified": false,
+      "status": "not_received"
+    },
+    {
+      "requestId": "SIM-REQ-08",
+      "controlId": "verified_audit_timestamp_and_protected_storage",
+      "requestedProofType": "audit_integrity",
+      "acceptanceCriterion": "Demonstrar tempo e cadeia de eventos com âncora externa independente.",
+      "evidenceSource": "private_corporate_system_required",
+      "requestedByRole": "Segurança / Auditoria",
+      "privateEvidenceLocation": null,
+      "authenticatedEvidence": false,
+      "licensingVerified": false,
+      "retentionReviewed": false,
+      "signatureVerified": false,
+      "status": "not_received"
+    },
+    {
+      "requestId": "SIM-REQ-09",
+      "controlId": "qualified_document_entitlement_and_oem_effectivity",
+      "requestedProofType": "oem_effectivity",
+      "acceptanceCriterion": "Verificar licença, publicação, revisão e efetividade por série sem publicar o documento.",
+      "evidenceSource": "private_corporate_system_required",
+      "requestedByRole": "Engenharia / Gestão Documental",
+      "privateEvidenceLocation": null,
+      "authenticatedEvidence": false,
+      "licensingVerified": false,
+      "retentionReviewed": false,
+      "signatureVerified": false,
+      "status": "not_received"
+    },
+    {
+      "requestId": "SIM-REQ-10",
+      "controlId": "separate_operational_authorization",
+      "requestedProofType": "operational_separation",
+      "acceptanceCriterion": "Autorizar operação por fluxo separado, nunca pela aprovação da afirmação.",
+      "evidenceSource": "private_corporate_system_required",
+      "requestedByRole": "Operação / Manutenção / Segurança",
+      "privateEvidenceLocation": null,
+      "authenticatedEvidence": false,
+      "licensingVerified": false,
+      "retentionReviewed": false,
+      "signatureVerified": false,
+      "status": "not_received"
+    }
+  ],
+  "ownerActions": [
+    {
+      "actionId": "SIM-ACTION-01",
+      "controlId": "corporate_identity_provider_server_validation",
+      "ownerRole": "TI / Segurança da Informação",
+      "requestId": "SIM-REQ-01",
+      "action": "document_and_verify_private_control_in_approved_environment",
+      "dueDate": null,
+      "completionStatus": "pending_not_executed",
+      "completedByRealPerson": false,
+      "implementationApproval": false
+    },
+    {
+      "actionId": "SIM-ACTION-02",
+      "controlId": "unique_human_identity_and_active_role",
+      "ownerRole": "TI / Gestão de Acessos",
+      "requestId": "SIM-REQ-02",
+      "action": "document_and_verify_private_control_in_approved_environment",
+      "dueDate": null,
+      "completionStatus": "pending_not_executed",
+      "completedByRealPerson": false,
+      "implementationApproval": false
+    },
+    {
+      "actionId": "SIM-ACTION-03",
+      "controlId": "competence_verified_from_corporate_source",
+      "ownerRole": "Engenharia / Gestão de Competências",
+      "requestId": "SIM-REQ-03",
+      "action": "document_and_verify_private_control_in_approved_environment",
+      "dueDate": null,
+      "completionStatus": "pending_not_executed",
+      "completedByRealPerson": false,
+      "implementationApproval": false
+    },
+    {
+      "actionId": "SIM-ACTION-04",
+      "controlId": "author_reviewers_adjudicator_separated",
+      "ownerRole": "Engenharia / Governança",
+      "requestId": "SIM-REQ-04",
+      "action": "document_and_verify_private_control_in_approved_environment",
+      "dueDate": null,
+      "completionStatus": "pending_not_executed",
+      "completedByRealPerson": false,
+      "implementationApproval": false
+    },
+    {
+      "actionId": "SIM-ACTION-05",
+      "controlId": "no_conflict_record",
+      "ownerRole": "Compliance / Engenharia",
+      "requestId": "SIM-REQ-05",
+      "action": "document_and_verify_private_control_in_approved_environment",
+      "dueDate": null,
+      "completionStatus": "pending_not_executed",
+      "completedByRealPerson": false,
+      "implementationApproval": false
+    },
+    {
+      "actionId": "SIM-ACTION-06",
+      "controlId": "two_independent_reviewers",
+      "ownerRole": "Engenharia / Revisão Técnica",
+      "requestId": "SIM-REQ-06",
+      "action": "document_and_verify_private_control_in_approved_environment",
+      "dueDate": null,
+      "completionStatus": "pending_not_executed",
+      "completedByRealPerson": false,
+      "implementationApproval": false
+    },
+    {
+      "actionId": "SIM-ACTION-07",
+      "controlId": "immutable_claim_revision_and_source_manifest",
+      "ownerRole": "Gestão Documental / Engenharia",
+      "requestId": "SIM-REQ-07",
+      "action": "document_and_verify_private_control_in_approved_environment",
+      "dueDate": null,
+      "completionStatus": "pending_not_executed",
+      "completedByRealPerson": false,
+      "implementationApproval": false
+    },
+    {
+      "actionId": "SIM-ACTION-08",
+      "controlId": "verified_audit_timestamp_and_protected_storage",
+      "ownerRole": "Segurança / Auditoria",
+      "requestId": "SIM-REQ-08",
+      "action": "document_and_verify_private_control_in_approved_environment",
+      "dueDate": null,
+      "completionStatus": "pending_not_executed",
+      "completedByRealPerson": false,
+      "implementationApproval": false
+    },
+    {
+      "actionId": "SIM-ACTION-09",
+      "controlId": "qualified_document_entitlement_and_oem_effectivity",
+      "ownerRole": "Engenharia / Gestão Documental",
+      "requestId": "SIM-REQ-09",
+      "action": "document_and_verify_private_control_in_approved_environment",
+      "dueDate": null,
+      "completionStatus": "pending_not_executed",
+      "completedByRealPerson": false,
+      "implementationApproval": false
+    },
+    {
+      "actionId": "SIM-ACTION-10",
+      "controlId": "separate_operational_authorization",
+      "ownerRole": "Operação / Manutenção / Segurança",
+      "requestId": "SIM-REQ-10",
+      "action": "document_and_verify_private_control_in_approved_environment",
+      "dueDate": null,
+      "completionStatus": "pending_not_executed",
+      "completedByRealPerson": false,
+      "implementationApproval": false
+    }
+  ],
+  "exceptionRequests": [
+    {
+      "exceptionId": "SIM-EXCEPTION-01",
+      "controlId": "corporate_identity_provider_server_validation",
+      "requesterId": "SIM-REQUESTER-TRAINING",
+      "rationale": "Exercício de indisponibilidade do IdP; bloqueio mantido e sem exceção operacional.",
+      "sourceRef": null,
+      "decision": "blocked_no_verified_evidence",
+      "waiveControl": false,
+      "mayDeploy": false,
+      "approvedByRealPerson": false
+    },
+    {
+      "exceptionId": "SIM-EXCEPTION-02",
+      "controlId": "qualified_document_entitlement_and_oem_effectivity",
+      "requesterId": "SIM-REQUESTER-TRAINING",
+      "rationale": "Exercício de revisão do OEM indisponível; efetividade permanece não verificada.",
+      "sourceRef": null,
+      "decision": "blocked_no_verified_evidence",
+      "waiveControl": false,
+      "mayDeploy": false,
+      "approvedByRealPerson": false
+    }
+  ],
+  "changeScenarios": [
+    {
+      "scenarioId": "SIM-SCENARIO-01",
+      "eventType": "identity_revoked",
+      "invalidates": [
+        "unique_human_identity_and_active_role",
+        "author_reviewers_adjudicator_separated",
+        "two_independent_reviewers",
+        "separate_operational_authorization"
+      ],
+      "sourceEvidenceRef": null,
+      "state": "simulated_not_occurred",
+      "reopenReview": true,
+      "previousQualificationRemainsValid": false,
+      "automaticReapproval": false,
+      "operationalPermission": false
+    },
+    {
+      "scenarioId": "SIM-SCENARIO-02",
+      "eventType": "oem_publication_revision_changed",
+      "invalidates": [
+        "qualified_document_entitlement_and_oem_effectivity",
+        "two_independent_reviewers",
+        "separate_operational_authorization"
+      ],
+      "sourceEvidenceRef": null,
+      "state": "simulated_not_occurred",
+      "reopenReview": true,
+      "previousQualificationRemainsValid": false,
+      "automaticReapproval": false,
+      "operationalPermission": false
+    },
+    {
+      "scenarioId": "SIM-SCENARIO-03",
+      "eventType": "equipment_configuration_changed",
+      "invalidates": [
+        "qualified_document_entitlement_and_oem_effectivity",
+        "two_independent_reviewers",
+        "separate_operational_authorization"
+      ],
+      "sourceEvidenceRef": null,
+      "state": "simulated_not_occurred",
+      "reopenReview": true,
+      "previousQualificationRemainsValid": false,
+      "automaticReapproval": false,
+      "operationalPermission": false
+    },
+    {
+      "scenarioId": "SIM-SCENARIO-04",
+      "eventType": "claim_revision_changed",
+      "invalidates": [
+        "immutable_claim_revision_and_source_manifest",
+        "two_independent_reviewers",
+        "verified_audit_timestamp_and_protected_storage",
+        "separate_operational_authorization"
+      ],
+      "sourceEvidenceRef": null,
+      "state": "simulated_not_occurred",
+      "reopenReview": true,
+      "previousQualificationRemainsValid": false,
+      "automaticReapproval": false,
+      "operationalPermission": false
+    },
+    {
+      "scenarioId": "SIM-SCENARIO-05",
+      "eventType": "qualification_changed",
+      "invalidates": [
+        "competence_verified_from_corporate_source",
+        "two_independent_reviewers",
+        "separate_operational_authorization"
+      ],
+      "sourceEvidenceRef": null,
+      "state": "simulated_not_occurred",
+      "reopenReview": true,
+      "previousQualificationRemainsValid": false,
+      "automaticReapproval": false,
+      "operationalPermission": false
+    },
+    {
+      "scenarioId": "SIM-SCENARIO-06",
+      "eventType": "conflict_of_interest_discovered",
+      "invalidates": [
+        "no_conflict_record",
+        "author_reviewers_adjudicator_separated",
+        "two_independent_reviewers",
+        "separate_operational_authorization"
+      ],
+      "sourceEvidenceRef": null,
+      "state": "simulated_not_occurred",
+      "reopenReview": true,
+      "previousQualificationRemainsValid": false,
+      "automaticReapproval": false,
+      "operationalPermission": false
+    }
+  ],
+  "independentReviewGate": {
+    "schema": "maintenance-superinteligence.independent-review-gate.v1",
+    "status": "blocked_pending_private_review",
+    "engineerIdentityVerified": false,
+    "securityIdentityVerified": false,
+    "privacyIdentityVerified": false,
+    "custodianIdentityVerified": false,
+    "twoIndependentRealReviewers": false,
+    "evidenceProtectedExternally": false,
+    "sourceOemEffectivityVerified": false,
+    "approvalGranted": false,
+    "mayDeploy": false,
+    "mayReleaseEquipment": false
+  },
+  "publication": {
+    "allowedDataClass": "synthetic_only",
+    "privateDataIncluded": false,
+    "licensedManualIncluded": false,
+    "realIdentifiersIncluded": false,
+    "secretsIncluded": false,
+    "mayShareWithPublic": false
+  }
+}

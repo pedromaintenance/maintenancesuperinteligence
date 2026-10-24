@@ -40,6 +40,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 ## Fase 4 — Estratégia de ativos, manutenção e PCM
 
+**Ciclo 12:** dossiê estático JSON/HTML para revisão de arquitetura, dez evidências solicitadas mas não recebidas, duas exceções rejeitadas, seis cenários sintéticos de requalificação. Cinco referências de compatibilidade pública sem migração aprovada; a documentação não substitui parecer corporativo.
+
 **Ciclo 11:** checklist de dez provas externas, cinco gatilhos de requalificação e quatro vínculos de compatibilidade pública implementados; a ordem de implementação pode ser calculada, mas nenhuma condição está independentemente verificada. Implantação restrita e homologação por série continuam bloqueadas.
 
 **Ciclo 10:** contratos para integração futura, matriz de sete papéis e dez provas de confiança, validados apenas por testes sintéticos. Os ambientes de identidade, revisão, evidência, auditoria e OEM reais não estão implantados. A próxima etapa deverá avaliar formalmente prontidão e dependências institucionais, sem coletar dados corporativos no repositório público.

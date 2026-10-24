@@ -1,4 +1,4 @@
-name: Validate maintenance research and synthetic deployment readiness
+name: Validate maintenance research and synthetic architecture review dossier
 
 on:
   push:
@@ -637,6 +637,81 @@ jobs:
         with:
           name: cycle11-private-readiness-blockers
           path: build/readiness/deployment-readiness.v1.report.json
+          retention-days: 14
+      - name: Generate offline readiness acceptance dossier and standalone HTML
+        run: |
+          mkdir -p build/readiness
+          python -m governance.readiness_dossier \
+            --source governance/deployment-readiness.v1.json \
+            --fixture governance/readiness-dossier-fixture.v1.json \
+            --output build/readiness/acceptance-dossier.v1.json \
+            --html build/readiness/acceptance-dossier.v1.html > /dev/null
+      - name: Verify findings, exception denials, controlled sources and HTML safety
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from html.parser import HTMLParser
+          p = Path("build/readiness/acceptance-dossier.v1.json")
+          h = Path("build/readiness/acceptance-dossier.v1.html")
+          d = json.loads(p.read_text(encoding="utf-8"))
+          html = h.read_text(encoding="utf-8")
+          assert d["findingCount"] == 10
+          assert d["criticalFindings"] == 8 and d["highFindings"] == 2
+          assert len(d["evidenceRequests"]) == len(d["ownerActions"]) == 10
+          assert len(d["exceptions"]) == 2
+          assert len(d["changeScenarios"]) == 6
+          assert len(d["compatibility"]) == 5
+          assert {e["cycle"] for e in d["compatibility"]} == {
+              "cycle08", "cycle09", "cycle10", "cycle11"}
+          assert all(not e["privateMigrationAuthorised"] for e in d["compatibility"])
+          assert all(not x["evidenceReceived"] and
+                     x["decision"] == "blocked_pending_private_evidence"
+                     for x in d["findings"])
+          assert all(not x["waiveControl"] and not x["mayDeploy"]
+                     for x in d["exceptions"])
+          assert all(x["reopenReview"] and not x["automaticReapproval"]
+                     and not x["previousQualificationRemainsValid"]
+                     for x in d["changeScenarios"])
+          assert d["decision"] == "blocked_missing_private_verified_trust"
+          assert all(d[k] is False for k in (
+              "humanReviewAuthenticated", "privateEvidenceStoredHere",
+              "evidenceFullyVerified", "oemEffectivityVerified",
+              "deploymentApproved", "mayImportCorporateData",
+              "mayCreateWorkOrder", "mayReleaseEquipment"))
+          assert "SIMULADO" in html and "IMPLANTAÇÃO BLOQUEADA" in html
+          assert "Content-Security-Policy" in html and "<script" not in html.lower()
+          assert "<form" not in html.lower()
+          print("PASS: 10 blocked findings, 6 requalification scenarios, safe standalone HTML")
+          PY
+      - name: Reject forged exception approval and suppression of required controls
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          f = json.loads(Path("governance/readiness-dossier-fixture.v1.json").read_text())
+          fake = json.loads(json.dumps(f))
+          fake["exceptionRequests"][0]["waiveControl"] = True
+          Path("build/readiness/forged-exception.json").write_text(json.dumps(fake))
+          missing = json.loads(json.dumps(f))
+          missing["evidenceRequests"].pop()
+          Path("build/readiness/forged-suppression.json").write_text(json.dumps(missing))
+          PY
+          for scenario in forged-exception forged-suppression; do
+            if python -m governance.readiness_dossier \
+                --fixture "build/readiness/$scenario.json" > /dev/null 2>&1; then
+              echo "SECURITY FAIL: unverified acceptance or missing control approved"
+              exit 1
+            fi
+          done
+          rm build/readiness/forged-exception.json build/readiness/forged-suppression.json
+      - name: Publish offline dossier for architecture review
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle12-readiness-acceptance-dossier
+          path: |
+            build/readiness/acceptance-dossier.v1.json
+            build/readiness/acceptance-dossier.v1.html
           retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/acceptance-evidence-request.schema.json",
+  "title": "AcceptanceEvidenceRequest — synthetic unmet request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "requestId",
+    "controlId",
+    "requestedProofType",
+    "acceptanceCriterion",
+    "evidenceSource",
+    "requestedByRole",
+    "privateEvidenceLocation",
+    "authenticatedEvidence",
+    "licensingVerified",
+    "retentionReviewed",
+    "signatureVerified",
+    "status"
+  ],
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "pattern": "^SIM-REQ-[0-9]{2}$"
+    },
+    "controlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requestedProofType": {
+      "enum": [
+        "identity_federation",
+        "identity_role",
+        "competence_register",
+        "separation_of_duties",
+        "conflict_of_interest",
+        "double_review",
+        "document_version",
+        "audit_integrity",
+        "oem_effectivity",
+        "operational_separation"
+      ]
+    },
+    "acceptanceCriterion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidenceSource": {
+      "const": "private_corporate_system_required"
+    },
+    "requestedByRole": {
+      "type": "string",
+      "minLength": 1
+    },
+    "privateEvidenceLocation": {
+      "type": "null"
+    },
+    "authenticatedEvidence": {
+      "const": false
+    },
+    "licensingVerified": {
+      "const": false
+    },
+    "retentionReviewed": {
+      "const": false
+    },
+    "signatureVerified": {
+      "const": false
+    },
+    "status": {
+      "const": "not_received"
+    }
+  }
+}

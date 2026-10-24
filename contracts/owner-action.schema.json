@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/owner-action.schema.json",
+  "title": "OwnerAction — not executed",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "actionId",
+    "controlId",
+    "ownerRole",
+    "requestId",
+    "action",
+    "dueDate",
+    "completionStatus",
+    "completedByRealPerson",
+    "implementationApproval"
+  ],
+  "properties": {
+    "actionId": {
+      "type": "string",
+      "pattern": "^SIM-ACTION-[0-9]{2}$"
+    },
+    "controlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ownerRole": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requestId": {
+      "type": "string",
+      "pattern": "^SIM-REQ-[0-9]{2}$"
+    },
+    "action": {
+      "const": "document_and_verify_private_control_in_approved_environment"
+    },
+    "dueDate": {
+      "type": "null"
+    },
+    "completionStatus": {
+      "const": "pending_not_executed"
+    },
+    "completedByRealPerson": {
+      "const": false
+    },
+    "implementationApproval": {
+      "const": false
+    }
+  }
+}

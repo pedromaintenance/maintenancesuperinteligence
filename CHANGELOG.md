@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.2.0 — 2026-10-24 — Ciclo 12
+
+- Gerador offline de dossiê de aceite em JSON e HTML estático para revisão futura de arquitetura corporativa, com escape de conteúdo e nenhuma integração de rede.
+- Dez achados de prontidão, dez solicitações de evidência e dez ações funcionais ainda não executadas, derivados e cruzados com os controles do Ciclo 11.
+- Duas exceções hipotéticas obrigatoriamente rejeitadas, mais seis cenários de requalificação, inclusive conflito de interesses.
+- Sete contratos JSON Schema novos para achado, solicitação, ação, exceção, gate de revisão, cenário e fixture de dossiê.
+- Verificação de cinco referências de compatibilidade, abrangendo os contratos públicos dos Ciclos 08–11.
+- Testes adversariais contra supressão de controles, falsa execução, evidência real indevidamente incluída, aprovação de exceção, revisão obsoleta, reaprovação automática e renderização de HTML adulterado.
+- CI publica artefatos JSON/HTML exclusivamente fictícios e não autorizadores.
+
+**Limite:** não houve aprovação humana, sistema corporativo conectado, manual OEM efetivo nem evidência confidencial. Trata-se de material preparatório para avaliação futura.
+
+
 ## 1.1.0 — 2026-10-24 — Ciclo 11
 
 - Criados dez controles de prontidão com responsáveis funcionais genéricos, riscos de ausência, dependências e critérios de aceite; todos permanecem sem comprovação externa.

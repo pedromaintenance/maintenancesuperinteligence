@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/readiness-dossier-fixture.schema.json",
+  "title": "Synthetic dossier fixture envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "sourceReadinessSchema",
+    "sourceReadinessVersion",
+    "evidenceRequests",
+    "ownerActions",
+    "exceptionRequests",
+    "changeScenarios",
+    "independentReviewGate",
+    "publication"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.readiness-dossier-fixture.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "public_synthetic_dossier_only"
+    },
+    "sourceReadinessSchema": {
+      "const": "maintenance-superinteligence.deployment-readiness-fixture.v1"
+    },
+    "sourceReadinessVersion": {
+      "const": "1.0.0"
+    },
+    "evidenceRequests": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "acceptance-evidence-request.schema.json"
+      }
+    },
+    "ownerActions": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "owner-action.schema.json"
+      }
+    },
+    "exceptionRequests": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "exception-request.schema.json"
+      }
+    },
+    "changeScenarios": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "$ref": "readiness-change-scenario.schema.json"
+      }
+    },
+    "independentReviewGate": {
+      "$ref": "independent-review-gate.schema.json"
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowedDataClass",
+        "privateDataIncluded",
+        "licensedManualIncluded",
+        "realIdentifiersIncluded",
+        "secretsIncluded",
+        "mayShareWithPublic"
+      ],
+      "properties": {
+        "allowedDataClass": {
+          "const": "synthetic_only"
+        },
+        "privateDataIncluded": {
+          "const": false
+        },
+        "licensedManualIncluded": {
+          "const": false
+        },
+        "realIdentifiersIncluded": {
+          "const": false
+        },
+        "secretsIncluded": {
+          "const": false
+        },
+        "mayShareWithPublic": {
+          "const": false
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de prontidão de implantação P&D v1.1.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de dossiê de aceite P&D v1.2.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -49,6 +49,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 09 — Arquitetura restrita, identidade e modelo de ameaças](docs/CICLO_2026-10-24_ARQUITETURA_RESTRITA.md)
 - [Ciclo 10 — Contratos de integração restrita e testes de confiança](docs/CICLO_2026-10-24_CONTRATOS_INTEGRACAO.md)
 - [Ciclo 11 — Matriz de prontidão e compatibilidade](docs/CICLO_2026-10-24_PRONTIDAO_IMPLANTACAO.md)
+- [Ciclo 12 — Dossiê de aceite técnico e revisão de prontidão](docs/CICLO_2026-10-24_DOSSIE_ACEITE.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -206,3 +207,14 @@ python -m governance.deployment_readiness --output build/readiness/deployment-re
 ```
 
 Os [detalhes do Ciclo 11](docs/CICLO_2026-10-24_PRONTIDAO_IMPLANTACAO.md) explicam matriz, donos por função, critérios e limites de confiança.
+
+
+## Ciclo 12 — Dossiê para revisão de arquitetura (dados fictícios)
+
+O gerador `governance/readiness_dossier.py` transforma os dez controles de prontidão em um **dossiê JSON e HTML standalone**, com responsáveis funcionais, evidências necessárias, risco de postergação e ações ainda não executadas. O pacote `governance/readiness-dossier-fixture.v1.json` acrescenta duas exceções ilustrativas (ambas rejeitadas) e seis mudanças que obrigariam requalificação, incluindo conflito de interesses.
+
+```bash
+python -m governance.readiness_dossier --output build/readiness/acceptance-dossier.v1.json --html build/readiness/acceptance-dossier.v1.html
+```
+
+O HTML é offline, sem JavaScript, sem login, sem formulário e sem conexão com a empresa. Os sete esquemas de apoio restringem campos e bloqueiam falsos pareceres. **Todas as evidências reais permanecem não recebidas e todas as autorizações permanecem negadas.** Veja o [relatório técnico](docs/CICLO_2026-10-24_DOSSIE_ACEITE.md).
