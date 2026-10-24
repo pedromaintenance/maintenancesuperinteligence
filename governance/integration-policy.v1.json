@@ -78,7 +78,6 @@
       ]
     }
   ],
-  "decisions": "always_reject_in_public",
   "verificationAvailable": false,
   "requiredTrustProofs": [
     "corporate_identity_provider_server_validation",
@@ -116,5 +115,13 @@
     "audit_log_with_independent_trust",
     "technical_and_privacy_review",
     "security_acceptance_test"
-  ]
+  ],
+  "principles": [
+    "deny_all_without_server_verified_identity",
+    "qualified_independent_two_person_review",
+    "immutable_revision_and_evidence",
+    "oem_series_not_inferred",
+    "operations_out_of_scope"
+  ],
+  "publicOperationalActionsAllowed": []
 }
