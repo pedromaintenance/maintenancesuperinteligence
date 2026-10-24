@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/planning-constraint.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "discipline",
+    "workHours",
+    "materials",
+    "oemPressureOrWearLimits",
+    "cost",
+    "numericPriority",
+    "equipmentSerial",
+    "sapEquipmentNumber",
+    "sapNotificationNumber",
+    "executionProcedures",
+    "externalSafetyReviewRequired",
+    "externalHumanApprovalRequired",
+    "reviewCriteria"
+  ],
+  "properties": {
+    "discipline": {
+      "enum": [
+        "Mecânica / Lubrificação",
+        "Mecânica / Hidráulica",
+        "Elétrica / Eletrônica"
+      ]
+    },
+    "workHours": {
+      "type": "null"
+    },
+    "materials": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "oemPressureOrWearLimits": {
+      "type": "null"
+    },
+    "cost": {
+      "type": "null"
+    },
+    "numericPriority": {
+      "type": "null"
+    },
+    "equipmentSerial": {
+      "type": "null"
+    },
+    "sapEquipmentNumber": {
+      "type": "null"
+    },
+    "sapNotificationNumber": {
+      "type": "null"
+    },
+    "executionProcedures": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "externalSafetyReviewRequired": {
+      "const": true
+    },
+    "externalHumanApprovalRequired": {
+      "const": true
+    },
+    "reviewCriteria": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}
