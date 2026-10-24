@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/technical-casefile-fixture.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "sourceBenchmark",
+    "sourceMethodMatrix",
+    "sourceMethodCatalog",
+    "sourceReadiness",
+    "sourceReviewDossier",
+    "cases"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.technical-casefile-fixture.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "synthetic_didactic_investigation_only"
+    },
+    "sourceBenchmark": {
+      "const": "benchmarks/question-quality.v1.json"
+    },
+    "sourceMethodMatrix": {
+      "const": "methods/discrimination-matrix.v1.json"
+    },
+    "sourceMethodCatalog": {
+      "const": "methods/catalog.v1.json"
+    },
+    "sourceReadiness": {
+      "const": "governance/deployment-readiness.v1.json"
+    },
+    "sourceReviewDossier": {
+      "const": "governance/readiness-dossier-fixture.v1.json"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "technical-case-entry.schema.json"
+      }
+    }
+  }
+}
