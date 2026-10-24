@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/readiness-finding.schema.json",
+  "title": "ReadinessFinding — derived synthetic",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "findingId",
+    "controlId",
+    "criticality",
+    "ownerRole",
+    "status",
+    "dependencies",
+    "acceptanceCriterion",
+    "evidenceRequestId",
+    "requestedProofType",
+    "evidenceRequestedFrom",
+    "evidenceReceived",
+    "ownerActionId",
+    "ownerActionStatus",
+    "postponementRisk",
+    "decision",
+    "verifiedByRealPerson"
+  ],
+  "properties": {
+    "findingId": {
+      "type": "string",
+      "pattern": "^SIM-FINDING-[0-9]{2}$"
+    },
+    "controlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "criticality": {
+      "enum": [
+        "critical",
+        "high"
+      ]
+    },
+    "ownerRole": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "not_implemented",
+        "planned",
+        "available_unverified"
+      ]
+    },
+    "dependencies": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "acceptanceCriterion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidenceRequestId": {
+      "type": "string",
+      "pattern": "^SIM-REQ-[0-9]{2}$"
+    },
+    "requestedProofType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidenceRequestedFrom": {
+      "const": "private_corporate_system_required"
+    },
+    "evidenceReceived": {
+      "const": false
+    },
+    "ownerActionId": {
+      "type": "string",
+      "pattern": "^SIM-ACTION-[0-9]{2}$"
+    },
+    "ownerActionStatus": {
+      "const": "pending_not_executed"
+    },
+    "postponementRisk": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision": {
+      "const": "blocked_pending_private_evidence"
+    },
+    "verifiedByRealPerson": {
+      "const": false
+    }
+  }
+}
