@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/technical-casefile.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "caseFileId",
+    "familyId",
+    "scenario",
+    "assetContext",
+    "symptom",
+    "observedEffect",
+    "causalLevels",
+    "operationalRisk",
+    "reportedSignals",
+    "simulatedContext",
+    "hypotheses",
+    "hypothesisComparisons",
+    "selectedQuestion",
+    "methods",
+    "technicalReferences",
+    "knowledgeGaps",
+    "fieldCautions",
+    "pilot",
+    "provenance",
+    "reviewGates",
+    "decision",
+    "approvedForOperationalUse",
+    "confirmedComponent"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.technical-casefile.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "caseFileId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "familyId": {
+      "enum": [
+        "final_drive",
+        "hydraulics",
+        "electronics"
+      ]
+    },
+    "scenario": {
+      "type": "string",
+      "minLength": 1
+    },
+    "assetContext": {
+      "type": "object"
+    },
+    "symptom": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observedEffect": {
+      "type": "string",
+      "minLength": 1
+    },
+    "causalLevels": {
+      "type": "object"
+    },
+    "operationalRisk": {
+      "type": "object"
+    },
+    "reportedSignals": {
+      "type": "array",
+      "minItems": 1
+    },
+    "simulatedContext": {
+      "type": "array"
+    },
+    "hypotheses": {
+      "type": "array",
+      "minItems": 4
+    },
+    "hypothesisComparisons": {
+      "type": "array",
+      "minItems": 3
+    },
+    "selectedQuestion": {
+      "type": "object"
+    },
+    "methods": {
+      "type": "array",
+      "minItems": 6
+    },
+    "technicalReferences": {
+      "type": "array",
+      "minItems": 1
+    },
+    "knowledgeGaps": {
+      "type": "array",
+      "minItems": 2
+    },
+    "fieldCautions": {
+      "type": "array",
+      "minItems": 4
+    },
+    "pilot": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "provenance": {
+      "type": "object"
+    },
+    "reviewGates": {
+      "type": "object"
+    },
+    "decision": {
+      "const": "needs_human_review_and_discriminating_evidence"
+    },
+    "approvedForOperationalUse": {
+      "const": false
+    },
+    "confirmedComponent": {
+      "type": "null"
+    }
+  }
+}
