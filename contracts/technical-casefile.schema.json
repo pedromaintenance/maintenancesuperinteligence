@@ -28,7 +28,8 @@
     "reviewGates",
     "decision",
     "approvedForOperationalUse",
-    "confirmedComponent"
+    "confirmedComponent",
+    "qualitativeEvidence"
   ],
   "properties": {
     "schema": {
@@ -123,6 +124,80 @@
     },
     "confirmedComponent": {
       "type": "null"
+    },
+    "qualitativeEvidence": {
+      "type": "object",
+      "required": [
+        "schema",
+        "caseId",
+        "evidenceNature",
+        "causalLevelAssessment",
+        "comparisons",
+        "comparisonCount",
+        "unmeasuredOrContradictedPairs",
+        "observedSupportCount",
+        "observedWeakeningCount",
+        "testsPerformed",
+        "hypothesesExcluded",
+        "mayExecuteTests",
+        "mayConfirmRootCause",
+        "mayApproveWorkOrder",
+        "mayReleaseEquipment"
+      ],
+      "properties": {
+        "schema": {
+          "const": "maintenance-superinteligence.case-evidence-assessment.v1"
+        },
+        "caseId": {
+          "type": "string"
+        },
+        "evidenceNature": {
+          "const": "simulation"
+        },
+        "causalLevelAssessment": {
+          "$ref": "causal-level-assessment.schema.json"
+        },
+        "comparisons": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "$ref": "discriminating-observation.schema.json"
+          }
+        },
+        "comparisonCount": {
+          "type": "integer",
+          "minimum": 3
+        },
+        "unmeasuredOrContradictedPairs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "observedSupportCount": {
+          "const": 0
+        },
+        "observedWeakeningCount": {
+          "const": 0
+        },
+        "testsPerformed": {
+          "const": 0
+        },
+        "hypothesesExcluded": {
+          "const": 0
+        },
+        "mayExecuteTests": {
+          "const": false
+        },
+        "mayConfirmRootCause": {
+          "const": false
+        },
+        "mayApproveWorkOrder": {
+          "const": false
+        },
+        "mayReleaseEquipment": {
+          "const": false
+        }
+      },
+      "additionalProperties": false
     }
   }
 }
