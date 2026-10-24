@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 
 from connectors.fmea_public import ImportRejected
-from methods.library import ROOT
+from methods.library import ROOT, validate_catalog as genuine_validate_catalog
 from casefiles.integrated import (ALLOWED, CONTEXT, assemble_case, build_collection,
                                   load_dependencies, render_html, validate_fixture,
                                   verify_report)
@@ -21,7 +21,12 @@ class IntegratedCasefileTests(unittest.TestCase):
             {"id": x, "family": "comando_final", "confirmedRootCause": False}
             for x in ("FC-FD-001", "FC-FD-002", "FC-FD-003", "FC-FD-004")
         ]}
-        cls.deps = load_dependencies(cls.snapshot)
+        # The compact fake FMEA validates hypothesis linking; source-integrity
+        # needs the real locked snapshot and is exercised separately by CI.
+        with patch("casefiles.integrated.validate_catalog",
+                   side_effect=lambda catalog, registry, snapshot:
+                   genuine_validate_catalog(catalog, registry)):
+            cls.deps = load_dependencies(cls.snapshot)
 
     def setUp(self):
         self.packet = json.loads(
