@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/investigation-tree-collection.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "specSha256",
+    "treeCount",
+    "nodeCount",
+    "trees",
+    "physicalTestsExecuted",
+    "hypothesesExcluded",
+    "operationalAuthorization"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.investigation-tree-collection.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "specSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "treeCount": {
+      "const": 4
+    },
+    "nodeCount": {
+      "const": 13
+    },
+    "trees": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "investigation-tree.schema.json"
+      }
+    },
+    "physicalTestsExecuted": {
+      "const": 0
+    },
+    "hypothesesExcluded": {
+      "const": 0
+    },
+    "operationalAuthorization": {
+      "const": false
+    }
+  }
+}
