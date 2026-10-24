@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/change-impact.schema.json",
+  "title": "ChangeImpact revalidation trigger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventType",
+    "invalidates",
+    "reopenDecision",
+    "previousApprovalValid",
+    "allowAutomaticReapproval",
+    "changeReference"
+  ],
+  "properties": {
+    "eventType": {
+      "enum": [
+        "claim_revision_changed",
+        "oem_publication_revision_changed",
+        "equipment_configuration_changed",
+        "identity_revoked",
+        "qualification_changed"
+      ]
+    },
+    "invalidates": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "reopenDecision": {
+      "const": true
+    },
+    "previousApprovalValid": {
+      "const": false
+    },
+    "allowAutomaticReapproval": {
+      "const": false
+    },
+    "changeReference": {
+      "type": "string",
+      "pattern": "^SIM-CHANGE-[A-Z-]+$"
+    }
+  }
+}
