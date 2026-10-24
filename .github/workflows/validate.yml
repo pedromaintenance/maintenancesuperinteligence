@@ -1,4 +1,4 @@
-name: Validate maintenance research and offline trust-boundary design
+name: Validate maintenance research and untrusted integration contracts
 
 on:
   push:
@@ -509,6 +509,69 @@ jobs:
         with:
           name: offline-restricted-review-threat-simulation
           path: build/restricted-review/threat-fixture.report.json
+          retention-days: 14
+      - name: Validate synthetic private-integration contracts
+        run: |
+          mkdir -p build/integration
+          python -m governance.integration_contracts \
+            --policy governance/integration-policy.v1.json \
+            --fixture examples/integration-fixture.v1.json \
+            --output build/integration/contracts.report.json > /dev/null
+      - name: Assert eight contracts, source proof gaps and deny-all outcome
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          contract_names = [
+            "authenticated-principal", "credential-assertion", "technical-qualification",
+            "claim-version", "independent-review-decision", "evidence-manifest",
+            "audit-anchor", "oem-effectivity-attestation"]
+          for name in contract_names:
+              schema = json.loads(Path("contracts", name+".schema.json").read_text())
+              assert schema["type"] == "object" and schema["additionalProperties"] is False
+              assert schema["required"]
+          p = json.loads(Path("build/integration/contracts.report.json").read_text())
+          assert p["principalCount"] == 8
+          assert len(set(p["fictionalReviewerIds"])) == 2
+          assert p["reviewStatus"] == "disputed_simulation"
+          assert p["approval"] == "blocked_missing_private_verified_trust"
+          assert len(p["requiredPrivateProofs"]) == 10
+          assert all(x["status"] == "not_implemented" for x in p["requiredPrivateProofs"])
+          assert p["credentialChecksAuthenticated"] == 0
+          assert p["reviewSignaturesVerified"] == 0
+          assert p["allowedPublicOperations"] == []
+          assert all(p[k] is False for k in [
+            "auditAnchorVerified", "oemSeriesApproved", "claimRevisionExternallySealed",
+            "realEvidenceProcessed", "independentlyReviewedByHumans",
+            "mayQualifyRealKnowledge", "mayOpenWorkOrder", "mayChangeEquipment"])
+          print("PASS: eight untrusted contracts, ten missing external proofs and no operational rights")
+          PY
+      - name: Reject fake certified principal and forged OEM approval
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          original = json.loads(Path("examples/integration-fixture.v1.json").read_text())
+          fake_identity = json.loads(json.dumps(original))
+          fake_identity["principals"][0]["identityAuthenticated"] = True
+          fake_oem = json.loads(json.dumps(original))
+          fake_oem["oemEffectivityAttestation"]["effectivityVerified"] = True
+          Path("build/integration/forged-identity.json").write_text(json.dumps(fake_identity))
+          Path("build/integration/forged-oem.json").write_text(json.dumps(fake_oem))
+          PY
+          for filename in forged-identity forged-oem; do
+            if python -m governance.integration_contracts \
+                --fixture "build/integration/$filename.json" > /dev/null 2>&1; then
+              echo "SECURITY FAIL: fabricated authority accepted from public fixture"
+              exit 1
+            fi
+          done
+          rm build/integration/forged-identity.json build/integration/forged-oem.json
+      - name: Publish public-only integration contract test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle10-untrusted-integration-contracts
+          path: build/integration/contracts.report.json
           retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4
