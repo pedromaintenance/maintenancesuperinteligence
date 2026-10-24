@@ -403,7 +403,7 @@ def render_html(collection: dict) -> str:
             and collection.get("observedSupportingEvidence") == 0
             and collection.get("observedWeakeningEvidence") == 0
             and collection.get("hypothesesExcluded") == 0
-            and collection.get("counterexamples") == 20
+            and collection.get("counterexamples") == 26
             and collection.get("privateDeploymentApproved") is False
             and collection.get("mayCreateWorkOrder") is False
             and collection.get("mayReleaseEquipment") is False
