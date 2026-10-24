@@ -1,0 +1,9 @@
+{
+  "schema": "maintenance-superinteligence.investigation-tree-spec.v1",
+  "version": "1.0.0",
+  "mode": "synthetic_only",
+  "pairs": 10,
+  "branches": "conditional_unobserved",
+  "humanReviewRequired": true,
+  "mayExecute": false
+}
