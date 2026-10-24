@@ -3,14 +3,118 @@
   "version": "1.0.0",
   "mode": "simulation_only",
   "roles": [
-    "author",
-    "reviewer",
-    "adjudicator",
-    "auditor",
-    "custodian",
-    "administrator",
-    "oem_specialist"
+    {
+      "role": "author",
+      "canPropose": [
+        "submit_claim",
+        "revise_claim"
+      ],
+      "cannotAuthorize": [
+        "review_own_claim",
+        "approve_claim",
+        "approve_maintenance"
+      ]
+    },
+    {
+      "role": "reviewer",
+      "canPropose": [
+        "submit_review"
+      ],
+      "cannotAuthorize": [
+        "review_own_claim",
+        "adjudicate_claim",
+        "approve_maintenance"
+      ]
+    },
+    {
+      "role": "adjudicator",
+      "canPropose": [
+        "adjudicate_dispute"
+      ],
+      "cannotAuthorize": [
+        "act_as_reviewer_on_same_claim",
+        "approve_maintenance"
+      ]
+    },
+    {
+      "role": "auditor",
+      "canPropose": [
+        "inspect_review_metadata"
+      ],
+      "cannotAuthorize": [
+        "change_review",
+        "approve_claim"
+      ]
+    },
+    {
+      "role": "custodian",
+      "canPropose": [
+        "manage_evidence_access"
+      ],
+      "cannotAuthorize": [
+        "approve_claim",
+        "edit_review"
+      ]
+    },
+    {
+      "role": "administrator",
+      "canPropose": [
+        "assign_access",
+        "revoke_access"
+      ],
+      "cannotAuthorize": [
+        "approve_claim",
+        "self_grant_approval"
+      ]
+    },
+    {
+      "role": "oem_specialist",
+      "canPropose": [
+        "propose_applicability_check"
+      ],
+      "cannotAuthorize": [
+        "self_approve_oem",
+        "release_equipment"
+      ]
+    }
   ],
   "decisions": "always_reject_in_public",
-  "verificationAvailable": false
+  "verificationAvailable": false,
+  "requiredTrustProofs": [
+    "corporate_identity_provider_server_validation",
+    "unique_human_identity_and_active_role",
+    "competence_verified_from_corporate_source",
+    "author_reviewers_adjudicator_separated",
+    "no_conflict_record",
+    "two_independent_reviewers",
+    "immutable_claim_revision_and_source_manifest",
+    "verified_audit_timestamp_and_protected_storage",
+    "qualified_document_entitlement_and_oem_effectivity",
+    "separate_operational_authorization"
+  ],
+  "sensitiveDataMustRemainPrivate": [
+    "personnel_identifiers",
+    "real_equipment_serial_numbers",
+    "sap_records",
+    "ecm_diagnostic_records",
+    "lab_reports",
+    "licensed_manufacturer_literature",
+    "access_material"
+  ],
+  "publicActionsAlwaysDenied": [
+    "create_work_order",
+    "release_equipment",
+    "modify_ecm",
+    "approve_maintenance",
+    "approve_oem_applicability",
+    "attest_signature"
+  ],
+  "deploymentPrerequisites": [
+    "enterprise_idp",
+    "private_access_control_service",
+    "protected_evidence_vault",
+    "audit_log_with_independent_trust",
+    "technical_and_privacy_review",
+    "security_acceptance_test"
+  ]
 }
