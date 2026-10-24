@@ -27,6 +27,9 @@ from evidence.qualitative import (MATRIX_PATH as EVIDENCE_MATRIX_PATH,
                                   ORACLE_PATH, validate_oracle,
                                   validate_qualitative_matrix, assess_case)
 
+from trees.investigation import SPEC_PATH as TREE_SPEC_PATH, build_trees
+from trees.presentation import render_tree_html
+
 FIXTURE_PATH = ROOT / "casefiles/technical-cases.v1.json"
 ALLOWED = {
     "SIM-TECH-FD-01": ("FD-ADDITIVES-UNKNOWN", "final_drive",
