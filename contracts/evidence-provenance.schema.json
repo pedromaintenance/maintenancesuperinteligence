@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-provenance.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contextRefs",
+    "contextRefsNature",
+    "generalSourceIds",
+    "sourceClaimsOemEffectivity",
+    "externalAuthenticityVerified",
+    "sourceMetadata"
+  ],
+  "properties": {
+    "contextRefs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^SIM-[A-Z0-9-]+$"
+      }
+    },
+    "contextRefsNature": {
+      "const": "simulated_context_metadata_only"
+    },
+    "generalSourceIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "sourceClaimsOemEffectivity": {
+      "const": false
+    },
+    "externalAuthenticityVerified": {
+      "const": false
+    },
+    "sourceMetadata": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/source-metadata-inline",
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sourceId",
+          "sourceNature",
+          "oemApplicabilityVerified"
+        ],
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sourceNature": {
+            "const": "general_public_reference"
+          },
+          "oemApplicabilityVerified": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}
