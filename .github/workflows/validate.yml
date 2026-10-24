@@ -1,4 +1,4 @@
-name: Validate maintenance research and synthetic architecture review dossier
+name: Validate synthetic maintenance differential and technical casefiles
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       - name: Validate existing knowledge metadata
         run: python scripts/validate.py
       - name: Compile Python sources
-        run: python -m compileall -q connectors scripts tests
+        run: python -m compileall -q connectors scripts tests casefiles
       - name: Run offline adversarial tests
         run: python -m unittest discover -s tests -v
       - name: Import pinned FMEA public snapshot
@@ -712,6 +712,90 @@ jobs:
           path: |
             build/readiness/acceptance-dossier.v1.json
             build/readiness/acceptance-dossier.v1.html
+          retention-days: 14
+      - name: Generate integrated synthetic technical maintenance casefiles
+        run: |
+          mkdir -p build/casefiles
+          python -m casefiles.integrated \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --fixture casefiles/technical-cases.v1.json \
+            --output build/casefiles/integrated-differential.v1.json \
+            --html build/casefiles/integrated-differential.v1.html > /dev/null
+      - name: Verify FMEA source lock, causal uncertainty and four cases
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from connectors.fmea_public import load_lock
+          data = json.loads(Path("build/casefiles/integrated-differential.v1.json").read_text())
+          assert data["caseCount"] == 4
+          assert data["hypothesesOpen"] == 19
+          assert data["pinnedFmeaSnapshotSha256"] == load_lock()["sha256"]
+          assert data["testsExecuted"] == data["confirmedRootCauses"] == 0
+          assert data["fieldDiagnosticAccuracyMeasured"] is False
+          assert data["privateDeploymentApproved"] is False
+          assert data["mayCreateWorkOrder"] is False
+          assert data["mayReleaseEquipment"] is False
+          cases = data["cases"]
+          assert [x["familyId"] for x in cases] == [
+              "final_drive", "hydraulics", "electronics", "electronics"]
+          assert cases[0]["pilot"]["sourceCaseId"] == "SIM-777E-ADDITIVES-ONLY"
+          assert cases[0]["selectedQuestion"]["pairId"] == "FD-P01"
+          assert cases[1]["selectedQuestion"]["status"] == "reconcile_contradiction"
+          assert cases[2]["reportedSignals"][0]["value"] == "generic_logged_dtc"
+          assert cases[3]["reportedSignals"][0]["value"] == "generic_active_dtc"
+          for case in cases:
+              assert case["provenance"]["fmeaContentVerifiedAgainstLock"]
+              assert case["reviewGates"]["benchmarkSyntheticRegressionsPass"]
+              assert case["decision"] == "needs_human_review_and_discriminating_evidence"
+              assert case["confirmedComponent"] is None and not case["approvedForOperationalUse"]
+              assert len(case["hypotheses"]) >= 4
+              assert all(h["status"] == "open_not_confirmed"
+                         and h["probability"] is None for h in case["hypotheses"])
+              assert all(q["observedOutcome"] is None and q["bothRemainOpen"]
+                         for q in case["hypothesisComparisons"])
+              assert all(not m["mayExecute"]
+                         and m["executionStatus"] == "proposed_not_executed"
+                         for m in case["methods"])
+              assert all(not case["reviewGates"][key] for key in (
+                  "benchmarkMeasuredFieldAccuracy", "technicalReviewAuthenticated",
+                  "privateDeploymentApproved", "oemSeriesVerified",
+                  "mayRunPhysicalTests", "mayCreateWorkOrder",
+                  "mayModifyECM", "mayReleaseEquipment", "mayConfirmRootCause"))
+          html = Path("build/casefiles/integrated-differential.v1.html").read_text()
+          assert html.count("<section>") == 4
+          assert "SIMULAÇÃO" in html and "<script" not in html and "<form" not in html
+          print("PASS: four deterministic technical casefiles, source verification, no field diagnosis")
+          PY
+      - name: Reject manufactured OEM applicability and physical-test results
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          source = json.loads(Path("casefiles/technical-cases.v1.json").read_text())
+          false_oem = json.loads(json.dumps(source))
+          false_oem["cases"][0]["oemPressureOrWearLimit"] = 100
+          false_test = json.loads(json.dumps(source))
+          false_test["cases"][1]["testPerformed"] = True
+          Path("build/casefiles/forged-oem.json").write_text(json.dumps(false_oem))
+          Path("build/casefiles/forged-test.json").write_text(json.dumps(false_test))
+          PY
+          for case in forged-oem forged-test; do
+            if python -m casefiles.integrated \
+              --snapshot build/fmea-public/fmea-public.snapshot.json \
+              --fixture "build/casefiles/$case.json" > /dev/null 2>&1; then
+              echo "SECURITY FAIL: OEM numerical threshold or executed test fabricated"
+              exit 1
+            fi
+          done
+          rm build/casefiles/forged-oem.json build/casefiles/forged-test.json
+      - name: Publish four educational diagnostic casefiles and offline engineering view
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle13-integrated-maintenance-casefiles
+          path: |
+            build/casefiles/integrated-differential.v1.json
+            build/casefiles/integrated-differential.v1.html
           retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4

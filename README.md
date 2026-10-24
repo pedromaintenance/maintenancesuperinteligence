@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de dossiê de aceite P&D v1.2.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de dossiês diagnósticos P&D v1.3.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -50,6 +50,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 10 — Contratos de integração restrita e testes de confiança](docs/CICLO_2026-10-24_CONTRATOS_INTEGRACAO.md)
 - [Ciclo 11 — Matriz de prontidão e compatibilidade](docs/CICLO_2026-10-24_PRONTIDAO_IMPLANTACAO.md)
 - [Ciclo 12 — Dossiê de aceite técnico e revisão de prontidão](docs/CICLO_2026-10-24_DOSSIE_ACEITE.md)
+- [Ciclo 13 — Dossiês integrados de investigação de manutenção](docs/CICLO_2026-10-24_DOSSIES_DIAGNOSTICOS.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -218,3 +219,17 @@ python -m governance.readiness_dossier --output build/readiness/acceptance-dossi
 ```
 
 O HTML é offline, sem JavaScript, sem login, sem formulário e sem conexão com a empresa. Os sete esquemas de apoio restringem campos e bloqueiam falsos pareceres. **Todas as evidências reais permanecem não recebidas e todas as autorizações permanecem negadas.** Veja o [relatório técnico](docs/CICLO_2026-10-24_DOSSIE_ACEITE.md).
+
+
+## Ciclo 13 — Dossiês de investigação mecânica e eletrônica
+
+O núcleo `casefiles/integrated.py` conecta o **snapshot público FMEA travado por SHA-256**, hipóteses didáticas, biblioteca de 14 métodos, matriz discriminante, benchmark de 15 cenários e gates de revisão dos ciclos anteriores. Gera **quatro dossiês sintéticos**, em JSON e HTML standalone: comando final de CAT 777E (perfil de aditivos isolado), hidráulica com contexto de carga contraditório, ECM com código registrado e ECM com código ativo fictício.
+
+Os relatórios exibem função, requisito, sintoma, efeito, alternativas imediatas/raiz **não confirmadas**, 19 instâncias de hipóteses abertas, próximas perguntas, segurança, riscos qualitativos e fontes técnicas gerais. Ordem das hipóteses é editorial, não probabilística. O gerador não acessa ECM/SAP e mantém todas as permissões, resultados de ensaio e homologações OEM **bloqueados ou não realizados**.
+
+```bash
+python connectors/fmea_public.py --fetch --output build/fmea-public
+python -m casefiles.integrated --snapshot build/fmea-public/fmea-public.snapshot.json --output build/casefiles/integrated-differential.v1.json --html build/casefiles/integrated-differential.v1.html
+```
+
+Consulte o [relatório do Ciclo 13](docs/CICLO_2026-10-24_DOSSIES_DIAGNOSTICOS.md) para escopo técnico, fontes, limitação de inferências e execução.

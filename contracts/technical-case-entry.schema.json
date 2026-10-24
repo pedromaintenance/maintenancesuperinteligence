@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/technical-case-entry.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "caseFileId",
+    "benchmarkFixtureId",
+    "familyId",
+    "editorialContextKey",
+    "pilotCasePath",
+    "evidenceNature",
+    "sourceObservedMeasurements",
+    "rootCauseConfirmed",
+    "testPerformed",
+    "diagnosticAccuracyEstablished",
+    "fieldRiskScore",
+    "oemPressureOrWearLimit",
+    "realMachineIdentifier",
+    "oemEffectivityVerified",
+    "independentHumanReviewComplete",
+    "mayRunTests",
+    "mayCreateWorkOrder",
+    "mayModifyECM",
+    "mayReleaseEquipment",
+    "operationallyApproved"
+  ],
+  "properties": {
+    "caseFileId": {
+      "enum": [
+        "SIM-TECH-FD-01",
+        "SIM-TECH-HYD-01",
+        "SIM-TECH-ECM-LOG-01",
+        "SIM-TECH-ECM-ACT-01"
+      ]
+    },
+    "benchmarkFixtureId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "familyId": {
+      "enum": [
+        "final_drive",
+        "hydraulics",
+        "electronics"
+      ]
+    },
+    "editorialContextKey": {
+      "enum": [
+        "final_drive_additive_profile",
+        "hydraulic_load_dispute",
+        "ecm_logged_event",
+        "ecm_active_event"
+      ]
+    },
+    "pilotCasePath": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "const": "examples/777e_additives_only.json"
+        }
+      ]
+    },
+    "evidenceNature": {
+      "const": "simulation"
+    },
+    "sourceObservedMeasurements": {
+      "const": false
+    },
+    "rootCauseConfirmed": {
+      "const": false
+    },
+    "testPerformed": {
+      "const": false
+    },
+    "diagnosticAccuracyEstablished": {
+      "const": false
+    },
+    "fieldRiskScore": {
+      "type": "null"
+    },
+    "oemPressureOrWearLimit": {
+      "type": "null"
+    },
+    "realMachineIdentifier": {
+      "type": "null"
+    },
+    "oemEffectivityVerified": {
+      "const": false
+    },
+    "independentHumanReviewComplete": {
+      "const": false
+    },
+    "mayRunTests": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayModifyECM": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "operationallyApproved": {
+      "const": false
+    }
+  }
+}

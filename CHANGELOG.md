@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.3.0 — 2026-10-24 — Ciclo 13
+
+- Integrados FMEA público pinado, investigação CAT 777E, 14 métodos conceituais, discriminações editoriais, benchmark de 15 cenários e gates de revisão em dossiês técnicos de manutenção sintéticos.
+- Implementado gerador `casefiles/integrated.py` com saídas JSON e HTML offline, descrevendo função, requisito, sintoma, hipóteses concorrentes, causalidade ainda não comprovada, risco qualitativo de postergação, fontes e perguntas de investigação.
+- Quatro casos versionados: aditivos no comando final CAT 777E, carga hidráulica contraditória e eventos ECM sintéticos em estados registrado ou ativo; 19 hipóteses abertas nos relatórios.
+- Adicionados quatro contratos JSON Schema e testes adversariais contra falsa confirmação de causa, medição/ensaio inventado, limiar ou probabilidade OEM, identificação real de frota, autorização SAP/ECM e liberação operacional.
+- CI verifica a origem FMEA travada por SHA-256, produz JSON/HTML temporários, confirma abstinência, bloqueios de segurança e regressões do benchmark.
+
+**Limite:** nenhuma inspeção, coleta, diagnóstico homologado, revisão independente real ou autorização operacional foi realizada.
+
+
 ## 1.2.0 — 2026-10-24 — Ciclo 12
 
 - Gerador offline de dossiê de aceite em JSON e HTML estático para revisão futura de arquitetura corporativa, com escape de conteúdo e nenhuma integração de rede.
