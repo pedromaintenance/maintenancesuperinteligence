@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/discriminating-observation.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pairId",
+    "hypothesisIds",
+    "evidenceClaim",
+    "evidenceProvenance",
+    "currentEvidenceState",
+    "contextRequirements",
+    "conditionalObservations",
+    "alternativeExplanations",
+    "methodPlanning",
+    "cannotDismissEitherHypothesis",
+    "testsPerformed",
+    "observedPhysicalEvidence",
+    "fieldResult"
+  ],
+  "properties": {
+    "pairId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "hypothesisIds": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "evidenceClaim": {
+      "$ref": "evidence-claim.schema.json"
+    },
+    "evidenceProvenance": {
+      "$ref": "evidence-provenance.schema.json"
+    },
+    "currentEvidenceState": {
+      "enum": [
+        "contradicted",
+        "not_measured",
+        "inconclusive"
+      ]
+    },
+    "contextRequirements": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object"
+      }
+    },
+    "conditionalObservations": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "$ref": "conditional-evidence-pattern.schema.json"
+      }
+    },
+    "alternativeExplanations": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "alternative-explanation.schema.json"
+      }
+    },
+    "methodPlanning": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object"
+      }
+    },
+    "cannotDismissEitherHypothesis": {
+      "const": true
+    },
+    "testsPerformed": {
+      "const": 0
+    },
+    "observedPhysicalEvidence": {
+      "const": false
+    },
+    "fieldResult": {
+      "type": "null"
+    }
+  }
+}
