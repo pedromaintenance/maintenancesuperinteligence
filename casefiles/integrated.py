@@ -550,6 +550,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--fixture", type=Path, default=FIXTURE_PATH)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--html", type=Path)
+    parser.add_argument("--tree-html", type=Path)
     args = parser.parse_args(argv)
     try:
         snapshot = validate_snapshot(args.snapshot.read_bytes(), load_lock())
@@ -563,6 +564,9 @@ def main(argv: list[str] | None = None) -> int:
         if args.html:
             args.html.parent.mkdir(parents=True, exist_ok=True)
             args.html.write_text(render_html(report), encoding="utf-8")
+        if args.tree_html:
+            args.tree_html.parent.mkdir(parents=True, exist_ok=True)
+            args.tree_html.write_text(render_tree_html(report["investigationTrees"]), encoding="utf-8")
         print(serialized)
         return 0
     except (ImportRejected, ValueError, KeyError, TypeError, OSError) as exc:
