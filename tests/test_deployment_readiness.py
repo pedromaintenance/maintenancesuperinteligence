@@ -223,16 +223,34 @@ class DeploymentReadinessTests(unittest.TestCase):
     def test_dependency_cycle_rejected(self):
         a, b = self.packet["controls"][0], self.packet["controls"][1]
         a["dependsOn"] = [b["controlId"]]
-        self.reject("dependency cycle")
+        graph = {c["controlId"]: c for c in self.packet["controls"]}
+        with self.assertRaisesRegex(ImportRejected, "dependency cycle"):
+            plan_controls(graph)
+        self.reject("baseline dependency drift")
 
     def test_orphan_dependency_rejected(self):
         self.packet["controls"][0]["dependsOn"] = ["not-a-control"]
-        self.reject("foreign prerequisite")
+        graph = {c["controlId"]: c for c in self.packet["controls"]}
+        with self.assertRaisesRegex(ImportRejected, "foreign prerequisite"):
+            plan_controls(graph)
+        self.reject("baseline dependency drift")
 
     def test_self_dependency_rejected(self):
         c = self.packet["controls"][0]
         c["dependsOn"] = [c["controlId"]]
-        self.reject("self-edge")
+        graph = {c["controlId"]: c for c in self.packet["controls"]}
+        with self.assertRaisesRegex(ImportRejected, "self-edge"):
+            plan_controls(graph)
+        self.reject("baseline dependency drift")
+
+    def test_source_cycle_misattribution_rejected(self):
+        self.packet["compatibilityMatrix"]["entries"][0]["cycle"] = "cycle10"
+        self.reject("source cycle misattributed")
+
+    def test_remove_necessary_dependency_requires_design_review(self):
+        control = self.control("two_independent_reviewers")
+        control["dependsOn"].remove("no_conflict_record")
+        self.reject("baseline dependency drift")
 
     def test_invalid_status_type_rejected(self):
         self.packet["controls"][0]["status"] = True
