@@ -10,7 +10,9 @@ import json
 from pathlib import Path
 import sys
 
-from connectors.fmea_public import ImportRejected, require
+from connectors.fmea_public import ImportRejected, require, load_lock, validate_snapshot
+from casefiles.integrated import (FIXTURE_PATH as CASE_FIXTURE_PATH,
+                                  load_dependencies, build_collection)
 from evidence.ledger import sha
 from methods.library import ROOT
 
@@ -316,6 +318,8 @@ def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source",type=Path,required=True,
                         help="JSON sintético de casefiles do Ciclo 15")
+    parser.add_argument("--snapshot",type=Path,required=True,
+                        help="Snapshot FMEA público fixado por SHA-256")
     parser.add_argument("--spec",type=Path,default=SPEC_PATH)
     parser.add_argument("--output",type=Path)
     parser.add_argument("--html",type=Path)
@@ -323,6 +327,15 @@ def main(argv=None):
     try:
         source=json.loads(args.source.read_text(encoding="utf-8"))
         spec=json.loads(args.spec.read_text(encoding="utf-8"))
+        # Rebuild trusted public corpus; never accept arbitrary "source" prose.
+        snapshot=validate_snapshot(args.snapshot.read_bytes(),load_lock())
+        deps=load_dependencies(snapshot)
+        fixture=json.loads(CASE_FIXTURE_PATH.read_text(encoding="utf-8"))
+        canonical=build_collection(fixture,deps,snapshot)
+        require(source==canonical,
+                "notification: untrusted or altered external casefile corpus")
+        require(spec==json.loads(SPEC_PATH.read_text(encoding="utf-8")),
+                "notification: training text differs from reviewed project specimen")
         require(source["schema"]
                 =="maintenance-superinteligence.technical-casefile-collection.v1"
                 and source["caseCount"]==4
