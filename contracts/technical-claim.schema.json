@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/technical-claim.schema.json",
+  "title": "TechnicalClaim, editorial only v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "claimId",
+    "domain",
+    "methodId",
+    "pairId",
+    "statement",
+    "counterexample",
+    "interpretationLimit",
+    "citationIds",
+    "evidenceNature",
+    "applicabilityEvidence",
+    "rootCauseConfirmed",
+    "mayAuthorizeMaintenance"
+  ],
+  "properties": {
+    "claimId": {
+      "type": "string",
+      "pattern": "^CLM-[A-Z-]+$"
+    },
+    "domain": {
+      "enum": [
+        "oil",
+        "hydraulics",
+        "mechanics",
+        "vibration",
+        "electronics"
+      ]
+    },
+    "methodId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pairId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "statement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "counterexample": {
+      "type": "string",
+      "minLength": 1
+    },
+    "interpretationLimit": {
+      "type": "string",
+      "minLength": 1
+    },
+    "citationIds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9-]+$"
+      }
+    },
+    "evidenceNature": {
+      "const": "author_editorial_claim_not_field_fact"
+    },
+    "applicabilityEvidence": {
+      "$ref": "applicability-evidence.schema.json"
+    },
+    "rootCauseConfirmed": {
+      "const": false
+    },
+    "mayAuthorizeMaintenance": {
+      "const": false
+    }
+  }
+}
