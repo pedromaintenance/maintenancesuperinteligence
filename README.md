@@ -273,7 +273,7 @@ O gerador `notifications/drafts.py` transforma os **quatro dossiês/árvores sin
 ```bash
 python connectors/fmea_public.py --fetch --output build/fmea-public
 python -m casefiles.integrated --snapshot build/fmea-public/fmea-public.snapshot.json --output build/trees/technical-cases.v1.json
-python -m notifications.drafts --source build/trees/technical-cases.v1.json --output build/notifications/maintenance-drafts.v1.json --html build/notifications/maintenance-drafts.v1.html
+python -m notifications.drafts --source build/trees/technical-cases.v1.json --snapshot build/fmea-public/fmea-public.snapshot.json --output build/notifications/maintenance-drafts.v1.json --html build/notifications/maintenance-drafts.v1.html
 ```
 
-O HTML é standalone, somente leitura e sem interface SAP. Nenhum rascunho tem autoridade para abrir notas/ordens, condenar componente ou liberar equipamento. Consulte o [relatório técnico do Ciclo 16](docs/CICLO_2026-10-24_NOTIFICACOES_DIDATICAS.md).
+Antes da geração, o programa reconstitui o corpus didático com o snapshot FMEA público fixado e rejeita qualquer fonte externa alterada ou texto editorial não correspondente ao exemplar do projeto. O HTML é standalone, somente leitura e sem interface SAP. Nenhum rascunho tem autoridade para abrir notas/ordens, condenar componente ou liberar equipamento. Consulte o [relatório técnico do Ciclo 16](docs/CICLO_2026-10-24_NOTIFICACOES_DIDATICAS.md).
