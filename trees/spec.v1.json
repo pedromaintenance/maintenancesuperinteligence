@@ -1,9 +1,47 @@
 {
   "schema": "maintenance-superinteligence.investigation-tree-spec.v1",
   "version": "1.0.0",
-  "mode": "synthetic_only",
-  "pairs": 10,
-  "branches": "conditional_unobserved",
-  "humanReviewRequired": true,
-  "mayExecute": false
+  "mode": "public_synthetic_only",
+  "evidenceSource": "evidence/qualitative-discrimination.v1.json",
+  "oracleSource": "benchmarks/qualitative-oracle.v1.json",
+  "authorizedForOperations": false,
+  "fieldEvidenceAvailable": false,
+  "trees": [
+    {
+      "caseFileId": "SIM-TECH-FD-01",
+      "rootPairId": "FD-P01",
+      "currentContextState": "not_measured",
+      "pairCount": 4,
+      "terminalState": "abstain_pending_verified_evidence",
+      "canConfirmRootCause": false,
+      "canReleaseMachine": false
+    },
+    {
+      "caseFileId": "SIM-TECH-HYD-01",
+      "rootPairId": "HYD-P01",
+      "currentContextState": "contradicted",
+      "pairCount": 3,
+      "terminalState": "abstain_pending_verified_evidence",
+      "canConfirmRootCause": false,
+      "canReleaseMachine": false
+    },
+    {
+      "caseFileId": "SIM-TECH-ECM-LOG-01",
+      "rootPairId": "EL-P01",
+      "currentContextState": "not_measured",
+      "pairCount": 3,
+      "terminalState": "abstain_pending_verified_evidence",
+      "canConfirmRootCause": false,
+      "canReleaseMachine": false
+    },
+    {
+      "caseFileId": "SIM-TECH-ECM-ACT-01",
+      "rootPairId": "EL-P02",
+      "currentContextState": "not_measured",
+      "pairCount": 3,
+      "terminalState": "abstain_pending_verified_evidence",
+      "canConfirmRootCause": false,
+      "canReleaseMachine": false
+    }
+  ]
 }
