@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/restricted-review-actor.schema.json",
+  "title": "Untrusted synthetic actor for design testing",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "actorId",
+    "role",
+    "discipline",
+    "identityNature",
+    "identityVerified",
+    "credentialVerified",
+    "independenceVerified",
+    "conflictOfInterestDeclared",
+    "revoked",
+    "authority"
+  ],
+  "properties": {
+    "actorId": {
+      "type": "string",
+      "pattern": "^SIM-ACTOR-[A-Z0-9-]+$"
+    },
+    "role": {
+      "enum": [
+        "author",
+        "reviewer",
+        "adjudicator"
+      ]
+    },
+    "discipline": {
+      "enum": [
+        "oil",
+        "hydraulics",
+        "mechanics",
+        "vibration",
+        "electronics"
+      ]
+    },
+    "identityNature": {
+      "const": "fictional_unverified_identity"
+    },
+    "identityVerified": {
+      "const": false
+    },
+    "credentialVerified": {
+      "const": false
+    },
+    "independenceVerified": {
+      "const": false
+    },
+    "conflictOfInterestDeclared": {
+      "const": false
+    },
+    "revoked": {
+      "const": false
+    },
+    "authority": {
+      "const": "simulation_only"
+    }
+  }
+}
