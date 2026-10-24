@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/human-review-checkpoint.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "nodeId",
+    "requiredProofs",
+    "allProofsVerified",
+    "humanReviewAuthenticated",
+    "oemEffectivityVerified",
+    "physicalMethodAuthorized",
+    "decision"
+  ],
+  "properties": {
+    "nodeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requiredProofs": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "allProofsVerified": {
+      "const": false
+    },
+    "humanReviewAuthenticated": {
+      "const": false
+    },
+    "oemEffectivityVerified": {
+      "const": false
+    },
+    "physicalMethodAuthorized": {
+      "const": false
+    },
+    "decision": {
+      "const": "abstain_pending_verified_evidence"
+    }
+  }
+}
