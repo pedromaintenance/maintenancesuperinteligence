@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/technical-casefile-collection.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "sourceFixtureSha256",
+    "pinnedFmeaSnapshotSha256",
+    "cases",
+    "caseCount",
+    "hypothesesOpen",
+    "testsExecuted",
+    "confirmedRootCauses",
+    "fieldDiagnosticAccuracyMeasured",
+    "privateDeploymentApproved",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.technical-casefile-collection.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "four_synthetic_independent_differentials"
+    },
+    "sourceFixtureSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "pinnedFmeaSnapshotSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "technical-casefile.schema.json"
+      }
+    },
+    "caseCount": {
+      "const": 4
+    },
+    "hypothesesOpen": {
+      "type": "integer",
+      "minimum": 16
+    },
+    "testsExecuted": {
+      "const": 0
+    },
+    "confirmedRootCauses": {
+      "const": 0
+    },
+    "fieldDiagnosticAccuracyMeasured": {
+      "const": false
+    },
+    "privateDeploymentApproved": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}
