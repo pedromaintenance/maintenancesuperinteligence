@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/restricted-review-audit-event.schema.json",
+  "title": "Untrusted chained review event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sequence",
+    "event",
+    "actorRole",
+    "claimRevision",
+    "claimSha256",
+    "previousSha256",
+    "stateAfter",
+    "timestampTrust",
+    "signatureVerified",
+    "eventSha256"
+  ],
+  "properties": {
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "event": {
+      "$ref": "restricted-review-event.schema.json"
+    },
+    "actorRole": {
+      "enum": [
+        "author",
+        "reviewer",
+        "adjudicator"
+      ]
+    },
+    "claimRevision": {
+      "const": 1
+    },
+    "claimSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "previousSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "stateAfter": {
+      "enum": [
+        "draft",
+        "under_review",
+        "disputed",
+        "needs_evidence",
+        "qualified_general_claim_simulation"
+      ]
+    },
+    "timestampTrust": {
+      "const": "none_synthetic"
+    },
+    "signatureVerified": {
+      "const": false
+    },
+    "eventSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

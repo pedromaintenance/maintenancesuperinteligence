@@ -1,0 +1,237 @@
+{
+  "schema": "maintenance-superinteligence.restricted-review-threat-fixture.v1",
+  "version": "1.0.0",
+  "nature": "offline_untrusted_synthetic_no_authentication",
+  "tenantId": "SIM-TENANT-TRAINING",
+  "externalVerifierConfigured": false,
+  "externalTrustAnchor": null,
+  "externalTimeAuthorityConfigured": false,
+  "mayPersistRealData": false,
+  "mayIssueTechnicalApproval": false,
+  "actors": [
+    {
+      "actorId": "SIM-ACTOR-OIL-AUTH",
+      "role": "author",
+      "discipline": "oil",
+      "identityNature": "fictional_unverified_identity",
+      "identityVerified": false,
+      "credentialVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "revoked": false,
+      "authority": "simulation_only"
+    },
+    {
+      "actorId": "SIM-ACTOR-OIL-REV-A",
+      "role": "reviewer",
+      "discipline": "oil",
+      "identityNature": "fictional_unverified_identity",
+      "identityVerified": false,
+      "credentialVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "revoked": false,
+      "authority": "simulation_only"
+    },
+    {
+      "actorId": "SIM-ACTOR-OIL-REV-B",
+      "role": "reviewer",
+      "discipline": "oil",
+      "identityNature": "fictional_unverified_identity",
+      "identityVerified": false,
+      "credentialVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "revoked": false,
+      "authority": "simulation_only"
+    },
+    {
+      "actorId": "SIM-ACTOR-OIL-ADJ",
+      "role": "adjudicator",
+      "discipline": "oil",
+      "identityNature": "fictional_unverified_identity",
+      "identityVerified": false,
+      "credentialVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "revoked": false,
+      "authority": "simulation_only"
+    },
+    {
+      "actorId": "SIM-ACTOR-HYD-AUTH",
+      "role": "author",
+      "discipline": "hydraulics",
+      "identityNature": "fictional_unverified_identity",
+      "identityVerified": false,
+      "credentialVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "revoked": false,
+      "authority": "simulation_only"
+    },
+    {
+      "actorId": "SIM-ACTOR-HYD-REV-A",
+      "role": "reviewer",
+      "discipline": "hydraulics",
+      "identityNature": "fictional_unverified_identity",
+      "identityVerified": false,
+      "credentialVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "revoked": false,
+      "authority": "simulation_only"
+    },
+    {
+      "actorId": "SIM-ACTOR-HYD-REV-B",
+      "role": "reviewer",
+      "discipline": "hydraulics",
+      "identityNature": "fictional_unverified_identity",
+      "identityVerified": false,
+      "credentialVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "revoked": false,
+      "authority": "simulation_only"
+    }
+  ],
+  "cases": [
+    {
+      "caseId": "SIM-RESTRICTED-WATER-DISPUTE",
+      "claimId": "CLM-OIL-WATER",
+      "revision": 1,
+      "events": [
+        {
+          "eventId": "SIM-EVENT-WATER-1",
+          "claimId": "CLM-OIL-WATER",
+          "actorId": "SIM-ACTOR-OIL-AUTH",
+          "action": "submit",
+          "nonce": "SIM-NONCE-WATER-1",
+          "targetRevision": 1,
+          "sourceRefs": [
+            "CIT-OIL-WATER-1"
+          ],
+          "explanation": "Autor submete a discussão sobre coleta e indício de água.",
+          "signature": null
+        },
+        {
+          "eventId": "SIM-EVENT-WATER-2",
+          "claimId": "CLM-OIL-WATER",
+          "actorId": "SIM-ACTOR-OIL-REV-A",
+          "action": "support_general",
+          "nonce": "SIM-NONCE-WATER-2",
+          "targetRevision": 1,
+          "sourceRefs": [
+            "CIT-OIL-WATER-1"
+          ],
+          "explanation": "Revisor fictício concorda com o escopo geral, não aprova série.",
+          "signature": null
+        },
+        {
+          "eventId": "SIM-EVENT-WATER-3",
+          "claimId": "CLM-OIL-WATER",
+          "actorId": "SIM-ACTOR-OIL-REV-B",
+          "action": "challenge",
+          "nonce": "SIM-NONCE-WATER-3",
+          "targetRevision": 1,
+          "sourceRefs": [
+            "CIT-OIL-WATER-1"
+          ],
+          "explanation": "Revisor fictício aponta explicações alternativas e falta de comparação.",
+          "signature": null
+        },
+        {
+          "eventId": "SIM-EVENT-WATER-4",
+          "claimId": "CLM-OIL-WATER",
+          "actorId": "SIM-ACTOR-OIL-ADJ",
+          "action": "adjudicate_needs_evidence",
+          "nonce": "SIM-NONCE-WATER-4",
+          "targetRevision": 1,
+          "sourceRefs": [
+            "CIT-OIL-WATER-1"
+          ],
+          "explanation": "Adjudicador fictício solicita mais evidências, sem encerrar a controvérsia como causa.",
+          "signature": null
+        }
+      ]
+    },
+    {
+      "caseId": "SIM-RESTRICTED-FORMULATION-CONSENSUS",
+      "claimId": "CLM-OIL-FORMULATION",
+      "revision": 1,
+      "events": [
+        {
+          "eventId": "SIM-EVENT-FORM-1",
+          "claimId": "CLM-OIL-FORMULATION",
+          "actorId": "SIM-ACTOR-OIL-AUTH",
+          "action": "submit",
+          "nonce": "SIM-NONCE-FORM-1",
+          "targetRevision": 1,
+          "sourceRefs": [
+            "CIT-OIL-FORMULATION-1"
+          ],
+          "explanation": "Autor submete relação de formulação e interpretação de perfil.",
+          "signature": null
+        },
+        {
+          "eventId": "SIM-EVENT-FORM-2",
+          "claimId": "CLM-OIL-FORMULATION",
+          "actorId": "SIM-ACTOR-OIL-REV-A",
+          "action": "support_general",
+          "nonce": "SIM-NONCE-FORM-2",
+          "targetRevision": 1,
+          "sourceRefs": [
+            "CIT-OIL-FORMULATION-1"
+          ],
+          "explanation": "Primeiro parecer apenas fictício e genérico.",
+          "signature": null
+        },
+        {
+          "eventId": "SIM-EVENT-FORM-3",
+          "claimId": "CLM-OIL-FORMULATION",
+          "actorId": "SIM-ACTOR-OIL-REV-B",
+          "action": "support_general",
+          "nonce": "SIM-NONCE-FORM-3",
+          "targetRevision": 1,
+          "sourceRefs": [
+            "CIT-OIL-FORMULATION-1"
+          ],
+          "explanation": "Segundo parecer apenas fictício e genérico.",
+          "signature": null
+        }
+      ]
+    },
+    {
+      "caseId": "SIM-RESTRICTED-HYDRAULIC-INCOMPLETE",
+      "claimId": "CLM-HYD-LOAD",
+      "revision": 1,
+      "events": [
+        {
+          "eventId": "SIM-EVENT-HYD-1",
+          "claimId": "CLM-HYD-LOAD",
+          "actorId": "SIM-ACTOR-HYD-AUTH",
+          "action": "submit",
+          "nonce": "SIM-NONCE-HYD-1",
+          "targetRevision": 1,
+          "sourceRefs": [
+            "CIT-HYD-LOAD-1"
+          ],
+          "explanation": "Autor relata questão conceitual de carga/pressão.",
+          "signature": null
+        },
+        {
+          "eventId": "SIM-EVENT-HYD-2",
+          "claimId": "CLM-HYD-LOAD",
+          "actorId": "SIM-ACTOR-HYD-REV-A",
+          "action": "insufficient",
+          "nonce": "SIM-NONCE-HYD-2",
+          "targetRevision": 1,
+          "sourceRefs": [
+            "CIT-HYD-LOAD-1"
+          ],
+          "explanation": "Parecer fictício registra ausência de configuração e método.",
+          "signature": null
+        }
+      ]
+    }
+  ]
+}

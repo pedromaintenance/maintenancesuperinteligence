@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.9.0 — 2026-10-24 — Ciclo 09
+
+- Documentada arquitetura **proposta** de revisão técnica restrita, separando conhecimento público, credenciais, evidências, séries, dados SAP/ECM e literatura OEM licenciada.
+- Modelo de ameaças cobre impersonação, autorrevisão, aliases de mesmo revisor, papel/competência, revogação, replay, revisão obsoleta, adulteração e vazamento.
+- Criado protótipo offline `governance/restricted_blueprint.py` com três sequências e nove eventos `SIM-*`: separação de papéis, versionamento, nonce único, divergência, adjudicação fictícia e hashes de integridade.
+- Introduzidos cinco contratos JSON Schema para pessoa fictícia, evento, caso, fixture e registro auditável.
+- Adicionados testes adversariais e etapa CI que rejeita relatório adulterado, nonce repetido, suposta aprovação OEM e autoridade operacional.
+- Referências técnicas de especificação: NIST SP 800-63-4, OWASP ASVS 5 e LGPD. **Nenhuma conformidade normativa ou autenticação real é reivindicada.**
+
+**Limite:** não há ambiente restrito implantado, identidade verificada, assinatura, autorização de dados de campo ou aprovação de equipamento.
+
+
 ## 0.8.0 — 2026-10-24 — Ciclo 08
 
 - Implementado workflow de governança `governance/review.py` com 8 afirmações editoriais, 9 citações de referências gerais e 13 pareceres fictícios.
