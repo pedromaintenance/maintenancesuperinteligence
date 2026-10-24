@@ -78,6 +78,9 @@ Foram adicionados os seguintes contratos:
 6. `discriminating-observation.schema.json` — par, contexto, padrão, método, segurança e interpretação.
 7. `qualitative-evidence-pair.schema.json` — contrato editorial de cada par.
 8. `qualitative-evidence-matrix.schema.json` — envelope da matriz.
+9. `qualitative-oracle.schema.json` — resultados sintéticos esperados por caso.
+
+Também foi incorporado `benchmarks/qualitative-oracle.v1.json` como fonte independente de expectativas editoriais: quatro casos, seleção de pergunta e estados por par, sem alegação de eficácia mecânica. Seu SHA-256 é registrado no relatório. Testes adversariais rejeitam tratar falta de observação como resultado negativo ou apagar uma contradição do caso hidráulico.
 
 Foram também atualizados os contratos de dossiê técnico para exigir o objeto `qualitativeEvidence` e o estado global de zero evidências observadas e zero exclusões.
 
