@@ -240,6 +240,8 @@ Consulte o [relatório do Ciclo 13](docs/CICLO_2026-10-24_DOSSIES_DIAGNOSTICOS.m
 
 O arquivo `evidence/qualitative-discrimination.v1.json` acrescenta **10 pares de hipóteses**, **30 observações condicionais** e **20 contraexemplos diferentes**, todos vinculados à matriz discriminante e aos métodos públicos. Como quatro dossiês compartilham alguns pares, a visualização final exibe **13 comparações e 26 contraexemplos instanciados**.
 
+Um oráculo sintético independente em `benchmarks/qualitative-oracle.v1.json` registra as respostas esperadas de quatro casos para detectar alterações silenciosas de estado/contexto e seleção, sem alegar veracidade mecânica.
+
 Cada dossiê apresenta quais padrões *poderiam* fortalecer ou enfraquecer uma interpretação, quais explicações alternativas permanecem possíveis e qual informação ainda precisa ser obtida. O módulo `evidence/qualitative.py` não aceita promover tais padrões a resultados medidos: `supports`/`weakens` são apenas condicionais; estados presentes no caso são `not_measured`, `contradicted` e `inconclusive`. **Nenhuma hipótese é descartada, nenhum teste é considerado executado e não existe aprovação de equipamento.**
 
 ```bash
