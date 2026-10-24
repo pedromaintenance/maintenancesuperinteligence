@@ -218,6 +218,72 @@ def assess_case(case: dict, selection: dict, validated: dict, methods: dict) -> 
     }
 
 
+ORACLE_PATH = ROOT / "benchmarks/qualitative-oracle.v1.json"
+ORACLE_KEYS = {"schema", "version", "purpose", "modelSource",
+               "sourceBenchmark", "realFieldValidityEstablished",
+               "canUseToExcludeHypotheses", "expected"}
+EXPECTED_ORACLE_IDS = {
+    "SIM-TECH-FD-01", "SIM-TECH-HYD-01",
+    "SIM-TECH-ECM-LOG-01", "SIM-TECH-ECM-ACT-01",
+}
+
+
+def validate_oracle(oracle: object, reports: list[dict]) -> dict:
+    """Versioned golden synthetic outcomes, NOT expert diagnostic accuracy."""
+    o = exact(oracle, ORACLE_KEYS, "qualitative oracle")
+    require(o["schema"] == "maintenance-superinteligence.qualitative-oracle.v1"
+            and o["version"] == "1.0.0"
+            and o["purpose"]
+                == "independently_authored_synthetic_regression_expectations_not_mechanical_truth"
+            and o["modelSource"] == "evidence/qualitative-discrimination.v1.json"
+            and o["sourceBenchmark"] == "benchmarks/question-quality.v1.json"
+            and o["realFieldValidityEstablished"] is False
+            and o["canUseToExcludeHypotheses"] is False,
+            "oracle: field validity or authorization was fabricated")
+    require(isinstance(o["expected"], list) and len(o["expected"]) == 4,
+            "oracle: four synthetic case records required")
+    actual = {r["caseFileId"]: r for r in reports}
+    require(set(actual) == EXPECTED_ORACLE_IDS,
+            "oracle: expected casefiles missing")
+    seen = set()
+    for item in o["expected"]:
+        exact(item, {"caseFileId", "benchmarkFixtureId", "selectedPairId",
+                     "selectedMethodId", "comparisonStates",
+                     "observedSupportCount", "observedWeakeningCount",
+                     "hypothesesExcluded", "testsPerformed"}, "oracle case")
+        cid = item["caseFileId"]
+        require(cid in actual and cid not in seen,
+                "oracle: unknown or repeated synthetic case")
+        seen.add(cid)
+        output = actual[cid]
+        require(item["benchmarkFixtureId"]
+                == output["provenance"]["caseBenchmarkFixtureId"]
+                and item["selectedPairId"] == output["selectedQuestion"]["pairId"]
+                and item["selectedMethodId"] == output["selectedQuestion"]["methodId"]
+                and all(item[k] == 0 for k in (
+                    "observedSupportCount", "observedWeakeningCount",
+                    "hypothesesExcluded", "testsPerformed")),
+                "oracle: question changed or nonzero physical observations")
+        comparisons = output["qualitativeEvidence"]["comparisons"]
+        require(isinstance(item["comparisonStates"], list)
+                and len(item["comparisonStates"]) == len(comparisons),
+                "oracle: case comparison count changed")
+        for expected, observed in zip(item["comparisonStates"], comparisons):
+            exact(expected, {"pairId", "currentEvidenceState",
+                             "observedPhysicalEvidence", "bothHypothesesOpen",
+                             "conditionalPatternsAreMeasurements"},
+                  "oracle comparison")
+            require(expected["pairId"] == observed["pairId"]
+                    and expected["currentEvidenceState"]
+                        == observed["currentEvidenceState"]
+                    and expected["currentEvidenceState"] in CASE_EFFECT_STATES
+                    and expected["observedPhysicalEvidence"] is False
+                    and expected["bothHypothesesOpen"] is True
+                    and expected["conditionalPatternsAreMeasurements"] is False,
+                    "oracle: expected contradiction/missing/inconclusive state changed")
+    return {x["caseFileId"]: x for x in o["expected"]}
+
+
 def main(argv=None):
     raise SystemExit("Use casefiles.integrated; raw pairs cannot certify field evidence.")
 
