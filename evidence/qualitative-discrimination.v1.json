@@ -1,0 +1,606 @@
+{
+  "schema": "maintenance-superinteligence.evidence-discrimination-matrix.v1",
+  "version": "1.0.0",
+  "purpose": "qualitative_counterfactual_reasoning_only",
+  "sourceMatrix": "methods/discrimination-matrix.v1.json",
+  "sourceMethods": "methods/catalog.v1.json",
+  "approvedForOperationalUse": false,
+  "observedPhysicalEvidence": false,
+  "independentClinicalOrFieldValidation": false,
+  "pairs": [
+    {
+      "pairId": "FD-P01",
+      "familyId": "final_drive",
+      "firstHypothesisId": "PILOT-FORMULATION",
+      "secondHypothesisId": "FC-FD-003",
+      "requiredContextKeys": [
+        "fluid_product_id",
+        "service_record"
+      ],
+      "methodIds": [
+        "MET-OIL-PRODUCT",
+        "MET-OIL-TREND"
+      ],
+      "sourceIds": [
+        "CAT-FLUID-ANALYSIS-101"
+      ],
+      "conditionalObservations": [
+        {
+          "observationId": "FD-P01-OBS-A",
+          "conditionalReading": "Se houver mudança documental consistente, manter formulação como alternativa",
+          "effectOnFirst": "supports",
+          "effectOnSecond": "weakens",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "FD-P01-OBS-B",
+          "conditionalReading": "Se houver tendência anormal persistente e contexto correto, investigar mecanismo de lubrificação",
+          "effectOnFirst": "weakens",
+          "effectOnSecond": "supports",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "FD-P01-OBS-C",
+          "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas.",
+          "effectOnFirst": "inconclusive",
+          "effectOnSecond": "inconclusive",
+          "nature": "counterfactual_not_observed"
+        }
+      ],
+      "alternativeExplanations": [
+        {
+          "explanationId": "FD-P01-ALT-01",
+          "statement": "Uma troca documentada de produto pode alterar aditivos sem indicar dano; paralelamente, falta de histórico impede saber se a alteração é normal.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        },
+        {
+          "explanationId": "FD-P01-ALT-02",
+          "statement": "Perfil químico semelhante não descarta desgaste mecânico; tendência de metais requer contexto, amostragem e revisão de laboratório.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        }
+      ],
+      "interpretationStatus": "unvalidated_editorial_conditionals",
+      "testStatus": "not_performed",
+      "observedOutcome": null,
+      "mayExcludeEitherHypothesis": false,
+      "canAuthorizeTest": false
+    },
+    {
+      "pairId": "FD-P02",
+      "familyId": "final_drive",
+      "firstHypothesisId": "PILOT-SAMPLE",
+      "secondHypothesisId": "FC-FD-002",
+      "requiredContextKeys": [
+        "sample_chain",
+        "sample_point"
+      ],
+      "methodIds": [
+        "MET-OIL-SAMPLING",
+        "MET-OIL-WATER"
+      ],
+      "sourceIds": [
+        "CAT-FLUID-ANALYSIS-101"
+      ],
+      "conditionalObservations": [
+        {
+          "observationId": "FD-P02-OBS-A",
+          "conditionalReading": "Recoleta rastreável não reproduz indício; avaliar cadeia de amostragem",
+          "effectOnFirst": "supports",
+          "effectOnSecond": "weakens",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "FD-P02-OBS-B",
+          "conditionalReading": "Resultados reproduzidos exigem apurar ingresso sem presumir origem por vedação",
+          "effectOnFirst": "weakens",
+          "effectOnSecond": "supports",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "FD-P02-OBS-C",
+          "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas.",
+          "effectOnFirst": "inconclusive",
+          "effectOnSecond": "inconclusive",
+          "nature": "counterfactual_not_observed"
+        }
+      ],
+      "alternativeExplanations": [
+        {
+          "explanationId": "FD-P02-ALT-01",
+          "statement": "Uma segunda amostra sem água pode refletir variabilidade de coleta, mas também intermitência do ingresso; não comprova ausência de água no sistema.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        },
+        {
+          "explanationId": "FD-P02-ALT-02",
+          "statement": "Água em amostras consecutivas não identifica qual vedação, respiro ou ponto de ingresso falhou.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        }
+      ],
+      "interpretationStatus": "unvalidated_editorial_conditionals",
+      "testStatus": "not_performed",
+      "observedOutcome": null,
+      "mayExcludeEitherHypothesis": false,
+      "canAuthorizeTest": false
+    },
+    {
+      "pairId": "FD-P03",
+      "familyId": "final_drive",
+      "firstHypothesisId": "PILOT-OTHER-NOISE",
+      "secondHypothesisId": "FC-FD-004",
+      "requiredContextKeys": [
+        "sensor_location",
+        "speed_context"
+      ],
+      "methodIds": [
+        "MET-VIB-LOCALIZE",
+        "MET-MECH-MAGNET"
+      ],
+      "sourceIds": [
+        "CAT-DRIVE-MAGNET-PLUG",
+        "SKF-ISO15243-BEARING",
+        "SKF-VIBRATION-CONDITION"
+      ],
+      "conditionalObservations": [
+        {
+          "observationId": "FD-P03-OBS-A",
+          "conditionalReading": "Ruído externo consistente mantém freio/pneu como hipótese",
+          "effectOnFirst": "supports",
+          "effectOnSecond": "weakens",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "FD-P03-OBS-B",
+          "conditionalReading": "Ruído consistente no redutor ainda não identifica rolamento",
+          "effectOnFirst": "weakens",
+          "effectOnSecond": "supports",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "FD-P03-OBS-C",
+          "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas.",
+          "effectOnFirst": "inconclusive",
+          "effectOnSecond": "inconclusive",
+          "nature": "counterfactual_not_observed"
+        }
+      ],
+      "alternativeExplanations": [
+        {
+          "explanationId": "FD-P03-ALT-01",
+          "statement": "Ruído percebido perto da roda pode se propagar pela estrutura; localizar por sensação auditiva não isola o redutor.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        },
+        {
+          "explanationId": "FD-P03-ALT-02",
+          "statement": "Partículas no bujão não identificam automaticamente o rolamento; separar desgaste normal, fonte e morfologia.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        }
+      ],
+      "interpretationStatus": "unvalidated_editorial_conditionals",
+      "testStatus": "not_performed",
+      "observedOutcome": null,
+      "mayExcludeEitherHypothesis": false,
+      "canAuthorizeTest": false
+    },
+    {
+      "pairId": "FD-P04",
+      "familyId": "final_drive",
+      "firstHypothesisId": "FC-FD-001",
+      "secondHypothesisId": "FC-FD-004",
+      "requiredContextKeys": [
+        "plug_identity",
+        "prior_records"
+      ],
+      "methodIds": [
+        "MET-MECH-MAGNET",
+        "MET-OIL-TREND"
+      ],
+      "sourceIds": [
+        "CAT-DRIVE-MAGNET-PLUG",
+        "CAT-FLUID-ANALYSIS-101",
+        "SKF-ISO15243-BEARING"
+      ],
+      "conditionalObservations": [
+        {
+          "observationId": "FD-P04-OBS-A",
+          "conditionalReading": "Traços de ingresso orientam inspeção de rotas, sem causa confirmada",
+          "effectOnFirst": "supports",
+          "effectOnSecond": "weakens",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "FD-P04-OBS-B",
+          "conditionalReading": "Fragmentos internos exigem morfologia e inspeção antes de identificar rolamento",
+          "effectOnFirst": "weakens",
+          "effectOnSecond": "supports",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "FD-P04-OBS-C",
+          "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas.",
+          "effectOnFirst": "inconclusive",
+          "effectOnSecond": "inconclusive",
+          "nature": "counterfactual_not_observed"
+        }
+      ],
+      "alternativeExplanations": [
+        {
+          "explanationId": "FD-P04-ALT-01",
+          "statement": "Poeira externa e fragmentos internos podem coexistir; observação isolada não determina qual mecanismo iniciou o processo.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        },
+        {
+          "explanationId": "FD-P04-ALT-02",
+          "statement": "Depósito magnético pode ter origens múltiplas e não distingue por si só falha de rolamento de outro contato metálico.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        }
+      ],
+      "interpretationStatus": "unvalidated_editorial_conditionals",
+      "testStatus": "not_performed",
+      "observedOutcome": null,
+      "mayExcludeEitherHypothesis": false,
+      "canAuthorizeTest": false
+    },
+    {
+      "pairId": "HYD-P01",
+      "familyId": "hydraulics",
+      "firstHypothesisId": "HYD-PUMP",
+      "secondHypothesisId": "HYD-VALVE",
+      "requiredContextKeys": [
+        "hydraulic_schematic",
+        "load_context"
+      ],
+      "methodIds": [
+        "MET-HYD-PRESSURE",
+        "MET-HYD-FLOW"
+      ],
+      "sourceIds": [
+        "BOSCH-REXROTH-CYTRO"
+      ],
+      "conditionalObservations": [
+        {
+          "observationId": "HYD-P01-OBS-A",
+          "conditionalReading": "Dados reproduzíveis podem manter bomba como hipótese",
+          "effectOnFirst": "supports",
+          "effectOnSecond": "weakens",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "HYD-P01-OBS-B",
+          "conditionalReading": "Diferenças entre ramos de fluxo mantêm válvula/restrição como hipótese",
+          "effectOnFirst": "weakens",
+          "effectOnSecond": "supports",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "HYD-P01-OBS-C",
+          "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas.",
+          "effectOnFirst": "inconclusive",
+          "effectOnSecond": "inconclusive",
+          "nature": "counterfactual_not_observed"
+        }
+      ],
+      "alternativeExplanations": [
+        {
+          "explanationId": "HYD-P01-ALT-01",
+          "statement": "Baixa resposta pode acompanhar tanto restrição de válvula quanto condição de alimentação; pressão isolada não separa bomba e comando.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        },
+        {
+          "explanationId": "HYD-P01-ALT-02",
+          "statement": "Diferenças de vazão podem depender de configuração e demanda; sem esquema e carga comparáveis não há culpabilidade de válvula.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        }
+      ],
+      "interpretationStatus": "unvalidated_editorial_conditionals",
+      "testStatus": "not_performed",
+      "observedOutcome": null,
+      "mayExcludeEitherHypothesis": false,
+      "canAuthorizeTest": false
+    },
+    {
+      "pairId": "HYD-P02",
+      "familyId": "hydraulics",
+      "firstHypothesisId": "HYD-LOAD",
+      "secondHypothesisId": "HYD-PUMP",
+      "requiredContextKeys": [
+        "load_context",
+        "test_port_definition"
+      ],
+      "methodIds": [
+        "MET-HYD-PRESSURE",
+        "MET-HYD-FLOW"
+      ],
+      "sourceIds": [
+        "BOSCH-REXROTH-CYTRO"
+      ],
+      "conditionalObservations": [
+        {
+          "observationId": "HYD-P02-OBS-A",
+          "conditionalReading": "Mudança na demanda permanece alternativa não-mecânica de falha",
+          "effectOnFirst": "supports",
+          "effectOnSecond": "weakens",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "HYD-P02-OBS-B",
+          "conditionalReading": "Desempenho sob condições comparáveis exige mais investigação sem condenação",
+          "effectOnFirst": "weakens",
+          "effectOnSecond": "supports",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "HYD-P02-OBS-C",
+          "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas.",
+          "effectOnFirst": "inconclusive",
+          "effectOnSecond": "inconclusive",
+          "nature": "counterfactual_not_observed"
+        }
+      ],
+      "alternativeExplanations": [
+        {
+          "explanationId": "HYD-P02-ALT-01",
+          "statement": "Aumento de carga pode reduzir velocidade sem defeito; contudo não demonstra integridade de bomba sob requisitos OEM.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        },
+        {
+          "explanationId": "HYD-P02-ALT-02",
+          "statement": "Desempenho ruim na mesma carga pode derivar de válvula, fluido ou instrumentação e não necessariamente da bomba.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        }
+      ],
+      "interpretationStatus": "unvalidated_editorial_conditionals",
+      "testStatus": "not_performed",
+      "observedOutcome": null,
+      "mayExcludeEitherHypothesis": false,
+      "canAuthorizeTest": false
+    },
+    {
+      "pairId": "HYD-P03",
+      "familyId": "hydraulics",
+      "firstHypothesisId": "HYD-THERMAL",
+      "secondHypothesisId": "HYD-VALVE",
+      "requiredContextKeys": [
+        "fluid_temperature",
+        "duty_cycle"
+      ],
+      "methodIds": [
+        "MET-HYD-TEMP",
+        "MET-HYD-FLOW"
+      ],
+      "sourceIds": [
+        "BOSCH-REXROTH-CYTRO"
+      ],
+      "conditionalObservations": [
+        {
+          "observationId": "HYD-P03-OBS-A",
+          "conditionalReading": "Dependência térmica indica investigar viscosidade/resfriamento",
+          "effectOnFirst": "supports",
+          "effectOnSecond": "weakens",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "HYD-P03-OBS-B",
+          "conditionalReading": "Restrição ainda é possível e depende de medição revisada",
+          "effectOnFirst": "weakens",
+          "effectOnSecond": "supports",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "HYD-P03-OBS-C",
+          "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas.",
+          "effectOnFirst": "inconclusive",
+          "effectOnSecond": "inconclusive",
+          "nature": "counterfactual_not_observed"
+        }
+      ],
+      "alternativeExplanations": [
+        {
+          "explanationId": "HYD-P03-ALT-01",
+          "statement": "Variação térmica pode alterar viscosidade e comportamento sem indicar falha térmica como causa única.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        },
+        {
+          "explanationId": "HYD-P03-ALT-02",
+          "statement": "Restrição hidráulica pode produzir aquecimento secundário; temperatura sozinha não localiza a restrição.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        }
+      ],
+      "interpretationStatus": "unvalidated_editorial_conditionals",
+      "testStatus": "not_performed",
+      "observedOutcome": null,
+      "mayExcludeEitherHypothesis": false,
+      "canAuthorizeTest": false
+    },
+    {
+      "pairId": "EL-P01",
+      "familyId": "electronics",
+      "firstHypothesisId": "EL-SENSOR",
+      "secondHypothesisId": "EL-PHYSICAL",
+      "requiredContextKeys": [
+        "ecm_identity",
+        "sensor_units"
+      ],
+      "methodIds": [
+        "MET-ECM-CODES",
+        "MET-ECM-CONTEXT"
+      ],
+      "sourceIds": [
+        "CAT-ET-OVERVIEW"
+      ],
+      "conditionalObservations": [
+        {
+          "observationId": "EL-P01-OBS-A",
+          "conditionalReading": "Discordância com medida independente mantém sensor/circuito possível",
+          "effectOnFirst": "supports",
+          "effectOnSecond": "weakens",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "EL-P01-OBS-B",
+          "conditionalReading": "Convergência com medida física exige verificar mecanismo e instrumento",
+          "effectOnFirst": "weakens",
+          "effectOnSecond": "supports",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "EL-P01-OBS-C",
+          "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas.",
+          "effectOnFirst": "inconclusive",
+          "effectOnSecond": "inconclusive",
+          "nature": "counterfactual_not_observed"
+        }
+      ],
+      "alternativeExplanations": [
+        {
+          "explanationId": "EL-P01-ALT-01",
+          "statement": "Divergência entre sensor e indicação física pode decorrer de unidades, calibração ou instrumento de referência inadequado.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        },
+        {
+          "explanationId": "EL-P01-ALT-02",
+          "statement": "Convergência de dois sinais não comprova mecanismo físico se ambos compartilham a mesma fonte ou calibração.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        }
+      ],
+      "interpretationStatus": "unvalidated_editorial_conditionals",
+      "testStatus": "not_performed",
+      "observedOutcome": null,
+      "mayExcludeEitherHypothesis": false,
+      "canAuthorizeTest": false
+    },
+    {
+      "pairId": "EL-P02",
+      "familyId": "electronics",
+      "firstHypothesisId": "EL-TRANSIENT",
+      "secondHypothesisId": "EL-HISTORICAL",
+      "requiredContextKeys": [
+        "code_type",
+        "timestamp_context"
+      ],
+      "methodIds": [
+        "MET-ECM-CODES",
+        "MET-ECM-CONTEXT"
+      ],
+      "sourceIds": [
+        "CAT-ET-OVERVIEW"
+      ],
+      "conditionalObservations": [
+        {
+          "observationId": "EL-P02-OBS-A",
+          "conditionalReading": "Evento contextual e repetição condicional mantém intermitência possível",
+          "effectOnFirst": "supports",
+          "effectOnSecond": "weakens",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "EL-P02-OBS-B",
+          "conditionalReading": "Somente registro anterior pode não representar falha atual",
+          "effectOnFirst": "weakens",
+          "effectOnSecond": "supports",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "EL-P02-OBS-C",
+          "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas.",
+          "effectOnFirst": "inconclusive",
+          "effectOnSecond": "inconclusive",
+          "nature": "counterfactual_not_observed"
+        }
+      ],
+      "alternativeExplanations": [
+        {
+          "explanationId": "EL-P02-ALT-01",
+          "statement": "Registro ativo em um instante não demonstra falha persistente; histórico armazenado pode ter relação com evento transitório.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        },
+        {
+          "explanationId": "EL-P02-ALT-02",
+          "statement": "Ausência de registro ativo no instante consultado não demonstra que o evento jamais ocorreu.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        }
+      ],
+      "interpretationStatus": "unvalidated_editorial_conditionals",
+      "testStatus": "not_performed",
+      "observedOutcome": null,
+      "mayExcludeEitherHypothesis": false,
+      "canAuthorizeTest": false
+    },
+    {
+      "pairId": "EL-P03",
+      "familyId": "electronics",
+      "firstHypothesisId": "EL-PHYSICAL",
+      "secondHypothesisId": "EL-TRANSIENT",
+      "requiredContextKeys": [
+        "machine_configuration",
+        "event_context"
+      ],
+      "methodIds": [
+        "MET-ECM-CONTEXT",
+        "MET-ECM-CODES"
+      ],
+      "sourceIds": [
+        "CAT-ET-OVERVIEW"
+      ],
+      "conditionalObservations": [
+        {
+          "observationId": "EL-P03-OBS-A",
+          "conditionalReading": "Convergência independente pode motivar investigação física",
+          "effectOnFirst": "supports",
+          "effectOnSecond": "weakens",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "EL-P03-OBS-B",
+          "conditionalReading": "Oscilação não define se falha é sensor, chicote ou ruído",
+          "effectOnFirst": "weakens",
+          "effectOnSecond": "supports",
+          "nature": "counterfactual_not_observed"
+        },
+        {
+          "observationId": "EL-P03-OBS-C",
+          "conditionalReading": "Resultado ausente, contraditório ou não comparável; ambas hipóteses permanecem abertas.",
+          "effectOnFirst": "inconclusive",
+          "effectOnSecond": "inconclusive",
+          "nature": "counterfactual_not_observed"
+        }
+      ],
+      "alternativeExplanations": [
+        {
+          "explanationId": "EL-P03-ALT-01",
+          "statement": "Evento repetido não implica dano físico: alimentação elétrica ou contexto operacional podem reproduzir o sintoma.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        },
+        {
+          "explanationId": "EL-P03-ALT-02",
+          "statement": "Desaparecimento intermitente não exclui fenômeno físico real; compare tempo, estados e medidas independentes.",
+          "cannotExcludeHypotheses": true,
+          "causalMechanismVerified": false
+        }
+      ],
+      "interpretationStatus": "unvalidated_editorial_conditionals",
+      "testStatus": "not_performed",
+      "observedOutcome": null,
+      "mayExcludeEitherHypothesis": false,
+      "canAuthorizeTest": false
+    }
+  ]
+}
