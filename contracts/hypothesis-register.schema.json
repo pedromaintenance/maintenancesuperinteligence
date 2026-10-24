@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/hypothesis-register.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "hypothesisIds",
+    "allOpen",
+    "excludedCount",
+    "probabilitiesAssigned",
+    "technicalNote"
+  ],
+  "properties": {
+    "hypothesisIds": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "allOpen": {
+      "const": true
+    },
+    "excludedCount": {
+      "const": 0
+    },
+    "probabilitiesAssigned": {
+      "const": false
+    },
+    "technicalNote": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
