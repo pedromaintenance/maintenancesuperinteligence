@@ -74,9 +74,10 @@ def check_policy(policy: object) -> dict:
         seen.add(row["role"])
         require(isinstance(row["canPropose"], list)
                 and isinstance(row["cannotAuthorize"], list)
-                and "approve_maintenance" in row["cannotAuthorize"]
-                or (row["role"] in {"auditor","custodian","administrator","oem_specialist"}
-                    and row["cannotAuthorize"]),
+                and row["canPropose"] and row["cannotAuthorize"]
+                and len(row["canPropose"]) == len(set(row["canPropose"]))
+                and len(row["cannotAuthorize"]) == len(set(row["cannotAuthorize"]))
+                and not set(row["canPropose"]).intersection(row["cannotAuthorize"]),
                 "policy: role grants unsanctioned authority")
         require(not any(act in BLOCKED for act in row["canPropose"]),
                 "policy: forbidden operation became proposed action")
@@ -145,6 +146,10 @@ def validate_fixture(fixture: object, policy: dict) -> dict:
     require(set(principals)==set(credentials)==set(qualification),
             "fixture: incomplete principal assertions")
 
+    # Link only to an existing PUBLIC editorial claim. Private evidence is never read.
+    source_packet=json.loads((ROOT / "governance/review-packet.v1.json").read_text(
+        encoding="utf-8"))
+    public_claims={c["claimId"]:c for c in source_packet["claims"]}
     claim=fields(f["claimVersion"],{"claimId","revision","claimDigest",
                                    "immutableVersionVerified","realEquipmentRef"},"claim version")
     require(re.fullmatch(r"CLM-[A-Z-]+",claim["claimId"])
@@ -154,6 +159,8 @@ def validate_fixture(fixture: object, policy: dict) -> dict:
             and claim["immutableVersionVerified"] is False
             and claim["realEquipmentRef"] is None,
             "claim: revision cannot be treated as immutable or real asset")
+    require(claim["claimId"] in public_claims,
+            "claim: orphan public editorial claim reference")
     manifest=fields(f["evidenceManifest"],{"manifestId","claimId","classification",
                      "sourceReferenceIds","sourceAccessVerified","realDataIncluded",
                      "licensedContentIncluded","retentionVerified"},"evidence manifest")
@@ -168,6 +175,9 @@ def validate_fixture(fixture: object, policy: dict) -> dict:
                     ("sourceAccessVerified","realDataIncluded",
                      "licensedContentIncluded","retentionVerified")),
             "evidence: cannot claim verified licensed or real records")
+    require(set(manifest["sourceReferenceIds"]).issubset(
+        public_claims[claim["claimId"]]["citationIds"]),
+        "evidence: orphan or foreign public citation")
     decisions=[]
     seen=set()
     for d in f["independentReviewDecisions"]:
