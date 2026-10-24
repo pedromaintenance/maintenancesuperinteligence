@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/restricted-review-threat-fixture.schema.json",
+  "title": "Public-only restricted review threat fixture v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "tenantId",
+    "externalVerifierConfigured",
+    "externalTrustAnchor",
+    "externalTimeAuthorityConfigured",
+    "mayPersistRealData",
+    "mayIssueTechnicalApproval",
+    "actors",
+    "cases"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.restricted-review-threat-fixture.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "offline_untrusted_synthetic_no_authentication"
+    },
+    "tenantId": {
+      "type": "string",
+      "pattern": "^SIM-TENANT-[A-Z0-9-]+$"
+    },
+    "externalVerifierConfigured": {
+      "const": false
+    },
+    "externalTrustAnchor": {
+      "type": "null"
+    },
+    "externalTimeAuthorityConfigured": {
+      "const": false
+    },
+    "mayPersistRealData": {
+      "const": false
+    },
+    "mayIssueTechnicalApproval": {
+      "const": false
+    },
+    "actors": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "$ref": "restricted-review-actor.schema.json"
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "$ref": "restricted-review-case.schema.json"
+      }
+    }
+  }
+}
