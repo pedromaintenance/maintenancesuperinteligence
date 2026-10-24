@@ -1,0 +1,184 @@
+{
+  "schema": "maintenance-superinteligence.private-integration-policy.v1",
+  "version": "1.0.0",
+  "deployment": "design_only_not_deployed",
+  "policyMode": "deny_all_in_public_simulator",
+  "publicAdaptersTrusted": false,
+  "identityVerificationImplemented": false,
+  "signatureVerificationImplemented": false,
+  "safeToProcessRealData": false,
+  "roles": [
+    {
+      "role": "author",
+      "proposedActions": [
+        "submit_claim",
+        "revise_claim"
+      ],
+      "deniedActions": [
+        "review_own_claim",
+        "adjudicate_claim",
+        "verify_oem_effectivity",
+        "approve_maintenance"
+      ],
+      "decisionEngine": "server_side_policy_required_not_implemented",
+      "defaultEffect": "deny"
+    },
+    {
+      "role": "reviewer",
+      "proposedActions": [
+        "submit_review"
+      ],
+      "deniedActions": [
+        "submit_claim_for_self",
+        "review_own_claim",
+        "adjudicate_claim",
+        "verify_oem_effectivity",
+        "approve_maintenance"
+      ],
+      "decisionEngine": "server_side_policy_required_not_implemented",
+      "defaultEffect": "deny"
+    },
+    {
+      "role": "adjudicator",
+      "proposedActions": [
+        "adjudicate_dispute"
+      ],
+      "deniedActions": [
+        "submit_review_on_adjudicated_claim",
+        "review_own_claim",
+        "verify_oem_effectivity",
+        "approve_maintenance"
+      ],
+      "decisionEngine": "server_side_policy_required_not_implemented",
+      "defaultEffect": "deny"
+    },
+    {
+      "role": "auditor",
+      "proposedActions": [
+        "inspect_audit_metadata"
+      ],
+      "deniedActions": [
+        "edit_claim",
+        "submit_review",
+        "adjudicate_claim",
+        "verify_oem_effectivity",
+        "approve_maintenance"
+      ],
+      "decisionEngine": "server_side_policy_required_not_implemented",
+      "defaultEffect": "deny"
+    },
+    {
+      "role": "custodian",
+      "proposedActions": [
+        "manage_evidence_access"
+      ],
+      "deniedActions": [
+        "approve_claim",
+        "submit_review",
+        "adjudicate_claim",
+        "verify_oem_effectivity",
+        "approve_maintenance"
+      ],
+      "decisionEngine": "server_side_policy_required_not_implemented",
+      "defaultEffect": "deny"
+    },
+    {
+      "role": "administrator",
+      "proposedActions": [
+        "configure_identity_mapping",
+        "revoke_access"
+      ],
+      "deniedActions": [
+        "approve_claim",
+        "submit_review",
+        "adjudicate_claim",
+        "verify_oem_effectivity",
+        "approve_maintenance"
+      ],
+      "decisionEngine": "server_side_policy_required_not_implemented",
+      "defaultEffect": "deny"
+    },
+    {
+      "role": "oem_effectivity_specialist",
+      "proposedActions": [
+        "propose_effectivity_assessment"
+      ],
+      "deniedActions": [
+        "self_approve_effectivity",
+        "approve_maintenance",
+        "release_equipment"
+      ],
+      "decisionEngine": "server_side_policy_required_not_implemented",
+      "defaultEffect": "deny"
+    }
+  ],
+  "checks": [
+    {
+      "id": "P01",
+      "condition": "Identity subject and tenant must be verified server side using an approved corporate IdP",
+      "proof": "federation_token_validation_issuer_audience_signature_exp_nonce_auth_time_replay_and_revocation"
+    },
+    {
+      "id": "P02",
+      "condition": "Independent two-person review and approved discipline competence under currently effective attributes",
+      "proof": "verified_unique_corporate_principal_ids_and_roles_plus_signed_competence_register"
+    },
+    {
+      "id": "P03",
+      "condition": "Author and reviewers disjoint; adjudicator is a third distinct subject and no conflict of interest",
+      "proof": "server_derived_separation_of_duties_and_coi_register"
+    },
+    {
+      "id": "P04",
+      "condition": "Claim content and citations anchored to immutable revision and external audit evidence",
+      "proof": "append_only_audit_event_hash_chain_external_timestamp_and_worm_object_version"
+    },
+    {
+      "id": "P05",
+      "condition": "All signatures cryptographically verified against active trusted keys and revocation",
+      "proof": "independent_signature_service_kms_hsm_signature_certificate_key_rotation"
+    },
+    {
+      "id": "P06",
+      "condition": "OEM effective publication, permitted access, revision, arrangement and current machine configuration evidenced",
+      "proof": "licensed_oem_document_entitlement_and_effectivity_review"
+    },
+    {
+      "id": "P07",
+      "condition": "Sensitive and licensed data inaccessible to public artifacts and log outputs",
+      "proof": "dlp_minimization_tenant_isolation_encryption_retention_and_reviewed_logging"
+    },
+    {
+      "id": "P08",
+      "condition": "Operational permissions are separate from knowledge approval",
+      "proof": "distinct_sap_ecm_dispatch_operational_approval_workflow"
+    }
+  ],
+  "disallowedPublicDataClasses": [
+    "corporate_personal_data",
+    "equipment_serials",
+    "sap_data",
+    "ecm_data",
+    "oil_lab_reports",
+    "licensed_oem_document_content",
+    "secrets",
+    "signing_keys"
+  ],
+  "deploymentRequirements": [
+    "enterprise_idp",
+    "private_authorization_service",
+    "protected_evidence_vault",
+    "external_immutable_audit_store",
+    "cryptographic_signing_and_key_rotation",
+    "privacy_and_license_review",
+    "independent_security_testing"
+  ],
+  "publicActionsAlwaysDenied": [
+    "approve_maintenance",
+    "release_equipment",
+    "create_sap_order",
+    "modify_ecm",
+    "oem_series_approve",
+    "sign_real_review"
+  ]
+}
