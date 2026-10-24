@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.4.0 — 2026-10-24 — Ciclo 14
+
+- Acrescentada matriz versionada de evidência qualitativa, ligada exatamente aos dez pares de hipóteses da matriz discriminante: 30 padrões condicionais, 20 explicações alternativas e ausência explícita de resultados físicos.
+- Integrados ao gerador de quatro dossiês um objeto de evidência por par, proveniência dos métodos/fontes públicas, pré-requisitos de segurança, estado de contexto e avaliação dos níveis causais.
+- Relatório HTML mostra padrões **hipotéticos**, contraexemplos, contextos contraditórios/não medidos e razões pelas quais nenhuma hipótese pode ser descartada.
+- Criados oito contratos JSON Schema, atualizados schemas dos dossiês, e incorporado SHA-256 da matriz qualitativa na proveniência.
+- Adicionados testes adversariais contra promover contexto a medição, falsear causalidade, inserir literatura OEM específica, fabricar autorização/limite operacional, declarar falsos negativos ou descartar hipóteses por ausência de evidência.
+- CI confere a nova matriz contra o FMEA público pinado, testa as quatro saídas integradas e rejeita evidência/efeito fabricados. Dez pares únicos aparecem 13 vezes e produzem 26 contraexemplos exibidos nos quatro casos.
+
+**Limite:** `supports` e `weakens` são somente leituras condicionais; nenhuma validação diagnóstica ou atividade física ocorreu.
+
+
 ## 1.3.0 — 2026-10-24 — Ciclo 13
 
 - Integrados FMEA público pinado, investigação CAT 777E, 14 métodos conceituais, discriminações editoriais, benchmark de 15 cenários e gates de revisão em dossiês técnicos de manutenção sintéticos.
