@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "required": [
+    "currentState",
+    "mayDiscardHypothesis"
+  ],
+  "properties": {
+    "currentState": {
+      "enum": [
+        "not_measured",
+        "contradicted",
+        "inconclusive"
+      ]
+    },
+    "mayDiscardHypothesis": {
+      "const": false
+    }
+  },
+  "additionalProperties": false
+}
