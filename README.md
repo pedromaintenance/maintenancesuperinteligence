@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de evidência discriminante P&D v1.4.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de árvores didáticas P&D v1.5.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -52,6 +52,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 12 — Dossiê de aceite técnico e revisão de prontidão](docs/CICLO_2026-10-24_DOSSIE_ACEITE.md)
 - [Ciclo 13 — Dossiês integrados de investigação de manutenção](docs/CICLO_2026-10-24_DOSSIES_DIAGNOSTICOS.md)
 - [Ciclo 14 — Evidência discriminante, níveis causais e contraexemplos](docs/CICLO_2026-10-24_EVIDENCIA_DISCRIMINANTE.md)
+- [Ciclo 15 — Árvores de investigação e abstenção](docs/CICLO_2026-10-24_ARVORES_INVESTIGACAO.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -250,3 +251,15 @@ python -m casefiles.integrated --snapshot build/fmea-public/fmea-public.snapshot
 ```
 
 Veja a [documentação do Ciclo 14](docs/CICLO_2026-10-24_EVIDENCIA_DISCRIMINANTE.md) para a interpretação correta dos estados, hipóteses mecânicas e limitações de campo.
+
+
+## Ciclo 15 — Árvores didáticas com revisão humana obrigatória
+
+O núcleo `trees/investigation.py` integra perguntas, hipóteses, fontes e contextos dos Ciclos 13–14 em quatro árvores de investigação, com **13 nós, 39 ramos contrafactuais não observados e 26 contraexemplos**. Cada saída termina em abstenção: nenhuma causa confirmada, método físico executado, OS ou liberação. A visualização `trees/presentation.py` gera HTML standalone expansível usando `<details>`, sem JS, rede, login ou dados corporativos.
+
+```bash
+python connectors/fmea_public.py --fetch --output build/fmea-public
+python -m casefiles.integrated --snapshot build/fmea-public/fmea-public.snapshot.json --output build/trees/technical-cases.v1.json --tree-html build/trees/investigation-trees.v1.html
+```
+
+Consulte o [relatório completo do Ciclo 15](docs/CICLO_2026-10-24_ARVORES_INVESTIGACAO.md).

@@ -22,7 +22,8 @@
     "observedWeakeningEvidence",
     "hypothesesExcluded",
     "counterexamples",
-    "qualitativeOracleSha256"
+    "qualitativeOracleSha256",
+    "investigationTrees"
   ],
   "properties": {
     "schema": {
@@ -90,6 +91,9 @@
     "qualitativeOracleSha256": {
       "type": "string",
       "pattern": "^[a-f0-9]{64}$"
+    },
+    "investigationTrees": {
+      "$ref": "investigation-tree-collection.schema.json"
     }
   }
 }

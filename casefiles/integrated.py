@@ -27,6 +27,9 @@ from evidence.qualitative import (MATRIX_PATH as EVIDENCE_MATRIX_PATH,
                                   ORACLE_PATH, validate_oracle,
                                   validate_qualitative_matrix, assess_case)
 
+from trees.investigation import SPEC_PATH as TREE_SPEC_PATH, build_trees
+from trees.presentation import render_tree_html
+
 FIXTURE_PATH = ROOT / "casefiles/technical-cases.v1.json"
 ALLOWED = {
     "SIM-TECH-FD-01": ("FD-ADDITIVES-UNKNOWN", "final_drive",
@@ -371,12 +374,15 @@ def build_collection(fixture: dict, deps: dict, snapshot: dict) -> dict:
     cases = validate_fixture(fixture)
     result = [assemble_case(cases[k], deps, snapshot) for k in ALLOWED]
     validate_oracle(deps["qualitativeOracle"], result)
+    tree_spec = json.loads(TREE_SPEC_PATH.read_text(encoding="utf-8"))
+    trees = build_trees(tree_spec, result)
     return {
         "schema": "maintenance-superinteligence.technical-casefile-collection.v1",
         "version": "1.0.0",
         "purpose": "four_synthetic_independent_differentials",
         "sourceFixtureSha256": sha(fixture),
         "qualitativeOracleSha256": deps["qualitativeOracleSha256"],
+        "investigationTrees": trees,
         "pinnedFmeaSnapshotSha256": load_lock()["sha256"],
         "cases": result, "caseCount": 4,
         "hypothesesOpen": sum(len(x["hypotheses"]) for x in result),
@@ -401,6 +407,7 @@ def verify_report(report: dict, fixture: dict, deps: dict, snapshot: dict) -> di
 
 
 def render_html(collection: dict) -> str:
+    render_tree_html(collection.get("investigationTrees", {}))
     require(collection.get("schema")
             == "maintenance-superinteligence.technical-casefile-collection.v1"
             and collection.get("caseCount") == 4
@@ -543,6 +550,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--fixture", type=Path, default=FIXTURE_PATH)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--html", type=Path)
+    parser.add_argument("--tree-html", type=Path)
     args = parser.parse_args(argv)
     try:
         snapshot = validate_snapshot(args.snapshot.read_bytes(), load_lock())
@@ -556,6 +564,9 @@ def main(argv: list[str] | None = None) -> int:
         if args.html:
             args.html.parent.mkdir(parents=True, exist_ok=True)
             args.html.write_text(render_html(report), encoding="utf-8")
+        if args.tree_html:
+            args.tree_html.parent.mkdir(parents=True, exist_ok=True)
+            args.tree_html.write_text(render_tree_html(report["investigationTrees"]), encoding="utf-8")
         print(serialized)
         return 0
     except (ImportRejected, ValueError, KeyError, TypeError, OSError) as exc:

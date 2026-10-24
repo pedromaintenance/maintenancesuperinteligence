@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/decision-trace.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "fromNodeId",
+    "toNodeId",
+    "contextState",
+    "hypotheticalBranchesTaken",
+    "reason",
+    "conclusion"
+  ],
+  "properties": {
+    "fromNodeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "toNodeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "contextState": {
+      "enum": [
+        "not_measured",
+        "contradicted",
+        "inconclusive"
+      ]
+    },
+    "hypotheticalBranchesTaken": {
+      "const": 0
+    },
+    "reason": {
+      "enum": [
+        "reconcile_conflict",
+        "collect_missing_context",
+        "insufficient_discrimination"
+      ]
+    },
+    "conclusion": {
+      "const": "abstain_pending_verified_evidence"
+    }
+  }
+}

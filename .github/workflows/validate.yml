@@ -1,4 +1,4 @@
-name: Validate qualitative evidence and synthetic mechanical casefiles
+name: Validate educational investigation trees and human abstention gates
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       - name: Validate existing knowledge metadata
         run: python scripts/validate.py
       - name: Compile Python sources
-        run: python -m compileall -q connectors scripts tests casefiles
+        run: python -m compileall -q connectors scripts tests casefiles trees
       - name: Run offline adversarial tests
         run: python -m unittest discover -s tests -v
       - name: Import pinned FMEA public snapshot
@@ -893,6 +893,61 @@ jobs:
                   raise AssertionError("SECURITY FAIL: fabricated physical evidence was promoted")
           PY
           rm build/casefiles/forged-measured-evidence.json build/casefiles/forged-exclusion.json
+      - name: Generate review-gated educational decision trees
+        run: |
+          mkdir -p build/trees
+          python -m casefiles.integrated \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --output build/trees/technical-cases.v1.json \
+            --tree-html build/trees/investigation-trees.v1.html > /dev/null
+      - name: Assert all conditional paths abstain and preserve every hypothesis
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from trees.investigation import verify_trees
+          out = json.loads(Path("build/trees/technical-cases.v1.json").read_text())
+          spec = json.loads(Path("trees/spec.v1.json").read_text())
+          bundle = out["investigationTrees"]
+          assert bundle["treeCount"] == 4 and bundle["nodeCount"] == 13
+          assert bundle["hypothesesExcluded"] == 0
+          assert bundle["physicalTestsExecuted"] == 0
+          assert bundle["operationalAuthorization"] is False
+          assert [t["traceSelectedRoot"]["contextState"] for t in bundle["trees"]] == [
+              "not_measured","contradicted","not_measured","not_measured"]
+          assert sum(len(n["conditionalBranches"]) for t in bundle["trees"]
+                     for n in t["nodes"]) == 39
+          assert sum(len(n["counterexamples"]) for t in bundle["trees"]
+                     for n in t["nodes"]) == 26
+          for t in bundle["trees"]:
+              assert t["unresolvedHypothesisSet"]["allOpen"]
+              assert t["unresolvedHypothesisSet"]["hypothesesExcluded"] == 0
+              assert t["decision"] == "abstain_pending_verified_evidence"
+              assert not t["mayCreateWorkOrder"] and not t["mayModifyECM"]
+              assert not t["mayReleaseEquipment"]
+              for n in t["nodes"]:
+                  assert n["testStatus"] == "not_performed" and not n["mayExecute"]
+                  assert n["evidenceGate"]["doesNotTakeConditionalBranch"]
+                  assert not n["evidenceGate"]["mayDiscardHypothesis"]
+                  assert not n["reviewCheckpoint"]["allProofsVerified"]
+                  assert not n["reviewCheckpoint"]["humanReviewAuthenticated"]
+                  assert all(not b["observed"] and b["hypothesesExcluded"] == 0
+                             for b in n["conditionalBranches"])
+          html = Path("build/trees/investigation-trees.v1.html").read_text()
+          assert html.count("<details>") == 13
+          assert "<script" not in html and "<form" not in html
+          assert "Content-Security-Policy" in html
+          verify_trees(bundle,spec,out["cases"])
+          print("PASS: 4 educational trees, 13 nodes, 39 counterfactual branches, zero real permissions")
+          PY
+      - name: Publish offline trees for technical teaching
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle15-educational-investigation-trees
+          path: |
+            build/trees/technical-cases.v1.json
+            build/trees/investigation-trees.v1.html
+          retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4
         with:

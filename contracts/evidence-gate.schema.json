@@ -1,0 +1,1 @@
+{"type":"object","required":["currentState","mayDiscardHypothesis","actualTransition","doesNotTakeConditionalBranch"],"properties":{"currentState":{"enum":["not_measured","contradicted","inconclusive"]},"mayDiscardHypothesis":{"const":false},"actualTransition":{"type":"string"},"doesNotTakeConditionalBranch":{"const":true}},"additionalProperties":false}

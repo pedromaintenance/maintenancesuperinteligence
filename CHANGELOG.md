@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.5.0 — 2026-10-24 — Ciclo 15
+
+- Criadas quatro árvores didáticas de investigação com seleção de pergunta editorial, perguntas concorrentes, três ramos contrafactuais por comparação e checkpoints obrigatórios de revisão humana.
+- O motor `trees/investigation.py` constrói 13 nós com 39 possibilidades condicionais, 26 contraexemplos instanciados e preserva 19 instâncias de hipóteses em aberto.
+- `trees/presentation.py` produz HTML offline expansível, sem JavaScript ou integração empresarial.
+- Integração ao dossiê `casefiles/integrated.py`, nova opção `--tree-html`, especificação versionada `trees/spec.v1.json` e oito contratos JSON Schema.
+- Testes adversariais e CI rejeitam ramo falsamente observado, confirmação automática, revisão OEM inexistente, operação de máquina e alteração não rastreada de seleção/perguntas.
+- Os estados `not_measured`, `contradicted` e `inconclusive` terminam em `abstain_pending_verified_evidence`; resultados `supports`/`weakens` continuam apenas hipotéticos.
+
+**Limite:** nenhuma aprovação real, teste de campo, assinatura autenticada ou literatura OEM por série efetiva.
+
+
 ## 1.4.0 — 2026-10-24 — Ciclo 14
 
 - Acrescentada matriz versionada de evidência qualitativa, ligada exatamente aos dez pares de hipóteses da matriz discriminante: 30 padrões condicionais, 20 explicações alternativas e ausência explícita de resultados físicos.
