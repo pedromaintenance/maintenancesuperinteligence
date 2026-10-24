@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.8.0 — 2026-10-24 — Ciclo 08
+
+- Implementado workflow de governança `governance/review.py` com 8 afirmações editoriais, 9 citações de referências gerais e 13 pareceres fictícios.
+- Introduzidos oito contratos versionados para afirmação, referência, evidência de aplicabilidade, revisor fictício, parecer, divergência, decisão e pacote de revisão.
+- Definidos estados derivados de rascunho, revisão pendente, necessidade de evidência, divergência e consenso fictício de referência geral; `oem_series_verified` bloqueado no repositório público.
+- Adicionados controles de vínculo método/fonte/par, revisor por competência declarada, duas personas distintas, segunda rodada com IDs novos, contraexemplo obrigatório e rejeição de parecer assinado ou credencial/autorização indevidamente atestada.
+- Benchmark do Ciclo 07 agora exige integridade do pacote de governança e informa `technicalReviewGate`, impedindo interpretar resultado sintético como validade diagnóstica real.
+- CI verifica relatório de divergências, bloqueios operacionais e rejeição de credenciais falsificadas; adicionados testes adversariais e documentação.
+
+**Limite:** não houve revisão de engenharia por pessoa identificada; critérios OEM por série e cadeia real de custódia seguem pendentes.
+
+
 ## 0.7.0 — 2026-10-23 — Ciclo 07
 
 - Introduzido benchmark versionado de **15 casos sintéticos**, cinco para cada domínio (comando final, hidráulica e eletrônica), com respostas esperadas editoriais independentes da função que executa a seleção.
