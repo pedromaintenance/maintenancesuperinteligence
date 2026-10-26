@@ -354,6 +354,11 @@ def build_report(collection,casefiles,rubric,oracle=None):
 
 def _apply_mutation(d,path,value):
     parts=path.split(".")
+    if parts == ["mayExportToSap"]:
+        require("mayExportToSap" in d and value is True,
+                "quality oracle: malformed simulated export permission")
+        d["mayExportToSap"] = value
+        return
     require(len(parts)==2 and isinstance(d.get(parts[0]),dict)
             and parts[1] in d[parts[0]],
             "quality oracle: unknown mutation key")
