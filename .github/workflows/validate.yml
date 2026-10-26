@@ -1,4 +1,4 @@
-name: Validate fictional maintenance notification drafts and investigation trees
+name: Validate synthetic notification documentary quality and no-operation gates
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       - name: Validate existing knowledge metadata
         run: python scripts/validate.py
       - name: Compile Python sources
-        run: python -m compileall -q connectors scripts tests casefiles trees notifications
+        run: python -m compileall -q connectors scripts tests casefiles trees notifications quality
       - name: Run offline adversarial tests
         run: python -m unittest discover -s tests -v
       - name: Import pinned FMEA public snapshot
@@ -1032,6 +1032,92 @@ jobs:
           path: |
             build/notifications/maintenance-drafts.v1.json
             build/notifications/maintenance-drafts.v1.html
+          retention-days: 14
+      - name: Generate standalone quality assessment for four fictional notes
+        run: |
+          mkdir -p build/quality
+          python -m quality.notifications \
+            --source build/trees/technical-cases.v1.json \
+            --drafts build/notifications/maintenance-drafts.v1.json \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --rubric quality/notification-rubric.v1.json \
+            --oracle benchmarks/notification-quality-oracle.v1.json \
+            --output build/quality/notification-quality.v1.json \
+            --html build/quality/notification-quality.v1.html > /dev/null
+      - name: Check documentation criteria, oracle and no real engineering authority
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from quality.notifications import verify_report
+          report=json.loads(Path("build/quality/notification-quality.v1.json").read_text())
+          drafts=json.loads(Path("build/notifications/maintenance-drafts.v1.json").read_text())
+          cases=json.loads(Path("build/trees/technical-cases.v1.json").read_text())
+          rubric=json.loads(Path("quality/notification-rubric.v1.json").read_text())
+          oracle=json.loads(Path("benchmarks/notification-quality-oracle.v1.json").read_text())
+          assert report["assessedDraftCount"] == 4
+          assert report["documentsAdequateForSyntheticTraining"] == 4
+          assert report["documentsApprovedForField"] == 0
+          assert report["realNotificationsCreated"] == 0
+          assert report["physicalTestsExecuted"] == 0
+          assert report["interRaterReliabilityMeasured"] is False
+          assert report["independentRealExpertReviewComplete"] is False
+          assert not report["mayCreateSapNotification"] and not report["mayReleaseEquipment"]
+          for a in report["assessments"]:
+              assert a["criterionCount"] == a["criteriaMet"] == 12
+              assert a["criteriaNeedsRevision"] == 0
+              assert len(a["findings"]) == 12
+              assert len(a["externalEvidenceGaps"]) == 4
+              assert all(x["status"] == "met" and not x["humanFindingAuthenticated"]
+                         for x in a["findings"])
+              assert all(not x["evidenceReceived"] and
+                         x["remainsBlockingForOperationalUse"]
+                         for x in a["externalEvidenceGaps"])
+              assert all(v is False for v in a["humanEditorialReview"].values())
+              assert a["status"] == "adequate_for_synthetic_training"
+              assert not a["mayCreateSapNotification"] and not a["mayReleaseEquipment"]
+          verify_report(report,drafts,cases,rubric,oracle)
+          html=Path("build/quality/notification-quality.v1.html").read_text()
+          assert html.count("<section>") == 4
+          assert "SIMULAÇÃO" in html and "Content-Security-Policy" in html
+          assert "<script" not in html and "<form" not in html
+          print("PASS: four training quality reports, 12 editorial criteria, no real approvals")
+          PY
+      - name: Block counterfeit rubric authority and mutated synthetic source
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          rubric=json.loads(Path("quality/notification-rubric.v1.json").read_text())
+          rubric["expertValidated"]=True
+          Path("build/quality/fake-approval.json").write_text(json.dumps(rubric))
+          drafts=json.loads(Path("build/notifications/maintenance-drafts.v1.json").read_text())
+          drafts["drafts"][0]["planningConstraint"]["workHours"]=4
+          Path("build/quality/fake-hours.json").write_text(json.dumps(drafts))
+          PY
+          if python -m quality.notifications \
+             --source build/trees/technical-cases.v1.json \
+             --drafts build/notifications/maintenance-drafts.v1.json \
+             --snapshot build/fmea-public/fmea-public.snapshot.json \
+             --rubric build/quality/fake-approval.json > /dev/null 2>&1; then
+            echo "SECURITY FAIL: unverified expert rubric accepted"
+            exit 1
+          fi
+          if python -m quality.notifications \
+             --source build/trees/technical-cases.v1.json \
+             --drafts build/quality/fake-hours.json \
+             --snapshot build/fmea-public/fmea-public.snapshot.json > /dev/null 2>&1; then
+            echo "SECURITY FAIL: forged work hours accepted"
+            exit 1
+          fi
+          rm build/quality/fake-approval.json build/quality/fake-hours.json
+      - name: Publish synthetic notification quality audits
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle17-quality-rubric-notifications
+          path: |
+            build/quality/notification-quality.v1.json
+            build/quality/notification-quality.v1.html
           retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4
