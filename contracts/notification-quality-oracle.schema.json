@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/notification-quality-oracle.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "rubricSource",
+    "sourceDrafts",
+    "fieldValidityEstablished",
+    "interRaterReliabilityMeasured",
+    "baseline",
+    "adversarial"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.notification-quality-oracle.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "independent_editorial_regression_not_expert_validation"
+    },
+    "rubricSource": {
+      "const": "quality/notification-rubric.v1.json"
+    },
+    "sourceDrafts": {
+      "const": "notifications/training-spec.v1.json"
+    },
+    "fieldValidityEstablished": {
+      "const": false
+    },
+    "interRaterReliabilityMeasured": {
+      "const": false
+    },
+    "baseline": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/notification-quality-baseline-inline",
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "draftId",
+          "expectedStatus",
+          "expectedMet",
+          "expectedFailed",
+          "realMaintenanceApproved"
+        ],
+        "properties": {
+          "draftId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expectedStatus": {
+            "const": "adequate_for_synthetic_training"
+          },
+          "expectedMet": {
+            "const": 12
+          },
+          "expectedFailed": {
+            "const": 0
+          },
+          "realMaintenanceApproved": {
+            "const": false
+          }
+        }
+      }
+    },
+    "adversarial": {
+      "type": "array",
+      "minItems": 14,
+      "maxItems": 14,
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/notification-quality-mutation-inline",
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "scenarioId",
+          "draftId",
+          "fieldPath",
+          "replacement",
+          "expectedCriterion",
+          "expectedStatus",
+          "rootCauseProven",
+          "sapAuthorizationGranted"
+        ],
+        "properties": {
+          "scenarioId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "draftId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fieldPath": {
+            "type": "string",
+            "minLength": 1
+          },
+          "replacement": {},
+          "expectedCriterion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expectedStatus": {
+            "enum": [
+              "blocked_unsafe_claims",
+              "needs_documentary_revision"
+            ]
+          },
+          "rootCauseProven": {
+            "const": false
+          },
+          "sapAuthorizationGranted": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}
