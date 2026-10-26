@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/notification-quality-assessment.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "draftId",
+    "caseFileId",
+    "status",
+    "criterionCount",
+    "criteriaMet",
+    "criteriaNeedsRevision",
+    "findings",
+    "missingInformation",
+    "scopeSafetyFindings",
+    "externalEvidenceGaps",
+    "humanEditorialReview",
+    "sourceTreeRootNodeId",
+    "externalEvidenceAvailable",
+    "mayBeUsedForFieldMaintenance",
+    "mayCreateSapNotification",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.notification-quality-assessment.v1"
+    },
+    "draftId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "caseFileId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "adequate_for_synthetic_training",
+        "needs_documentary_revision",
+        "blocked_unsafe_claims"
+      ]
+    },
+    "criterionCount": {
+      "const": 12
+    },
+    "criteriaMet": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "criteriaNeedsRevision": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "findings": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "$ref": "quality-finding.schema.json"
+      }
+    },
+    "missingInformation": {
+      "type": "array",
+      "items": {
+        "$ref": "missing-information.schema.json"
+      }
+    },
+    "scopeSafetyFindings": {
+      "type": "array",
+      "items": {
+        "$ref": "scope-safety-finding.schema.json"
+      }
+    },
+    "externalEvidenceGaps": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "gapId",
+          "description",
+          "evidenceReceived",
+          "remainsBlockingForOperationalUse"
+        ],
+        "properties": {
+          "gapId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidenceReceived": {
+            "const": false
+          },
+          "remainsBlockingForOperationalUse": {
+            "const": true
+          }
+        }
+      }
+    },
+    "humanEditorialReview": {
+      "$ref": "human-editorial-review.schema.json"
+    },
+    "sourceTreeRootNodeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "externalEvidenceAvailable": {
+      "const": false
+    },
+    "mayBeUsedForFieldMaintenance": {
+      "const": false
+    },
+    "mayCreateSapNotification": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}
