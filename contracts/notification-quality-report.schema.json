@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/notification-quality-report.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "rubricSha256",
+    "sourceDraftCollectionSha256",
+    "sourceCasefilesSha256",
+    "publicFmeaSnapshotSha256",
+    "qualitativeMatrixSha256",
+    "sourceTreeSpecSha256",
+    "sourceReviewDossierSha256",
+    "assessments",
+    "assessedDraftCount",
+    "documentsAdequateForSyntheticTraining",
+    "documentsApprovedForField",
+    "realNotificationsCreated",
+    "physicalTestsExecuted",
+    "interRaterReliabilityMeasured",
+    "independentRealExpertReviewComplete",
+    "mayCreateSapNotification",
+    "mayReleaseEquipment",
+    "oracleSha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.notification-quality-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "synthetic_document_regression_only"
+    },
+    "rubricSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceDraftCollectionSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceCasefilesSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "publicFmeaSnapshotSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "qualitativeMatrixSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceTreeSpecSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceReviewDossierSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "assessments": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "notification-quality-assessment.schema.json"
+      }
+    },
+    "assessedDraftCount": {
+      "const": 4
+    },
+    "documentsAdequateForSyntheticTraining": {
+      "const": 4
+    },
+    "documentsApprovedForField": {
+      "const": 0
+    },
+    "realNotificationsCreated": {
+      "const": 0
+    },
+    "physicalTestsExecuted": {
+      "const": 0
+    },
+    "interRaterReliabilityMeasured": {
+      "const": false
+    },
+    "independentRealExpertReviewComplete": {
+      "const": false
+    },
+    "mayCreateSapNotification": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "oracleSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}
