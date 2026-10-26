@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/scope-safety-finding.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "criterionId",
+    "severity",
+    "decision",
+    "needsHumanVerification"
+  ],
+  "properties": {
+    "criterionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "severity": {
+      "const": "critical"
+    },
+    "decision": {
+      "const": "blocked_no_execution"
+    },
+    "needsHumanVerification": {
+      "const": true
+    }
+  }
+}

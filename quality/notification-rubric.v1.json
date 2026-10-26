@@ -1,0 +1,124 @@
+{
+  "schema": "maintenance-superinteligence.notification-quality-rubric.v1",
+  "version": "1.0.0",
+  "mode": "editorial_synthetic_document_check_only",
+  "sourceDraftCollection": "maintenance-superinteligence.notification-training-collection.v1",
+  "expertValidated": false,
+  "fieldAccuracyMeasured": false,
+  "mayIssueSapNotification": false,
+  "criteria": [
+    {
+      "criterionId": "training_identification",
+      "title": "Identificação inequívoca do exercício",
+      "severity": "critical",
+      "remediation": "Identificar como SIMULAÇÃO EDUCACIONAL e nunca atribuir número ou autoridade de nota SAP.",
+      "checks": [
+        "draftKind",
+        "draftId",
+        "trainingBanner"
+      ]
+    },
+    {
+      "criterionId": "symptom_objective",
+      "title": "Sintoma explicitamente relatado, não medido",
+      "severity": "critical",
+      "remediation": "Manter sintoma legível e indicar que se trata de relato fictício, não de medição de campo.",
+      "checks": [
+        "symptom"
+      ]
+    },
+    {
+      "criterionId": "function_and_effect",
+      "title": "Função, requisito e efeito diferenciados",
+      "severity": "major",
+      "remediation": "Descrever sistema, requisito funcional e efeito potencial sem presumir ocorrência comprovada.",
+      "checks": [
+        "symptom",
+        "causalAssessment.potentialEffect"
+      ]
+    },
+    {
+      "criterionId": "causality_not_confirmed",
+      "title": "Hipótese não equivale a causa raiz",
+      "severity": "critical",
+      "remediation": "Restaurar causa raiz como não estabelecida e remover declaração de defeito confirmado.",
+      "checks": [
+        "causalAssessment"
+      ]
+    },
+    {
+      "criterionId": "alternatives_open",
+      "title": "Todas as hipóteses mantidas abertas",
+      "severity": "critical",
+      "remediation": "Preservar alternativas e não inventar probabilidade ou exclusão de hipótese.",
+      "checks": [
+        "hypothesisRegister"
+      ]
+    },
+    {
+      "criterionId": "missing_evidence_explicit",
+      "title": "Evidências pendentes e contradições explícitas",
+      "severity": "critical",
+      "remediation": "Registrar lacuna, contexto contraditório ou não medido; não convertê-lo em resultado negativo.",
+      "checks": [
+        "requestedEvidence",
+        "inspectionScope.dataState"
+      ]
+    },
+    {
+      "criterionId": "discipline_consistent",
+      "title": "Disciplina consistente com o sistema",
+      "severity": "major",
+      "remediation": "Corrigir atribuição funcional sem inventar equipe executora ou autorização de campo.",
+      "checks": [
+        "planningConstraint.discipline"
+      ]
+    },
+    {
+      "criterionId": "scope_is_investigation",
+      "title": "Escopo delimitado à investigação planejável",
+      "severity": "critical",
+      "remediation": "Retirar ação invasiva, teste executado ou serviço de substituição não justificado; manter investigação.",
+      "checks": [
+        "inspectionScope"
+      ]
+    },
+    {
+      "criterionId": "planning_without_invention",
+      "title": "Planejamento sem dados não fundamentados",
+      "severity": "critical",
+      "remediation": "Remover número SAP, série, HH, material, custo, prioridade, limite OEM ou procedimento não verificado.",
+      "checks": [
+        "planningConstraint"
+      ]
+    },
+    {
+      "criterionId": "risk_is_qualitative",
+      "title": "Risco de postergação não quantificado",
+      "severity": "critical",
+      "remediation": "Apresentar risco apenas qualitativo e registrar que segurança da operação não foi avaliada.",
+      "checks": [
+        "postponementRisk"
+      ]
+    },
+    {
+      "criterionId": "provenance_public_trace",
+      "title": "Origem pública sintética rastreável",
+      "severity": "critical",
+      "remediation": "Restaurar ID de caso, nó de árvore, fontes e hashes do corpus público; não alegar fonte OEM por série.",
+      "checks": [
+        "provenance",
+        "decisionTrace"
+      ]
+    },
+    {
+      "criterionId": "oem_human_safety_pending",
+      "title": "Revisão humana, método OEM e autorização pendentes",
+      "severity": "critical",
+      "remediation": "Repor todos os gates a não verificados; não emitir OS, pedido de peça, ajuste ECM ou liberação.",
+      "checks": [
+        "reviewGates"
+      ]
+    }
+  ]
+}

@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.7.0 — 2026-10-26 — Ciclo 17
+
+- Criada rubrica editorial de 12 critérios com explicações de não conformidade, severidade, campos afetados e ações de correção documental.
+- Quatro rascunhos sintéticos avaliados como adequados **apenas para treinamento**; permanecem lacunas OEM, medição de campo, revisão humana e segurança operacional.
+- Oráculo independente versionado com quatro resultados-base e 14 cenários adversariais: falso diagnóstico, número SAP, HH/risco inventados, método executado, lacunas e falsificação de revisão técnica.
+- Adicionados `quality/notifications.py`, `quality/notification-rubric.v1.json`, `benchmarks/notification-quality-oracle.v1.json`, testes adversariais e nove contratos JSON Schema.
+- CLI reconstitui o corpus a partir do snapshot FMEA público pinado e rejeita qualquer conteúdo de entrada ou rubrica alterados; exportação offline JSON e HTML não conecta SAP.
+- CI publica relatório de qualidade sintético, bloqueia alegação falsa de revisão especializada e arquivos com HH adulterada.
+
+**Limite:** `adequate_for_synthetic_training` não representa parecer de engenharia, eficácia diagnóstica nem autorização de manutenção.
+
+
 ## 1.6.0 — 2026-10-24 — Ciclo 16
 
 - Convertidos os quatro dossiês/árvores de investigação em rascunhos técnicos fictícios, com sintomas, efeitos, hipóteses abertas, escopo delimitado, disciplina e lacunas de evidência.

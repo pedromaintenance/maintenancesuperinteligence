@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/quality-finding.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "criterionId",
+    "criterionTitle",
+    "severity",
+    "status",
+    "affectedFields",
+    "explanation",
+    "correctiveDocumentationAction",
+    "humanFindingAuthenticated"
+  ],
+  "properties": {
+    "criterionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "criterionTitle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "severity": {
+      "enum": [
+        "critical",
+        "major"
+      ]
+    },
+    "status": {
+      "enum": [
+        "met",
+        "needs_revision"
+      ]
+    },
+    "affectedFields": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "explanation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "correctiveDocumentationAction": {
+      "type": "string",
+      "minLength": 1
+    },
+    "humanFindingAuthenticated": {
+      "const": false
+    }
+  }
+}

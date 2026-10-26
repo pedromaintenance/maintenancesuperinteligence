@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/notification-quality-rubric.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "sourceDraftCollection",
+    "expertValidated",
+    "fieldAccuracyMeasured",
+    "mayIssueSapNotification",
+    "criteria"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.notification-quality-rubric.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "editorial_synthetic_document_check_only"
+    },
+    "sourceDraftCollection": {
+      "const": "maintenance-superinteligence.notification-training-collection.v1"
+    },
+    "expertValidated": {
+      "const": false
+    },
+    "fieldAccuracyMeasured": {
+      "const": false
+    },
+    "mayIssueSapNotification": {
+      "const": false
+    },
+    "criteria": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "$ref": "notification-quality-criterion.schema.json"
+      }
+    }
+  }
+}
