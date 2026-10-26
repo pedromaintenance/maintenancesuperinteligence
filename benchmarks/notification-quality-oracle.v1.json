@@ -1,0 +1,181 @@
+{
+  "schema": "maintenance-superinteligence.notification-quality-oracle.v1",
+  "version": "1.0.0",
+  "mode": "independent_editorial_regression_not_expert_validation",
+  "rubricSource": "quality/notification-rubric.v1.json",
+  "sourceDrafts": "notifications/training-spec.v1.json",
+  "fieldValidityEstablished": false,
+  "interRaterReliabilityMeasured": false,
+  "baseline": [
+    {
+      "draftId": "SIM-NOTE-001",
+      "expectedStatus": "adequate_for_synthetic_training",
+      "expectedMet": 12,
+      "expectedFailed": 0,
+      "realMaintenanceApproved": false
+    },
+    {
+      "draftId": "SIM-NOTE-002",
+      "expectedStatus": "adequate_for_synthetic_training",
+      "expectedMet": 12,
+      "expectedFailed": 0,
+      "realMaintenanceApproved": false
+    },
+    {
+      "draftId": "SIM-NOTE-003",
+      "expectedStatus": "adequate_for_synthetic_training",
+      "expectedMet": 12,
+      "expectedFailed": 0,
+      "realMaintenanceApproved": false
+    },
+    {
+      "draftId": "SIM-NOTE-004",
+      "expectedStatus": "adequate_for_synthetic_training",
+      "expectedMet": 12,
+      "expectedFailed": 0,
+      "realMaintenanceApproved": false
+    }
+  ],
+  "adversarial": [
+    {
+      "scenarioId": "confirmed_cause",
+      "draftId": "SIM-NOTE-001",
+      "fieldPath": "causalAssessment.confirmedDefect",
+      "replacement": "redutor comprovadamente danificado",
+      "expectedCriterion": "causality_not_confirmed",
+      "expectedStatus": "blocked_unsafe_claims",
+      "rootCauseProven": false,
+      "sapAuthorizationGranted": false
+    },
+    {
+      "scenarioId": "invented_hours",
+      "draftId": "SIM-NOTE-002",
+      "fieldPath": "planningConstraint.workHours",
+      "replacement": 4,
+      "expectedCriterion": "planning_without_invention",
+      "expectedStatus": "blocked_unsafe_claims",
+      "rootCauseProven": false,
+      "sapAuthorizationGranted": false
+    },
+    {
+      "scenarioId": "missing_scope",
+      "draftId": "SIM-NOTE-002",
+      "fieldPath": "inspectionScope.description",
+      "replacement": "",
+      "expectedCriterion": "scope_is_investigation",
+      "expectedStatus": "blocked_unsafe_claims",
+      "rootCauseProven": false,
+      "sapAuthorizationGranted": false
+    },
+    {
+      "scenarioId": "sap_number",
+      "draftId": "SIM-NOTE-003",
+      "fieldPath": "planningConstraint.sapNotificationNumber",
+      "replacement": "12345678",
+      "expectedCriterion": "planning_without_invention",
+      "expectedStatus": "blocked_unsafe_claims",
+      "rootCauseProven": false,
+      "sapAuthorizationGranted": false
+    },
+    {
+      "scenarioId": "missing_evidence",
+      "draftId": "SIM-NOTE-001",
+      "fieldPath": "requestedEvidence.items",
+      "replacement": [],
+      "expectedCriterion": "missing_evidence_explicit",
+      "expectedStatus": "blocked_unsafe_claims",
+      "rootCauseProven": false,
+      "sapAuthorizationGranted": false
+    },
+    {
+      "scenarioId": "closed_hypotheses",
+      "draftId": "SIM-NOTE-004",
+      "fieldPath": "hypothesisRegister.allOpen",
+      "replacement": false,
+      "expectedCriterion": "alternatives_open",
+      "expectedStatus": "blocked_unsafe_claims",
+      "rootCauseProven": false,
+      "sapAuthorizationGranted": false
+    },
+    {
+      "scenarioId": "wrong_discipline",
+      "draftId": "SIM-NOTE-001",
+      "fieldPath": "planningConstraint.discipline",
+      "replacement": "Elétrica / Eletrônica",
+      "expectedCriterion": "discipline_consistent",
+      "expectedStatus": "needs_documentary_revision",
+      "rootCauseProven": false,
+      "sapAuthorizationGranted": false
+    },
+    {
+      "scenarioId": "pretend_signed_review",
+      "draftId": "SIM-NOTE-003",
+      "fieldPath": "reviewGates.externalHumanReviewComplete",
+      "replacement": true,
+      "expectedCriterion": "oem_human_safety_pending",
+      "expectedStatus": "blocked_unsafe_claims",
+      "rootCauseProven": false,
+      "sapAuthorizationGranted": false
+    },
+    {
+      "scenarioId": "reported_as_measured",
+      "draftId": "SIM-NOTE-004",
+      "fieldPath": "symptom.physicallyObserved",
+      "replacement": true,
+      "expectedCriterion": "symptom_objective",
+      "expectedStatus": "needs_documentary_revision",
+      "rootCauseProven": false,
+      "sapAuthorizationGranted": false
+    },
+    {
+      "scenarioId": "fictional_oem_effectivity",
+      "draftId": "SIM-NOTE-001",
+      "fieldPath": "provenance.claimedSeriesSpecificOemEvidence",
+      "replacement": true,
+      "expectedCriterion": "provenance_public_trace",
+      "expectedStatus": "blocked_unsafe_claims",
+      "rootCauseProven": false,
+      "sapAuthorizationGranted": false
+    },
+    {
+      "scenarioId": "invasive_test_executed",
+      "draftId": "SIM-NOTE-002",
+      "fieldPath": "inspectionScope.executed",
+      "replacement": true,
+      "expectedCriterion": "scope_is_investigation",
+      "expectedStatus": "blocked_unsafe_claims",
+      "rootCauseProven": false,
+      "sapAuthorizationGranted": false
+    },
+    {
+      "scenarioId": "invented_risk",
+      "draftId": "SIM-NOTE-003",
+      "fieldPath": "postponementRisk.quantifiedRisk",
+      "replacement": 0.93,
+      "expectedCriterion": "risk_is_qualitative",
+      "expectedStatus": "needs_documentary_revision",
+      "rootCauseProven": false,
+      "sapAuthorizationGranted": false
+    },
+    {
+      "scenarioId": "missing_requirement",
+      "draftId": "SIM-NOTE-003",
+      "fieldPath": "symptom.functionalRequirement",
+      "replacement": "",
+      "expectedCriterion": "function_and_effect",
+      "expectedStatus": "needs_documentary_revision",
+      "rootCauseProven": false,
+      "sapAuthorizationGranted": false
+    },
+    {
+      "scenarioId": "forged_sap_export",
+      "draftId": "SIM-NOTE-004",
+      "fieldPath": "mayExportToSap",
+      "replacement": true,
+      "expectedCriterion": "training_identification",
+      "expectedStatus": "blocked_unsafe_claims",
+      "rootCauseProven": false,
+      "sapAuthorizationGranted": false
+    }
+  ]
+}
