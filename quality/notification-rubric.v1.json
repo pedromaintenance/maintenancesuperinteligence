@@ -21,7 +21,7 @@
     {
       "criterionId": "symptom_objective",
       "title": "Sintoma explicitamente relatado, não medido",
-      "severity": "major",
+      "severity": "critical",
       "remediation": "Manter sintoma legível e indicar que se trata de relato fictício, não de medição de campo.",
       "checks": [
         "symptom"
@@ -95,7 +95,7 @@
     {
       "criterionId": "risk_is_qualitative",
       "title": "Risco de postergação não quantificado",
-      "severity": "major",
+      "severity": "critical",
       "remediation": "Apresentar risco apenas qualitativo e registrar que segurança da operação não foi avaliada.",
       "checks": [
         "postponementRisk"
