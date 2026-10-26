@@ -123,7 +123,7 @@
       "fieldPath": "symptom.physicallyObserved",
       "replacement": true,
       "expectedCriterion": "symptom_objective",
-      "expectedStatus": "needs_documentary_revision",
+      "expectedStatus": "blocked_unsafe_claims",
       "rootCauseProven": false,
       "sapAuthorizationGranted": false
     },
@@ -153,7 +153,7 @@
       "fieldPath": "postponementRisk.quantifiedRisk",
       "replacement": 0.93,
       "expectedCriterion": "risk_is_qualitative",
-      "expectedStatus": "needs_documentary_revision",
+      "expectedStatus": "blocked_unsafe_claims",
       "rootCauseProven": false,
       "sapAuthorizationGranted": false
     },
