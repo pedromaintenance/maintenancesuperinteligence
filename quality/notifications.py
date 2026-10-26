@@ -32,9 +32,9 @@ CRITERION_ORDER = (
     "provenance_public_trace", "oem_human_safety_pending",
 )
 CRITICAL = {
-    "training_identification", "causality_not_confirmed",
+    "training_identification", "symptom_objective", "causality_not_confirmed",
     "alternatives_open", "missing_evidence_explicit",
-    "scope_is_investigation", "planning_without_invention",
+    "scope_is_investigation", "planning_without_invention", "risk_is_qualitative",
     "provenance_public_trace", "oem_human_safety_pending",
 }
 RUBRIC_FIELDS = {"schema", "version", "mode", "sourceDraftCollection",
