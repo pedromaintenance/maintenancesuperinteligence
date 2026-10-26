@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/missing-information.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "criterionId",
+    "sourceFieldNames",
+    "documentationGap",
+    "requiredAction"
+  ],
+  "properties": {
+    "criterionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceFieldNames": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "documentationGap": {
+      "const": "review_synthetic_document_only"
+    },
+    "requiredAction": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
