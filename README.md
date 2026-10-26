@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de notificações didáticas P&D v1.6.0 (24/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de qualidade documental P&D v1.7.0 (26/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -54,6 +54,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 14 — Evidência discriminante, níveis causais e contraexemplos](docs/CICLO_2026-10-24_EVIDENCIA_DISCRIMINANTE.md)
 - [Ciclo 15 — Árvores de investigação e abstenção](docs/CICLO_2026-10-24_ARVORES_INVESTIGACAO.md)
 - [Ciclo 16 — Rascunhos didáticos de notificações de manutenção](docs/CICLO_2026-10-24_NOTIFICACOES_DIDATICAS.md)
+- [Ciclo 17 — Rubrica de qualidade documental de notificações](docs/CICLO_2026-10-26_QUALIDADE_NOTIFICACOES.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -277,3 +278,16 @@ python -m notifications.drafts --source build/trees/technical-cases.v1.json --sn
 ```
 
 Antes da geração, o programa reconstitui o corpus didático com o snapshot FMEA público fixado e rejeita qualquer fonte externa alterada ou texto editorial não correspondente ao exemplar do projeto. O HTML é standalone, somente leitura e sem interface SAP. Nenhum rascunho tem autoridade para abrir notas/ordens, condenar componente ou liberar equipamento. Consulte o [relatório técnico do Ciclo 16](docs/CICLO_2026-10-24_NOTIFICACOES_DIDATICAS.md).
+
+
+## Ciclo 17 — Rubrica de qualidade de notificações didáticas
+
+O módulo `quality/notifications.py` verifica **12 critérios editoriais** para cada um dos quatro rascunhos fictícios de manutenção, identificando completude, clareza causal, evidências pendentes, segurança do escopo, fonte pública e responsabilidade técnica. Um oráculo independente `benchmarks/notification-quality-oracle.v1.json` cobre **14 alterações adversariais** (entre elas causa raiz confirmada sem prova, HH inventada, identificação SAP, execução fictícia, falsa medição e falso parecer OEM). O relatório é emitido em JSON e HTML standalone.
+
+As quatro notas originais são classificadas como `adequate_for_synthetic_training` **somente para completude documental de exemplos sintéticos**. Isso não autoriza registrar nota/ordem SAP, substituir peça, liberar equipamento ou interpretar que houve revisão de engenheiro. Os quatro bloqueios externos — OEM por série, evidência física, revisão humana e riscos de execução — permanecem não atendidos.
+
+```bash
+python -m quality.notifications --source build/trees/technical-cases.v1.json --drafts build/notifications/maintenance-drafts.v1.json --snapshot build/fmea-public/fmea-public.snapshot.json --output build/quality/notification-quality.v1.json --html build/quality/notification-quality.v1.html
+```
+
+Para preparar os arquivos de entrada, siga a [documentação do Ciclo 17](docs/CICLO_2026-10-26_QUALIDADE_NOTIFICACOES.md).
