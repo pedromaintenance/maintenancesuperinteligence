@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/human-editorial-review.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "engineeringExpertAuthenticated",
+    "independentReviewerAuthenticated",
+    "interRaterReliabilityMeasured",
+    "documentAcceptedByRealReviewer",
+    "fieldDiagnosticValidityEstablished"
+  ],
+  "properties": {
+    "engineeringExpertAuthenticated": {
+      "const": false
+    },
+    "independentReviewerAuthenticated": {
+      "const": false
+    },
+    "interRaterReliabilityMeasured": {
+      "const": false
+    },
+    "documentAcceptedByRealReviewer": {
+      "const": false
+    },
+    "fieldDiagnosticValidityEstablished": {
+      "const": false
+    }
+  }
+}
