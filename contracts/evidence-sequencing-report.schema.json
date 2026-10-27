@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-sequencing-report.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "specSha256",
+    "sourceNoGoSha256",
+    "sourceFmeaSnapshotSha256",
+    "controlCount",
+    "dependencyLinkCount",
+    "dependencyMaximumDepth",
+    "topologicalOrder",
+    "rootPrerequisites",
+    "phaseCount",
+    "phases",
+    "sequencedControls",
+    "externalHandoffs",
+    "handoffCount",
+    "adversarialCases",
+    "adversarialCaseCount",
+    "verifiedEvidenceCount",
+    "verifiedExternalAcceptances",
+    "realPilotActivitiesExecuted",
+    "decision",
+    "executionAuthorized",
+    "pilotReadinessValidated",
+    "independentExpertReviewAuthenticated",
+    "oemSeriesApplicabilityVerified",
+    "realInterRaterAgreementMeasured",
+    "realTimelineApproved",
+    "realBudgetApproved",
+    "operationalBoundary"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.evidence-sequencing-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "public_synthetic_document_plan_only"
+    },
+    "specSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceNoGoSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceFmeaSnapshotSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "controlCount": {
+      "const": 13
+    },
+    "dependencyLinkCount": {
+      "const": 17
+    },
+    "dependencyMaximumDepth": {
+      "type": "integer",
+      "minimum": 3
+    },
+    "topologicalOrder": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "rootPrerequisites": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "phaseCount": {
+      "const": 7
+    },
+    "phases": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "$ref": "evidence-sequencing-phase-result.schema.json"
+      }
+    },
+    "sequencedControls": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {
+        "$ref": "evidence-sequenced-control.schema.json"
+      }
+    },
+    "externalHandoffs": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "$ref": "evidence-handoff-result.schema.json"
+      }
+    },
+    "handoffCount": {
+      "const": 5
+    },
+    "adversarialCases": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "evidence-adversarial-result.schema.json"
+      }
+    },
+    "adversarialCaseCount": {
+      "const": 10
+    },
+    "verifiedEvidenceCount": {
+      "const": 0
+    },
+    "verifiedExternalAcceptances": {
+      "const": 0
+    },
+    "realPilotActivitiesExecuted": {
+      "const": 0
+    },
+    "decision": {
+      "const": "no_go"
+    },
+    "executionAuthorized": {
+      "const": false
+    },
+    "pilotReadinessValidated": {
+      "const": false
+    },
+    "independentExpertReviewAuthenticated": {
+      "const": false
+    },
+    "oemSeriesApplicabilityVerified": {
+      "const": false
+    },
+    "realInterRaterAgreementMeasured": {
+      "const": false
+    },
+    "realTimelineApproved": {
+      "const": false
+    },
+    "realBudgetApproved": {
+      "const": false
+    },
+    "operationalBoundary": {
+      "$ref": "evidence-sequencing-policy.schema.json"
+    }
+  }
+}

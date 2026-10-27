@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-sequencing-spec.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "sourcePackage",
+    "realPilotStarted",
+    "realStakeholderApprovals",
+    "daysPlanned",
+    "costPlanned",
+    "workHoursPlanned",
+    "phases",
+    "externalHandoffs",
+    "proofRequests",
+    "adversarialReviewScenarios",
+    "policy"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.evidence-sequencing-spec.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "public_synthetic_readiness_planning_only"
+    },
+    "sourcePackage": {
+      "const": "pilot/go-nogo-package.v1.json"
+    },
+    "realPilotStarted": {
+      "const": false
+    },
+    "realStakeholderApprovals": {
+      "const": false
+    },
+    "daysPlanned": {
+      "type": "null"
+    },
+    "costPlanned": {
+      "type": "null"
+    },
+    "workHoursPlanned": {
+      "type": "null"
+    },
+    "phases": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "$ref": "evidence-sequencing-phase.schema.json"
+      }
+    },
+    "externalHandoffs": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "$ref": "evidence-sequencing-handoff.schema.json"
+      }
+    },
+    "proofRequests": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {
+        "$ref": "evidence-sequencing-proof-request.schema.json"
+      }
+    },
+    "adversarialReviewScenarios": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "evidence-sequencing-threat.schema.json"
+      }
+    },
+    "policy": {
+      "$ref": "evidence-sequencing-policy.schema.json"
+    }
+  }
+}

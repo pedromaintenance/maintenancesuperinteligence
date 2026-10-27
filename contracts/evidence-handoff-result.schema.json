@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-handoff-result.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "owner",
+    "packetId",
+    "evidenceManifestIds",
+    "realReceiptVerified",
+    "externalSignoffRecorded",
+    "containsCorporateData"
+  ],
+  "properties": {
+    "owner": {
+      "enum": [
+        "IT",
+        "InformationSecurity",
+        "Engineering",
+        "Legal",
+        "MaintenanceManagement"
+      ]
+    },
+    "packetId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidenceManifestIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "realReceiptVerified": {
+      "const": false
+    },
+    "externalSignoffRecorded": {
+      "const": false
+    },
+    "containsCorporateData": {
+      "const": false
+    }
+  }
+}

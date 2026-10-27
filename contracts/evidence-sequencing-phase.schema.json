@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-sequencing-phase.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "phaseId",
+    "title",
+    "controlIds",
+    "exitCriteria",
+    "phaseState",
+    "mayStartInRealEnvironment"
+  ],
+  "properties": {
+    "phaseId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "controlIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "exitCriteria": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phaseState": {
+      "const": "requirements_only_no_evidence"
+    },
+    "mayStartInRealEnvironment": {
+      "const": false
+    }
+  }
+}
