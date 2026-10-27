@@ -1,0 +1,402 @@
+{
+  "schema": "maintenance-superinteligence.private-pilot-readiness-fixture.v1",
+  "version": "1.0.0",
+  "purpose": "public_offline_requirements_only_not_private_pilot",
+  "sourceEditorial": "editorial/review-fixture.v1.json",
+  "sourceRubric": "quality/notification-rubric.v1.json",
+  "identityProviderConnected": false,
+  "licensedOemDocumentAvailable": false,
+  "physicalEvidenceAvailable": false,
+  "corporateDataImported": false,
+  "mayRunPrivatePilot": false,
+  "mayIssueSapNotification": false,
+  "sources": [
+    {
+      "sourceId": "NIST-800-63-4",
+      "uri": "https://csrc.nist.gov/pubs/sp/800/63/4/final",
+      "scope": "identity_proofing_authentication_federation",
+      "evidenceOfCompliance": false
+    },
+    {
+      "sourceId": "ASVS-5.0.0",
+      "uri": "https://asvs.owasp.org/",
+      "scope": "application_security_requirements",
+      "evidenceOfCompliance": false
+    },
+    {
+      "sourceId": "LGPD-13709",
+      "uri": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+      "scope": "data_minimization_security_governance",
+      "evidenceOfCompliance": false
+    }
+  ],
+  "stakeholders": [
+    {
+      "owner": "IT",
+      "signoff": "not_requested",
+      "qualifiedSignatoryVerified": false,
+      "externalApprovalProof": null,
+      "canApproveOperations": false
+    },
+    {
+      "owner": "InformationSecurity",
+      "signoff": "not_requested",
+      "qualifiedSignatoryVerified": false,
+      "externalApprovalProof": null,
+      "canApproveOperations": false
+    },
+    {
+      "owner": "Engineering",
+      "signoff": "not_requested",
+      "qualifiedSignatoryVerified": false,
+      "externalApprovalProof": null,
+      "canApproveOperations": false
+    },
+    {
+      "owner": "Legal",
+      "signoff": "not_requested",
+      "qualifiedSignatoryVerified": false,
+      "externalApprovalProof": null,
+      "canApproveOperations": false
+    },
+    {
+      "owner": "MaintenanceManagement",
+      "signoff": "not_requested",
+      "qualifiedSignatoryVerified": false,
+      "externalApprovalProof": null,
+      "canApproveOperations": false
+    }
+  ],
+  "controls": [
+    {
+      "controlId": "identity-proof",
+      "owner": "IT",
+      "proofKind": "authenticated-principal",
+      "sourceId": "NIST-800-63-4",
+      "acceptanceCondition": "Vincular identidade corporativa verificada a um único sujeito",
+      "proofStatus": "not_provided",
+      "authorityVerified": false,
+      "externalEvidenceRef": null,
+      "mayWaive": false
+    },
+    {
+      "controlId": "competence",
+      "owner": "Engineering",
+      "proofKind": "reviewer-competence-evidence",
+      "sourceId": "NIST-800-63-4",
+      "acceptanceCondition": "Demonstrar competência específica por disciplina e validade",
+      "proofStatus": "not_provided",
+      "authorityVerified": false,
+      "externalEvidenceRef": null,
+      "mayWaive": false
+    },
+    {
+      "controlId": "conflict-screen",
+      "owner": "Legal",
+      "proofKind": "conflict-of-interest-screening",
+      "sourceId": "LGPD-13709",
+      "acceptanceCondition": "Registrar impedimentos, vínculos e independência",
+      "proofStatus": "not_provided",
+      "authorityVerified": false,
+      "externalEvidenceRef": null,
+      "mayWaive": false
+    },
+    {
+      "controlId": "two-independent-reviews",
+      "owner": "Engineering",
+      "proofKind": "independent-review-decisions",
+      "sourceId": "ASVS-5.0.0",
+      "acceptanceCondition": "Impedir autorrevisão e exigir duas pessoas distintas",
+      "proofStatus": "not_provided",
+      "authorityVerified": false,
+      "externalEvidenceRef": null,
+      "mayWaive": false
+    },
+    {
+      "controlId": "signed-decision",
+      "owner": "InformationSecurity",
+      "proofKind": "signature-verification",
+      "sourceId": "ASVS-5.0.0",
+      "acceptanceCondition": "Comprovar integridade/autoria sem confiar em flag do cliente",
+      "proofStatus": "not_provided",
+      "authorityVerified": false,
+      "externalEvidenceRef": null,
+      "mayWaive": false
+    },
+    {
+      "controlId": "trusted-audit",
+      "owner": "InformationSecurity",
+      "proofKind": "audit-anchor",
+      "sourceId": "ASVS-5.0.0",
+      "acceptanceCondition": "Armazenar logs imutáveis externamente com tempo verificável",
+      "proofStatus": "not_provided",
+      "authorityVerified": false,
+      "externalEvidenceRef": null,
+      "mayWaive": false
+    },
+    {
+      "controlId": "oem-effectivity",
+      "owner": "Engineering",
+      "proofKind": "oem-applicability-proof",
+      "sourceId": "LGPD-13709",
+      "acceptanceCondition": "Comprovar publicação autorizada, revisão, série e efetividade",
+      "proofStatus": "not_provided",
+      "authorityVerified": false,
+      "externalEvidenceRef": null,
+      "mayWaive": false
+    },
+    {
+      "controlId": "equipment-configuration",
+      "owner": "MaintenanceManagement",
+      "proofKind": "configuration-attestation",
+      "sourceId": "LGPD-13709",
+      "acceptanceCondition": "Verificar arranjo/equipamento vigente e alterações",
+      "proofStatus": "not_provided",
+      "authorityVerified": false,
+      "externalEvidenceRef": null,
+      "mayWaive": false
+    },
+    {
+      "controlId": "evidence-legitimacy",
+      "owner": "Legal",
+      "proofKind": "authorized-evidence-package",
+      "sourceId": "LGPD-13709",
+      "acceptanceCondition": "Garantir base legal, licença e rastreabilidade de evidências",
+      "proofStatus": "not_provided",
+      "authorityVerified": false,
+      "externalEvidenceRef": null,
+      "mayWaive": false
+    },
+    {
+      "controlId": "version-lock",
+      "owner": "IT",
+      "proofKind": "version-lock",
+      "sourceId": "ASVS-5.0.0",
+      "acceptanceCondition": "Fixar hash de cada revisão e invalidar parecer obsoleto",
+      "proofStatus": "not_provided",
+      "authorityVerified": false,
+      "externalEvidenceRef": null,
+      "mayWaive": false
+    },
+    {
+      "controlId": "revocation-reopen",
+      "owner": "IT",
+      "proofKind": "revocation-and-reopen-policy",
+      "sourceId": "NIST-800-63-4",
+      "acceptanceCondition": "Invalidar parecer após revogação ou mudança de configuração",
+      "proofStatus": "not_provided",
+      "authorityVerified": false,
+      "externalEvidenceRef": null,
+      "mayWaive": false
+    },
+    {
+      "controlId": "privacy-retention",
+      "owner": "Legal",
+      "proofKind": "privacy-retention-policy",
+      "sourceId": "LGPD-13709",
+      "acceptanceCondition": "Minimizar logs, classificar fontes e registrar retenção autorizada",
+      "proofStatus": "not_provided",
+      "authorityVerified": false,
+      "externalEvidenceRef": null,
+      "mayWaive": false
+    },
+    {
+      "controlId": "operational-firewall",
+      "owner": "MaintenanceManagement",
+      "proofKind": "operational-boundary",
+      "sourceId": "ASVS-5.0.0",
+      "acceptanceCondition": "Separar revisão documental de SAP, ECM, OS e liberação",
+      "proofStatus": "not_provided",
+      "authorityVerified": false,
+      "externalEvidenceRef": null,
+      "mayWaive": false
+    }
+  ],
+  "threats": [
+    {
+      "threatId": "duplicate-principal",
+      "controlIds": [
+        "identity-proof",
+        "two-independent-reviews"
+      ],
+      "scenarioNature": "synthetic_threat_only",
+      "expectedDecision": "deny_and_require_external_revalidation",
+      "fieldExposureObserved": false
+    },
+    {
+      "threatId": "expired-credential",
+      "controlIds": [
+        "identity-proof",
+        "revocation-reopen"
+      ],
+      "scenarioNature": "synthetic_threat_only",
+      "expectedDecision": "deny_and_require_external_revalidation",
+      "fieldExposureObserved": false
+    },
+    {
+      "threatId": "forged-signature",
+      "controlIds": [
+        "signed-decision",
+        "trusted-audit"
+      ],
+      "scenarioNature": "synthetic_threat_only",
+      "expectedDecision": "deny_and_require_external_revalidation",
+      "fieldExposureObserved": false
+    },
+    {
+      "threatId": "oem-revision-change",
+      "controlIds": [
+        "oem-effectivity",
+        "revocation-reopen"
+      ],
+      "scenarioNature": "synthetic_threat_only",
+      "expectedDecision": "deny_and_require_external_revalidation",
+      "fieldExposureObserved": false
+    },
+    {
+      "threatId": "equipment-configuration-change",
+      "controlIds": [
+        "equipment-configuration",
+        "version-lock"
+      ],
+      "scenarioNature": "synthetic_threat_only",
+      "expectedDecision": "deny_and_require_external_revalidation",
+      "fieldExposureObserved": false
+    },
+    {
+      "threatId": "unreported-conflict",
+      "controlIds": [
+        "conflict-screen",
+        "two-independent-reviews"
+      ],
+      "scenarioNature": "synthetic_threat_only",
+      "expectedDecision": "deny_and_require_external_revalidation",
+      "fieldExposureObserved": false
+    },
+    {
+      "threatId": "unauthorized-sap-note",
+      "controlIds": [
+        "operational-firewall",
+        "version-lock"
+      ],
+      "scenarioNature": "synthetic_threat_only",
+      "expectedDecision": "deny_and_require_external_revalidation",
+      "fieldExposureObserved": false
+    },
+    {
+      "threatId": "pii-telemetry-leak",
+      "controlIds": [
+        "privacy-retention",
+        "evidence-legitimacy"
+      ],
+      "scenarioNature": "synthetic_threat_only",
+      "expectedDecision": "deny_and_require_external_revalidation",
+      "fieldExposureObserved": false
+    },
+    {
+      "threatId": "audit-log-tampering",
+      "controlIds": [
+        "trusted-audit",
+        "signed-decision"
+      ],
+      "scenarioNature": "synthetic_threat_only",
+      "expectedDecision": "deny_and_require_external_revalidation",
+      "fieldExposureObserved": false
+    },
+    {
+      "threatId": "unlicensed-oem-copy",
+      "controlIds": [
+        "evidence-legitimacy",
+        "oem-effectivity"
+      ],
+      "scenarioNature": "synthetic_threat_only",
+      "expectedDecision": "deny_and_require_external_revalidation",
+      "fieldExposureObserved": false
+    }
+  ],
+  "classificationPolicy": [
+    {
+      "dataClass": "public-synthetic",
+      "allowedRepository": "public",
+      "realDataAllowed": false,
+      "retentionDays": null,
+      "retentionApprovalVerified": false,
+      "examples": [
+        "SIM-NOTE",
+        "synthetic_boolean_gates"
+      ]
+    },
+    {
+      "dataClass": "corporate-private",
+      "allowedRepository": "private_approved_only",
+      "realDataAllowed": false,
+      "retentionDays": null,
+      "retentionApprovalVerified": false,
+      "examples": [
+        "SAP-credentials-prohibited-here",
+        "telemetry-prohibited-here"
+      ]
+    },
+    {
+      "dataClass": "oem-licensed",
+      "allowedRepository": "licensed_restricted_only",
+      "realDataAllowed": false,
+      "retentionDays": null,
+      "retentionApprovalVerified": false,
+      "examples": [
+        "OEM-copyrighted-manual-prohibited-here"
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "scenarioId": "baseline-no-real-proof",
+      "draftId": "SIM-NOTE-001",
+      "trigger": "none",
+      "expectedState": "blocked_pending_external_verification",
+      "documentRevisionCurrent": false,
+      "currentReviewValid": false,
+      "confidentialDataUsed": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "scenarioId": "credential-revoked",
+      "draftId": "SIM-NOTE-002",
+      "trigger": "reviewer_credential_revoked",
+      "expectedState": "blocked_pending_external_verification",
+      "documentRevisionCurrent": false,
+      "currentReviewValid": false,
+      "confidentialDataUsed": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "scenarioId": "oem-document-superseded",
+      "draftId": "SIM-NOTE-003",
+      "trigger": "oem_revision_changed",
+      "expectedState": "blocked_pending_external_verification",
+      "documentRevisionCurrent": false,
+      "currentReviewValid": false,
+      "confidentialDataUsed": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "scenarioId": "equipment-configuration-altered",
+      "draftId": "SIM-NOTE-004",
+      "trigger": "equipment_configuration_changed",
+      "expectedState": "blocked_pending_external_verification",
+      "documentRevisionCurrent": false,
+      "currentReviewValid": false,
+      "confidentialDataUsed": false,
+      "mayReleaseEquipment": false
+    }
+  ],
+  "studyProtocol": {
+    "consentAndLegalBasisApproved": false,
+    "reviewerCompetenceVerified": false,
+    "independentRatersAssigned": false,
+    "preRegisteredEvaluationMethod": false,
+    "anonymizationValidated": false,
+    "realAgreementMeasured": false,
+    "benchmarkFieldQualityValidated": false
+  }
+}
