@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/finding-remediation.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "findingId",
+    "threatId",
+    "requiredControlIds",
+    "requiredNextAction",
+    "remediationStatus",
+    "dueDate",
+    "assignedPerson",
+    "verifiedClosure",
+    "mayLiftBlock"
+  ],
+  "properties": {
+    "findingId": {
+      "type": "string",
+      "pattern": "^SIM-FIND-[0-9]{2}$"
+    },
+    "threatId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requiredControlIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "requiredNextAction": {
+      "const": "external_evidence_and_independent_review_required"
+    },
+    "remediationStatus": {
+      "const": "not_started"
+    },
+    "dueDate": {
+      "type": "null"
+    },
+    "assignedPerson": {
+      "type": "null"
+    },
+    "verifiedClosure": {
+      "const": false
+    },
+    "mayLiftBlock": {
+      "const": false
+    }
+  }
+}
