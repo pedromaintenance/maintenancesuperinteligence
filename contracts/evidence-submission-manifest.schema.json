@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-submission-manifest.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifestId",
+    "controlId",
+    "evidenceKind",
+    "sourceCategory",
+    "status",
+    "evidenceBytes",
+    "evidenceReference",
+    "authenticatedSubmitterVerified",
+    "authorizedDataProvenanceVerified",
+    "oemSeriesEffectivityVerified"
+  ],
+  "properties": {
+    "manifestId": {
+      "type": "string",
+      "pattern": "^SIM-PROOF-[0-9]{2}$"
+    },
+    "controlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidenceKind": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceCategory": {
+      "const": "external_private_future_requirement_only"
+    },
+    "status": {
+      "const": "evidence_not_submitted"
+    },
+    "evidenceBytes": {
+      "type": "null"
+    },
+    "evidenceReference": {
+      "type": "null"
+    },
+    "authenticatedSubmitterVerified": {
+      "const": false
+    },
+    "authorizedDataProvenanceVerified": {
+      "const": false
+    },
+    "oemSeriesEffectivityVerified": {
+      "const": false
+    }
+  }
+}
