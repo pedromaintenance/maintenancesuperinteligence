@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-adversarial-result.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scenarioId",
+    "threatId",
+    "requiredControls",
+    "decision",
+    "mitigationAuthenticated",
+    "realIncidentObserved"
+  ],
+  "properties": {
+    "scenarioId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "threatId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requiredControls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "decision": {
+      "const": "no_go"
+    },
+    "mitigationAuthenticated": {
+      "const": false
+    },
+    "realIncidentObserved": {
+      "const": false
+    }
+  }
+}
