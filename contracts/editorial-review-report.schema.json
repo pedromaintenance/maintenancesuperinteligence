@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/editorial-review-report.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "fixtureSha256",
+    "qualityReportSha256",
+    "notificationCollectionSha256",
+    "publicFmeaSnapshotSha256",
+    "cases",
+    "caseCount",
+    "simulatedEventCount",
+    "realReviewsCompleted",
+    "realApprovalsGranted",
+    "interRaterReliabilityMeasured",
+    "signaturesVerified",
+    "externalImmutableAuditLogVerified",
+    "mayWriteToSap",
+    "mayApproveMaintenance",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.editorial-review-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "fictional_not_authenticated"
+    },
+    "fixtureSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "qualityReportSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "notificationCollectionSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "publicFmeaSnapshotSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "editorial-review-case.schema.json"
+      }
+    },
+    "caseCount": {
+      "const": 4
+    },
+    "simulatedEventCount": {
+      "const": 16
+    },
+    "realReviewsCompleted": {
+      "const": 0
+    },
+    "realApprovalsGranted": {
+      "const": 0
+    },
+    "interRaterReliabilityMeasured": {
+      "const": false
+    },
+    "signaturesVerified": {
+      "const": false
+    },
+    "externalImmutableAuditLogVerified": {
+      "const": false
+    },
+    "mayWriteToSap": {
+      "const": false
+    },
+    "mayApproveMaintenance": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}
