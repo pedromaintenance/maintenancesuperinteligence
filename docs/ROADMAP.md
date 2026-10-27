@@ -40,6 +40,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 ## Fase 4 — Estratégia de ativos, manutenção e PCM
 
+**Ciclo 24:** propostas hipotéticas de mudança do grafo canônico (13 nós/17 arestas), delta de alcance, distância e redundância cruzado contra 100 cenários. Rejeição de ciclos e violações de responsabilidade, com veto permanente e nenhuma edição automática do grafo. Próxima etapa: pacote de revisão de mudanças, dependência de provas externas e manifestação de discordância/impugnação documental, sem autorizações no projeto público.
+
 **Ciclo 23:** 100 casos estruturais de reabertura documental e oráculo independente de fecho transitivo em 13 controles/17 arestas; caminhos mínimos, alternativas e testemunhos de não alcance. Cinco mutações adversariais e revisão por cinco áreas inteiramente não autenticadas. Próximo candidato: revisão de propostas de alteração do grafo com diff versionado, análise de impacto e veto automático a mudanças de contrato não homologadas.
 
 **Ciclo 22:** seis contradições editoriais simuladas e seis revisões cruzadas sobre o DAG canônico de 13 controles/17 vínculos. Propagação de invalidação aos descendentes com estado `no_go`, sem comprovação OEM, medição real ou dados corporativos. Próximo: medir cobertura estrutural e qualidade da explicação de reabertura em novos contrafactuais públicos.
