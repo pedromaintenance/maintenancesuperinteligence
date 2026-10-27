@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/graph-change-review-report.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "fixtureSha256",
+    "sourceCoverageSha256",
+    "sourceGoNoGoSha256",
+    "canonicalDagSha256",
+    "sourceOracleScenarioCount",
+    "baselineControlCount",
+    "baselineEdgeCount",
+    "proposalCount",
+    "proposals",
+    "allProposalsVetoed",
+    "realChangesCommitted",
+    "verifiedHumanReviewCount",
+    "realMachineFailureProbabilityCalculated",
+    "operationalAuthority",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.graph-change-review-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "comparison_only_not_change_authorization"
+    },
+    "fixtureSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceCoverageSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceGoNoGoSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "canonicalDagSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceOracleScenarioCount": {
+      "const": 100
+    },
+    "baselineControlCount": {
+      "const": 13
+    },
+    "baselineEdgeCount": {
+      "const": 17
+    },
+    "proposalCount": {
+      "const": 10
+    },
+    "proposals": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "graph-change-proposal-assessment.schema.json"
+      }
+    },
+    "allProposalsVetoed": {
+      "const": true
+    },
+    "realChangesCommitted": {
+      "const": 0
+    },
+    "verifiedHumanReviewCount": {
+      "const": 0
+    },
+    "realMachineFailureProbabilityCalculated": {
+      "const": false
+    },
+    "operationalAuthority": {
+      "$ref": "graph-change-no-operational-authority.schema.json"
+    },
+    "decision": {
+      "const": "no_go"
+    }
+  }
+}
