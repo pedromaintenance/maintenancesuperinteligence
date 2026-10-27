@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de pacote Go/No-Go P&D v2.0.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de sequenciamento documental P&D v2.1.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -58,6 +58,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 18 — Revisão editorial fictícia e governança de versões](docs/CICLO_2026-10-27_REVISAO_EDITORIAL.md)
 - [Ciclo 19 — Protocolo de prontidão para futuro piloto privado](docs/CICLO_2026-10-27_PRONTIDAO_PILOTO_PRIVADO.md)
 - [Ciclo 20 — Pacote Go/No-Go de piloto privado](docs/CICLO_2026-10-27_PACOTE_GO_NO_GO.md)
+- [Ciclo 21 — Sequenciamento de evidências e dependências](docs/CICLO_2026-10-27_SEQUENCIAMENTO_EVIDENCIAS.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -325,3 +326,16 @@ python -m pilot.go_nogo --snapshot build/fmea-public/fmea-public.snapshot.json -
 ```
 
 A saída é somente JSON/HTML offline e o CI testa recusas de falso aceite, decisão `go`, alteração ECM/SAP, retenção não autorizada ou métricas interavaliadores inventadas. Veja a [documentação completa do Ciclo 20](docs/CICLO_2026-10-27_PACOTE_GO_NO_GO.md).
+
+
+## Ciclo 21 — Sequenciamento documental das evidências necessárias
+
+O módulo `pilot/evidence_sequence.py` organiza **13 controles e 17 vínculos de dependência** em ordem topológica determinística, com **sete fases propostas**, **cinco handoffs conceituais** e **dez cenários adversariais**. Três controles sem precedentes (identidade, configuração do equipamento e retenção) aparecem como pontos de entrada estruturais, não como cronograma real ou escore de risco.
+
+As evidências continuam ausentes, as cinco áreas não assinaram aceite e a decisão segue `no_go`. Nenhuma fase é executada, nenhum HH/custo/data é fabricado e não existe integração SAP/ECM, licença OEM comprovada ou liberação operacional.
+
+```bash
+python -m pilot.evidence_sequence --snapshot build/fmea-public/fmea-public.snapshot.json --gng build/go-nogo/no-go-report.v1.json --output build/sequencing/evidence-sequence.v1.json --html build/sequencing/evidence-sequence.v1.html
+```
+
+O comando requer entradas sintéticas dos Ciclos 13–20. Os relatórios HTML e JSON são gerados offline e verificados no CI. Consulte a [documentação metodológica do Ciclo 21](docs/CICLO_2026-10-27_SEQUENCIAMENTO_EVIDENCIAS.md).
