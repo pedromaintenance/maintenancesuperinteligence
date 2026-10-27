@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/graph-change-no-operational-authority.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mayWriteSap",
+    "mayModifyEcm",
+    "mayCreateWorkOrder",
+    "mayOrderParts",
+    "mayReleaseEquipment",
+    "mayAuthorizePrivatePilot"
+  ],
+  "properties": {
+    "mayWriteSap": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayOrderParts": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "mayAuthorizePrivatePilot": {
+      "const": false
+    }
+  }
+}
