@@ -1730,3 +1730,33 @@ jobs:
           name: fmea-public-inferred-index
           path: build/fmea-public/
           retention-days: 14
+      - name: Build Cycle 25 synthetic change review packets
+        run: |
+          python -m pilot.change_review_packets \
+            --cycle24 build/graph-change/graph-change-review.v1.json \
+            --output build/graph-change/cycle25-review-packets.json \
+            --html build/graph-change/cycle25-review-packets.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pilot.graph_change_review import verify_report
+          from pilot.change_review_packets import verify_packets
+          spec=json.loads(Path("pilot/graph-change-proposals.v1.json").read_text())
+          cov=json.loads(Path("build/coverage/reopen-coverage.v1.json").read_text())
+          gng=json.loads(Path("build/go-nogo/no-go-report.v1.json").read_text())
+          source=json.loads(Path("build/graph-change/graph-change-review.v1.json").read_text())
+          verify_report(source,spec,cov,gng)
+          packets=json.loads(Path("build/graph-change/cycle25-review-packets.json").read_text())
+          verify_packets(packets,source)
+          assert packets["packetCount"]==10 and packets["decision"]=="no_go"
+          assert all(not any(x["noOperationalAuthority"].values()) for x in packets["packets"])
+          print("PASS: Cycle 25 independently linked to reconstructed Cycle 24")
+          PY
+      - name: Publish Cycle 25 offline review packets
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle25-synthetic-review-packets
+          path: |
+            build/graph-change/cycle25-review-packets.json
+            build/graph-change/cycle25-review-packets.html
+          retention-days: 14
