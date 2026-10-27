@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/reopen-coverage-report.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "specSha256",
+    "sourceContradictionsSha256",
+    "sourceSequenceSha256",
+    "sourceGoNoGoSha256",
+    "sourceFmeaSnapshotSha256",
+    "controlCount",
+    "edgeCount",
+    "scenarioCount",
+    "singleRootCount",
+    "pairCount",
+    "triggerCount",
+    "conflictCount",
+    "coverageCases",
+    "graphMutationChecks",
+    "graphMutationCount",
+    "crossFunctionalReview",
+    "unverifiedEvidenceCount",
+    "decision",
+    "realPilotApproved",
+    "mayTransmitSap",
+    "mayModifyEcm",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment",
+    "verifiedExternalHumanReviews",
+    "physicalFailuresVerified",
+    "structuralCoverageMeaning"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.reopen-coverage-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "public_structural_reopen_coverage_only"
+    },
+    "specSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceContradictionsSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceSequenceSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceGoNoGoSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceFmeaSnapshotSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "controlCount": {
+      "const": 13
+    },
+    "edgeCount": {
+      "const": 17
+    },
+    "scenarioCount": {
+      "const": 100
+    },
+    "singleRootCount": {
+      "const": 13
+    },
+    "pairCount": {
+      "const": 78
+    },
+    "triggerCount": {
+      "const": 3
+    },
+    "conflictCount": {
+      "const": 6
+    },
+    "coverageCases": {
+      "type": "array",
+      "minItems": 100,
+      "maxItems": 100,
+      "items": {
+        "$ref": "reopen-coverage-case.schema.json"
+      }
+    },
+    "graphMutationChecks": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "$ref": "mutation-coverage-result.schema.json"
+      }
+    },
+    "graphMutationCount": {
+      "const": 5
+    },
+    "crossFunctionalReview": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "owner",
+          "controlsOwned",
+          "coverageFromSingleRootCases",
+          "externalTechnicalReviewPerformed",
+          "authenticatedSignoffReceived",
+          "mayReleaseEquipment"
+        ],
+        "properties": {
+          "owner": {
+            "type": "string",
+            "minLength": 1
+          },
+          "controlsOwned": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "coverageFromSingleRootCases": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "externalTechnicalReviewPerformed": {
+            "const": false
+          },
+          "authenticatedSignoffReceived": {
+            "const": false
+          },
+          "mayReleaseEquipment": {
+            "const": false
+          }
+        }
+      }
+    },
+    "unverifiedEvidenceCount": {
+      "const": 13
+    },
+    "decision": {
+      "const": "no_go"
+    },
+    "realPilotApproved": {
+      "const": false
+    },
+    "mayTransmitSap": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "verifiedExternalHumanReviews": {
+      "const": 0
+    },
+    "physicalFailuresVerified": {
+      "const": 0
+    },
+    "structuralCoverageMeaning": {
+      "const": "complete_for_fixed_public_fixture_not_real_world"
+    }
+  }
+}
