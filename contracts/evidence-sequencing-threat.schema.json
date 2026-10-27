@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-sequencing-threat.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scenarioId",
+    "threatId",
+    "requiredControlIds",
+    "rejection",
+    "actualIncidentConfirmed",
+    "remediationClosed"
+  ],
+  "properties": {
+    "scenarioId": {
+      "type": "string",
+      "pattern": "^SIM-GNG-THREAT-"
+    },
+    "threatId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requiredControlIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "rejection": {
+      "const": "deny_and_reopen_external_review"
+    },
+    "actualIncidentConfirmed": {
+      "const": false
+    },
+    "remediationClosed": {
+      "const": false
+    }
+  }
+}
