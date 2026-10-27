@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/editorial-review-competence.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "actorId",
+    "personaKey",
+    "role",
+    "declaredCompetence",
+    "identityNature",
+    "identityVerified",
+    "qualificationVerified",
+    "independenceVerified",
+    "conflictOfInterestDeclared",
+    "credentials"
+  ],
+  "properties": {
+    "actorId": {
+      "type": "string",
+      "pattern": "^SIM-"
+    },
+    "personaKey": {
+      "type": "string",
+      "pattern": "^SIM-PERSON-"
+    },
+    "role": {
+      "enum": [
+        "author",
+        "reviewer",
+        "adjudicator",
+        "custodian"
+      ]
+    },
+    "declaredCompetence": {
+      "enum": [
+        "lubrication",
+        "hydraulics",
+        "electronics",
+        "general"
+      ]
+    },
+    "identityNature": {
+      "const": "fictional_persona_only"
+    },
+    "identityVerified": {
+      "const": false
+    },
+    "qualificationVerified": {
+      "const": false
+    },
+    "independenceVerified": {
+      "const": false
+    },
+    "conflictOfInterestDeclared": {
+      "const": false
+    },
+    "credentials": {
+      "type": "null"
+    }
+  }
+}
