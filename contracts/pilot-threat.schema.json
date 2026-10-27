@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/pilot-threat.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "threatId",
+    "controlIds",
+    "scenarioNature",
+    "expectedDecision",
+    "fieldExposureObserved"
+  ],
+  "properties": {
+    "threatId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "controlIds": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "scenarioNature": {
+      "const": "synthetic_threat_only"
+    },
+    "expectedDecision": {
+      "const": "deny_and_require_external_revalidation"
+    },
+    "fieldExposureObserved": {
+      "const": false
+    }
+  }
+}
