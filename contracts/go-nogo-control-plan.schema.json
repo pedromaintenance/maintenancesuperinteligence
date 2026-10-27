@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/go-nogo-control-plan.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "controlId",
+    "owner",
+    "requiredEvidenceKind",
+    "acceptanceTest",
+    "dependsOn",
+    "status",
+    "evidenceManifestId",
+    "evidenceUri",
+    "evidenceSha256",
+    "externalReviewerIdentityVerified",
+    "independentAcceptanceRecorded",
+    "canAdvance"
+  ],
+  "properties": {
+    "controlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner": {
+      "enum": [
+        "IT",
+        "InformationSecurity",
+        "Engineering",
+        "Legal",
+        "MaintenanceManagement"
+      ]
+    },
+    "requiredEvidenceKind": {
+      "type": "string",
+      "minLength": 1
+    },
+    "acceptanceTest": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dependsOn": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "status": {
+      "const": "evidence_not_submitted"
+    },
+    "evidenceManifestId": {
+      "type": "string",
+      "pattern": "^SIM-PROOF-[0-9]{2}$"
+    },
+    "evidenceUri": {
+      "type": "null"
+    },
+    "evidenceSha256": {
+      "type": "null"
+    },
+    "externalReviewerIdentityVerified": {
+      "const": false
+    },
+    "independentAcceptanceRecorded": {
+      "const": false
+    },
+    "canAdvance": {
+      "const": false
+    }
+  }
+}
