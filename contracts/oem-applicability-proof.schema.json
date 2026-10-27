@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/oem-applicability-proof.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manufacturer",
+    "publication",
+    "revision",
+    "machineConfiguration",
+    "serialEffectivity",
+    "licensedCopyInPublicRepository",
+    "authoritativeOemVerificationComplete",
+    "authorizedPrivateEvidenceRef",
+    "mayValidateEquipment"
+  ],
+  "properties": {
+    "manufacturer": {
+      "type": "null"
+    },
+    "publication": {
+      "type": "null"
+    },
+    "revision": {
+      "type": "null"
+    },
+    "machineConfiguration": {
+      "type": "null"
+    },
+    "serialEffectivity": {
+      "type": "null"
+    },
+    "licensedCopyInPublicRepository": {
+      "const": false
+    },
+    "authoritativeOemVerificationComplete": {
+      "const": false
+    },
+    "authorizedPrivateEvidenceRef": {
+      "type": "null"
+    },
+    "mayValidateEquipment": {
+      "const": false
+    }
+  }
+}
