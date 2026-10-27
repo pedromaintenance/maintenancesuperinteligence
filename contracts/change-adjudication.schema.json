@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/change-adjudication.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decision",
+    "reason",
+    "oldGraphModified",
+    "proposalAppliedToMain",
+    "realPilotAuthorized",
+    "mayWriteSap",
+    "mayModifyEcm",
+    "mayCreateWorkOrder",
+    "mayOrderParts",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "decision": {
+      "const": "veto_no_merge"
+    },
+    "reason": {
+      "const": "hypothetical_change_requires_external_review"
+    },
+    "oldGraphModified": {
+      "const": false
+    },
+    "proposalAppliedToMain": {
+      "const": false
+    },
+    "realPilotAuthorized": {
+      "const": false
+    },
+    "mayWriteSap": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayOrderParts": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}
