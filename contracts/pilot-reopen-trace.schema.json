@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/pilot-reopen-trace.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scenarioId",
+    "draftId",
+    "trigger",
+    "affectedValidation",
+    "reopenRequired",
+    "previousReviewIsBinding",
+    "sourceDocumentCurrent",
+    "evidenceOfCurrentIndependentReview",
+    "decision",
+    "mayOpenSapNotification",
+    "mayRunPhysicalInspection",
+    "mayReleaseEquipment",
+    "previousDigest",
+    "eventDigest"
+  ],
+  "properties": {
+    "scenarioId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "draftId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trigger": {
+      "enum": [
+        "none",
+        "reviewer_credential_revoked",
+        "oem_revision_changed",
+        "equipment_configuration_changed"
+      ]
+    },
+    "affectedValidation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reopenRequired": {
+      "type": "boolean"
+    },
+    "previousReviewIsBinding": {
+      "const": false
+    },
+    "sourceDocumentCurrent": {
+      "const": false
+    },
+    "evidenceOfCurrentIndependentReview": {
+      "const": false
+    },
+    "decision": {
+      "const": "blocked_pending_external_verification"
+    },
+    "mayOpenSapNotification": {
+      "const": false
+    },
+    "mayRunPhysicalInspection": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "previousDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "eventDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}
