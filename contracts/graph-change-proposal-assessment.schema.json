@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/graph-change-proposal-assessment.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "proposalId",
+    "changeType",
+    "rationale",
+    "syntheticProposal",
+    "candidateDagValid",
+    "candidateContractValid",
+    "validationReason",
+    "impactClassification",
+    "edgeDiff",
+    "graphNodeCount",
+    "canonicalEdgeCount",
+    "candidateEdgeCount",
+    "reachabilityImpact",
+    "coverageRegression",
+    "reviewerAssignmentRequirement",
+    "changeAdjudication"
+  ],
+  "properties": {
+    "proposalId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "changeType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "syntheticProposal": {
+      "const": true
+    },
+    "candidateDagValid": {
+      "type": "boolean"
+    },
+    "candidateContractValid": {
+      "type": "boolean"
+    },
+    "validationReason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "impactClassification": {
+      "enum": [
+        "rejected_invalid_candidate",
+        "owner_governance_violation",
+        "reachability_changed",
+        "path_metrics_changed_only",
+        "no_graph_metric_change"
+      ]
+    },
+    "edgeDiff": {
+      "$ref": "graph-edge-diff.schema.json"
+    },
+    "graphNodeCount": {
+      "const": 13
+    },
+    "canonicalEdgeCount": {
+      "const": 17
+    },
+    "candidateEdgeCount": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "reachabilityImpact": {
+      "$ref": "reachability-impact.schema.json"
+    },
+    "coverageRegression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "referenceScenarioCount",
+        "comparableScenarioCount",
+        "affectedScenarios",
+        "unchangedScenarioCount",
+        "allOneHundredScenariosCompared",
+        "realOutcomesMeasured"
+      ],
+      "properties": {
+        "referenceScenarioCount": {
+          "const": 100
+        },
+        "comparableScenarioCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "affectedScenarios": {
+          "type": "array",
+          "items": {
+            "$ref": "coverage-regression-witness.schema.json"
+          }
+        },
+        "unchangedScenarioCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "allOneHundredScenariosCompared": {
+          "type": "boolean"
+        },
+        "realOutcomesMeasured": {
+          "const": false
+        }
+      }
+    },
+    "reviewerAssignmentRequirement": {
+      "$ref": "reviewer-assignment-requirement.schema.json"
+    },
+    "changeAdjudication": {
+      "$ref": "change-adjudication.schema.json"
+    }
+  }
+}
