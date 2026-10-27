@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/mutation-coverage-result.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mutationCaseId",
+    "mutationType",
+    "canonicalGraphUnchanged",
+    "mutatedInputRejected",
+    "threatListPreserved",
+    "operationalAuthorityGranted",
+    "realWorldDefectObserved"
+  ],
+  "properties": {
+    "mutationCaseId": {
+      "type": "string",
+      "pattern": "^SIM-MUT-[0-9]{2}$"
+    },
+    "mutationType": {
+      "enum": [
+        "edge_removed",
+        "edge_reversed",
+        "edge_added",
+        "threat_removed",
+        "closure_forged"
+      ]
+    },
+    "canonicalGraphUnchanged": {
+      "const": true
+    },
+    "mutatedInputRejected": {
+      "const": true
+    },
+    "threatListPreserved": {
+      "const": true
+    },
+    "operationalAuthorityGranted": {
+      "const": false
+    },
+    "realWorldDefectObserved": {
+      "const": false
+    }
+  }
+}
