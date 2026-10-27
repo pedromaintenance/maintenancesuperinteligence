@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-sequencing-proof-request.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "controlId",
+    "expectedEvidenceId",
+    "owner",
+    "minimumAcceptanceCriteria",
+    "dependentOn",
+    "submissionState",
+    "reviewerVerified",
+    "documentRevisionCurrent",
+    "originAuthorized",
+    "licenseAndPrivacyCleared",
+    "mayBypass"
+  ],
+  "properties": {
+    "controlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expectedEvidenceId": {
+      "type": "string",
+      "pattern": "^SIM-PROOF-"
+    },
+    "owner": {
+      "enum": [
+        "IT",
+        "InformationSecurity",
+        "Engineering",
+        "Legal",
+        "MaintenanceManagement"
+      ]
+    },
+    "minimumAcceptanceCriteria": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dependentOn": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "submissionState": {
+      "const": "not_submitted"
+    },
+    "reviewerVerified": {
+      "const": false
+    },
+    "documentRevisionCurrent": {
+      "const": false
+    },
+    "originAuthorized": {
+      "const": false
+    },
+    "licenseAndPrivacyCleared": {
+      "const": false
+    },
+    "mayBypass": {
+      "const": false
+    }
+  }
+}
