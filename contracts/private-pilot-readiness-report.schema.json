@@ -1,0 +1,291 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/private-pilot-readiness-report.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "fixtureSha256",
+    "editorialReviewSha256",
+    "sourceFmeaSnapshotSha256",
+    "sourceLinks",
+    "controlCount",
+    "verifiedControlCount",
+    "requiredExternalEvidence",
+    "signoffCount",
+    "verifiedSignoffCount",
+    "signoffs",
+    "threatCount",
+    "threats",
+    "scenarioCount",
+    "scenarios",
+    "scenarioAuditHeadDigest",
+    "externalAuditAnchorVerified",
+    "dataClasses",
+    "studyProtocol",
+    "externalProofGaps",
+    "acceptanceCriteria",
+    "readinessDecision",
+    "realPilotAuthorized",
+    "pilotExecuted",
+    "realExpertAgreementMeasured",
+    "mayWriteSap",
+    "mayAlterEcm",
+    "mayApproveMaintenance",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.private-pilot-readiness-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "contract_testing_not_private_pilot_approval"
+    },
+    "fixtureSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "editorialReviewSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceFmeaSnapshotSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceLinks": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "controlCount": {
+      "const": 13
+    },
+    "verifiedControlCount": {
+      "const": 0
+    },
+    "requiredExternalEvidence": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {
+        "$ref": "external-review-readiness.schema.json"
+      }
+    },
+    "signoffCount": {
+      "const": 5
+    },
+    "verifiedSignoffCount": {
+      "const": 0
+    },
+    "signoffs": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "owner",
+          "status",
+          "qualifiedSignerVerified"
+        ],
+        "properties": {
+          "owner": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "const": "not_requested"
+          },
+          "qualifiedSignerVerified": {
+            "const": false
+          }
+        }
+      }
+    },
+    "threatCount": {
+      "const": 10
+    },
+    "threats": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "threatId",
+          "requiredControlIds",
+          "observedPhysicalExposure",
+          "mitigationExternallyVerified",
+          "status",
+          "decision"
+        ],
+        "properties": {
+          "threatId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requiredControlIds": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "observedPhysicalExposure": {
+            "const": false
+          },
+          "mitigationExternallyVerified": {
+            "const": false
+          },
+          "status": {
+            "const": "unverified_mitigation"
+          },
+          "decision": {
+            "const": "deny_and_require_external_revalidation"
+          }
+        }
+      }
+    },
+    "scenarioCount": {
+      "const": 4
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "pilot-reopen-trace.schema.json"
+      }
+    },
+    "scenarioAuditHeadDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "externalAuditAnchorVerified": {
+      "const": false
+    },
+    "dataClasses": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "dataClass",
+          "allowedRepository",
+          "realDataInPublicRepo",
+          "retentionPolicyApproved"
+        ],
+        "properties": {
+          "dataClass": {
+            "type": "string",
+            "minLength": 1
+          },
+          "allowedRepository": {
+            "type": "string",
+            "minLength": 1
+          },
+          "realDataInPublicRepo": {
+            "const": false
+          },
+          "retentionPolicyApproved": {
+            "const": false
+          }
+        }
+      }
+    },
+    "studyProtocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consentAndLegalBasisApproved",
+        "reviewerCompetenceVerified",
+        "independentRatersAssigned",
+        "preRegisteredEvaluationMethod",
+        "anonymizationValidated",
+        "realAgreementMeasured",
+        "benchmarkFieldQualityValidated"
+      ],
+      "properties": {
+        "consentAndLegalBasisApproved": {
+          "const": false
+        },
+        "reviewerCompetenceVerified": {
+          "const": false
+        },
+        "independentRatersAssigned": {
+          "const": false
+        },
+        "preRegisteredEvaluationMethod": {
+          "const": false
+        },
+        "anonymizationValidated": {
+          "const": false
+        },
+        "realAgreementMeasured": {
+          "const": false
+        },
+        "benchmarkFieldQualityValidated": {
+          "const": false
+        }
+      }
+    },
+    "externalProofGaps": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "readinessDecision": {
+      "const": "blocked_no_external_evidence"
+    },
+    "realPilotAuthorized": {
+      "const": false
+    },
+    "pilotExecuted": {
+      "const": false
+    },
+    "realExpertAgreementMeasured": {
+      "const": false
+    },
+    "mayWriteSap": {
+      "const": false
+    },
+    "mayAlterEcm": {
+      "const": false
+    },
+    "mayApproveMaintenance": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}
