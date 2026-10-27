@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-sequenced-control.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sequence",
+    "controlId",
+    "owner",
+    "phaseId",
+    "predecessors",
+    "graphDepth",
+    "dependentDownstreamControls",
+    "evidenceManifestId",
+    "criterion",
+    "evidenceVerified",
+    "canProceed"
+  ],
+  "properties": {
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "controlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner": {
+      "enum": [
+        "IT",
+        "InformationSecurity",
+        "Engineering",
+        "Legal",
+        "MaintenanceManagement"
+      ]
+    },
+    "phaseId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "predecessors": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "graphDepth": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "dependentDownstreamControls": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "evidenceManifestId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "criterion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidenceVerified": {
+      "const": false
+    },
+    "canProceed": {
+      "const": false
+    }
+  }
+}
