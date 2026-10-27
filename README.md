@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de qualidade documental P&D v1.7.0 (26/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de revisão editorial simulada P&D v1.8.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -55,6 +55,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 15 — Árvores de investigação e abstenção](docs/CICLO_2026-10-24_ARVORES_INVESTIGACAO.md)
 - [Ciclo 16 — Rascunhos didáticos de notificações de manutenção](docs/CICLO_2026-10-24_NOTIFICACOES_DIDATICAS.md)
 - [Ciclo 17 — Rubrica de qualidade documental de notificações](docs/CICLO_2026-10-26_QUALIDADE_NOTIFICACOES.md)
+- [Ciclo 18 — Revisão editorial fictícia e governança de versões](docs/CICLO_2026-10-27_REVISAO_EDITORIAL.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -291,3 +292,10 @@ python -m quality.notifications --source build/trees/technical-cases.v1.json --d
 ```
 
 Para preparar os arquivos de entrada, siga a [documentação do Ciclo 17](docs/CICLO_2026-10-26_QUALIDADE_NOTIFICACOES.md).
+
+
+## Ciclo 18 — Revisão editorial simulada e independência por papel
+
+O motor `editorial/review_protocol.py` usa **14 personas totalmente fictícias** e **16 eventos** em quatro rascunhos, incluindo dupla revisão por versão, divergência preservada, correção editorial simulada, mudança de contexto/OEM e revogação de perfil. Os estados são `requires_revision`, `unresolved_disagreement` e `pending_real_review` — **nunca aprovado por engenheiro**. Os digests SHA-256 permitem somente regressão e detecção de adulterações contra o corpus canônico, sem assinatura, identidade autenticada nem âncora externa.
+
+O GitHub Actions publica relatórios JSON/HTML temporários, e os testes bloqueiam autoaprovação, persona duplicada, competência incompatível, avaliação de revisão obsoleta, falso parecer, falsificação de assinatura e qualquer autorização SAP/ECM/liberação. A documentação é [Ciclo 18](docs/CICLO_2026-10-27_REVISAO_EDITORIAL.md).
