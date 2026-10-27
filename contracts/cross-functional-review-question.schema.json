@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cross-functional-review-question.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "questionId",
+    "scenarioId",
+    "owner",
+    "peerOwner",
+    "sourceControlId",
+    "targetControlId",
+    "question",
+    "answerState",
+    "answeredByRealPerson",
+    "approvalGranted"
+  ],
+  "properties": {
+    "questionId": {
+      "type": "string",
+      "pattern": "^SIM-XREVIEW-"
+    },
+    "scenarioId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner": {
+      "enum": [
+        "IT",
+        "InformationSecurity",
+        "Engineering",
+        "Legal",
+        "MaintenanceManagement"
+      ]
+    },
+    "peerOwner": {
+      "enum": [
+        "IT",
+        "InformationSecurity",
+        "Engineering",
+        "Legal",
+        "MaintenanceManagement"
+      ]
+    },
+    "sourceControlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "targetControlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1
+    },
+    "answerState": {
+      "const": "external_review_not_performed"
+    },
+    "answeredByRealPerson": {
+      "const": false
+    },
+    "approvalGranted": {
+      "const": false
+    }
+  }
+}
