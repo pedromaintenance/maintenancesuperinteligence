@@ -227,12 +227,12 @@ def build_report(package,readiness):
         "evidenceState":"evidence_not_submitted",
         "externalReviewState":"externally_review_pending",
         "decision":"no_go",
-        "decisionReasons":(
+        "decisionReasons":[
             "13 required evidence packages missing",
             "5 external stakeholder signoffs not authenticated",
             "10 adversarial mitigations not demonstrated",
             "actual OEM applicability, privacy and authenticated human review unverified",
-        ),
+        ],
         "evidenceManifest":manifest,
         "evidencePackageCount":13,
         "verifiedEvidenceCount":0,
