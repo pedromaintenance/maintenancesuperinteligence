@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-contradiction-result.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scenarioId",
+    "label",
+    "assertionIds",
+    "assertionStates",
+    "conflictMechanism",
+    "sourceControls",
+    "finding",
+    "staleProofInvalidations",
+    "dependencyReopenCascade",
+    "crossFunctionalReviewQuestion",
+    "noGoDisposition"
+  ],
+  "properties": {
+    "scenarioId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "assertionIds": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "assertionStates": {
+      "const": [
+        "hypothetical_unobserved",
+        "hypothetical_unobserved"
+      ]
+    },
+    "conflictMechanism": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceControls": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "finding": {
+      "$ref": "contradiction-finding.schema.json"
+    },
+    "staleProofInvalidations": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "stale-proof-invalidation.schema.json"
+      }
+    },
+    "dependencyReopenCascade": {
+      "$ref": "dependency-reopen-cascade.schema.json"
+    },
+    "crossFunctionalReviewQuestion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "questionId",
+        "primaryOwner",
+        "peerOwner",
+        "question",
+        "answer",
+        "realReviewPerformed",
+        "crossFunctionConsensusEstablished"
+      ],
+      "properties": {
+        "questionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "primaryOwner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "peerOwner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answer": {
+          "const": "not_available"
+        },
+        "realReviewPerformed": {
+          "const": false
+        },
+        "crossFunctionConsensusEstablished": {
+          "const": false
+        }
+      }
+    },
+    "noGoDisposition": {
+      "$ref": "no-go-disposition.schema.json"
+    }
+  }
+}
