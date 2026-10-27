@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/editorial-review-event.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "actorId",
+    "action",
+    "targetRevision",
+    "reason",
+    "nonce",
+    "signature",
+    "targetActorId"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "pattern": "^SIM-REV-EVT-"
+    },
+    "actorId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "action": {
+      "enum": [
+        "submit",
+        "review_requires_revision",
+        "review_suggest_complete",
+        "adjudicate_unresolved",
+        "revise",
+        "reopen_context",
+        "revoke_profile"
+      ]
+    },
+    "targetRevision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nonce": {
+      "type": "string",
+      "pattern": "^SIM-NONCE-"
+    },
+    "signature": {
+      "type": "null"
+    },
+    "targetActorId": {
+      "type": [
+        "null",
+        "string"
+      ]
+    }
+  }
+}
