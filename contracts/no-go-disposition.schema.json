@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/no-go-disposition.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decision",
+    "requiresVerifiedExternalEvidence",
+    "requiresVersionRevalidation",
+    "requiresAuthenticatedHumanReview",
+    "mayTreatConflictAsMeasuredFault",
+    "mayTransmitSap",
+    "mayModifyEcm",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "decision": {
+      "const": "no_go"
+    },
+    "requiresVerifiedExternalEvidence": {
+      "const": true
+    },
+    "requiresVersionRevalidation": {
+      "const": true
+    },
+    "requiresAuthenticatedHumanReview": {
+      "const": true
+    },
+    "mayTreatConflictAsMeasuredFault": {
+      "const": false
+    },
+    "mayTransmitSap": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}
