@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/editorial-review-fixture.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "sourceRubric",
+    "sourceNotificationSpec",
+    "realHumanIdentities",
+    "qualifiedSignatures",
+    "mayPersistPrivateEvidence",
+    "mayOpenSapNotifications",
+    "actors",
+    "cases"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.editorial-review-fixture.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "offline_fictional_review_threat_exercise"
+    },
+    "sourceRubric": {
+      "const": "quality/notification-rubric.v1.json"
+    },
+    "sourceNotificationSpec": {
+      "const": "notifications/training-spec.v1.json"
+    },
+    "realHumanIdentities": {
+      "const": false
+    },
+    "qualifiedSignatures": {
+      "const": false
+    },
+    "mayPersistPrivateEvidence": {
+      "const": false
+    },
+    "mayOpenSapNotifications": {
+      "const": false
+    },
+    "actors": {
+      "type": "array",
+      "minItems": 14,
+      "maxItems": 14,
+      "items": {
+        "$ref": "editorial-review-competence.schema.json"
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "editorial-review-assignment.schema.json"
+      }
+    }
+  }
+}
