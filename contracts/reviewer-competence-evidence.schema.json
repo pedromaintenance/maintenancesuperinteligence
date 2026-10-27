@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/reviewer-competence-evidence.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "discipline",
+    "identityRef",
+    "qualificationVerified",
+    "credentialExpiryValidated",
+    "revocationChecked",
+    "competenceEvidenceRef",
+    "maySignTechnicalApproval"
+  ],
+  "properties": {
+    "discipline": {
+      "enum": [
+        "lubrication",
+        "hydraulics",
+        "electronics"
+      ]
+    },
+    "identityRef": {
+      "type": "null"
+    },
+    "qualificationVerified": {
+      "const": false
+    },
+    "credentialExpiryValidated": {
+      "const": false
+    },
+    "revocationChecked": {
+      "const": false
+    },
+    "competenceEvidenceRef": {
+      "type": "null"
+    },
+    "maySignTechnicalApproval": {
+      "const": false
+    }
+  }
+}

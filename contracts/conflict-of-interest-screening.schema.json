@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/conflict-of-interest-screening.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "identityRef",
+    "conflictScreeningCompleted",
+    "independenceVerified",
+    "verifiedDistinctPrincipal",
+    "reviewersAuthenticated",
+    "outcome"
+  ],
+  "properties": {
+    "identityRef": {
+      "type": "null"
+    },
+    "conflictScreeningCompleted": {
+      "const": false
+    },
+    "independenceVerified": {
+      "const": false
+    },
+    "verifiedDistinctPrincipal": {
+      "const": false
+    },
+    "reviewersAuthenticated": {
+      "const": false
+    },
+    "outcome": {
+      "const": "pending_external_private_review"
+    }
+  }
+}

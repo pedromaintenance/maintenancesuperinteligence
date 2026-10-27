@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/version-lock.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "documentDigest",
+    "reviewedRevision",
+    "currentDocumentVersionVerified",
+    "priorReviewStillValid",
+    "externalSignatureVerified",
+    "mayApproveNewRevision"
+  ],
+  "properties": {
+    "documentDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewedRevision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "currentDocumentVersionVerified": {
+      "const": false
+    },
+    "priorReviewStillValid": {
+      "const": false
+    },
+    "externalSignatureVerified": {
+      "const": false
+    },
+    "mayApproveNewRevision": {
+      "const": false
+    }
+  }
+}

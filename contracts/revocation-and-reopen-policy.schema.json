@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/revocation-and-reopen-policy.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "trigger",
+    "requiresReReview",
+    "trustedRevocationEvidenceAvailable",
+    "latestRevisionVerified",
+    "previousApprovalStillBinding",
+    "mayOverrideReviewGate"
+  ],
+  "properties": {
+    "trigger": {
+      "enum": [
+        "none",
+        "reviewer_credential_revoked",
+        "oem_revision_changed",
+        "equipment_configuration_changed"
+      ]
+    },
+    "requiresReReview": {
+      "type": "boolean"
+    },
+    "trustedRevocationEvidenceAvailable": {
+      "const": false
+    },
+    "latestRevisionVerified": {
+      "const": false
+    },
+    "previousApprovalStillBinding": {
+      "const": false
+    },
+    "mayOverrideReviewGate": {
+      "const": false
+    }
+  }
+}

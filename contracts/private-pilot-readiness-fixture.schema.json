@@ -1,0 +1,302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/private-pilot-readiness-fixture.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "sourceEditorial",
+    "sourceRubric",
+    "identityProviderConnected",
+    "licensedOemDocumentAvailable",
+    "physicalEvidenceAvailable",
+    "corporateDataImported",
+    "mayRunPrivatePilot",
+    "mayIssueSapNotification",
+    "sources",
+    "stakeholders",
+    "controls",
+    "threats",
+    "classificationPolicy",
+    "scenarios",
+    "studyProtocol"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.private-pilot-readiness-fixture.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "public_offline_requirements_only_not_private_pilot"
+    },
+    "sourceEditorial": {
+      "const": "editorial/review-fixture.v1.json"
+    },
+    "sourceRubric": {
+      "const": "quality/notification-rubric.v1.json"
+    },
+    "identityProviderConnected": {
+      "const": false
+    },
+    "licensedOemDocumentAvailable": {
+      "const": false
+    },
+    "physicalEvidenceAvailable": {
+      "const": false
+    },
+    "corporateDataImported": {
+      "const": false
+    },
+    "mayRunPrivatePilot": {
+      "const": false
+    },
+    "mayIssueSapNotification": {
+      "const": false
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sourceId",
+          "uri",
+          "scope",
+          "evidenceOfCompliance"
+        ],
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uri": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidenceOfCompliance": {
+            "const": false
+          }
+        }
+      }
+    },
+    "stakeholders": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "$ref": "external-signoff-status.schema.json"
+      }
+    },
+    "controls": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "controlId",
+          "owner",
+          "proofKind",
+          "sourceId",
+          "acceptanceCondition",
+          "proofStatus",
+          "authorityVerified",
+          "externalEvidenceRef",
+          "mayWaive"
+        ],
+        "properties": {
+          "controlId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner": {
+            "type": "string",
+            "minLength": 1
+          },
+          "proofKind": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sourceId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "acceptanceCondition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "proofStatus": {
+            "const": "not_provided"
+          },
+          "authorityVerified": {
+            "const": false
+          },
+          "externalEvidenceRef": {
+            "type": "null"
+          },
+          "mayWaive": {
+            "const": false
+          }
+        }
+      }
+    },
+    "threats": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "pilot-threat.schema.json"
+      }
+    },
+    "classificationPolicy": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "dataClass",
+          "allowedRepository",
+          "realDataAllowed",
+          "retentionDays",
+          "retentionApprovalVerified",
+          "examples"
+        ],
+        "properties": {
+          "dataClass": {
+            "enum": [
+              "public-synthetic",
+              "corporate-private",
+              "oem-licensed"
+            ]
+          },
+          "allowedRepository": {
+            "enum": [
+              "public",
+              "private_approved_only",
+              "licensed_restricted_only"
+            ]
+          },
+          "realDataAllowed": {
+            "const": false
+          },
+          "retentionDays": {
+            "type": "null"
+          },
+          "retentionApprovalVerified": {
+            "const": false
+          },
+          "examples": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "scenarioId",
+          "draftId",
+          "trigger",
+          "expectedState",
+          "documentRevisionCurrent",
+          "currentReviewValid",
+          "confidentialDataUsed",
+          "mayReleaseEquipment"
+        ],
+        "properties": {
+          "scenarioId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "draftId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "trigger": {
+            "enum": [
+              "none",
+              "reviewer_credential_revoked",
+              "oem_revision_changed",
+              "equipment_configuration_changed"
+            ]
+          },
+          "expectedState": {
+            "const": "blocked_pending_external_verification"
+          },
+          "documentRevisionCurrent": {
+            "const": false
+          },
+          "currentReviewValid": {
+            "const": false
+          },
+          "confidentialDataUsed": {
+            "const": false
+          },
+          "mayReleaseEquipment": {
+            "const": false
+          }
+        }
+      }
+    },
+    "studyProtocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consentAndLegalBasisApproved",
+        "reviewerCompetenceVerified",
+        "independentRatersAssigned",
+        "preRegisteredEvaluationMethod",
+        "anonymizationValidated",
+        "realAgreementMeasured",
+        "benchmarkFieldQualityValidated"
+      ],
+      "properties": {
+        "consentAndLegalBasisApproved": {
+          "const": false
+        },
+        "reviewerCompetenceVerified": {
+          "const": false
+        },
+        "independentRatersAssigned": {
+          "const": false
+        },
+        "preRegisteredEvaluationMethod": {
+          "const": false
+        },
+        "anonymizationValidated": {
+          "const": false
+        },
+        "realAgreementMeasured": {
+          "const": false
+        },
+        "benchmarkFieldQualityValidated": {
+          "const": false
+        }
+      }
+    }
+  }
+}

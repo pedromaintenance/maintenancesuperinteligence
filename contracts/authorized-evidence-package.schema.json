@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/authorized-evidence-package.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidenceKind",
+    "publicContentsAllowed",
+    "privateEvidenceVerified",
+    "sourceLicenseVerified",
+    "authenticatedPublisher",
+    "seriesEffectivityVerified",
+    "evidenceBytes",
+    "externalAuthorizationRef"
+  ],
+  "properties": {
+    "evidenceKind": {
+      "enum": [
+        "public_synthetic_metadata_only",
+        "corporate_private_requires_authorization",
+        "licensed_oem_requires_authorization"
+      ]
+    },
+    "publicContentsAllowed": {
+      "const": false
+    },
+    "privateEvidenceVerified": {
+      "const": false
+    },
+    "sourceLicenseVerified": {
+      "const": false
+    },
+    "authenticatedPublisher": {
+      "const": false
+    },
+    "seriesEffectivityVerified": {
+      "const": false
+    },
+    "evidenceBytes": {
+      "type": "null"
+    },
+    "externalAuthorizationRef": {
+      "type": "null"
+    }
+  }
+}

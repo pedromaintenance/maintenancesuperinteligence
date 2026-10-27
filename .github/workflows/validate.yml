@@ -1,4 +1,4 @@
-name: Validate fictional editorial human-review separation and no-operation gates
+name: Validate denied private-pilot readiness, OEM and security evidence
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       - name: Validate existing knowledge metadata
         run: python scripts/validate.py
       - name: Compile Python sources
-        run: python -m compileall -q connectors scripts tests casefiles trees notifications quality editorial
+        run: python -m compileall -q connectors scripts tests casefiles trees notifications quality editorial pilot
       - name: Run offline adversarial tests
         run: python -m unittest discover -s tests -v
       - name: Import pinned FMEA public snapshot
@@ -1200,6 +1200,97 @@ jobs:
           path: |
             build/editorial/review-protocol.v1.json
             build/editorial/review-protocol.v1.html
+          retention-days: 14
+      - name: Generate denied private-pilot readiness and threat assessments
+        run: |
+          mkdir -p build/pilot
+          python -m pilot.readiness \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --editorial build/editorial/review-protocol.v1.json \
+            --output build/pilot/readiness-report.v1.json \
+            --html build/pilot/readiness-report.v1.html > /dev/null
+      - name: Assert all external proof and acceptance gates remain denied
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pilot.readiness import verify_report
+          fixture=json.loads(Path("pilot/readiness-fixture.v1.json").read_text())
+          editorial=json.loads(Path("build/editorial/review-protocol.v1.json").read_text())
+          report=json.loads(Path("build/pilot/readiness-report.v1.json").read_text())
+          verify_report(report,fixture,editorial)
+          assert report["controlCount"]==13
+          assert report["verifiedControlCount"]==0
+          assert report["signoffCount"]==5 and report["verifiedSignoffCount"]==0
+          assert report["threatCount"]==10 and report["scenarioCount"]==4
+          assert report["readinessDecision"]=="blocked_no_external_evidence"
+          assert report["realPilotAuthorized"] is False
+          assert report["pilotExecuted"] is False
+          assert report["realExpertAgreementMeasured"] is False
+          assert report["mayWriteSap"] is False
+          assert report["mayAlterEcm"] is False
+          assert report["mayApproveMaintenance"] is False
+          assert report["mayReleaseEquipment"] is False
+          assert report["externalAuditAnchorVerified"] is False
+          assert all(c["status"]=="not_verified" and c["proofCount"]==0
+                     and c["mayEnablePrivatePilot"] is False
+                     for c in report["requiredExternalEvidence"])
+          assert all(g["status"]=="not_requested" and
+                     g["qualifiedSignerVerified"] is False
+                     for g in report["signoffs"])
+          assert all(t["status"]=="unverified_mitigation" and
+                     t["mitigationExternallyVerified"] is False
+                     for t in report["threats"])
+          assert [s["reopenRequired"] for s in report["scenarios"]]==[
+              False,True,True,True]
+          assert all(s["decision"]=="blocked_pending_external_verification"
+                     and not s["mayOpenSapNotification"]
+                     and not s["mayReleaseEquipment"]
+                     for s in report["scenarios"])
+          assert all(v is False for v in report["studyProtocol"].values())
+          html=Path("build/pilot/readiness-report.v1.html").read_text()
+          assert "<script" not in html and "<form" not in html
+          assert "NÃO AUTORIZADO" in html
+          print("PASS: 13 controls, 5 signoffs, 10 threats; all unverified and denied")
+          PY
+      - name: Reject fabricated OEM proof, consent or pilot readiness
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          original=json.loads(Path("pilot/readiness-fixture.v1.json").read_text())
+          cases=[]
+          for scenario in ("authenticated","oem","consent","license","external-signoff"):
+              x=json.loads(json.dumps(original))
+              if scenario=="authenticated":
+                  x["identityProviderConnected"]=True
+              if scenario=="oem":
+                  x["controls"][6]["proofStatus"]="verified"
+              if scenario=="consent":
+                  x["studyProtocol"]["consentAndLegalBasisApproved"]=True
+              if scenario=="license":
+                  x["classificationPolicy"][2]["allowedRepository"]="public"
+              if scenario=="external-signoff":
+                  x["stakeholders"][0]["signoff"]="approved"
+              Path("build/pilot/fake-"+scenario+".json").write_text(json.dumps(x))
+          PY
+          for scenario in authenticated oem consent license external-signoff; do
+            if python -m pilot.readiness \
+                --snapshot build/fmea-public/fmea-public.snapshot.json \
+                --editorial build/editorial/review-protocol.v1.json \
+                --fixture "build/pilot/fake-$scenario.json" > /dev/null 2>&1; then
+              echo "SECURITY FAIL: forged pilot authorization accepted"
+              exit 1
+            fi
+          done
+          rm build/pilot/fake-*.json
+      - name: Publish public synthetic private-pilot requirements
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle19-denied-private-pilot-readiness
+          path: |
+            build/pilot/readiness-report.v1.json
+            build/pilot/readiness-report.v1.html
           retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4

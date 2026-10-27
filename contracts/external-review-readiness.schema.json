@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/external-review-readiness.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "controlId",
+    "owner",
+    "proofKind",
+    "referenceId",
+    "missingEvidence",
+    "status",
+    "proofCount",
+    "canWaive",
+    "mayEnablePrivatePilot"
+  ],
+  "properties": {
+    "controlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner": {
+      "enum": [
+        "IT",
+        "InformationSecurity",
+        "Engineering",
+        "Legal",
+        "MaintenanceManagement"
+      ]
+    },
+    "proofKind": {
+      "type": "string",
+      "minLength": 1
+    },
+    "referenceId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "missingEvidence": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "const": "not_verified"
+    },
+    "proofCount": {
+      "const": 0
+    },
+    "canWaive": {
+      "const": false
+    },
+    "mayEnablePrivatePilot": {
+      "const": false
+    }
+  }
+}

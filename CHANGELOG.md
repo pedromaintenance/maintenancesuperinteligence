@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.9.0 — 2026-10-27 — Ciclo 19
+
+- Formalizados 13 requisitos de prova externa e cinco áreas proponentes de aceite antes de qualquer piloto privado, todos sem comprovação ou assinatura real.
+- Criados 10 cenários de ameaças envolvendo identidade duplicada, credencial revogada, assinatura forjada, mudança OEM/configuração, conflito de interesse, nota SAP, vazamento de dados, adulteração de auditoria e licenças.
+- Implementados quatro cenários de invalidação e reabertura, todos `blocked_pending_external_verification`.
+- Criados `pilot/readiness-fixture.v1.json`, `pilot/readiness.py`, testes adversariais, 13 contratos JSON Schema e relatório HTML/JSON offline.
+- Separadas fontes NIST SP 800-63-4, OWASP ASVS 5.0.0, LGPD e a lacuna OEM não comprovada; explicitado plano de validação interavaliadores apenas para uso futuro autorizado.
+- CI reproduz FMEA público pinado, revisão editorial e requisitos, rejeita falsas alegações de identidade, consentimento, assinatura, efetividade OEM ou alçada SAP.
+
+**Limite:** nenhuma implantação privada, homologação OEM, identidade autenticada, conformidade certificada, nota SAP ou liberação operacional.
+
+
 ## 1.8.0 — 2026-10-27 — Ciclo 18
 
 - Introduzido protocolo de revisão editorial **totalmente fictício** para quatro rascunhos de notificações sintéticas: 14 personas, 16 eventos e três estados sem aprovação operacional.
