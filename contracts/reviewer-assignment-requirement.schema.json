@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/reviewer-assignment-requirement.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "areas",
+    "individualReviewersAuthenticated",
+    "independentTechnicalApprovalVerified",
+    "oemEffectivityVerified",
+    "legalAndDataReviewVerified",
+    "signedChangeAcceptance"
+  ],
+  "properties": {
+    "areas": {
+      "const": [
+        "IT",
+        "InformationSecurity",
+        "Engineering",
+        "Legal",
+        "MaintenanceManagement"
+      ]
+    },
+    "individualReviewersAuthenticated": {
+      "const": false
+    },
+    "independentTechnicalApprovalVerified": {
+      "const": false
+    },
+    "oemEffectivityVerified": {
+      "const": false
+    },
+    "legalAndDataReviewVerified": {
+      "const": false
+    },
+    "signedChangeAcceptance": {
+      "const": false
+    }
+  }
+}
