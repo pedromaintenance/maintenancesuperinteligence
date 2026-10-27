@@ -1,4 +1,4 @@
-name: Validate private-pilot NO GO contracts and external evidence boundaries
+name: Validate public evidence dependency sequencing and no-go boundaries
 
 on:
   push:
@@ -1376,6 +1376,85 @@ jobs:
           path: |
             build/go-nogo/no-go-report.v1.json
             build/go-nogo/no-go-report.v1.html
+          retention-days: 14
+      - name: Generate dependency-ordered evidence sequencing plan (NO GO)
+        run: |
+          mkdir -p build/sequencing
+          python -m pilot.evidence_sequence \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --gng build/go-nogo/no-go-report.v1.json \
+            --output build/sequencing/evidence-sequence.v1.json \
+            --html build/sequencing/evidence-sequence.v1.html > /dev/null
+      - name: Verify topological graph, gated phases, fictional handoffs and no approval
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pilot.evidence_sequence import verify_report, topological_sequence
+          spec=json.loads(Path("pilot/evidence-sequencing.v1.json").read_text())
+          upstream=json.loads(Path("build/go-nogo/no-go-report.v1.json").read_text())
+          report=json.loads(Path("build/sequencing/evidence-sequence.v1.json").read_text())
+          verify_report(report,spec,upstream)
+          assert report["controlCount"]==13
+          assert report["dependencyLinkCount"]==17
+          assert report["phaseCount"]==7
+          assert report["handoffCount"]==5
+          assert report["adversarialCaseCount"]==10
+          assert report["decision"]=="no_go"
+          assert report["verifiedEvidenceCount"]==0
+          assert report["verifiedExternalAcceptances"]==0
+          assert report["realPilotActivitiesExecuted"]==0
+          assert report["sourceFmeaSnapshotSha256"]==upstream["sourcePublicFmeaSha256"]
+          order={v:i for i,v in enumerate(report["topologicalOrder"])}
+          for c in report["sequencedControls"]:
+              assert c["evidenceVerified"] is False and c["canProceed"] is False
+              assert all(order[p]<order[c["controlId"]] for p in c["predecessors"])
+          assert len(report["rootPrerequisites"])==3
+          assert all(not h["realReceiptVerified"] and not h["externalSignoffRecorded"]
+                     and not h["containsCorporateData"] for h in report["externalHandoffs"])
+          assert all(p["scheduleDate"] is None and p["estimatedCost"] is None
+                     and p["workHours"] is None and not p["externalExecutionAuthorized"]
+                     for p in report["phases"])
+          assert all(not v for k,v in report["operationalBoundary"].items()
+                     if k!="allowedDecision")
+          assert report["operationalBoundary"]["allowedDecision"]=="no_go"
+          html=Path("build/sequencing/evidence-sequence.v1.html").read_text()
+          assert "NO GO" in html and "<script" not in html and "<form" not in html
+          print("PASS: 13 controls, 17 links, seven phases; no authenticated GO")
+          PY
+      - name: Reject forged OEM validity, early phase permission and SAP transfer
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          source=json.loads(Path("pilot/evidence-sequencing.v1.json").read_text())
+          for variant in ("oem","early","sap","review","cost","source"):
+              bad=json.loads(json.dumps(source))
+              if variant=="oem": bad["proofRequests"][6]["originAuthorized"]=True
+              elif variant=="early": bad["phases"][0]["mayStartInRealEnvironment"]=True
+              elif variant=="sap": bad["policy"]["canTransmitSap"]=True
+              elif variant=="review": bad["externalHandoffs"][0]["realReceiptVerified"]=True
+              elif variant=="cost": bad["costPlanned"]=500
+              elif variant=="source": bad["proofRequests"][0]["expectedEvidenceId"]="CORPORATE-PRIVATE"
+              Path("build/sequencing/forged-"+variant+".json").write_text(json.dumps(bad))
+          PY
+          for scenario in oem early sap review cost source; do
+            if python -m pilot.evidence_sequence \
+                 --snapshot build/fmea-public/fmea-public.snapshot.json \
+                 --gng build/go-nogo/no-go-report.v1.json \
+                 --spec "build/sequencing/forged-$scenario.json" > /dev/null 2>&1; then
+              echo "SECURITY FAIL: fake permission accepted in evidence sequencing"
+              exit 1
+            fi
+          done
+          rm build/sequencing/forged-*.json
+      - name: Publish offline NO GO dependency plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle21-evidence-sequencing-no-go
+          path: |
+            build/sequencing/evidence-sequence.v1.json
+            build/sequencing/evidence-sequence.v1.html
           retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4
