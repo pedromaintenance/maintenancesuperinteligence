@@ -40,6 +40,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 ## Fase 4 — Estratégia de ativos, manutenção e PCM
 
+**Ciclo 18:** quatro fluxos fictícios de revisão editorial sobre rascunhos documentais, separação de papéis, controle de versão obsoleta, divergência, reabertura por contexto OEM e revogação; logs SHA-256 somente simulados e bloqueio integral de alçadas reais. Próximo: especificação de um protocolo externo de aceite de revisões humanas com requisitos de segurança, evidência e infraestrutura privada.
+
 **Ciclo 17:** rubrica de 12 critérios para qualidade documental e 14 mutações sintéticas adversariais, com relatório offline JSON/HTML e rastreabilidade ao FMEA público, árvore e rascunho de notificação. Nenhuma validação de campo ou alçada SAP. Próximo candidato: desenho de protocolo para revisão humana independente de qualidade documental em ambiente restrito.
 
 **Ciclo 16:** rascunhos técnicos sintéticos de notificações de manutenção para quatro dossiês, contemplando sintomas, hipóteses abertas, disciplina, escopo de investigação, evidências pendentes e risco qualitativo de postergação. Exportações offline JSON/HTML não possuem integração SAP, dados privados, materiais, HH, ou autorização operacional. Próximo: rubrica didática de qualidade de notificações e integridade documental.
