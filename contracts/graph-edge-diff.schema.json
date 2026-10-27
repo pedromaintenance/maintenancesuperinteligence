@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/graph-edge-diff.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "addedEdges",
+    "removedEdges",
+    "ownerDifference"
+  ],
+  "properties": {
+    "addedEdges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "sourceId",
+          "targetId"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "targetId": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "removedEdges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "sourceId",
+          "targetId"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "targetId": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "ownerDifference": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "controlId",
+            "oldOwner",
+            "proposedOwner",
+            "verifiedNewOwner"
+          ],
+          "properties": {
+            "controlId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "oldOwner": {
+              "type": "string",
+              "minLength": 1
+            },
+            "proposedOwner": {
+              "type": "string",
+              "minLength": 1
+            },
+            "verifiedNewOwner": {
+              "const": false
+            }
+          }
+        }
+      ]
+    }
+  }
+}
