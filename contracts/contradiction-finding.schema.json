@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/contradiction-finding.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "findingId",
+    "status",
+    "conflictingAssertions",
+    "reviewNeeded",
+    "realWorldConflictConfirmed",
+    "mechanicalFailureConfirmed",
+    "mayDiscardHypothesis"
+  ],
+  "properties": {
+    "findingId": {
+      "type": "string",
+      "pattern": "^SIM-FIND-CONFLICT-"
+    },
+    "status": {
+      "const": "hypothetical_inconsistency_to_investigate"
+    },
+    "conflictingAssertions": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "reviewNeeded": {
+      "const": true
+    },
+    "realWorldConflictConfirmed": {
+      "const": false
+    },
+    "mechanicalFailureConfirmed": {
+      "const": false
+    },
+    "mayDiscardHypothesis": {
+      "const": false
+    }
+  }
+}
