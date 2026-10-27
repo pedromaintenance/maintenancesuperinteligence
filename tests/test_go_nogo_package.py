@@ -212,7 +212,7 @@ class GoNoGoTests(unittest.TestCase):
         self.assertNotIn("<script",html)
         self.assertNotIn("<form",html)
         self.assertIn("NO GO",html)
-        r["requiredExternalEvidence"][0]["controlId"]="<script>x</script>"
+        r["evidenceManifest"][0]["controlId"]="<script>x</script>"
         self.assertIn("&lt;script&gt;",render_html(r))
 
     def test_html_rejects_forged_approval_or_fake_proof(self):
