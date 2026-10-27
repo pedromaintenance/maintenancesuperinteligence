@@ -1,0 +1,358 @@
+{
+  "schema": "maintenance-superinteligence.evidence-contradiction-fixture.v1",
+  "version": "1.0.0",
+  "mode": "public_synthetic_cross_functional_conflict_only",
+  "sourceSequence": "pilot/evidence-sequencing.v1.json",
+  "sourceGoNoGo": "pilot/go-nogo-package.v1.json",
+  "fieldEvidenceAvailable": false,
+  "privateDocumentsLoaded": false,
+  "humanReviewsAuthenticated": false,
+  "sourceProofsVerified": false,
+  "mayAuthorizePilot": false,
+  "scenarios": [
+    {
+      "scenarioId": "SIM-CONFLICT-01",
+      "label": "duplicate-principal",
+      "assertions": [
+        {
+          "assertionId": "SIM-ASSERT-01-A",
+          "controlId": "identity-proof",
+          "claim": "same_principal",
+          "contextRevision": 1,
+          "documentRevision": 1,
+          "origin": "fictional_hypothesis_only",
+          "observed": false,
+          "authenticated": false,
+          "sourceDocument": null,
+          "claimantId": null
+        },
+        {
+          "assertionId": "SIM-ASSERT-01-B",
+          "controlId": "two-independent-reviews",
+          "claim": "different_principals",
+          "contextRevision": 2,
+          "documentRevision": 2,
+          "origin": "fictional_hypothesis_only",
+          "observed": false,
+          "authenticated": false,
+          "sourceDocument": null,
+          "claimantId": null
+        }
+      ],
+      "invalidationReason": "persona_alias_collision",
+      "triggerControlIds": [
+        "identity-proof",
+        "two-independent-reviews"
+      ],
+      "crossReviewOwners": [
+        "IT",
+        "Engineering"
+      ],
+      "conflictExpected": true,
+      "priorProofInvalidated": true,
+      "realIncidentObserved": false,
+      "canResolveAutomatically": false
+    },
+    {
+      "scenarioId": "SIM-CONFLICT-02",
+      "label": "expired-competence",
+      "assertions": [
+        {
+          "assertionId": "SIM-ASSERT-02-A",
+          "controlId": "competence",
+          "claim": "current_credential",
+          "contextRevision": 1,
+          "documentRevision": 1,
+          "origin": "fictional_hypothesis_only",
+          "observed": false,
+          "authenticated": false,
+          "sourceDocument": null,
+          "claimantId": null
+        },
+        {
+          "assertionId": "SIM-ASSERT-02-B",
+          "controlId": "two-independent-reviews",
+          "claim": "expired_credential",
+          "contextRevision": 2,
+          "documentRevision": 2,
+          "origin": "fictional_hypothesis_only",
+          "observed": false,
+          "authenticated": false,
+          "sourceDocument": null,
+          "claimantId": null
+        }
+      ],
+      "invalidationReason": "qualification_expiry_disagreement",
+      "triggerControlIds": [
+        "competence",
+        "two-independent-reviews"
+      ],
+      "crossReviewOwners": [
+        "Engineering",
+        "IT"
+      ],
+      "conflictExpected": true,
+      "priorProofInvalidated": true,
+      "realIncidentObserved": false,
+      "canResolveAutomatically": false
+    },
+    {
+      "scenarioId": "SIM-CONFLICT-03",
+      "label": "oem-revision-superseded",
+      "assertions": [
+        {
+          "assertionId": "SIM-ASSERT-03-A",
+          "controlId": "oem-effectivity",
+          "claim": "current_oem_revision",
+          "contextRevision": 1,
+          "documentRevision": 1,
+          "origin": "fictional_hypothesis_only",
+          "observed": false,
+          "authenticated": false,
+          "sourceDocument": null,
+          "claimantId": null
+        },
+        {
+          "assertionId": "SIM-ASSERT-03-B",
+          "controlId": "version-lock",
+          "claim": "superseded_oem_revision",
+          "contextRevision": 2,
+          "documentRevision": 2,
+          "origin": "fictional_hypothesis_only",
+          "observed": false,
+          "authenticated": false,
+          "sourceDocument": null,
+          "claimantId": null
+        }
+      ],
+      "invalidationReason": "oem_revision_superseded",
+      "triggerControlIds": [
+        "oem-effectivity",
+        "version-lock"
+      ],
+      "crossReviewOwners": [
+        "Engineering",
+        "MaintenanceManagement"
+      ],
+      "conflictExpected": true,
+      "priorProofInvalidated": true,
+      "realIncidentObserved": false,
+      "canResolveAutomatically": false
+    },
+    {
+      "scenarioId": "SIM-CONFLICT-04",
+      "label": "equipment-reconfigured",
+      "assertions": [
+        {
+          "assertionId": "SIM-ASSERT-04-A",
+          "controlId": "equipment-configuration",
+          "claim": "configuration_unchanged",
+          "contextRevision": 1,
+          "documentRevision": 1,
+          "origin": "fictional_hypothesis_only",
+          "observed": false,
+          "authenticated": false,
+          "sourceDocument": null,
+          "claimantId": null
+        },
+        {
+          "assertionId": "SIM-ASSERT-04-B",
+          "controlId": "oem-effectivity",
+          "claim": "configuration_changed",
+          "contextRevision": 2,
+          "documentRevision": 2,
+          "origin": "fictional_hypothesis_only",
+          "observed": false,
+          "authenticated": false,
+          "sourceDocument": null,
+          "claimantId": null
+        }
+      ],
+      "invalidationReason": "machine_configuration_changed",
+      "triggerControlIds": [
+        "equipment-configuration",
+        "oem-effectivity"
+      ],
+      "crossReviewOwners": [
+        "MaintenanceManagement",
+        "Engineering"
+      ],
+      "conflictExpected": true,
+      "priorProofInvalidated": true,
+      "realIncidentObserved": false,
+      "canResolveAutomatically": false
+    },
+    {
+      "scenarioId": "SIM-CONFLICT-05",
+      "label": "reviewer-evidence-conflict",
+      "assertions": [
+        {
+          "assertionId": "SIM-ASSERT-05-A",
+          "controlId": "two-independent-reviews",
+          "claim": "review_supports",
+          "contextRevision": 1,
+          "documentRevision": 1,
+          "origin": "fictional_hypothesis_only",
+          "observed": false,
+          "authenticated": false,
+          "sourceDocument": null,
+          "claimantId": null
+        },
+        {
+          "assertionId": "SIM-ASSERT-05-B",
+          "controlId": "signed-decision",
+          "claim": "review_challenges",
+          "contextRevision": 2,
+          "documentRevision": 2,
+          "origin": "fictional_hypothesis_only",
+          "observed": false,
+          "authenticated": false,
+          "sourceDocument": null,
+          "claimantId": null
+        }
+      ],
+      "invalidationReason": "reviewer_disagreement",
+      "triggerControlIds": [
+        "two-independent-reviews",
+        "signed-decision"
+      ],
+      "crossReviewOwners": [
+        "Engineering",
+        "InformationSecurity"
+      ],
+      "conflictExpected": true,
+      "priorProofInvalidated": true,
+      "realIncidentObserved": false,
+      "canResolveAutomatically": false
+    },
+    {
+      "scenarioId": "SIM-CONFLICT-06",
+      "label": "privacy-retention-contradiction",
+      "assertions": [
+        {
+          "assertionId": "SIM-ASSERT-06-A",
+          "controlId": "privacy-retention",
+          "claim": "retention_authorized",
+          "contextRevision": 1,
+          "documentRevision": 1,
+          "origin": "fictional_hypothesis_only",
+          "observed": false,
+          "authenticated": false,
+          "sourceDocument": null,
+          "claimantId": null
+        },
+        {
+          "assertionId": "SIM-ASSERT-06-B",
+          "controlId": "evidence-legitimacy",
+          "claim": "retention_not_authorized",
+          "contextRevision": 2,
+          "documentRevision": 2,
+          "origin": "fictional_hypothesis_only",
+          "observed": false,
+          "authenticated": false,
+          "sourceDocument": null,
+          "claimantId": null
+        }
+      ],
+      "invalidationReason": "legal_retention_conflict",
+      "triggerControlIds": [
+        "privacy-retention",
+        "evidence-legitimacy"
+      ],
+      "crossReviewOwners": [
+        "Legal",
+        "InformationSecurity"
+      ],
+      "conflictExpected": true,
+      "priorProofInvalidated": true,
+      "realIncidentObserved": false,
+      "canResolveAutomatically": false
+    }
+  ],
+  "questions": [
+    {
+      "questionId": "SIM-XREVIEW-01",
+      "scenarioId": "SIM-CONFLICT-01",
+      "owner": "IT",
+      "peerOwner": "Engineering",
+      "sourceControlId": "identity-proof",
+      "targetControlId": "two-independent-reviews",
+      "question": "A mesma identidade autenticada representa realmente duas pessoas distintas?",
+      "answerState": "external_review_not_performed",
+      "answeredByRealPerson": false,
+      "approvalGranted": false
+    },
+    {
+      "questionId": "SIM-XREVIEW-02",
+      "scenarioId": "SIM-CONFLICT-02",
+      "owner": "Engineering",
+      "peerOwner": "IT",
+      "sourceControlId": "competence",
+      "targetControlId": "revocation-reopen",
+      "question": "A competência declarada continua válida após eventual expiração ou revogação?",
+      "answerState": "external_review_not_performed",
+      "answeredByRealPerson": false,
+      "approvalGranted": false
+    },
+    {
+      "questionId": "SIM-XREVIEW-03",
+      "scenarioId": "SIM-CONFLICT-03",
+      "owner": "Engineering",
+      "peerOwner": "MaintenanceManagement",
+      "sourceControlId": "oem-effectivity",
+      "targetControlId": "equipment-configuration",
+      "question": "A revisão OEM aplicável cobre o arranjo/configuração do equipamento?",
+      "answerState": "external_review_not_performed",
+      "answeredByRealPerson": false,
+      "approvalGranted": false
+    },
+    {
+      "questionId": "SIM-XREVIEW-04",
+      "scenarioId": "SIM-CONFLICT-04",
+      "owner": "MaintenanceManagement",
+      "peerOwner": "Engineering",
+      "sourceControlId": "equipment-configuration",
+      "targetControlId": "oem-effectivity",
+      "question": "Qual alteração de arranjo invalida a efetividade do documento anterior?",
+      "answerState": "external_review_not_performed",
+      "answeredByRealPerson": false,
+      "approvalGranted": false
+    },
+    {
+      "questionId": "SIM-XREVIEW-05",
+      "scenarioId": "SIM-CONFLICT-05",
+      "owner": "Engineering",
+      "peerOwner": "InformationSecurity",
+      "sourceControlId": "two-independent-reviews",
+      "targetControlId": "signed-decision",
+      "question": "A divergência entre pareceres foi preservada e vinculada à mesma revisão?",
+      "answerState": "external_review_not_performed",
+      "answeredByRealPerson": false,
+      "approvalGranted": false
+    },
+    {
+      "questionId": "SIM-XREVIEW-06",
+      "scenarioId": "SIM-CONFLICT-06",
+      "owner": "Legal",
+      "peerOwner": "InformationSecurity",
+      "sourceControlId": "privacy-retention",
+      "targetControlId": "evidence-legitimacy",
+      "question": "A finalidade, base legal e retenção proposta permanecem consistentes e autorizadas?",
+      "answerState": "external_review_not_performed",
+      "answeredByRealPerson": false,
+      "approvalGranted": false
+    }
+  ],
+  "policy": {
+    "decision": "no_go",
+    "allClaimsHypothetical": true,
+    "anyConflictBlocks": true,
+    "propagateToAllDescendants": true,
+    "requireHumanExternalResolution": true,
+    "neverAcceptStaleProof": true,
+    "mayWriteSap": false,
+    "mayAlterEcm": false,
+    "mayCreateWorkOrder": false,
+    "mayReleaseEquipment": false
+  }
+}
