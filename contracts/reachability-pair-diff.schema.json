@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/reachability-pair-diff.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "rootControlId",
+    "targetControlId",
+    "oldReachable",
+    "newReachable",
+    "oldMinimumSteps",
+    "newMinimumSteps",
+    "oldPossiblePathCount",
+    "newPossiblePathCount",
+    "newPathIntroduced",
+    "oldPathLost",
+    "documentaryChangeOnly",
+    "physicalSafetyEstablished"
+  ],
+  "properties": {
+    "rootControlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "targetControlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "oldReachable": {
+      "type": "boolean"
+    },
+    "newReachable": {
+      "type": "boolean"
+    },
+    "oldMinimumSteps": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "newMinimumSteps": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "oldPossiblePathCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "newPossiblePathCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "newPathIntroduced": {
+      "type": "boolean"
+    },
+    "oldPathLost": {
+      "type": "boolean"
+    },
+    "documentaryChangeOnly": {
+      "const": true
+    },
+    "physicalSafetyEstablished": {
+      "const": false
+    }
+  }
+}
