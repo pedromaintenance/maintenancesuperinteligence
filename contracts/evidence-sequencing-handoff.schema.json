@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-sequencing-handoff.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "owner",
+    "packetId",
+    "requestedEvidenceIds",
+    "referenceOnly",
+    "realReceiptVerified",
+    "signoffEvidence",
+    "approvalNotGranted"
+  ],
+  "properties": {
+    "owner": {
+      "enum": [
+        "IT",
+        "InformationSecurity",
+        "Engineering",
+        "Legal",
+        "MaintenanceManagement"
+      ]
+    },
+    "packetId": {
+      "type": "string",
+      "pattern": "^SIM-HANDOFF-"
+    },
+    "requestedEvidenceIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "referenceOnly": {
+      "const": true
+    },
+    "realReceiptVerified": {
+      "const": false
+    },
+    "signoffEvidence": {
+      "type": "null"
+    },
+    "approvalNotGranted": {
+      "const": true
+    }
+  }
+}
