@@ -1,0 +1,248 @@
+{
+  "schema": "maintenance-superinteligence.review-contestations.v1",
+  "version": "1.0.0",
+  "mode": "synthetic_untrusted_events",
+  "scenarioCount": 10,
+  "scenarios": [
+    {
+      "scenarioId": "SIM-ADJ-01",
+      "proposalId": "SIM-GDIFF-01",
+      "eventType": "stale_graph_revision",
+      "proposerAlias": "SIM-PROPOSER-A",
+      "reviewerAlias": "SIM-REVIEWER-B",
+      "claimedGraphRevision": "SIM-OBSOLETE-REVISION",
+      "evidenceReference": null,
+      "purportedSignature": false,
+      "purportedApproval": false,
+      "ownerChanged": false,
+      "oemRevisionChanged": false,
+      "objectionSuppressed": false,
+      "perspectives": [
+        {
+          "area": "Engineering",
+          "position": "objection"
+        },
+        {
+          "area": "InformationSecurity",
+          "position": "counterargument"
+        }
+      ]
+    },
+    {
+      "scenarioId": "SIM-ADJ-02",
+      "proposalId": "SIM-GDIFF-02",
+      "eventType": "evidence_revoked",
+      "proposerAlias": "SIM-PROPOSER-A",
+      "reviewerAlias": "SIM-REVIEWER-B",
+      "claimedGraphRevision": "baseline",
+      "evidenceReference": "oem_effectivity",
+      "purportedSignature": false,
+      "purportedApproval": false,
+      "ownerChanged": false,
+      "oemRevisionChanged": false,
+      "objectionSuppressed": false,
+      "perspectives": [
+        {
+          "area": "Engineering",
+          "position": "objection"
+        },
+        {
+          "area": "InformationSecurity",
+          "position": "counterargument"
+        }
+      ]
+    },
+    {
+      "scenarioId": "SIM-ADJ-03",
+      "proposalId": "SIM-GDIFF-03",
+      "eventType": "reviewer_conflict",
+      "proposerAlias": "SIM-PROPOSER-A",
+      "reviewerAlias": "SIM-REVIEWER-B",
+      "claimedGraphRevision": "baseline",
+      "evidenceReference": null,
+      "purportedSignature": false,
+      "purportedApproval": false,
+      "ownerChanged": false,
+      "oemRevisionChanged": false,
+      "objectionSuppressed": false,
+      "perspectives": [
+        {
+          "area": "Engineering",
+          "position": "objection"
+        },
+        {
+          "area": "InformationSecurity",
+          "position": "counterargument"
+        }
+      ]
+    },
+    {
+      "scenarioId": "SIM-ADJ-04",
+      "proposalId": "SIM-GDIFF-04",
+      "eventType": "self_approval",
+      "proposerAlias": "SIM-PROPOSER-A",
+      "reviewerAlias": "SIM-PROPOSER-A",
+      "claimedGraphRevision": "baseline",
+      "evidenceReference": null,
+      "purportedSignature": false,
+      "purportedApproval": false,
+      "ownerChanged": false,
+      "oemRevisionChanged": false,
+      "objectionSuppressed": false,
+      "perspectives": [
+        {
+          "area": "Engineering",
+          "position": "objection"
+        },
+        {
+          "area": "InformationSecurity",
+          "position": "counterargument"
+        }
+      ]
+    },
+    {
+      "scenarioId": "SIM-ADJ-05",
+      "proposalId": "SIM-GDIFF-05",
+      "eventType": "forged_signature",
+      "proposerAlias": "SIM-PROPOSER-A",
+      "reviewerAlias": "SIM-REVIEWER-B",
+      "claimedGraphRevision": "baseline",
+      "evidenceReference": null,
+      "purportedSignature": true,
+      "purportedApproval": false,
+      "ownerChanged": false,
+      "oemRevisionChanged": false,
+      "objectionSuppressed": false,
+      "perspectives": [
+        {
+          "area": "Engineering",
+          "position": "objection"
+        },
+        {
+          "area": "InformationSecurity",
+          "position": "counterargument"
+        }
+      ]
+    },
+    {
+      "scenarioId": "SIM-ADJ-06",
+      "proposalId": "SIM-GDIFF-06",
+      "eventType": "owner_changed",
+      "proposerAlias": "SIM-PROPOSER-A",
+      "reviewerAlias": "SIM-REVIEWER-B",
+      "claimedGraphRevision": "baseline",
+      "evidenceReference": null,
+      "purportedSignature": false,
+      "purportedApproval": false,
+      "ownerChanged": true,
+      "oemRevisionChanged": false,
+      "objectionSuppressed": false,
+      "perspectives": [
+        {
+          "area": "Engineering",
+          "position": "objection"
+        },
+        {
+          "area": "InformationSecurity",
+          "position": "counterargument"
+        }
+      ]
+    },
+    {
+      "scenarioId": "SIM-ADJ-07",
+      "proposalId": "SIM-GDIFF-07",
+      "eventType": "oem_revision_changed",
+      "proposerAlias": "SIM-PROPOSER-A",
+      "reviewerAlias": "SIM-REVIEWER-B",
+      "claimedGraphRevision": "baseline",
+      "evidenceReference": "oem_effectivity",
+      "purportedSignature": false,
+      "purportedApproval": false,
+      "ownerChanged": false,
+      "oemRevisionChanged": true,
+      "objectionSuppressed": false,
+      "perspectives": [
+        {
+          "area": "Engineering",
+          "position": "objection"
+        },
+        {
+          "area": "InformationSecurity",
+          "position": "counterargument"
+        }
+      ]
+    },
+    {
+      "scenarioId": "SIM-ADJ-08",
+      "proposalId": "SIM-GDIFF-08",
+      "eventType": "hidden_dissent",
+      "proposerAlias": "SIM-PROPOSER-A",
+      "reviewerAlias": "SIM-REVIEWER-B",
+      "claimedGraphRevision": "baseline",
+      "evidenceReference": null,
+      "purportedSignature": false,
+      "purportedApproval": false,
+      "ownerChanged": false,
+      "oemRevisionChanged": false,
+      "objectionSuppressed": true,
+      "perspectives": [
+        {
+          "area": "Engineering",
+          "position": "objection"
+        },
+        {
+          "area": "InformationSecurity",
+          "position": "counterargument"
+        }
+      ]
+    },
+    {
+      "scenarioId": "SIM-ADJ-09",
+      "proposalId": "SIM-GDIFF-09",
+      "eventType": "false_approval",
+      "proposerAlias": "SIM-PROPOSER-A",
+      "reviewerAlias": "SIM-REVIEWER-B",
+      "claimedGraphRevision": "baseline",
+      "evidenceReference": null,
+      "purportedSignature": false,
+      "purportedApproval": true,
+      "ownerChanged": false,
+      "oemRevisionChanged": false,
+      "objectionSuppressed": false,
+      "perspectives": [
+        {
+          "area": "Engineering",
+          "position": "objection"
+        },
+        {
+          "area": "InformationSecurity",
+          "position": "counterargument"
+        }
+      ]
+    },
+    {
+      "scenarioId": "SIM-ADJ-10",
+      "proposalId": "SIM-GDIFF-10",
+      "eventType": "safety_evidence_missing",
+      "proposerAlias": "SIM-PROPOSER-A",
+      "reviewerAlias": "SIM-REVIEWER-B",
+      "claimedGraphRevision": "baseline",
+      "evidenceReference": "safety_review",
+      "purportedSignature": false,
+      "purportedApproval": false,
+      "ownerChanged": false,
+      "oemRevisionChanged": false,
+      "objectionSuppressed": false,
+      "perspectives": [
+        {
+          "area": "Engineering",
+          "position": "objection"
+        },
+        {
+          "area": "InformationSecurity",
+          "position": "counterargument"
+        }
+      ]
+    }
+  ]
+}

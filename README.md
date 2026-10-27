@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de cobertura estrutural de reaberturas P&D v2.3.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de governança e contestação documental P&D v2.6.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -62,6 +62,8 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 22 — Contradições documentais e reabertura de dependências](docs/CICLO_2026-10-27_CONTRADICOES_EVIDENCIAS.md)
 - [Ciclo 23 — Cobertura estrutural das reaberturas](docs/CICLO_2026-10-27_COBERTURA_REABERTURAS.md)
 - [Ciclo 24 — Revisão de mudanças do grafo e veto](docs/CICLO_2026-10-27_REVISAO_MUDANCAS_GRAFO.md)
+- [Ciclo 25 — Dossiês sintéticos de mudanças](docs/CICLO_2026-10-27_DOSSIES_REVISAO_GRAFO.md)
+- [Ciclo 26 — Contestação e revogação](docs/CICLO_2026-10-27_CONTESTACAO_REVOGACAO.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -381,3 +383,7 @@ python -m pilot.graph_change_review --snapshot build/fmea-public/fmea-public.sna
 ```
 
 Veja a [documentação técnica do Ciclo 24](docs/CICLO_2026-10-27_REVISAO_MUDANCAS_GRAFO.md).
+
+## Ciclo 26 — Contestação e revogação documental
+
+O gerador `pilot/change_review_adjudication.py` preserva duas opiniões fictícias de áreas distintas por cenário, modela dez eventos de revisão obsoleta, retirada de prova, conflito e alegação de aprovação, e reconstrói uma cadeia de auditoria local. Os **13 controles/17 arestas do grafo permanecem inalterados**, nenhum parecer é real, e a decisão é sempre `no_go`. A cadeia de proveniência anterior deve ser validada em CI antes de consumir os dossiês. [Documentação do Ciclo 26](docs/CICLO_2026-10-27_CONTESTACAO_REVOGACAO.md).

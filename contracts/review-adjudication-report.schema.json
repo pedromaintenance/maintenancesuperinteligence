@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/review-adjudication-report.schema.json",
+  "title": "Cycle 26 synthetic NO GO adjudication report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "sourcePacketsDigest",
+    "fixtureDigest",
+    "canonicalGraphDigest",
+    "scenarioCount",
+    "results",
+    "auditTrail",
+    "auditTailDigest",
+    "objectionsPersist",
+    "realHumanSignoffs",
+    "decision",
+    "noOperationalAuthority"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.review-adjudication-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "synthetic_no_operational_authority"
+    },
+    "sourcePacketsDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "fixtureDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "canonicalGraphDigest": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scenarioCount": {
+      "const": 10
+    },
+    "results": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "#/$defs/result"
+      }
+    },
+    "auditTrail": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "#/$defs/audit"
+      }
+    },
+    "auditTailDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "objectionsPersist": {
+      "const": true
+    },
+    "realHumanSignoffs": {
+      "const": 0
+    },
+    "decision": {
+      "const": "no_go"
+    },
+    "noOperationalAuthority": {
+      "$ref": "#/$defs/authority"
+    }
+  },
+  "$defs": {
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mayWriteSap",
+        "mayModifyEcm",
+        "mayCreateWorkOrder",
+        "mayOrderParts",
+        "mayReleaseEquipment",
+        "mayAuthorizePrivatePilot"
+      ],
+      "properties": {
+        "mayWriteSap": {
+          "const": false
+        },
+        "mayModifyEcm": {
+          "const": false
+        },
+        "mayCreateWorkOrder": {
+          "const": false
+        },
+        "mayOrderParts": {
+          "const": false
+        },
+        "mayReleaseEquipment": {
+          "const": false
+        },
+        "mayAuthorizePrivatePilot": {
+          "const": false
+        }
+      }
+    },
+    "objection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "area",
+        "position",
+        "status"
+      ],
+      "properties": {
+        "area": {
+          "enum": [
+            "IT",
+            "InformationSecurity",
+            "Engineering",
+            "Legal",
+            "MaintenanceManagement"
+          ]
+        },
+        "position": {
+          "enum": [
+            "objection",
+            "counterargument"
+          ]
+        },
+        "status": {
+          "const": "fictional_unverified_not_a_signoff"
+        }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "proof",
+        "state"
+      ],
+      "properties": {
+        "proof": {
+          "enum": [
+            "identity",
+            "independent_competence",
+            "oem_effectivity",
+            "safety_review",
+            "legal_basis",
+            "signed_decision",
+            "audit_chain"
+          ]
+        },
+        "state": {
+          "const": "not_verified_recheck_required"
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scenarioId",
+        "proposalId",
+        "eventType",
+        "sourceProposalDigest",
+        "sourcePacketDigest",
+        "canonicalGraphDigest",
+        "proposedRevisionClaim",
+        "resolution",
+        "adjudication",
+        "objectionsPreserved",
+        "reopenedDocumentaryGates",
+        "actualIndependentReviews",
+        "authenticatedActors",
+        "realSignaturesVerified",
+        "mayMerge",
+        "noOperationalAuthority"
+      ],
+      "properties": {
+        "scenarioId": {
+          "type": "string"
+        },
+        "proposalId": {
+          "type": "string"
+        },
+        "eventType": {
+          "type": "string"
+        },
+        "sourceProposalDigest": {
+          "type": "string"
+        },
+        "sourcePacketDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "canonicalGraphDigest": {
+          "type": "string"
+        },
+        "proposedRevisionClaim": {
+          "enum": [
+            "baseline",
+            "SIM-OBSOLETE-REVISION"
+          ]
+        },
+        "resolution": {
+          "enum": [
+            "reopen_required",
+            "blocked_untrusted_assertion"
+          ]
+        },
+        "adjudication": {
+          "const": "veto_no_merge"
+        },
+        "objectionsPreserved": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/objection"
+          }
+        },
+        "reopenedDocumentaryGates": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "$ref": "#/$defs/gate"
+          }
+        },
+        "actualIndependentReviews": {
+          "const": 0
+        },
+        "authenticatedActors": {
+          "const": 0
+        },
+        "realSignaturesVerified": {
+          "const": 0
+        },
+        "mayMerge": {
+          "const": false
+        },
+        "noOperationalAuthority": {
+          "$ref": "#/$defs/authority"
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "scenarioId",
+        "sourceEventDigest",
+        "sourcePacketDigest",
+        "resultDigest",
+        "previousDigest",
+        "entryDigest"
+      ],
+      "properties": {
+        "sequence": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "scenarioId": {
+          "type": "string"
+        },
+        "sourceEventDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "sourcePacketDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "resultDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "previousDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "entryDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  }
+}
