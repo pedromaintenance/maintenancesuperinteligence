@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.3.0 — 2026-10-27 — Ciclo 23
+
+- Criado oráculo versionado de 100 casos estruturais: 13 raízes, 78 pares, três mudanças de versão/identidade/configuração e seis cenários de contradição herdados.
+- Implementada verificação independente por matriz Floyd–Warshall de distâncias e caminhos, confrontada com reconstrução DFS e fecho transitivo do Ciclo 22; 13 controles e 17 arestas canônicos preservados.
+- Adicionados caminhos documentais explicáveis por etapa, alternativas redundantes e testemunhos de controles não alcançados sem concluir segurança de máquina.
+- Fixadas cinco mutações adversariais de remoção, inversão, adição, supressão de ameaça e atalho indevido; testes de falsificação de resultado, metadados e permissões.
+- Publicados `pilot/reopen-coverage.v1.json`, `pilot/reopen_coverage.py`, dez JSON Schemas, testes, documentação e relatório JSON/HTML offline de 100 casos.
+- GitHub Actions valida o corpus completo FMEA público e os ciclos anteriores; decisão obrigatória `no_go`, sem comprovação OEM, identidade humana ou intervenção.
+
+**Limite:** cobertura de regressões sintéticas do grafo público, não validação de engenharia de campo nem garantia universal de software.
+
+
 ## 2.2.0 — 2026-10-27 — Ciclo 22
 
 - Criados `pilot/evidence-contradictions.v1.json` e `pilot/evidence_contradictions.py`, com seis cenários sintéticos de conflito documental e seis perguntas de revisão entre áreas.
