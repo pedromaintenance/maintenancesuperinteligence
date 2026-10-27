@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de critérios de prontidão P&D v1.9.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de pacote Go/No-Go P&D v2.0.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -57,6 +57,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 17 — Rubrica de qualidade documental de notificações](docs/CICLO_2026-10-26_QUALIDADE_NOTIFICACOES.md)
 - [Ciclo 18 — Revisão editorial fictícia e governança de versões](docs/CICLO_2026-10-27_REVISAO_EDITORIAL.md)
 - [Ciclo 19 — Protocolo de prontidão para futuro piloto privado](docs/CICLO_2026-10-27_PRONTIDAO_PILOTO_PRIVADO.md)
+- [Ciclo 20 — Pacote Go/No-Go de piloto privado](docs/CICLO_2026-10-27_PACOTE_GO_NO_GO.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -313,3 +314,14 @@ python -m pilot.readiness --snapshot build/fmea-public/fmea-public.snapshot.json
 ```
 
 A reprodução exige gerar os arquivos públicos sintéticos dos Ciclos 13–18. Veja o [relatório técnico do Ciclo 19](docs/CICLO_2026-10-27_PRONTIDAO_PILOTO_PRIVADO.md).
+
+
+## Ciclo 20 — Decisão Go/No-Go de piloto privado
+
+O módulo `pilot/go_nogo.py` transforma os 13 controles do Ciclo 19 em dependências de aprovação, **13 manifestações de evidência não submetida**, **cinco revisões externas pendentes** e **10 correções de achados sintéticos**. O resultado é necessariamente `no_go`, sem acesso real, consentimento, efetividade OEM comprovada ou autorização operacional. São **15 contratos JSON Schema** de evidências, aceites, dependências, decisão, remediação, classificação e limites de autoridade.
+
+```bash
+python -m pilot.go_nogo --snapshot build/fmea-public/fmea-public.snapshot.json --readiness build/pilot/readiness-report.v1.json --output build/go-nogo/no-go-report.v1.json --html build/go-nogo/no-go-report.v1.html
+```
+
+A saída é somente JSON/HTML offline e o CI testa recusas de falso aceite, decisão `go`, alteração ECM/SAP, retenção não autorizada ou métricas interavaliadores inventadas. Veja a [documentação completa do Ciclo 20](docs/CICLO_2026-10-27_PACOTE_GO_NO_GO.md).
