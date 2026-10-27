@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-contradiction-scenario.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scenarioId",
+    "label",
+    "assertions",
+    "invalidationReason",
+    "triggerControlIds",
+    "crossReviewOwners",
+    "conflictExpected",
+    "priorProofInvalidated",
+    "realIncidentObserved",
+    "canResolveAutomatically"
+  ],
+  "properties": {
+    "scenarioId": {
+      "type": "string",
+      "pattern": "^SIM-CONFLICT-"
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "assertions": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "evidence-consistency-assertion.schema.json"
+      }
+    },
+    "invalidationReason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "triggerControlIds": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "crossReviewOwners": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "conflictExpected": {
+      "const": true
+    },
+    "priorProofInvalidated": {
+      "const": true
+    },
+    "realIncidentObserved": {
+      "const": false
+    },
+    "canResolveAutomatically": {
+      "const": false
+    }
+  }
+}

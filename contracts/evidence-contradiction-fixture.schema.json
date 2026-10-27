@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-contradiction-fixture.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "sourceSequence",
+    "sourceGoNoGo",
+    "fieldEvidenceAvailable",
+    "privateDocumentsLoaded",
+    "humanReviewsAuthenticated",
+    "sourceProofsVerified",
+    "mayAuthorizePilot",
+    "scenarios",
+    "questions",
+    "policy"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.evidence-contradiction-fixture.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "public_synthetic_cross_functional_conflict_only"
+    },
+    "sourceSequence": {
+      "const": "pilot/evidence-sequencing.v1.json"
+    },
+    "sourceGoNoGo": {
+      "const": "pilot/go-nogo-package.v1.json"
+    },
+    "fieldEvidenceAvailable": {
+      "const": false
+    },
+    "privateDocumentsLoaded": {
+      "const": false
+    },
+    "humanReviewsAuthenticated": {
+      "const": false
+    },
+    "sourceProofsVerified": {
+      "const": false
+    },
+    "mayAuthorizePilot": {
+      "const": false
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "$ref": "evidence-contradiction-scenario.schema.json"
+      }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "$ref": "cross-functional-review-question.schema.json"
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision",
+        "allClaimsHypothetical",
+        "anyConflictBlocks",
+        "propagateToAllDescendants",
+        "requireHumanExternalResolution",
+        "neverAcceptStaleProof",
+        "mayWriteSap",
+        "mayAlterEcm",
+        "mayCreateWorkOrder",
+        "mayReleaseEquipment"
+      ],
+      "properties": {
+        "decision": {
+          "const": "no_go"
+        },
+        "allClaimsHypothetical": {
+          "const": true
+        },
+        "anyConflictBlocks": {
+          "const": true
+        },
+        "propagateToAllDescendants": {
+          "const": true
+        },
+        "requireHumanExternalResolution": {
+          "const": true
+        },
+        "neverAcceptStaleProof": {
+          "const": true
+        },
+        "mayWriteSap": {
+          "const": false
+        },
+        "mayAlterEcm": {
+          "const": false
+        },
+        "mayCreateWorkOrder": {
+          "const": false
+        },
+        "mayReleaseEquipment": {
+          "const": false
+        }
+      }
+    }
+  }
+}

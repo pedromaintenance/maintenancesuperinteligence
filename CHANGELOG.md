@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.2.0 — 2026-10-27 — Ciclo 22
+
+- Criados `pilot/evidence-contradictions.v1.json` e `pilot/evidence_contradictions.py`, com seis cenários sintéticos de conflito documental e seis perguntas de revisão entre áreas.
+- Implementado o fecho transitivo de reabertura para controles dependentes do grafo público de 13 nós/17 arestas, com rejeição de dependências retiradas, revisão alterada ou falsa prova autenticada.
+- Cada conflito invalida duas afirmações obsoletas no exercício, mas preserva incerteza mecânica: zero medições, zero falhas físicas comprovadas e `no_go` obrigatório.
+- Publicados dez contratos JSON Schema, testes adversariais e relatórios JSON/HTML offline para não exposição de informação corporativa, literatura OEM licenciada ou alçada operacional.
+- GitHub Actions reconstrói o corpus canônico e rejeita evidência fictícia marcada como real, falso aceite humano, prova OEM alterada, conflito oculto e autorização SAP.
+
+**Limite:** resultados de P&D sintético, sem dados de mina, assinaturas, conformidade comprovada ou liberação de equipamento.
+
+
 ## 2.1.0 — 2026-10-27 — Ciclo 21
 
 - Adicionada ordenação topológica de Kahn dos 13 controles e 17 predecessores do pacote Go/No-Go anterior, com verificação de ciclos, autoprecedência, duplicidade de vínculos e fase incompatível.

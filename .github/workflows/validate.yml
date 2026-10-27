@@ -1,4 +1,4 @@
-name: Validate public evidence dependency sequencing and no-go boundaries
+name: Validate public contradictory evidence cascades and strict NO GO
 
 on:
   push:
@@ -1455,6 +1455,85 @@ jobs:
           path: |
             build/sequencing/evidence-sequence.v1.json
             build/sequencing/evidence-sequence.v1.html
+          retention-days: 14
+      - name: Generate synthetic cross-functional evidence contradiction cascades
+        run: |
+          mkdir -p build/contradictions
+          python -m pilot.evidence_contradictions \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --sequence build/sequencing/evidence-sequence.v1.json \
+            --gng build/go-nogo/no-go-report.v1.json \
+            --output build/contradictions/contradictions.v1.json \
+            --html build/contradictions/contradictions.v1.html > /dev/null
+      - name: Verify six synthetic inconsistencies and transitive reopens with NO GO
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pilot.evidence_contradictions import verify_report
+          f=json.loads(Path("pilot/evidence-contradictions.v1.json").read_text())
+          seq=json.loads(Path("build/sequencing/evidence-sequence.v1.json").read_text())
+          gng=json.loads(Path("build/go-nogo/no-go-report.v1.json").read_text())
+          report=json.loads(Path("build/contradictions/contradictions.v1.json").read_text())
+          verify_report(report,f,seq,gng)
+          assert report["scenarioCount"]==6 and report["crossReviewQuestionCount"]==6
+          assert report["sourceControlCount"]==13 and report["sourceDependencyCount"]==17
+          assert report["verifiedPhysicalFaults"]==report["externalProofsVerified"]==0
+          assert report["independentRealReviewsCompleted"]==report["realOperationalActions"]==0
+          assert report["decision"]=="no_go"
+          assert not report["canAuthorizePilot"] and not report["canWriteSap"]
+          assert not report["canModifyEcm"] and not report["canCreateWorkOrder"]
+          assert not report["canReleaseEquipment"]
+          for c in report["scenarios"]:
+              affected=c["dependencyReopenCascade"]
+              assert affected["allReopenedAsUnverified"]
+              assert not affected["operationallyApproved"]
+              assert affected["affectedCount"]==len(affected["allAffectedControls"])
+              assert not c["finding"]["realWorldConflictConfirmed"]
+              assert not c["finding"]["mechanicalFailureConfirmed"]
+              assert not c["crossFunctionalReviewQuestion"]["realReviewPerformed"]
+              assert c["noGoDisposition"]["decision"]=="no_go"
+              assert all(not p["sourceAuthenticated"] and not p["priorAssertionStillBinding"]
+                         for p in c["staleProofInvalidations"])
+          html=Path("build/contradictions/contradictions.v1.html").read_text()
+          assert html.count("<section>")==6
+          assert "<script" not in html and "<form" not in html
+          print("PASS: 6 unobserved contradictory scenarios, descendant propagation and zero operational authority")
+          PY
+      - name: Reject forgery of OEM revisions, source authenticity and conflicts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          source=json.loads(Path("pilot/evidence-contradictions.v1.json").read_text())
+          for scenario in ("measured","omitted","oem-revision","sap","human","private"):
+              item=json.loads(json.dumps(source))
+              if scenario=="measured": item["scenarios"][0]["assertions"][0]["observed"]=True
+              elif scenario=="omitted": item["scenarios"][4]["conflictExpected"]=False
+              elif scenario=="oem-revision": item["scenarios"][2]["assertions"][1]["documentRevision"]=4
+              elif scenario=="sap": item["policy"]["mayWriteSap"]=True
+              elif scenario=="human": item["questions"][0]["answeredByRealPerson"]=True
+              elif scenario=="private": item["scenarios"][0]["assertions"][0]["sourceDocument"]="private"
+              Path("build/contradictions/spoof-"+scenario+".json").write_text(json.dumps(item))
+          PY
+          for scenario in measured omitted oem-revision sap human private; do
+            if python -m pilot.evidence_contradictions \
+                --snapshot build/fmea-public/fmea-public.snapshot.json \
+                --sequence build/sequencing/evidence-sequence.v1.json \
+                --gng build/go-nogo/no-go-report.v1.json \
+                --fixture "build/contradictions/spoof-$scenario.json" > /dev/null 2>&1; then
+              echo "SECURITY FAIL: forged source or approval entered public contradiction graph"
+              exit 1
+            fi
+          done
+          rm build/contradictions/spoof-*.json
+      - name: Publish educational cross-review contradiction analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle22-cross-functional-contradictions
+          path: |
+            build/contradictions/contradictions.v1.json
+            build/contradictions/contradictions.v1.html
           retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4

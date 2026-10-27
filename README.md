@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de sequenciamento documental P&D v2.1.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de revisão cruzada de evidências P&D v2.2.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -59,6 +59,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 19 — Protocolo de prontidão para futuro piloto privado](docs/CICLO_2026-10-27_PRONTIDAO_PILOTO_PRIVADO.md)
 - [Ciclo 20 — Pacote Go/No-Go de piloto privado](docs/CICLO_2026-10-27_PACOTE_GO_NO_GO.md)
 - [Ciclo 21 — Sequenciamento de evidências e dependências](docs/CICLO_2026-10-27_SEQUENCIAMENTO_EVIDENCIAS.md)
+- [Ciclo 22 — Contradições documentais e reabertura de dependências](docs/CICLO_2026-10-27_CONTRADICOES_EVIDENCIAS.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -339,3 +340,16 @@ python -m pilot.evidence_sequence --snapshot build/fmea-public/fmea-public.snaps
 ```
 
 O comando requer entradas sintéticas dos Ciclos 13–20. Os relatórios HTML e JSON são gerados offline e verificados no CI. Consulte a [documentação metodológica do Ciclo 21](docs/CICLO_2026-10-27_SEQUENCIAMENTO_EVIDENCIAS.md).
+
+
+## Ciclo 22 — Contradições documentais e revisão cruzada
+
+O núcleo `pilot/evidence_contradictions.py` analisa **seis pares de afirmações fictícias** para identidade duplicada, competência expirada, revisão OEM substituída, configuração alterada, opiniões divergentes e inconsistência jurídica de retenção. A propagação percorre todos os descendentes do **grafo canônico de 13 controles e 17 dependências**. O motor cria seis perguntas de revisão cruzada e registra a invalidação lógica de doze afirmações de evidência, sem inferir falha física ou descartar hipóteses.
+
+Todas as conclusões permanecem `no_go`; não há comprovação OEM por série, parecer humano, prova corporativa, SAP/ECM, OS ou liberação de equipamento. Geram-se JSON e HTML offline com verificador por reconstrução do corpus público FMEA pinado:
+
+```bash
+python -m pilot.evidence_contradictions --snapshot build/fmea-public/fmea-public.snapshot.json --sequence build/sequencing/evidence-sequence.v1.json --gng build/go-nogo/no-go-report.v1.json --output build/contradictions/contradictions.v1.json --html build/contradictions/contradictions.v1.html
+```
+
+Consulte a [documentação técnica do Ciclo 22](docs/CICLO_2026-10-27_CONTRADICOES_EVIDENCIAS.md).

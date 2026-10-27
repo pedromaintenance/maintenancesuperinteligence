@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-consistency-assertion.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "assertionId",
+    "controlId",
+    "claim",
+    "contextRevision",
+    "documentRevision",
+    "origin",
+    "observed",
+    "authenticated",
+    "sourceDocument",
+    "claimantId"
+  ],
+  "properties": {
+    "assertionId": {
+      "type": "string",
+      "pattern": "^SIM-ASSERT-"
+    },
+    "controlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1
+    },
+    "contextRevision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "documentRevision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "origin": {
+      "const": "fictional_hypothesis_only"
+    },
+    "observed": {
+      "const": false
+    },
+    "authenticated": {
+      "const": false
+    },
+    "sourceDocument": {
+      "type": "null"
+    },
+    "claimantId": {
+      "type": "null"
+    }
+  }
+}
