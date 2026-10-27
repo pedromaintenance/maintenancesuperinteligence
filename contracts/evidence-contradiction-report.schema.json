@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-contradiction-report.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "fixtureSha256",
+    "sourceSequenceSha256",
+    "sourceNoGoSha256",
+    "sourceFmeaSnapshotSha256",
+    "sourceControlCount",
+    "sourceDependencyCount",
+    "scenarioCount",
+    "crossReviewQuestionCount",
+    "scenarios",
+    "allAffectedControls",
+    "verifiedPhysicalFaults",
+    "externalProofsVerified",
+    "independentRealReviewsCompleted",
+    "realOperationalActions",
+    "decision",
+    "canAuthorizePilot",
+    "canWriteSap",
+    "canModifyEcm",
+    "canCreateWorkOrder",
+    "canReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.evidence-contradiction-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "synthetic_dependency_cross_review_only"
+    },
+    "fixtureSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sourceSequenceSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sourceNoGoSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sourceFmeaSnapshotSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sourceControlCount": {
+      "const": 13
+    },
+    "sourceDependencyCount": {
+      "const": 17
+    },
+    "scenarioCount": {
+      "const": 6
+    },
+    "crossReviewQuestionCount": {
+      "const": 6
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "$ref": "evidence-contradiction-result.schema.json"
+      }
+    },
+    "allAffectedControls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "verifiedPhysicalFaults": {
+      "const": 0
+    },
+    "externalProofsVerified": {
+      "const": 0
+    },
+    "independentRealReviewsCompleted": {
+      "const": 0
+    },
+    "realOperationalActions": {
+      "const": 0
+    },
+    "decision": {
+      "const": "no_go"
+    },
+    "canAuthorizePilot": {
+      "const": false
+    },
+    "canWriteSap": {
+      "const": false
+    },
+    "canModifyEcm": {
+      "const": false
+    },
+    "canCreateWorkOrder": {
+      "const": false
+    },
+    "canReleaseEquipment": {
+      "const": false
+    }
+  }
+}
