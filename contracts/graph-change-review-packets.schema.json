@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/graph-change-review-packets.schema.json",
+  "title": "Cycle 25 synthetic review packets",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "mode",
+    "sourceReportSha256",
+    "graphRevisionSha256",
+    "packetCount",
+    "packets",
+    "independentReviewActual",
+    "sourceAuthenticityProven",
+    "decision",
+    "noOperationalAuthority"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.graph-change-review-packets.v1"
+    },
+    "mode": {
+      "const": "synthetic_offline_no_go"
+    },
+    "sourceReportSha256": {
+      "type": "string",
+      "minLength": 1
+    },
+    "graphRevisionSha256": {
+      "type": "string",
+      "minLength": 1
+    },
+    "packetCount": {
+      "const": 10
+    },
+    "packets": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": [
+          "proposalId",
+          "sourceProposalSha256",
+          "graphRevisionSha256",
+          "sourceReportSha256",
+          "documentaryEvidenceGaps",
+          "objections",
+          "adjudication",
+          "noOperationalAuthority"
+        ],
+        "properties": {
+          "proposalId": {
+            "type": "string",
+            "pattern": "^SIM-GDIFF-"
+          },
+          "sourceProposalSha256": {
+            "type": "string"
+          },
+          "graphRevisionSha256": {
+            "type": "string"
+          },
+          "sourceReportSha256": {
+            "type": "string"
+          },
+          "documentaryEvidenceGaps": {
+            "type": "array",
+            "minItems": 7,
+            "maxItems": 7
+          },
+          "objections": {
+            "type": "array",
+            "minItems": 5,
+            "maxItems": 5
+          },
+          "adjudication": {
+            "const": "veto_no_merge"
+          },
+          "noOperationalAuthority": {
+            "$ref": "#/$defs/authority"
+          }
+        }
+      }
+    },
+    "independentReviewActual": {
+      "const": false
+    },
+    "sourceAuthenticityProven": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go"
+    },
+    "noOperationalAuthority": {
+      "$ref": "#/$defs/authority"
+    }
+  },
+  "$defs": {
+    "authority": {
+      "type": "object",
+      "required": [
+        "mayWriteSap",
+        "mayModifyEcm",
+        "mayCreateWorkOrder",
+        "mayOrderParts",
+        "mayReleaseEquipment",
+        "mayAuthorizePrivatePilot"
+      ],
+      "properties": {
+        "mayWriteSap": {
+          "const": false
+        },
+        "mayModifyEcm": {
+          "const": false
+        },
+        "mayCreateWorkOrder": {
+          "const": false
+        },
+        "mayOrderParts": {
+          "const": false
+        },
+        "mayReleaseEquipment": {
+          "const": false
+        },
+        "mayAuthorizePrivatePilot": {
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
