@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/stale-proof-invalidation.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "assertionId",
+    "controlId",
+    "claimRevision",
+    "currentRevisionVerified",
+    "sourceAuthenticated",
+    "priorAssertionStillBinding",
+    "evidenceDiscardedAsFailure",
+    "invalidatedForDecision"
+  ],
+  "properties": {
+    "assertionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "controlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claimRevision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "currentRevisionVerified": {
+      "const": false
+    },
+    "sourceAuthenticated": {
+      "const": false
+    },
+    "priorAssertionStillBinding": {
+      "const": false
+    },
+    "evidenceDiscardedAsFailure": {
+      "const": false
+    },
+    "invalidatedForDecision": {
+      "const": true
+    }
+  }
+}
