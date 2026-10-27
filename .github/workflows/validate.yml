@@ -1535,6 +1535,108 @@ jobs:
             build/contradictions/contradictions.v1.json
             build/contradictions/contradictions.v1.html
           retention-days: 14
+      - name: Build independent-oracle documentary reopen coverage
+        run: |
+          mkdir -p build/coverage
+          python -m pilot.reopen_coverage \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --gng build/go-nogo/no-go-report.v1.json \
+            --sequence build/sequencing/evidence-sequence.v1.json \
+            --contradictions build/contradictions/contradictions.v1.json \
+            --output build/coverage/reopen-coverage.v1.json \
+            --html build/coverage/reopen-coverage.v1.html > /dev/null
+      - name: Verify all 100 structural cases, path explanations and NO GO
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pilot.reopen_coverage import verify_report, independent_oracle, DEPENDENCIES
+          f=json.loads(Path("pilot/reopen-coverage.v1.json").read_text())
+          g=json.loads(Path("build/go-nogo/no-go-report.v1.json").read_text())
+          seq=json.loads(Path("build/sequencing/evidence-sequence.v1.json").read_text())
+          conf=json.loads(Path("build/contradictions/contradictions.v1.json").read_text())
+          report=json.loads(Path("build/coverage/reopen-coverage.v1.json").read_text())
+          verify_report(report,f,conf,seq,g)
+          assert report["scenarioCount"]==100
+          assert [report[k] for k in ("singleRootCount","pairCount","triggerCount","conflictCount")]==[13,78,3,6]
+          assert report["edgeCount"]==17 and report["controlCount"]==13
+          assert report["graphMutationCount"]==5
+          assert report["decision"]=="no_go"
+          assert report["unverifiedEvidenceCount"]==13
+          assert report["verifiedExternalHumanReviews"]==0
+          assert report["physicalFailuresVerified"]==0
+          assert not report["realPilotApproved"]
+          assert not report["mayTransmitSap"]
+          assert not report["mayModifyEcm"]
+          assert not report["mayCreateWorkOrder"]
+          assert not report["mayReleaseEquipment"]
+          for c in report["coverageCases"]:
+              aff,non_aff,metrics=independent_oracle(c["rootControlIds"],DEPENDENCIES)
+              assert c["affectedControlIds"]==aff
+              assert c["unaffectedControlIds"]==non_aff
+              assert c["coveredControlCount"]==13
+              assert c["decision"]=="no_go" and not c["realFaultDetected"]
+              for witness in c["pathExplanations"]:
+                  assert witness["stepCount"]==metrics[witness["targetControlId"]]["minimumSteps"]
+                  assert witness["alternativePathCount"]+1==metrics[witness["targetControlId"]]["possiblePathCount"]
+                  assert not witness["physicalFaultConfirmed"]
+                  assert not witness["evidenceActuallyVerified"]
+                  assert all(not x["physicalMechanismClaimed"] for x in witness["explanationSteps"])
+              assert all(not x["physicalSafetyEstablished"]
+                         for x in c["unreachableControlWitnesses"])
+          assert all(x["mutatedInputRejected"] and not x["operationalAuthorityGranted"]
+                     for x in report["graphMutationChecks"])
+          assert len(report["crossFunctionalReview"])==5
+          assert all(not x["authenticatedSignoffReceived"]
+                     for x in report["crossFunctionalReview"])
+          html=Path("build/coverage/reopen-coverage.v1.html").read_text()
+          assert html.count("<details>")==19
+          assert "NO GO" in html and "<script" not in html and "<form" not in html
+          print("PASS: 100 structural graph cases, 13 controls, 17 edges, 5 mutations, zero machine authority")
+          PY
+      - name: Reject forged closure, edge reversal and false physical proof
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          src=json.loads(Path("pilot/reopen-coverage.v1.json").read_text())
+          for kind in ("removed-edge","reversed-edge","fake-closure","fake-physical","fake-approval","missing-threat"):
+              payload=json.loads(json.dumps(src))
+              if kind=="removed-edge":
+                  payload["graphEdges"].pop()
+              elif kind=="reversed-edge":
+                  item=payload["graphEdges"][0]
+                  item["source"],item["target"]=item["target"],item["source"]
+              elif kind=="fake-closure":
+                  payload["cases"][0]["expectedAffectedControlIds"].pop()
+              elif kind=="fake-physical":
+                  payload["cases"][0]["fieldObserved"]=True
+              elif kind=="fake-approval":
+                  payload["policy"]["mayWriteSap"]=True
+              elif kind=="missing-threat":
+                  payload["mutations"].pop(3)
+              Path("build/coverage/spoof-"+kind+".json").write_text(json.dumps(payload))
+          PY
+          for kind in removed-edge reversed-edge fake-closure fake-physical fake-approval missing-threat; do
+            if python -m pilot.reopen_coverage \
+                --snapshot build/fmea-public/fmea-public.snapshot.json \
+                --gng build/go-nogo/no-go-report.v1.json \
+                --sequence build/sequencing/evidence-sequence.v1.json \
+                --contradictions build/contradictions/contradictions.v1.json \
+                --spec "build/coverage/spoof-$kind.json" > /dev/null 2>&1; then
+              echo "SECURITY FAIL: unverified dependency or physical authority accepted"
+              exit 1
+            fi
+          done
+          rm build/coverage/spoof-*.json
+      - name: Publish educational structural reopening coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle23-documentary-reopen-coverage
+          path: |
+            build/coverage/reopen-coverage.v1.json
+            build/coverage/reopen-coverage.v1.html
+          retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4
         with:

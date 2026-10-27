@@ -40,6 +40,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 ## Fase 4 — Estratégia de ativos, manutenção e PCM
 
+**Ciclo 23:** 100 casos estruturais de reabertura documental e oráculo independente de fecho transitivo em 13 controles/17 arestas; caminhos mínimos, alternativas e testemunhos de não alcance. Cinco mutações adversariais e revisão por cinco áreas inteiramente não autenticadas. Próximo candidato: revisão de propostas de alteração do grafo com diff versionado, análise de impacto e veto automático a mudanças de contrato não homologadas.
+
 **Ciclo 22:** seis contradições editoriais simuladas e seis revisões cruzadas sobre o DAG canônico de 13 controles/17 vínculos. Propagação de invalidação aos descendentes com estado `no_go`, sem comprovação OEM, medição real ou dados corporativos. Próximo: medir cobertura estrutural e qualidade da explicação de reabertura em novos contrafactuais públicos.
 
 **Ciclo 21:** plano executivo *documental* por dependências dos 13 controles (17 vínculos), em sete fases e cinco áreas, com relatório offline e dez ameaças bloqueadas. A ordenação topológica não representa duração ou caminho crítico temporal; nenhuma fase executada. Próximo: protocolo sintético de revisão cruzada e contradições entre evidências, preservando a separação de autoridade e o veto `no_go`.

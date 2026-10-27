@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/reopen-coverage-spec.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "sourceGoNoGo",
+    "sourceConflict",
+    "oracleAlgorithm",
+    "graphControlIds",
+    "canonicalDependencies",
+    "graphEdges",
+    "cases",
+    "mutations",
+    "crossReview",
+    "policy"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.reopen-coverage-spec.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "synthetic_graph_structural_regression_only"
+    },
+    "sourceGoNoGo": {
+      "const": "pilot/go-nogo-package.v1.json"
+    },
+    "sourceConflict": {
+      "const": "pilot/evidence-contradictions.v1.json"
+    },
+    "oracleAlgorithm": {
+      "const": "floyd_warshall_static_fixture"
+    },
+    "graphControlIds": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "canonicalDependencies": {
+      "type": "object",
+      "minProperties": 13,
+      "maxProperties": 13,
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "graphEdges": {
+      "type": "array",
+      "minItems": 17,
+      "maxItems": 17,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source",
+          "target"
+        ],
+        "properties": {
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 100,
+      "maxItems": 100,
+      "items": {
+        "$ref": "reopen-coverage-oracle-case.schema.json"
+      }
+    },
+    "mutations": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mutationCaseId",
+          "mutationId",
+          "sourceId",
+          "targetId",
+          "expectedResult",
+          "fieldObservation"
+        ],
+        "properties": {
+          "mutationCaseId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mutationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sourceId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "targetId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "expectedResult": {
+            "const": "rejected_noncanonical"
+          },
+          "fieldObservation": {
+            "const": false
+          }
+        }
+      }
+    },
+    "crossReview": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "owner",
+          "controlIds",
+          "authenticHumanReview",
+          "engineeringAcceptance"
+        ],
+        "properties": {
+          "owner": {
+            "type": "string",
+            "minLength": 1
+          },
+          "controlIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "authenticHumanReview": {
+            "const": false
+          },
+          "engineeringAcceptance": {
+            "const": false
+          }
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allClaimsSynthetic",
+        "realEvidenceAvailable",
+        "fieldFaultConfirmed",
+        "expertApprovalVerified",
+        "mayWriteSap",
+        "mayAlterEcm",
+        "mayCreateWorkOrder",
+        "mayReleaseEquipment",
+        "mayAuthorizePrivatePilot",
+        "decision"
+      ],
+      "properties": {
+        "allClaimsSynthetic": {
+          "const": true
+        },
+        "realEvidenceAvailable": {
+          "const": false
+        },
+        "fieldFaultConfirmed": {
+          "const": false
+        },
+        "expertApprovalVerified": {
+          "const": false
+        },
+        "mayWriteSap": {
+          "const": false
+        },
+        "mayAlterEcm": {
+          "const": false
+        },
+        "mayCreateWorkOrder": {
+          "const": false
+        },
+        "mayReleaseEquipment": {
+          "const": false
+        },
+        "mayAuthorizePrivatePilot": {
+          "const": false
+        },
+        "decision": {
+          "const": "no_go"
+        }
+      }
+    }
+  }
+}

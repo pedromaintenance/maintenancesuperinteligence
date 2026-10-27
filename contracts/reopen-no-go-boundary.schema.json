@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/reopen-no-go-boundary.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decision",
+    "realPilotApproved",
+    "mayTransmitSap",
+    "mayModifyEcm",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment",
+    "verifiedExternalHumanReviews",
+    "physicalFailuresVerified",
+    "structuralCoverageMeaning"
+  ],
+  "properties": {
+    "decision": {
+      "const": "no_go"
+    },
+    "realPilotApproved": {
+      "const": false
+    },
+    "mayTransmitSap": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "verifiedExternalHumanReviews": {
+      "const": 0
+    },
+    "physicalFailuresVerified": {
+      "const": 0
+    },
+    "structuralCoverageMeaning": {
+      "const": "complete_for_fixed_public_fixture_not_real_world"
+    }
+  }
+}

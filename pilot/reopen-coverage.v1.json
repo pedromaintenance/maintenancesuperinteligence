@@ -1,0 +1,5153 @@
+{
+  "schema": "maintenance-superinteligence.reopen-coverage-spec.v1",
+  "version": "1.0.0",
+  "mode": "synthetic_graph_structural_regression_only",
+  "sourceGoNoGo": "pilot/go-nogo-package.v1.json",
+  "sourceConflict": "pilot/evidence-contradictions.v1.json",
+  "oracleAlgorithm": "floyd_warshall_static_fixture",
+  "graphControlIds": [
+    "identity-proof",
+    "competence",
+    "conflict-screen",
+    "two-independent-reviews",
+    "signed-decision",
+    "trusted-audit",
+    "oem-effectivity",
+    "equipment-configuration",
+    "evidence-legitimacy",
+    "version-lock",
+    "revocation-reopen",
+    "privacy-retention",
+    "operational-firewall"
+  ],
+  "canonicalDependencies": {
+    "identity-proof": [],
+    "competence": [
+      "identity-proof"
+    ],
+    "conflict-screen": [
+      "identity-proof"
+    ],
+    "two-independent-reviews": [
+      "competence",
+      "conflict-screen",
+      "version-lock"
+    ],
+    "signed-decision": [
+      "identity-proof",
+      "version-lock"
+    ],
+    "trusted-audit": [
+      "signed-decision"
+    ],
+    "oem-effectivity": [
+      "equipment-configuration",
+      "evidence-legitimacy"
+    ],
+    "equipment-configuration": [],
+    "evidence-legitimacy": [
+      "privacy-retention"
+    ],
+    "version-lock": [
+      "identity-proof"
+    ],
+    "revocation-reopen": [
+      "identity-proof",
+      "version-lock"
+    ],
+    "privacy-retention": [],
+    "operational-firewall": [
+      "signed-decision",
+      "trusted-audit",
+      "oem-effectivity"
+    ]
+  },
+  "graphEdges": [
+    {
+      "source": "identity-proof",
+      "target": "competence"
+    },
+    {
+      "source": "identity-proof",
+      "target": "conflict-screen"
+    },
+    {
+      "source": "competence",
+      "target": "two-independent-reviews"
+    },
+    {
+      "source": "conflict-screen",
+      "target": "two-independent-reviews"
+    },
+    {
+      "source": "version-lock",
+      "target": "two-independent-reviews"
+    },
+    {
+      "source": "identity-proof",
+      "target": "signed-decision"
+    },
+    {
+      "source": "version-lock",
+      "target": "signed-decision"
+    },
+    {
+      "source": "signed-decision",
+      "target": "trusted-audit"
+    },
+    {
+      "source": "equipment-configuration",
+      "target": "oem-effectivity"
+    },
+    {
+      "source": "evidence-legitimacy",
+      "target": "oem-effectivity"
+    },
+    {
+      "source": "privacy-retention",
+      "target": "evidence-legitimacy"
+    },
+    {
+      "source": "identity-proof",
+      "target": "version-lock"
+    },
+    {
+      "source": "identity-proof",
+      "target": "revocation-reopen"
+    },
+    {
+      "source": "version-lock",
+      "target": "revocation-reopen"
+    },
+    {
+      "source": "signed-decision",
+      "target": "operational-firewall"
+    },
+    {
+      "source": "trusted-audit",
+      "target": "operational-firewall"
+    },
+    {
+      "source": "oem-effectivity",
+      "target": "operational-firewall"
+    }
+  ],
+  "cases": [
+    {
+      "caseId": "SIM-RPATH-001",
+      "kind": "single_root",
+      "rootControlIds": [
+        "identity-proof"
+      ],
+      "reason": "synthetic_single_control_reopen",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 2,
+          "possiblePathCount": 3
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        },
+        "version-lock": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 4
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-002",
+      "kind": "single_root",
+      "rootControlIds": [
+        "competence"
+      ],
+      "reason": "synthetic_single_control_reopen",
+      "expectedAffectedControlIds": [
+        "competence",
+        "two-independent-reviews"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedPathMetrics": {
+        "competence": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-003",
+      "kind": "single_root",
+      "rootControlIds": [
+        "conflict-screen"
+      ],
+      "reason": "synthetic_single_control_reopen",
+      "expectedAffectedControlIds": [
+        "conflict-screen",
+        "two-independent-reviews"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedPathMetrics": {
+        "conflict-screen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-004",
+      "kind": "single_root",
+      "rootControlIds": [
+        "two-independent-reviews"
+      ],
+      "reason": "synthetic_single_control_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-005",
+      "kind": "single_root",
+      "rootControlIds": [
+        "signed-decision"
+      ],
+      "reason": "synthetic_single_control_reopen",
+      "expectedAffectedControlIds": [
+        "signed-decision",
+        "trusted-audit",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "signed-decision": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-006",
+      "kind": "single_root",
+      "rootControlIds": [
+        "trusted-audit"
+      ],
+      "reason": "synthetic_single_control_reopen",
+      "expectedAffectedControlIds": [
+        "trusted-audit",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "trusted-audit": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-007",
+      "kind": "single_root",
+      "rootControlIds": [
+        "oem-effectivity"
+      ],
+      "reason": "synthetic_single_control_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-008",
+      "kind": "single_root",
+      "rootControlIds": [
+        "equipment-configuration"
+      ],
+      "reason": "synthetic_single_control_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-009",
+      "kind": "single_root",
+      "rootControlIds": [
+        "evidence-legitimacy"
+      ],
+      "reason": "synthetic_single_control_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-010",
+      "kind": "single_root",
+      "rootControlIds": [
+        "version-lock"
+      ],
+      "reason": "synthetic_single_control_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-011",
+      "kind": "single_root",
+      "rootControlIds": [
+        "revocation-reopen"
+      ],
+      "reason": "synthetic_single_control_reopen",
+      "expectedAffectedControlIds": [
+        "revocation-reopen"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedPathMetrics": {
+        "revocation-reopen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-012",
+      "kind": "single_root",
+      "rootControlIds": [
+        "privacy-retention"
+      ],
+      "reason": "synthetic_single_control_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "privacy-retention": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 3,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-013",
+      "kind": "single_root",
+      "rootControlIds": [
+        "operational-firewall"
+      ],
+      "reason": "synthetic_single_control_reopen",
+      "expectedAffectedControlIds": [
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "operational-firewall": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-014",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "identity-proof",
+        "competence"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        },
+        "conflict-screen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 4
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        },
+        "version-lock": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 4
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-015",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "identity-proof",
+        "conflict-screen"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 4
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        },
+        "version-lock": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 4
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-016",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "identity-proof",
+        "two-independent-reviews"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 4
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        },
+        "version-lock": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 4
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-017",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "identity-proof",
+        "signed-decision"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 2,
+          "possiblePathCount": 3
+        },
+        "signed-decision": {
+          "minimumSteps": 0,
+          "possiblePathCount": 3
+        },
+        "trusted-audit": {
+          "minimumSteps": 1,
+          "possiblePathCount": 3
+        },
+        "version-lock": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 6
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-018",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "identity-proof",
+        "trusted-audit"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 2,
+          "possiblePathCount": 3
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "trusted-audit": {
+          "minimumSteps": 0,
+          "possiblePathCount": 3
+        },
+        "version-lock": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 5
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-019",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "identity-proof",
+        "oem-effectivity"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 2,
+          "possiblePathCount": 3
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        },
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 5
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-020",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "identity-proof",
+        "equipment-configuration"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 2,
+          "possiblePathCount": 3
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        },
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 5
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-021",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "identity-proof",
+        "evidence-legitimacy"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "equipment-configuration",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 2,
+          "possiblePathCount": 3
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        },
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 5
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-022",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "identity-proof",
+        "version-lock"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 4
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 3
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 3
+        },
+        "version-lock": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 3
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 6
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-023",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "identity-proof",
+        "revocation-reopen"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 2,
+          "possiblePathCount": 3
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        },
+        "version-lock": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 3
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 4
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-024",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "identity-proof",
+        "privacy-retention"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "equipment-configuration"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 2,
+          "possiblePathCount": 3
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        },
+        "oem-effectivity": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "privacy-retention": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 5
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-025",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "identity-proof",
+        "operational-firewall"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 2,
+          "possiblePathCount": 3
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        },
+        "version-lock": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "operational-firewall": {
+          "minimumSteps": 0,
+          "possiblePathCount": 5
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-026",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "competence",
+        "conflict-screen"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedPathMetrics": {
+        "competence": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-027",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "competence",
+        "two-independent-reviews"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "competence",
+        "two-independent-reviews"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedPathMetrics": {
+        "competence": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-028",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "competence",
+        "signed-decision"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "competence",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "conflict-screen",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "competence": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "signed-decision": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-029",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "competence",
+        "trusted-audit"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "competence",
+        "two-independent-reviews",
+        "trusted-audit",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "conflict-screen",
+        "signed-decision",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "competence": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-030",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "competence",
+        "oem-effectivity"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "competence",
+        "two-independent-reviews",
+        "oem-effectivity",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "competence": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-031",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "competence",
+        "equipment-configuration"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "competence",
+        "two-independent-reviews",
+        "oem-effectivity",
+        "equipment-configuration",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "competence": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-032",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "competence",
+        "evidence-legitimacy"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "competence",
+        "two-independent-reviews",
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "competence": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-033",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "competence",
+        "version-lock"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "competence",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "conflict-screen",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "competence": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-034",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "competence",
+        "revocation-reopen"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "competence",
+        "two-independent-reviews",
+        "revocation-reopen"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedPathMetrics": {
+        "competence": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-035",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "competence",
+        "privacy-retention"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "competence",
+        "two-independent-reviews",
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen"
+      ],
+      "expectedPathMetrics": {
+        "competence": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "privacy-retention": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 3,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-036",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "competence",
+        "operational-firewall"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "competence",
+        "two-independent-reviews",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "competence": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-037",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "conflict-screen",
+        "two-independent-reviews"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "conflict-screen",
+        "two-independent-reviews"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedPathMetrics": {
+        "conflict-screen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-038",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "conflict-screen",
+        "signed-decision"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "conflict-screen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "signed-decision": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-039",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "conflict-screen",
+        "trusted-audit"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "conflict-screen",
+        "two-independent-reviews",
+        "trusted-audit",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "signed-decision",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "conflict-screen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-040",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "conflict-screen",
+        "oem-effectivity"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "conflict-screen",
+        "two-independent-reviews",
+        "oem-effectivity",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "conflict-screen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-041",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "conflict-screen",
+        "equipment-configuration"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "conflict-screen",
+        "two-independent-reviews",
+        "oem-effectivity",
+        "equipment-configuration",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "signed-decision",
+        "trusted-audit",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "conflict-screen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-042",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "conflict-screen",
+        "evidence-legitimacy"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "conflict-screen",
+        "two-independent-reviews",
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "conflict-screen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-043",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "conflict-screen",
+        "version-lock"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "conflict-screen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-044",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "conflict-screen",
+        "revocation-reopen"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "conflict-screen",
+        "two-independent-reviews",
+        "revocation-reopen"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedPathMetrics": {
+        "conflict-screen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-045",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "conflict-screen",
+        "privacy-retention"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "conflict-screen",
+        "two-independent-reviews",
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen"
+      ],
+      "expectedPathMetrics": {
+        "conflict-screen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "privacy-retention": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 3,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-046",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "conflict-screen",
+        "operational-firewall"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "conflict-screen",
+        "two-independent-reviews",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "conflict-screen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-047",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "two-independent-reviews",
+        "signed-decision"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "signed-decision": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-048",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "two-independent-reviews",
+        "trusted-audit"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "trusted-audit",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "signed-decision",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-049",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "two-independent-reviews",
+        "oem-effectivity"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "oem-effectivity",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-050",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "two-independent-reviews",
+        "equipment-configuration"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "oem-effectivity",
+        "equipment-configuration",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-051",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "two-independent-reviews",
+        "evidence-legitimacy"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-052",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "two-independent-reviews",
+        "version-lock"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-053",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "two-independent-reviews",
+        "revocation-reopen"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "revocation-reopen"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-054",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "two-independent-reviews",
+        "privacy-retention"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "privacy-retention": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 3,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-055",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "two-independent-reviews",
+        "operational-firewall"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-056",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "signed-decision",
+        "trusted-audit"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "signed-decision",
+        "trusted-audit",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "signed-decision": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 3
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-057",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "signed-decision",
+        "oem-effectivity"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "signed-decision": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 3
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-058",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "signed-decision",
+        "equipment-configuration"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "signed-decision": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 3
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-059",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "signed-decision",
+        "evidence-legitimacy"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "signed-decision": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 3
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-060",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "signed-decision",
+        "version-lock"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "signed-decision": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        },
+        "trusted-audit": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "version-lock": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 4
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-061",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "signed-decision",
+        "revocation-reopen"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "signed-decision",
+        "trusted-audit",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "signed-decision": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-062",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "signed-decision",
+        "privacy-retention"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen"
+      ],
+      "expectedPathMetrics": {
+        "signed-decision": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "privacy-retention": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 3
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-063",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "signed-decision",
+        "operational-firewall"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "signed-decision",
+        "trusted-audit",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "signed-decision": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 0,
+          "possiblePathCount": 3
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-064",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "trusted-audit",
+        "oem-effectivity"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "trusted-audit",
+        "oem-effectivity",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "trusted-audit": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-065",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "trusted-audit",
+        "equipment-configuration"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "trusted-audit": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-066",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "trusted-audit",
+        "evidence-legitimacy"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "trusted-audit",
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "trusted-audit": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-067",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "trusted-audit",
+        "version-lock"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        },
+        "version-lock": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 3
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-068",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "trusted-audit",
+        "revocation-reopen"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "trusted-audit",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "trusted-audit": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-069",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "trusted-audit",
+        "privacy-retention"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "trusted-audit",
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen"
+      ],
+      "expectedPathMetrics": {
+        "trusted-audit": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "privacy-retention": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-070",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "trusted-audit",
+        "operational-firewall"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "trusted-audit",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "trusted-audit": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-071",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "oem-effectivity",
+        "equipment-configuration"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-072",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "oem-effectivity",
+        "evidence-legitimacy"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-073",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "oem-effectivity",
+        "version-lock"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 3
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-074",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "oem-effectivity",
+        "revocation-reopen"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-075",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "oem-effectivity",
+        "privacy-retention"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "privacy-retention": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-076",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "oem-effectivity",
+        "operational-firewall"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-077",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "equipment-configuration",
+        "evidence-legitimacy"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-078",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "equipment-configuration",
+        "version-lock"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 3
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-079",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "equipment-configuration",
+        "revocation-reopen"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "evidence-legitimacy",
+        "version-lock",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-080",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "equipment-configuration",
+        "privacy-retention"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "privacy-retention": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-081",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "equipment-configuration",
+        "operational-firewall"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-082",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "evidence-legitimacy",
+        "version-lock"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "equipment-configuration",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 3
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-083",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "evidence-legitimacy",
+        "revocation-reopen"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-084",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        },
+        "privacy-retention": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-085",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "evidence-legitimacy",
+        "operational-firewall"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-086",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "version-lock",
+        "revocation-reopen"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-087",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "version-lock",
+        "privacy-retention"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "equipment-configuration"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "privacy-retention": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 3
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-088",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "version-lock",
+        "operational-firewall"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 0,
+          "possiblePathCount": 3
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-089",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "revocation-reopen",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "privacy-retention": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 3,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-090",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "revocation-reopen": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-091",
+      "kind": "root_pair",
+      "rootControlIds": [
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "reason": "synthetic_pair_reopen",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "privacy-retention": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-092",
+      "kind": "version_identity_trigger",
+      "rootControlIds": [
+        "identity-proof"
+      ],
+      "reason": "revoked_identity",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 2,
+          "possiblePathCount": 3
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        },
+        "version-lock": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 4
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-093",
+      "kind": "version_identity_trigger",
+      "rootControlIds": [
+        "oem-effectivity"
+      ],
+      "reason": "oem_revision_changed",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-094",
+      "kind": "version_identity_trigger",
+      "rootControlIds": [
+        "equipment-configuration"
+      ],
+      "reason": "machine_configuration_changed",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-095",
+      "kind": "conflict_pair",
+      "rootControlIds": [
+        "identity-proof",
+        "two-independent-reviews"
+      ],
+      "reason": "persona_alias_collision",
+      "expectedAffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "identity-proof": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "competence": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "conflict-screen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 4
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        },
+        "version-lock": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 4
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-096",
+      "kind": "conflict_pair",
+      "rootControlIds": [
+        "competence",
+        "two-independent-reviews"
+      ],
+      "reason": "qualification_expiry_disagreement",
+      "expectedAffectedControlIds": [
+        "competence",
+        "two-independent-reviews"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "conflict-screen",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedPathMetrics": {
+        "competence": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-097",
+      "kind": "conflict_pair",
+      "rootControlIds": [
+        "oem-effectivity",
+        "version-lock"
+      ],
+      "reason": "oem_revision_superseded",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity",
+        "version-lock",
+        "revocation-reopen",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "signed-decision": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 2,
+          "possiblePathCount": 1
+        },
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "version-lock": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "revocation-reopen": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 3
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-098",
+      "kind": "conflict_pair",
+      "rootControlIds": [
+        "equipment-configuration",
+        "oem-effectivity"
+      ],
+      "reason": "machine_configuration_changed",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "equipment-configuration",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        },
+        "equipment-configuration": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-099",
+      "kind": "conflict_pair",
+      "rootControlIds": [
+        "two-independent-reviews",
+        "signed-decision"
+      ],
+      "reason": "reviewer_disagreement",
+      "expectedAffectedControlIds": [
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "oem-effectivity",
+        "equipment-configuration",
+        "evidence-legitimacy",
+        "version-lock",
+        "revocation-reopen",
+        "privacy-retention"
+      ],
+      "expectedPathMetrics": {
+        "two-independent-reviews": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "signed-decision": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "trusted-audit": {
+          "minimumSteps": 1,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    },
+    {
+      "caseId": "SIM-RPATH-100",
+      "kind": "conflict_pair",
+      "rootControlIds": [
+        "privacy-retention",
+        "evidence-legitimacy"
+      ],
+      "reason": "legal_retention_conflict",
+      "expectedAffectedControlIds": [
+        "oem-effectivity",
+        "evidence-legitimacy",
+        "privacy-retention",
+        "operational-firewall"
+      ],
+      "expectedUnaffectedControlIds": [
+        "identity-proof",
+        "competence",
+        "conflict-screen",
+        "two-independent-reviews",
+        "signed-decision",
+        "trusted-audit",
+        "equipment-configuration",
+        "version-lock",
+        "revocation-reopen"
+      ],
+      "expectedPathMetrics": {
+        "oem-effectivity": {
+          "minimumSteps": 1,
+          "possiblePathCount": 2
+        },
+        "evidence-legitimacy": {
+          "minimumSteps": 0,
+          "possiblePathCount": 2
+        },
+        "privacy-retention": {
+          "minimumSteps": 0,
+          "possiblePathCount": 1
+        },
+        "operational-firewall": {
+          "minimumSteps": 2,
+          "possiblePathCount": 2
+        }
+      },
+      "fieldObserved": false,
+      "externalApproval": false
+    }
+  ],
+  "mutations": [
+    {
+      "mutationCaseId": "SIM-MUT-01",
+      "mutationId": "edge_removed",
+      "sourceId": "competence",
+      "targetId": "two-independent-reviews",
+      "expectedResult": "rejected_noncanonical",
+      "fieldObservation": false
+    },
+    {
+      "mutationCaseId": "SIM-MUT-02",
+      "mutationId": "edge_reversed",
+      "sourceId": "trusted-audit",
+      "targetId": "operational-firewall",
+      "expectedResult": "rejected_noncanonical",
+      "fieldObservation": false
+    },
+    {
+      "mutationCaseId": "SIM-MUT-03",
+      "mutationId": "edge_added",
+      "sourceId": "oem-effectivity",
+      "targetId": "identity-proof",
+      "expectedResult": "rejected_noncanonical",
+      "fieldObservation": false
+    },
+    {
+      "mutationCaseId": "SIM-MUT-04",
+      "mutationId": "threat_removed",
+      "sourceId": "duplicate-principal",
+      "targetId": null,
+      "expectedResult": "rejected_noncanonical",
+      "fieldObservation": false
+    },
+    {
+      "mutationCaseId": "SIM-MUT-05",
+      "mutationId": "closure_forged",
+      "sourceId": "identity-proof",
+      "targetId": "operational-firewall",
+      "expectedResult": "rejected_noncanonical",
+      "fieldObservation": false
+    }
+  ],
+  "crossReview": [
+    {
+      "owner": "IT",
+      "controlIds": [
+        "identity-proof",
+        "version-lock",
+        "revocation-reopen"
+      ],
+      "authenticHumanReview": false,
+      "engineeringAcceptance": false
+    },
+    {
+      "owner": "InformationSecurity",
+      "controlIds": [
+        "signed-decision",
+        "trusted-audit"
+      ],
+      "authenticHumanReview": false,
+      "engineeringAcceptance": false
+    },
+    {
+      "owner": "Engineering",
+      "controlIds": [
+        "competence",
+        "two-independent-reviews",
+        "oem-effectivity"
+      ],
+      "authenticHumanReview": false,
+      "engineeringAcceptance": false
+    },
+    {
+      "owner": "Legal",
+      "controlIds": [
+        "conflict-screen",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "authenticHumanReview": false,
+      "engineeringAcceptance": false
+    },
+    {
+      "owner": "MaintenanceManagement",
+      "controlIds": [
+        "equipment-configuration",
+        "operational-firewall"
+      ],
+      "authenticHumanReview": false,
+      "engineeringAcceptance": false
+    }
+  ],
+  "policy": {
+    "allClaimsSynthetic": true,
+    "realEvidenceAvailable": false,
+    "fieldFaultConfirmed": false,
+    "expertApprovalVerified": false,
+    "mayWriteSap": false,
+    "mayAlterEcm": false,
+    "mayCreateWorkOrder": false,
+    "mayReleaseEquipment": false,
+    "mayAuthorizePrivatePilot": false,
+    "decision": "no_go"
+  }
+}

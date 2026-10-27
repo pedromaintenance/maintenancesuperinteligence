@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/alternative-path-witness.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "targetControlId",
+    "sourceRootControlId",
+    "selectedPath",
+    "alternatePath",
+    "distinctDocumentaryEdgesVerified",
+    "authoritativeOperationalInstruction"
+  ],
+  "properties": {
+    "targetControlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceRootControlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selectedPath": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "alternatePath": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "distinctDocumentaryEdgesVerified": {
+      "const": true
+    },
+    "authoritativeOperationalInstruction": {
+      "const": false
+    }
+  }
+}
