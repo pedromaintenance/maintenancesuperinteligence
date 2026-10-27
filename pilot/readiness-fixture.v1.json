@@ -28,6 +28,12 @@
       "uri": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
       "scope": "data_minimization_security_governance",
       "evidenceOfCompliance": false
+    },
+    {
+      "sourceId": "OEM-APPLICABILITY-PENDING",
+      "uri": null,
+      "scope": "engineering_effectivity_requires_authorized_oem_documentation",
+      "evidenceOfCompliance": false
     }
   ],
   "stakeholders": [
@@ -138,7 +144,7 @@
       "controlId": "oem-effectivity",
       "owner": "Engineering",
       "proofKind": "oem-applicability-proof",
-      "sourceId": "LGPD-13709",
+      "sourceId": "OEM-APPLICABILITY-PENDING",
       "acceptanceCondition": "Comprovar publicação autorizada, revisão, série e efetividade",
       "proofStatus": "not_provided",
       "authorityVerified": false,
@@ -149,7 +155,7 @@
       "controlId": "equipment-configuration",
       "owner": "MaintenanceManagement",
       "proofKind": "configuration-attestation",
-      "sourceId": "LGPD-13709",
+      "sourceId": "OEM-APPLICABILITY-PENDING",
       "acceptanceCondition": "Verificar arranjo/equipamento vigente e alterações",
       "proofStatus": "not_provided",
       "authorityVerified": false,
