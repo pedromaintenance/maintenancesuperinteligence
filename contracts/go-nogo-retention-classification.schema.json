@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/go-nogo-retention-classification.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "dataClass",
+    "allowedRepository",
+    "retentionDays",
+    "retentionApproved",
+    "realDataIncluded"
+  ],
+  "properties": {
+    "dataClass": {
+      "enum": [
+        "public-synthetic",
+        "corporate-private",
+        "oem-licensed"
+      ]
+    },
+    "allowedRepository": {
+      "enum": [
+        "public",
+        "private_approved_only",
+        "licensed_restricted_only"
+      ]
+    },
+    "retentionDays": {
+      "type": "null"
+    },
+    "retentionApproved": {
+      "const": false
+    },
+    "realDataIncluded": {
+      "const": false
+    }
+  }
+}

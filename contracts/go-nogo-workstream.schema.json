@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/go-nogo-workstream.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "owner",
+    "goNoGoState",
+    "signoffVerified",
+    "signoffEvidence",
+    "blockers",
+    "mayAuthorizePilot"
+  ],
+  "properties": {
+    "owner": {
+      "enum": [
+        "IT",
+        "InformationSecurity",
+        "Engineering",
+        "Legal",
+        "MaintenanceManagement"
+      ]
+    },
+    "goNoGoState": {
+      "const": "externally_review_pending"
+    },
+    "signoffVerified": {
+      "const": false
+    },
+    "signoffEvidence": {
+      "type": "null"
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "mayAuthorizePilot": {
+      "const": false
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/go-nogo-acceptance-gates.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "identityAuthenticated",
+    "reviewerCompetenceVerified",
+    "independentRealReviewComplete",
+    "realSignatureVerified",
+    "oemEffectivityVerified",
+    "corporateSecurityApproved",
+    "legalBasisApproved",
+    "actualPilotSafetyApproved"
+  ],
+  "properties": {
+    "identityAuthenticated": {
+      "const": false
+    },
+    "reviewerCompetenceVerified": {
+      "const": false
+    },
+    "independentRealReviewComplete": {
+      "const": false
+    },
+    "realSignatureVerified": {
+      "const": false
+    },
+    "oemEffectivityVerified": {
+      "const": false
+    },
+    "corporateSecurityApproved": {
+      "const": false
+    },
+    "legalBasisApproved": {
+      "const": false
+    },
+    "actualPilotSafetyApproved": {
+      "const": false
+    }
+  }
+}

@@ -1,4 +1,4 @@
-name: Validate denied private-pilot readiness, OEM and security evidence
+name: Validate private-pilot NO GO contracts and external evidence boundaries
 
 on:
   push:
@@ -1291,6 +1291,91 @@ jobs:
           path: |
             build/pilot/readiness-report.v1.json
             build/pilot/readiness-report.v1.html
+          retention-days: 14
+      - name: Generate external evidence Go/No-Go contract pack
+        run: |
+          mkdir -p build/go-nogo
+          python -m pilot.go_nogo \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --readiness build/pilot/readiness-report.v1.json \
+            --output build/go-nogo/no-go-report.v1.json \
+            --html build/go-nogo/no-go-report.v1.html > /dev/null
+      - name: Verify thirteen dependencies, five approvals and all denial boundaries
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pilot.go_nogo import verify_report
+          package=json.loads(Path("pilot/go-nogo-package.v1.json").read_text())
+          readiness=json.loads(Path("build/pilot/readiness-report.v1.json").read_text())
+          result=json.loads(Path("build/go-nogo/no-go-report.v1.json").read_text())
+          verify_report(result,package,readiness)
+          assert result["decision"]=="no_go"
+          assert result["requirementsPhase"]=="requirements_defined"
+          assert result["evidenceState"]=="evidence_not_submitted"
+          assert result["externalReviewState"]=="externally_review_pending"
+          assert result["evidencePackageCount"]==13
+          assert result["verifiedEvidenceCount"]==0
+          assert result["dependencyCount"]==13
+          assert result["stakeholderCount"]==5
+          assert result["verifiedSignoffs"]==0
+          assert result["findingCount"]==10
+          assert result["verifiedRemediations"]==0
+          assert result["realPilotExecuted"] is False
+          assert result["realGoDecisionSigned"] is False
+          assert result["expertAgreementMeasured"] is False
+          assert result["externalImmutableAuditVerified"] is False
+          assert all(c["status"]=="evidence_not_submitted"
+                     and c["evidenceReference"] is None
+                     and c["evidenceBytes"] is None
+                     for c in result["evidenceManifest"])
+          assert all(c["permissionToProceed"] is False
+                     and c["allPrerequisitesVerified"] is False
+                     for c in result["approvalDependencies"])
+          assert all(s["outcome"]=="no_go"
+                     and s["signedAcceptance"] is False
+                     for s in result["stakeholderReviews"])
+          assert all(v is False for v in result["noOperationalAuthority"].values())
+          assert all(v is False for v in result["acceptanceGates"].values())
+          assert all(f["verifiedClosure"] is False and f["mayLiftBlock"] is False
+                     for f in result["findingRemediations"])
+          html=Path("build/go-nogo/no-go-report.v1.html").read_text()
+          assert "NO GO" in html and "<script" not in html and "<form" not in html
+          print("PASS: no-go, 13 missing proof packages, five reviews pending, ten unresolved threats")
+          PY
+      - name: Block forged external approvals and SAP privileges
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          source=json.loads(Path("pilot/go-nogo-package.v1.json").read_text())
+          for kind in ("signoff","go","sap","oem","retention","agreement"):
+              d=json.loads(json.dumps(source))
+              if kind=="signoff": d["workstreams"][0]["signoffVerified"]=True
+              elif kind=="go": d["transitionPolicy"]["current"]="go"
+              elif kind=="sap": d["operationalAuthority"]["mayWriteSap"]=True
+              elif kind=="oem": d["controlPlan"][6]["evidenceUri"]="fake-OEM-proof"
+              elif kind=="retention": d["retentionClassification"][1]["retentionDays"]=365
+              elif kind=="agreement": d["studyDesign"]["nominalKappaMeasured"]=True
+              Path("build/go-nogo/forged-"+kind+".json").write_text(json.dumps(d))
+          PY
+          for kind in signoff go sap oem retention agreement; do
+            if python -m pilot.go_nogo \
+                 --snapshot build/fmea-public/fmea-public.snapshot.json \
+                 --readiness build/pilot/readiness-report.v1.json \
+                 --package "build/go-nogo/forged-$kind.json" > /dev/null 2>&1; then
+              echo "SECURITY FAIL: unverified pilot Go/No-Go claim accepted"
+              exit 1
+            fi
+          done
+          rm build/go-nogo/forged-*.json
+      - name: Publish public NO GO acceptance evidence package
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle20-private-pilot-no-go
+          path: |
+            build/go-nogo/no-go-report.v1.json
+            build/go-nogo/no-go-report.v1.html
           retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4

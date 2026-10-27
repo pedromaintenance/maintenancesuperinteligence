@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/no-operational-authority.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mayWriteSap",
+    "mayChangeEcm",
+    "mayRequestParts",
+    "mayApproveMaintenance",
+    "mayReleaseEquipment",
+    "mayCollectPrivateData"
+  ],
+  "properties": {
+    "mayWriteSap": {
+      "const": false
+    },
+    "mayChangeEcm": {
+      "const": false
+    },
+    "mayRequestParts": {
+      "const": false
+    },
+    "mayApproveMaintenance": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "mayCollectPrivateData": {
+      "const": false
+    }
+  }
+}

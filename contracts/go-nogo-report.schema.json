@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/go-nogo-report.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "packageSha256",
+    "sourceReadinessSha256",
+    "sourcePublicFmeaSha256",
+    "requirementsPhase",
+    "evidenceState",
+    "externalReviewState",
+    "decision",
+    "decisionReasons",
+    "evidenceManifest",
+    "evidencePackageCount",
+    "verifiedEvidenceCount",
+    "approvalDependencies",
+    "dependencyCount",
+    "stakeholderReviews",
+    "stakeholderCount",
+    "verifiedSignoffs",
+    "findingRemediations",
+    "findingCount",
+    "verifiedRemediations",
+    "classification",
+    "studyProtocol",
+    "acceptanceGates",
+    "noOperationalAuthority",
+    "realPilotExecuted",
+    "realGoDecisionSigned",
+    "expertAgreementMeasured",
+    "externalImmutableAuditVerified"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.go-nogo-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "public_synthetic_contract_verification_only"
+    },
+    "packageSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sourceReadinessSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sourcePublicFmeaSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "requirementsPhase": {
+      "const": "requirements_defined"
+    },
+    "evidenceState": {
+      "const": "evidence_not_submitted"
+    },
+    "externalReviewState": {
+      "const": "externally_review_pending"
+    },
+    "decision": {
+      "const": "no_go"
+    },
+    "decisionReasons": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "evidenceManifest": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {
+        "$ref": "evidence-submission-manifest.schema.json"
+      }
+    },
+    "evidencePackageCount": {
+      "const": 13
+    },
+    "verifiedEvidenceCount": {
+      "const": 0
+    },
+    "approvalDependencies": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {
+        "$ref": "approval-dependency.schema.json"
+      }
+    },
+    "dependencyCount": {
+      "const": 13
+    },
+    "stakeholderReviews": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "$ref": "acceptance-review.schema.json"
+      }
+    },
+    "stakeholderCount": {
+      "const": 5
+    },
+    "verifiedSignoffs": {
+      "const": 0
+    },
+    "findingRemediations": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "finding-remediation.schema.json"
+      }
+    },
+    "findingCount": {
+      "const": 10
+    },
+    "verifiedRemediations": {
+      "const": 0
+    },
+    "classification": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "$ref": "go-nogo-retention-classification.schema.json"
+      }
+    },
+    "studyProtocol": {
+      "$ref": "future-private-study-protocol.schema.json"
+    },
+    "acceptanceGates": {
+      "$ref": "go-nogo-acceptance-gates.schema.json"
+    },
+    "noOperationalAuthority": {
+      "$ref": "no-operational-authority.schema.json"
+    },
+    "realPilotExecuted": {
+      "const": false
+    },
+    "realGoDecisionSigned": {
+      "const": false
+    },
+    "expertAgreementMeasured": {
+      "const": false
+    },
+    "externalImmutableAuditVerified": {
+      "const": false
+    }
+  }
+}

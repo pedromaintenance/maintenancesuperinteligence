@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.0.0 — 2026-10-27 — Ciclo 20
+
+- Convertidos os requisitos do Ciclo 19 em pacote Go/No-Go com 13 controles dependentes, cinco áreas externas, dez achados sintéticos e zero evidência/assinatura verificada.
+- Adicionados `pilot/go-nogo-package.v1.json`, `pilot/go_nogo.py` e **15 novos contratos JSON Schema**, contemplando `EvidenceSubmissionManifest`, `AcceptanceReview`, `GoNoGoDecision`, `ApprovalDependency`, `FindingRemediation` e `NoOperationalAuthority`.
+- Avaliação estática de pré-requisitos, metodologia futura de revisores independentes, retenção sem política aprovada e bloqueios completos de SAP/ECM, materiais, execução e liberação.
+- Relatório HTML/JSON offline e testes adversariais de proveniência, falso aceite, numeração SAP, efetividade OEM, retenção, política de revisão e estatísticas de concordância inexistentes.
+- CI recompõe integralmente o corpus público FMEA e os artefatos dos ciclos anteriores antes da avaliação Go/No-Go.
+
+**Limite:** decisão necessariamente `no_go` neste repositório. Nenhum piloto privado ou operação industrial foi aprovado.
+
+
 ## 1.9.0 — 2026-10-27 — Ciclo 19
 
 - Formalizados 13 requisitos de prova externa e cinco áreas proponentes de aceite antes de qualquer piloto privado, todos sem comprovação ou assinatura real.

@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/go-nogo-package.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "sourceReadiness",
+    "allApprovalsAbsent",
+    "realEvidenceImported",
+    "requirementPhase",
+    "controlPlan",
+    "workstreams",
+    "scenarios",
+    "retentionClassification",
+    "studyDesign",
+    "transitionPolicy",
+    "operationalAuthority"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.go-nogo-package.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "offline_public_synthetic_requirements"
+    },
+    "sourceReadiness": {
+      "const": "pilot/readiness-fixture.v1.json"
+    },
+    "allApprovalsAbsent": {
+      "const": true
+    },
+    "realEvidenceImported": {
+      "const": false
+    },
+    "requirementPhase": {
+      "const": "requirements_defined"
+    },
+    "controlPlan": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {
+        "$ref": "go-nogo-control-plan.schema.json"
+      }
+    },
+    "workstreams": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "$ref": "go-nogo-workstream.schema.json"
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "go-nogo-synthetic-scenario.schema.json"
+      }
+    },
+    "retentionClassification": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "$ref": "go-nogo-retention-classification.schema.json"
+      }
+    },
+    "studyDesign": {
+      "$ref": "future-private-study-protocol.schema.json"
+    },
+    "transitionPolicy": {
+      "$ref": "go-nogo-transition-policy.schema.json"
+    },
+    "operationalAuthority": {
+      "$ref": "no-operational-authority.schema.json"
+    }
+  }
+}

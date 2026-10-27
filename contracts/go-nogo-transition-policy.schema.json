@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/go-nogo-transition-policy.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "allowed",
+    "forbidden",
+    "default",
+    "current",
+    "realGoLivePermitted"
+  ],
+  "properties": {
+    "allowed": {
+      "const": [
+        "requirements_defined",
+        "evidence_not_submitted",
+        "externally_review_pending",
+        "no_go"
+      ]
+    },
+    "forbidden": {
+      "const": [
+        "go",
+        "operationally_ready",
+        "approved"
+      ]
+    },
+    "default": {
+      "const": "no_go"
+    },
+    "current": {
+      "const": "no_go"
+    },
+    "realGoLivePermitted": {
+      "const": false
+    }
+  }
+}

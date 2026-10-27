@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/go-nogo-synthetic-scenario.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scenarioId",
+    "threatId",
+    "failedControls",
+    "expectedOutcome",
+    "findingId",
+    "remediationState",
+    "realIncidentObserved"
+  ],
+  "properties": {
+    "scenarioId": {
+      "type": "string",
+      "pattern": "^SIM-GNG-THREAT-[0-9]{2}$"
+    },
+    "threatId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "failedControls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "expectedOutcome": {
+      "const": "no_go"
+    },
+    "findingId": {
+      "type": "string",
+      "pattern": "^SIM-FIND-[0-9]{2}$"
+    },
+    "remediationState": {
+      "const": "not_started"
+    },
+    "realIncidentObserved": {
+      "const": false
+    }
+  }
+}

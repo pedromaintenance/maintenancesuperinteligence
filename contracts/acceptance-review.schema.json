@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/acceptance-review.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "owner",
+    "reviewedControlIds",
+    "reviewState",
+    "verifiedReviewer",
+    "signedAcceptance",
+    "reviewProof",
+    "outcome"
+  ],
+  "properties": {
+    "owner": {
+      "enum": [
+        "IT",
+        "InformationSecurity",
+        "Engineering",
+        "Legal",
+        "MaintenanceManagement"
+      ]
+    },
+    "reviewedControlIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "reviewState": {
+      "const": "externally_review_pending"
+    },
+    "verifiedReviewer": {
+      "const": false
+    },
+    "signedAcceptance": {
+      "const": false
+    },
+    "reviewProof": {
+      "type": "null"
+    },
+    "outcome": {
+      "const": "no_go"
+    }
+  }
+}

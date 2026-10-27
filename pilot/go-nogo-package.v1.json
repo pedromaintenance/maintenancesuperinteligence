@@ -1,0 +1,464 @@
+{
+  "schema": "maintenance-superinteligence.go-nogo-package.v1",
+  "version": "1.0.0",
+  "mode": "offline_public_synthetic_requirements",
+  "sourceReadiness": "pilot/readiness-fixture.v1.json",
+  "allApprovalsAbsent": true,
+  "realEvidenceImported": false,
+  "requirementPhase": "requirements_defined",
+  "controlPlan": [
+    {
+      "controlId": "identity-proof",
+      "owner": "IT",
+      "requiredEvidenceKind": "authenticated-principal",
+      "acceptanceTest": "Revisão externa autenticada para: Vincular identidade corporativa verificada a um único sujeito",
+      "dependsOn": [],
+      "status": "evidence_not_submitted",
+      "evidenceManifestId": "SIM-PROOF-01",
+      "evidenceUri": null,
+      "evidenceSha256": null,
+      "externalReviewerIdentityVerified": false,
+      "independentAcceptanceRecorded": false,
+      "canAdvance": false
+    },
+    {
+      "controlId": "competence",
+      "owner": "Engineering",
+      "requiredEvidenceKind": "reviewer-competence-evidence",
+      "acceptanceTest": "Revisão externa autenticada para: Demonstrar competência específica por disciplina e validade",
+      "dependsOn": [
+        "identity-proof"
+      ],
+      "status": "evidence_not_submitted",
+      "evidenceManifestId": "SIM-PROOF-02",
+      "evidenceUri": null,
+      "evidenceSha256": null,
+      "externalReviewerIdentityVerified": false,
+      "independentAcceptanceRecorded": false,
+      "canAdvance": false
+    },
+    {
+      "controlId": "conflict-screen",
+      "owner": "Legal",
+      "requiredEvidenceKind": "conflict-of-interest-screening",
+      "acceptanceTest": "Revisão externa autenticada para: Registrar impedimentos, vínculos e independência",
+      "dependsOn": [
+        "identity-proof"
+      ],
+      "status": "evidence_not_submitted",
+      "evidenceManifestId": "SIM-PROOF-03",
+      "evidenceUri": null,
+      "evidenceSha256": null,
+      "externalReviewerIdentityVerified": false,
+      "independentAcceptanceRecorded": false,
+      "canAdvance": false
+    },
+    {
+      "controlId": "two-independent-reviews",
+      "owner": "Engineering",
+      "requiredEvidenceKind": "independent-review-decisions",
+      "acceptanceTest": "Revisão externa autenticada para: Impedir autorrevisão e exigir duas pessoas distintas",
+      "dependsOn": [
+        "competence",
+        "conflict-screen",
+        "version-lock"
+      ],
+      "status": "evidence_not_submitted",
+      "evidenceManifestId": "SIM-PROOF-04",
+      "evidenceUri": null,
+      "evidenceSha256": null,
+      "externalReviewerIdentityVerified": false,
+      "independentAcceptanceRecorded": false,
+      "canAdvance": false
+    },
+    {
+      "controlId": "signed-decision",
+      "owner": "InformationSecurity",
+      "requiredEvidenceKind": "signature-verification",
+      "acceptanceTest": "Revisão externa autenticada para: Comprovar integridade/autoria sem confiar em flag do cliente",
+      "dependsOn": [
+        "identity-proof",
+        "version-lock"
+      ],
+      "status": "evidence_not_submitted",
+      "evidenceManifestId": "SIM-PROOF-05",
+      "evidenceUri": null,
+      "evidenceSha256": null,
+      "externalReviewerIdentityVerified": false,
+      "independentAcceptanceRecorded": false,
+      "canAdvance": false
+    },
+    {
+      "controlId": "trusted-audit",
+      "owner": "InformationSecurity",
+      "requiredEvidenceKind": "audit-anchor",
+      "acceptanceTest": "Revisão externa autenticada para: Armazenar logs imutáveis externamente com tempo verificável",
+      "dependsOn": [
+        "signed-decision"
+      ],
+      "status": "evidence_not_submitted",
+      "evidenceManifestId": "SIM-PROOF-06",
+      "evidenceUri": null,
+      "evidenceSha256": null,
+      "externalReviewerIdentityVerified": false,
+      "independentAcceptanceRecorded": false,
+      "canAdvance": false
+    },
+    {
+      "controlId": "oem-effectivity",
+      "owner": "Engineering",
+      "requiredEvidenceKind": "oem-applicability-proof",
+      "acceptanceTest": "Revisão externa autenticada para: Comprovar publicação autorizada, revisão, série e efetividade",
+      "dependsOn": [
+        "equipment-configuration",
+        "evidence-legitimacy"
+      ],
+      "status": "evidence_not_submitted",
+      "evidenceManifestId": "SIM-PROOF-07",
+      "evidenceUri": null,
+      "evidenceSha256": null,
+      "externalReviewerIdentityVerified": false,
+      "independentAcceptanceRecorded": false,
+      "canAdvance": false
+    },
+    {
+      "controlId": "equipment-configuration",
+      "owner": "MaintenanceManagement",
+      "requiredEvidenceKind": "configuration-attestation",
+      "acceptanceTest": "Revisão externa autenticada para: Verificar arranjo/equipamento vigente e alterações",
+      "dependsOn": [],
+      "status": "evidence_not_submitted",
+      "evidenceManifestId": "SIM-PROOF-08",
+      "evidenceUri": null,
+      "evidenceSha256": null,
+      "externalReviewerIdentityVerified": false,
+      "independentAcceptanceRecorded": false,
+      "canAdvance": false
+    },
+    {
+      "controlId": "evidence-legitimacy",
+      "owner": "Legal",
+      "requiredEvidenceKind": "authorized-evidence-package",
+      "acceptanceTest": "Revisão externa autenticada para: Garantir base legal, licença e rastreabilidade de evidências",
+      "dependsOn": [
+        "privacy-retention"
+      ],
+      "status": "evidence_not_submitted",
+      "evidenceManifestId": "SIM-PROOF-09",
+      "evidenceUri": null,
+      "evidenceSha256": null,
+      "externalReviewerIdentityVerified": false,
+      "independentAcceptanceRecorded": false,
+      "canAdvance": false
+    },
+    {
+      "controlId": "version-lock",
+      "owner": "IT",
+      "requiredEvidenceKind": "version-lock",
+      "acceptanceTest": "Revisão externa autenticada para: Fixar hash de cada revisão e invalidar parecer obsoleto",
+      "dependsOn": [
+        "identity-proof"
+      ],
+      "status": "evidence_not_submitted",
+      "evidenceManifestId": "SIM-PROOF-10",
+      "evidenceUri": null,
+      "evidenceSha256": null,
+      "externalReviewerIdentityVerified": false,
+      "independentAcceptanceRecorded": false,
+      "canAdvance": false
+    },
+    {
+      "controlId": "revocation-reopen",
+      "owner": "IT",
+      "requiredEvidenceKind": "revocation-and-reopen-policy",
+      "acceptanceTest": "Revisão externa autenticada para: Invalidar parecer após revogação ou mudança de configuração",
+      "dependsOn": [
+        "identity-proof",
+        "version-lock"
+      ],
+      "status": "evidence_not_submitted",
+      "evidenceManifestId": "SIM-PROOF-11",
+      "evidenceUri": null,
+      "evidenceSha256": null,
+      "externalReviewerIdentityVerified": false,
+      "independentAcceptanceRecorded": false,
+      "canAdvance": false
+    },
+    {
+      "controlId": "privacy-retention",
+      "owner": "Legal",
+      "requiredEvidenceKind": "privacy-retention-policy",
+      "acceptanceTest": "Revisão externa autenticada para: Minimizar logs, classificar fontes e registrar retenção autorizada",
+      "dependsOn": [],
+      "status": "evidence_not_submitted",
+      "evidenceManifestId": "SIM-PROOF-12",
+      "evidenceUri": null,
+      "evidenceSha256": null,
+      "externalReviewerIdentityVerified": false,
+      "independentAcceptanceRecorded": false,
+      "canAdvance": false
+    },
+    {
+      "controlId": "operational-firewall",
+      "owner": "MaintenanceManagement",
+      "requiredEvidenceKind": "operational-boundary",
+      "acceptanceTest": "Revisão externa autenticada para: Separar revisão documental de SAP, ECM, OS e liberação",
+      "dependsOn": [
+        "signed-decision",
+        "trusted-audit",
+        "oem-effectivity"
+      ],
+      "status": "evidence_not_submitted",
+      "evidenceManifestId": "SIM-PROOF-13",
+      "evidenceUri": null,
+      "evidenceSha256": null,
+      "externalReviewerIdentityVerified": false,
+      "independentAcceptanceRecorded": false,
+      "canAdvance": false
+    }
+  ],
+  "workstreams": [
+    {
+      "owner": "IT",
+      "goNoGoState": "externally_review_pending",
+      "signoffVerified": false,
+      "signoffEvidence": null,
+      "blockers": [
+        "identity-proof",
+        "version-lock",
+        "revocation-reopen"
+      ],
+      "mayAuthorizePilot": false
+    },
+    {
+      "owner": "InformationSecurity",
+      "goNoGoState": "externally_review_pending",
+      "signoffVerified": false,
+      "signoffEvidence": null,
+      "blockers": [
+        "signed-decision",
+        "trusted-audit"
+      ],
+      "mayAuthorizePilot": false
+    },
+    {
+      "owner": "Engineering",
+      "goNoGoState": "externally_review_pending",
+      "signoffVerified": false,
+      "signoffEvidence": null,
+      "blockers": [
+        "competence",
+        "two-independent-reviews",
+        "oem-effectivity"
+      ],
+      "mayAuthorizePilot": false
+    },
+    {
+      "owner": "Legal",
+      "goNoGoState": "externally_review_pending",
+      "signoffVerified": false,
+      "signoffEvidence": null,
+      "blockers": [
+        "conflict-screen",
+        "evidence-legitimacy",
+        "privacy-retention"
+      ],
+      "mayAuthorizePilot": false
+    },
+    {
+      "owner": "MaintenanceManagement",
+      "goNoGoState": "externally_review_pending",
+      "signoffVerified": false,
+      "signoffEvidence": null,
+      "blockers": [
+        "equipment-configuration",
+        "operational-firewall"
+      ],
+      "mayAuthorizePilot": false
+    }
+  ],
+  "scenarios": [
+    {
+      "scenarioId": "SIM-GNG-THREAT-01",
+      "threatId": "duplicate-principal",
+      "failedControls": [
+        "identity-proof",
+        "two-independent-reviews"
+      ],
+      "expectedOutcome": "no_go",
+      "findingId": "SIM-FIND-01",
+      "remediationState": "not_started",
+      "realIncidentObserved": false
+    },
+    {
+      "scenarioId": "SIM-GNG-THREAT-02",
+      "threatId": "expired-credential",
+      "failedControls": [
+        "identity-proof",
+        "revocation-reopen"
+      ],
+      "expectedOutcome": "no_go",
+      "findingId": "SIM-FIND-02",
+      "remediationState": "not_started",
+      "realIncidentObserved": false
+    },
+    {
+      "scenarioId": "SIM-GNG-THREAT-03",
+      "threatId": "forged-signature",
+      "failedControls": [
+        "signed-decision",
+        "trusted-audit"
+      ],
+      "expectedOutcome": "no_go",
+      "findingId": "SIM-FIND-03",
+      "remediationState": "not_started",
+      "realIncidentObserved": false
+    },
+    {
+      "scenarioId": "SIM-GNG-THREAT-04",
+      "threatId": "oem-revision-change",
+      "failedControls": [
+        "oem-effectivity",
+        "revocation-reopen"
+      ],
+      "expectedOutcome": "no_go",
+      "findingId": "SIM-FIND-04",
+      "remediationState": "not_started",
+      "realIncidentObserved": false
+    },
+    {
+      "scenarioId": "SIM-GNG-THREAT-05",
+      "threatId": "equipment-configuration-change",
+      "failedControls": [
+        "equipment-configuration",
+        "version-lock"
+      ],
+      "expectedOutcome": "no_go",
+      "findingId": "SIM-FIND-05",
+      "remediationState": "not_started",
+      "realIncidentObserved": false
+    },
+    {
+      "scenarioId": "SIM-GNG-THREAT-06",
+      "threatId": "unreported-conflict",
+      "failedControls": [
+        "conflict-screen",
+        "two-independent-reviews"
+      ],
+      "expectedOutcome": "no_go",
+      "findingId": "SIM-FIND-06",
+      "remediationState": "not_started",
+      "realIncidentObserved": false
+    },
+    {
+      "scenarioId": "SIM-GNG-THREAT-07",
+      "threatId": "unauthorized-sap-note",
+      "failedControls": [
+        "operational-firewall",
+        "version-lock"
+      ],
+      "expectedOutcome": "no_go",
+      "findingId": "SIM-FIND-07",
+      "remediationState": "not_started",
+      "realIncidentObserved": false
+    },
+    {
+      "scenarioId": "SIM-GNG-THREAT-08",
+      "threatId": "pii-telemetry-leak",
+      "failedControls": [
+        "privacy-retention",
+        "evidence-legitimacy"
+      ],
+      "expectedOutcome": "no_go",
+      "findingId": "SIM-FIND-08",
+      "remediationState": "not_started",
+      "realIncidentObserved": false
+    },
+    {
+      "scenarioId": "SIM-GNG-THREAT-09",
+      "threatId": "audit-log-tampering",
+      "failedControls": [
+        "trusted-audit",
+        "signed-decision"
+      ],
+      "expectedOutcome": "no_go",
+      "findingId": "SIM-FIND-09",
+      "remediationState": "not_started",
+      "realIncidentObserved": false
+    },
+    {
+      "scenarioId": "SIM-GNG-THREAT-10",
+      "threatId": "unlicensed-oem-copy",
+      "failedControls": [
+        "evidence-legitimacy",
+        "oem-effectivity"
+      ],
+      "expectedOutcome": "no_go",
+      "findingId": "SIM-FIND-10",
+      "remediationState": "not_started",
+      "realIncidentObserved": false
+    }
+  ],
+  "retentionClassification": [
+    {
+      "dataClass": "public-synthetic",
+      "allowedRepository": "public",
+      "retentionDays": null,
+      "retentionApproved": false,
+      "realDataIncluded": false
+    },
+    {
+      "dataClass": "corporate-private",
+      "allowedRepository": "private_approved_only",
+      "retentionDays": null,
+      "retentionApproved": false,
+      "realDataIncluded": false
+    },
+    {
+      "dataClass": "oem-licensed",
+      "allowedRepository": "licensed_restricted_only",
+      "retentionDays": null,
+      "retentionApproved": false,
+      "realDataIncluded": false
+    }
+  ],
+  "studyDesign": {
+    "scope": "future_private_authorized_study_only",
+    "rubricLockedExternally": false,
+    "legalBasisAndParticipantInformationApproved": false,
+    "samplingMethodPreRegistered": false,
+    "reviewerQualificationVerified": false,
+    "independentAssignmentVerified": false,
+    "blindingPlanApproved": false,
+    "nominalKappaMeasured": false,
+    "ordinalWeightedKappaMeasured": false,
+    "multiraterMethodSelected": false,
+    "adjudicationMethodApproved": false,
+    "privacyApprovalVerified": false,
+    "fieldDiagnosticAccuracyEstablished": false
+  },
+  "transitionPolicy": {
+    "allowed": [
+      "requirements_defined",
+      "evidence_not_submitted",
+      "externally_review_pending",
+      "no_go"
+    ],
+    "forbidden": [
+      "go",
+      "operationally_ready",
+      "approved"
+    ],
+    "default": "no_go",
+    "current": "no_go",
+    "realGoLivePermitted": false
+  },
+  "operationalAuthority": {
+    "mayWriteSap": false,
+    "mayChangeEcm": false,
+    "mayRequestParts": false,
+    "mayApproveMaintenance": false,
+    "mayReleaseEquipment": false,
+    "mayCollectPrivateData": false
+  }
+}

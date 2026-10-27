@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/future-private-study-protocol.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scope",
+    "rubricLockedExternally",
+    "legalBasisAndParticipantInformationApproved",
+    "samplingMethodPreRegistered",
+    "reviewerQualificationVerified",
+    "independentAssignmentVerified",
+    "blindingPlanApproved",
+    "nominalKappaMeasured",
+    "ordinalWeightedKappaMeasured",
+    "multiraterMethodSelected",
+    "adjudicationMethodApproved",
+    "privacyApprovalVerified",
+    "fieldDiagnosticAccuracyEstablished"
+  ],
+  "properties": {
+    "scope": {
+      "const": "future_private_authorized_study_only"
+    },
+    "rubricLockedExternally": {
+      "const": false
+    },
+    "legalBasisAndParticipantInformationApproved": {
+      "const": false
+    },
+    "samplingMethodPreRegistered": {
+      "const": false
+    },
+    "reviewerQualificationVerified": {
+      "const": false
+    },
+    "independentAssignmentVerified": {
+      "const": false
+    },
+    "blindingPlanApproved": {
+      "const": false
+    },
+    "nominalKappaMeasured": {
+      "const": false
+    },
+    "ordinalWeightedKappaMeasured": {
+      "const": false
+    },
+    "multiraterMethodSelected": {
+      "const": false
+    },
+    "adjudicationMethodApproved": {
+      "const": false
+    },
+    "privacyApprovalVerified": {
+      "const": false
+    },
+    "fieldDiagnosticAccuracyEstablished": {
+      "const": false
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/go-nogo-decision.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "requirementsPhase",
+    "evidenceState",
+    "externalReviewState",
+    "decision",
+    "verifiedEvidenceCount",
+    "verifiedSignoffs",
+    "realGoDecisionSigned"
+  ],
+  "properties": {
+    "requirementsPhase": {
+      "const": "requirements_defined"
+    },
+    "evidenceState": {
+      "const": "evidence_not_submitted"
+    },
+    "externalReviewState": {
+      "const": "externally_review_pending"
+    },
+    "decision": {
+      "const": "no_go"
+    },
+    "verifiedEvidenceCount": {
+      "const": 0
+    },
+    "verifiedSignoffs": {
+      "const": 0
+    },
+    "realGoDecisionSigned": {
+      "const": false
+    }
+  }
+}

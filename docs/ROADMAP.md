@@ -40,6 +40,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 ## Fase 4 — Estratégia de ativos, manutenção e PCM
 
+**Ciclo 20:** pacote sintético de decisão Go/No-Go com 13 dependências de aprovação, cinco áreas de revisão externa, dez achados e rastreabilidade ao Ciclo 19. Estados de aprovação real proibidos, zero evidências privadas e relatório offline. Evolução seguinte: arquitetura de avaliação externa ou priorização de evidências para um projeto corporativo, com autorizações reais fora do GitHub.
+
 **Ciclo 19:** matriz de 13 evidências externas, cinco aceites multidisciplinares, dez ameaças e quatro reaberturas de revisão hipotéticas. Relatório público offline mantém todas as provas não verificadas. Referências NIST/OWASP/LGPD separadas da efetividade OEM. Próximo: pacote formal de requisitos go/no-go por área para projeto privado, sem simular aprovações reais.
 
 **Ciclo 18:** quatro fluxos fictícios de revisão editorial sobre rascunhos documentais, separação de papéis, controle de versão obsoleta, divergência, reabertura por contexto OEM e revogação; logs SHA-256 somente simulados e bloqueio integral de alçadas reais. Próximo: especificação de um protocolo externo de aceite de revisões humanas com requisitos de segurança, evidência e infraestrutura privada.
