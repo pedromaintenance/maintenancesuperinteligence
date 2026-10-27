@@ -398,7 +398,7 @@ def render_html(report):
                        +" — "+e(x["reason"])+"</li>"
                        for x in c["auditTrail"])
         reviews="".join("<li>"+e(x["actorId"])+" (fictício): "
-                        +e(x["position"])+" — "+
+                        +e(x["position"])+" ("+e(x["reason"])+") — "+
                         ("vigente no exercício" if x["validForCurrentRevision"]
                          else "OBSOLETO ou revogado")+"</li>"
                         for x in c["reviewRecords"])
