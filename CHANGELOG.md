@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.1.0 — 2026-10-27 — Ciclo 21
+
+- Adicionada ordenação topológica de Kahn dos 13 controles e 17 predecessores do pacote Go/No-Go anterior, com verificação de ciclos, autoprecedência, duplicidade de vínculos e fase incompatível.
+- Definido `pilot/evidence-sequencing.v1.json` com sete fases documentais propostas, cinco handoffs conceituais e dez cenários adversariais herdados do registro de ameaças.
+- Criado `pilot/evidence_sequence.py` para rastreabilidade integral ao FMEA público fixado, geração offline JSON/HTML, raízes estruturais e profundidade das dependências, sem inventar duração, HH ou custo.
+- Publicados 11 contratos JSON Schema e testes negativos contra autorização OEM/SAP/ECM, evidência antecipada, fase prematura, alteração de origem, acordo humano fictício ou liberação de máquina.
+- CI integra a cadeia de testes dos 20 ciclos anteriores e publica relatório executivo com decisão `no_go` permanente no repositório público.
+
+**Limite:** organização documental de requisitos, não plano de obra validado, aceitação de áreas, cadastro corporativo ou piloto privado em operação.
+
+
 ## 2.0.0 — 2026-10-27 — Ciclo 20
 
 - Convertidos os requisitos do Ciclo 19 em pacote Go/No-Go com 13 controles dependentes, cinco áreas externas, dez achados sintéticos e zero evidência/assinatura verificada.
