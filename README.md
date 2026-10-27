@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de revisão cruzada de evidências P&D v2.2.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de cobertura estrutural de reaberturas P&D v2.3.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -60,6 +60,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 20 — Pacote Go/No-Go de piloto privado](docs/CICLO_2026-10-27_PACOTE_GO_NO_GO.md)
 - [Ciclo 21 — Sequenciamento de evidências e dependências](docs/CICLO_2026-10-27_SEQUENCIAMENTO_EVIDENCIAS.md)
 - [Ciclo 22 — Contradições documentais e reabertura de dependências](docs/CICLO_2026-10-27_CONTRADICOES_EVIDENCIAS.md)
+- [Ciclo 23 — Cobertura estrutural das reaberturas](docs/CICLO_2026-10-27_COBERTURA_REABERTURAS.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -353,3 +354,16 @@ python -m pilot.evidence_contradictions --snapshot build/fmea-public/fmea-public
 ```
 
 Consulte a [documentação técnica do Ciclo 22](docs/CICLO_2026-10-27_CONTRADICOES_EVIDENCIAS.md).
+
+
+## Ciclo 23 — Caminhos de reabertura e cobertura documental
+
+O módulo `pilot/reopen_coverage.py` avalia **100 cenários fictícios** (13 raízes individuais, 78 pares, três alterações de contexto e seis conflitos do Ciclo 22), mantendo **13 controles/17 dependências**. O fixture `pilot/reopen-coverage.v1.json` fixa um oráculo de alcançabilidade Floyd–Warshall, comparado aos caminhos reconstruídos por DFS e à cascata do Ciclo 22.
+
+A saída demonstra caminhos mínimos, alternativas redundantes, testemunhos de não alcançabilidade e verificação de cinco mutações estruturais. O status permanece `no_go`: caminho documental **não é falha física, previsão de dano, segurança comprovada ou autorização SAP/ECM/OS**.
+
+```bash
+python -m pilot.reopen_coverage --snapshot build/fmea-public/fmea-public.snapshot.json --gng build/go-nogo/no-go-report.v1.json --sequence build/sequencing/evidence-sequence.v1.json --contradictions build/contradictions/contradictions.v1.json --output build/coverage/reopen-coverage.v1.json --html build/coverage/reopen-coverage.v1.html
+```
+
+A documentação detalhada está em [Ciclo 23 — Cobertura estrutural](docs/CICLO_2026-10-27_COBERTURA_REABERTURAS.md).
