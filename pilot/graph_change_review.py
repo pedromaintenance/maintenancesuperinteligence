@@ -272,7 +272,7 @@ def build_report(spec,coverage,gng):
                 "referenceScenarioCount":100,
                 "comparableScenarioCount":len(impacts),
                 "affectedScenarios":[x for x in impacts if x["changedMetricControlIds"]],
-                "unchangedScenarioCount":100-sum(bool(x["changedMetricControlIds"]) for x in impacts),
+                "unchangedScenarioCount":(100-sum(bool(x["changedMetricControlIds"]) for x in impacts) if candidate is not None else None),
                 "allOneHundredScenariosCompared":len(impacts)==100,
                 "realOutcomesMeasured":False,
             },
