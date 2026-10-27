@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/reachability-impact.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "changedRootTargetPairs",
+    "changedPairCount",
+    "introducedPairs",
+    "lostPairs",
+    "rootsWithNewReachability",
+    "rootsWithLostReachability",
+    "allEffectsDocumentary"
+  ],
+  "properties": {
+    "changedRootTargetPairs": {
+      "type": "array",
+      "items": {
+        "$ref": "reachability-pair-diff.schema.json"
+      }
+    },
+    "changedPairCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "introducedPairs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "lostPairs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "rootsWithNewReachability": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "rootsWithLostReachability": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "allEffectsDocumentary": {
+      "const": true
+    }
+  }
+}

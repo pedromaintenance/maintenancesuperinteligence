@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/graph-change-proposals.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "baseGraph",
+    "baseQualityOracle",
+    "sourceNoGo",
+    "canonicalNodeCount",
+    "canonicalEdgeCount",
+    "referenceCaseCount",
+    "allProposalsUnapproved",
+    "realExpertReviewsCompleted",
+    "proposals",
+    "reviewPolicy"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.graph-change-proposals.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "synthetic_proposals_no_contract_mutation"
+    },
+    "baseGraph": {
+      "const": "pilot/reopen-coverage.v1.json"
+    },
+    "baseQualityOracle": {
+      "const": "pilot/reopen-coverage.v1.json"
+    },
+    "sourceNoGo": {
+      "const": "pilot/go-nogo-package.v1.json"
+    },
+    "canonicalNodeCount": {
+      "const": 13
+    },
+    "canonicalEdgeCount": {
+      "const": 17
+    },
+    "referenceCaseCount": {
+      "const": 100
+    },
+    "allProposalsUnapproved": {
+      "const": true
+    },
+    "realExpertReviewsCompleted": {
+      "const": 0
+    },
+    "proposals": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "dependency-graph-change-proposal.schema.json"
+      }
+    },
+    "reviewPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requiredAreas",
+        "decision",
+        "identityVerified",
+        "competenceVerified",
+        "independentReviewVerified",
+        "oemEffectivityVerified",
+        "legalReviewVerified",
+        "signatureVerified",
+        "externalAuditVerified",
+        "mayWaiveReview",
+        "mayWriteSap",
+        "mayModifyEcm",
+        "mayCreateWorkOrder",
+        "mayOrderParts",
+        "mayReleaseEquipment"
+      ],
+      "properties": {
+        "requiredAreas": {
+          "const": [
+            "IT",
+            "InformationSecurity",
+            "Engineering",
+            "Legal",
+            "MaintenanceManagement"
+          ]
+        },
+        "decision": {
+          "const": "no_go"
+        },
+        "identityVerified": {
+          "const": false
+        },
+        "competenceVerified": {
+          "const": false
+        },
+        "independentReviewVerified": {
+          "const": false
+        },
+        "oemEffectivityVerified": {
+          "const": false
+        },
+        "legalReviewVerified": {
+          "const": false
+        },
+        "signatureVerified": {
+          "const": false
+        },
+        "externalAuditVerified": {
+          "const": false
+        },
+        "mayWaiveReview": {
+          "const": false
+        },
+        "mayWriteSap": {
+          "const": false
+        },
+        "mayModifyEcm": {
+          "const": false
+        },
+        "mayCreateWorkOrder": {
+          "const": false
+        },
+        "mayOrderParts": {
+          "const": false
+        },
+        "mayReleaseEquipment": {
+          "const": false
+        }
+      }
+    }
+  }
+}

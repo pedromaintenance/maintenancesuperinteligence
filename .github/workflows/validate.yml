@@ -1637,6 +1637,93 @@ jobs:
             build/coverage/reopen-coverage.v1.json
             build/coverage/reopen-coverage.v1.html
           retention-days: 14
+      - name: Compare ten hypothetical graph changes without modifying the canonical DAG
+        run: |
+          mkdir -p build/graph-change
+          python -m pilot.graph_change_review \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --gng build/go-nogo/no-go-report.v1.json \
+            --sequence build/sequencing/evidence-sequence.v1.json \
+            --contradictions build/contradictions/contradictions.v1.json \
+            --coverage build/coverage/reopen-coverage.v1.json \
+            --output build/graph-change/graph-change-review.v1.json \
+            --html build/graph-change/graph-change-review.v1.html > /dev/null
+      - name: Verify reachability diffs, monotonicity, human veto and 100-case impact
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pilot.graph_change_review import verify_report
+          spec=json.loads(Path("pilot/graph-change-proposals.v1.json").read_text())
+          cov=json.loads(Path("build/coverage/reopen-coverage.v1.json").read_text())
+          gng=json.loads(Path("build/go-nogo/no-go-report.v1.json").read_text())
+          data=json.loads(Path("build/graph-change/graph-change-review.v1.json").read_text())
+          verify_report(data,spec,cov,gng)
+          assert data["decision"] == "no_go"
+          assert data["proposalCount"]==10
+          assert data["baselineControlCount"]==13 and data["baselineEdgeCount"]==17
+          assert data["sourceOracleScenarioCount"]==100
+          assert data["allProposalsVetoed"] and data["realChangesCommitted"]==0
+          assert data["verifiedHumanReviewCount"]==0
+          assert not data["realMachineFailureProbabilityCalculated"]
+          assert all(not x for x in data["operationalAuthority"].values())
+          for p in data["proposals"]:
+              assert p["changeAdjudication"]["decision"] == "veto_no_merge"
+              assert not p["changeAdjudication"]["proposalAppliedToMain"]
+              assert p["coverageRegression"]["referenceScenarioCount"]==100
+              assert all(not c["mayAuthorizeMaintenance"] and c["noFieldEvidence"]
+                         for c in p["coverageRegression"]["affectedScenarios"])
+              assert all(d["documentaryChangeOnly"] and not d["physicalSafetyEstablished"]
+                         for d in p["reachabilityImpact"]["changedRootTargetPairs"])
+              if p["candidateDagValid"]:
+                  assert p["coverageRegression"]["comparableScenarioCount"]==100
+              if p["changeType"]=="edge_add" and p["candidateDagValid"]:
+                  assert p["reachabilityImpact"]["lostPairs"]==0
+              if p["changeType"]=="edge_remove" and p["candidateDagValid"]:
+                  assert p["reachabilityImpact"]["introducedPairs"]==0
+          assert [x["validationReason"] for x in data["proposals"][8:]] == [
+              "cycle_detected", "unknown_endpoint"]
+          assert data["proposals"][4]["validationReason"]=="protected_control_removed"
+          html=Path("build/graph-change/graph-change-review.v1.html").read_text()
+          assert html.count("<section>")==10
+          assert "NO GO" in html and "<script" not in html and "<form" not in html
+          print("PASS: 10 hypothetical proposals, unchanged 13/17 canonical graph, 100-case oracle, all VETO")
+          PY
+      - name: Reject forged graph proposal and real engineering approval
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          src=json.loads(Path("pilot/graph-change-proposals.v1.json").read_text())
+          for kind in ("missing-proposal","faked-signature","field-measured","sap"):
+              p=json.loads(json.dumps(src))
+              if kind=="missing-proposal": p["proposals"].pop()
+              if kind=="faked-signature": p["reviewPolicy"]["signatureVerified"]=True
+              if kind=="field-measured": p["proposals"][0]["sourceAuthenticated"]=True
+              if kind=="sap": p["reviewPolicy"]["mayWriteSap"]=True
+              Path("build/graph-change/forged-"+kind+".json").write_text(json.dumps(p))
+          PY
+          for kind in missing-proposal faked-signature field-measured sap; do
+            if python -m pilot.graph_change_review \
+                --snapshot build/fmea-public/fmea-public.snapshot.json \
+                --gng build/go-nogo/no-go-report.v1.json \
+                --sequence build/sequencing/evidence-sequence.v1.json \
+                --contradictions build/contradictions/contradictions.v1.json \
+                --coverage build/coverage/reopen-coverage.v1.json \
+                --spec "build/graph-change/forged-$kind.json" > /dev/null 2>&1; then
+              echo "SECURITY FAIL: unauthorized graph mutation accepted"
+              exit 1
+            fi
+          done
+          rm build/graph-change/forged-*.json
+      - name: Publish educational graph proposal change review
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle24-graph-diff-veto
+          path: |
+            build/graph-change/graph-change-review.v1.json
+            build/graph-change/graph-change-review.v1.html
+          retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4
         with:

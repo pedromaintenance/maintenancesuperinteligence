@@ -61,6 +61,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 21 — Sequenciamento de evidências e dependências](docs/CICLO_2026-10-27_SEQUENCIAMENTO_EVIDENCIAS.md)
 - [Ciclo 22 — Contradições documentais e reabertura de dependências](docs/CICLO_2026-10-27_CONTRADICOES_EVIDENCIAS.md)
 - [Ciclo 23 — Cobertura estrutural das reaberturas](docs/CICLO_2026-10-27_COBERTURA_REABERTURAS.md)
+- [Ciclo 24 — Revisão de mudanças do grafo e veto](docs/CICLO_2026-10-27_REVISAO_MUDANCAS_GRAFO.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -367,3 +368,16 @@ python -m pilot.reopen_coverage --snapshot build/fmea-public/fmea-public.snapsho
 ```
 
 A documentação detalhada está em [Ciclo 23 — Cobertura estrutural](docs/CICLO_2026-10-27_COBERTURA_REABERTURAS.md).
+
+
+## Ciclo 24 — Revisão de mudanças de dependências (P&D v2.4.0)
+
+`pilot/graph_change_review.py` compara **10 propostas totalmente fictícias** (adicionar, remover ou inverter arestas, trocar dono de controle, suprimir um controle, reabrir por hipótese OEM) com o DAG público de **13 controles/17 arestas**. O relatório compara pares, distâncias e caminhos e verifica o impacto documental sobre os **100 cenários canônicos** do Ciclo 23; candidatos com ciclo ou ponta desconhecida não são classificados como inalterados.
+
+Todos os resultados são `veto_no_merge` e `no_go`: o motor não edita o grafo original, não atesta um procedimento OEM e não pode executar SAP, ECM, OS, compra ou liberação. A visualização HTML e o JSON são offline.
+
+```bash
+python -m pilot.graph_change_review --snapshot build/fmea-public/fmea-public.snapshot.json --gng build/go-nogo/no-go-report.v1.json --sequence build/sequencing/evidence-sequence.v1.json --contradictions build/contradictions/contradictions.v1.json --coverage build/coverage/reopen-coverage.v1.json --output build/graph-change/graph-change-review.v1.json --html build/graph-change/graph-change-review.v1.html
+```
+
+Veja a [documentação técnica do Ciclo 24](docs/CICLO_2026-10-27_REVISAO_MUDANCAS_GRAFO.md).

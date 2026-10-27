@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/coverage-regression-witness.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "caseId",
+    "rootControlIds",
+    "oldAffectedCount",
+    "newAffectedCount",
+    "introducedAffectedControls",
+    "lostAffectedControls",
+    "changedMetricControlIds",
+    "noFieldEvidence",
+    "mayAuthorizeMaintenance"
+  ],
+  "properties": {
+    "caseId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rootControlIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "oldAffectedCount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 13
+    },
+    "newAffectedCount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 13
+    },
+    "introducedAffectedControls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "lostAffectedControls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "changedMetricControlIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "noFieldEvidence": {
+      "const": true
+    },
+    "mayAuthorizeMaintenance": {
+      "const": false
+    }
+  }
+}
