@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/dependency-path-step.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "step",
+    "upstreamControlId",
+    "downstreamControlId",
+    "because",
+    "physicalMechanismClaimed"
+  ],
+  "properties": {
+    "step": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "upstreamControlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "downstreamControlId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "because": {
+      "const": "downstream_documentary_control_depends_on_upstream"
+    },
+    "physicalMechanismClaimed": {
+      "const": false
+    }
+  }
+}
