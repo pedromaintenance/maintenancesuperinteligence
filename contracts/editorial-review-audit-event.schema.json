@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/editorial-review-audit-event.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "action",
+    "actorId",
+    "targetRevision",
+    "reason",
+    "targetActorId",
+    "previousEventDigest",
+    "eventDigest",
+    "currentRevisionDigest",
+    "verifiedCryptographicSignature",
+    "verifiedTrustedTimestamp",
+    "externalImmutabilityVerified"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "actorId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "targetRevision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "targetActorId": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "previousEventDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "eventDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "currentRevisionDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "verifiedCryptographicSignature": {
+      "const": false
+    },
+    "verifiedTrustedTimestamp": {
+      "const": false
+    },
+    "externalImmutabilityVerified": {
+      "const": false
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/editorial-adjudication.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "draftId",
+    "adjudicatorId",
+    "reviewerIds",
+    "currentRevision",
+    "decision",
+    "adjudicationPerformedInSimulation",
+    "noRealExpertAcceptance"
+  ],
+  "properties": {
+    "draftId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adjudicatorId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewerIds": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "currentRevision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "decision": {
+      "enum": [
+        "requires_revision",
+        "unresolved_disagreement",
+        "pending_real_review"
+      ]
+    },
+    "adjudicationPerformedInSimulation": {
+      "type": "boolean"
+    },
+    "noRealExpertAcceptance": {
+      "const": true
+    }
+  }
+}

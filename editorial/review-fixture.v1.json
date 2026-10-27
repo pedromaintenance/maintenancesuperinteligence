@@ -1,0 +1,399 @@
+{
+  "schema": "maintenance-superinteligence.editorial-review-fixture.v1",
+  "version": "1.0.0",
+  "purpose": "offline_fictional_review_threat_exercise",
+  "sourceRubric": "quality/notification-rubric.v1.json",
+  "sourceNotificationSpec": "notifications/training-spec.v1.json",
+  "realHumanIdentities": false,
+  "qualifiedSignatures": false,
+  "mayPersistPrivateEvidence": false,
+  "mayOpenSapNotifications": false,
+  "actors": [
+    {
+      "actorId": "SIM-AUTHOR-1",
+      "personaKey": "SIM-PERSON-A1",
+      "role": "author",
+      "declaredCompetence": "lubrication",
+      "identityNature": "fictional_persona_only",
+      "identityVerified": false,
+      "qualificationVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "credentials": null
+    },
+    {
+      "actorId": "SIM-REVIEWER-1-A",
+      "personaKey": "SIM-PERSON-R1A",
+      "role": "reviewer",
+      "declaredCompetence": "lubrication",
+      "identityNature": "fictional_persona_only",
+      "identityVerified": false,
+      "qualificationVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "credentials": null
+    },
+    {
+      "actorId": "SIM-REVIEWER-1-B",
+      "personaKey": "SIM-PERSON-R1B",
+      "role": "reviewer",
+      "declaredCompetence": "lubrication",
+      "identityNature": "fictional_persona_only",
+      "identityVerified": false,
+      "qualificationVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "credentials": null
+    },
+    {
+      "actorId": "SIM-AUTHOR-2",
+      "personaKey": "SIM-PERSON-A2",
+      "role": "author",
+      "declaredCompetence": "hydraulics",
+      "identityNature": "fictional_persona_only",
+      "identityVerified": false,
+      "qualificationVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "credentials": null
+    },
+    {
+      "actorId": "SIM-REVIEWER-2-A",
+      "personaKey": "SIM-PERSON-R2A",
+      "role": "reviewer",
+      "declaredCompetence": "hydraulics",
+      "identityNature": "fictional_persona_only",
+      "identityVerified": false,
+      "qualificationVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "credentials": null
+    },
+    {
+      "actorId": "SIM-REVIEWER-2-B",
+      "personaKey": "SIM-PERSON-R2B",
+      "role": "reviewer",
+      "declaredCompetence": "hydraulics",
+      "identityNature": "fictional_persona_only",
+      "identityVerified": false,
+      "qualificationVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "credentials": null
+    },
+    {
+      "actorId": "SIM-AUTHOR-3",
+      "personaKey": "SIM-PERSON-A3",
+      "role": "author",
+      "declaredCompetence": "electronics",
+      "identityNature": "fictional_persona_only",
+      "identityVerified": false,
+      "qualificationVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "credentials": null
+    },
+    {
+      "actorId": "SIM-REVIEWER-3-A",
+      "personaKey": "SIM-PERSON-R3A",
+      "role": "reviewer",
+      "declaredCompetence": "electronics",
+      "identityNature": "fictional_persona_only",
+      "identityVerified": false,
+      "qualificationVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "credentials": null
+    },
+    {
+      "actorId": "SIM-REVIEWER-3-B",
+      "personaKey": "SIM-PERSON-R3B",
+      "role": "reviewer",
+      "declaredCompetence": "electronics",
+      "identityNature": "fictional_persona_only",
+      "identityVerified": false,
+      "qualificationVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "credentials": null
+    },
+    {
+      "actorId": "SIM-AUTHOR-4",
+      "personaKey": "SIM-PERSON-A4",
+      "role": "author",
+      "declaredCompetence": "electronics",
+      "identityNature": "fictional_persona_only",
+      "identityVerified": false,
+      "qualificationVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "credentials": null
+    },
+    {
+      "actorId": "SIM-REVIEWER-4-A",
+      "personaKey": "SIM-PERSON-R4A",
+      "role": "reviewer",
+      "declaredCompetence": "electronics",
+      "identityNature": "fictional_persona_only",
+      "identityVerified": false,
+      "qualificationVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "credentials": null
+    },
+    {
+      "actorId": "SIM-REVIEWER-4-B",
+      "personaKey": "SIM-PERSON-R4B",
+      "role": "reviewer",
+      "declaredCompetence": "electronics",
+      "identityNature": "fictional_persona_only",
+      "identityVerified": false,
+      "qualificationVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "credentials": null
+    },
+    {
+      "actorId": "SIM-ADJUDICATOR-1",
+      "personaKey": "SIM-PERSON-ADJ",
+      "role": "adjudicator",
+      "declaredCompetence": "general",
+      "identityNature": "fictional_persona_only",
+      "identityVerified": false,
+      "qualificationVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "credentials": null
+    },
+    {
+      "actorId": "SIM-CUSTODIAN-1",
+      "personaKey": "SIM-PERSON-CUST",
+      "role": "custodian",
+      "declaredCompetence": "general",
+      "identityNature": "fictional_persona_only",
+      "identityVerified": false,
+      "qualificationVerified": false,
+      "independenceVerified": false,
+      "conflictOfInterestDeclared": false,
+      "credentials": null
+    }
+  ],
+  "cases": [
+    {
+      "draftId": "SIM-NOTE-001",
+      "caseFileId": "SIM-TECH-FD-01",
+      "declaredDiscipline": "lubrication",
+      "authorId": "SIM-AUTHOR-1",
+      "reviewerIds": [
+        "SIM-REVIEWER-1-A",
+        "SIM-REVIEWER-1-B"
+      ],
+      "adjudicatorId": "SIM-ADJUDICATOR-1",
+      "custodianId": "SIM-CUSTODIAN-1",
+      "events": [
+        {
+          "eventId": "SIM-REV-EVT-1-1",
+          "actorId": "SIM-AUTHOR-1",
+          "action": "submit",
+          "targetRevision": 1,
+          "reason": "initial_draft",
+          "nonce": "SIM-NONCE-1-1",
+          "signature": null,
+          "targetActorId": null
+        },
+        {
+          "eventId": "SIM-REV-EVT-1-2",
+          "actorId": "SIM-REVIEWER-1-A",
+          "action": "review_requires_revision",
+          "targetRevision": 1,
+          "reason": "scope_needs_clarification",
+          "nonce": "SIM-NONCE-1-2",
+          "signature": null,
+          "targetActorId": null
+        },
+        {
+          "eventId": "SIM-REV-EVT-1-3",
+          "actorId": "SIM-REVIEWER-1-B",
+          "action": "review_requires_revision",
+          "targetRevision": 1,
+          "reason": "scope_needs_clarification",
+          "nonce": "SIM-NONCE-1-3",
+          "signature": null,
+          "targetActorId": null
+        }
+      ]
+    },
+    {
+      "draftId": "SIM-NOTE-002",
+      "caseFileId": "SIM-TECH-HYD-01",
+      "declaredDiscipline": "hydraulics",
+      "authorId": "SIM-AUTHOR-2",
+      "reviewerIds": [
+        "SIM-REVIEWER-2-A",
+        "SIM-REVIEWER-2-B"
+      ],
+      "adjudicatorId": "SIM-ADJUDICATOR-1",
+      "custodianId": "SIM-CUSTODIAN-1",
+      "events": [
+        {
+          "eventId": "SIM-REV-EVT-2-1",
+          "actorId": "SIM-AUTHOR-2",
+          "action": "submit",
+          "targetRevision": 1,
+          "reason": "initial_draft",
+          "nonce": "SIM-NONCE-2-1",
+          "signature": null,
+          "targetActorId": null
+        },
+        {
+          "eventId": "SIM-REV-EVT-2-2",
+          "actorId": "SIM-REVIEWER-2-A",
+          "action": "review_requires_revision",
+          "targetRevision": 1,
+          "reason": "load_context_conflicted",
+          "nonce": "SIM-NONCE-2-2",
+          "signature": null,
+          "targetActorId": null
+        },
+        {
+          "eventId": "SIM-REV-EVT-2-3",
+          "actorId": "SIM-REVIEWER-2-B",
+          "action": "review_suggest_complete",
+          "targetRevision": 1,
+          "reason": "editorial_format_only",
+          "nonce": "SIM-NONCE-2-3",
+          "signature": null,
+          "targetActorId": null
+        },
+        {
+          "eventId": "SIM-REV-EVT-2-4",
+          "actorId": "SIM-ADJUDICATOR-1",
+          "action": "adjudicate_unresolved",
+          "targetRevision": 1,
+          "reason": "disagreement_not_resolved",
+          "nonce": "SIM-NONCE-2-4",
+          "signature": null,
+          "targetActorId": null
+        }
+      ]
+    },
+    {
+      "draftId": "SIM-NOTE-003",
+      "caseFileId": "SIM-TECH-ECM-LOG-01",
+      "declaredDiscipline": "electronics",
+      "authorId": "SIM-AUTHOR-3",
+      "reviewerIds": [
+        "SIM-REVIEWER-3-A",
+        "SIM-REVIEWER-3-B"
+      ],
+      "adjudicatorId": "SIM-ADJUDICATOR-1",
+      "custodianId": "SIM-CUSTODIAN-1",
+      "events": [
+        {
+          "eventId": "SIM-REV-EVT-3-1",
+          "actorId": "SIM-AUTHOR-3",
+          "action": "submit",
+          "targetRevision": 1,
+          "reason": "initial_draft",
+          "nonce": "SIM-NONCE-3-1",
+          "signature": null,
+          "targetActorId": null
+        },
+        {
+          "eventId": "SIM-REV-EVT-3-2",
+          "actorId": "SIM-REVIEWER-3-A",
+          "action": "review_requires_revision",
+          "targetRevision": 1,
+          "reason": "event_timing_missing",
+          "nonce": "SIM-NONCE-3-2",
+          "signature": null,
+          "targetActorId": null
+        },
+        {
+          "eventId": "SIM-REV-EVT-3-3",
+          "actorId": "SIM-REVIEWER-3-B",
+          "action": "review_suggest_complete",
+          "targetRevision": 1,
+          "reason": "editorial_format_only",
+          "nonce": "SIM-NONCE-3-3",
+          "signature": null,
+          "targetActorId": null
+        },
+        {
+          "eventId": "SIM-REV-EVT-3-4",
+          "actorId": "SIM-AUTHOR-3",
+          "action": "revise",
+          "targetRevision": 2,
+          "reason": "synthetic_scope_clarified",
+          "nonce": "SIM-NONCE-3-4",
+          "signature": null,
+          "targetActorId": null
+        },
+        {
+          "eventId": "SIM-REV-EVT-3-5",
+          "actorId": "SIM-AUTHOR-3",
+          "action": "reopen_context",
+          "targetRevision": 3,
+          "reason": "oem_effectivity_changed",
+          "nonce": "SIM-NONCE-3-5",
+          "signature": null,
+          "targetActorId": null
+        }
+      ]
+    },
+    {
+      "draftId": "SIM-NOTE-004",
+      "caseFileId": "SIM-TECH-ECM-ACT-01",
+      "declaredDiscipline": "electronics",
+      "authorId": "SIM-AUTHOR-4",
+      "reviewerIds": [
+        "SIM-REVIEWER-4-A",
+        "SIM-REVIEWER-4-B"
+      ],
+      "adjudicatorId": "SIM-ADJUDICATOR-1",
+      "custodianId": "SIM-CUSTODIAN-1",
+      "events": [
+        {
+          "eventId": "SIM-REV-EVT-4-1",
+          "actorId": "SIM-AUTHOR-4",
+          "action": "submit",
+          "targetRevision": 1,
+          "reason": "initial_draft",
+          "nonce": "SIM-NONCE-4-1",
+          "signature": null,
+          "targetActorId": null
+        },
+        {
+          "eventId": "SIM-REV-EVT-4-2",
+          "actorId": "SIM-REVIEWER-4-A",
+          "action": "review_suggest_complete",
+          "targetRevision": 1,
+          "reason": "editorial_format_only",
+          "nonce": "SIM-NONCE-4-2",
+          "signature": null,
+          "targetActorId": null
+        },
+        {
+          "eventId": "SIM-REV-EVT-4-3",
+          "actorId": "SIM-REVIEWER-4-B",
+          "action": "review_suggest_complete",
+          "targetRevision": 1,
+          "reason": "editorial_format_only",
+          "nonce": "SIM-NONCE-4-3",
+          "signature": null,
+          "targetActorId": null
+        },
+        {
+          "eventId": "SIM-REV-EVT-4-4",
+          "actorId": "SIM-CUSTODIAN-1",
+          "action": "revoke_profile",
+          "targetRevision": 1,
+          "reason": "reviewer_profile_revoked",
+          "nonce": "SIM-NONCE-4-4",
+          "signature": null,
+          "targetActorId": "SIM-REVIEWER-4-B"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/editorial-independent-review-decision.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "reviewEventId",
+    "actorId",
+    "personaKey",
+    "revision",
+    "revisionDigest",
+    "position",
+    "reason",
+    "identityAuthenticated",
+    "signatureVerified",
+    "engineeringOpinionVerified",
+    "validForCurrentRevision"
+  ],
+  "properties": {
+    "reviewEventId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "actorId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "personaKey": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "revisionDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "position": {
+      "enum": [
+        "requires_revision",
+        "suggests_documentary_completeness_only"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "identityAuthenticated": {
+      "const": false
+    },
+    "signatureVerified": {
+      "const": false
+    },
+    "engineeringOpinionVerified": {
+      "const": false
+    },
+    "validForCurrentRevision": {
+      "type": "boolean"
+    }
+  }
+}

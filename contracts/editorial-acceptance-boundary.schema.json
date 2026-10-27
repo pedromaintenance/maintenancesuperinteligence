@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/editorial-acceptance-boundary.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "humanReviewerIdentityAuthenticated",
+    "engineeringQualificationVerified",
+    "reviewerIndependenceVerified",
+    "currentDocumentRealReviewComplete",
+    "oemEffectivityVerified",
+    "fieldEvidenceValidated",
+    "externalImmutableAuditAnchorVerified",
+    "safeWorkMethodApproved",
+    "mayCreateSapNotification",
+    "mayCreateWorkOrder",
+    "mayOrderParts",
+    "mayModifyEcm",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "humanReviewerIdentityAuthenticated": {
+      "const": false
+    },
+    "engineeringQualificationVerified": {
+      "const": false
+    },
+    "reviewerIndependenceVerified": {
+      "const": false
+    },
+    "currentDocumentRealReviewComplete": {
+      "const": false
+    },
+    "oemEffectivityVerified": {
+      "const": false
+    },
+    "fieldEvidenceValidated": {
+      "const": false
+    },
+    "externalImmutableAuditAnchorVerified": {
+      "const": false
+    },
+    "safeWorkMethodApproved": {
+      "const": false
+    },
+    "mayCreateSapNotification": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayOrderParts": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}

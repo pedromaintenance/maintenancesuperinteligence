@@ -1,4 +1,4 @@
-name: Validate synthetic notification documentary quality and no-operation gates
+name: Validate fictional editorial human-review separation and no-operation gates
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       - name: Validate existing knowledge metadata
         run: python scripts/validate.py
       - name: Compile Python sources
-        run: python -m compileall -q connectors scripts tests casefiles trees notifications quality
+        run: python -m compileall -q connectors scripts tests casefiles trees notifications quality editorial
       - name: Run offline adversarial tests
         run: python -m unittest discover -s tests -v
       - name: Import pinned FMEA public snapshot
@@ -1118,6 +1118,88 @@ jobs:
           path: |
             build/quality/notification-quality.v1.json
             build/quality/notification-quality.v1.html
+          retention-days: 14
+      - name: Build four fictional editorial review workflows and audit traces
+        run: |
+          mkdir -p build/editorial
+          python -m editorial.review_protocol \
+            --snapshot build/fmea-public/fmea-public.snapshot.json \
+            --quality build/quality/notification-quality.v1.json \
+            --drafts build/notifications/maintenance-drafts.v1.json \
+            --output build/editorial/review-protocol.v1.json \
+            --html build/editorial/review-protocol.v1.html > /dev/null
+      - name: Verify reviewer segregation, obsolete versions and no real authority
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from editorial.review_protocol import build_report, verify_report
+          fixture=json.loads(Path("editorial/review-fixture.v1.json").read_text())
+          quality=json.loads(Path("build/quality/notification-quality.v1.json").read_text())
+          notes=json.loads(Path("build/notifications/maintenance-drafts.v1.json").read_text())
+          result=json.loads(Path("build/editorial/review-protocol.v1.json").read_text())
+          verify_report(result,fixture,quality,notes)
+          assert result["caseCount"]==4 and result["simulatedEventCount"]==16
+          assert [x["decision"] for x in result["cases"]]==[
+             "requires_revision","unresolved_disagreement",
+             "pending_real_review","pending_real_review"]
+          assert result["realReviewsCompleted"]==result["realApprovalsGranted"]==0
+          assert result["signaturesVerified"] is False
+          assert result["interRaterReliabilityMeasured"] is False
+          assert result["mayWriteToSap"] is False and result["mayReleaseEquipment"] is False
+          assert result["cases"][2]["currentRevision"]==3
+          assert all(not x["validForCurrentRevision"]
+                     for x in result["cases"][2]["reviewRecords"])
+          assert result["cases"][3]["revokedPersonaIds"]==["SIM-REVIEWER-4-B"]
+          for c in result["cases"]:
+              assert c["independentRealReviewerCount"]==0
+              assert c["auditFinalDigest"]==c["auditTrail"][-1]["eventDigest"]
+              assert c["externalAuditAnchorVerified"] is False
+              assert all(v is False for v in c["acceptanceBoundary"].values())
+              assert all(r["identityAuthenticated"] is False
+                         and r["signatureVerified"] is False
+                         for r in c["reviewRecords"])
+          html=Path("build/editorial/review-protocol.v1.html").read_text()
+          assert html.count("<section>")==4
+          assert "SIMULAÇÃO NÃO AUTENTICADA" in html
+          assert "<script" not in html and "<form" not in html
+          print("PASS: 4 fictional review workflows, 16 events, zero authentic approvals")
+          PY
+      - name: Reject forged reviewer competence, identity and signature
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          source=json.loads(Path("editorial/review-fixture.v1.json").read_text())
+          scenarios=[]
+          for name in ("identity","signature","persona"):
+              test=json.loads(json.dumps(source))
+              if name=="identity":
+                  test["actors"][1]["identityVerified"]=True
+              elif name=="signature":
+                  test["cases"][0]["events"][1]["signature"]="FAKE"
+              else:
+                  test["actors"][2]["personaKey"]=test["actors"][1]["personaKey"]
+              Path("build/editorial/forged-"+name+".json").write_text(json.dumps(test))
+          PY
+          for scenario in identity signature persona; do
+            if python -m editorial.review_protocol \
+                 --snapshot build/fmea-public/fmea-public.snapshot.json \
+                 --quality build/quality/notification-quality.v1.json \
+                 --drafts build/notifications/maintenance-drafts.v1.json \
+                 --fixture "build/editorial/forged-$scenario.json" > /dev/null 2>&1; then
+              echo "SECURITY FAIL: forged reviewer identity accepted"
+              exit 1
+            fi
+          done
+          rm build/editorial/forged-identity.json build/editorial/forged-signature.json build/editorial/forged-persona.json
+      - name: Publish synthetic editorial review and revision reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle18-fictional-editorial-review-audit
+          path: |
+            build/editorial/review-protocol.v1.json
+            build/editorial/review-protocol.v1.html
           retention-days: 14
       - name: Publish non-operational index and import receipt
         uses: actions/upload-artifact@v4

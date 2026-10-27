@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.8.0 — 2026-10-27 — Ciclo 18
+
+- Introduzido protocolo de revisão editorial **totalmente fictício** para quatro rascunhos de notificações sintéticas: 14 personas, 16 eventos e três estados sem aprovação operacional.
+- Segregados autor, dois revisores por documento, adjudicador e custodiante; competência por disciplina declarada, duplicidade de persona, conflitos, alteração de revisão, revogação e discordância são validados.
+- Revisões lógicas e trilha de evento encadeadas por SHA-256, sem assinatura digital, timestamp ou evidência externa de imutabilidade.
+- Doze novos contratos JSON Schema e testes adversariais de identidade, competência, assinatura, autoaprovação, papéis, nonce, versão obsoleta, revogação e alteração de saída.
+- Fluxo CI reconstitui FMEA público pinado, dossiês e notificações, gera JSON/HTML e rejeita personas/pareceres falsos.
+- Nenhuma revisão autêntica de engenharia, medição física, validação interavaliadores, abertura SAP ou liberação de equipamento.
+
+
 ## 1.7.0 — 2026-10-26 — Ciclo 17
 
 - Criada rubrica editorial de 12 critérios com explicações de não conformidade, severidade, campos afetados e ações de correção documental.
