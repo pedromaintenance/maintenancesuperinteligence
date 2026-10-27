@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/reopen-coverage-oracle-case.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "caseId",
+    "kind",
+    "rootControlIds",
+    "reason",
+    "expectedAffectedControlIds",
+    "expectedUnaffectedControlIds",
+    "expectedPathMetrics",
+    "fieldObserved",
+    "externalApproval"
+  ],
+  "properties": {
+    "caseId": {
+      "type": "string",
+      "pattern": "^SIM-RPATH-[0-9]{3}$"
+    },
+    "kind": {
+      "enum": [
+        "single_root",
+        "root_pair",
+        "version_identity_trigger",
+        "conflict_pair"
+      ]
+    },
+    "rootControlIds": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expectedAffectedControlIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "expectedUnaffectedControlIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "expectedPathMetrics": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "minimumSteps",
+          "possiblePathCount"
+        ],
+        "properties": {
+          "minimumSteps": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "possiblePathCount": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "fieldObserved": {
+      "const": false
+    },
+    "externalApproval": {
+      "const": false
+    }
+  }
+}
