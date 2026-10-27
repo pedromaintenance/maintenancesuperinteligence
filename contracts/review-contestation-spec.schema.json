@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/review-contestation-spec.schema.json",
+  "title": "Cycle 26 synthetic contestation fixture",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "scenarioCount",
+    "scenarios"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.review-contestations.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "synthetic_untrusted_events"
+    },
+    "scenarioCount": {
+      "const": 10
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "$ref": "#/$defs/scenario"
+      }
+    }
+  },
+  "$defs": {
+    "perspective": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "area",
+        "position"
+      ],
+      "properties": {
+        "area": {
+          "enum": [
+            "IT",
+            "InformationSecurity",
+            "Engineering",
+            "Legal",
+            "MaintenanceManagement"
+          ]
+        },
+        "position": {
+          "enum": [
+            "objection",
+            "counterargument"
+          ]
+        }
+      }
+    },
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scenarioId",
+        "proposalId",
+        "eventType",
+        "proposerAlias",
+        "reviewerAlias",
+        "claimedGraphRevision",
+        "evidenceReference",
+        "purportedSignature",
+        "purportedApproval",
+        "ownerChanged",
+        "oemRevisionChanged",
+        "objectionSuppressed",
+        "perspectives"
+      ],
+      "properties": {
+        "scenarioId": {
+          "type": "string",
+          "pattern": "^SIM-ADJ-[0-9]{2}$"
+        },
+        "proposalId": {
+          "type": "string",
+          "pattern": "^SIM-GDIFF-[0-9]{2}$"
+        },
+        "eventType": {
+          "enum": [
+            "stale_graph_revision",
+            "evidence_revoked",
+            "reviewer_conflict",
+            "self_approval",
+            "forged_signature",
+            "owner_changed",
+            "oem_revision_changed",
+            "hidden_dissent",
+            "false_approval",
+            "safety_evidence_missing"
+          ]
+        },
+        "proposerAlias": {
+          "type": "string",
+          "pattern": "^SIM-"
+        },
+        "reviewerAlias": {
+          "type": "string",
+          "pattern": "^SIM-"
+        },
+        "claimedGraphRevision": {
+          "enum": [
+            "baseline",
+            "SIM-OBSOLETE-REVISION"
+          ]
+        },
+        "evidenceReference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "identity",
+            "independent_competence",
+            "oem_effectivity",
+            "safety_review",
+            "legal_basis",
+            "signed_decision",
+            "audit_chain",
+            null
+          ]
+        },
+        "purportedSignature": {
+          "type": "boolean"
+        },
+        "purportedApproval": {
+          "type": "boolean"
+        },
+        "ownerChanged": {
+          "type": "boolean"
+        },
+        "oemRevisionChanged": {
+          "type": "boolean"
+        },
+        "objectionSuppressed": {
+          "type": "boolean"
+        },
+        "perspectives": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/perspective"
+          }
+        }
+      }
+    }
+  }
+}

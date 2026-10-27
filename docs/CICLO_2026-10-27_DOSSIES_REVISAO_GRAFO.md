@@ -1,6 +1,6 @@
 # Ciclo 25 — Dossiês sintéticos de revisão de mudanças
 
-**Estado:** implementação incremental em branch, aguardando verificação de CI e revisão do PR. **Não há homologação operacional.**
+**Estado:** integrado à `main` após CI aprovado (PR #51); implementação parcial da issue #50. **Não há homologação operacional.**
 
 ## Objetivo
 Converter as dez propostas do Ciclo 24 em pacotes documentais comparáveis para futura análise multidisciplinar, sem conceder poder de aprovar mudanças, suprimir controles ou operar máquinas.

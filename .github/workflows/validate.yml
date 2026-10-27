@@ -1760,3 +1760,41 @@ jobs:
             build/graph-change/cycle25-review-packets.json
             build/graph-change/cycle25-review-packets.html
           retention-days: 14
+      - name: Build Cycle 26 documentary challenge and revocation report
+        run: |
+          python -m pilot.change_review_adjudication \
+            --packets build/graph-change/cycle25-review-packets.json \
+            --output build/graph-change/cycle26-adjudication.json \
+            --html build/graph-change/cycle26-adjudication.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pilot.change_review_packets import verify_packets
+          from pilot.change_review_adjudication import verify_report, EVENTS
+          source=json.loads(Path("build/graph-change/graph-change-review.v1.json").read_text())
+          packets=json.loads(Path("build/graph-change/cycle25-review-packets.json").read_text())
+          verify_packets(packets,source)
+          fixture=json.loads(Path("pilot/review-contestations.v1.json").read_text())
+          report=json.loads(Path("build/graph-change/cycle26-adjudication.json").read_text())
+          verify_report(report,fixture,packets)
+          assert report["decision"]=="no_go" and report["scenarioCount"]==10
+          assert report["realHumanSignoffs"]==0 and report["objectionsPersist"] is True
+          assert set(r["eventType"] for r in report["results"])==set(EVENTS)
+          assert all(r["adjudication"]=="veto_no_merge" and not r["mayMerge"]
+                     and len(r["objectionsPreserved"])==2
+                     and len(r["reopenedDocumentaryGates"])==7
+                     and not any(r["noOperationalAuthority"].values())
+                     for r in report["results"])
+          assert report["auditTailDigest"]==report["auditTrail"][-1]["entryDigest"]
+          html=Path("build/graph-change/cycle26-adjudication.html").read_text()
+          assert html.count("<section>")==10 and "<script" not in html
+          print("PASS: Cycle 26 ten synthetic contestations, no operational authority")
+          PY
+      - name: Publish Cycle 26 NO GO adjudication artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle26-synthetic-contestation-no-go
+          path: |
+            build/graph-change/cycle26-adjudication.json
+            build/graph-change/cycle26-adjudication.html
+          retention-days: 14

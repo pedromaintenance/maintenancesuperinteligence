@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.6.0 — 2026-10-27 — Ciclo 26
+
+- Criados dez cenários sintéticos de contestação, revogação, versões obsoletas, conflitos de interesse, dissenso e alegações de aprovação.
+- Cadeia SHA-256 reconstruível por cenário; duas perspectivas fictícias preservadas, sete gates não comprovados e veto persistente.
+- Dois contratos JSON Schema, testes adversariais, relatório offline JSON/HTML e gate CI derivado dos Ciclos 24 e 25 verificados.
+- Zero assinaturas reais, revisores autenticados, aceite OEM, dados corporativos ou autorização SAP/ECM.
+
+## 2.5.0 — 2026-10-27 — Ciclo 25
+
+- Dez pacotes de revisão documental a partir de propostas do Ciclo 24, sete lacunas por proposta e cinco objeções por áreas simuladas.
+- Hash de vínculo ao relatório de origem, contrato JSON Schema de envelope, testes adversariais e CI com publicação de relatórios.
+- Sem alteração do grafo canônico e decisão `no_go`.
+
+
 ## 2.4.0 — 2026-10-27 — Ciclo 24
 
 - Criado revisor independente de **dez propostas fictícias de alteração do grafo** dos Ciclos 20–23, com diff de arestas, trocas de responsáveis, rejeição de supressão, ciclo e IDs desconhecidos.
