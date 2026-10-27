@@ -28,6 +28,7 @@ SOURCE_LINKS = {
                    "application_security_requirements"),
     "LGPD-13709": ("https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
                     "data_minimization_security_governance"),
+    "OEM-APPLICABILITY-PENDING": (None, "engineering_effectivity_requires_authorized_oem_documentation"),
 }
 STAKEHOLDERS = ("IT","InformationSecurity","Engineering","Legal",
                 "MaintenanceManagement")
@@ -38,8 +39,8 @@ CONTROL_MAP = {
     "two-independent-reviews": ("Engineering","independent-review-decisions","ASVS-5.0.0"),
     "signed-decision": ("InformationSecurity","signature-verification","ASVS-5.0.0"),
     "trusted-audit": ("InformationSecurity","audit-anchor","ASVS-5.0.0"),
-    "oem-effectivity": ("Engineering","oem-applicability-proof","LGPD-13709"),
-    "equipment-configuration": ("MaintenanceManagement","configuration-attestation","LGPD-13709"),
+    "oem-effectivity": ("Engineering","oem-applicability-proof","OEM-APPLICABILITY-PENDING"),
+    "equipment-configuration": ("MaintenanceManagement","configuration-attestation","OEM-APPLICABILITY-PENDING"),
     "evidence-legitimacy": ("Legal","authorized-evidence-package","LGPD-13709"),
     "version-lock": ("IT","version-lock","ASVS-5.0.0"),
     "revocation-reopen": ("IT","revocation-and-reopen-policy","NIST-800-63-4"),
@@ -118,7 +119,7 @@ def validate_fixture(raw,editorial):
             and editorial["externalImmutableAuditLogVerified"] is False
             and editorial["mayWriteToSap"] is False,
             "pilot: only canonical fictional editorial input allowed")
-    require(isinstance(x["sources"],list) and len(x["sources"])==3
+    require(isinstance(x["sources"],list) and len(x["sources"])==4
             and [s.get("sourceId") for s in x["sources"]]==list(SOURCE_LINKS),
             "pilot: known public reference list required")
     for s in x["sources"]:
