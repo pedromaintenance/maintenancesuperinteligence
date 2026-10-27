@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/editorial-review-assignment.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "draftId",
+    "caseFileId",
+    "declaredDiscipline",
+    "authorId",
+    "reviewerIds",
+    "adjudicatorId",
+    "custodianId",
+    "events"
+  ],
+  "properties": {
+    "draftId": {
+      "type": "string",
+      "pattern": "^SIM-NOTE-00[1-4]$"
+    },
+    "caseFileId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "declaredDiscipline": {
+      "enum": [
+        "lubrication",
+        "hydraulics",
+        "electronics"
+      ]
+    },
+    "authorId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewerIds": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "adjudicatorId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "custodianId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "events": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 6,
+      "items": {
+        "$ref": "editorial-review-event.schema.json"
+      }
+    }
+  }
+}
