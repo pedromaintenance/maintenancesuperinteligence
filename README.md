@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de revisão editorial simulada P&D v1.8.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de critérios de prontidão P&D v1.9.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -56,6 +56,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 16 — Rascunhos didáticos de notificações de manutenção](docs/CICLO_2026-10-24_NOTIFICACOES_DIDATICAS.md)
 - [Ciclo 17 — Rubrica de qualidade documental de notificações](docs/CICLO_2026-10-26_QUALIDADE_NOTIFICACOES.md)
 - [Ciclo 18 — Revisão editorial fictícia e governança de versões](docs/CICLO_2026-10-27_REVISAO_EDITORIAL.md)
+- [Ciclo 19 — Protocolo de prontidão para futuro piloto privado](docs/CICLO_2026-10-27_PRONTIDAO_PILOTO_PRIVADO.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -299,3 +300,16 @@ Para preparar os arquivos de entrada, siga a [documentação do Ciclo 17](docs/C
 O motor `editorial/review_protocol.py` usa **14 personas totalmente fictícias** e **16 eventos** em quatro rascunhos, incluindo dupla revisão por versão, divergência preservada, correção editorial simulada, mudança de contexto/OEM e revogação de perfil. Os estados são `requires_revision`, `unresolved_disagreement` e `pending_real_review` — **nunca aprovado por engenheiro**. Os digests SHA-256 permitem somente regressão e detecção de adulterações contra o corpus canônico, sem assinatura, identidade autenticada nem âncora externa.
 
 O GitHub Actions publica relatórios JSON/HTML temporários, e os testes bloqueiam autoaprovação, persona duplicada, competência incompatível, avaliação de revisão obsoleta, falso parecer, falsificação de assinatura e qualquer autorização SAP/ECM/liberação. A documentação é [Ciclo 18](docs/CICLO_2026-10-27_REVISAO_EDITORIAL.md).
+
+
+## Ciclo 19 — Contratos de aceite para futuro piloto privado
+
+O módulo `pilot/readiness.py` verifica uma **matriz pública de requisitos** para um futuro ambiente corporativo privado. A saída contém **13 controles sem evidências autenticadas**, **5 aceites externos pendentes**, **10 ameaças de segurança e governança** e quatro cenários fictícios de revalidação. A decisão permanece `blocked_no_external_evidence`; nenhum piloto foi iniciado ou aprovado.
+
+As exigências de identidade e aplicação usam referências primárias NIST SP 800-63-4, OWASP ASVS 5.0.0 e LGPD, com **efetividade OEM explicitamente separada como lacuna de engenharia não suprida**. O programa não importa documentos licenciados, dados de colaboradores, SAP, ECM ou telemetria. Contratos versionados, testes adversariais e relatórios HTML/JSON offline em `pilot/` compõem a entrega.
+
+```bash
+python -m pilot.readiness --snapshot build/fmea-public/fmea-public.snapshot.json --editorial build/editorial/review-protocol.v1.json --output build/pilot/readiness-report.v1.json --html build/pilot/readiness-report.v1.html
+```
+
+A reprodução exige gerar os arquivos públicos sintéticos dos Ciclos 13–18. Veja o [relatório técnico do Ciclo 19](docs/CICLO_2026-10-27_PRONTIDAO_PILOTO_PRIVADO.md).
