@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/evidence-sequencing-phase-result.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "phaseId",
+    "sequenceNumber",
+    "title",
+    "controlIds",
+    "plannedDeliverable",
+    "documentaryState",
+    "nextAction",
+    "externalExecutionAuthorized",
+    "validatedExitCriteriaCount",
+    "scheduleDate",
+    "estimatedCost",
+    "workHours"
+  ],
+  "properties": {
+    "phaseId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sequenceNumber": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "controlIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "plannedDeliverable": {
+      "type": "string",
+      "minLength": 1
+    },
+    "documentaryState": {
+      "const": "not_verified"
+    },
+    "nextAction": {
+      "const": "request_authorized_external_evidence_only"
+    },
+    "externalExecutionAuthorized": {
+      "const": false
+    },
+    "validatedExitCriteriaCount": {
+      "const": 0
+    },
+    "scheduleDate": {
+      "type": "null"
+    },
+    "estimatedCost": {
+      "type": "null"
+    },
+    "workHours": {
+      "type": "null"
+    }
+  }
+}
