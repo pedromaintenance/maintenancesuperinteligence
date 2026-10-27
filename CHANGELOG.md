@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.4.0 — 2026-10-27 — Ciclo 24
+
+- Criado revisor independente de **dez propostas fictícias de alteração do grafo** dos Ciclos 20–23, com diff de arestas, trocas de responsáveis, rejeição de supressão, ciclo e IDs desconhecidos.
+- Comparação de **169 pares possíveis** de alcance por grafo válido, distância mínima, contagem de caminhos e impacto em **100 casos** de regressão documental, usando oráculo Floyd–Warshall e precondições canônicas.
+- Testes de monotonicidade (adição não elimina alcance; remoção não cria alcance), veto de inversão sem parecer humano, invalidação editorial após hipótese de revisão OEM e controle de sigilo.
+- Gerados `pilot/graph-change-proposals.v1.json`, `pilot/graph_change_review.py`, 11 contratos JSON Schema, testes adversariais, CI e relatório offline JSON/HTML.
+- Nenhuma proposta edita o arquivo vigente; assinatura, identidade, competência, efetividade OEM e alçada real permanecem não verificadas.
+
+**Limite:** regressão sintética sobre dependências documentais, não conformidade de engenharia, decisão de intervenção, operação SAP ou mudança corporativa autorizada.
+
+
 ## 2.3.0 — 2026-10-27 — Ciclo 23
 
 - Criado oráculo versionado de 100 casos estruturais: 13 raízes, 78 pares, três mudanças de versão/identidade/configuração e seis cenários de contradição herdados.
