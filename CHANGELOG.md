@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.9.0 — 2026-10-28 — Ciclo 29
+
+- Protocolo de ensaio técnico com 12 casos fictícios exportados sem respostas e 24 pareceres simulados de dois revisores fictícios por caso.
+- Rubrica autoral de sete classes de falha: falsa causa raiz, OEM não validado, OS, liberação, ausência de abstenção, fonte ignorada e divergência editorial.
+- Comparador posterior ao gabarito editorial, preservação de dissenso, hashes de integridade, quatro JSON Schemas, testes adversariais, CI e relatórios offline.
+- **Não ocorreu avaliação humana independente real nem teste diagnóstico em equipamento**. Decisão NO GO permanente.
+
+
 ## 2.8.0 — 2026-10-27 — Ciclo 28
 
 - Construído conjunto adicional de 34 desafios sintéticos fora das sequências fixas do Ciclo 27: 32 em quatro domínios conhecidos e 2 domínios não modelados.

@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle 29 synthetic reviewer submission rehearsal",
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "realReviewerCount",
+    "reviewerIdentityValidated",
+    "independentReviewPerformed",
+    "realSignatures",
+    "submissions"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.review-rehearsal.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "synthetic_author_constructed_not_human"
+    },
+    "realReviewerCount": {
+      "const": 0
+    },
+    "reviewerIdentityValidated": {
+      "const": false
+    },
+    "independentReviewPerformed": {
+      "const": false
+    },
+    "realSignatures": {
+      "const": 0
+    },
+    "submissions": {
+      "type": "array",
+      "minItems": 24,
+      "maxItems": 24,
+      "items": {
+        "$ref": "#/$defs/submission"
+      }
+    }
+  },
+  "$defs": {
+    "submission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "caseId",
+        "reviewerAlias",
+        "questionId",
+        "abstainsFromDiagnosis",
+        "assertsRootCause",
+        "claimsOemApplicability",
+        "proposesWorkOrder",
+        "endorsesEquipmentRelease",
+        "overridesSourceWarning",
+        "realReviewerAuthenticated",
+        "realEngineeringSignoff"
+      ],
+      "properties": {
+        "caseId": {
+          "type": "string",
+          "pattern": "^SIM-GEN-[0-9]{3}$"
+        },
+        "reviewerAlias": {
+          "enum": [
+            "SIM-REVIEWER-A",
+            "SIM-REVIEWER-B"
+          ]
+        },
+        "questionId": {
+          "type": "string"
+        },
+        "abstainsFromDiagnosis": {
+          "type": "boolean"
+        },
+        "assertsRootCause": {
+          "type": "boolean"
+        },
+        "claimsOemApplicability": {
+          "type": "boolean"
+        },
+        "proposesWorkOrder": {
+          "type": "boolean"
+        },
+        "endorsesEquipmentRelease": {
+          "type": "boolean"
+        },
+        "overridesSourceWarning": {
+          "type": "boolean"
+        },
+        "realReviewerAuthenticated": {
+          "const": false
+        },
+        "realEngineeringSignoff": {
+          "const": false
+        }
+      }
+    }
+  }
+}

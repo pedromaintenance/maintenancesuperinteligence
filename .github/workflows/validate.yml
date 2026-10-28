@@ -1867,3 +1867,51 @@ jobs:
             build/benchmarks/cycle28-generalization.json
             build/benchmarks/cycle28-generalization.html
           retention-days: 14
+      - name: Run Cycle 29 oracle-excluded review rehearsal
+        run: |
+          python -m benchmarks.blind_review_protocol \
+            --blind-output build/benchmarks/cycle29-review-blind.json \
+            --output build/benchmarks/cycle29-review-report.json \
+            --html build/benchmarks/cycle29-review-report.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from benchmarks.blind_review_protocol import validate_blind, verify_report
+          root=Path("benchmarks")
+          source=json.loads((root/"generalization-challenges.v1.json").read_text())
+          oracle=json.loads((root/"generalization-expectations.v1.json").read_text())
+          submissions=json.loads((root/"review-rehearsal-submissions.v1.json").read_text())
+          rubric=json.loads((root/"review-error-rubric.v1.json").read_text())
+          packet=json.loads(Path("build/benchmarks/cycle29-review-blind.json").read_text())
+          report=json.loads(Path("build/benchmarks/cycle29-review-report.json").read_text())
+          validate_blind(packet,source)
+          verify_report(report,source,oracle,submissions,rubric)
+          assert packet["caseCount"]==12 and packet["authorOracleIncluded"] is False
+          assert report["casesReviewedInSimulation"]==12
+          assert report["fictionalReviewRecords"]==24
+          assert report["simulatedQuestionAgreement"]=={"same":8,"total":12}
+          assert report["authorOracleAgreement"]=={"matched":20,"total":24}
+          assert report["criticalFindings"]==5
+          assert report["independentExpertReviewCompleted"] is False
+          assert report["realReviewerIdentitiesVerified"] is False
+          assert report["realAgreementMeasured"] is False
+          assert report["mechanicalDiagnosticAccuracyMeasured"] is False
+          assert report["mayCreateWorkOrder"] is False
+          assert report["mayReleaseEquipment"] is False
+          assert report["decision"]=="no_go_external_review_still_required"
+          print("PASS: Cycle29 12 case packets, 24 fictional reviews, 5 simulated critical errors")
+          PY
+      - name: Publish Cycle 29 reviewer packet without answers
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle29-review-packet-oracle-excluded
+          path: build/benchmarks/cycle29-review-blind.json
+          retention-days: 14
+      - name: Publish Cycle 29 synthetic review findings
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle29-simulated-review-no-go
+          path: |
+            build/benchmarks/cycle29-review-report.json
+            build/benchmarks/cycle29-review-report.html
+          retention-days: 14

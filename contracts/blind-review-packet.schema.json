@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle 29 oracle-excluded reviewer export",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "sourceCasesDigest",
+    "caseCount",
+    "cases",
+    "authorOracleIncluded",
+    "realMachineDataIncluded",
+    "independentExpertsAssigned",
+    "operationallyApproved"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.blind-review-packet.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "oracle_excluded_from_export_not_truly_external_blind"
+    },
+    "sourceCasesDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "caseCount": {
+      "const": 12
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "$ref": "#/$defs/case"
+      }
+    },
+    "authorOracleIncluded": {
+      "const": false
+    },
+    "realMachineDataIncluded": {
+      "const": false
+    },
+    "independentExpertsAssigned": {
+      "const": 0
+    },
+    "operationallyApproved": {
+      "const": false
+    }
+  },
+  "$defs": {
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "caseId",
+        "system",
+        "fictionalSymptom",
+        "availableContext",
+        "missingContext",
+        "narrativeConflict",
+        "documentarySourceStatus",
+        "evidenceNature",
+        "equipmentSerialNumber",
+        "oemApplicabilityVerified",
+        "mayCreateWorkOrder",
+        "mayReleaseEquipment"
+      ],
+      "properties": {
+        "caseId": {
+          "type": "string",
+          "pattern": "^SIM-GEN-[0-9]{3}$"
+        },
+        "system": {
+          "type": "string"
+        },
+        "fictionalSymptom": {
+          "type": "string"
+        },
+        "availableContext": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missingContext": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "narrativeConflict": {
+          "type": "boolean"
+        },
+        "documentarySourceStatus": {
+          "enum": [
+            "credible_synthetic",
+            "unverified",
+            "contradictory",
+            "stale",
+            "revoked"
+          ]
+        },
+        "evidenceNature": {
+          "const": "synthetic_narrative_not_field_measurement"
+        },
+        "equipmentSerialNumber": {
+          "type": "null"
+        },
+        "oemApplicabilityVerified": {
+          "const": false
+        },
+        "mayCreateWorkOrder": {
+          "const": false
+        },
+        "mayReleaseEquipment": {
+          "const": false
+        }
+      }
+    }
+  }
+}

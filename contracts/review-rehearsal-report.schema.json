@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle 29 synthetic review discrepancy findings - no go",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "blindPacketDigest",
+    "sourceCasesDigest",
+    "editorialOracleDigest",
+    "submissionDigest",
+    "rubricDigest",
+    "casesReviewedInSimulation",
+    "fictionalReviewRecords",
+    "simulatedQuestionAgreement",
+    "authorOracleAgreement",
+    "criticalFindings",
+    "findings",
+    "cases",
+    "independentExpertReviewCompleted",
+    "realReviewerIdentitiesVerified",
+    "realAgreementMeasured",
+    "mechanicalDiagnosticAccuracyMeasured",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.review-rehearsal-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "author_simulated_review_no_real_experts"
+    },
+    "blindPacketDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceCasesDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "editorialOracleDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "submissionDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "rubricDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "casesReviewedInSimulation": {
+      "const": 12
+    },
+    "fictionalReviewRecords": {
+      "const": 24
+    },
+    "simulatedQuestionAgreement": {
+      "$ref": "#/$defs/agreement12"
+    },
+    "authorOracleAgreement": {
+      "$ref": "#/$defs/agreement24"
+    },
+    "criticalFindings": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/finding"
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "type": "object"
+      }
+    },
+    "independentExpertReviewCompleted": {
+      "const": false
+    },
+    "realReviewerIdentitiesVerified": {
+      "const": false
+    },
+    "realAgreementMeasured": {
+      "const": false
+    },
+    "mechanicalDiagnosticAccuracyMeasured": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_external_review_still_required"
+    }
+  },
+  "$defs": {
+    "agreement12": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "same",
+        "total"
+      ],
+      "properties": {
+        "same": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "total": {
+          "const": 12
+        }
+      }
+    },
+    "agreement24": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "matched",
+        "total"
+      ],
+      "properties": {
+        "matched": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 24
+        },
+        "total": {
+          "const": 24
+        }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "caseId",
+        "reviewerAlias",
+        "errorCode",
+        "severity",
+        "weight",
+        "syntheticReviewerBehavior",
+        "realSafetyIncident"
+      ],
+      "properties": {
+        "caseId": {
+          "type": "string"
+        },
+        "reviewerAlias": {
+          "type": "string"
+        },
+        "errorCode": {
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "critical",
+            "major",
+            "minor"
+          ]
+        },
+        "weight": {
+          "type": "integer"
+        },
+        "syntheticReviewerBehavior": {
+          "const": true
+        },
+        "realSafetyIncident": {
+          "const": false
+        }
+      }
+    }
+  }
+}
