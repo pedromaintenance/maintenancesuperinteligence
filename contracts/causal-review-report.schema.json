@@ -1,0 +1,291 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle35 editorial causal-relation challenge report NO GO",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "matrixDigest",
+    "parentDigest",
+    "mechanicalPolicyDigest",
+    "discriminationPolicyDigest",
+    "reviewPolicyDigest",
+    "submissionDigest",
+    "receiptDigest",
+    "sourceRuleCount",
+    "recordedUnverifiedChallenges",
+    "verifiedExpertReviewers",
+    "editorialTriageCounts",
+    "pendingIndependentResolutionCount",
+    "reviewedRules",
+    "auditChain",
+    "auditChainHead",
+    "auditChainAuthenticatesPeople",
+    "rulesExternallyReviewed",
+    "causalMechanismsFieldValidated",
+    "sourceApplicabilityPerSerialVerified",
+    "upstreamRulesAmended",
+    "mayExecuteTest",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.causal-review-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "enum": [
+        "editorial_review_rehearsal",
+        "unverified_private_submission_triage"
+      ]
+    },
+    "matrixDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "parentDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "mechanicalPolicyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "discriminationPolicyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewPolicyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "submissionDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "receiptDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceRuleCount": {
+      "const": 36
+    },
+    "recordedUnverifiedChallenges": {
+      "const": 72
+    },
+    "verifiedExpertReviewers": {
+      "const": 0
+    },
+    "editorialTriageCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "unresolved_dissent",
+        "revision_proposed_unapproved",
+        "removal_proposed_unapproved",
+        "support_insufficient",
+        "retain_as_unverified_hypothesis"
+      ],
+      "properties": {
+        "unresolved_dissent": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "revision_proposed_unapproved": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "removal_proposed_unapproved": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "support_insufficient": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "retain_as_unverified_hypothesis": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "pendingIndependentResolutionCount": {
+      "const": 36
+    },
+    "reviewedRules": {
+      "type": "array",
+      "minItems": 36,
+      "maxItems": 36,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ruleId",
+          "parentRecordId",
+          "sourceRuleOutcome",
+          "editorialReviewerAliases",
+          "recordedDispositions",
+          "challengeTypes",
+          "referencedGenericSources",
+          "hasProposedUnapprovedRevision",
+          "editorialTriage",
+          "requiresIndependentTechnicalResolution",
+          "technicalRelationValidated",
+          "mayChangeUpstreamRule"
+        ],
+        "properties": {
+          "ruleId": {
+            "type": "string"
+          },
+          "parentRecordId": {
+            "type": "string"
+          },
+          "sourceRuleOutcome": {
+            "enum": [
+              "supports_relative_hypothesis",
+              "weakens_relative_hypothesis",
+              "indeterminate"
+            ]
+          },
+          "editorialReviewerAliases": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "string"
+            }
+          },
+          "recordedDispositions": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "enum": [
+                "retain_for_study",
+                "revise_before_use",
+                "remove_from_proposed_taxonomy",
+                "cannot_assess"
+              ]
+            }
+          },
+          "challengeTypes": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "enum": [
+                "counterexample_unaddressed",
+                "causal_direction_uncertain",
+                "unverified_source_applicability",
+                "insufficient_discriminator"
+              ]
+            }
+          },
+          "referencedGenericSources": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "hasProposedUnapprovedRevision": {
+            "type": "boolean"
+          },
+          "editorialTriage": {
+            "enum": [
+              "unresolved_dissent",
+              "revision_proposed_unapproved",
+              "removal_proposed_unapproved",
+              "support_insufficient",
+              "retain_as_unverified_hypothesis"
+            ]
+          },
+          "requiresIndependentTechnicalResolution": {
+            "const": true
+          },
+          "technicalRelationValidated": {
+            "const": false
+          },
+          "mayChangeUpstreamRule": {
+            "const": false
+          }
+        }
+      }
+    },
+    "auditChain": {
+      "type": "array",
+      "minItems": 72,
+      "maxItems": 72,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sequence",
+          "reviewId",
+          "recordDigest",
+          "previousDigest",
+          "linkDigest"
+        ],
+        "properties": {
+          "sequence": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 72
+          },
+          "reviewId": {
+            "type": "string"
+          },
+          "recordDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "previousDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "linkDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "auditChainHead": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "auditChainAuthenticatesPeople": {
+      "const": false
+    },
+    "rulesExternallyReviewed": {
+      "const": false
+    },
+    "causalMechanismsFieldValidated": {
+      "const": false
+    },
+    "sourceApplicabilityPerSerialVerified": {
+      "const": false
+    },
+    "upstreamRulesAmended": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_independent_causal_review_required"
+    }
+  }
+}

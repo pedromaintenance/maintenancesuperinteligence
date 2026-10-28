@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.5.0 — 2026-10-28 — Ciclo 35
+
+- Implantado processo de contestação das 36 regras qualitativas do Ciclo 34: duas posições por regra, justificativa técnica, contraexemplo, referência genérica e proposta de edição quando solicitada.
+- Simulados 72 pareceres autorais **não humanos**: 12 relações em dissenso, 12 propostas de revisão sem aceite e 12 insuficientes para avaliar.
+- Controle de versões por digest do lote e recibo; encadeamento reproduzível dos 72 registros sem alegar assinatura, autenticação de identidade ou imutabilidade externa.
+- Modo opcional para processamento local de pareceres não verificados sob custódia privada, com exigência de recibo anterior e recusa de gravação em checkout público.
+- Quatro contratos JSON Schema, testes adversariais, HTML/JSON offline, documentação e CI. Nenhuma aprovação de diagnóstico, revisão independente ou alteração automática de relação causal.
+
+
 ## 3.4.0 — 2026-10-28 — Ciclo 34
 
 - Construída matriz qualitativa vinculada às 12 trilhas mecânicas do Ciclo 33, com 36 condições hipotéticas: 12 favorecem, 12 enfraquecem e 12 não discriminam.

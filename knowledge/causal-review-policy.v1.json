@@ -1,0 +1,24 @@
+{
+  "schema": "maintenance-superinteligence.causal-review-policy.v1",
+  "version": "1.0.0",
+  "purpose": "open_technical_challenge_triage_not_validation",
+  "requiredReviewersPerRule": 2,
+  "dispositions": [
+    "retain_for_study",
+    "revise_before_use",
+    "remove_from_proposed_taxonomy",
+    "cannot_assess"
+  ],
+  "challengeTypes": [
+    "counterexample_unaddressed",
+    "causal_direction_uncertain",
+    "unverified_source_applicability",
+    "insufficient_discriminator"
+  ],
+  "approvedIndependentReviewerCount": 0,
+  "realCausalValidationCompleted": false,
+  "canAmendUpstreamRules": false,
+  "mayExecuteTest": false,
+  "mayCreateWorkOrder": false,
+  "mayReleaseEquipment": false
+}

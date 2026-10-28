@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle35 causal critical review governance with zero signoff",
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "requiredReviewersPerRule",
+    "dispositions",
+    "challengeTypes",
+    "approvedIndependentReviewerCount",
+    "realCausalValidationCompleted",
+    "canAmendUpstreamRules",
+    "mayExecuteTest",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.causal-review-policy.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "open_technical_challenge_triage_not_validation"
+    },
+    "requiredReviewersPerRule": {
+      "const": 2
+    },
+    "dispositions": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "enum": [
+          "retain_for_study",
+          "revise_before_use",
+          "remove_from_proposed_taxonomy",
+          "cannot_assess"
+        ]
+      }
+    },
+    "challengeTypes": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "enum": [
+          "counterexample_unaddressed",
+          "causal_direction_uncertain",
+          "unverified_source_applicability",
+          "insufficient_discriminator"
+        ]
+      }
+    },
+    "approvedIndependentReviewerCount": {
+      "const": 0
+    },
+    "realCausalValidationCompleted": {
+      "const": false
+    },
+    "canAmendUpstreamRules": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}
