@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de avaliação adversarial de raciocínio mecânico P&D v2.8.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de ensaio de revisão técnica P&D v2.9.0 (28/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -66,6 +66,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 26 — Contestação e revogação](docs/CICLO_2026-10-27_CONTESTACAO_REVOGACAO.md)
 - [Ciclo 27 — Benchmark de raciocínio mecânico](docs/CICLO_2026-10-27_BENCHMARK_RACIOCINIO_MECANICO.md)
 - [Ciclo 28 — Generalização sintética e qualidade da proveniência](docs/CICLO_2026-10-27_GENERALIZACAO_ADVERSARIAL.md)
+- [Ciclo 29 — Protocolo para revisão independente](docs/CICLO_2026-10-28_PROTOCOLO_REVISAO_INDEPENDENTE.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -397,3 +398,7 @@ O módulo `benchmarks/mechanical_reasoning.py` avalia a seleção determinístic
 ## Ciclo 28 — Generalização adversarial controlada
 
 O benchmark `benchmarks/generalization_stress.py` avalia **34 cenários sintéticos novos** que não estavam no conjunto fixado do Ciclo 27. Uma camada separada bloqueia a progressão quando a proveniência está ausente, contraditória, obsoleta ou revogada; domínios não modelados levam a abstenção e encaminhamento. Compara o seletor inalterado do Ciclo 27 e o mesmo seletor precedido pela nova barreira documental. **A concordância é medida contra gabarito editorial criado pelo próprio projeto; não há revisão externa, casos reais nem acurácia diagnóstica mensurada.** Detalhes em [Ciclo 28](docs/CICLO_2026-10-27_GENERALIZACAO_ADVERSARIAL.md).
+
+## Ciclo 29 — Ensaio de revisão técnica
+
+O módulo `benchmarks/blind_review_protocol.py` exporta **12 casos fictícios sem o gabarito embutido**, compara **24 pareceres sintéticos** de dois personagens revisores e aponta erros críticos, relevantes e leves. O arquivo exportado omite expectativas, mas **o repositório público contém o gabarito**, portanto não se realizou avaliação efetivamente cega, revisão humana nem medição de acurácia diagnóstica. Divergências são preservadas; não geram consenso ou autorização de manutenção. [Método e limitações](docs/CICLO_2026-10-28_PROTOCOLO_REVISAO_INDEPENDENTE.md).
