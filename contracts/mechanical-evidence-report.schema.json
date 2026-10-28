@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle33 source attribution and 12-branch mechanical taxonomy report",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "manifestDigest",
+    "policyDigest",
+    "sourceCount",
+    "linkedSourceCount",
+    "recordCount",
+    "domains",
+    "physicalMechanismCandidates",
+    "diagnosticInterpretationConfounders",
+    "supportTypes",
+    "traceabilityPresent",
+    "realPhysicalFailureCasesReviewed",
+    "independentlyExpertValidated",
+    "oemSerialEffectivityValidated",
+    "realDiagnosticAccuracyEstablished",
+    "mayApproveTest",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.mechanical-evidence-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "traceable_technical_background_only"
+    },
+    "manifestDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sourceCount": {
+      "type": "integer",
+      "minimum": 5
+    },
+    "linkedSourceCount": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "recordCount": {
+      "const": 12
+    },
+    "domains": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "final_drive",
+        "hydraulics",
+        "electronics",
+        "cooling"
+      ],
+      "properties": {
+        "final_drive": {
+          "const": 3
+        },
+        "hydraulics": {
+          "const": 3
+        },
+        "electronics": {
+          "const": 3
+        },
+        "cooling": {
+          "const": 3
+        }
+      }
+    },
+    "physicalMechanismCandidates": {
+      "const": 9
+    },
+    "diagnosticInterpretationConfounders": {
+      "const": 3
+    },
+    "supportTypes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "analogy_across_equipment",
+        "manufacturer_general_indicator",
+        "manufacturer_tool_capability"
+      ],
+      "properties": {
+        "analogy_across_equipment": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "manufacturer_general_indicator": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "manufacturer_tool_capability": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "traceabilityPresent": {
+      "const": true
+    },
+    "realPhysicalFailureCasesReviewed": {
+      "const": 0
+    },
+    "independentlyExpertValidated": {
+      "const": false
+    },
+    "oemSerialEffectivityValidated": {
+      "const": false
+    },
+    "realDiagnosticAccuracyEstablished": {
+      "const": false
+    },
+    "mayApproveTest": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "technical_reference_only_no_go"
+    }
+  }
+}

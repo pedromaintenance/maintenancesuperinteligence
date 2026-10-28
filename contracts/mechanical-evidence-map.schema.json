@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle33 mechanical hypothesis evidence map, non-operational",
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "realDataIncluded",
+    "oemSeriesEffectivityEstablished",
+    "externalReviewCompleted",
+    "operationallyApproved",
+    "sourceCatalog",
+    "records"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.mechanical-evidence-map.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "traceable_nonoperational_mechanism_hypothesis_taxonomy"
+    },
+    "realDataIncluded": {
+      "const": false
+    },
+    "oemSeriesEffectivityEstablished": {
+      "const": false
+    },
+    "externalReviewCompleted": {
+      "const": false
+    },
+    "operationallyApproved": {
+      "const": false
+    },
+    "sourceCatalog": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "owner",
+          "title",
+          "url",
+          "sourceType",
+          "supportedScope",
+          "notSupported"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 64
+          },
+          "owner": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 20
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://"
+          },
+          "sourceType": {
+            "enum": [
+              "manufacturer_technical_article",
+              "public_standard_abstract",
+              "manufacturer_maintenance_guide",
+              "manufacturer_tool_description",
+              "manufacturer_product_overview"
+            ]
+          },
+          "supportedScope": {
+            "type": "string",
+            "minLength": 20
+          },
+          "notSupported": {
+            "type": "string",
+            "minLength": 20
+          }
+        }
+      }
+    },
+    "records": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "recordId",
+          "system",
+          "componentContext",
+          "function",
+          "functionalFailure",
+          "reportedSymptom",
+          "branchType",
+          "candidateOrConfounder",
+          "alternativeExplanation",
+          "nextDiscriminatingQuestion",
+          "contextGate",
+          "sourceIds",
+          "supportType",
+          "supportNote",
+          "informationState",
+          "rootCauseConfirmed",
+          "measurementsPerformed",
+          "oemEffectivityVerified",
+          "expertReviewCompleted",
+          "permissionToTest",
+          "permissionToCreateWorkOrder",
+          "permissionToReleaseMachine"
+        ],
+        "properties": {
+          "recordId": {
+            "type": "string",
+            "pattern": "^MECH-KB-[0-9]{3}$"
+          },
+          "system": {
+            "enum": [
+              "final_drive",
+              "hydraulics",
+              "electronics",
+              "cooling"
+            ]
+          },
+          "componentContext": {
+            "type": "string"
+          },
+          "function": {
+            "type": "string",
+            "minLength": 20
+          },
+          "functionalFailure": {
+            "type": "string",
+            "minLength": 20
+          },
+          "reportedSymptom": {
+            "type": "string",
+            "minLength": 20
+          },
+          "branchType": {
+            "enum": [
+              "physical_mechanism_candidate",
+              "interpretation_confounder"
+            ]
+          },
+          "candidateOrConfounder": {
+            "type": "string",
+            "minLength": 8
+          },
+          "alternativeExplanation": {
+            "type": "string",
+            "minLength": 20
+          },
+          "nextDiscriminatingQuestion": {
+            "type": "string",
+            "minLength": 20
+          },
+          "contextGate": {
+            "type": "string"
+          },
+          "sourceIds": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 3,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "supportType": {
+            "enum": [
+              "manufacturer_general_indicator",
+              "manufacturer_tool_capability",
+              "analogy_across_equipment"
+            ]
+          },
+          "supportNote": {
+            "type": "string",
+            "minLength": 20
+          },
+          "informationState": {
+            "const": "unverified_in_this_project"
+          },
+          "rootCauseConfirmed": {
+            "const": false
+          },
+          "measurementsPerformed": {
+            "const": false
+          },
+          "oemEffectivityVerified": {
+            "const": false
+          },
+          "expertReviewCompleted": {
+            "const": false
+          },
+          "permissionToTest": {
+            "const": false
+          },
+          "permissionToCreateWorkOrder": {
+            "const": false
+          },
+          "permissionToReleaseMachine": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}

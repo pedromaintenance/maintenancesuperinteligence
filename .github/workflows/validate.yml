@@ -1982,3 +1982,41 @@ jobs:
           assert not list(Path("benchmarks").glob("private-quality-receipt*.json"))
           print("PASS: Cycle32 private quality gate required before release")
           PY
+      - name: Validate Cycle 33 mechanical source-backed hypothesis taxonomy
+        run: |
+          python -m unittest tests.test_mechanical_evidence -v
+          python -m knowledge.mechanical_evidence \
+            --output build/benchmarks/cycle33-mechanical-evidence.json \
+            --html build/benchmarks/cycle33-mechanical-evidence.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from knowledge.mechanical_evidence import evaluate,verify_report
+          manifest=json.loads(Path("knowledge/mechanical-evidence-map.v1.json").read_text())
+          policy=json.loads(Path("knowledge/mechanical-evidence-policy.v1.json").read_text())
+          report=json.loads(Path("build/benchmarks/cycle33-mechanical-evidence.json").read_text())
+          verify_report(report,manifest,policy)
+          assert report["sourceCount"]==7
+          assert report["linkedSourceCount"]==6
+          assert report["recordCount"]==12
+          assert report["domains"]==dict.fromkeys(["final_drive","hydraulics","electronics","cooling"],3)
+          assert report["physicalMechanismCandidates"]==9
+          assert report["diagnosticInterpretationConfounders"]==3
+          assert report["realPhysicalFailureCasesReviewed"]==0
+          assert report["independentlyExpertValidated"] is False
+          assert report["oemSerialEffectivityValidated"] is False
+          assert report["realDiagnosticAccuracyEstablished"] is False
+          assert report["mayApproveTest"] is False
+          assert report["mayCreateWorkOrder"] is False
+          assert report["mayReleaseEquipment"] is False
+          assert report["decision"]=="technical_reference_only_no_go"
+          print("PASS: 12 traceable author hypotheses, 0 field proof, NO GO")
+          PY
+      - name: Publish Cycle 33 public reference hypothesis reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle33-mechanical-reference-map-no-go
+          path: |
+            build/benchmarks/cycle33-mechanical-evidence.json
+            build/benchmarks/cycle33-mechanical-evidence.html
+          retention-days: 14
