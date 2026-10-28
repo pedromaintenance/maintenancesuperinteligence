@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle33 technical evidence policy and proof guardrails",
+  "required": [
+    "schema",
+    "version",
+    "expectedDomains",
+    "minimumRecordsByDomain",
+    "allowedSupportTypes",
+    "externalTechnicalReviewCompleted",
+    "validationAgainstFieldCases",
+    "mayApproveRepair",
+    "mayApproveTest",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.mechanical-evidence-policy.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "expectedDomains": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "enum": [
+          "final_drive",
+          "hydraulics",
+          "electronics",
+          "cooling"
+        ]
+      }
+    },
+    "minimumRecordsByDomain": {
+      "type": "integer",
+      "minimum": 3
+    },
+    "allowedSupportTypes": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "manufacturer_general_indicator",
+          "manufacturer_tool_capability",
+          "analogy_across_equipment"
+        ]
+      }
+    },
+    "externalTechnicalReviewCompleted": {
+      "const": false
+    },
+    "validationAgainstFieldCases": {
+      "const": false
+    },
+    "mayApproveRepair": {
+      "const": false
+    },
+    "mayApproveTest": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}

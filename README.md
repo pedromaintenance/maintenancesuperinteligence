@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: custódia privada condicionada à auditoria de qualidade P&D v3.2.0 (28/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: taxonomia mecânica de hipóteses com referências rastreáveis P&D v3.3.0 (28/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -70,6 +70,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 30 — Custódia separada de casos inéditos e gabarito](docs/CICLO_2026-10-28_CUSTODIA_AVALIACAO_EXTERNA.md)
 - [Ciclo 31 — Qualidade de conjuntos e controle de vazamento](docs/CICLO_2026-10-28_QUALIDADE_CONJUNTO_VALIDACAO.md)
 - [Ciclo 32 — Qualidade privada obrigatória antes da distribuição](docs/CICLO_2026-10-28_QUALIDADE_CUSTODIA_PRIVADA.md)
+- [Ciclo 33 — Taxonomia mecânica com fontes técnicas verificáveis](docs/CICLO_2026-10-28_TAXONOMIA_MECANICA_FUNDAMENTADA.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -417,3 +418,7 @@ O módulo `benchmarks/validation_set_quality.py` examina **26 casos sintéticos*
 ## Ciclo 32 — Qualidade privada obrigatória antes de distribuir casos
 
 O CLI `benchmarks/heldout_study.py prepare` exige agora manifesto e política de qualidade privados, mantidos fora do Git. O auditor compara casos de teste ao pacote custodial por ID, narrativa, domínio, status documental e digest, verifica vazamentos e exige cobertura mínima. **Falha de qualidade bloqueia a geração do pacote, lock e recibo.** O `score` reavalia metadados e comprovante antes da pontuação. Os controles são documentais, não validação mecânica independente. [Detalhes técnicos](docs/CICLO_2026-10-28_QUALIDADE_CUSTODIA_PRIVADA.md).
+
+## Ciclo 33 — Taxonomia técnica com rastreabilidade das hipóteses
+
+O arquivo `knowledge/mechanical-evidence-map.v1.json` distingue **9 mecanismos físicos candidatos** de **3 fatores que confundem a interpretação**, organizados em quatro sistemas: comando final, hidráulica, eletrônica e arrefecimento. Cada relação contém função, falha funcional, relato, alternativa, próxima pergunta discriminante, fonte pública do fabricante ou resumo público de norma e **limite explícito de aplicabilidade**. Uma fonte genérica não comprova falha, causa raiz, série OEM ou procedimento autorizado de um equipamento específico. Executável local, três contratos, testes adversariais e relatório JSON/HTML offline em `knowledge/mechanical_evidence.py`. [Fundamentação e limitações](docs/CICLO_2026-10-28_TAXONOMIA_MECANICA_FUNDAMENTADA.md).

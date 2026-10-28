@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.3.0 — 2026-10-28 — Ciclo 33
+
+- Adicionada taxonomia técnica de 12 trilhas exploratórias para quatro famílias: comando final, hidráulica, eletrônica e arrefecimento.
+- Diferenciados **nove mecanismos físicos candidatos** e **três confundidores de interpretação**, sem promover anomalia de óleo, código eletrônico ou sintoma a causa raiz.
+- Cada trilha documenta função, falha funcional, sintoma relatado, mecanismo/hipótese, alternativa, pergunta discriminante, fonte geral com URL e ressalva de aplicabilidade.
+- Catálogo com referências públicas de fabricantes (SKF, Caterpillar, HYDAC, Perkins) e resumo aberto de ISO 15243; texto explicativo autoral, sem transcrição de norma ou procedimentos licenciados.
+- Motor de integridade, três contratos JSON Schema, testes adversariais, relatórios JSON/HTML offline, documentação e CI.
+- **Não houve análise de máquina real, verificação OEM por série, teste de oficina ou revisão humana independente; zero autoridade operacional.**
+
+
 ## 3.2.0 — 2026-10-28 — Ciclo 32
 
 - Integrado gate obrigatório de qualidade documental privada ao CLI `prepare` e `score` do Ciclo 30.

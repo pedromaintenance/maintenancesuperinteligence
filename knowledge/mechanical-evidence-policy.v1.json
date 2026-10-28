@@ -1,0 +1,21 @@
+{
+  "schema": "maintenance-superinteligence.mechanical-evidence-policy.v1",
+  "version": "1.0.0",
+  "expectedDomains": [
+    "final_drive",
+    "hydraulics",
+    "electronics",
+    "cooling"
+  ],
+  "minimumRecordsByDomain": 3,
+  "allowedSupportTypes": [
+    "analogy_across_equipment",
+    "manufacturer_general_indicator",
+    "manufacturer_tool_capability"
+  ],
+  "externalTechnicalReviewCompleted": false,
+  "validationAgainstFieldCases": false,
+  "mayApproveRepair": false,
+  "mayApproveTest": false,
+  "mayReleaseEquipment": false
+}
