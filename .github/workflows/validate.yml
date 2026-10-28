@@ -2063,3 +2063,51 @@ jobs:
             build/benchmarks/cycle34-discrimination.json
             build/benchmarks/cycle34-discrimination.html
           retention-days: 14
+      - name: Test Cycle 35 causal critical review and unresolved dissent
+        run: |
+          python -m unittest tests.test_causal_review -v
+          python -m knowledge.causal_review \
+            --output build/benchmarks/cycle35-causal-review.json \
+            --html build/benchmarks/cycle35-causal-review.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from knowledge.causal_review import (
+              evaluate, verify_report, freeze_receipt, TRIAGE,
+          )
+          def load(p): return json.loads(Path(p).read_text(encoding="utf-8"))
+          batch=load("knowledge/causal-review-submissions.v1.json")
+          matrix=load("knowledge/discriminating-evidence-matrix.v1.json")
+          parent=load("knowledge/mechanical-evidence-map.v1.json")
+          mp=load("knowledge/mechanical-evidence-policy.v1.json")
+          dp=load("knowledge/discrimination-policy.v1.json")
+          policy=load("knowledge/causal-review-policy.v1.json")
+          receipt=freeze_receipt(batch,matrix,policy)
+          report=load("build/benchmarks/cycle35-causal-review.json")
+          verify_report(report,batch,matrix,parent,mp,dp,policy,receipt)
+          assert report["sourceRuleCount"]==36
+          assert report["recordedUnverifiedChallenges"]==72
+          assert report["verifiedExpertReviewers"]==0
+          assert report["editorialTriageCounts"]=={
+              "unresolved_dissent":12,"revision_proposed_unapproved":12,
+              "removal_proposed_unapproved":0,"support_insufficient":12,
+              "retain_as_unverified_hypothesis":0}
+          assert report["pendingIndependentResolutionCount"]==36
+          assert report["auditChainAuthenticatesPeople"] is False
+          assert report["rulesExternallyReviewed"] is False
+          assert report["causalMechanismsFieldValidated"] is False
+          assert report["upstreamRulesAmended"] is False
+          assert report["mayExecuteTest"] is False
+          assert report["mayCreateWorkOrder"] is False
+          assert report["mayReleaseEquipment"] is False
+          assert report["decision"]=="no_go_independent_causal_review_required"
+          print("PASS: 36 fictional relationship challenges, 72 author comments, no-go")
+          PY
+      - name: Publish Cycle 35 synthetic causal challenge summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle35-causal-challenge-rehearsal-no-go
+          path: |
+            build/benchmarks/cycle35-causal-review.json
+            build/benchmarks/cycle35-causal-review.html
+          retention-days: 14

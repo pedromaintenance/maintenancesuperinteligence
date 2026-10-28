@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle35 hypothetical objections and unverified review intake",
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "authenticHumanReviewCount",
+    "independentTechnicalReviewCompleted",
+    "submissions"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.causal-review-submissions.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "enum": [
+        "synthetic_author_simulated_not_independent",
+        "unverified_private_reviewer_submissions"
+      ]
+    },
+    "authenticHumanReviewCount": {
+      "const": 0
+    },
+    "independentTechnicalReviewCompleted": {
+      "const": false
+    },
+    "submissions": {
+      "type": "array",
+      "minItems": 72,
+      "maxItems": 72,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "reviewId",
+          "ruleId",
+          "parentRecordId",
+          "ruleText",
+          "reviewerAlias",
+          "reviewerIdentityVerified",
+          "independentExpertStatusVerified",
+          "disposition",
+          "challengeType",
+          "argument",
+          "counterexample",
+          "sourceIds",
+          "sourceScope",
+          "proposedRevision",
+          "observedCaseEvidence",
+          "rootCauseEstablished",
+          "oemEffectivityVerified",
+          "engineeringSignoff",
+          "mayAuthorizeTest",
+          "mayCreateWorkOrder",
+          "mayReleaseEquipment"
+        ],
+        "properties": {
+          "reviewId": {
+            "type": "string",
+            "pattern": "^(SIM|REV)-CR-[0-9]{3}-[12]$"
+          },
+          "ruleId": {
+            "type": "string",
+            "pattern": "^DISC-[0-9]{3}-[123]$"
+          },
+          "parentRecordId": {
+            "type": "string",
+            "pattern": "^MECH-KB-[0-9]{3}$"
+          },
+          "ruleText": {
+            "type": "string",
+            "minLength": 35
+          },
+          "reviewerAlias": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 30
+          },
+          "reviewerIdentityVerified": {
+            "const": false
+          },
+          "independentExpertStatusVerified": {
+            "const": false
+          },
+          "disposition": {
+            "enum": [
+              "retain_for_study",
+              "revise_before_use",
+              "remove_from_proposed_taxonomy",
+              "cannot_assess"
+            ]
+          },
+          "challengeType": {
+            "enum": [
+              "counterexample_unaddressed",
+              "causal_direction_uncertain",
+              "unverified_source_applicability",
+              "insufficient_discriminator"
+            ]
+          },
+          "argument": {
+            "type": "string",
+            "minLength": 65
+          },
+          "counterexample": {
+            "type": "string",
+            "minLength": 55
+          },
+          "sourceIds": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 3,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "sourceScope": {
+            "const": "generic_manufacturer_context_not_case_specific_proof"
+          },
+          "proposedRevision": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "observedCaseEvidence": {
+            "const": false
+          },
+          "rootCauseEstablished": {
+            "const": false
+          },
+          "oemEffectivityVerified": {
+            "const": false
+          },
+          "engineeringSignoff": {
+            "const": false
+          },
+          "mayAuthorizeTest": {
+            "const": false
+          },
+          "mayCreateWorkOrder": {
+            "const": false
+          },
+          "mayReleaseEquipment": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}

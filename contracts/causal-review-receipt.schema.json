@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle35 review batch digest receipt (not an identity signature)",
+  "required": [
+    "schema",
+    "version",
+    "matrixDigest",
+    "batchDigest",
+    "policyDigest",
+    "signsOrAuthenticatesReviewer",
+    "independentReviewValidated",
+    "frozen"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.causal-review-receipt.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "matrixDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "batchDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "signsOrAuthenticatesReviewer": {
+      "const": false
+    },
+    "independentReviewValidated": {
+      "const": false
+    },
+    "frozen": {
+      "const": true
+    }
+  }
+}

@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: matriz de evidências discriminantes e conflitos causais P&D v3.4.0 (28/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protocolo de contestação causal com trilha auditável P&D v3.5.0 (28/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -72,6 +72,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 32 — Qualidade privada obrigatória antes da distribuição](docs/CICLO_2026-10-28_QUALIDADE_CUSTODIA_PRIVADA.md)
 - [Ciclo 33 — Taxonomia mecânica com fontes técnicas verificáveis](docs/CICLO_2026-10-28_TAXONOMIA_MECANICA_FUNDAMENTADA.md)
 - [Ciclo 34 — Matriz discriminante e abstenção por conflito](docs/CICLO_2026-10-28_MATRIZ_EVIDENCIAS_DISCRIMINANTES.md)
+- [Ciclo 35 — Contestação técnica e dissenso sem homologação](docs/CICLO_2026-10-28_REVISAO_CRITICA_RELACOES_CAUSAIS.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -427,3 +428,7 @@ O arquivo `knowledge/mechanical-evidence-map.v1.json` distingue **9 mecanismos f
 ## Ciclo 34 — Evidências que favorecem, enfraquecem ou não discriminam
 
 A matriz `knowledge/discriminating-evidence-matrix.v1.json` vincula a cada uma das 12 trilhas do Ciclo 33 três **condições hipotéticas editoriais**: favorável, contrária e inconclusiva. O avaliador `knowledge/discriminating_evidence.py` interpreta **48 cenários inteiramente fictícios** e preserva conflitos sem afirmar causa raiz. As fontes de fabricantes herdadas do Ciclo 33 sustentam somente o contexto técnico geral; os cenários e a relação com a hipótese **não são resultados de campo, ensaios OEM nem validação independente**. Quatro contratos JSON Schema, testes adversariais, relatórios JSON/HTML offline e CI. [Limites e modelo causal](docs/CICLO_2026-10-28_MATRIZ_EVIDENCIAS_DISCRIMINANTES.md).
+
+## Ciclo 35 — Revisão crítica de relações causais, sem aceite automático
+
+O fluxo `knowledge/causal_review.py` registra dois pareceres, objeções, contraexemplos, fonte geral e eventual proposta de correção para cada uma das **36 relações condicionais** do Ciclo 34. A demonstração pública contém **72 opiniões de revisores fictícios** e preserva **12 divergências, 12 propostas de revisão editorial e 12 insuficiências de suporte**, sem editar a matriz original. Cada entrada possui digest SHA-256 vinculado à anterior, mas **cadeia de hashes não autentica pessoas nem oferece imutabilidade quando o custodiante controla todos os arquivos**. Um modo local opcional recebe pareceres não verificados fora do repositório, sob recibo congelado e sempre com decisão `NO GO` operacional. [Critérios e limites](docs/CICLO_2026-10-28_REVISAO_CRITICA_RELACOES_CAUSAIS.md).
