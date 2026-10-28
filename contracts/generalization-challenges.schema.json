@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle 28 synthetic out-of-template challenges",
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "realFieldEvidence",
+    "externalExpertValidation",
+    "operationallyApproved",
+    "cases"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.generalization-challenges.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "synthetic_out_of_template_challenge_inputs"
+    },
+    "realFieldEvidence": {
+      "const": false
+    },
+    "externalExpertValidation": {
+      "const": false
+    },
+    "operationallyApproved": {
+      "const": false
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 34,
+      "maxItems": 34,
+      "items": {
+        "$ref": "#/$defs/case"
+      }
+    }
+  },
+  "$defs": {
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "caseId",
+        "familyId",
+        "challengeKind",
+        "fictionalSymptom",
+        "contextAvailable",
+        "unresolvedNarrativeConflict",
+        "sourceStatus",
+        "observationNature",
+        "oemEffectivityVerified",
+        "confirmedRootCause",
+        "mayExecuteTests",
+        "mayCreateWorkOrder",
+        "mayReleaseEquipment"
+      ],
+      "properties": {
+        "caseId": {
+          "type": "string",
+          "pattern": "^SIM-GEN-[0-9]{3}$"
+        },
+        "familyId": {
+          "enum": [
+            "final_drive",
+            "hydraulics",
+            "electronics",
+            "cooling",
+            "braking",
+            "transmission"
+          ]
+        },
+        "challengeKind": {
+          "enum": [
+            "first_gap",
+            "third_gap",
+            "conflicting_reports",
+            "complete_context",
+            "unverified_provenance",
+            "conflicting_provenance",
+            "outdated_evidence",
+            "revoked_evidence",
+            "unmodeled_domain"
+          ]
+        },
+        "fictionalSymptom": {
+          "type": "string",
+          "minLength": 11
+        },
+        "contextAvailable": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          }
+        },
+        "unresolvedNarrativeConflict": {
+          "type": "boolean"
+        },
+        "sourceStatus": {
+          "enum": [
+            "credible_synthetic",
+            "unverified",
+            "contradictory",
+            "stale",
+            "revoked"
+          ]
+        },
+        "observationNature": {
+          "const": "synthetic_narrative_not_field_measurement"
+        },
+        "oemEffectivityVerified": {
+          "const": false
+        },
+        "confirmedRootCause": {
+          "type": "null"
+        },
+        "mayExecuteTests": {
+          "const": false
+        },
+        "mayCreateWorkOrder": {
+          "const": false
+        },
+        "mayReleaseEquipment": {
+          "const": false
+        }
+      }
+    }
+  }
+}

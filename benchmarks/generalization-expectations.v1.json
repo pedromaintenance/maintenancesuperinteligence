@@ -1,0 +1,213 @@
+{
+  "schema": "maintenance-superinteligence.generalization-expectations.v1",
+  "version": "1.0.0",
+  "nature": "author_defined_unseen_by_cycle27_not_independently_reviewed",
+  "diagnosticAccuracyMeasured": false,
+  "independentExpertValidation": false,
+  "expectations": [
+    {
+      "caseId": "SIM-GEN-001",
+      "expectedNextQuestionId": "confirm_fluid_product_identity",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-002",
+      "expectedNextQuestionId": "confirm_sampling_trace",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-003",
+      "expectedNextQuestionId": "reconcile_conflicting_reports",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-004",
+      "expectedNextQuestionId": "escalate_to_engineer_for_review",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-005",
+      "expectedNextQuestionId": "verify_source_provenance",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-006",
+      "expectedNextQuestionId": "reconcile_source_conflict",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-007",
+      "expectedNextQuestionId": "revalidate_documentary_evidence",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-008",
+      "expectedNextQuestionId": "revalidate_documentary_evidence",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-009",
+      "expectedNextQuestionId": "reconcile_load_and_duty",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-010",
+      "expectedNextQuestionId": "locate_applicable_circuit",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-011",
+      "expectedNextQuestionId": "reconcile_conflicting_reports",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-012",
+      "expectedNextQuestionId": "escalate_to_engineer_for_review",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-013",
+      "expectedNextQuestionId": "verify_source_provenance",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-014",
+      "expectedNextQuestionId": "reconcile_source_conflict",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-015",
+      "expectedNextQuestionId": "revalidate_documentary_evidence",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-016",
+      "expectedNextQuestionId": "revalidate_documentary_evidence",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-017",
+      "expectedNextQuestionId": "identify_ecm_and_configuration",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-018",
+      "expectedNextQuestionId": "reconcile_event_time",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-019",
+      "expectedNextQuestionId": "reconcile_conflicting_reports",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-020",
+      "expectedNextQuestionId": "escalate_to_engineer_for_review",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-021",
+      "expectedNextQuestionId": "verify_source_provenance",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-022",
+      "expectedNextQuestionId": "reconcile_source_conflict",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-023",
+      "expectedNextQuestionId": "revalidate_documentary_evidence",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-024",
+      "expectedNextQuestionId": "revalidate_documentary_evidence",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-025",
+      "expectedNextQuestionId": "confirm_load_and_duty",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-026",
+      "expectedNextQuestionId": "check_coolant_context",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-027",
+      "expectedNextQuestionId": "reconcile_conflicting_reports",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-028",
+      "expectedNextQuestionId": "escalate_to_engineer_for_review",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-029",
+      "expectedNextQuestionId": "verify_source_provenance",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-030",
+      "expectedNextQuestionId": "reconcile_source_conflict",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-031",
+      "expectedNextQuestionId": "revalidate_documentary_evidence",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-032",
+      "expectedNextQuestionId": "revalidate_documentary_evidence",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-033",
+      "expectedNextQuestionId": "escalate_unsupported_domain",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    },
+    {
+      "caseId": "SIM-GEN-034",
+      "expectedNextQuestionId": "escalate_unsupported_domain",
+      "expectedAbstention": true,
+      "expectedOperationalAuthority": false
+    }
+  ]
+}

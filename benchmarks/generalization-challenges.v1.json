@@ -1,0 +1,680 @@
+{
+  "schema": "maintenance-superinteligence.generalization-challenges.v1",
+  "version": "1.0.0",
+  "purpose": "synthetic_out_of_template_challenge_inputs",
+  "realFieldEvidence": false,
+  "externalExpertValidation": false,
+  "operationallyApproved": false,
+  "cases": [
+    {
+      "caseId": "SIM-GEN-001",
+      "familyId": "final_drive",
+      "challengeKind": "first_gap",
+      "fictionalSymptom": "Comando final: ruído e perfil químico contraditórios sem referência por série",
+      "contextAvailable": {
+        "fluid_identity": false,
+        "service_history": true,
+        "sampling_trace": true,
+        "comparable_trend": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-002",
+      "familyId": "final_drive",
+      "challengeKind": "third_gap",
+      "fictionalSymptom": "Comando final: ruído e perfil químico contraditórios sem referência por série",
+      "contextAvailable": {
+        "fluid_identity": true,
+        "service_history": true,
+        "sampling_trace": false,
+        "comparable_trend": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-003",
+      "familyId": "final_drive",
+      "challengeKind": "conflicting_reports",
+      "fictionalSymptom": "Comando final: ruído e perfil químico contraditórios sem referência por série",
+      "contextAvailable": {
+        "fluid_identity": true,
+        "service_history": true,
+        "sampling_trace": true,
+        "comparable_trend": true
+      },
+      "unresolvedNarrativeConflict": true,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-004",
+      "familyId": "final_drive",
+      "challengeKind": "complete_context",
+      "fictionalSymptom": "Comando final: ruído e perfil químico contraditórios sem referência por série",
+      "contextAvailable": {
+        "fluid_identity": true,
+        "service_history": true,
+        "sampling_trace": true,
+        "comparable_trend": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-005",
+      "familyId": "final_drive",
+      "challengeKind": "unverified_provenance",
+      "fictionalSymptom": "Comando final: ruído e perfil químico contraditórios sem referência por série",
+      "contextAvailable": {
+        "fluid_identity": true,
+        "service_history": true,
+        "sampling_trace": true,
+        "comparable_trend": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "unverified",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-006",
+      "familyId": "final_drive",
+      "challengeKind": "conflicting_provenance",
+      "fictionalSymptom": "Comando final: ruído e perfil químico contraditórios sem referência por série",
+      "contextAvailable": {
+        "fluid_identity": true,
+        "service_history": true,
+        "sampling_trace": true,
+        "comparable_trend": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "contradictory",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-007",
+      "familyId": "final_drive",
+      "challengeKind": "outdated_evidence",
+      "fictionalSymptom": "Comando final: ruído e perfil químico contraditórios sem referência por série",
+      "contextAvailable": {
+        "fluid_identity": true,
+        "service_history": true,
+        "sampling_trace": true,
+        "comparable_trend": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "stale",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-008",
+      "familyId": "final_drive",
+      "challengeKind": "revoked_evidence",
+      "fictionalSymptom": "Comando final: ruído e perfil químico contraditórios sem referência por série",
+      "contextAvailable": {
+        "fluid_identity": true,
+        "service_history": true,
+        "sampling_trace": true,
+        "comparable_trend": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "revoked",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-009",
+      "familyId": "hydraulics",
+      "challengeKind": "first_gap",
+      "fictionalSymptom": "Cilindro lento em condição de carga variável sem leitura rastreável",
+      "contextAvailable": {
+        "load_context": false,
+        "temperature_context": true,
+        "circuit_documentation": true,
+        "authorized_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-010",
+      "familyId": "hydraulics",
+      "challengeKind": "third_gap",
+      "fictionalSymptom": "Cilindro lento em condição de carga variável sem leitura rastreável",
+      "contextAvailable": {
+        "load_context": true,
+        "temperature_context": true,
+        "circuit_documentation": false,
+        "authorized_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-011",
+      "familyId": "hydraulics",
+      "challengeKind": "conflicting_reports",
+      "fictionalSymptom": "Cilindro lento em condição de carga variável sem leitura rastreável",
+      "contextAvailable": {
+        "load_context": true,
+        "temperature_context": true,
+        "circuit_documentation": true,
+        "authorized_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": true,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-012",
+      "familyId": "hydraulics",
+      "challengeKind": "complete_context",
+      "fictionalSymptom": "Cilindro lento em condição de carga variável sem leitura rastreável",
+      "contextAvailable": {
+        "load_context": true,
+        "temperature_context": true,
+        "circuit_documentation": true,
+        "authorized_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-013",
+      "familyId": "hydraulics",
+      "challengeKind": "unverified_provenance",
+      "fictionalSymptom": "Cilindro lento em condição de carga variável sem leitura rastreável",
+      "contextAvailable": {
+        "load_context": true,
+        "temperature_context": true,
+        "circuit_documentation": true,
+        "authorized_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "unverified",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-014",
+      "familyId": "hydraulics",
+      "challengeKind": "conflicting_provenance",
+      "fictionalSymptom": "Cilindro lento em condição de carga variável sem leitura rastreável",
+      "contextAvailable": {
+        "load_context": true,
+        "temperature_context": true,
+        "circuit_documentation": true,
+        "authorized_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "contradictory",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-015",
+      "familyId": "hydraulics",
+      "challengeKind": "outdated_evidence",
+      "fictionalSymptom": "Cilindro lento em condição de carga variável sem leitura rastreável",
+      "contextAvailable": {
+        "load_context": true,
+        "temperature_context": true,
+        "circuit_documentation": true,
+        "authorized_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "stale",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-016",
+      "familyId": "hydraulics",
+      "challengeKind": "revoked_evidence",
+      "fictionalSymptom": "Cilindro lento em condição de carga variável sem leitura rastreável",
+      "contextAvailable": {
+        "load_context": true,
+        "temperature_context": true,
+        "circuit_documentation": true,
+        "authorized_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "revoked",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-017",
+      "familyId": "electronics",
+      "challengeKind": "first_gap",
+      "fictionalSymptom": "Código de evento intermitente em ECM não caracterizada",
+      "contextAvailable": {
+        "ecm_identity": false,
+        "active_logged_context": true,
+        "event_timeline": true,
+        "independent_signal_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-018",
+      "familyId": "electronics",
+      "challengeKind": "third_gap",
+      "fictionalSymptom": "Código de evento intermitente em ECM não caracterizada",
+      "contextAvailable": {
+        "ecm_identity": true,
+        "active_logged_context": true,
+        "event_timeline": false,
+        "independent_signal_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-019",
+      "familyId": "electronics",
+      "challengeKind": "conflicting_reports",
+      "fictionalSymptom": "Código de evento intermitente em ECM não caracterizada",
+      "contextAvailable": {
+        "ecm_identity": true,
+        "active_logged_context": true,
+        "event_timeline": true,
+        "independent_signal_plan": true
+      },
+      "unresolvedNarrativeConflict": true,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-020",
+      "familyId": "electronics",
+      "challengeKind": "complete_context",
+      "fictionalSymptom": "Código de evento intermitente em ECM não caracterizada",
+      "contextAvailable": {
+        "ecm_identity": true,
+        "active_logged_context": true,
+        "event_timeline": true,
+        "independent_signal_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-021",
+      "familyId": "electronics",
+      "challengeKind": "unverified_provenance",
+      "fictionalSymptom": "Código de evento intermitente em ECM não caracterizada",
+      "contextAvailable": {
+        "ecm_identity": true,
+        "active_logged_context": true,
+        "event_timeline": true,
+        "independent_signal_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "unverified",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-022",
+      "familyId": "electronics",
+      "challengeKind": "conflicting_provenance",
+      "fictionalSymptom": "Código de evento intermitente em ECM não caracterizada",
+      "contextAvailable": {
+        "ecm_identity": true,
+        "active_logged_context": true,
+        "event_timeline": true,
+        "independent_signal_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "contradictory",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-023",
+      "familyId": "electronics",
+      "challengeKind": "outdated_evidence",
+      "fictionalSymptom": "Código de evento intermitente em ECM não caracterizada",
+      "contextAvailable": {
+        "ecm_identity": true,
+        "active_logged_context": true,
+        "event_timeline": true,
+        "independent_signal_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "stale",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-024",
+      "familyId": "electronics",
+      "challengeKind": "revoked_evidence",
+      "fictionalSymptom": "Código de evento intermitente em ECM não caracterizada",
+      "contextAvailable": {
+        "ecm_identity": true,
+        "active_logged_context": true,
+        "event_timeline": true,
+        "independent_signal_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "revoked",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-025",
+      "familyId": "cooling",
+      "challengeKind": "first_gap",
+      "fictionalSymptom": "Temperatura reportada sem baseline térmico válido",
+      "contextAvailable": {
+        "duty_cycle": false,
+        "airflow_condition": true,
+        "coolant_inventory": true,
+        "thermal_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-026",
+      "familyId": "cooling",
+      "challengeKind": "third_gap",
+      "fictionalSymptom": "Temperatura reportada sem baseline térmico válido",
+      "contextAvailable": {
+        "duty_cycle": true,
+        "airflow_condition": true,
+        "coolant_inventory": false,
+        "thermal_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-027",
+      "familyId": "cooling",
+      "challengeKind": "conflicting_reports",
+      "fictionalSymptom": "Temperatura reportada sem baseline térmico válido",
+      "contextAvailable": {
+        "duty_cycle": true,
+        "airflow_condition": true,
+        "coolant_inventory": true,
+        "thermal_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": true,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-028",
+      "familyId": "cooling",
+      "challengeKind": "complete_context",
+      "fictionalSymptom": "Temperatura reportada sem baseline térmico válido",
+      "contextAvailable": {
+        "duty_cycle": true,
+        "airflow_condition": true,
+        "coolant_inventory": true,
+        "thermal_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "credible_synthetic",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-029",
+      "familyId": "cooling",
+      "challengeKind": "unverified_provenance",
+      "fictionalSymptom": "Temperatura reportada sem baseline térmico válido",
+      "contextAvailable": {
+        "duty_cycle": true,
+        "airflow_condition": true,
+        "coolant_inventory": true,
+        "thermal_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "unverified",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-030",
+      "familyId": "cooling",
+      "challengeKind": "conflicting_provenance",
+      "fictionalSymptom": "Temperatura reportada sem baseline térmico válido",
+      "contextAvailable": {
+        "duty_cycle": true,
+        "airflow_condition": true,
+        "coolant_inventory": true,
+        "thermal_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "contradictory",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-031",
+      "familyId": "cooling",
+      "challengeKind": "outdated_evidence",
+      "fictionalSymptom": "Temperatura reportada sem baseline térmico válido",
+      "contextAvailable": {
+        "duty_cycle": true,
+        "airflow_condition": true,
+        "coolant_inventory": true,
+        "thermal_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "stale",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-032",
+      "familyId": "cooling",
+      "challengeKind": "revoked_evidence",
+      "fictionalSymptom": "Temperatura reportada sem baseline térmico válido",
+      "contextAvailable": {
+        "duty_cycle": true,
+        "airflow_condition": true,
+        "coolant_inventory": true,
+        "thermal_measurement_plan": true
+      },
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "revoked",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-033",
+      "familyId": "braking",
+      "challengeKind": "unmodeled_domain",
+      "fictionalSymptom": "Sistema de freio genérico com atuação irregular",
+      "contextAvailable": {},
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "unverified",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "caseId": "SIM-GEN-034",
+      "familyId": "transmission",
+      "challengeKind": "unmodeled_domain",
+      "fictionalSymptom": "Transmissão genérica com mudança de marcha anômala",
+      "contextAvailable": {},
+      "unresolvedNarrativeConflict": false,
+      "sourceStatus": "unverified",
+      "observationNature": "synthetic_narrative_not_field_measurement",
+      "oemEffectivityVerified": false,
+      "confirmedRootCause": null,
+      "mayExecuteTests": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    }
+  ]
+}
