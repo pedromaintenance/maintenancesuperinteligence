@@ -2020,3 +2020,46 @@ jobs:
             build/benchmarks/cycle33-mechanical-evidence.json
             build/benchmarks/cycle33-mechanical-evidence.html
           retention-days: 14
+      - name: Evaluate Cycle 34 hypothetical discriminating evidence and contradictions
+        run: |
+          python -m unittest tests.test_discriminating_evidence -v
+          python -m knowledge.discriminating_evidence \
+            --output build/benchmarks/cycle34-discrimination.json \
+            --html build/benchmarks/cycle34-discrimination.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from knowledge.discriminating_evidence import evaluate,verify_report
+          def load(path): return json.loads(Path(path).read_text(encoding="utf-8"))
+          matrix=load("knowledge/discriminating-evidence-matrix.v1.json")
+          parent=load("knowledge/mechanical-evidence-map.v1.json")
+          parent_policy=load("knowledge/mechanical-evidence-policy.v1.json")
+          policy=load("knowledge/discrimination-policy.v1.json")
+          cases=load("knowledge/discrimination-scenarios.v1.json")
+          report=load("build/benchmarks/cycle34-discrimination.json")
+          verify_report(report,matrix,parent,parent_policy,policy,cases)
+          assert report["ruleCount"]==36
+          assert report["parentHypothesisCount"]==12
+          assert report["fictionalScenarioCount"]==48
+          assert report["scenarioStateCounts"]==dict.fromkeys(
+              ["support_only","weaken_only","conflict","inconclusive"],12)
+          assert report["ruleOutcomes"]==dict.fromkeys(
+              ["supports_relative_hypothesis","weakens_relative_hypothesis","indeterminate"],12)
+          assert report["causesConfirmed"]==report["testsExecuted"]==0
+          assert report["physicalObservationsVerified"]==0
+          assert report["independentExpertValidationCompleted"] is False
+          assert report["realWorldDiagnosticAccuracyMeasured"] is False
+          assert report["mayExecuteTests"] is False
+          assert report["mayCreateWorkOrder"] is False
+          assert report["mayReleaseEquipment"] is False
+          assert report["decision"]=="editorial_discrimination_demo_only_no_go"
+          print("PASS: 36 hypothetical evidence rules, 48 simulated paths, no causal field claims")
+          PY
+      - name: Publish Cycle 34 qualitative synthetic evidence matrix report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle34-qualitative-discrimination-no-go
+          path: |
+            build/benchmarks/cycle34-discrimination.json
+            build/benchmarks/cycle34-discrimination.html
+          retention-days: 14

@@ -1,0 +1,643 @@
+{
+  "schema": "maintenance-superinteligence.discrimination-scenarios.v1",
+  "version": "1.0.0",
+  "nature": "author_generated_synthetic_not_field_validation",
+  "cases": [
+    {
+      "scenarioId": "SIM-DISC-001-1",
+      "parentRecordId": "MECH-KB-001",
+      "scenarioKind": "support_only",
+      "assumedRuleIds": [
+        "DISC-001-1"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-001-2",
+      "parentRecordId": "MECH-KB-001",
+      "scenarioKind": "weaken_only",
+      "assumedRuleIds": [
+        "DISC-001-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-001-3",
+      "parentRecordId": "MECH-KB-001",
+      "scenarioKind": "conflict",
+      "assumedRuleIds": [
+        "DISC-001-1",
+        "DISC-001-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-001-4",
+      "parentRecordId": "MECH-KB-001",
+      "scenarioKind": "inconclusive",
+      "assumedRuleIds": [
+        "DISC-001-3"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-002-1",
+      "parentRecordId": "MECH-KB-002",
+      "scenarioKind": "support_only",
+      "assumedRuleIds": [
+        "DISC-002-1"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-002-2",
+      "parentRecordId": "MECH-KB-002",
+      "scenarioKind": "weaken_only",
+      "assumedRuleIds": [
+        "DISC-002-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-002-3",
+      "parentRecordId": "MECH-KB-002",
+      "scenarioKind": "conflict",
+      "assumedRuleIds": [
+        "DISC-002-1",
+        "DISC-002-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-002-4",
+      "parentRecordId": "MECH-KB-002",
+      "scenarioKind": "inconclusive",
+      "assumedRuleIds": [
+        "DISC-002-3"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-003-1",
+      "parentRecordId": "MECH-KB-003",
+      "scenarioKind": "support_only",
+      "assumedRuleIds": [
+        "DISC-003-1"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-003-2",
+      "parentRecordId": "MECH-KB-003",
+      "scenarioKind": "weaken_only",
+      "assumedRuleIds": [
+        "DISC-003-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-003-3",
+      "parentRecordId": "MECH-KB-003",
+      "scenarioKind": "conflict",
+      "assumedRuleIds": [
+        "DISC-003-1",
+        "DISC-003-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-003-4",
+      "parentRecordId": "MECH-KB-003",
+      "scenarioKind": "inconclusive",
+      "assumedRuleIds": [
+        "DISC-003-3"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-004-1",
+      "parentRecordId": "MECH-KB-004",
+      "scenarioKind": "support_only",
+      "assumedRuleIds": [
+        "DISC-004-1"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-004-2",
+      "parentRecordId": "MECH-KB-004",
+      "scenarioKind": "weaken_only",
+      "assumedRuleIds": [
+        "DISC-004-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-004-3",
+      "parentRecordId": "MECH-KB-004",
+      "scenarioKind": "conflict",
+      "assumedRuleIds": [
+        "DISC-004-1",
+        "DISC-004-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-004-4",
+      "parentRecordId": "MECH-KB-004",
+      "scenarioKind": "inconclusive",
+      "assumedRuleIds": [
+        "DISC-004-3"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-005-1",
+      "parentRecordId": "MECH-KB-005",
+      "scenarioKind": "support_only",
+      "assumedRuleIds": [
+        "DISC-005-1"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-005-2",
+      "parentRecordId": "MECH-KB-005",
+      "scenarioKind": "weaken_only",
+      "assumedRuleIds": [
+        "DISC-005-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-005-3",
+      "parentRecordId": "MECH-KB-005",
+      "scenarioKind": "conflict",
+      "assumedRuleIds": [
+        "DISC-005-1",
+        "DISC-005-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-005-4",
+      "parentRecordId": "MECH-KB-005",
+      "scenarioKind": "inconclusive",
+      "assumedRuleIds": [
+        "DISC-005-3"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-006-1",
+      "parentRecordId": "MECH-KB-006",
+      "scenarioKind": "support_only",
+      "assumedRuleIds": [
+        "DISC-006-1"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-006-2",
+      "parentRecordId": "MECH-KB-006",
+      "scenarioKind": "weaken_only",
+      "assumedRuleIds": [
+        "DISC-006-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-006-3",
+      "parentRecordId": "MECH-KB-006",
+      "scenarioKind": "conflict",
+      "assumedRuleIds": [
+        "DISC-006-1",
+        "DISC-006-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-006-4",
+      "parentRecordId": "MECH-KB-006",
+      "scenarioKind": "inconclusive",
+      "assumedRuleIds": [
+        "DISC-006-3"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-007-1",
+      "parentRecordId": "MECH-KB-007",
+      "scenarioKind": "support_only",
+      "assumedRuleIds": [
+        "DISC-007-1"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-007-2",
+      "parentRecordId": "MECH-KB-007",
+      "scenarioKind": "weaken_only",
+      "assumedRuleIds": [
+        "DISC-007-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-007-3",
+      "parentRecordId": "MECH-KB-007",
+      "scenarioKind": "conflict",
+      "assumedRuleIds": [
+        "DISC-007-1",
+        "DISC-007-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-007-4",
+      "parentRecordId": "MECH-KB-007",
+      "scenarioKind": "inconclusive",
+      "assumedRuleIds": [
+        "DISC-007-3"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-008-1",
+      "parentRecordId": "MECH-KB-008",
+      "scenarioKind": "support_only",
+      "assumedRuleIds": [
+        "DISC-008-1"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-008-2",
+      "parentRecordId": "MECH-KB-008",
+      "scenarioKind": "weaken_only",
+      "assumedRuleIds": [
+        "DISC-008-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-008-3",
+      "parentRecordId": "MECH-KB-008",
+      "scenarioKind": "conflict",
+      "assumedRuleIds": [
+        "DISC-008-1",
+        "DISC-008-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-008-4",
+      "parentRecordId": "MECH-KB-008",
+      "scenarioKind": "inconclusive",
+      "assumedRuleIds": [
+        "DISC-008-3"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-009-1",
+      "parentRecordId": "MECH-KB-009",
+      "scenarioKind": "support_only",
+      "assumedRuleIds": [
+        "DISC-009-1"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-009-2",
+      "parentRecordId": "MECH-KB-009",
+      "scenarioKind": "weaken_only",
+      "assumedRuleIds": [
+        "DISC-009-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-009-3",
+      "parentRecordId": "MECH-KB-009",
+      "scenarioKind": "conflict",
+      "assumedRuleIds": [
+        "DISC-009-1",
+        "DISC-009-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-009-4",
+      "parentRecordId": "MECH-KB-009",
+      "scenarioKind": "inconclusive",
+      "assumedRuleIds": [
+        "DISC-009-3"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-010-1",
+      "parentRecordId": "MECH-KB-010",
+      "scenarioKind": "support_only",
+      "assumedRuleIds": [
+        "DISC-010-1"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-010-2",
+      "parentRecordId": "MECH-KB-010",
+      "scenarioKind": "weaken_only",
+      "assumedRuleIds": [
+        "DISC-010-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-010-3",
+      "parentRecordId": "MECH-KB-010",
+      "scenarioKind": "conflict",
+      "assumedRuleIds": [
+        "DISC-010-1",
+        "DISC-010-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-010-4",
+      "parentRecordId": "MECH-KB-010",
+      "scenarioKind": "inconclusive",
+      "assumedRuleIds": [
+        "DISC-010-3"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-011-1",
+      "parentRecordId": "MECH-KB-011",
+      "scenarioKind": "support_only",
+      "assumedRuleIds": [
+        "DISC-011-1"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-011-2",
+      "parentRecordId": "MECH-KB-011",
+      "scenarioKind": "weaken_only",
+      "assumedRuleIds": [
+        "DISC-011-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-011-3",
+      "parentRecordId": "MECH-KB-011",
+      "scenarioKind": "conflict",
+      "assumedRuleIds": [
+        "DISC-011-1",
+        "DISC-011-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-011-4",
+      "parentRecordId": "MECH-KB-011",
+      "scenarioKind": "inconclusive",
+      "assumedRuleIds": [
+        "DISC-011-3"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-012-1",
+      "parentRecordId": "MECH-KB-012",
+      "scenarioKind": "support_only",
+      "assumedRuleIds": [
+        "DISC-012-1"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-012-2",
+      "parentRecordId": "MECH-KB-012",
+      "scenarioKind": "weaken_only",
+      "assumedRuleIds": [
+        "DISC-012-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-012-3",
+      "parentRecordId": "MECH-KB-012",
+      "scenarioKind": "conflict",
+      "assumedRuleIds": [
+        "DISC-012-1",
+        "DISC-012-2"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    },
+    {
+      "scenarioId": "SIM-DISC-012-4",
+      "parentRecordId": "MECH-KB-012",
+      "scenarioKind": "inconclusive",
+      "assumedRuleIds": [
+        "DISC-012-3"
+      ],
+      "sourceNature": "fictional_conditional_assumptions_not_field_records",
+      "fieldObservationVerified": false,
+      "independentReviewPerformed": false,
+      "rootCauseConfirmed": false,
+      "mayAuthorizeAction": false
+    }
+  ]
+}
