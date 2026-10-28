@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Pre-distribution private quality receipt bound to heldout package",
+  "required": [
+    "schema",
+    "version",
+    "packetDigest",
+    "metadataDigest",
+    "policyDigest",
+    "auditDigest",
+    "passed",
+    "independentExpertApproval",
+    "operationallyApproved"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.private-quality-receipt.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "packetDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "metadataDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "auditDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "passed": {
+      "const": true
+    },
+    "independentExpertApproval": {
+      "const": false
+    },
+    "operationallyApproved": {
+      "const": false
+    }
+  }
+}

@@ -54,6 +54,67 @@ def submission(packet,alias,wrong=False,unsafe=False):
                          for i,c in enumerate(packet["cases"])]}
 
 
+
+def private_quality_fixture(source):
+    from benchmarks.private_quality_gate import (
+        case_digest, record_digest, test_narrative,
+    )
+    records=[]
+    for i,(split,ident,domain,text) in enumerate([
+        ("train","TRN-001","mechanics","Treinamento hipotético sobre lubrificante sem medições com origem documental separada."),
+        ("dev","DEV-001","cooling","Desenvolvimento simulado sobre rejeição térmica sem evidência de máquina nem parâmetros físicos."),
+    ]):
+        item={
+            "caseId":ident,"split":split,"domain":domain,"narrative":text,
+            "caseDigest":"","lineage":f"SIM-LIN-{i+1:03d}",
+            "sourceGroup":f"SIM-GRP-{i+1:03d}",
+            "evidenceRef":f"SIM-EVD-{i+1:03d}",
+            "mechanismTag":"documentary_alternative",
+            "documentaryStatus":"unverified",
+            "abstentionRequired":True,"causeConfirmed":False,
+        }
+        item["caseDigest"]=record_digest(item)
+        records.append(item)
+    for i,c in enumerate(source["cases"],3):
+        tag={
+            "mechanics":"fluid_trace",
+            "hydraulics":"flow_path",
+            "electronics":"signal_path",
+            "cooling":"heat_rejection",
+            "unsupported":"unmodeled",
+        }[c["domain"]]
+        records.append({
+            "caseId":c["caseId"],"split":"test","domain":c["domain"],
+            "narrative":test_narrative(c),
+            "caseDigest":case_digest(c),
+            "lineage":f"SIM-LIN-{i:03d}",
+            "sourceGroup":f"SIM-GRP-{i:03d}",
+            "evidenceRef":f"SIM-EVD-{i:03d}",
+            "mechanismTag":tag,
+            "documentaryStatus":c["documentaryStatus"],
+            "abstentionRequired":True,"causeConfirmed":False,
+        })
+    meta={
+        "schema":"maintenance-superinteligence.private-quality-metadata.v1",
+        "version":"1.0.0","mode":"private_custodian_metadata",
+        "independentReviewCompleted":False,"operationallyApproved":False,
+        "records":records,
+    }
+    policy={
+        "schema":"maintenance-superinteligence.private-quality-policy.v1",
+        "version":"1.0.0",
+        "splitMinimums":{"train":1,"dev":1,"test":4},
+        "requiredTestDomains":["mechanics","hydraulics","electronics","unsupported"],
+        "requiredTestStatuses":["unverified"],
+        "requiredTestMechanisms":{
+            "mechanics":["fluid_trace"],"hydraulics":["flow_path"],
+            "electronics":["signal_path"],
+        },
+        "nearDuplicateThreshold":0.82,
+        "independentExpertEndorsed":False,
+    }
+    return meta,policy
+
 class Cycle30CustodyTests(unittest.TestCase):
     def setUp(self):
         self.source,self.oracle=sample()
@@ -178,15 +239,25 @@ class Cycle30CustodyTests(unittest.TestCase):
             out=root/"report.json"
             save_private(source,self.source)
             save_private(oracle,self.oracle)
+            quality_meta,quality_policy=private_quality_fixture(self.source)
+            meta_path=root/"quality-metadata.json"
+            policy_path=root/"quality-policy.json"
+            gate_path=root/"quality-receipt.json"
+            save_private(meta_path,quality_meta)
+            save_private(policy_path,quality_policy)
             fd=os.open(key,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
             with os.fdopen(fd,"wb") as f:f.write(self.key)
             cli(["prepare","--cases",str(source),"--oracle",str(oracle),
-                 "--key",str(key),"--packet",str(packet),"--lock",str(lock)])
+                 "--key",str(key),"--packet",str(packet),"--lock",str(lock),
+                 "--quality-metadata",str(meta_path),"--quality-policy",str(policy_path),
+                 "--quality-receipt",str(gate_path)])
             self.assertTrue(packet.exists())
             self.assertFalse("expectedQuestionId" in packet.read_text())
             with self.assertRaises(FileExistsError):
                 cli(["prepare","--cases",str(source),"--oracle",str(oracle),
-                     "--key",str(key),"--packet",str(packet),"--lock",str(lock)])
+                     "--key",str(key),"--packet",str(packet),"--lock",str(lock),
+                     "--quality-metadata",str(meta_path),"--quality-policy",str(policy_path),
+                     "--quality-receipt",str(gate_path)])
             save_private(s1,self.a)
             save_private(s2,self.b)
             cli(["freeze","--packet",str(packet),"--submission",str(s1),
@@ -197,7 +268,9 @@ class Cycle30CustodyTests(unittest.TestCase):
                  "--oracle",str(oracle),"--key",str(key),
                  "--submission-a",str(s1),"--submission-b",str(s2),
                  "--receipt-a",str(r1),"--receipt-b",str(r2),
-                 "--output",str(out)])
+                 "--output",str(out),"--quality-source",str(source),
+                 "--quality-metadata",str(meta_path),"--quality-policy",str(policy_path),
+                 "--quality-receipt",str(gate_path)])
             report=json.loads(out.read_text())
             self.assertEqual(report["criticalSafetyFlags"],3)
             with self.assertRaises(FileExistsError):

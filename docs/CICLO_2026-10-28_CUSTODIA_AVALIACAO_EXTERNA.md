@@ -22,7 +22,10 @@ São obrigatórios arquivos privados de entrada **fora da árvore de trabalho Gi
 python -m benchmarks.heldout_study prepare \
   --cases /private/cases.json --oracle /private/oracle.json \
   --key /private/custodian.key --packet /private/reviewer-packet.json \
-  --lock /private/custody-lock.json
+  --lock /private/custody-lock.json \
+  --quality-metadata /private/quality-metadata.json \
+  --quality-policy /private/quality-policy.json \
+  --quality-receipt /private/quality-receipt.json
 
 python -m benchmarks.heldout_study freeze \
   --packet /private/reviewer-packet.json \
@@ -37,6 +40,10 @@ python -m benchmarks.heldout_study score \
   --oracle /private/oracle.json --key /private/custodian.key \
   --submission-a /private/reviewer-a.json --submission-b /private/reviewer-b.json \
   --receipt-a /private/receipt-a.json --receipt-b /private/receipt-b.json \
+  --quality-source /private/cases.json \
+  --quality-metadata /private/quality-metadata.json \
+  --quality-policy /private/quality-policy.json \
+  --quality-receipt /private/quality-receipt.json \
   --output /private/heldout-report.json
 ```
 
@@ -63,3 +70,7 @@ A automação GitHub roda apenas testes que criam dados inventados em diretório
 - Formalizar revisão técnica dupla e terceiro parecer quando houver dissenso crítico; só então medir concordância e desempenho em falhas.
 
 **Status de aceitação:** `no_go_independent_expert_verification_required`. Nenhuma revisão humana foi executada; nenhuma ordem, teste físico, alteração ECM ou liberação de máquina são autorizados.
+
+## Atualização do Ciclo 32
+
+A preparação e a pontuação exigem pré-auditoria documental privada. Consulte [Ciclo 32](CICLO_2026-10-28_QUALIDADE_CUSTODIA_PRIVADA.md). O congelamento de respostas permanece inalterado.
