@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle31 metadata preflight findings",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "manifestDigest",
+    "policyDigest",
+    "caseCount",
+    "splits",
+    "testHypothesisTagCoverage",
+    "testUnsupportedCount",
+    "testSourceQualityChallengeCount",
+    "criticalFindingCount",
+    "majorFindingCount",
+    "findings",
+    "qualityPreflightPassed",
+    "blindnessOrRealNoveltyEstablished",
+    "realCaseDiagnosticsVerified",
+    "independentExpertValidationCompleted",
+    "mayApproveOperationalUse",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.validation-quality-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "public_synthetic_metadata_preflight"
+    },
+    "manifestDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "caseCount": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 200
+    },
+    "splits": {
+      "type": "object",
+      "required": [
+        "train",
+        "dev",
+        "test"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "train": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "dev": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "test": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "testHypothesisTagCoverage": {
+      "type": "object"
+    },
+    "testUnsupportedCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "testSourceQualityChallengeCount": {
+      "type": "object"
+    },
+    "criticalFindingCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "majorFindingCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "severity",
+          "caseIds",
+          "coverageKey"
+        ],
+        "properties": {
+          "code": {
+            "enum": [
+              "lineage_reused_cross_split",
+              "source_group_reused_cross_split",
+              "evidence_reused_cross_split",
+              "exact_narrative_cross_split",
+              "near_narrative_cross_split",
+              "duplicate_record_within_split",
+              "missing_split_minimum",
+              "missing_mechanism_tag_test",
+              "missing_unsupported_test",
+              "missing_source_reliability_test"
+            ]
+          },
+          "severity": {
+            "enum": [
+              "critical",
+              "major"
+            ]
+          },
+          "caseIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "coverageKey": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "qualityPreflightPassed": {
+      "type": "boolean"
+    },
+    "blindnessOrRealNoveltyEstablished": {
+      "const": false
+    },
+    "realCaseDiagnosticsVerified": {
+      "const": false
+    },
+    "independentExpertValidationCompleted": {
+      "const": false
+    },
+    "mayApproveOperationalUse": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "enum": [
+        "synthetic_quality_pass_not_diagnostic_validation",
+        "quality_gate_rejected_no_go"
+      ]
+    }
+  }
+}

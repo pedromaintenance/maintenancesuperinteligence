@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.1.0 — 2026-10-28 — Ciclo 31
+
+- Introduzidos 26 registros totalmente sintéticos distribuídos em treino (8), desenvolvimento (4) e teste (14), com catálogo de 12 etiquetas de hipóteses em quatro famílias e dois domínios não cobertos.
+- Auditoria de contaminação entre divisões por linhagem, grupo de fonte, identificador de evidência, texto exato e similaridade Jaccard; duplicidade interna detectada.
+- Portas de qualidade para tamanho mínimo dos conjuntos, presença das 12 etiquetas no teste, domínio não modelado e proveniência contraditória/revogada/não verificada.
+- JSON Schema para entrada, política e relatório; suíte adversarial, CI e artefatos JSON/HTML apenas sintéticos. Relatórios de fontes privadas não são publicados por este ciclo.
+- **Não equivale a validação de causas:** etiquetas representam alternativas didáticas, não mecanismos medidos ou verdades OEM. Não há revisão humana nem efeito sobre autorização operacional.
+
+
 ## 3.0.0 — 2026-10-28 — Ciclo 30
 
 - Criado fluxo offline para preparar pacotes de casos inéditos, custodiar gabaritos e congelar pareceres **fora** do repositório público.

@@ -1931,3 +1931,38 @@ jobs:
           assert not list(Path("benchmarks").glob("heldout-*secret*"))
           print("PASS: offline heldout custody, two frozen synthetic submissions and no private data committed")
           PY
+      - name: Audit Cycle 31 synthetic split quality and leakage
+        run: |
+          python -m benchmarks.validation_set_quality \
+            --output build/benchmarks/cycle31-quality.json \
+            --html build/benchmarks/cycle31-quality.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from benchmarks.validation_set_quality import audit, verify_report
+          source=json.loads(Path("benchmarks/validation-quality-manifest.v1.json").read_text())
+          policy=json.loads(Path("benchmarks/validation-quality-policy.v1.json").read_text())
+          report=json.loads(Path("build/benchmarks/cycle31-quality.json").read_text())
+          verify_report(report,source,policy)
+          assert report["caseCount"]==26 and report["splits"]=={"train":8,"dev":4,"test":14}
+          assert report["testUnsupportedCount"]==2
+          assert len(report["testHypothesisTagCoverage"])==4
+          assert all(len(tags)==3 and all(count==1 for count in tags.values())
+                     for tags in report["testHypothesisTagCoverage"].values())
+          assert report["testSourceQualityChallengeCount"]=={"contradictory":4,"revoked":4,"unverified":2}
+          assert report["qualityPreflightPassed"] is True and not report["findings"]
+          assert report["blindnessOrRealNoveltyEstablished"] is False
+          assert report["realCaseDiagnosticsVerified"] is False
+          assert report["independentExpertValidationCompleted"] is False
+          assert report["mayApproveOperationalUse"] is False
+          assert report["mayCreateWorkOrder"] is False and report["mayReleaseEquipment"] is False
+          print("PASS: Cycle31 synthetic coverage and cross-split deduplication gates")
+          PY
+      - name: Publish Cycle 31 synthetic quality report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle31-validation-quality-synthetic
+          path: |
+            build/benchmarks/cycle31-quality.json
+            build/benchmarks/cycle31-quality.html
+          retention-days: 14

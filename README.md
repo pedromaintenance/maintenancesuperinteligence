@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protocolo de custódia local de avaliação externa P&D v3.0.0 (28/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: auditoria de qualidade de conjuntos sintéticos P&D v3.1.0 (28/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -68,6 +68,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 28 — Generalização sintética e qualidade da proveniência](docs/CICLO_2026-10-27_GENERALIZACAO_ADVERSARIAL.md)
 - [Ciclo 29 — Protocolo para revisão independente](docs/CICLO_2026-10-28_PROTOCOLO_REVISAO_INDEPENDENTE.md)
 - [Ciclo 30 — Custódia separada de casos inéditos e gabarito](docs/CICLO_2026-10-28_CUSTODIA_AVALIACAO_EXTERNA.md)
+- [Ciclo 31 — Qualidade de conjuntos e controle de vazamento](docs/CICLO_2026-10-28_QUALIDADE_CONJUNTO_VALIDACAO.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -407,3 +408,7 @@ O módulo `benchmarks/blind_review_protocol.py` exporta **12 casos fictícios se
 ## Ciclo 30 — Custódia de avaliação externa, sem dados no repositório
 
 O utilitário **offline** `benchmarks/heldout_study.py` separa arquivos de casos, gabarito, chave de custódia, pacotes de perguntas, pareceres e relatório. Por construção, o CLI **rejeita arquivos de entrada ou saída localizados dentro deste repositório público**. Uma trava HMAC vincula os casos ao gabarito sob chave mantida pelo custodiante e cada submissão recebe um recibo de congelamento antes de eventual comparação. Os testes de CI usam apenas casos sintéticos temporários, sem publicar chave, respostas privadas ou pareceres reais. **Não há avaliadores independentes conectados, autenticação humana ou validação mecânica demonstrada.** [Manual e ameaças à validade](docs/CICLO_2026-10-28_CUSTODIA_AVALIACAO_EXTERNA.md).
+
+## Ciclo 31 — Auditoria de qualidade e contaminação entre divisões
+
+O módulo `benchmarks/validation_set_quality.py` examina **26 casos sintéticos**, divididos em treinamento (8), desenvolvimento (4) e teste (14), com **12 etiquetas de hipóteses** nas famílias comando final, hidráulica, eletrônica e arrefecimento, mais casos não modelados de freios e transmissão. Identifica reuso de linhagem, origem, evidência e texto quase idêntico entre divisões, lacunas de etiquetas no teste e ausência de situações que exigem abstenção. A auditoria rejeita conjuntos contaminados, mas sua cobertura **não comprova mecanismo físico nem generalização para dados inéditos**; o banco permanece público e autoral. Não se altera a custódia privada nem se habilita diagnóstico operacional. [Escopo e riscos](docs/CICLO_2026-10-28_QUALIDADE_CONJUNTO_VALIDACAO.md).
