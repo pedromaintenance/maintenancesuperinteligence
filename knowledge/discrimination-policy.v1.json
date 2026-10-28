@@ -1,0 +1,23 @@
+{
+  "schema": "maintenance-superinteligence.discrimination-policy.v1",
+  "version": "1.0.0",
+  "parentScope": "cycle33_source_attributed_unverified_mechanical_hypotheses",
+  "requiredOutcomes": [
+    "supports_relative_hypothesis",
+    "weakens_relative_hypothesis",
+    "indeterminate"
+  ],
+  "requiredScenarioKinds": [
+    "support_only",
+    "weaken_only",
+    "conflict",
+    "inconclusive"
+  ],
+  "expectedParentRecords": 12,
+  "minimumRulesPerParent": 3,
+  "independentExpertValidated": false,
+  "causalInferenceAuthorized": false,
+  "mayExecuteTests": false,
+  "mayCreateWorkOrder": false,
+  "mayReleaseEquipment": false
+}

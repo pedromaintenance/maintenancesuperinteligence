@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.4.0 — 2026-10-28 — Ciclo 34
+
+- Construída matriz qualitativa vinculada às 12 trilhas mecânicas do Ciclo 33, com 36 condições hipotéticas: 12 favorecem, 12 enfraquecem e 12 não discriminam.
+- Elaborados 48 cenários de prova sintéticos para suporte isolado, evidência contrária, conflito simultâneo e insuficiência de evidência.
+- Introduzido avaliador causal qualitativo que preserva estados de hipótese aberta e marca necessidade de conciliação humana; não atribui probabilidade, causa raiz nem diagnóstico.
+- Integridade referencial com mapa/proveniência do Ciclo 33, quatro JSON Schemas, suíte de testes adversariais, relatórios JSON/HTML offline e CI.
+- **O simulador não utiliza observações reais e não é estudo de acurácia:** nenhuma intervenção, teste, ordem de manutenção ou liberação é autorizada.
+
+
 ## 3.3.0 — 2026-10-28 — Ciclo 33
 
 - Adicionada taxonomia técnica de 12 trilhas exploratórias para quatro famílias: comando final, hidráulica, eletrônica e arrefecimento.

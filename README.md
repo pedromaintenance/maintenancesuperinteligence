@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: taxonomia mecânica de hipóteses com referências rastreáveis P&D v3.3.0 (28/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: matriz de evidências discriminantes e conflitos causais P&D v3.4.0 (28/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -71,6 +71,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 31 — Qualidade de conjuntos e controle de vazamento](docs/CICLO_2026-10-28_QUALIDADE_CONJUNTO_VALIDACAO.md)
 - [Ciclo 32 — Qualidade privada obrigatória antes da distribuição](docs/CICLO_2026-10-28_QUALIDADE_CUSTODIA_PRIVADA.md)
 - [Ciclo 33 — Taxonomia mecânica com fontes técnicas verificáveis](docs/CICLO_2026-10-28_TAXONOMIA_MECANICA_FUNDAMENTADA.md)
+- [Ciclo 34 — Matriz discriminante e abstenção por conflito](docs/CICLO_2026-10-28_MATRIZ_EVIDENCIAS_DISCRIMINANTES.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -422,3 +423,7 @@ O CLI `benchmarks/heldout_study.py prepare` exige agora manifesto e política de
 ## Ciclo 33 — Taxonomia técnica com rastreabilidade das hipóteses
 
 O arquivo `knowledge/mechanical-evidence-map.v1.json` distingue **9 mecanismos físicos candidatos** de **3 fatores que confundem a interpretação**, organizados em quatro sistemas: comando final, hidráulica, eletrônica e arrefecimento. Cada relação contém função, falha funcional, relato, alternativa, próxima pergunta discriminante, fonte pública do fabricante ou resumo público de norma e **limite explícito de aplicabilidade**. Uma fonte genérica não comprova falha, causa raiz, série OEM ou procedimento autorizado de um equipamento específico. Executável local, três contratos, testes adversariais e relatório JSON/HTML offline em `knowledge/mechanical_evidence.py`. [Fundamentação e limitações](docs/CICLO_2026-10-28_TAXONOMIA_MECANICA_FUNDAMENTADA.md).
+
+## Ciclo 34 — Evidências que favorecem, enfraquecem ou não discriminam
+
+A matriz `knowledge/discriminating-evidence-matrix.v1.json` vincula a cada uma das 12 trilhas do Ciclo 33 três **condições hipotéticas editoriais**: favorável, contrária e inconclusiva. O avaliador `knowledge/discriminating_evidence.py` interpreta **48 cenários inteiramente fictícios** e preserva conflitos sem afirmar causa raiz. As fontes de fabricantes herdadas do Ciclo 33 sustentam somente o contexto técnico geral; os cenários e a relação com a hipótese **não são resultados de campo, ensaios OEM nem validação independente**. Quatro contratos JSON Schema, testes adversariais, relatórios JSON/HTML offline e CI. [Limites e modelo causal](docs/CICLO_2026-10-28_MATRIZ_EVIDENCIAS_DISCRIMINANTES.md).

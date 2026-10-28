@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle34 conditional evidence interpretation rules without field observations",
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "realObservationsPresent",
+    "expertReviewed",
+    "operationalAuthority",
+    "rules"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.discriminating-evidence-matrix.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "conditional_hypothesis_discrimination_not_diagnosis"
+    },
+    "realObservationsPresent": {
+      "const": false
+    },
+    "expertReviewed": {
+      "const": false
+    },
+    "operationalAuthority": {
+      "const": false
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 36,
+      "maxItems": 36,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ruleId",
+          "parentRecordId",
+          "outcome",
+          "hypotheticalObservation",
+          "causalInterpretation",
+          "nextSafeDocumentaryQuestion",
+          "evidenceStatus",
+          "fieldSourceAvailable",
+          "measurementConfirmed",
+          "oemSerialEffectivityConfirmed",
+          "rootCauseConfirmed",
+          "independentReviewerApproved",
+          "mayExecuteTest",
+          "mayCreateWorkOrder",
+          "mayReleaseEquipment"
+        ],
+        "properties": {
+          "ruleId": {
+            "type": "string",
+            "pattern": "^DISC-[0-9]{3}-[123]$"
+          },
+          "parentRecordId": {
+            "type": "string",
+            "pattern": "^MECH-KB-[0-9]{3}$"
+          },
+          "outcome": {
+            "enum": [
+              "supports_relative_hypothesis",
+              "weakens_relative_hypothesis",
+              "indeterminate"
+            ]
+          },
+          "hypotheticalObservation": {
+            "type": "string",
+            "minLength": 35
+          },
+          "causalInterpretation": {
+            "type": "string",
+            "minLength": 35
+          },
+          "nextSafeDocumentaryQuestion": {
+            "type": "string",
+            "minLength": 35
+          },
+          "evidenceStatus": {
+            "const": "hypothetical_not_observed"
+          },
+          "fieldSourceAvailable": {
+            "const": false
+          },
+          "measurementConfirmed": {
+            "const": false
+          },
+          "oemSerialEffectivityConfirmed": {
+            "const": false
+          },
+          "rootCauseConfirmed": {
+            "const": false
+          },
+          "independentReviewerApproved": {
+            "const": false
+          },
+          "mayExecuteTest": {
+            "const": false
+          },
+          "mayCreateWorkOrder": {
+            "const": false
+          },
+          "mayReleaseEquipment": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}

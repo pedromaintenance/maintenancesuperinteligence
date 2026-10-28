@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle34 hypothetical qualitative scenarios, not diagnostic accuracy",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "matrixDigest",
+    "parentDigest",
+    "mechanicalPolicyDigest",
+    "policyDigest",
+    "scenarioDigest",
+    "parentHypothesisCount",
+    "ruleCount",
+    "ruleOutcomes",
+    "fictionalScenarioCount",
+    "scenarioStateCounts",
+    "scenarios",
+    "physicalObservationsVerified",
+    "causesConfirmed",
+    "testsExecuted",
+    "independentExpertValidationCompleted",
+    "realWorldDiagnosticAccuracyMeasured",
+    "operationalAuthorityGranted",
+    "mayExecuteTests",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.discrimination-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "synthetic_qualitative_conditionals_not_diagnostic_accuracy"
+    },
+    "matrixDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "parentDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "mechanicalPolicyDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "scenarioDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "parentHypothesisCount": {
+      "const": 12
+    },
+    "ruleCount": {
+      "const": 36
+    },
+    "ruleOutcomes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "supports_relative_hypothesis",
+        "weakens_relative_hypothesis",
+        "indeterminate"
+      ],
+      "properties": {
+        "supports_relative_hypothesis": {
+          "const": 12
+        },
+        "weakens_relative_hypothesis": {
+          "const": 12
+        },
+        "indeterminate": {
+          "const": 12
+        }
+      }
+    },
+    "fictionalScenarioCount": {
+      "const": 48
+    },
+    "scenarioStateCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "support_only",
+        "weaken_only",
+        "conflict",
+        "inconclusive"
+      ],
+      "properties": {
+        "support_only": {
+          "const": 12
+        },
+        "weaken_only": {
+          "const": 12
+        },
+        "conflict": {
+          "const": 12
+        },
+        "inconclusive": {
+          "const": 12
+        }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 48,
+      "maxItems": 48,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "scenarioId",
+          "parentRecordId",
+          "family",
+          "parentBranchType",
+          "assumedRuleIds",
+          "observedEvidenceCount",
+          "qualitativeState",
+          "requiresHumanReconciliation",
+          "nextDocumentaryQuestion",
+          "hypothesisStatus",
+          "rootCauseConfirmed",
+          "oemSerialEffectivityVerified",
+          "independentExpertReviewCompleted",
+          "mayExecuteTests",
+          "mayCreateWorkOrder",
+          "mayReleaseEquipment"
+        ],
+        "properties": {
+          "scenarioId": {
+            "type": "string"
+          },
+          "parentRecordId": {
+            "type": "string"
+          },
+          "family": {
+            "enum": [
+              "final_drive",
+              "hydraulics",
+              "electronics",
+              "cooling"
+            ]
+          },
+          "parentBranchType": {
+            "enum": [
+              "interpretation_confounder",
+              "physical_mechanism_candidate"
+            ]
+          },
+          "assumedRuleIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "observedEvidenceCount": {
+            "const": 0
+          },
+          "qualitativeState": {
+            "enum": [
+              "tentative_support_not_confirmed",
+              "tentative_weakening_not_excluded",
+              "conflict_requires_documentary_reconciliation",
+              "insufficient_to_discriminate"
+            ]
+          },
+          "requiresHumanReconciliation": {
+            "type": "boolean"
+          },
+          "nextDocumentaryQuestion": {
+            "type": "string"
+          },
+          "hypothesisStatus": {
+            "const": "open_unconfirmed"
+          },
+          "rootCauseConfirmed": {
+            "const": false
+          },
+          "oemSerialEffectivityVerified": {
+            "const": false
+          },
+          "independentExpertReviewCompleted": {
+            "const": false
+          },
+          "mayExecuteTests": {
+            "const": false
+          },
+          "mayCreateWorkOrder": {
+            "const": false
+          },
+          "mayReleaseEquipment": {
+            "const": false
+          }
+        }
+      }
+    },
+    "physicalObservationsVerified": {
+      "const": 0
+    },
+    "causesConfirmed": {
+      "const": 0
+    },
+    "testsExecuted": {
+      "const": 0
+    },
+    "independentExpertValidationCompleted": {
+      "const": false
+    },
+    "realWorldDiagnosticAccuracyMeasured": {
+      "const": false
+    },
+    "operationalAuthorityGranted": {
+      "const": false
+    },
+    "mayExecuteTests": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "editorial_discrimination_demo_only_no_go"
+    }
+  }
+}

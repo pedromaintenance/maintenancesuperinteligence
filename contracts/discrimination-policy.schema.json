@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle34 safe qualitative evidence handling and no-go",
+  "required": [
+    "schema",
+    "version",
+    "parentScope",
+    "requiredOutcomes",
+    "requiredScenarioKinds",
+    "expectedParentRecords",
+    "minimumRulesPerParent",
+    "independentExpertValidated",
+    "causalInferenceAuthorized",
+    "mayExecuteTests",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.discrimination-policy.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "parentScope": {
+      "const": "cycle33_source_attributed_unverified_mechanical_hypotheses"
+    },
+    "requiredOutcomes": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "enum": [
+          "supports_relative_hypothesis",
+          "weakens_relative_hypothesis",
+          "indeterminate"
+        ]
+      }
+    },
+    "requiredScenarioKinds": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "enum": [
+          "support_only",
+          "weaken_only",
+          "conflict",
+          "inconclusive"
+        ]
+      }
+    },
+    "expectedParentRecords": {
+      "const": 12
+    },
+    "minimumRulesPerParent": {
+      "const": 3
+    },
+    "independentExpertValidated": {
+      "const": false
+    },
+    "causalInferenceAuthorized": {
+      "const": false
+    },
+    "mayExecuteTests": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}

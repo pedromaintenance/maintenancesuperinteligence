@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle34 author-designed counterfactual fixture, not field experience",
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "cases"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.discrimination-scenarios.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "author_generated_synthetic_not_field_validation"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 48,
+      "maxItems": 48,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "scenarioId",
+          "parentRecordId",
+          "scenarioKind",
+          "assumedRuleIds",
+          "sourceNature",
+          "fieldObservationVerified",
+          "independentReviewPerformed",
+          "rootCauseConfirmed",
+          "mayAuthorizeAction"
+        ],
+        "properties": {
+          "scenarioId": {
+            "type": "string",
+            "pattern": "^SIM-DISC-[0-9]{3}-[1234]$"
+          },
+          "parentRecordId": {
+            "type": "string",
+            "pattern": "^MECH-KB-[0-9]{3}$"
+          },
+          "scenarioKind": {
+            "enum": [
+              "support_only",
+              "weaken_only",
+              "conflict",
+              "inconclusive"
+            ]
+          },
+          "assumedRuleIds": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 2,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^DISC-[0-9]{3}-[123]$"
+            }
+          },
+          "sourceNature": {
+            "const": "fictional_conditional_assumptions_not_field_records"
+          },
+          "fieldObservationVerified": {
+            "const": false
+          },
+          "independentReviewPerformed": {
+            "const": false
+          },
+          "rootCauseConfirmed": {
+            "const": false
+          },
+          "mayAuthorizeAction": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}
