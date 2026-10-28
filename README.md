@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de ensaio de revisão técnica P&D v2.9.0 (28/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protocolo de custódia local de avaliação externa P&D v3.0.0 (28/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -67,6 +67,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 27 — Benchmark de raciocínio mecânico](docs/CICLO_2026-10-27_BENCHMARK_RACIOCINIO_MECANICO.md)
 - [Ciclo 28 — Generalização sintética e qualidade da proveniência](docs/CICLO_2026-10-27_GENERALIZACAO_ADVERSARIAL.md)
 - [Ciclo 29 — Protocolo para revisão independente](docs/CICLO_2026-10-28_PROTOCOLO_REVISAO_INDEPENDENTE.md)
+- [Ciclo 30 — Custódia separada de casos inéditos e gabarito](docs/CICLO_2026-10-28_CUSTODIA_AVALIACAO_EXTERNA.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -402,3 +403,7 @@ O benchmark `benchmarks/generalization_stress.py` avalia **34 cenários sintéti
 ## Ciclo 29 — Ensaio de revisão técnica
 
 O módulo `benchmarks/blind_review_protocol.py` exporta **12 casos fictícios sem o gabarito embutido**, compara **24 pareceres sintéticos** de dois personagens revisores e aponta erros críticos, relevantes e leves. O arquivo exportado omite expectativas, mas **o repositório público contém o gabarito**, portanto não se realizou avaliação efetivamente cega, revisão humana nem medição de acurácia diagnóstica. Divergências são preservadas; não geram consenso ou autorização de manutenção. [Método e limitações](docs/CICLO_2026-10-28_PROTOCOLO_REVISAO_INDEPENDENTE.md).
+
+## Ciclo 30 — Custódia de avaliação externa, sem dados no repositório
+
+O utilitário **offline** `benchmarks/heldout_study.py` separa arquivos de casos, gabarito, chave de custódia, pacotes de perguntas, pareceres e relatório. Por construção, o CLI **rejeita arquivos de entrada ou saída localizados dentro deste repositório público**. Uma trava HMAC vincula os casos ao gabarito sob chave mantida pelo custodiante e cada submissão recebe um recibo de congelamento antes de eventual comparação. Os testes de CI usam apenas casos sintéticos temporários, sem publicar chave, respostas privadas ou pareceres reais. **Não há avaliadores independentes conectados, autenticação humana ou validação mecânica demonstrada.** [Manual e ameaças à validade](docs/CICLO_2026-10-28_CUSTODIA_AVALIACAO_EXTERNA.md).

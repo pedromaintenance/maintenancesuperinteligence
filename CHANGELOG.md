@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.0.0 — 2026-10-28 — Ciclo 30
+
+- Criado fluxo offline para preparar pacotes de casos inéditos, custodiar gabaritos e congelar pareceres **fora** do repositório público.
+- HMAC-SHA256 vincula gabarito à versão do pacote com chave local sob responsabilidade do custodiante; detecta alteração de casos, gabarito ou chave antes de pontuar.
+- Novo comando de recebimento por avaliador com recibo de hash, rejeição de alias repetido e proibição de sobrescrita dos arquivos congelados.
+- Sete contratos JSON Schema e suíte adversarial abrangendo adulteração, chave incorreta, fonte alterada, falsa autorização, falso revisor autenticado e reexecução.
+- O CI testa somente dados artificiais gerados em diretório temporário; não exporta ou guarda gabaritos e pareceres de pessoas reais.
+- **Limitado à infraestrutura:** não há revisão externa realizada, credenciais de especialistas validadas, proteção de ambiente homologada ou precisão diagnóstica de campo comprovada.
+
+
 ## 2.9.0 — 2026-10-28 — Ciclo 29
 
 - Protocolo de ensaio técnico com 12 casos fictícios exportados sem respostas e 24 pareceres simulados de dois revisores fictícios por caso.
