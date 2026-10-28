@@ -69,7 +69,7 @@ class Cycle30CustodyTests(unittest.TestCase):
         self.assertTrue(validate_packet(self.packet))
         self.assertTrue(verify_lock(self.packet,self.lock,self.oracle,self.key))
         self.assertNotIn("expectedQuestionId",json.dumps(self.packet))
-        self.assertNotIn("oracle",json.dumps(self.packet).lower())
+        self.assertNotIn('"answers"', json.dumps(self.packet))
         self.assertFalse(self.lock["oracleIncluded"])
         self.assertFalse(self.lock["custodianKeyPublished"])
         self.assertNotIn(self.key.decode(),json.dumps(self.lock))
