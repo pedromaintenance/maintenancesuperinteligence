@@ -1,0 +1,42 @@
+{
+  "schema": "maintenance-superinteligence.validation-quality-policy.v1",
+  "version": "1.0.0",
+  "purpose": "synthetic_split_preflight_not_field_validation",
+  "taxonomy": {
+    "final_drive": [
+      "lubricant_baseline",
+      "particle_contamination",
+      "bearing_damage"
+    ],
+    "hydraulics": [
+      "load_demand",
+      "valve_control",
+      "supply_loss"
+    ],
+    "electronics": [
+      "stored_event",
+      "wiring_signal",
+      "physical_anomaly"
+    ],
+    "cooling": [
+      "airflow_restriction",
+      "coolant_circulation",
+      "sensor_or_duty"
+    ]
+  },
+  "splitMinimums": {
+    "train": 8,
+    "dev": 4,
+    "test": 14
+  },
+  "unsupportedTestMinimum": 2,
+  "sourceReliabilityRequiredInTest": [
+    "contradictory",
+    "revoked",
+    "unverified"
+  ],
+  "nearDuplicateJaccardThreshold": 0.82,
+  "independentReviewCompleted": false,
+  "realWorldAccuracyMeasured": false,
+  "mayApproveOperationalUse": false
+}

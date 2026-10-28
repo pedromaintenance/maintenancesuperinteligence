@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle31 synthetic validation set manifest",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "realFieldDataPresent",
+    "independentReviewerApproved",
+    "causesVerifiedByOEM",
+    "records"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.validation-quality-manifest.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "public_synthetic_development_demonstration"
+    },
+    "realFieldDataPresent": {
+      "const": false
+    },
+    "independentReviewerApproved": {
+      "const": false
+    },
+    "causesVerifiedByOEM": {
+      "const": false
+    },
+    "records": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 200,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "split",
+          "family",
+          "mechanismTag",
+          "mechanismStatus",
+          "incidentLineage",
+          "sourceGroup",
+          "evidenceRef",
+          "syntheticNarrative",
+          "sourceReliability",
+          "abstentionReason",
+          "abstentionRequired",
+          "physicalEvidenceCollected",
+          "causalMechanismConfirmed",
+          "oemApplicabilityVerified",
+          "mayCreateWorkOrder",
+          "mayReleaseEquipment"
+        ],
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "pattern": "^SIM-VSET-[0-9]{3}$"
+          },
+          "split": {
+            "enum": [
+              "train",
+              "dev",
+              "test"
+            ]
+          },
+          "family": {
+            "enum": [
+              "final_drive",
+              "hydraulics",
+              "electronics",
+              "cooling",
+              "braking",
+              "transmission"
+            ]
+          },
+          "mechanismTag": {
+            "type": "string"
+          },
+          "mechanismStatus": {
+            "const": "unconfirmed_training_hypothesis"
+          },
+          "incidentLineage": {
+            "type": "string",
+            "pattern": "^SIM-LINEAGE-[0-9]{3}$"
+          },
+          "sourceGroup": {
+            "type": "string",
+            "pattern": "^SIM-GROUP-[0-9]{3}$"
+          },
+          "evidenceRef": {
+            "type": "string",
+            "pattern": "^SIM-EVID-[0-9]{3}$"
+          },
+          "syntheticNarrative": {
+            "type": "string",
+            "minLength": 24,
+            "maxLength": 700
+          },
+          "sourceReliability": {
+            "enum": [
+              "documented_synthetic",
+              "contradictory",
+              "revoked",
+              "unverified"
+            ]
+          },
+          "abstentionReason": {
+            "enum": [
+              "no_physical_confirmation",
+              "conflicting_documentary_evidence",
+              "source_not_trustworthy",
+              "domain_unsupported"
+            ]
+          },
+          "abstentionRequired": {
+            "const": true
+          },
+          "physicalEvidenceCollected": {
+            "const": false
+          },
+          "causalMechanismConfirmed": {
+            "const": false
+          },
+          "oemApplicabilityVerified": {
+            "const": false
+          },
+          "mayCreateWorkOrder": {
+            "const": false
+          },
+          "mayReleaseEquipment": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}
