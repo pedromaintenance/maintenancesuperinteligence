@@ -1915,3 +1915,19 @@ jobs:
             build/benchmarks/cycle29-review-report.json
             build/benchmarks/cycle29-review-report.html
           retention-days: 14
+      - name: Test Cycle 30 heldout custody and strict private path gates
+        run: |
+          python -m unittest tests.test_heldout_study -v
+          python - <<'PY'
+          from pathlib import Path
+          from benchmarks.heldout_study import ROOT, private_path
+          try:
+              private_path(ROOT/"build"/"public-leak.json")
+          except ValueError:
+              pass
+          else:
+              raise AssertionError("public checkout accepted a private oracle file")
+          assert not list(Path("benchmarks").glob("heldout-*oracle*.json"))
+          assert not list(Path("benchmarks").glob("heldout-*secret*"))
+          print("PASS: offline heldout custody, two frozen synthetic submissions and no private data committed")
+          PY

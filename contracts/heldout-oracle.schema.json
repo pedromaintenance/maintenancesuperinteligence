@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "heldout-oracle",
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "expertValidated",
+    "answers"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.heldout-oracle.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "custodian_only_not_public"
+    },
+    "expertValidated": {
+      "const": false
+    },
+    "answers": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "expectedQuestionId",
+          "expectedAbstention"
+        ],
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "pattern": "^HLD-[0-9]{3}$"
+          },
+          "expectedQuestionId": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{2,79}$"
+          },
+          "expectedAbstention": {
+            "const": true
+          }
+        }
+      }
+    }
+  }
+}

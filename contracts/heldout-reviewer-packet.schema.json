@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "heldout-reviewer-packet",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "caseCount",
+    "cases",
+    "answerKeyIncluded",
+    "reviewerIdentityAuthenticated",
+    "operationallyApproved"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.heldout-reviewer-packet.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "external_custody_oracle_excluded"
+    },
+    "caseCount": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 50
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "domain",
+          "symptom",
+          "observations",
+          "evidenceNature",
+          "documentaryStatus",
+          "oemEffectivityVerified",
+          "mayReleaseEquipment"
+        ],
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "pattern": "^HLD-[0-9]{3}$"
+          },
+          "domain": {
+            "enum": [
+              "mechanics",
+              "hydraulics",
+              "electronics",
+              "cooling",
+              "unsupported"
+            ]
+          },
+          "symptom": {
+            "type": "string",
+            "minLength": 12
+          },
+          "observations": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "string",
+              "minLength": 3
+            }
+          },
+          "evidenceNature": {
+            "enum": [
+              "synthetic_demo_only",
+              "authorized_restricted_case"
+            ]
+          },
+          "documentaryStatus": {
+            "enum": [
+              "unverified",
+              "conflicting",
+              "stale",
+              "revoked",
+              "synthetic_complete"
+            ]
+          },
+          "oemEffectivityVerified": {
+            "const": false
+          },
+          "mayReleaseEquipment": {
+            "const": false
+          }
+        }
+      }
+    },
+    "answerKeyIncluded": {
+      "const": false
+    },
+    "reviewerIdentityAuthenticated": {
+      "const": false
+    },
+    "operationallyApproved": {
+      "const": false
+    }
+  }
+}

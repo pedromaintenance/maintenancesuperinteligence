@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "heldout-custody-lock",
+  "required": [
+    "schema",
+    "version",
+    "packetDigest",
+    "oracleCommitmentHmacSha256",
+    "custodianKeyPublished",
+    "oracleIncluded",
+    "externalExpertReviewCompleted",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.heldout-custody-lock.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "packetDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "oracleCommitmentHmacSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "custodianKeyPublished": {
+      "const": false
+    },
+    "oracleIncluded": {
+      "const": false
+    },
+    "externalExpertReviewCompleted": {
+      "const": false
+    },
+    "decision": {
+      "const": "awaiting_independent_review_no_go"
+    }
+  }
+}

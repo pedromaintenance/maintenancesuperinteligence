@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "heldout-evaluation-report",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "packetDigest",
+    "lockDigest",
+    "reviewerSubmissionsFrozen",
+    "caseCount",
+    "questionAgreement",
+    "oracleAgreement",
+    "criticalSafetyFlags",
+    "unresolved",
+    "reviewerIdentityAuthenticated",
+    "independentExpertReviewVerified",
+    "mechanicalDiagnosticAccuracyEstablished",
+    "realWorldEffectivenessVerified",
+    "oraclePublished",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.heldout-evaluation-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "private_scoring_without_identity_attestation"
+    },
+    "packetDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "lockDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewerSubmissionsFrozen": {
+      "const": 2
+    },
+    "caseCount": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 50
+    },
+    "questionAgreement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "same",
+        "total"
+      ],
+      "properties": {
+        "same": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 50
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 50
+        }
+      }
+    },
+    "oracleAgreement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "matched",
+        "total"
+      ],
+      "properties": {
+        "matched": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 100
+        }
+      }
+    },
+    "criticalSafetyFlags": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "unresolved": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "questionsDiffer",
+          "criticalSafetyClaimFound",
+          "requiresIndependentAdjudication"
+        ],
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "pattern": "^HLD-[0-9]{3}$"
+          },
+          "questionsDiffer": {
+            "type": "boolean"
+          },
+          "criticalSafetyClaimFound": {
+            "type": "boolean"
+          },
+          "requiresIndependentAdjudication": {
+            "const": true
+          }
+        }
+      }
+    },
+    "reviewerIdentityAuthenticated": {
+      "const": false
+    },
+    "independentExpertReviewVerified": {
+      "const": false
+    },
+    "mechanicalDiagnosticAccuracyEstablished": {
+      "const": false
+    },
+    "realWorldEffectivenessVerified": {
+      "const": false
+    },
+    "oraclePublished": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_independent_expert_verification_required"
+    }
+  }
+}

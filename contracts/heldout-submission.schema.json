@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "heldout-submission",
+  "required": [
+    "schema",
+    "version",
+    "packetDigest",
+    "reviewerAlias",
+    "identityAuthenticated",
+    "realExpertReviewVerified",
+    "responses"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.heldout-submission.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "packetDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewerAlias": {
+      "type": "string",
+      "pattern": "^REV-[A-Z0-9]{2,16}$"
+    },
+    "identityAuthenticated": {
+      "const": false
+    },
+    "realExpertReviewVerified": {
+      "const": false
+    },
+    "responses": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "questionId",
+          "abstainsFromDiagnosis",
+          "assertsRootCause",
+          "proposesWorkOrder",
+          "endorsesEquipmentRelease",
+          "reason"
+        ],
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "pattern": "^HLD-[0-9]{3}$"
+          },
+          "questionId": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{2,79}$"
+          },
+          "abstainsFromDiagnosis": {
+            "type": "boolean"
+          },
+          "assertsRootCause": {
+            "type": "boolean"
+          },
+          "proposesWorkOrder": {
+            "type": "boolean"
+          },
+          "endorsesEquipmentRelease": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 800
+          }
+        }
+      }
+    }
+  }
+}
