@@ -1798,3 +1798,37 @@ jobs:
             build/graph-change/cycle26-adjudication.json
             build/graph-change/cycle26-adjudication.html
           retention-days: 14
+      - name: Evaluate Cycle 27 mechanical differential question benchmark
+        run: |
+          python -m benchmarks.mechanical_reasoning \
+            --output build/benchmarks/cycle27-mechanical-reasoning.json \
+            --html build/benchmarks/cycle27-mechanical-reasoning.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from benchmarks.mechanical_reasoning import evaluate,verify_report
+          manifest=json.loads(Path("benchmarks/mechanical-reasoning-cases.v1.json").read_text())
+          oracle=json.loads(Path("benchmarks/mechanical-reasoning-oracle.v1.json").read_text())
+          report=json.loads(Path("build/benchmarks/cycle27-mechanical-reasoning.json").read_text())
+          verify_report(report,manifest,oracle)
+          assert report["agreementWithAuthoredOracle"]=={"matched":24,"total":24}
+          assert report["caseCount"]==24 and len(report["byDomain"])==4
+          assert all(v=={"total":6,"matched":6} for v in report["byDomain"].values())
+          assert report["diagnosticAccuracyMeasured"] is False
+          assert report["independentMechanicalReviewCompleted"] is False
+          assert report["physicalCausesConfirmed"]==0
+          assert report["fieldMeasurements"]==0
+          assert report["mayClaimDiagnosticValidity"] is False
+          assert report["mayIssueWorkOrders"] is False
+          assert report["mayReleaseEquipment"] is False
+          assert report["decision"]=="educational_only_no_go"
+          print("PASS: 24 authored synthetic regression cases; NO empirical validation")
+          PY
+      - name: Publish Cycle 27 mechanical reasoning regression artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle27-mechanical-reasoning-synthetic
+          path: |
+            build/benchmarks/cycle27-mechanical-reasoning.json
+            build/benchmarks/cycle27-mechanical-reasoning.html
+          retention-days: 14

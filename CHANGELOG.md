@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.7.0 — 2026-10-27 — Ciclo 27
+
+- Introduzidos 24 cenários de teste de raciocínio diferencial em quatro domínios (comando final, hidráulica, eletrônica e arrefecimento).
+- Motor determinístico identifica contradições e lacunas documentais antes de escolher pergunta; mantém todas as hipóteses abertas e recomenda revisão ao completar o contexto.
+- Gabarito editorial separado da lógica, métricas de concordância por domínio, testes metamórficos/adversariais, contratos JSON Schema e relatório JSON/HTML estático.
+- Integração ao CI, sem limites OEM inventados, diagnóstico validado, medição física, OS, testes ou liberação de equipamento.
+
+**Limite:** benchmark de regressão autoral, sem revisão mecânica independente, validade empírica ou precisão diagnóstica demonstrada.
+
+
 ## 2.6.0 — 2026-10-27 — Ciclo 26
 
 - Criados dez cenários sintéticos de contestação, revogação, versões obsoletas, conflitos de interesse, dissenso e alegações de aprovação.

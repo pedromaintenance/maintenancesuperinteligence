@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Differential reasoning synthetic evaluation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "manifestDigest",
+    "oracleDigest",
+    "caseCount",
+    "agreementWithAuthoredOracle",
+    "byDomain",
+    "cases",
+    "diagnosticAccuracyMeasured",
+    "independentMechanicalReviewCompleted",
+    "physicalCausesConfirmed",
+    "fieldMeasurements",
+    "mayClaimDiagnosticValidity",
+    "mayIssueWorkOrders",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.mechanical-reasoning-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "synthetic_editorial_regression"
+    },
+    "manifestDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "oracleDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "caseCount": {
+      "const": 24
+    },
+    "agreementWithAuthoredOracle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "matched",
+        "total"
+      ],
+      "properties": {
+        "matched": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 24
+        },
+        "total": {
+          "const": 24
+        }
+      }
+    },
+    "byDomain": {
+      "type": "object",
+      "required": [
+        "final_drive",
+        "hydraulics",
+        "electronics",
+        "cooling"
+      ],
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "matched",
+          "total"
+        ],
+        "properties": {
+          "matched": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 6
+          },
+          "total": {
+            "const": 6
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 24,
+      "maxItems": 24,
+      "items": {
+        "$ref": "#/$defs/result"
+      }
+    },
+    "diagnosticAccuracyMeasured": {
+      "const": false
+    },
+    "independentMechanicalReviewCompleted": {
+      "const": false
+    },
+    "physicalCausesConfirmed": {
+      "const": 0
+    },
+    "fieldMeasurements": {
+      "const": 0
+    },
+    "mayClaimDiagnosticValidity": {
+      "const": false
+    },
+    "mayIssueWorkOrders": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "educational_only_no_go"
+    }
+  },
+  "$defs": {
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "caseId",
+        "familyId",
+        "variant",
+        "selectedQuestionId",
+        "expectedQuestionId",
+        "agreesWithAuthoredOracle",
+        "abstainsFromDiagnosis",
+        "openHypotheses",
+        "reason",
+        "prohibitedOperationalAuthority"
+      ],
+      "properties": {
+        "caseId": {
+          "type": "string"
+        },
+        "familyId": {
+          "type": "string"
+        },
+        "variant": {
+          "type": "string"
+        },
+        "selectedQuestionId": {
+          "type": "string"
+        },
+        "expectedQuestionId": {
+          "type": "string"
+        },
+        "agreesWithAuthoredOracle": {
+          "type": "boolean"
+        },
+        "abstainsFromDiagnosis": {
+          "const": true
+        },
+        "openHypotheses": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "status",
+              "probability"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "status": {
+                "const": "open_not_confirmed"
+              },
+              "probability": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        "reason": {
+          "type": "string"
+        },
+        "prohibitedOperationalAuthority": {
+          "const": true
+        }
+      }
+    }
+  }
+}

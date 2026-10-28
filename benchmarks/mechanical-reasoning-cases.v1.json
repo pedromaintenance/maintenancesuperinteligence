@@ -1,0 +1,443 @@
+{
+  "schema": "maintenance-superinteligence.mechanical-reasoning-cases.v1",
+  "version": "1.0.0",
+  "purpose": "authored_synthetic_differential_reasoning_regression",
+  "oemEffectivityVerified": false,
+  "realFieldEvidence": false,
+  "reviewedByIndependentMechanicalExpert": false,
+  "operationallyApproved": false,
+  "cases": [
+    {
+      "caseId": "SIM-MECH-001",
+      "familyId": "final_drive",
+      "scenarioVariant": "conflict",
+      "fictionalSymptom": "Amostra de óleo de comando final com interpretação inicialmente indeterminada",
+      "unresolvedContradiction": true,
+      "contextAvailable": {
+        "fluid_identity": false,
+        "service_history": false,
+        "sampling_trace": false,
+        "comparable_trend": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-002",
+      "familyId": "final_drive",
+      "scenarioVariant": "first_missing",
+      "fictionalSymptom": "Amostra de óleo de comando final com interpretação inicialmente indeterminada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "fluid_identity": false,
+        "service_history": false,
+        "sampling_trace": false,
+        "comparable_trend": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-003",
+      "familyId": "final_drive",
+      "scenarioVariant": "second_missing",
+      "fictionalSymptom": "Amostra de óleo de comando final com interpretação inicialmente indeterminada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "fluid_identity": true,
+        "service_history": false,
+        "sampling_trace": false,
+        "comparable_trend": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-004",
+      "familyId": "final_drive",
+      "scenarioVariant": "third_missing",
+      "fictionalSymptom": "Amostra de óleo de comando final com interpretação inicialmente indeterminada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "fluid_identity": true,
+        "service_history": true,
+        "sampling_trace": false,
+        "comparable_trend": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-005",
+      "familyId": "final_drive",
+      "scenarioVariant": "fourth_missing",
+      "fictionalSymptom": "Amostra de óleo de comando final com interpretação inicialmente indeterminada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "fluid_identity": true,
+        "service_history": true,
+        "sampling_trace": true,
+        "comparable_trend": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-006",
+      "familyId": "final_drive",
+      "scenarioVariant": "context_complete",
+      "fictionalSymptom": "Amostra de óleo de comando final com interpretação inicialmente indeterminada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "fluid_identity": true,
+        "service_history": true,
+        "sampling_trace": true,
+        "comparable_trend": true
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-007",
+      "familyId": "hydraulics",
+      "scenarioVariant": "conflict",
+      "fictionalSymptom": "Atuação hidráulica lenta sem condição de ensaio caracterizada",
+      "unresolvedContradiction": true,
+      "contextAvailable": {
+        "load_context": false,
+        "temperature_context": false,
+        "circuit_documentation": false,
+        "authorized_measurement_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-008",
+      "familyId": "hydraulics",
+      "scenarioVariant": "first_missing",
+      "fictionalSymptom": "Atuação hidráulica lenta sem condição de ensaio caracterizada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "load_context": false,
+        "temperature_context": false,
+        "circuit_documentation": false,
+        "authorized_measurement_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-009",
+      "familyId": "hydraulics",
+      "scenarioVariant": "second_missing",
+      "fictionalSymptom": "Atuação hidráulica lenta sem condição de ensaio caracterizada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "load_context": true,
+        "temperature_context": false,
+        "circuit_documentation": false,
+        "authorized_measurement_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-010",
+      "familyId": "hydraulics",
+      "scenarioVariant": "third_missing",
+      "fictionalSymptom": "Atuação hidráulica lenta sem condição de ensaio caracterizada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "load_context": true,
+        "temperature_context": true,
+        "circuit_documentation": false,
+        "authorized_measurement_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-011",
+      "familyId": "hydraulics",
+      "scenarioVariant": "fourth_missing",
+      "fictionalSymptom": "Atuação hidráulica lenta sem condição de ensaio caracterizada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "load_context": true,
+        "temperature_context": true,
+        "circuit_documentation": true,
+        "authorized_measurement_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-012",
+      "familyId": "hydraulics",
+      "scenarioVariant": "context_complete",
+      "fictionalSymptom": "Atuação hidráulica lenta sem condição de ensaio caracterizada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "load_context": true,
+        "temperature_context": true,
+        "circuit_documentation": true,
+        "authorized_measurement_plan": true
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-013",
+      "familyId": "electronics",
+      "scenarioVariant": "conflict",
+      "fictionalSymptom": "Código eletrônico informado sem correlação física comprovada",
+      "unresolvedContradiction": true,
+      "contextAvailable": {
+        "ecm_identity": false,
+        "active_logged_context": false,
+        "event_timeline": false,
+        "independent_signal_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-014",
+      "familyId": "electronics",
+      "scenarioVariant": "first_missing",
+      "fictionalSymptom": "Código eletrônico informado sem correlação física comprovada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "ecm_identity": false,
+        "active_logged_context": false,
+        "event_timeline": false,
+        "independent_signal_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-015",
+      "familyId": "electronics",
+      "scenarioVariant": "second_missing",
+      "fictionalSymptom": "Código eletrônico informado sem correlação física comprovada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "ecm_identity": true,
+        "active_logged_context": false,
+        "event_timeline": false,
+        "independent_signal_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-016",
+      "familyId": "electronics",
+      "scenarioVariant": "third_missing",
+      "fictionalSymptom": "Código eletrônico informado sem correlação física comprovada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "ecm_identity": true,
+        "active_logged_context": true,
+        "event_timeline": false,
+        "independent_signal_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-017",
+      "familyId": "electronics",
+      "scenarioVariant": "fourth_missing",
+      "fictionalSymptom": "Código eletrônico informado sem correlação física comprovada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "ecm_identity": true,
+        "active_logged_context": true,
+        "event_timeline": true,
+        "independent_signal_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-018",
+      "familyId": "electronics",
+      "scenarioVariant": "context_complete",
+      "fictionalSymptom": "Código eletrônico informado sem correlação física comprovada",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "ecm_identity": true,
+        "active_logged_context": true,
+        "event_timeline": true,
+        "independent_signal_plan": true
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-019",
+      "familyId": "cooling",
+      "scenarioVariant": "conflict",
+      "fictionalSymptom": "Aquecimento reportado em sistema de arrefecimento sem diagnóstico de causa",
+      "unresolvedContradiction": true,
+      "contextAvailable": {
+        "duty_cycle": false,
+        "airflow_condition": false,
+        "coolant_inventory": false,
+        "thermal_measurement_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-020",
+      "familyId": "cooling",
+      "scenarioVariant": "first_missing",
+      "fictionalSymptom": "Aquecimento reportado em sistema de arrefecimento sem diagnóstico de causa",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "duty_cycle": false,
+        "airflow_condition": false,
+        "coolant_inventory": false,
+        "thermal_measurement_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-021",
+      "familyId": "cooling",
+      "scenarioVariant": "second_missing",
+      "fictionalSymptom": "Aquecimento reportado em sistema de arrefecimento sem diagnóstico de causa",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "duty_cycle": true,
+        "airflow_condition": false,
+        "coolant_inventory": false,
+        "thermal_measurement_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-022",
+      "familyId": "cooling",
+      "scenarioVariant": "third_missing",
+      "fictionalSymptom": "Aquecimento reportado em sistema de arrefecimento sem diagnóstico de causa",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "duty_cycle": true,
+        "airflow_condition": true,
+        "coolant_inventory": false,
+        "thermal_measurement_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-023",
+      "familyId": "cooling",
+      "scenarioVariant": "fourth_missing",
+      "fictionalSymptom": "Aquecimento reportado em sistema de arrefecimento sem diagnóstico de causa",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "duty_cycle": true,
+        "airflow_condition": true,
+        "coolant_inventory": true,
+        "thermal_measurement_plan": false
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    },
+    {
+      "caseId": "SIM-MECH-024",
+      "familyId": "cooling",
+      "scenarioVariant": "context_complete",
+      "fictionalSymptom": "Aquecimento reportado em sistema de arrefecimento sem diagnóstico de causa",
+      "unresolvedContradiction": false,
+      "contextAvailable": {
+        "duty_cycle": true,
+        "airflow_condition": true,
+        "coolant_inventory": true,
+        "thermal_measurement_plan": true
+      },
+      "observationNature": "synthetic_narrative_not_measured",
+      "confirmedRootCause": null,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false,
+      "mayRunTests": false
+    }
+  ]
+}
