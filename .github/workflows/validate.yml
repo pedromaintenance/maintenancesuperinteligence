@@ -1966,3 +1966,19 @@ jobs:
             build/benchmarks/cycle31-quality.json
             build/benchmarks/cycle31-quality.html
           retention-days: 14
+      - name: Test Cycle 32 mandatory private quality release gate
+        run: |
+          python -m unittest tests.test_private_quality_gate tests.test_heldout_study -v
+          python - <<'PY'
+          from pathlib import Path
+          from benchmarks.heldout_study import ROOT,private_path
+          try:
+              private_path(ROOT/"build"/"private-quality-leak.json")
+          except ValueError:
+              pass
+          else:
+              raise AssertionError("private quality could leak into public checkout")
+          assert not list(Path("benchmarks").glob("private-quality-metadata*.json"))
+          assert not list(Path("benchmarks").glob("private-quality-receipt*.json"))
+          print("PASS: Cycle32 private quality gate required before release")
+          PY

@@ -335,14 +335,17 @@ def cli(argv=None):
     ap = argparse.ArgumentParser(description="Offline heldout custody; no external signoff")
     cmd = ap.add_subparsers(dest="stage", required=True)
     p = cmd.add_parser("prepare")
-    for flag in ("cases", "oracle", "key", "packet", "lock"):
+    for flag in ("cases", "oracle", "key", "packet", "lock",
+                 "quality-metadata", "quality-policy", "quality-receipt"):
         p.add_argument("--" + flag, required=True, type=Path)
     f = cmd.add_parser("freeze")
     for flag in ("packet", "submission", "receipt"):
         f.add_argument("--" + flag, required=True, type=Path)
     s = cmd.add_parser("score")
     for flag in ("packet", "lock", "oracle", "key", "submission-a",
-                 "submission-b", "receipt-a", "receipt-b", "output"):
+                 "submission-b", "receipt-a", "receipt-b", "output",
+                 "quality-source", "quality-metadata", "quality-policy",
+                 "quality-receipt"):
         s.add_argument("--" + flag, required=True, type=Path)
     args = ap.parse_args(argv)
     if args.stage == "prepare":
@@ -350,9 +353,13 @@ def cli(argv=None):
         oracle = read_private(args.oracle)
         key = read_private_key(args.key)
         packet = reviewer_packet(cases)
+        from benchmarks.private_quality_gate import receipt as quality_receipt
+        quality = quality_receipt(cases, read_private(args.quality_metadata),
+                                  read_private(args.quality_policy), packet)
         lock = build_lock(packet, oracle, key)
         save_private(args.packet, packet)
         save_private(args.lock, lock)
+        save_private(args.quality_receipt, quality)
     elif args.stage == "freeze":
         packet = read_private(args.packet)
         sub = read_private(args.submission)
@@ -364,6 +371,11 @@ def cli(argv=None):
         key = read_private_key(args.key)
         subs = (read_private(args.submission_a), read_private(args.submission_b))
         receipts = (read_private(args.receipt_a), read_private(args.receipt_b))
+        from benchmarks.private_quality_gate import verify_receipt as verify_quality
+        verify_quality(read_private(args.quality_receipt),
+                       read_private(args.quality_source),
+                       read_private(args.quality_metadata),
+                       read_private(args.quality_policy), packet)
         save_private(args.output, score(packet, lock, oracle, key, subs, receipts))
 
 

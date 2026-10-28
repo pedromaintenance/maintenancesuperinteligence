@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.2.0 — 2026-10-28 — Ciclo 32
+
+- Integrado gate obrigatório de qualidade documental privada ao CLI `prepare` e `score` do Ciclo 30.
+- Auditor valida vínculo integral de casos de teste ao pacote, divisões train/dev/test, reutilização de fontes/evidências/linhagens, similaridade narrativa e cobertura declarada de domínio, proveniência e hipóteses.
+- Comprovante de auditoria vinculado a hashes do conjunto, política e pacote; revalidação no momento da pontuação.
+- Três contratos JSON Schema, testes adversariais e CI; fluxo NO GO e caráter sintético mantidos.
+- **Limite:** digests não são assinaturas, política não é revisada externamente e nenhum diagnóstico de campo é validado.
+
+
 ## 3.1.0 — 2026-10-28 — Ciclo 31
 
 - Introduzidos 26 registros totalmente sintéticos distribuídos em treino (8), desenvolvimento (4) e teste (14), com catálogo de 12 etiquetas de hipóteses em quatro famílias e dois domínios não cobertos.

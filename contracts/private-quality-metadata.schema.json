@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Privately held dataset quality metadata — no physical certification",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "independentReviewCompleted",
+    "operationallyApproved",
+    "records"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.private-quality-metadata.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "private_custodian_metadata"
+    },
+    "independentReviewCompleted": {
+      "const": false
+    },
+    "operationallyApproved": {
+      "const": false
+    },
+    "records": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 250,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "split",
+          "domain",
+          "narrative",
+          "caseDigest",
+          "lineage",
+          "sourceGroup",
+          "evidenceRef",
+          "mechanismTag",
+          "documentaryStatus",
+          "abstentionRequired",
+          "causeConfirmed"
+        ],
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "pattern": "^(HLD|TRN|DEV)-[0-9]{3}$"
+          },
+          "split": {
+            "enum": [
+              "train",
+              "dev",
+              "test"
+            ]
+          },
+          "domain": {
+            "enum": [
+              "mechanics",
+              "hydraulics",
+              "electronics",
+              "cooling",
+              "unsupported"
+            ]
+          },
+          "narrative": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 1200
+          },
+          "caseDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "lineage": {
+            "type": "string",
+            "pattern": "^[A-Z0-9-]{5,80}$"
+          },
+          "sourceGroup": {
+            "type": "string",
+            "pattern": "^[A-Z0-9-]{5,80}$"
+          },
+          "evidenceRef": {
+            "type": "string",
+            "pattern": "^[A-Z0-9-]{5,80}$"
+          },
+          "mechanismTag": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{2,63}$"
+          },
+          "documentaryStatus": {
+            "enum": [
+              "unverified",
+              "conflicting",
+              "stale",
+              "revoked",
+              "synthetic_complete"
+            ]
+          },
+          "abstentionRequired": {
+            "const": true
+          },
+          "causeConfirmed": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}
