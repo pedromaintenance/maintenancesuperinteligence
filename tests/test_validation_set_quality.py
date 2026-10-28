@@ -49,7 +49,7 @@ class Cycle31DatasetQuality(unittest.TestCase):
             ("evidenceRef","evidence_reused_cross_split")
         ):
             changed=copy.deepcopy(self.manifest)
-            changed["records"][12][field]=changed["records"][0][field]
+            changed["records"][15][field]=changed["records"][0][field]
             report=audit(changed,self.policy)
             with self.subTest(field=field):
                 self.assertFalse(report["qualityPreflightPassed"])
@@ -59,8 +59,8 @@ class Cycle31DatasetQuality(unittest.TestCase):
     def test_exact_near_and_intra_split_duplicate_detection(self):
         original=self.manifest["records"][0]["syntheticNarrative"]
         for destination,variation,code in (
-            (12,original,"exact_narrative_cross_split"),
-            (12,original+" extra","near_narrative_cross_split"),
+            (15,original,"exact_narrative_cross_split"),
+            (15,original+" extra","near_narrative_cross_split"),
             (1,original,"duplicate_record_within_split"),
         ):
             changed=copy.deepcopy(self.manifest)
