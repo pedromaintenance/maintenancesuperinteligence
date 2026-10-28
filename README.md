@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protótipo de avaliação editorial de raciocínio mecânico P&D v2.7.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: protótipo de avaliação adversarial de raciocínio mecânico P&D v2.8.0 (27/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -65,6 +65,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 25 — Dossiês sintéticos de mudanças](docs/CICLO_2026-10-27_DOSSIES_REVISAO_GRAFO.md)
 - [Ciclo 26 — Contestação e revogação](docs/CICLO_2026-10-27_CONTESTACAO_REVOGACAO.md)
 - [Ciclo 27 — Benchmark de raciocínio mecânico](docs/CICLO_2026-10-27_BENCHMARK_RACIOCINIO_MECANICO.md)
+- [Ciclo 28 — Generalização sintética e qualidade da proveniência](docs/CICLO_2026-10-27_GENERALIZACAO_ADVERSARIAL.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -392,3 +393,7 @@ O gerador `pilot/change_review_adjudication.py` preserva duas opiniões fictíci
 ## Ciclo 27 — Benchmark editorial de investigação mecânica
 
 O módulo `benchmarks/mechanical_reasoning.py` avalia a seleção determinística da **próxima pergunta** diante de lacunas e contradições em 24 cenários **sintéticos** de comando final, hidráulica, eletrônica e arrefecimento. Um gabarito editorial separado permite detectar regressões e alterações de comportamento em quatro famílias de sistemas. As 3 hipóteses por domínio permanecem abertas em cada cenário; nenhuma informação presente no teste constitui medição real ou comprovação de causa. A concordância com esse gabarito **não é acurácia diagnóstica nem revisão independente**. Veja [o dossiê do Ciclo 27](docs/CICLO_2026-10-27_BENCHMARK_RACIOCINIO_MECANICO.md).
+
+## Ciclo 28 — Generalização adversarial controlada
+
+O benchmark `benchmarks/generalization_stress.py` avalia **34 cenários sintéticos novos** que não estavam no conjunto fixado do Ciclo 27. Uma camada separada bloqueia a progressão quando a proveniência está ausente, contraditória, obsoleta ou revogada; domínios não modelados levam a abstenção e encaminhamento. Compara o seletor inalterado do Ciclo 27 e o mesmo seletor precedido pela nova barreira documental. **A concordância é medida contra gabarito editorial criado pelo próprio projeto; não há revisão externa, casos reais nem acurácia diagnóstica mensurada.** Detalhes em [Ciclo 28](docs/CICLO_2026-10-27_GENERALIZACAO_ADVERSARIAL.md).

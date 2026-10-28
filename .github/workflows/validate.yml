@@ -1832,3 +1832,38 @@ jobs:
             build/benchmarks/cycle27-mechanical-reasoning.json
             build/benchmarks/cycle27-mechanical-reasoning.html
           retention-days: 14
+      - name: Evaluate Cycle 28 novel synthetic generalization cases
+        run: |
+          python -m benchmarks.generalization_stress \
+            --output build/benchmarks/cycle28-generalization.json \
+            --html build/benchmarks/cycle28-generalization.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from benchmarks.generalization_stress import evaluate, verify_report
+          cases=json.loads(Path("benchmarks/generalization-challenges.v1.json").read_text())
+          oracle=json.loads(Path("benchmarks/generalization-expectations.v1.json").read_text())
+          report=json.loads(Path("build/benchmarks/cycle28-generalization.json").read_text())
+          verify_report(report,cases,oracle)
+          assert report["caseCount"]==34
+          assert report["supportedDomainCases"]==32
+          assert report["unknownDomainCases"]==2
+          assert report["baselineEditorialAgreement"]=={"matched":16,"total":32}
+          assert report["qualityGatedEditorialAgreement"]=={"matched":34,"total":34}
+          assert report["independentExpertEvaluationCompleted"] is False
+          assert report["realWorldDiagnosticAccuracyMeasured"] is False
+          assert report["causesConfirmed"]==0 and report["testsExecuted"]==0
+          assert report["mayClaimDiagnosticValidation"] is False
+          assert report["mayCreateWorkOrder"] is False
+          assert report["mayReleaseEquipment"] is False
+          assert all(not any(c["operationalAuthority"].values()) for c in report["cases"])
+          print("PASS: 34 novel synthetic cases; baseline gaps exposed; no field claims")
+          PY
+      - name: Publish Cycle 28 generalization synthetic reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle28-generalization-synthetic
+          path: |
+            build/benchmarks/cycle28-generalization.json
+            build/benchmarks/cycle28-generalization.html
+          retention-days: 14

@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle 28 simulated generalization stress report",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "manifestDigest",
+    "oracleDigest",
+    "caseCount",
+    "supportedDomainCases",
+    "unknownDomainCases",
+    "baselineEditorialAgreement",
+    "qualityGatedEditorialAgreement",
+    "cases",
+    "independentExpertEvaluationCompleted",
+    "realWorldDiagnosticAccuracyMeasured",
+    "causesConfirmed",
+    "testsExecuted",
+    "mayClaimDiagnosticValidation",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.generalization-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "authored_synthetic_stress_not_field_validation"
+    },
+    "manifestDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "oracleDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "caseCount": {
+      "const": 34
+    },
+    "supportedDomainCases": {
+      "const": 32
+    },
+    "unknownDomainCases": {
+      "const": 2
+    },
+    "baselineEditorialAgreement": {
+      "$ref": "#/$defs/count32"
+    },
+    "qualityGatedEditorialAgreement": {
+      "$ref": "#/$defs/count34"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 34,
+      "maxItems": 34,
+      "items": {
+        "type": "object"
+      }
+    },
+    "independentExpertEvaluationCompleted": {
+      "const": false
+    },
+    "realWorldDiagnosticAccuracyMeasured": {
+      "const": false
+    },
+    "causesConfirmed": {
+      "const": 0
+    },
+    "testsExecuted": {
+      "const": 0
+    },
+    "mayClaimDiagnosticValidation": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "educational_only_no_go"
+    }
+  },
+  "$defs": {
+    "count32": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "matched",
+        "total"
+      ],
+      "properties": {
+        "matched": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32
+        },
+        "total": {
+          "const": 32
+        }
+      }
+    },
+    "count34": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "matched",
+        "total"
+      ],
+      "properties": {
+        "matched": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 34
+        },
+        "total": {
+          "const": 34
+        }
+      }
+    }
+  }
+}

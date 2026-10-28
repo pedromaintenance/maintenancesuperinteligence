@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.8.0 — 2026-10-27 — Ciclo 28
+
+- Construído conjunto adicional de 34 desafios sintéticos fora das sequências fixas do Ciclo 27: 32 em quatro domínios conhecidos e 2 domínios não modelados.
+- Comparada seleção original de perguntas com uma barreira de confiabilidade documental que explicita fontes não verificadas, contraditórias, obsoletas e revogadas.
+- Resultados discriminados por casos modelados, não modelados, concordância editorial de linha-base e versão com barreira.
+- Criados contratos JSON Schema, testes metamórficos/adversariais, relatório JSON/HTML offline e validação no CI.
+- **Limite:** dados sintéticos, gabarito autoral, sem avaliação cega externa ou precisão diagnóstica de campo.
+
+
 ## 2.7.0 — 2026-10-27 — Ciclo 27
 
 - Introduzidos 24 cenários de teste de raciocínio diferencial em quatro domínios (comando final, hidráulica, eletrônica e arrefecimento).
