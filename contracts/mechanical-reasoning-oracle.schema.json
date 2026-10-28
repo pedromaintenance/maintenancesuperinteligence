@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Editorial expectations, not expert mechanical oracle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "independentExpertValidation",
+    "realDiagnosticAccuracyMeasured",
+    "expectations"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.mechanical-reasoning-oracle.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "author_editorial_expectations_not_measured_truth"
+    },
+    "independentExpertValidation": {
+      "const": false
+    },
+    "realDiagnosticAccuracyMeasured": {
+      "const": false
+    },
+    "expectations": {
+      "type": "array",
+      "minItems": 24,
+      "maxItems": 24,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "familyId",
+          "expectedQuestionId",
+          "expectedAbstention",
+          "expectedOpenHypothesisCount"
+        ],
+        "properties": {
+          "caseId": {
+            "type": "string"
+          },
+          "familyId": {
+            "enum": [
+              "final_drive",
+              "hydraulics",
+              "electronics",
+              "cooling"
+            ]
+          },
+          "expectedQuestionId": {
+            "type": "string",
+            "minLength": 2
+          },
+          "expectedAbstention": {
+            "const": true
+          },
+          "expectedOpenHypothesisCount": {
+            "const": 3
+          }
+        }
+      }
+    }
+  }
+}

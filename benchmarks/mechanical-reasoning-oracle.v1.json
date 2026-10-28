@@ -1,0 +1,177 @@
+{
+  "schema": "maintenance-superinteligence.mechanical-reasoning-oracle.v1",
+  "version": "1.0.0",
+  "nature": "author_editorial_expectations_not_measured_truth",
+  "independentExpertValidation": false,
+  "realDiagnosticAccuracyMeasured": false,
+  "expectations": [
+    {
+      "caseId": "SIM-MECH-001",
+      "familyId": "final_drive",
+      "expectedQuestionId": "reconcile_conflicting_reports",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-002",
+      "familyId": "final_drive",
+      "expectedQuestionId": "confirm_fluid_product_identity",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-003",
+      "familyId": "final_drive",
+      "expectedQuestionId": "reconcile_service_history",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-004",
+      "familyId": "final_drive",
+      "expectedQuestionId": "confirm_sampling_trace",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-005",
+      "familyId": "final_drive",
+      "expectedQuestionId": "request_comparable_trend",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-006",
+      "familyId": "final_drive",
+      "expectedQuestionId": "escalate_to_engineer_for_review",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-007",
+      "familyId": "hydraulics",
+      "expectedQuestionId": "reconcile_conflicting_reports",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-008",
+      "familyId": "hydraulics",
+      "expectedQuestionId": "reconcile_load_and_duty",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-009",
+      "familyId": "hydraulics",
+      "expectedQuestionId": "establish_temperature_context",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-010",
+      "familyId": "hydraulics",
+      "expectedQuestionId": "locate_applicable_circuit",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-011",
+      "familyId": "hydraulics",
+      "expectedQuestionId": "request_authorized_test_plan",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-012",
+      "familyId": "hydraulics",
+      "expectedQuestionId": "escalate_to_engineer_for_review",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-013",
+      "familyId": "electronics",
+      "expectedQuestionId": "reconcile_conflicting_reports",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-014",
+      "familyId": "electronics",
+      "expectedQuestionId": "identify_ecm_and_configuration",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-015",
+      "familyId": "electronics",
+      "expectedQuestionId": "distinguish_active_from_logged",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-016",
+      "familyId": "electronics",
+      "expectedQuestionId": "reconcile_event_time",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-017",
+      "familyId": "electronics",
+      "expectedQuestionId": "request_independent_signal_check",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-018",
+      "familyId": "electronics",
+      "expectedQuestionId": "escalate_to_engineer_for_review",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-019",
+      "familyId": "cooling",
+      "expectedQuestionId": "reconcile_conflicting_reports",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-020",
+      "familyId": "cooling",
+      "expectedQuestionId": "confirm_load_and_duty",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-021",
+      "familyId": "cooling",
+      "expectedQuestionId": "characterize_airflow",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-022",
+      "familyId": "cooling",
+      "expectedQuestionId": "check_coolant_context",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-023",
+      "familyId": "cooling",
+      "expectedQuestionId": "request_thermal_measurement_plan",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    },
+    {
+      "caseId": "SIM-MECH-024",
+      "familyId": "cooling",
+      "expectedQuestionId": "escalate_to_engineer_for_review",
+      "expectedAbstention": true,
+      "expectedOpenHypothesisCount": 3
+    }
+  ]
+}
