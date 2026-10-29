@@ -2218,3 +2218,23 @@ jobs:
             build/benchmarks/cycle37-review-packets.json
             build/benchmarks/cycle37-readiness.html
           retention-days: 14
+      - name: Verify Cycle 38 private review custody with synthetic documents only
+        run: |
+          python -m unittest tests.test_private_review_custody -v
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from governance.private_review_custody import validated_policy, POLICY
+          p=json.loads(Path(POLICY).read_text(encoding="utf-8"))
+          validated_policy(p)
+          assert p["identityVerificationProviderConnected"] is False
+          assert p["externalAuthorizationProviderConnected"] is False
+          assert p["perRoleAccessControlImplemented"] is False
+          assert p["encryptedStorageImplemented"] is False
+          assert p["externalSignatureVerified"] is False
+          assert p["oemEffectivityVerified"] is False
+          assert p["operationalSignoffApproved"] is False
+          assert p["mayCreateWorkOrder"] is False
+          assert p["mayReleaseEquipment"] is False
+          print("PASS: Cycle38 offline HMAC and attachment bytes; no human authentication, NO GO")
+          PY

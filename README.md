@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protocolo de prontidão para revisão técnica independente P&D v3.7.0 (29/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: custódia privada local de pareceres com integridade HMAC P&D v3.8.0 (29/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -75,6 +75,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 35 — Contestação técnica e dissenso sem homologação](docs/CICLO_2026-10-28_REVISAO_CRITICA_RELACOES_CAUSAIS.md)
 - [Ciclo 36 — Adjudicação editorial e histórico de propostas](docs/CICLO_2026-10-29_ADJUDICACAO_CAUSAL_CONTROLADA.md)
 - [Ciclo 37 — Preparação da revisão técnica independente](docs/CICLO_2026-10-29_PROTOCOLO_REVISAO_INDEPENDENTE.md)
+- [Ciclo 38 — Custódia privada e limites da autenticação](docs/CICLO_2026-10-29_CUSTODIA_PRIVADA_PARECERES.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -442,3 +443,7 @@ O fluxo `knowledge/causal_review.py` registra dois pareceres, objeções, contra
 ## Ciclo 37 — Preparação para revisão técnica independente
 
 O projeto agora oferece **36 pacotes de revisão técnica estruturados**, vinculados à matriz do Ciclo 34, aos 72 pareceres simulados do Ciclo 35 e às 36 decisões editoriais com histórico do Ciclo 36. O protocolo requer dois revisores tecnicamente competentes e independentes dos autores e um adjudicador segregado; define critérios de aceite, rejeição, revisão e adiamento, mais controle de conflito de interesses, aplicabilidade OEM por série e proveniência documental. **Nenhum revisor foi designado, nenhum convite enviado e nenhuma identidade ou credencial verificada.** A ferramenta é apenas uma análise de lacunas e gera 72 espaços de parecer e 36 de adjudicação, todos bloqueados. Não aceita alegações de validação real, não modifica a taxonomia upstream nem concede autorização SAP/ECM/operacional. Quatro contratos JSON Schema, testes adversariais, relatório e pacotes JSON/HTML offline. [Especificação](docs/CICLO_2026-10-29_PROTOCOLO_REVISAO_INDEPENDENTE.md).
+
+## Ciclo 38 — Custódia local de pareceres e integridade de anexos
+
+O fluxo `governance/private_review_custody.py` permite **selar** e **auditar** um pacote privado de opiniões técnicas ligadas ao `packetId` do Ciclo 37, sem copiar pareceres, chaves ou evidências OEM ao GitHub. Verifica três papéis **declarados** (dois revisores e adjudicador, todos pseudônimos diferentes), texto discriminante, proveniência relativa ao pacote, digests SHA-256 dos bytes de anexos e recibo HMAC-SHA256 com chave mantida fora do repositório. Os relatórios não incluem nomes, arquivos, documentos ou texto dos pareceres. **HMAC não autentica identidades humanas; permissões reais, IAM, assinatura digital e criptografia de armazenamento ainda não foram implementados.** Todo resultado continua `NO GO` para diagnóstico homologado e intervenção. O projeto utiliza NIST SP 800-63-4 como referência de requisitos de identidade, **não como certificação de conformidade**. [Roteiro e riscos remanescentes](docs/CICLO_2026-10-29_CUSTODIA_PRIVADA_PARECERES.md).
