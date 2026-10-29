@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle 40 offline synthetic IdP and resource-ACL lab, no external identity",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "issuer",
+    "audience",
+    "sessionTTLSeconds",
+    "pbkdf2Iterations",
+    "totpStepSeconds",
+    "totpDigits",
+    "allowedRoles",
+    "allowedActions",
+    "privatePacketKinds",
+    "realIdpConnected",
+    "realOIDCImplemented",
+    "realCompanyAccountsUsed",
+    "realMFAProviderConnected",
+    "persistentSessionStoreConnected",
+    "persistentAuditStoreConnected",
+    "realPrivateDocumentsAccessible",
+    "operationalAuthorityGranted",
+    "mayModifyUpstreamRules",
+    "mayCreateWorkOrder",
+    "mayExecuteTest",
+    "mayModifyEcm",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.isolated-identity-lab-policy.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "ephemeral_offline_synthetic_identity_and_acl_sandbox"
+    },
+    "issuer": {
+      "const": "urn:maintenance:lab-only"
+    },
+    "audience": {
+      "const": "maintenance-lab-private-synthetic"
+    },
+    "sessionTTLSeconds": {
+      "const": 900
+    },
+    "pbkdf2Iterations": {
+      "const": 120000
+    },
+    "totpStepSeconds": {
+      "const": 30
+    },
+    "totpDigits": {
+      "const": 6
+    },
+    "allowedRoles": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "enum": [
+          "author",
+          "custodian",
+          "technical_reviewer_a",
+          "technical_reviewer_b",
+          "adjudicator"
+        ]
+      }
+    },
+    "allowedActions": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "string"
+      }
+    },
+    "privatePacketKinds": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "enum": [
+          "synthetic_private_review_case",
+          "synthetic_private_review_receipt"
+        ]
+      }
+    },
+    "realIdpConnected": {
+      "const": false
+    },
+    "realOIDCImplemented": {
+      "const": false
+    },
+    "realCompanyAccountsUsed": {
+      "const": false
+    },
+    "realMFAProviderConnected": {
+      "const": false
+    },
+    "persistentSessionStoreConnected": {
+      "const": false
+    },
+    "persistentAuditStoreConnected": {
+      "const": false
+    },
+    "realPrivateDocumentsAccessible": {
+      "const": false
+    },
+    "operationalAuthorityGranted": {
+      "const": false
+    },
+    "mayModifyUpstreamRules": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}

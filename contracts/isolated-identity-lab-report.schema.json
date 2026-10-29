@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle40 controlled synthetic runtime with real lab-only permissions and no external authority",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "policyDigest",
+    "fixtureDigest",
+    "sourcePacketRegistryDigest",
+    "scenarioCount",
+    "sandboxAuthorizedActions",
+    "sandboxDeniedActions",
+    "syntheticCredentialsVerified",
+    "syntheticTotpValidated",
+    "syntheticSessionRevocations",
+    "realUsersAuthenticated",
+    "realOIDCOrIdPConnected",
+    "realTokensAccepted",
+    "realResourcePermissionsGranted",
+    "realPrivateDocumentsAccessed",
+    "realOperationalActions",
+    "results",
+    "sourceRulesChanged",
+    "mayCreateWorkOrder",
+    "mayExecuteTest",
+    "mayModifyEcm",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.isolated-identity-lab-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "offline_in_memory_synthetic_authorization_with_hmac_sessions"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "fixtureDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourcePacketRegistryDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "scenarioCount": {
+      "const": 12
+    },
+    "sandboxAuthorizedActions": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 12
+    },
+    "sandboxDeniedActions": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 12
+    },
+    "syntheticCredentialsVerified": {
+      "const": 12
+    },
+    "syntheticTotpValidated": {
+      "const": 12
+    },
+    "syntheticSessionRevocations": {
+      "const": 12
+    },
+    "realUsersAuthenticated": {
+      "const": 0
+    },
+    "realOIDCOrIdPConnected": {
+      "const": false
+    },
+    "realTokensAccepted": {
+      "const": 0
+    },
+    "realResourcePermissionsGranted": {
+      "const": 0
+    },
+    "realPrivateDocumentsAccessed": {
+      "const": 0
+    },
+    "realOperationalActions": {
+      "const": 0
+    },
+    "results": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "additionalProperties": false,
+        "title": "Cycle40 synthetic in-memory ACL action decision",
+        "required": [
+          "scenarioId",
+          "kind",
+          "role",
+          "sandboxResourceActionAllowed",
+          "reason",
+          "realOIDCAuthenticated",
+          "realCompanyIdentityVerified",
+          "realPrivateDocumentsRead",
+          "realOperationalAuthorizationGranted"
+        ],
+        "properties": {
+          "scenarioId": {
+            "type": "string",
+            "pattern": "^LAB-[0-9]{3}$"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "author",
+              "custodian",
+              "technical_reviewer_a",
+              "technical_reviewer_b",
+              "adjudicator"
+            ]
+          },
+          "sandboxResourceActionAllowed": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "realOIDCAuthenticated": {
+            "const": false
+          },
+          "realCompanyIdentityVerified": {
+            "const": false
+          },
+          "realPrivateDocumentsRead": {
+            "const": false
+          },
+          "realOperationalAuthorizationGranted": {
+            "const": false
+          }
+        }
+      }
+    },
+    "sourceRulesChanged": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_synthetic_lab_only_external_idp_and_acl_not_integrated"
+    }
+  }
+}

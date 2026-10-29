@@ -2278,3 +2278,38 @@ jobs:
             build/benchmarks/cycle39-rbac-preflight.json
             build/benchmarks/cycle39-rbac-preflight.html
           retention-days: 14
+      - name: Validate Cycle 40 isolated synthetic session and resource authorization lab
+        run: |
+          python -m unittest tests.test_isolated_identity_lab -v
+          python -m governance.isolated_identity_lab \
+            --output build/benchmarks/cycle40-isolated-identity-lab.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from governance.isolated_identity_lab import POLICY, FIXTURE, verify_report
+          def load(p): return json.loads(Path(p).read_text(encoding="utf-8"))
+          report=load("build/benchmarks/cycle40-isolated-identity-lab.json")
+          verify_report(report,load(POLICY),load(FIXTURE))
+          assert report["scenarioCount"]==12
+          assert report["sandboxAuthorizedActions"]==6
+          assert report["sandboxDeniedActions"]==6
+          assert report["syntheticCredentialsVerified"]==12
+          assert report["syntheticTotpValidated"]==12
+          assert report["syntheticSessionRevocations"]==12
+          assert report["realUsersAuthenticated"]==0
+          assert report["realResourcePermissionsGranted"]==0
+          assert report["realPrivateDocumentsAccessed"]==0
+          assert report["realOperationalActions"]==0
+          assert report["realOIDCOrIdPConnected"] is False
+          assert report["mayCreateWorkOrder"] is False
+          assert report["mayExecuteTest"] is False
+          assert report["mayModifyEcm"] is False
+          assert report["mayReleaseEquipment"] is False
+          print("PASS Cycle40: 12 local synthetic requests, 6 in-lab authorized, 6 denied; 0 real permissions")
+          PY
+      - name: Publish Cycle 40 synthetic isolated identity lab report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle40-synthetic-identity-lab-no-go
+          path: build/benchmarks/cycle40-isolated-identity-lab.json
+          retention-days: 14

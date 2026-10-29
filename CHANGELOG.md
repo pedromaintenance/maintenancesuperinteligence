@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.0.0 — 2026-10-29 — Ciclo 40
+
+- Implementado laboratório Python local e efêmero de **autenticação sintética e autorização efetiva somente sobre recursos fictícios**. Distinção inequívoca do pré-avaliador do Ciclo 39: ações hipotéticas agora são exercitadas dentro do sandbox.
+- Senhas de teste verificadas com PBKDF2-HMAC-SHA256; TOTP local de uso único por período; sessões HMAC-SHA256 proprietárias (não JWT, não OIDC), com expiração, validação contextual e revogação em memória.
+- Aplicada autorização por papel, ação e pacote atribuído a cada requisição; bloqueio de acesso antes do MFA, cross-packet, autoaprovação, escalada de papel e operações relacionadas a SAP/ECM/equipamento.
+- Doze operações sintéticas documentadas, quatro JSON Schemas, suíte adversarial com manipulação de token, revogação, replay de OTP e privilégios; relatório JSON e CI.
+- Nenhum IdP/SSO conectado, sessão corporativa, pessoa real autenticada, dado OEM privado acessado, papel organizacional homologado, credencial real ou permissão operacional; **NO GO** preservado.
+
+
 ## 3.9.0 — 2026-10-29 — Ciclo 39
 
 - Estruturada política de **federação OIDC e elegibilidade RBAC**, vinculada aos 36 pacotes do Ciclo 37 e à custódia offline do Ciclo 38; nenhum IdP real, login ou ACL online implementado.

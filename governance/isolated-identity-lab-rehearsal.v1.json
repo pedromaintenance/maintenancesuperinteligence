@@ -1,0 +1,113 @@
+{
+  "schema": "maintenance-superinteligence.isolated-identity-lab-rehearsal.v1",
+  "version": "1.0.0",
+  "nature": "synthetic_identity_profiles_no_issued_real_credentials",
+  "allowedPacketIds": [
+    "IRP-001",
+    "IRP-002"
+  ],
+  "profileAssignments": {
+    "author": [],
+    "custodian": [
+      "IRP-001"
+    ],
+    "technical_reviewer_a": [
+      "IRP-001"
+    ],
+    "technical_reviewer_b": [
+      "IRP-001"
+    ],
+    "adjudicator": [
+      "IRP-001"
+    ]
+  },
+  "scenarios": [
+    {
+      "scenarioId": "LAB-001",
+      "role": "author",
+      "action": "read_public_research",
+      "packetId": "IRP-001",
+      "kind": "success_public"
+    },
+    {
+      "scenarioId": "LAB-002",
+      "role": "custodian",
+      "action": "read_private_document_index",
+      "packetId": "IRP-001",
+      "kind": "success_custodian_index"
+    },
+    {
+      "scenarioId": "LAB-003",
+      "role": "custodian",
+      "action": "prepare_private_review_package",
+      "packetId": "IRP-001",
+      "kind": "success_custodian_package"
+    },
+    {
+      "scenarioId": "LAB-004",
+      "role": "technical_reviewer_a",
+      "action": "read_assigned_private_case",
+      "packetId": "IRP-001",
+      "kind": "success_assigned_reviewer"
+    },
+    {
+      "scenarioId": "LAB-005",
+      "role": "technical_reviewer_b",
+      "action": "submit_technical_opinion",
+      "packetId": "IRP-001",
+      "kind": "success_reviewer_opinion"
+    },
+    {
+      "scenarioId": "LAB-006",
+      "role": "adjudicator",
+      "action": "submit_adjudication",
+      "packetId": "IRP-001",
+      "kind": "success_adjudication_draft"
+    },
+    {
+      "scenarioId": "LAB-007",
+      "role": "author",
+      "action": "read_assigned_private_case",
+      "packetId": "IRP-001",
+      "kind": "deny_author_private"
+    },
+    {
+      "scenarioId": "LAB-008",
+      "role": "technical_reviewer_a",
+      "action": "submit_adjudication",
+      "packetId": "IRP-001",
+      "kind": "deny_reviewer_adjudication"
+    },
+    {
+      "scenarioId": "LAB-009",
+      "role": "adjudicator",
+      "action": "submit_technical_opinion",
+      "packetId": "IRP-001",
+      "kind": "deny_adjudicator_review"
+    },
+    {
+      "scenarioId": "LAB-010",
+      "role": "technical_reviewer_b",
+      "action": "read_assigned_private_case",
+      "packetId": "IRP-002",
+      "kind": "deny_unassigned_resource"
+    },
+    {
+      "scenarioId": "LAB-011",
+      "role": "technical_reviewer_a",
+      "action": "mayCreateWorkOrder",
+      "packetId": "IRP-001",
+      "kind": "deny_operational_action"
+    },
+    {
+      "scenarioId": "LAB-012",
+      "role": "custodian",
+      "action": "mayReleaseEquipment",
+      "packetId": "IRP-001",
+      "kind": "deny_equipment_release"
+    }
+  ],
+  "realUsersPresent": false,
+  "realPrivateDataPresent": false,
+  "realIdentityProofCollected": false
+}

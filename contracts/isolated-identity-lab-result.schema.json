@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle40 synthetic in-memory ACL action decision",
+  "required": [
+    "scenarioId",
+    "kind",
+    "role",
+    "sandboxResourceActionAllowed",
+    "reason",
+    "realOIDCAuthenticated",
+    "realCompanyIdentityVerified",
+    "realPrivateDocumentsRead",
+    "realOperationalAuthorizationGranted"
+  ],
+  "properties": {
+    "scenarioId": {
+      "type": "string",
+      "pattern": "^LAB-[0-9]{3}$"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "role": {
+      "enum": [
+        "author",
+        "custodian",
+        "technical_reviewer_a",
+        "technical_reviewer_b",
+        "adjudicator"
+      ]
+    },
+    "sandboxResourceActionAllowed": {
+      "type": "boolean"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "realOIDCAuthenticated": {
+      "const": false
+    },
+    "realCompanyIdentityVerified": {
+      "const": false
+    },
+    "realPrivateDocumentsRead": {
+      "const": false
+    },
+    "realOperationalAuthorizationGranted": {
+      "const": false
+    }
+  }
+}
