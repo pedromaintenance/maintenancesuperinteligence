@@ -1,0 +1,43 @@
+{
+  "schema": "maintenance-superinteligence.isolated-identity-lab-policy.v1",
+  "version": "1.0.0",
+  "mode": "ephemeral_offline_synthetic_identity_and_acl_sandbox",
+  "issuer": "urn:maintenance:lab-only",
+  "audience": "maintenance-lab-private-synthetic",
+  "sessionTTLSeconds": 900,
+  "pbkdf2Iterations": 120000,
+  "totpStepSeconds": 30,
+  "totpDigits": 6,
+  "allowedRoles": [
+    "author",
+    "custodian",
+    "technical_reviewer_a",
+    "technical_reviewer_b",
+    "adjudicator"
+  ],
+  "allowedActions": [
+    "read_public_research",
+    "read_private_document_index",
+    "prepare_private_review_package",
+    "read_assigned_private_case",
+    "submit_technical_opinion",
+    "submit_adjudication"
+  ],
+  "privatePacketKinds": [
+    "synthetic_private_review_case",
+    "synthetic_private_review_receipt"
+  ],
+  "realIdpConnected": false,
+  "realOIDCImplemented": false,
+  "realCompanyAccountsUsed": false,
+  "realMFAProviderConnected": false,
+  "persistentSessionStoreConnected": false,
+  "persistentAuditStoreConnected": false,
+  "realPrivateDocumentsAccessible": false,
+  "operationalAuthorityGranted": false,
+  "mayModifyUpstreamRules": false,
+  "mayCreateWorkOrder": false,
+  "mayExecuteTest": false,
+  "mayModifyEcm": false,
+  "mayReleaseEquipment": false
+}
