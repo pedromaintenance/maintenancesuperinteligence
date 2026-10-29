@@ -161,6 +161,18 @@ def validate_protocol(protocol):
 def validate_worklist(worklist, protocol, plan, policy, batch, matrix, parent,
                       mechanical_policy, discrimination_policy, review_policy):
     validate_protocol(protocol)
+    # Review packages are deliberately restricted to the committed source
+    # snapshot. Recomputing a digest of a swapped source is NOT authenticity.
+    require(
+        plan == load(PLAN)
+        and policy == load(ADJ_POLICY)
+        and batch == load(SUBMISSIONS)
+        and matrix == load(MATRIX)
+        and parent == load(MAP_PATH)
+        and mechanical_policy == load(MECHANICAL_POLICY)
+        and discrimination_policy == load(DISCRIMINATION_POLICY)
+        and review_policy == load(REVIEW_POLICY),
+        "independent review must use the complete frozen committed source snapshot")
     ledger = build_ledger(plan, policy, batch, matrix, parent,
                           mechanical_policy, discrimination_policy, review_policy)
     require(ledger["eventCount"] == 48
