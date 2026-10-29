@@ -2167,3 +2167,54 @@ jobs:
             build/benchmarks/cycle36-version-ledger.json
             build/benchmarks/cycle36-adjudication.html
           retention-days: 14
+      - name: Verify Cycle 37 independent technical review preparation and NO GO
+        run: |
+          python -m unittest tests.test_independent_review -v
+          python -m knowledge.independent_review \
+            --output build/benchmarks/cycle37-readiness.json \
+            --packets build/benchmarks/cycle37-review-packets.json \
+            --html build/benchmarks/cycle37-readiness.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from knowledge.independent_review import (
+              assess, build_packets, verify_report, MISSING
+          )
+          from knowledge.causal_adjudication import (
+              PLAN, POLICY as ADJ_POLICY, SUBMISSIONS, MATRIX,
+              MAP_PATH, MECHANICAL_POLICY, DISCRIMINATION_POLICY,
+              REVIEW_POLICY, load
+          )
+          from knowledge.independent_review import PROTOCOL, WORKLIST
+          protocol,worklist=load(PROTOCOL),load(WORKLIST)
+          args=(protocol,worklist,load(PLAN),load(ADJ_POLICY),
+                load(SUBMISSIONS),load(MATRIX),load(MAP_PATH),
+                load(MECHANICAL_POLICY),load(DISCRIMINATION_POLICY),
+                load(REVIEW_POLICY))
+          report=json.loads(Path("build/benchmarks/cycle37-readiness.json").read_text())
+          packets=json.loads(Path("build/benchmarks/cycle37-review-packets.json").read_text())
+          verify_report(report,packets,*args)
+          assert report["reviewTaskCount"]==36
+          assert report["requestedReviewerOpinionSlots"]==72
+          assert report["requestedAdjudicatorSlots"]==36
+          assert report["relationsPendingIndependentReview"]==36
+          assert report["missingGateCounts"]=={gate:36 for gate in MISSING}
+          assert report["actualVerifiedReviewers"]==0
+          assert report["relationsEligibleForTechnicalAcceptance"]==0
+          assert report["relationsEligibleForTechnicalRejection"]==0
+          assert report["independentTechnicalReviewCompleted"] is False
+          assert report["sourceRuleVersionsModified"]==0
+          assert report["mayExecuteTest"] is False
+          assert report["mayCreateWorkOrder"] is False
+          assert report["mayReleaseEquipment"] is False
+          print("PASS: Cycle37 36 independent-review preparations, no actual reviewers, NO GO")
+          PY
+      - name: Publish Cycle 37 unsent synthetic review packets and readiness gaps
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle37-independent-review-readiness-no-go
+          path: |
+            build/benchmarks/cycle37-readiness.json
+            build/benchmarks/cycle37-review-packets.json
+            build/benchmarks/cycle37-readiness.html
+          retention-days: 14

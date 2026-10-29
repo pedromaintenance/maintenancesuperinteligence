@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle37 safe synthetic review packets, no actual opinions",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "protocolDigest",
+    "worklistDigest",
+    "planDigest",
+    "reviewDigest",
+    "matrixDigest",
+    "versionLedgerDigest",
+    "packetCount",
+    "reviewerOpinionSlots",
+    "adjudicatorSlots",
+    "realReviewOpinionsReceived",
+    "verifiedIndependentReviewers",
+    "allPermissionsDenied",
+    "packets",
+    "independentReviewCompleted",
+    "mayExecuteTest",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.independent-review-packets.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "public_synthetic_review_preparation_not_dispatched"
+    },
+    "protocolDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "worklistDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "planDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "matrixDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "versionLedgerDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "packetCount": {
+      "const": 36
+    },
+    "reviewerOpinionSlots": {
+      "const": 72
+    },
+    "adjudicatorSlots": {
+      "const": 36
+    },
+    "realReviewOpinionsReceived": {
+      "const": 0
+    },
+    "verifiedIndependentReviewers": {
+      "const": 0
+    },
+    "allPermissionsDenied": {
+      "const": true
+    },
+    "packets": {
+      "type": "array",
+      "minItems": 36,
+      "maxItems": 36,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "packetId",
+          "taskId",
+          "ruleId",
+          "parentRecordId",
+          "priorReviewIds",
+          "priorAdjudicationId",
+          "frozenRuleText",
+          "candidateTextForChallengeOnly",
+          "priorEditorialDisposition",
+          "recordedObjection",
+          "unresolvedCounterexample",
+          "generalBackgroundSources",
+          "requestedReviewerSlots",
+          "reviewTemplateFields",
+          "requiredEvidenceCategories",
+          "unmetQualificationAndEvidenceGates",
+          "openCounterexample",
+          "opinionCount",
+          "adjudicatorApprovalVerified",
+          "independentReviewCompleted",
+          "technicalRelationAccepted",
+          "mayChangeUpstreamRule",
+          "mayExecuteTest",
+          "mayCreateWorkOrder",
+          "mayReleaseEquipment",
+          "status"
+        ],
+        "properties": {
+          "packetId": {
+            "type": "string",
+            "pattern": "^IRP-[0-9]{3}$"
+          },
+          "taskId": {
+            "type": "string"
+          },
+          "ruleId": {
+            "type": "string"
+          },
+          "parentRecordId": {
+            "type": "string"
+          },
+          "priorReviewIds": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "string"
+            }
+          },
+          "priorAdjudicationId": {
+            "type": "string"
+          },
+          "frozenRuleText": {
+            "type": "string",
+            "minLength": 35
+          },
+          "candidateTextForChallengeOnly": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "priorEditorialDisposition": {
+            "type": "string"
+          },
+          "recordedObjection": {
+            "type": "string",
+            "minLength": 100
+          },
+          "unresolvedCounterexample": {
+            "type": "string"
+          },
+          "generalBackgroundSources": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "sourceId",
+                "url",
+                "permittedScope",
+                "notEstablished"
+              ],
+              "properties": {
+                "sourceId": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string",
+                  "pattern": "^https://"
+                },
+                "permittedScope": {
+                  "type": "string",
+                  "minLength": 20
+                },
+                "notEstablished": {
+                  "type": "string",
+                  "minLength": 20
+                }
+              }
+            }
+          },
+          "requestedReviewerSlots": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "string"
+            }
+          },
+          "reviewTemplateFields": {
+            "type": "array",
+            "minItems": 5,
+            "maxItems": 5,
+            "items": {
+              "type": "string"
+            }
+          },
+          "requiredEvidenceCategories": {
+            "type": "array",
+            "minItems": 7,
+            "maxItems": 7,
+            "items": {
+              "type": "string"
+            }
+          },
+          "unmetQualificationAndEvidenceGates": {
+            "type": "array",
+            "minItems": 8,
+            "maxItems": 8,
+            "items": {
+              "enum": [
+                "verified_human_identity",
+                "verified_reviewer_competence",
+                "verified_independence_and_conflicts",
+                "oem_series_effectivity",
+                "evidence_origin_and_custody",
+                "two_independent_opinions",
+                "counterexample_resolution",
+                "independent_adjudicator_signoff"
+              ]
+            }
+          },
+          "openCounterexample": {
+            "const": true
+          },
+          "opinionCount": {
+            "const": 0
+          },
+          "adjudicatorApprovalVerified": {
+            "const": false
+          },
+          "independentReviewCompleted": {
+            "const": false
+          },
+          "technicalRelationAccepted": {
+            "const": false
+          },
+          "mayChangeUpstreamRule": {
+            "const": false
+          },
+          "mayExecuteTest": {
+            "const": false
+          },
+          "mayCreateWorkOrder": {
+            "const": false
+          },
+          "mayReleaseEquipment": {
+            "const": false
+          },
+          "status": {
+            "const": "blocked_unassigned_reviewers_and_evidence"
+          }
+        }
+      }
+    },
+    "independentReviewCompleted": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}

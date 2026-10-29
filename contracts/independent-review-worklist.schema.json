@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle37 synthetic review tasks not sent",
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "externalReviewInvitationsSent",
+    "authenticatedExternalSignatures",
+    "tasks"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.independent-review-worklist.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "synthetic_unassigned_packets_not_sent_to_reviewers"
+    },
+    "externalReviewInvitationsSent": {
+      "const": 0
+    },
+    "authenticatedExternalSignatures": {
+      "const": 0
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 36,
+      "maxItems": 36,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "taskId",
+          "ruleId",
+          "parentRecordId",
+          "priorAdjudicationId",
+          "priorReviewIds",
+          "frozenRuleText",
+          "proposedDraftText",
+          "initialEditorialDisposition",
+          "challengeSummary",
+          "counterexampleStatus",
+          "sourceIds",
+          "supportingSourceScopes",
+          "requiredEvidenceCategories",
+          "requestedRoles",
+          "reviewerAOpinionSubmitted",
+          "reviewerBOpinionSubmitted",
+          "independentReviewerQualificationsVerified",
+          "identityAndConflictChecksVerified",
+          "oemSeriesEffectivityVerified",
+          "realEvidenceProvenanceVerified",
+          "counterexampleResolved",
+          "adjudicatorSignoffVerified",
+          "mayApproveTechnicalRelation",
+          "mayChangeUpstreamRule",
+          "mayAuthorizeTest",
+          "mayCreateWorkOrder",
+          "mayReleaseEquipment"
+        ],
+        "properties": {
+          "taskId": {
+            "type": "string",
+            "pattern": "^REV-TASK-[0-9]{3}$"
+          },
+          "ruleId": {
+            "type": "string",
+            "pattern": "^DISC-[0-9]{3}-[123]$"
+          },
+          "parentRecordId": {
+            "type": "string"
+          },
+          "priorAdjudicationId": {
+            "type": "string"
+          },
+          "priorReviewIds": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "string"
+            }
+          },
+          "frozenRuleText": {
+            "type": "string",
+            "minLength": 35
+          },
+          "proposedDraftText": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "initialEditorialDisposition": {
+            "type": "string"
+          },
+          "challengeSummary": {
+            "type": "string",
+            "minLength": 100
+          },
+          "counterexampleStatus": {
+            "type": "string"
+          },
+          "sourceIds": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "supportingSourceScopes": {
+            "type": "string",
+            "minLength": 20
+          },
+          "requiredEvidenceCategories": {
+            "type": "array",
+            "minItems": 7,
+            "maxItems": 7,
+            "items": {
+              "enum": [
+                "oem_series_effectivity",
+                "source_provenance",
+                "field_case_custody",
+                "documentary_counterexample",
+                "independent_reviewer_opinions",
+                "conflict_of_interest",
+                "technical_adjudicator_signoff"
+              ]
+            }
+          },
+          "requestedRoles": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "enum": [
+                "technical_reviewer_a",
+                "technical_reviewer_b",
+                "adjudicator"
+              ]
+            }
+          },
+          "reviewerAOpinionSubmitted": {
+            "const": false
+          },
+          "reviewerBOpinionSubmitted": {
+            "const": false
+          },
+          "independentReviewerQualificationsVerified": {
+            "const": false
+          },
+          "identityAndConflictChecksVerified": {
+            "const": false
+          },
+          "oemSeriesEffectivityVerified": {
+            "const": false
+          },
+          "realEvidenceProvenanceVerified": {
+            "const": false
+          },
+          "counterexampleResolved": {
+            "const": false
+          },
+          "adjudicatorSignoffVerified": {
+            "const": false
+          },
+          "mayApproveTechnicalRelation": {
+            "const": false
+          },
+          "mayChangeUpstreamRule": {
+            "const": false
+          },
+          "mayAuthorizeTest": {
+            "const": false
+          },
+          "mayCreateWorkOrder": {
+            "const": false
+          },
+          "mayReleaseEquipment": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}

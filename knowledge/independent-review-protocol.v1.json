@@ -1,0 +1,123 @@
+{
+  "schema": "maintenance-superinteligence.independent-review-protocol.v1",
+  "version": "1.0.0",
+  "mode": "synthetic_unassigned_independent_review_design",
+  "purpose": "prepare_external_human_review_without_authenticating_or_approving",
+  "roleSlots": [
+    {
+      "role": "author",
+      "slotAlias": "SIM-SLOT-AUTHOR",
+      "actualHumanAssigned": false,
+      "identityVerified": false,
+      "disciplineCredentialsVerified": false,
+      "conflictOfInterestCleared": false,
+      "independenceFromAuthorsVerified": false,
+      "technicalSourceAccessAuthorized": false
+    },
+    {
+      "role": "custodian",
+      "slotAlias": "SIM-SLOT-CUSTODIAN",
+      "actualHumanAssigned": false,
+      "identityVerified": false,
+      "disciplineCredentialsVerified": false,
+      "conflictOfInterestCleared": false,
+      "independenceFromAuthorsVerified": false,
+      "technicalSourceAccessAuthorized": false
+    },
+    {
+      "role": "technical_reviewer_a",
+      "slotAlias": "SIM-SLOT-REVIEW-A",
+      "actualHumanAssigned": false,
+      "identityVerified": false,
+      "disciplineCredentialsVerified": false,
+      "conflictOfInterestCleared": false,
+      "independenceFromAuthorsVerified": false,
+      "technicalSourceAccessAuthorized": false
+    },
+    {
+      "role": "technical_reviewer_b",
+      "slotAlias": "SIM-SLOT-REVIEW-B",
+      "actualHumanAssigned": false,
+      "identityVerified": false,
+      "disciplineCredentialsVerified": false,
+      "conflictOfInterestCleared": false,
+      "independenceFromAuthorsVerified": false,
+      "technicalSourceAccessAuthorized": false
+    },
+    {
+      "role": "adjudicator",
+      "slotAlias": "SIM-SLOT-ADJUDICATOR",
+      "actualHumanAssigned": false,
+      "identityVerified": false,
+      "disciplineCredentialsVerified": false,
+      "conflictOfInterestCleared": false,
+      "independenceFromAuthorsVerified": false,
+      "technicalSourceAccessAuthorized": false
+    }
+  ],
+  "reviewRequirements": {
+    "independentReviewerCount": 2,
+    "requiresDifferentTechnicalReviewers": true,
+    "adjudicatorSeparateFromReviewers": true,
+    "authorsCannotApprove": true,
+    "reviewerQualificationEvidence": "verified_professional_experience_and_domain_competence_by_external_custodian",
+    "requiredEvidenceCategories": [
+      "oem_series_effectivity",
+      "source_provenance",
+      "field_case_custody",
+      "documentary_counterexample",
+      "independent_reviewer_opinions",
+      "conflict_of_interest",
+      "technical_adjudicator_signoff"
+    ],
+    "requiredDecisionFields": [
+      "reviewer_position",
+      "reasoning",
+      "source_scope",
+      "contradictory_evidence",
+      "requested_revision"
+    ],
+    "acceptedEditorialActions": [
+      "defer",
+      "retain_for_research",
+      "propose_revision",
+      "reject_unsubstantiated_inference"
+    ],
+    "forbiddenAutomaticActions": [
+      "change_original_rule",
+      "authorize_inspection",
+      "authorize_test",
+      "create_work_order",
+      "release_equipment"
+    ],
+    "technicalAcceptanceRequiredGates": [
+      "verified_human_identity",
+      "verified_reviewer_competence",
+      "verified_independence_and_conflicts",
+      "oem_series_effectivity",
+      "evidence_origin_and_custody",
+      "two_independent_opinions",
+      "counterexample_resolution",
+      "independent_adjudicator_signoff"
+    ],
+    "technicalRejectionRequires": [
+      "documented_counterevidence_with_source",
+      "two_independent_written_opinions",
+      "adjudicator_reasoned_record",
+      "source_and_version_effectivity"
+    ],
+    "deferredIfAnyGateMissing": true,
+    "deferredIfDissentUnresolved": true,
+    "technicalRevisionNeedsFrozenDiff": true,
+    "noAutomaticTechnicalAcceptance": true,
+    "noAutomaticTechnicalRejection": true
+  },
+  "verifiedExternalReviewers": 0,
+  "externalTechnicalReviewCompleted": false,
+  "realCaseDataIncluded": false,
+  "causalValidityEstablished": false,
+  "canPromoteRevision": false,
+  "mayExecuteTest": false,
+  "mayCreateWorkOrder": false,
+  "mayReleaseEquipment": false
+}

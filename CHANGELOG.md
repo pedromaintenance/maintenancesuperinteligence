@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.7.0 — 2026-10-29 — Ciclo 37
+
+- Estruturado protocolo de **prontidão para revisão técnica independente** de 36 relações causais pendentes, com papéis segregados de autor, custodiante, dois revisores técnicos e adjudicador.
+- Oito bloqueios verificáveis por regra (identidade, competência, independência/conflitos, OEM por série, proveniência, duas opiniões, contraexemplo e adjudicação); todos pendentes no ensaio público.
+- Definidos critérios de aceite, rejeição, revisão com diff congelado e adiamento por ausência de evidências ou dissenso, sem decisões automáticas.
+- Gerados 36 pacotes sintéticos, 72 espaços de parecer e 36 de adjudicação, vinculados por digests às versões e contestações dos Ciclos 34–36, com fontes gerais e limites aplicáveis.
+- Quatro JSON Schemas, testes adversariais, HTML/JSON offline, documentação e CI. Nenhuma identidade, aprovação independente ou efetividade OEM foi verificada.
+- **NO GO:** nenhuma autorização para promover relações, criar OS, executar ensaio ou liberar equipamento.
+
+
 ## 3.6.0 — 2026-10-29 — Ciclo 36
 
 - Implementado protocolo de adjudicação **exclusivamente editorial/sintética** das 36 relações e 72 contestações do Ciclo 35, com justificativa vinculada ao ID da regra, prioridade de revisão e tratamento de contraexemplos.
