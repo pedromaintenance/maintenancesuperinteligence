@@ -17,7 +17,7 @@ import secrets
 import struct
 
 from governance.federation_rbac import GRANTS, RESOURCE_RULES, current_public_packets
-from pilot.change_review_packets import require, digest
+from pilot.change_review_packets import require, digest, ReviewRejected
 
 ROOT = Path(__file__).resolve().parents[1]
 POLICY = ROOT / "governance/isolated-identity-lab-policy.v1.json"
@@ -260,7 +260,7 @@ class IsolatedLab:
         """Enforce on in-memory synthetic resource. Never touches external data."""
         try:
             s=self._verified_session(token,now)
-        except (ValueError,TypeError,KeyError) as exc:
+        except (ValueError,TypeError,KeyError,ReviewRejected):
             self._audit.append({"result":"deny","reason":"invalid_session"})
             return self._decision(False,"invalid_session")
         user=self._users.get(s["sub"])
