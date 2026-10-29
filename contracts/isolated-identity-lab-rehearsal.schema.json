@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle40 12 synthetic operations, no live customer credentials",
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "allowedPacketIds",
+    "profileAssignments",
+    "scenarios",
+    "realUsersPresent",
+    "realPrivateDataPresent",
+    "realIdentityProofCollected"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.isolated-identity-lab-rehearsal.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "synthetic_identity_profiles_no_issued_real_credentials"
+    },
+    "allowedPacketIds": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "enum": [
+          "IRP-001",
+          "IRP-002"
+        ]
+      }
+    },
+    "profileAssignments": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "author",
+        "custodian",
+        "technical_reviewer_a",
+        "technical_reviewer_b",
+        "adjudicator"
+      ],
+      "properties": {
+        "author": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "enum": [
+              "IRP-001"
+            ]
+          }
+        },
+        "custodian": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "enum": [
+              "IRP-001"
+            ]
+          }
+        },
+        "technical_reviewer_a": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "enum": [
+              "IRP-001"
+            ]
+          }
+        },
+        "technical_reviewer_b": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "enum": [
+              "IRP-001"
+            ]
+          }
+        },
+        "adjudicator": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "enum": [
+              "IRP-001"
+            ]
+          }
+        }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "scenarioId",
+          "role",
+          "action",
+          "packetId",
+          "kind"
+        ],
+        "properties": {
+          "scenarioId": {
+            "type": "string",
+            "pattern": "^LAB-[0-9]{3}$"
+          },
+          "role": {
+            "enum": [
+              "author",
+              "custodian",
+              "technical_reviewer_a",
+              "technical_reviewer_b",
+              "adjudicator"
+            ]
+          },
+          "action": {
+            "type": "string",
+            "minLength": 5
+          },
+          "packetId": {
+            "enum": [
+              "IRP-001",
+              "IRP-002"
+            ]
+          },
+          "kind": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "realUsersPresent": {
+      "const": false
+    },
+    "realPrivateDataPresent": {
+      "const": false
+    },
+    "realIdentityProofCollected": {
+      "const": false
+    }
+  }
+}
