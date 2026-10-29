@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: protocolo de contestação causal com trilha auditável P&D v3.5.0 (28/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: adjudicação editorial de relações causais e histórico de versões P&D v3.6.0 (29/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -73,6 +73,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 33 — Taxonomia mecânica com fontes técnicas verificáveis](docs/CICLO_2026-10-28_TAXONOMIA_MECANICA_FUNDAMENTADA.md)
 - [Ciclo 34 — Matriz discriminante e abstenção por conflito](docs/CICLO_2026-10-28_MATRIZ_EVIDENCIAS_DISCRIMINANTES.md)
 - [Ciclo 35 — Contestação técnica e dissenso sem homologação](docs/CICLO_2026-10-28_REVISAO_CRITICA_RELACOES_CAUSAIS.md)
+- [Ciclo 36 — Adjudicação editorial e histórico de propostas](docs/CICLO_2026-10-29_ADJUDICACAO_CAUSAL_CONTROLADA.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -432,3 +433,7 @@ A matriz `knowledge/discriminating-evidence-matrix.v1.json` vincula a cada uma d
 ## Ciclo 35 — Revisão crítica de relações causais, sem aceite automático
 
 O fluxo `knowledge/causal_review.py` registra dois pareceres, objeções, contraexemplos, fonte geral e eventual proposta de correção para cada uma das **36 relações condicionais** do Ciclo 34. A demonstração pública contém **72 opiniões de revisores fictícios** e preserva **12 divergências, 12 propostas de revisão editorial e 12 insuficiências de suporte**, sem editar a matriz original. Cada entrada possui digest SHA-256 vinculado à anterior, mas **cadeia de hashes não autentica pessoas nem oferece imutabilidade quando o custodiante controla todos os arquivos**. Um modo local opcional recebe pareceres não verificados fora do repositório, sob recibo congelado e sempre com decisão `NO GO` operacional. [Critérios e limites](docs/CICLO_2026-10-28_REVISAO_CRITICA_RELACOES_CAUSAIS.md).
+
+## Ciclo 36 — Adjudicação editorial com origem, contestação e versões preservadas
+
+`knowledge/causal_adjudication.py` estrutura **36 decisões editoriais provisórias**, uma por relação do Ciclo 34, usando os **72 pareceres simulados** do Ciclo 35. A triagem resulta em 12 relações adiadas por dissenso, 12 redações candidatas `v2-proposed-unapproved` e 12 rejeições de inferência sem suporte suficiente — **não** exclusões de histórico ou correções automaticamente aprovadas. O relatório separa prioridade de revisão editorial de severidade de risco operacional, e o ledger preserva 36 snapshots `v1-frozen` mais 12 propostas de texto. Quatro contratos JSON Schema, testes adversariais, relatórios offline e CI. Hashes permitem comparação reprodutível com cópias preservadas; não equivalem a assinatura, log imutável ou qualificação profissional. [Especificação e limites](docs/CICLO_2026-10-29_ADJUDICACAO_CAUSAL_CONTROLADA.md).

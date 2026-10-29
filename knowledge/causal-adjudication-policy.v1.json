@@ -1,0 +1,24 @@
+{
+  "schema": "maintenance-superinteligence.causal-adjudication-policy.v1",
+  "version": "1.0.0",
+  "minimumArgumentsLength": 100,
+  "expectedRuleCount": 36,
+  "expectedCandidateVersions": 12,
+  "expectedBaseVersions": 36,
+  "priorityLevels": [
+    "high_review_priority",
+    "medium_review_priority",
+    "watch_review_priority"
+  ],
+  "allowedDispositions": [
+    "defer_disputed_relation",
+    "propose_unapproved_wording_revision",
+    "reject_unsubstantiated_inference"
+  ],
+  "independentSignoffVerified": false,
+  "diagnosticValidityEstablished": false,
+  "mayAmendUpstreamRules": false,
+  "mayExecuteTests": false,
+  "mayCreateWorkOrder": false,
+  "mayReleaseEquipment": false
+}

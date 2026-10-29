@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle36 editorial adjudication is never technical signoff",
+  "required": [
+    "schema",
+    "version",
+    "minimumArgumentsLength",
+    "expectedRuleCount",
+    "expectedCandidateVersions",
+    "expectedBaseVersions",
+    "priorityLevels",
+    "allowedDispositions",
+    "independentSignoffVerified",
+    "diagnosticValidityEstablished",
+    "mayAmendUpstreamRules",
+    "mayExecuteTests",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.causal-adjudication-policy.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "minimumArgumentsLength": {
+      "type": "integer",
+      "minimum": 100
+    },
+    "expectedRuleCount": {
+      "const": 36
+    },
+    "expectedCandidateVersions": {
+      "const": 12
+    },
+    "expectedBaseVersions": {
+      "const": 36
+    },
+    "priorityLevels": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "enum": [
+          "high_review_priority",
+          "medium_review_priority",
+          "watch_review_priority"
+        ]
+      }
+    },
+    "allowedDispositions": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "enum": [
+          "defer_disputed_relation",
+          "propose_unapproved_wording_revision",
+          "reject_unsubstantiated_inference"
+        ]
+      }
+    },
+    "independentSignoffVerified": {
+      "const": false
+    },
+    "diagnosticValidityEstablished": {
+      "const": false
+    },
+    "mayAmendUpstreamRules": {
+      "const": false
+    },
+    "mayExecuteTests": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}

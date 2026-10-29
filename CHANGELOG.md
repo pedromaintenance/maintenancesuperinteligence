@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.6.0 — 2026-10-29 — Ciclo 36
+
+- Implementado protocolo de adjudicação **exclusivamente editorial/sintética** das 36 relações e 72 contestações do Ciclo 35, com justificativa vinculada ao ID da regra, prioridade de revisão e tratamento de contraexemplos.
+- Decisões: 12 relações com dissenso adiadas, 12 propostas v2 apenas para nova análise e 12 inferências sem suporte rejeitadas para tomada de decisão; todas continuam sem validação externa.
+- Criado histórico reconstituível com 36 versões originais v1 congeladas e 12 candidatos v2 não aprovados; nenhum arquivo do Ciclo 34 é atualizado.
+- Integridade referencial por digests da matriz, revisão e política; 48 eventos encadeados para detectar alterações a partir de referências preservadas. Não é assinatura digital, verificação de identidade ou histórico de custódia externa.
+- Quatro JSON Schemas, testes adversariais contra promoção de status causal, adulteração de versões, mudança de prioridade e falsas aprovações; relatórios JSON/HTML e CI.
+- **NO GO preservado:** sem comprovação de causa física, efeito OEM por série, teste em equipamento ou autoridade para OS, ECM, peças e liberação.
+
+
 ## 3.5.0 — 2026-10-28 — Ciclo 35
 
 - Implantado processo de contestação das 36 regras qualitativas do Ciclo 34: duas posições por regra, justificativa técnica, contraexemplo, referência genérica e proposta de edição quando solicitada.

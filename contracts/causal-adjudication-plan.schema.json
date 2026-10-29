@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle36 synthetic editorial adjudication of 36 challenged technical relationships",
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "humanAdjudicatorAuthenticated",
+    "independentExpertAdjudicationCompleted",
+    "items"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.causal-adjudication-plan.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "author_synthetic_adjudication_drafts_not_engineering_approval"
+    },
+    "humanAdjudicatorAuthenticated": {
+      "const": false
+    },
+    "independentExpertAdjudicationCompleted": {
+      "const": false
+    },
+    "items": {
+      "type": "array",
+      "minItems": 36,
+      "maxItems": 36,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "adjudicationId",
+          "ruleId",
+          "parentRecordId",
+          "reviewIds",
+          "originalRuleText",
+          "editorialPriority",
+          "proposedDisposition",
+          "reasoning",
+          "counterexampleDisposition",
+          "referencedGeneralSources",
+          "draftWording",
+          "reviewerQualifiedIndependently",
+          "externalTechnicalApproval",
+          "physicalCaseVerification",
+          "oemEffectivityVerified",
+          "mayAmendUpstream",
+          "mayAuthorizeTest",
+          "mayCreateWorkOrder",
+          "mayReleaseEquipment"
+        ],
+        "properties": {
+          "adjudicationId": {
+            "type": "string",
+            "pattern": "^SIM-ADJ-[0-9]{3}$"
+          },
+          "ruleId": {
+            "type": "string",
+            "pattern": "^DISC-[0-9]{3}-[123]$"
+          },
+          "parentRecordId": {
+            "type": "string",
+            "pattern": "^MECH-KB-[0-9]{3}$"
+          },
+          "reviewIds": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^SIM-CR-[0-9]{3}-[12]$"
+            }
+          },
+          "originalRuleText": {
+            "type": "string",
+            "minLength": 35
+          },
+          "editorialPriority": {
+            "enum": [
+              "high_review_priority",
+              "medium_review_priority",
+              "watch_review_priority"
+            ]
+          },
+          "proposedDisposition": {
+            "enum": [
+              "defer_disputed_relation",
+              "propose_unapproved_wording_revision",
+              "reject_unsubstantiated_inference"
+            ]
+          },
+          "reasoning": {
+            "type": "string",
+            "minLength": 100
+          },
+          "counterexampleDisposition": {
+            "enum": [
+              "open_counterexample_pending_independent_review",
+              "counterexample_not_resolved_by_wording",
+              "no_causal_claim_accepted_due_to_insufficient_evidence"
+            ]
+          },
+          "referencedGeneralSources": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "draftWording": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reviewerQualifiedIndependently": {
+            "const": false
+          },
+          "externalTechnicalApproval": {
+            "const": false
+          },
+          "physicalCaseVerification": {
+            "const": false
+          },
+          "oemEffectivityVerified": {
+            "const": false
+          },
+          "mayAmendUpstream": {
+            "const": false
+          },
+          "mayAuthorizeTest": {
+            "const": false
+          },
+          "mayCreateWorkOrder": {
+            "const": false
+          },
+          "mayReleaseEquipment": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}
