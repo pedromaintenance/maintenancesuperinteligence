@@ -1,0 +1,907 @@
+{
+  "schema": "maintenance-superinteligence.federation-rbac-rehearsal.v1",
+  "version": "1.0.0",
+  "mode": "author_generated_fake_claims_never_real_oidc_tokens",
+  "profileActors": [
+    {
+      "id": "SIM-AUTHOR",
+      "role": "author",
+      "sub": "sim-author"
+    },
+    {
+      "id": "SIM-CUSTODIAN",
+      "role": "custodian",
+      "sub": "sim-custodian"
+    },
+    {
+      "id": "SIM-REVIEW-A",
+      "role": "technical_reviewer_a",
+      "sub": "sim-review-a"
+    },
+    {
+      "id": "SIM-REVIEW-B",
+      "role": "technical_reviewer_b",
+      "sub": "sim-review-b"
+    },
+    {
+      "id": "SIM-ADJUDICATOR",
+      "role": "adjudicator",
+      "sub": "sim-adjudicator"
+    }
+  ],
+  "scenarios": [
+    {
+      "scenarioId": "FID-001",
+      "kind": "baseline_author_public",
+      "actorProfileId": "SIM-AUTHOR",
+      "packetId": "IRP-001",
+      "action": "read_public_research",
+      "resourceType": "public_research_metadata",
+      "expectedNonce": "nonce-001",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-author",
+        "claimedRole": "author",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-001",
+        "jti": "sim-jti-001",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-002",
+      "kind": "role_eligible_custody_index",
+      "actorProfileId": "SIM-CUSTODIAN",
+      "packetId": "IRP-001",
+      "action": "read_private_document_index",
+      "resourceType": "private_review_receipt",
+      "expectedNonce": "nonce-002",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-custodian",
+        "claimedRole": "custodian",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-002",
+        "jti": "sim-jti-002",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-003",
+      "kind": "role_eligible_prepare",
+      "actorProfileId": "SIM-CUSTODIAN",
+      "packetId": "IRP-001",
+      "action": "prepare_private_review_package",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-003",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-custodian",
+        "claimedRole": "custodian",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-003",
+        "jti": "sim-jti-003",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-004",
+      "kind": "role_eligible_reviewer_a_read",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-004",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-004",
+        "jti": "sim-jti-004",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-005",
+      "kind": "role_eligible_reviewer_a_opinion",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "submit_technical_opinion",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-005",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-005",
+        "jti": "sim-jti-005",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-006",
+      "kind": "role_eligible_reviewer_b_opinion",
+      "actorProfileId": "SIM-REVIEW-B",
+      "packetId": "IRP-001",
+      "action": "submit_technical_opinion",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-006",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-b",
+        "claimedRole": "technical_reviewer_b",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-006",
+        "jti": "sim-jti-006",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-007",
+      "kind": "role_eligible_adjudication_only",
+      "actorProfileId": "SIM-ADJUDICATOR",
+      "packetId": "IRP-001",
+      "action": "submit_adjudication",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-007",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-adjudicator",
+        "claimedRole": "adjudicator",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-007",
+        "jti": "sim-jti-007",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-008",
+      "kind": "author_cannot_approve",
+      "actorProfileId": "SIM-AUTHOR",
+      "packetId": "IRP-001",
+      "action": "submit_technical_opinion",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-008",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-author",
+        "claimedRole": "author",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-008",
+        "jti": "sim-jti-008",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-009",
+      "kind": "reviewer_cannot_adjudicate",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "submit_adjudication",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-009",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-009",
+        "jti": "sim-jti-009",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-010",
+      "kind": "adjudicator_cannot_review",
+      "actorProfileId": "SIM-ADJUDICATOR",
+      "packetId": "IRP-001",
+      "action": "submit_technical_opinion",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-010",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-adjudicator",
+        "claimedRole": "adjudicator",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-010",
+        "jti": "sim-jti-010",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-011",
+      "kind": "custodian_cannot_review",
+      "actorProfileId": "SIM-CUSTODIAN",
+      "packetId": "IRP-001",
+      "action": "submit_technical_opinion",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-011",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-custodian",
+        "claimedRole": "custodian",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-011",
+        "jti": "sim-jti-011",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-012",
+      "kind": "reviewer_cannot_read_index",
+      "actorProfileId": "SIM-REVIEW-B",
+      "packetId": "IRP-001",
+      "action": "read_private_document_index",
+      "resourceType": "private_review_receipt",
+      "expectedNonce": "nonce-012",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-b",
+        "claimedRole": "technical_reviewer_b",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-012",
+        "jti": "sim-jti-012",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-013",
+      "kind": "operation_always_forbidden",
+      "actorProfileId": "SIM-CUSTODIAN",
+      "packetId": "IRP-001",
+      "action": "release_equipment",
+      "resourceType": "equipment_release",
+      "expectedNonce": "nonce-013",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-custodian",
+        "claimedRole": "custodian",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-013",
+        "jti": "sim-jti-013",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-014",
+      "kind": "upstream_always_forbidden",
+      "actorProfileId": "SIM-ADJUDICATOR",
+      "packetId": "IRP-001",
+      "action": "modify_upstream",
+      "resourceType": "upstream_causal_rules",
+      "expectedNonce": "nonce-014",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-adjudicator",
+        "claimedRole": "adjudicator",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-014",
+        "jti": "sim-jti-014",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-015",
+      "kind": "author_private_case_denied",
+      "actorProfileId": "SIM-AUTHOR",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-015",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-author",
+        "claimedRole": "author",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-015",
+        "jti": "sim-jti-015",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-016",
+      "kind": "unknown_packet",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-999",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-016",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-016",
+        "jti": "sim-jti-016",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-017",
+      "kind": "wrong_issuer",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-017",
+      "claims": {
+        "iss": "https://evil.example.invalid",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-017",
+        "jti": "sim-jti-017",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-018",
+      "kind": "wrong_audience",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-018",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "other-app",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-018",
+        "jti": "sim-jti-018",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-019",
+      "kind": "expired_claim",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-019",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793285500,
+        "nonce": "nonce-019",
+        "jti": "sim-jti-019",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-020",
+      "kind": "future_claim",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-020",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793286500,
+        "exp": 1793286600,
+        "nonce": "nonce-020",
+        "jti": "sim-jti-020",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-021",
+      "kind": "nonce_mismatch",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-021",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "wrong-nonce",
+        "jti": "sim-jti-021",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-022",
+      "kind": "missing_mfa",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-022",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-022",
+        "jti": "sim-jti-022",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-023",
+      "kind": "actor_subject_mismatch",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-023",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-other-user",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-023",
+        "jti": "sim-jti-023",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-024",
+      "kind": "actor_role_spoof",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-024",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "adjudicator",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-024",
+        "jti": "sim-jti-024",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-025",
+      "kind": "duplicate_token_jti",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-025",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-025",
+        "jti": "sim-jti-replay",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-026",
+      "kind": "reuse_jti",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-026",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-026",
+        "jti": "sim-jti-replay",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-027",
+      "kind": "untrusted_algorithm",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-027",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-027",
+        "jti": "sim-jti-027",
+        "alg": "none",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-028",
+      "kind": "unexpected_scope",
+      "actorProfileId": "SIM-REVIEW-B",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-028",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-b",
+        "claimedRole": "technical_reviewer_b",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-028",
+        "jti": "sim-jti-028",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp",
+          "unknown"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-029",
+      "kind": "long_lifetime",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-029",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793295000,
+        "nonce": "nonce-029",
+        "jti": "sim-jti-029",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": false,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    },
+    {
+      "scenarioId": "FID-030",
+      "kind": "tampered_auth_claims",
+      "actorProfileId": "SIM-REVIEW-A",
+      "packetId": "IRP-001",
+      "action": "read_assigned_private_case",
+      "resourceType": "private_review_case",
+      "expectedNonce": "nonce-030",
+      "claims": {
+        "iss": "https://idp.example.invalid/research",
+        "aud": "maintenance-research-example",
+        "sub": "sim-review-a",
+        "claimedRole": "technical_reviewer_a",
+        "iat": 1793285800,
+        "nbf": 1793285800,
+        "exp": 1793286600,
+        "nonce": "nonce-030",
+        "jti": "sim-jti-030",
+        "alg": "RS256",
+        "acr": "urn:synthetic:mfa",
+        "amr": [
+          "pwd",
+          "otp"
+        ],
+        "signatureValidated": true,
+        "issuerTrusted": false,
+        "roleAssignmentVerified": false
+      }
+    }
+  ],
+  "realIdentitiesPresent": false,
+  "realTokensPresent": false,
+  "liveProviderConnected": false
+}

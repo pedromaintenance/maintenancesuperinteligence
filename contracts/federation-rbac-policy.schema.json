@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle39 OIDC/RBAC design without live authentication",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "syntheticIssuer",
+    "syntheticAudience",
+    "simulationClockEpoch",
+    "maxTokenLifetimeSeconds",
+    "maximumClockSkewSeconds",
+    "roleGrants",
+    "privateResourceKinds",
+    "publicResourceKinds",
+    "operationalResourceKinds",
+    "protectedActions",
+    "defaultDeny",
+    "roleSeparationRequired",
+    "mfaConditionRequiredForPrivate",
+    "providerConfigured",
+    "oidcDiscoveryVerified",
+    "jwksSignatureVerifierConnected",
+    "oidcAudienceRegistered",
+    "externalRoleDirectoryConnected",
+    "sessionRevocationStoreConnected",
+    "mfaAssuranceValidated",
+    "realAccessEnforcementConnected",
+    "auditLogExternallyCustodied",
+    "mayApproveTechnicalRelation",
+    "mayModifyUpstream",
+    "mayCreateWorkOrder",
+    "mayExecuteTest",
+    "mayModifyEcm",
+    "mayReleaseEquipment",
+    "sources"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.federation-rbac-policy.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "hypothetical_roles_no_live_identity_provider"
+    },
+    "syntheticIssuer": {
+      "const": "https://idp.example.invalid/research"
+    },
+    "syntheticAudience": {
+      "const": "maintenance-research-example"
+    },
+    "simulationClockEpoch": {
+      "const": 1793286000
+    },
+    "maxTokenLifetimeSeconds": {
+      "const": 3600
+    },
+    "maximumClockSkewSeconds": {
+      "const": 60
+    },
+    "roleGrants": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "author",
+        "custodian",
+        "technical_reviewer_a",
+        "technical_reviewer_b",
+        "adjudicator"
+      ],
+      "properties": {
+        "author": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "custodian": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "technical_reviewer_a": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "technical_reviewer_b": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "adjudicator": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "privateResourceKinds": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "enum": [
+          "private_review_case",
+          "private_review_receipt"
+        ]
+      }
+    },
+    "publicResourceKinds": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "items": {
+        "enum": [
+          "public_research_metadata"
+        ]
+      }
+    },
+    "operationalResourceKinds": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "enum": [
+          "upstream_causal_rules",
+          "sap_pm",
+          "ecm",
+          "equipment_release"
+        ]
+      }
+    },
+    "protectedActions": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "enum": [
+          "read_private_document_index",
+          "prepare_private_review_package",
+          "read_assigned_private_case",
+          "submit_technical_opinion",
+          "submit_adjudication"
+        ]
+      }
+    },
+    "defaultDeny": {
+      "const": true
+    },
+    "roleSeparationRequired": {
+      "const": true
+    },
+    "mfaConditionRequiredForPrivate": {
+      "const": true
+    },
+    "providerConfigured": {
+      "const": false
+    },
+    "oidcDiscoveryVerified": {
+      "const": false
+    },
+    "jwksSignatureVerifierConnected": {
+      "const": false
+    },
+    "oidcAudienceRegistered": {
+      "const": false
+    },
+    "externalRoleDirectoryConnected": {
+      "const": false
+    },
+    "sessionRevocationStoreConnected": {
+      "const": false
+    },
+    "mfaAssuranceValidated": {
+      "const": false
+    },
+    "realAccessEnforcementConnected": {
+      "const": false
+    },
+    "auditLogExternallyCustodied": {
+      "const": false
+    },
+    "mayApproveTechnicalRelation": {
+      "const": false
+    },
+    "mayModifyUpstream": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "url",
+          "relevance"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 20
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://"
+          },
+          "relevance": {
+            "type": "string",
+            "minLength": 40
+          }
+        }
+      }
+    }
+  }
+}
