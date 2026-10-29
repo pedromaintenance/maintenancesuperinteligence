@@ -1,0 +1,95 @@
+{
+  "schema": "maintenance-superinteligence.federation-rbac-policy.v1",
+  "version": "1.0.0",
+  "mode": "hypothetical_roles_no_live_identity_provider",
+  "syntheticIssuer": "https://idp.example.invalid/research",
+  "syntheticAudience": "maintenance-research-example",
+  "simulationClockEpoch": 1793286000,
+  "maxTokenLifetimeSeconds": 3600,
+  "maximumClockSkewSeconds": 60,
+  "roleGrants": {
+    "author": [
+      "read_public_research"
+    ],
+    "custodian": [
+      "read_public_research",
+      "read_private_document_index",
+      "prepare_private_review_package"
+    ],
+    "technical_reviewer_a": [
+      "read_public_research",
+      "read_assigned_private_case",
+      "submit_technical_opinion"
+    ],
+    "technical_reviewer_b": [
+      "read_public_research",
+      "read_assigned_private_case",
+      "submit_technical_opinion"
+    ],
+    "adjudicator": [
+      "read_public_research",
+      "read_assigned_private_case",
+      "submit_adjudication"
+    ]
+  },
+  "privateResourceKinds": [
+    "private_review_case",
+    "private_review_receipt"
+  ],
+  "publicResourceKinds": [
+    "public_research_metadata"
+  ],
+  "operationalResourceKinds": [
+    "upstream_causal_rules",
+    "sap_pm",
+    "ecm",
+    "equipment_release"
+  ],
+  "protectedActions": [
+    "read_private_document_index",
+    "prepare_private_review_package",
+    "read_assigned_private_case",
+    "submit_technical_opinion",
+    "submit_adjudication"
+  ],
+  "defaultDeny": true,
+  "roleSeparationRequired": true,
+  "mfaConditionRequiredForPrivate": true,
+  "providerConfigured": false,
+  "oidcDiscoveryVerified": false,
+  "jwksSignatureVerifierConnected": false,
+  "oidcAudienceRegistered": false,
+  "externalRoleDirectoryConnected": false,
+  "sessionRevocationStoreConnected": false,
+  "mfaAssuranceValidated": false,
+  "realAccessEnforcementConnected": false,
+  "auditLogExternallyCustodied": false,
+  "mayApproveTechnicalRelation": false,
+  "mayModifyUpstream": false,
+  "mayCreateWorkOrder": false,
+  "mayExecuteTest": false,
+  "mayModifyEcm": false,
+  "mayReleaseEquipment": false,
+  "sources": [
+    {
+      "title": "OpenID Connect Core 1.0 — ID Token Validation",
+      "url": "https://openid.net/specs/openid-connect-core-1_0.html",
+      "relevance": "Issuer and audience checks, signature validation and nonce/expiry properties of actual OIDC tokens, none of which this tool performs."
+    },
+    {
+      "title": "NIST SP 800-63-4 — Digital Identity Guidelines",
+      "url": "https://csrc.nist.gov/pubs/sp/800/63/4/final",
+      "relevance": "Identity proofing, authentication, and federation require distinct assurance processes."
+    },
+    {
+      "title": "NIST SP 800-63C-4 — Federation and Assertions",
+      "url": "https://csrc.nist.gov/pubs/sp/800/63/c/4/final",
+      "relevance": "Federated assertions and actual relying-party trust must be externally established."
+    },
+    {
+      "title": "OWASP Authorization Cheat Sheet",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+      "relevance": "Deny by default, least privilege and authorization at every request."
+    }
+  ]
+}

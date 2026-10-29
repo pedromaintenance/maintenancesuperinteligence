@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: custódia privada local de pareceres com integridade HMAC P&D v3.8.0 (29/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: arquitetura de federação e RBAC fail-closed P&D v3.9.0 (29/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -76,6 +76,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 36 — Adjudicação editorial e histórico de propostas](docs/CICLO_2026-10-29_ADJUDICACAO_CAUSAL_CONTROLADA.md)
 - [Ciclo 37 — Preparação da revisão técnica independente](docs/CICLO_2026-10-29_PROTOCOLO_REVISAO_INDEPENDENTE.md)
 - [Ciclo 38 — Custódia privada e limites da autenticação](docs/CICLO_2026-10-29_CUSTODIA_PRIVADA_PARECERES.md)
+- [Ciclo 39 — Federação OIDC e política RBAC sem autenticação real](docs/CICLO_2026-10-29_FEDERACAO_RBAC_FAIL_CLOSED.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -447,3 +448,7 @@ O projeto agora oferece **36 pacotes de revisão técnica estruturados**, vincul
 ## Ciclo 38 — Custódia local de pareceres e integridade de anexos
 
 O fluxo `governance/private_review_custody.py` permite **selar** e **auditar** um pacote privado de opiniões técnicas ligadas ao `packetId` do Ciclo 37, sem copiar pareceres, chaves ou evidências OEM ao GitHub. Verifica três papéis **declarados** (dois revisores e adjudicador, todos pseudônimos diferentes), texto discriminante, proveniência relativa ao pacote, digests SHA-256 dos bytes de anexos e recibo HMAC-SHA256 com chave mantida fora do repositório. Os relatórios não incluem nomes, arquivos, documentos ou texto dos pareceres. **HMAC não autentica identidades humanas; permissões reais, IAM, assinatura digital e criptografia de armazenamento ainda não foram implementados.** Todo resultado continua `NO GO` para diagnóstico homologado e intervenção. O projeto utiliza NIST SP 800-63-4 como referência de requisitos de identidade, **não como certificação de conformidade**. [Roteiro e riscos remanescentes](docs/CICLO_2026-10-29_CUSTODIA_PRIVADA_PARECERES.md).
+
+## Ciclo 39 — Pré-validação OIDC/RBAC com negação operacional permanente
+
+`governance/federation_rbac.py` define uma arquitetura declarativa para um futuro provedor OIDC externo e autorização por papéis (autor, custodiante, dois revisores e adjudicador). O ensaio inclui **30 cenários de reivindicações de identidade inteiramente fictícias**, com casos de falhas de emissor, audiência, tempo, MFA declarada, nonce, reaproveitamento de identificador, troca de papel, consulta fora do escopo e execução de ações operacionais. Se um cenário satisfaz a **forma e elegibilidade hipotética**, a resposta **ainda é `authorizationGranted=false`**: o projeto não verifica assinatura JWT/JWKS, federação, autenticação de pessoas, vinculação de papéis corporativos ou recursos privados. A política é *deny-by-default*: 0 documentos privados acessados, 0 permissões reais concedidas, 0 mudanças na matriz ou no SAP. Quatro contratos, testes adversariais, relatório JSON/HTML e CI. Referências arquiteturais: [OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html), [NIST SP 800-63-4](https://csrc.nist.gov/pubs/sp/800/63/4/final), [NIST SP 800-63C-4](https://csrc.nist.gov/pubs/sp/800/63/c/4/final) e [OWASP Authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html). [Especificação, controles e limitações](docs/CICLO_2026-10-29_FEDERACAO_RBAC_FAIL_CLOSED.md).

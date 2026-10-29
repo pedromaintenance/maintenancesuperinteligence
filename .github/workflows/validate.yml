@@ -2238,3 +2238,43 @@ jobs:
           assert p["mayReleaseEquipment"] is False
           print("PASS: Cycle38 offline HMAC and attachment bytes; no human authentication, NO GO")
           PY
+      - name: Validate Cycle 39 OIDC/RBAC mock preflight and strict deny by default
+        run: |
+          python -m unittest tests.test_federation_rbac -v
+          python -m governance.federation_rbac \
+            --output build/benchmarks/cycle39-rbac-preflight.json \
+            --html build/benchmarks/cycle39-rbac-preflight.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from governance.federation_rbac import POLICY, REHEARSAL, verify_report
+          def load(p): return json.loads(Path(p).read_text(encoding="utf-8"))
+          policy=load(POLICY)
+          rehearsal=load(REHEARSAL)
+          report=load("build/benchmarks/cycle39-rbac-preflight.json")
+          verify_report(report,policy,rehearsal)
+          assert report["scenarioCount"]==30
+          assert report["hypotheticalRoleEligibleCount"]==8
+          assert report["structurallyOrRoleRejectedCount"]==22
+          assert report["availablePacketCount"]==36
+          assert report["actualGrantedCount"]==0
+          assert report["realPrivateDocumentsAccessed"]==0
+          assert report["realIdentitiesAuthenticated"]==0
+          assert report["jwtSignaturesVerified"]==0
+          assert report["realAuthorizationsGranted"]==0
+          assert report["mayApproveTechnicalRelation"] is False
+          assert report["mayCreateWorkOrder"] is False
+          assert report["mayModifyEcm"] is False
+          assert report["mayReleaseEquipment"] is False
+          assert all(x["authorizationGranted"] is False for x in report["results"])
+          assert report["decision"]=="no_go_connect_verified_oidc_idp_and_real_access_enforcement"
+          print("PASS: Cycle39 30 synthetic requests, 0 verified logins, 0 real grants")
+          PY
+      - name: Publish Cycle 39 synthetic RBAC deny-by-default checks
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle39-federation-rbac-preflight-no-go
+          path: |
+            build/benchmarks/cycle39-rbac-preflight.json
+            build/benchmarks/cycle39-rbac-preflight.html
+          retention-days: 14

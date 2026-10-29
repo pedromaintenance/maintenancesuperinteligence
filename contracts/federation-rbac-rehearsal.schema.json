@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle39 30 fake assertions never accepted as genuine tokens",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "profileActors",
+    "scenarios",
+    "realIdentitiesPresent",
+    "realTokensPresent",
+    "liveProviderConnected"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.federation-rbac-rehearsal.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "author_generated_fake_claims_never_real_oidc_tokens"
+    },
+    "profileActors": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "role",
+          "sub"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "author",
+              "custodian",
+              "technical_reviewer_a",
+              "technical_reviewer_b",
+              "adjudicator"
+            ]
+          },
+          "sub": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 30,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "scenarioId",
+          "kind",
+          "actorProfileId",
+          "packetId",
+          "action",
+          "resourceType",
+          "expectedNonce",
+          "claims"
+        ],
+        "properties": {
+          "scenarioId": {
+            "type": "string",
+            "pattern": "^FID-[0-9]{3}$"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "actorProfileId": {
+            "type": "string"
+          },
+          "packetId": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          },
+          "resourceType": {
+            "type": "string"
+          },
+          "expectedNonce": {
+            "type": "string"
+          },
+          "claims": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "iss",
+              "aud",
+              "sub",
+              "claimedRole",
+              "iat",
+              "nbf",
+              "exp",
+              "nonce",
+              "jti",
+              "alg",
+              "acr",
+              "amr",
+              "signatureValidated",
+              "issuerTrusted",
+              "roleAssignmentVerified"
+            ],
+            "properties": {
+              "iss": {
+                "type": "string"
+              },
+              "aud": {
+                "type": "string"
+              },
+              "sub": {
+                "type": "string"
+              },
+              "claimedRole": {
+                "type": "string"
+              },
+              "nonce": {
+                "type": "string"
+              },
+              "jti": {
+                "type": "string"
+              },
+              "alg": {
+                "type": "string"
+              },
+              "acr": {
+                "type": "string"
+              },
+              "iat": {
+                "type": "integer"
+              },
+              "nbf": {
+                "type": "integer"
+              },
+              "exp": {
+                "type": "integer"
+              },
+              "amr": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "signatureValidated": {
+                "type": "boolean"
+              },
+              "issuerTrusted": {
+                "const": false
+              },
+              "roleAssignmentVerified": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "realIdentitiesPresent": {
+      "const": false
+    },
+    "realTokensPresent": {
+      "const": false
+    },
+    "liveProviderConnected": {
+      "const": false
+    }
+  }
+}

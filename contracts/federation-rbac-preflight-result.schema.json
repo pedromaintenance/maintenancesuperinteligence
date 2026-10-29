@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle39 result is only a claim-shape and role rehearsal, never access",
+  "required": [
+    "scenarioId",
+    "kind",
+    "actorProfileId",
+    "requestedAction",
+    "resourceType",
+    "structuralOrRoleFaults",
+    "hypotheticalRoleAndShapeEligible",
+    "oidcSignatureCryptographicallyVerified",
+    "realIdpIssuerTrusted",
+    "realAudienceRegistrationVerified",
+    "actualSubjectAuthenticated",
+    "realMfaEnforced",
+    "realSessionRevocationChecked",
+    "realResourceAclChecked",
+    "authorizationGranted",
+    "mayReadPrivateDocuments",
+    "maySubmitTechnicalOpinion",
+    "mayApproveTechnicalRelation",
+    "mayCreateWorkOrder",
+    "mayModifyEcm",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "scenarioId": {
+      "type": "string",
+      "pattern": "^FID-[0-9]{3}$"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "actorProfileId": {
+      "type": "string"
+    },
+    "requestedAction": {
+      "type": "string"
+    },
+    "resourceType": {
+      "type": "string"
+    },
+    "structuralOrRoleFaults": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "hypotheticalRoleAndShapeEligible": {
+      "type": "boolean"
+    },
+    "oidcSignatureCryptographicallyVerified": {
+      "const": false
+    },
+    "realIdpIssuerTrusted": {
+      "const": false
+    },
+    "realAudienceRegistrationVerified": {
+      "const": false
+    },
+    "actualSubjectAuthenticated": {
+      "const": false
+    },
+    "realMfaEnforced": {
+      "const": false
+    },
+    "realSessionRevocationChecked": {
+      "const": false
+    },
+    "realResourceAclChecked": {
+      "const": false
+    },
+    "authorizationGranted": {
+      "const": false
+    },
+    "mayReadPrivateDocuments": {
+      "const": false
+    },
+    "maySubmitTechnicalOpinion": {
+      "const": false
+    },
+    "mayApproveTechnicalRelation": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "deny_unverified_external_identity"
+    }
+  }
+}

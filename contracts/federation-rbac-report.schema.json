@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle39 deny-all real authorization verdict and 30 synthetic tests",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "policyDigest",
+    "fixtureDigest",
+    "packetRegistryDigest",
+    "scenarioCount",
+    "hypotheticalRoleEligibleCount",
+    "structurallyOrRoleRejectedCount",
+    "actualGrantedCount",
+    "actorProfiles",
+    "availablePacketCount",
+    "denyReasonCounts",
+    "results",
+    "realIdpConfigured",
+    "jwtSignaturesVerified",
+    "realIdentitiesAuthenticated",
+    "realMfaSessionsEnforced",
+    "realRoleBindingsVerified",
+    "realAuthorizationsGranted",
+    "realPrivateDocumentsAccessed",
+    "sourceRulesChanged",
+    "mayApproveTechnicalRelation",
+    "mayCreateWorkOrder",
+    "mayExecuteTest",
+    "mayModifyEcm",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.federation-rbac-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "simulated_claim_shape_and_role_preflight_not_live_access"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "fixtureDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "packetRegistryDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "scenarioCount": {
+      "const": 30
+    },
+    "hypotheticalRoleEligibleCount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 30
+    },
+    "structurallyOrRoleRejectedCount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 30
+    },
+    "actualGrantedCount": {
+      "const": 0
+    },
+    "actorProfiles": {
+      "const": 5
+    },
+    "availablePacketCount": {
+      "const": 36
+    },
+    "denyReasonCounts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "results": {
+      "type": "array",
+      "minItems": 30,
+      "maxItems": 30,
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "additionalProperties": false,
+        "title": "Cycle39 result is only a claim-shape and role rehearsal, never access",
+        "required": [
+          "scenarioId",
+          "kind",
+          "actorProfileId",
+          "requestedAction",
+          "resourceType",
+          "structuralOrRoleFaults",
+          "hypotheticalRoleAndShapeEligible",
+          "oidcSignatureCryptographicallyVerified",
+          "realIdpIssuerTrusted",
+          "realAudienceRegistrationVerified",
+          "actualSubjectAuthenticated",
+          "realMfaEnforced",
+          "realSessionRevocationChecked",
+          "realResourceAclChecked",
+          "authorizationGranted",
+          "mayReadPrivateDocuments",
+          "maySubmitTechnicalOpinion",
+          "mayApproveTechnicalRelation",
+          "mayCreateWorkOrder",
+          "mayModifyEcm",
+          "mayReleaseEquipment",
+          "decision"
+        ],
+        "properties": {
+          "scenarioId": {
+            "type": "string",
+            "pattern": "^FID-[0-9]{3}$"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "actorProfileId": {
+            "type": "string"
+          },
+          "requestedAction": {
+            "type": "string"
+          },
+          "resourceType": {
+            "type": "string"
+          },
+          "structuralOrRoleFaults": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "hypotheticalRoleAndShapeEligible": {
+            "type": "boolean"
+          },
+          "oidcSignatureCryptographicallyVerified": {
+            "const": false
+          },
+          "realIdpIssuerTrusted": {
+            "const": false
+          },
+          "realAudienceRegistrationVerified": {
+            "const": false
+          },
+          "actualSubjectAuthenticated": {
+            "const": false
+          },
+          "realMfaEnforced": {
+            "const": false
+          },
+          "realSessionRevocationChecked": {
+            "const": false
+          },
+          "realResourceAclChecked": {
+            "const": false
+          },
+          "authorizationGranted": {
+            "const": false
+          },
+          "mayReadPrivateDocuments": {
+            "const": false
+          },
+          "maySubmitTechnicalOpinion": {
+            "const": false
+          },
+          "mayApproveTechnicalRelation": {
+            "const": false
+          },
+          "mayCreateWorkOrder": {
+            "const": false
+          },
+          "mayModifyEcm": {
+            "const": false
+          },
+          "mayReleaseEquipment": {
+            "const": false
+          },
+          "decision": {
+            "const": "deny_unverified_external_identity"
+          }
+        }
+      }
+    },
+    "realIdpConfigured": {
+      "const": false
+    },
+    "jwtSignaturesVerified": {
+      "const": 0
+    },
+    "realIdentitiesAuthenticated": {
+      "const": 0
+    },
+    "realMfaSessionsEnforced": {
+      "const": 0
+    },
+    "realRoleBindingsVerified": {
+      "const": 0
+    },
+    "realAuthorizationsGranted": {
+      "const": 0
+    },
+    "realPrivateDocumentsAccessed": {
+      "const": 0
+    },
+    "sourceRulesChanged": {
+      "const": false
+    },
+    "mayApproveTechnicalRelation": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_connect_verified_oidc_idp_and_real_access_enforcement"
+    }
+  }
+}

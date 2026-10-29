@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.9.0 — 2026-10-29 — Ciclo 39
+
+- Estruturada política de **federação OIDC e elegibilidade RBAC**, vinculada aos 36 pacotes do Ciclo 37 e à custódia offline do Ciclo 38; nenhum IdP real, login ou ACL online implementado.
+- Criados 30 cenários sintéticos com cinco perfis segregados, controle de emissor/audiência declarados, validade temporal, nonce, jti repetido, assinatura autodeclarada, MFA fictícia, escalonamento de papéis e tentativas de acesso a recursos operacionais.
+- Implementada avaliação de compatibilidade **hipotética** de papel/ação/recurso sem expor arquivos privados. Mesmo perfis elegíveis recebem decisão de **negação real** por ausência de assinatura criptográfica, papel corporativo verificado e autorização de backend.
+- Política default-deny de privilégios mínimos, recusa de autoaprovação, de escrita upstream, SAP/ECM, ensaios e liberação; separa identidade federada, competência profissional e autoridade de manutenção.
+- Quatro JSON Schemas, suíte adversarial, relatório JSON/HTML offline, CI e documentação técnica ligada a OpenID Connect, NIST SP 800-63-4 e OWASP.
+- **NO GO:** provedor de identidade, cadastro de client_id, verificação JWKS, MFA de sessão, revogação e RBAC real permanecem não conectados.
+
+
 ## 3.8.0 — 2026-10-29 — Ciclo 38
 
 - Adicionado CLI offline privado para selar e verificar pareceres textuais (dois revisores declarados e um adjudicador) vinculados aos pacotes congelados do Ciclo 37.
