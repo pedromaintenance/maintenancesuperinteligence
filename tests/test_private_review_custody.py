@@ -213,15 +213,17 @@ class PrivateReviewCustodyTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             inspect(altered,self.policy)
         weak=self.path/"weak.key"
+        data=self.path/"submission.json"
+        data.write_text(json.dumps(self.submission))
         weak.write_bytes(b"short")
+        if os.name=="posix":
+            weak.chmod(0o600)
         with self.assertRaises(ReviewRejected):
-            main(["seal","--submission",str(self.path/"foo"),"--key",str(weak),
+            main(["seal","--submission",str(data),"--key",str(weak),
                   "--receipt",str(self.path/"no.json")])
         if os.name=="posix":
             weak.write_bytes(b"a"*40)
             weak.chmod(0o644)
-            data=self.path/"submission.json"
-            data.write_text(json.dumps(self.submission))
             with self.assertRaises(ReviewRejected):
                 main(["seal","--submission",str(data),"--key",str(weak),
                       "--receipt",str(self.path/"no.json")])
