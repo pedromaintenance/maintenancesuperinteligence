@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle38 local HMAC receipt, not identity or document confidentiality",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "submissionDigest",
+    "packetDigest",
+    "policyDigest",
+    "attachmentDigests",
+    "custodyHmacSha256",
+    "identityAuthenticated",
+    "rolePermissionVerified",
+    "contentEncrypted",
+    "independentReviewVerified",
+    "humanSignoffValidated",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.private-review-receipt.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "local_hmac_custodian_key_not_human_signature"
+    },
+    "submissionDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "packetDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "attachmentDigests": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "custodyHmacSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "identityAuthenticated": {
+      "const": false
+    },
+    "rolePermissionVerified": {
+      "const": false
+    },
+    "contentEncrypted": {
+      "const": false
+    },
+    "independentReviewVerified": {
+      "const": false
+    },
+    "humanSignoffValidated": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}
