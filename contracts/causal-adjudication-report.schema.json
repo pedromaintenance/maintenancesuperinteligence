@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle36 safe editorial adjudication output with NO GO for physical intervention",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "matrixDigest",
+    "reviewBatchDigest",
+    "reviewReceiptDigest",
+    "reviewReportDigest",
+    "planDigest",
+    "policyDigest",
+    "versionLedgerDigest",
+    "versionLedgerHead",
+    "sourceRelations",
+    "dispositionCounts",
+    "editorialReviewPriorityCounts",
+    "historicBaselinesPreserved",
+    "unapprovedCandidateVersions",
+    "unresolvedIndependentReviews",
+    "decisions",
+    "realWorldSafetySeverityAssigned",
+    "reviewersAuthenticated",
+    "independentReviewCompleted",
+    "causalDiagnosticValidityEstablished",
+    "upstreamSourceRulesUpdated",
+    "ledgerIsImmutable",
+    "auditHashesProveIdentity",
+    "mayExecuteTest",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.causal-adjudication-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "synthetic_editorial_adjudication_no_operational_signoff"
+    },
+    "matrixDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewBatchDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewReceiptDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewReportDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "planDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "versionLedgerDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "versionLedgerHead": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceRelations": {
+      "const": 36
+    },
+    "dispositionCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "defer_disputed_relation",
+        "propose_unapproved_wording_revision",
+        "reject_unsubstantiated_inference"
+      ],
+      "properties": {
+        "defer_disputed_relation": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "propose_unapproved_wording_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reject_unsubstantiated_inference": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "editorialReviewPriorityCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "high_review_priority",
+        "medium_review_priority",
+        "watch_review_priority"
+      ],
+      "properties": {
+        "high_review_priority": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "medium_review_priority": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "watch_review_priority": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "historicBaselinesPreserved": {
+      "const": 36
+    },
+    "unapprovedCandidateVersions": {
+      "const": 12
+    },
+    "unresolvedIndependentReviews": {
+      "const": 36
+    },
+    "decisions": {
+      "type": "array",
+      "minItems": 36,
+      "maxItems": 36,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "adjudicationId",
+          "ruleId",
+          "sourceReviewIds",
+          "editorialPriority",
+          "editorialDisposition",
+          "rationaleDigest",
+          "openCounterexample",
+          "candidateVersionWritten",
+          "independentExpertApproval",
+          "causeRootVerified",
+          "mayAmendUpstream",
+          "mayExecuteTest",
+          "mayCreateWorkOrder",
+          "mayReleaseEquipment"
+        ],
+        "properties": {
+          "adjudicationId": {
+            "type": "string"
+          },
+          "ruleId": {
+            "type": "string"
+          },
+          "sourceReviewIds": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "string"
+            }
+          },
+          "editorialPriority": {
+            "enum": [
+              "high_review_priority",
+              "medium_review_priority",
+              "watch_review_priority"
+            ]
+          },
+          "editorialDisposition": {
+            "enum": [
+              "defer_disputed_relation",
+              "propose_unapproved_wording_revision",
+              "reject_unsubstantiated_inference"
+            ]
+          },
+          "rationaleDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "openCounterexample": {
+            "const": true
+          },
+          "candidateVersionWritten": {
+            "type": "boolean"
+          },
+          "independentExpertApproval": {
+            "const": false
+          },
+          "causeRootVerified": {
+            "const": false
+          },
+          "mayAmendUpstream": {
+            "const": false
+          },
+          "mayExecuteTest": {
+            "const": false
+          },
+          "mayCreateWorkOrder": {
+            "const": false
+          },
+          "mayReleaseEquipment": {
+            "const": false
+          }
+        }
+      }
+    },
+    "realWorldSafetySeverityAssigned": {
+      "const": false
+    },
+    "reviewersAuthenticated": {
+      "const": false
+    },
+    "independentReviewCompleted": {
+      "const": false
+    },
+    "causalDiagnosticValidityEstablished": {
+      "const": false
+    },
+    "upstreamSourceRulesUpdated": {
+      "const": false
+    },
+    "ledgerIsImmutable": {
+      "const": false
+    },
+    "auditHashesProveIdentity": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_editorial_drafts_require_independent_engineering_adjudication"
+    }
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle36 historical snapshot ledger — reproducible not externally immutable",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "matrixDigest",
+    "reviewBatchDigest",
+    "planDigest",
+    "policyDigest",
+    "baseVersionCount",
+    "candidateVersionCount",
+    "eventCount",
+    "events",
+    "chainHead",
+    "externallyTimestamped",
+    "cryptographicallySigned",
+    "upstreamChanged",
+    "independentExpertApproval",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.causal-version-ledger.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "replayable_synthetic_snapshots_not_immutable_history"
+    },
+    "matrixDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewBatchDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "planDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "baseVersionCount": {
+      "const": 36
+    },
+    "candidateVersionCount": {
+      "const": 12
+    },
+    "eventCount": {
+      "const": 48
+    },
+    "events": {
+      "type": "array",
+      "minItems": 48,
+      "maxItems": 48,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sequence",
+          "eventId",
+          "ruleId",
+          "versionLabel",
+          "text",
+          "sourceRuleDigest",
+          "frozenMatrixDigest",
+          "reviewBatchDigest",
+          "policyDigest",
+          "decisionId",
+          "priorVersionDigest",
+          "previousLedgerDigest",
+          "technicalState",
+          "independentExpertApproved",
+          "replacesSourceRule",
+          "mayExecuteTest",
+          "mayCreateWorkOrder",
+          "mayReleaseEquipment",
+          "eventDigest"
+        ],
+        "properties": {
+          "sequence": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 48
+          },
+          "eventId": {
+            "type": "string",
+            "pattern": "^SIM-HIST-[0-9]{3}-[123]-[12]$"
+          },
+          "ruleId": {
+            "type": "string",
+            "pattern": "^DISC-[0-9]{3}-[123]$"
+          },
+          "versionLabel": {
+            "enum": [
+              "v1-frozen",
+              "v2-proposed-unapproved"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 35
+          },
+          "sourceRuleDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "frozenMatrixDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "reviewBatchDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "policyDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "decisionId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "priorVersionDigest": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "previousLedgerDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "technicalState": {
+            "enum": [
+              "frozen_historic_reference_unvalidated",
+              "editorial_candidate_pending_independent_review"
+            ]
+          },
+          "independentExpertApproved": {
+            "const": false
+          },
+          "replacesSourceRule": {
+            "const": false
+          },
+          "mayExecuteTest": {
+            "const": false
+          },
+          "mayCreateWorkOrder": {
+            "const": false
+          },
+          "mayReleaseEquipment": {
+            "const": false
+          },
+          "eventDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "chainHead": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "externallyTimestamped": {
+      "const": false
+    },
+    "cryptographicallySigned": {
+      "const": false
+    },
+    "upstreamChanged": {
+      "const": false
+    },
+    "independentExpertApproval": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}

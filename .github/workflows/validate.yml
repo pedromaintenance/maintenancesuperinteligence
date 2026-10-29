@@ -2111,3 +2111,59 @@ jobs:
             build/benchmarks/cycle35-causal-review.json
             build/benchmarks/cycle35-causal-review.html
           retention-days: 14
+      - name: Validate Cycle 36 controlled editorial adjudication and version ledger
+        run: |
+          python -m unittest tests.test_causal_adjudication -v
+          python -m knowledge.causal_adjudication \
+            --output build/benchmarks/cycle36-adjudication.json \
+            --ledger build/benchmarks/cycle36-version-ledger.json \
+            --html build/benchmarks/cycle36-adjudication.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from knowledge.causal_adjudication import verify_report
+          def load(p): return json.loads(Path(p).read_text(encoding="utf-8"))
+          plan=load("knowledge/causal-adjudication-plan.v1.json")
+          policy=load("knowledge/causal-adjudication-policy.v1.json")
+          reviews=load("knowledge/causal-review-submissions.v1.json")
+          matrix=load("knowledge/discriminating-evidence-matrix.v1.json")
+          parent=load("knowledge/mechanical-evidence-map.v1.json")
+          mp=load("knowledge/mechanical-evidence-policy.v1.json")
+          dp=load("knowledge/discrimination-policy.v1.json")
+          rp=load("knowledge/causal-review-policy.v1.json")
+          report=load("build/benchmarks/cycle36-adjudication.json")
+          ledger=load("build/benchmarks/cycle36-version-ledger.json")
+          verify_report(report,ledger,plan,policy,reviews,matrix,parent,mp,dp,rp)
+          assert report["sourceRelations"]==36
+          assert report["dispositionCounts"]=={
+              "defer_disputed_relation":12,
+              "propose_unapproved_wording_revision":12,
+              "reject_unsubstantiated_inference":12}
+          assert report["editorialReviewPriorityCounts"]=={
+              "high_review_priority":12,"medium_review_priority":12,
+              "watch_review_priority":12}
+          assert report["historicBaselinesPreserved"]==36
+          assert report["unapprovedCandidateVersions"]==12
+          assert report["unresolvedIndependentReviews"]==36
+          assert ledger["eventCount"]==48
+          assert ledger["upstreamChanged"] is False
+          assert report["realWorldSafetySeverityAssigned"] is False
+          assert report["reviewersAuthenticated"] is False
+          assert report["independentReviewCompleted"] is False
+          assert report["causalDiagnosticValidityEstablished"] is False
+          assert report["upstreamSourceRulesUpdated"] is False
+          assert report["ledgerIsImmutable"] is False
+          assert report["mayExecuteTest"] is False
+          assert report["mayCreateWorkOrder"] is False
+          assert report["mayReleaseEquipment"] is False
+          print("PASS: Cycle36 36 open relations, 48 version events, no approval")
+          PY
+      - name: Publish Cycle 36 synthetic adjudication and immutable-claim-free ledger
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle36-editorial-adjudication-no-go
+          path: |
+            build/benchmarks/cycle36-adjudication.json
+            build/benchmarks/cycle36-version-ledger.json
+            build/benchmarks/cycle36-adjudication.html
+          retention-days: 14

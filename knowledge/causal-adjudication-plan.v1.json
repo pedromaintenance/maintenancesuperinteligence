@@ -1,0 +1,945 @@
+{
+  "schema": "maintenance-superinteligence.causal-adjudication-plan.v1",
+  "version": "1.0.0",
+  "nature": "author_synthetic_adjudication_drafts_not_engineering_approval",
+  "humanAdjudicatorAuthenticated": false,
+  "independentExpertAdjudicationCompleted": false,
+  "items": [
+    {
+      "adjudicationId": "SIM-ADJ-001",
+      "ruleId": "DISC-001-1",
+      "parentRecordId": "MECH-KB-001",
+      "reviewIds": [
+        "SIM-CR-001-1",
+        "SIM-CR-001-2"
+      ],
+      "originalRuleText": "Se registros de abastecimento e laboratório documentarem produtos de formulações diferentes em janelas contíguas",
+      "editorialPriority": "high_review_priority",
+      "proposedDisposition": "defer_disputed_relation",
+      "reasoning": "O parecer autoral referente a DISC-001-1 está dividido entre manter e reformular a relação. O contraexemplo associado a oil_formula_baseline_change não foi resolvido por evidência independente; conservar as duas posições sem escolher vencedores.",
+      "counterexampleDisposition": "open_counterexample_pending_independent_review",
+      "referencedGeneralSources": [
+        "CAT-SOS-READ"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-002",
+      "ruleId": "DISC-001-2",
+      "parentRecordId": "MECH-KB-001",
+      "reviewIds": [
+        "SIM-CR-002-1",
+        "SIM-CR-002-2"
+      ],
+      "originalRuleText": "Se histórico e fichas de produto documentarem o mesmo lubrificante durante todo o período",
+      "editorialPriority": "medium_review_priority",
+      "proposedDisposition": "propose_unapproved_wording_revision",
+      "reasoning": "Os dois comentários editoriais de DISC-001-2 concordam em solicitar reformulação condicional. A proposta melhora a explicitação dos limites e permanece apenas como versão candidata, sem modificar a regra original ou demonstrar nexo causal.",
+      "counterexampleDisposition": "counterexample_not_resolved_by_wording",
+      "referencedGeneralSources": [
+        "CAT-SOS-READ"
+      ],
+      "draftWording": "Se histórico e fichas de produto documentarem o mesmo lubrificante durante todo o período; caso confirmada por procedimento autorizado e aplicável, essa condição terá somente valor discriminante relativo e não comprovará causa raiz, efetividade OEM por série ou autorização operacional",
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-003",
+      "ruleId": "DISC-001-3",
+      "parentRecordId": "MECH-KB-001",
+      "reviewIds": [
+        "SIM-CR-003-1",
+        "SIM-CR-003-2"
+      ],
+      "originalRuleText": "Se os produtos e as datas de coleta permanecerem sem identificação inequívoca",
+      "editorialPriority": "watch_review_priority",
+      "proposedDisposition": "reject_unsubstantiated_inference",
+      "reasoning": "Os dois comentários editoriais de DISC-001-3 declaram suporte insuficiente. Rejeita-se apenas a inferência causal como fundamento de decisão técnica, preservando a versão original no histórico para futura revisão baseada em evidências.",
+      "counterexampleDisposition": "no_causal_claim_accepted_due_to_insufficient_evidence",
+      "referencedGeneralSources": [
+        "CAT-SOS-READ"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-004",
+      "ruleId": "DISC-002-1",
+      "parentRecordId": "MECH-KB-002",
+      "reviewIds": [
+        "SIM-CR-004-1",
+        "SIM-CR-004-2"
+      ],
+      "originalRuleText": "Se duas coletas documentadas e rastreáveis repetirem indicação de partículas estranhas",
+      "editorialPriority": "high_review_priority",
+      "proposedDisposition": "defer_disputed_relation",
+      "reasoning": "O parecer autoral referente a DISC-002-1 está dividido entre manter e reformular a relação. O contraexemplo associado a external_particle_contamination não foi resolvido por evidência independente; conservar as duas posições sem escolher vencedores.",
+      "counterexampleDisposition": "open_counterexample_pending_independent_review",
+      "referencedGeneralSources": [
+        "CAT-SOS-READ"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-005",
+      "ruleId": "DISC-002-2",
+      "parentRecordId": "MECH-KB-002",
+      "reviewIds": [
+        "SIM-CR-005-1",
+        "SIM-CR-005-2"
+      ],
+      "originalRuleText": "Se a primeira coleta apresentar divergência de frasco ou local e a repetição confiável não registrar o mesmo sinal",
+      "editorialPriority": "medium_review_priority",
+      "proposedDisposition": "propose_unapproved_wording_revision",
+      "reasoning": "Os dois comentários editoriais de DISC-002-2 concordam em solicitar reformulação condicional. A proposta melhora a explicitação dos limites e permanece apenas como versão candidata, sem modificar a regra original ou demonstrar nexo causal.",
+      "counterexampleDisposition": "counterexample_not_resolved_by_wording",
+      "referencedGeneralSources": [
+        "CAT-SOS-READ"
+      ],
+      "draftWording": "Se a primeira coleta apresentar divergência de frasco ou local e a repetição confiável não registrar o mesmo sinal; caso confirmada por procedimento autorizado e aplicável, essa condição terá somente valor discriminante relativo e não comprovará causa raiz, efetividade OEM por série ou autorização operacional",
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-006",
+      "ruleId": "DISC-002-3",
+      "parentRecordId": "MECH-KB-002",
+      "reviewIds": [
+        "SIM-CR-006-1",
+        "SIM-CR-006-2"
+      ],
+      "originalRuleText": "Se existir apenas uma leitura sem localização, tendência ou confirmação do material",
+      "editorialPriority": "watch_review_priority",
+      "proposedDisposition": "reject_unsubstantiated_inference",
+      "reasoning": "Os dois comentários editoriais de DISC-002-3 declaram suporte insuficiente. Rejeita-se apenas a inferência causal como fundamento de decisão técnica, preservando a versão original no histórico para futura revisão baseada em evidências.",
+      "counterexampleDisposition": "no_causal_claim_accepted_due_to_insufficient_evidence",
+      "referencedGeneralSources": [
+        "CAT-SOS-READ"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-007",
+      "ruleId": "DISC-003-1",
+      "parentRecordId": "MECH-KB-003",
+      "reviewIds": [
+        "SIM-CR-007-1",
+        "SIM-CR-007-2"
+      ],
+      "originalRuleText": "Se inspeção autorizada e registrada descrever padrão de dano compatível com rolamento, validado por especialista",
+      "editorialPriority": "high_review_priority",
+      "proposedDisposition": "defer_disputed_relation",
+      "reasoning": "O parecer autoral referente a DISC-003-1 está dividido entre manter e reformular a relação. O contraexemplo associado a rolling_bearing_surface_damage não foi resolvido por evidência independente; conservar as duas posições sem escolher vencedores.",
+      "counterexampleDisposition": "open_counterexample_pending_independent_review",
+      "referencedGeneralSources": [
+        "SKF-2022-ISO15243"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-008",
+      "ruleId": "DISC-003-2",
+      "parentRecordId": "MECH-KB-003",
+      "reviewIds": [
+        "SIM-CR-008-1",
+        "SIM-CR-008-2"
+      ],
+      "originalRuleText": "Se a origem documentada do ruído for outra peça e a evidência de rolamento estiver ausente",
+      "editorialPriority": "medium_review_priority",
+      "proposedDisposition": "propose_unapproved_wording_revision",
+      "reasoning": "Os dois comentários editoriais de DISC-003-2 concordam em solicitar reformulação condicional. A proposta melhora a explicitação dos limites e permanece apenas como versão candidata, sem modificar a regra original ou demonstrar nexo causal.",
+      "counterexampleDisposition": "counterexample_not_resolved_by_wording",
+      "referencedGeneralSources": [
+        "SKF-2022-ISO15243"
+      ],
+      "draftWording": "Se a origem documentada do ruído for outra peça e a evidência de rolamento estiver ausente; caso confirmada por procedimento autorizado e aplicável, essa condição terá somente valor discriminante relativo e não comprovará causa raiz, efetividade OEM por série ou autorização operacional",
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-009",
+      "ruleId": "DISC-003-3",
+      "parentRecordId": "MECH-KB-003",
+      "reviewIds": [
+        "SIM-CR-009-1",
+        "SIM-CR-009-2"
+      ],
+      "originalRuleText": "Se houver apenas relato de ruído ou partículas sem identificação física",
+      "editorialPriority": "watch_review_priority",
+      "proposedDisposition": "reject_unsubstantiated_inference",
+      "reasoning": "Os dois comentários editoriais de DISC-003-3 declaram suporte insuficiente. Rejeita-se apenas a inferência causal como fundamento de decisão técnica, preservando a versão original no histórico para futura revisão baseada em evidências.",
+      "counterexampleDisposition": "no_causal_claim_accepted_due_to_insufficient_evidence",
+      "referencedGeneralSources": [
+        "SKF-2022-ISO15243"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-010",
+      "ruleId": "DISC-004-1",
+      "parentRecordId": "MECH-KB-004",
+      "reviewIds": [
+        "SIM-CR-010-1",
+        "SIM-CR-010-2"
+      ],
+      "originalRuleText": "Se análise de fluido representativa documentar partículas sólidas e histórico de atuação irregular",
+      "editorialPriority": "high_review_priority",
+      "proposedDisposition": "defer_disputed_relation",
+      "reasoning": "O parecer autoral referente a DISC-004-1 está dividido entre manter e reformular a relação. O contraexemplo associado a abrasive_particle_effect não foi resolvido por evidência independente; conservar as duas posições sem escolher vencedores.",
+      "counterexampleDisposition": "open_counterexample_pending_independent_review",
+      "referencedGeneralSources": [
+        "HYDAC-CONTAM-2026"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-011",
+      "ruleId": "DISC-004-2",
+      "parentRecordId": "MECH-KB-004",
+      "reviewIds": [
+        "SIM-CR-011-1",
+        "SIM-CR-011-2"
+      ],
+      "originalRuleText": "Se contagem e procedência do fluido forem compatíveis com referência pertinente e a irregularidade acompanhar a demanda de carga",
+      "editorialPriority": "medium_review_priority",
+      "proposedDisposition": "propose_unapproved_wording_revision",
+      "reasoning": "Os dois comentários editoriais de DISC-004-2 concordam em solicitar reformulação condicional. A proposta melhora a explicitação dos limites e permanece apenas como versão candidata, sem modificar a regra original ou demonstrar nexo causal.",
+      "counterexampleDisposition": "counterexample_not_resolved_by_wording",
+      "referencedGeneralSources": [
+        "HYDAC-CONTAM-2026"
+      ],
+      "draftWording": "Se contagem e procedência do fluido forem compatíveis com referência pertinente e a irregularidade acompanhar a demanda de carga; caso confirmada por procedimento autorizado e aplicável, essa condição terá somente valor discriminante relativo e não comprovará causa raiz, efetividade OEM por série ou autorização operacional",
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-012",
+      "ruleId": "DISC-004-3",
+      "parentRecordId": "MECH-KB-004",
+      "reviewIds": [
+        "SIM-CR-012-1",
+        "SIM-CR-012-2"
+      ],
+      "originalRuleText": "Se não houver análise rastreável de partículas nem condições equivalentes de operação",
+      "editorialPriority": "watch_review_priority",
+      "proposedDisposition": "reject_unsubstantiated_inference",
+      "reasoning": "Os dois comentários editoriais de DISC-004-3 declaram suporte insuficiente. Rejeita-se apenas a inferência causal como fundamento de decisão técnica, preservando a versão original no histórico para futura revisão baseada em evidências.",
+      "counterexampleDisposition": "no_causal_claim_accepted_due_to_insufficient_evidence",
+      "referencedGeneralSources": [
+        "HYDAC-CONTAM-2026"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-013",
+      "ruleId": "DISC-005-1",
+      "parentRecordId": "MECH-KB-005",
+      "reviewIds": [
+        "SIM-CR-013-1",
+        "SIM-CR-013-2"
+      ],
+      "originalRuleText": "Se documentação independente registrar espuma persistente e histórico de entrada de ar no circuito",
+      "editorialPriority": "high_review_priority",
+      "proposedDisposition": "defer_disputed_relation",
+      "reasoning": "O parecer autoral referente a DISC-005-1 está dividido entre manter e reformular a relação. O contraexemplo associado a gas_entrainment não foi resolvido por evidência independente; conservar as duas posições sem escolher vencedores.",
+      "counterexampleDisposition": "open_counterexample_pending_independent_review",
+      "referencedGeneralSources": [
+        "HYDAC-CONTAM-2026"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-014",
+      "ruleId": "DISC-005-2",
+      "parentRecordId": "MECH-KB-005",
+      "reviewIds": [
+        "SIM-CR-014-1",
+        "SIM-CR-014-2"
+      ],
+      "originalRuleText": "Se histórico de fluido e observação de operação não indicarem aeração mas mostrarem mudança de carga",
+      "editorialPriority": "medium_review_priority",
+      "proposedDisposition": "propose_unapproved_wording_revision",
+      "reasoning": "Os dois comentários editoriais de DISC-005-2 concordam em solicitar reformulação condicional. A proposta melhora a explicitação dos limites e permanece apenas como versão candidata, sem modificar a regra original ou demonstrar nexo causal.",
+      "counterexampleDisposition": "counterexample_not_resolved_by_wording",
+      "referencedGeneralSources": [
+        "HYDAC-CONTAM-2026"
+      ],
+      "draftWording": "Se histórico de fluido e observação de operação não indicarem aeração mas mostrarem mudança de carga; caso confirmada por procedimento autorizado e aplicável, essa condição terá somente valor discriminante relativo e não comprovará causa raiz, efetividade OEM por série ou autorização operacional",
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-015",
+      "ruleId": "DISC-005-3",
+      "parentRecordId": "MECH-KB-005",
+      "reviewIds": [
+        "SIM-CR-015-1",
+        "SIM-CR-015-2"
+      ],
+      "originalRuleText": "Se aeração for apenas inferida pela lentidão de um cilindro",
+      "editorialPriority": "watch_review_priority",
+      "proposedDisposition": "reject_unsubstantiated_inference",
+      "reasoning": "Os dois comentários editoriais de DISC-005-3 declaram suporte insuficiente. Rejeita-se apenas a inferência causal como fundamento de decisão técnica, preservando a versão original no histórico para futura revisão baseada em evidências.",
+      "counterexampleDisposition": "no_causal_claim_accepted_due_to_insufficient_evidence",
+      "referencedGeneralSources": [
+        "HYDAC-CONTAM-2026"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-016",
+      "ruleId": "DISC-006-1",
+      "parentRecordId": "MECH-KB-006",
+      "reviewIds": [
+        "SIM-CR-016-1",
+        "SIM-CR-016-2"
+      ],
+      "originalRuleText": "Se a rastreabilidade de abastecimento documentar entrada de produtos incompatíveis no período do sintoma",
+      "editorialPriority": "high_review_priority",
+      "proposedDisposition": "defer_disputed_relation",
+      "reasoning": "O parecer autoral referente a DISC-006-1 está dividido entre manter e reformular a relação. O contraexemplo associado a fluid_cross_mixing não foi resolvido por evidência independente; conservar as duas posições sem escolher vencedores.",
+      "counterexampleDisposition": "open_counterexample_pending_independent_review",
+      "referencedGeneralSources": [
+        "HYDAC-CONTAM-2026"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-017",
+      "ruleId": "DISC-006-2",
+      "parentRecordId": "MECH-KB-006",
+      "reviewIds": [
+        "SIM-CR-017-1",
+        "SIM-CR-017-2"
+      ],
+      "originalRuleText": "Se registros confiáveis mostrarem produto único e estável sem desvio de propriedades",
+      "editorialPriority": "medium_review_priority",
+      "proposedDisposition": "propose_unapproved_wording_revision",
+      "reasoning": "Os dois comentários editoriais de DISC-006-2 concordam em solicitar reformulação condicional. A proposta melhora a explicitação dos limites e permanece apenas como versão candidata, sem modificar a regra original ou demonstrar nexo causal.",
+      "counterexampleDisposition": "counterexample_not_resolved_by_wording",
+      "referencedGeneralSources": [
+        "HYDAC-CONTAM-2026"
+      ],
+      "draftWording": "Se registros confiáveis mostrarem produto único e estável sem desvio de propriedades; caso confirmada por procedimento autorizado e aplicável, essa condição terá somente valor discriminante relativo e não comprovará causa raiz, efetividade OEM por série ou autorização operacional",
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-018",
+      "ruleId": "DISC-006-3",
+      "parentRecordId": "MECH-KB-006",
+      "reviewIds": [
+        "SIM-CR-018-1",
+        "SIM-CR-018-2"
+      ],
+      "originalRuleText": "Se houver apenas viscosidade divergente sem identificação do produto e temperatura",
+      "editorialPriority": "watch_review_priority",
+      "proposedDisposition": "reject_unsubstantiated_inference",
+      "reasoning": "Os dois comentários editoriais de DISC-006-3 declaram suporte insuficiente. Rejeita-se apenas a inferência causal como fundamento de decisão técnica, preservando a versão original no histórico para futura revisão baseada em evidências.",
+      "counterexampleDisposition": "no_causal_claim_accepted_due_to_insufficient_evidence",
+      "referencedGeneralSources": [
+        "HYDAC-CONTAM-2026"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-019",
+      "ruleId": "DISC-007-1",
+      "parentRecordId": "MECH-KB-007",
+      "reviewIds": [
+        "SIM-CR-019-1",
+        "SIM-CR-019-2"
+      ],
+      "originalRuleText": "Se histórico da ferramenta qualificada mostrar código armazenado e não ativo no instante da investigação",
+      "editorialPriority": "high_review_priority",
+      "proposedDisposition": "defer_disputed_relation",
+      "reasoning": "O parecer autoral referente a DISC-007-1 está dividido entre manter e reformular a relação. O contraexemplo associado a stored_vs_active_event não foi resolvido por evidência independente; conservar as duas posições sem escolher vencedores.",
+      "counterexampleDisposition": "open_counterexample_pending_independent_review",
+      "referencedGeneralSources": [
+        "PERKINS-EST"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-020",
+      "ruleId": "DISC-007-2",
+      "parentRecordId": "MECH-KB-007",
+      "reviewIds": [
+        "SIM-CR-020-1",
+        "SIM-CR-020-2"
+      ],
+      "originalRuleText": "Se documentação contemporânea confirmar código ativo e sintoma consistente em condições equivalentes",
+      "editorialPriority": "medium_review_priority",
+      "proposedDisposition": "propose_unapproved_wording_revision",
+      "reasoning": "Os dois comentários editoriais de DISC-007-2 concordam em solicitar reformulação condicional. A proposta melhora a explicitação dos limites e permanece apenas como versão candidata, sem modificar a regra original ou demonstrar nexo causal.",
+      "counterexampleDisposition": "counterexample_not_resolved_by_wording",
+      "referencedGeneralSources": [
+        "PERKINS-EST"
+      ],
+      "draftWording": "Se documentação contemporânea confirmar código ativo e sintoma consistente em condições equivalentes; caso confirmada por procedimento autorizado e aplicável, essa condição terá somente valor discriminante relativo e não comprovará causa raiz, efetividade OEM por série ou autorização operacional",
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-021",
+      "ruleId": "DISC-007-3",
+      "parentRecordId": "MECH-KB-007",
+      "reviewIds": [
+        "SIM-CR-021-1",
+        "SIM-CR-021-2"
+      ],
+      "originalRuleText": "Se estiver ausente o estado ativo/registrado ou a linha do tempo do evento",
+      "editorialPriority": "watch_review_priority",
+      "proposedDisposition": "reject_unsubstantiated_inference",
+      "reasoning": "Os dois comentários editoriais de DISC-007-3 declaram suporte insuficiente. Rejeita-se apenas a inferência causal como fundamento de decisão técnica, preservando a versão original no histórico para futura revisão baseada em evidências.",
+      "counterexampleDisposition": "no_causal_claim_accepted_due_to_insufficient_evidence",
+      "referencedGeneralSources": [
+        "PERKINS-EST"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-022",
+      "ruleId": "DISC-008-1",
+      "parentRecordId": "MECH-KB-008",
+      "reviewIds": [
+        "SIM-CR-022-1",
+        "SIM-CR-022-2"
+      ],
+      "originalRuleText": "Se documentação da ECM e esquema aplicável apontarem anomalia repetida do mesmo circuito em contexto equivalente",
+      "editorialPriority": "high_review_priority",
+      "proposedDisposition": "defer_disputed_relation",
+      "reasoning": "O parecer autoral referente a DISC-008-1 está dividido entre manter e reformular a relação. O contraexemplo associado a circuit_or_signal_condition não foi resolvido por evidência independente; conservar as duas posições sem escolher vencedores.",
+      "counterexampleDisposition": "open_counterexample_pending_independent_review",
+      "referencedGeneralSources": [
+        "CAT-ET-MONITOR"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-023",
+      "ruleId": "DISC-008-2",
+      "parentRecordId": "MECH-KB-008",
+      "reviewIds": [
+        "SIM-CR-023-1",
+        "SIM-CR-023-2"
+      ],
+      "originalRuleText": "Se o sintoma acompanhar apenas alteração de processo físico e não houver evidência elétrica correlacionada",
+      "editorialPriority": "medium_review_priority",
+      "proposedDisposition": "propose_unapproved_wording_revision",
+      "reasoning": "Os dois comentários editoriais de DISC-008-2 concordam em solicitar reformulação condicional. A proposta melhora a explicitação dos limites e permanece apenas como versão candidata, sem modificar a regra original ou demonstrar nexo causal.",
+      "counterexampleDisposition": "counterexample_not_resolved_by_wording",
+      "referencedGeneralSources": [
+        "CAT-ET-MONITOR"
+      ],
+      "draftWording": "Se o sintoma acompanhar apenas alteração de processo físico e não houver evidência elétrica correlacionada; caso confirmada por procedimento autorizado e aplicável, essa condição terá somente valor discriminante relativo e não comprovará causa raiz, efetividade OEM por série ou autorização operacional",
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-024",
+      "ruleId": "DISC-008-3",
+      "parentRecordId": "MECH-KB-008",
+      "reviewIds": [
+        "SIM-CR-024-1",
+        "SIM-CR-024-2"
+      ],
+      "originalRuleText": "Se faltar série, diagrama ou identificação do módulo responsável",
+      "editorialPriority": "watch_review_priority",
+      "proposedDisposition": "reject_unsubstantiated_inference",
+      "reasoning": "Os dois comentários editoriais de DISC-008-3 declaram suporte insuficiente. Rejeita-se apenas a inferência causal como fundamento de decisão técnica, preservando a versão original no histórico para futura revisão baseada em evidências.",
+      "counterexampleDisposition": "no_causal_claim_accepted_due_to_insufficient_evidence",
+      "referencedGeneralSources": [
+        "CAT-ET-MONITOR"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-025",
+      "ruleId": "DISC-009-1",
+      "parentRecordId": "MECH-KB-009",
+      "reviewIds": [
+        "SIM-CR-025-1",
+        "SIM-CR-025-2"
+      ],
+      "originalRuleText": "Se cronologia de dados separar claramente evento antigo da ocorrência física atual",
+      "editorialPriority": "high_review_priority",
+      "proposedDisposition": "defer_disputed_relation",
+      "reasoning": "O parecer autoral referente a DISC-009-1 está dividido entre manter e reformular a relação. O contraexemplo associado a code_without_physical_correlate não foi resolvido por evidência independente; conservar as duas posições sem escolher vencedores.",
+      "counterexampleDisposition": "open_counterexample_pending_independent_review",
+      "referencedGeneralSources": [
+        "PERKINS-EST"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-026",
+      "ruleId": "DISC-009-2",
+      "parentRecordId": "MECH-KB-009",
+      "reviewIds": [
+        "SIM-CR-026-1",
+        "SIM-CR-026-2"
+      ],
+      "originalRuleText": "Se eventos e sintomas coincidentes se repetirem com suporte documental independente",
+      "editorialPriority": "medium_review_priority",
+      "proposedDisposition": "propose_unapproved_wording_revision",
+      "reasoning": "Os dois comentários editoriais de DISC-009-2 concordam em solicitar reformulação condicional. A proposta melhora a explicitação dos limites e permanece apenas como versão candidata, sem modificar a regra original ou demonstrar nexo causal.",
+      "counterexampleDisposition": "counterexample_not_resolved_by_wording",
+      "referencedGeneralSources": [
+        "PERKINS-EST"
+      ],
+      "draftWording": "Se eventos e sintomas coincidentes se repetirem com suporte documental independente; caso confirmada por procedimento autorizado e aplicável, essa condição terá somente valor discriminante relativo e não comprovará causa raiz, efetividade OEM por série ou autorização operacional",
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-027",
+      "ruleId": "DISC-009-3",
+      "parentRecordId": "MECH-KB-009",
+      "reviewIds": [
+        "SIM-CR-027-1",
+        "SIM-CR-027-2"
+      ],
+      "originalRuleText": "Se datas e horímetros dos registros forem incompatíveis ou desconhecidos",
+      "editorialPriority": "watch_review_priority",
+      "proposedDisposition": "reject_unsubstantiated_inference",
+      "reasoning": "Os dois comentários editoriais de DISC-009-3 declaram suporte insuficiente. Rejeita-se apenas a inferência causal como fundamento de decisão técnica, preservando a versão original no histórico para futura revisão baseada em evidências.",
+      "counterexampleDisposition": "no_causal_claim_accepted_due_to_insufficient_evidence",
+      "referencedGeneralSources": [
+        "PERKINS-EST"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-028",
+      "ruleId": "DISC-010-1",
+      "parentRecordId": "MECH-KB-010",
+      "reviewIds": [
+        "SIM-CR-028-1",
+        "SIM-CR-028-2"
+      ],
+      "originalRuleText": "Se inspeção externa autorizada e documentada apontar bloqueio da passagem de ar no mesmo contexto de carga",
+      "editorialPriority": "high_review_priority",
+      "proposedDisposition": "defer_disputed_relation",
+      "reasoning": "O parecer autoral referente a DISC-010-1 está dividido entre manter e reformular a relação. O contraexemplo associado a cooling_airflow_obstruction não foi resolvido por evidência independente; conservar as duas posições sem escolher vencedores.",
+      "counterexampleDisposition": "open_counterexample_pending_independent_review",
+      "referencedGeneralSources": [
+        "CAT-RAD-PT"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-029",
+      "ruleId": "DISC-010-2",
+      "parentRecordId": "MECH-KB-010",
+      "reviewIds": [
+        "SIM-CR-029-1",
+        "SIM-CR-029-2"
+      ],
+      "originalRuleText": "Se registro confiável mostrar fluxo externo sem obstrução e aquecimento dependente de carga ou nível",
+      "editorialPriority": "medium_review_priority",
+      "proposedDisposition": "propose_unapproved_wording_revision",
+      "reasoning": "Os dois comentários editoriais de DISC-010-2 concordam em solicitar reformulação condicional. A proposta melhora a explicitação dos limites e permanece apenas como versão candidata, sem modificar a regra original ou demonstrar nexo causal.",
+      "counterexampleDisposition": "counterexample_not_resolved_by_wording",
+      "referencedGeneralSources": [
+        "CAT-RAD-PT"
+      ],
+      "draftWording": "Se registro confiável mostrar fluxo externo sem obstrução e aquecimento dependente de carga ou nível; caso confirmada por procedimento autorizado e aplicável, essa condição terá somente valor discriminante relativo e não comprovará causa raiz, efetividade OEM por série ou autorização operacional",
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-030",
+      "ruleId": "DISC-010-3",
+      "parentRecordId": "MECH-KB-010",
+      "reviewIds": [
+        "SIM-CR-030-1",
+        "SIM-CR-030-2"
+      ],
+      "originalRuleText": "Se a elevação térmica for relatada sem carga, ambiente ou condição externa do trocador",
+      "editorialPriority": "watch_review_priority",
+      "proposedDisposition": "reject_unsubstantiated_inference",
+      "reasoning": "Os dois comentários editoriais de DISC-010-3 declaram suporte insuficiente. Rejeita-se apenas a inferência causal como fundamento de decisão técnica, preservando a versão original no histórico para futura revisão baseada em evidências.",
+      "counterexampleDisposition": "no_causal_claim_accepted_due_to_insufficient_evidence",
+      "referencedGeneralSources": [
+        "CAT-RAD-PT"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-031",
+      "ruleId": "DISC-011-1",
+      "parentRecordId": "MECH-KB-011",
+      "reviewIds": [
+        "SIM-CR-031-1",
+        "SIM-CR-031-2"
+      ],
+      "originalRuleText": "Se registros de nível e inspeção externa documentarem perda no mesmo ponto em momentos diferentes",
+      "editorialPriority": "high_review_priority",
+      "proposedDisposition": "defer_disputed_relation",
+      "reasoning": "O parecer autoral referente a DISC-011-1 está dividido entre manter e reformular a relação. O contraexemplo associado a coolant_external_leak não foi resolvido por evidência independente; conservar as duas posições sem escolher vencedores.",
+      "counterexampleDisposition": "open_counterexample_pending_independent_review",
+      "referencedGeneralSources": [
+        "CAT-RAD-PT"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-032",
+      "ruleId": "DISC-011-2",
+      "parentRecordId": "MECH-KB-011",
+      "reviewIds": [
+        "SIM-CR-032-1",
+        "SIM-CR-032-2"
+      ],
+      "originalRuleText": "Se o nível permanecer documentadamente estável e a evidência mostrar perda originada de outro conjunto",
+      "editorialPriority": "medium_review_priority",
+      "proposedDisposition": "propose_unapproved_wording_revision",
+      "reasoning": "Os dois comentários editoriais de DISC-011-2 concordam em solicitar reformulação condicional. A proposta melhora a explicitação dos limites e permanece apenas como versão candidata, sem modificar a regra original ou demonstrar nexo causal.",
+      "counterexampleDisposition": "counterexample_not_resolved_by_wording",
+      "referencedGeneralSources": [
+        "CAT-RAD-PT"
+      ],
+      "draftWording": "Se o nível permanecer documentadamente estável e a evidência mostrar perda originada de outro conjunto; caso confirmada por procedimento autorizado e aplicável, essa condição terá somente valor discriminante relativo e não comprovará causa raiz, efetividade OEM por série ou autorização operacional",
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-033",
+      "ruleId": "DISC-011-3",
+      "parentRecordId": "MECH-KB-011",
+      "reviewIds": [
+        "SIM-CR-033-1",
+        "SIM-CR-033-2"
+      ],
+      "originalRuleText": "Se o nível for relatado baixo sem histórico e sem localização da perda",
+      "editorialPriority": "watch_review_priority",
+      "proposedDisposition": "reject_unsubstantiated_inference",
+      "reasoning": "Os dois comentários editoriais de DISC-011-3 declaram suporte insuficiente. Rejeita-se apenas a inferência causal como fundamento de decisão técnica, preservando a versão original no histórico para futura revisão baseada em evidências.",
+      "counterexampleDisposition": "no_causal_claim_accepted_due_to_insufficient_evidence",
+      "referencedGeneralSources": [
+        "CAT-RAD-PT"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-034",
+      "ruleId": "DISC-012-1",
+      "parentRecordId": "MECH-KB-012",
+      "reviewIds": [
+        "SIM-CR-034-1",
+        "SIM-CR-034-2"
+      ],
+      "originalRuleText": "Se laudo representativo e histórico de fluido documentarem contaminantes ou sinais de corrosão",
+      "editorialPriority": "high_review_priority",
+      "proposedDisposition": "defer_disputed_relation",
+      "reasoning": "O parecer autoral referente a DISC-012-1 está dividido entre manter e reformular a relação. O contraexemplo associado a coolant_contamination_corrosion não foi resolvido por evidência independente; conservar as duas posições sem escolher vencedores.",
+      "counterexampleDisposition": "open_counterexample_pending_independent_review",
+      "referencedGeneralSources": [
+        "CAT-RAD-PT"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-035",
+      "ruleId": "DISC-012-2",
+      "parentRecordId": "MECH-KB-012",
+      "reviewIds": [
+        "SIM-CR-035-1",
+        "SIM-CR-035-2"
+      ],
+      "originalRuleText": "Se amostras confiáveis demonstrarem composição estável e o sintoma acompanhar fluxo de ar restrito",
+      "editorialPriority": "medium_review_priority",
+      "proposedDisposition": "propose_unapproved_wording_revision",
+      "reasoning": "Os dois comentários editoriais de DISC-012-2 concordam em solicitar reformulação condicional. A proposta melhora a explicitação dos limites e permanece apenas como versão candidata, sem modificar a regra original ou demonstrar nexo causal.",
+      "counterexampleDisposition": "counterexample_not_resolved_by_wording",
+      "referencedGeneralSources": [
+        "CAT-RAD-PT"
+      ],
+      "draftWording": "Se amostras confiáveis demonstrarem composição estável e o sintoma acompanhar fluxo de ar restrito; caso confirmada por procedimento autorizado e aplicável, essa condição terá somente valor discriminante relativo e não comprovará causa raiz, efetividade OEM por série ou autorização operacional",
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    },
+    {
+      "adjudicationId": "SIM-ADJ-036",
+      "ruleId": "DISC-012-3",
+      "parentRecordId": "MECH-KB-012",
+      "reviewIds": [
+        "SIM-CR-036-1",
+        "SIM-CR-036-2"
+      ],
+      "originalRuleText": "Se cor visual do fluido for a única observação sem amostragem confiável",
+      "editorialPriority": "watch_review_priority",
+      "proposedDisposition": "reject_unsubstantiated_inference",
+      "reasoning": "Os dois comentários editoriais de DISC-012-3 declaram suporte insuficiente. Rejeita-se apenas a inferência causal como fundamento de decisão técnica, preservando a versão original no histórico para futura revisão baseada em evidências.",
+      "counterexampleDisposition": "no_causal_claim_accepted_due_to_insufficient_evidence",
+      "referencedGeneralSources": [
+        "CAT-RAD-PT"
+      ],
+      "draftWording": null,
+      "reviewerQualifiedIndependently": false,
+      "externalTechnicalApproval": false,
+      "physicalCaseVerification": false,
+      "oemEffectivityVerified": false,
+      "mayAmendUpstream": false,
+      "mayAuthorizeTest": false,
+      "mayCreateWorkOrder": false,
+      "mayReleaseEquipment": false
+    }
+  ]
+}
