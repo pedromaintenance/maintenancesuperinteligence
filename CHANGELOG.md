@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.8.0 — 2026-10-29 — Ciclo 38
+
+- Adicionado CLI offline privado para selar e verificar pareceres textuais (dois revisores declarados e um adjudicador) vinculados aos pacotes congelados do Ciclo 37.
+- Implementada comparação de bytes SHA-256 de anexos e recibos HMAC-SHA256 com segredo do custodiante fora do checkout, rejeitando alteração de parecer, arquivo, chave ou fonte técnica vinculada.
+- Identificação por pseudônimo e tickets opacos, sem publicar textos, caminhos, chaves, material OEM ou dados pessoais nos relatórios; arquivos privados de saída exclusivos com permissão local de proprietário em sistemas POSIX.
+- Proteções de segregação declarativa, papéis sem elevação, ausência de assinatura/validação de identidade, vínculo a regras anteriores e abstenção obrigatória do adjudicador enquanto não houver verificação externa.
+- Referência à NIST SP 800-63-4, B-4 e C-4 para distinguir autenticação/prova de identidade de HMAC local; o módulo não afirma conformidade ou autenticação implementada.
+- Quatro contratos JSON Schema, testes adversariais e CI. **Não há IAM, RBAC conectado, criptografia dos dados em repouso, revisão real confirmada ou decisão operacional.**
+
+
 ## 3.7.0 — 2026-10-29 — Ciclo 37
 
 - Estruturado protocolo de **prontidão para revisão técnica independente** de 36 relações causais pendentes, com papéis segregados de autor, custodiante, dois revisores técnicos e adjudicador.

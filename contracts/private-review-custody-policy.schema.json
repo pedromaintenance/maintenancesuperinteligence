@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle38 local HMAC custody, no online auth/ACL/encryption",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "maxEvidenceFiles",
+    "maxFileBytes",
+    "requiredRoles",
+    "allowedReviewerPositions",
+    "adjudicatorDisposition",
+    "identityVerificationProviderConnected",
+    "externalAuthorizationProviderConnected",
+    "perRoleAccessControlImplemented",
+    "encryptedStorageImplemented",
+    "externalSignatureVerified",
+    "oemEffectivityVerified",
+    "independentHumanReviewConfirmed",
+    "operationalSignoffApproved",
+    "mayCreateWorkOrder",
+    "mayExecuteTest",
+    "mayReleaseEquipment",
+    "sources"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.private-review-custody-policy.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "local_private_hmac_integrity_not_identity_verification"
+    },
+    "maxEvidenceFiles": {
+      "const": 4
+    },
+    "maxFileBytes": {
+      "const": 20971520
+    },
+    "requiredRoles": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "enum": [
+          "technical_reviewer_a",
+          "technical_reviewer_b",
+          "adjudicator"
+        ]
+      }
+    },
+    "allowedReviewerPositions": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "enum": [
+          "conditional_support",
+          "conditional_reject",
+          "request_revision",
+          "abstain"
+        ]
+      }
+    },
+    "adjudicatorDisposition": {
+      "const": "defer_unverified"
+    },
+    "identityVerificationProviderConnected": {
+      "const": false
+    },
+    "externalAuthorizationProviderConnected": {
+      "const": false
+    },
+    "perRoleAccessControlImplemented": {
+      "const": false
+    },
+    "encryptedStorageImplemented": {
+      "const": false
+    },
+    "externalSignatureVerified": {
+      "const": false
+    },
+    "oemEffectivityVerified": {
+      "const": false
+    },
+    "independentHumanReviewConfirmed": {
+      "const": false
+    },
+    "operationalSignoffApproved": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "url",
+          "scope"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 20
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://(csrc|www)\\.nist\\.gov/"
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 50
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "maintenance-superinteligence.private-review-custody-policy.v1",
+  "version": "1.0.0",
+  "mode": "local_private_hmac_integrity_not_identity_verification",
+  "maxEvidenceFiles": 4,
+  "maxFileBytes": 20971520,
+  "requiredRoles": [
+    "technical_reviewer_a",
+    "technical_reviewer_b",
+    "adjudicator"
+  ],
+  "allowedReviewerPositions": [
+    "conditional_support",
+    "conditional_reject",
+    "request_revision",
+    "abstain"
+  ],
+  "adjudicatorDisposition": "defer_unverified",
+  "identityVerificationProviderConnected": false,
+  "externalAuthorizationProviderConnected": false,
+  "perRoleAccessControlImplemented": false,
+  "encryptedStorageImplemented": false,
+  "externalSignatureVerified": false,
+  "oemEffectivityVerified": false,
+  "independentHumanReviewConfirmed": false,
+  "operationalSignoffApproved": false,
+  "mayCreateWorkOrder": false,
+  "mayExecuteTest": false,
+  "mayReleaseEquipment": false,
+  "sources": [
+    {
+      "title": "NIST SP 800-63-4 — Digital Identity Guidelines",
+      "url": "https://csrc.nist.gov/pubs/sp/800/63/4/final",
+      "scope": "Proofing, authentication and federation are separate trust services; this CLI does not implement them."
+    },
+    {
+      "title": "NIST SP 800-63B-4 — Authentication and Authenticator Management",
+      "url": "https://www.nist.gov/publications/nist-sp-800-63b-4digital-identity-guidelines-authentication-and-authenticator",
+      "scope": "General authentication requirements and assurance levels; possession of a local HMAC key does not attest human identity."
+    },
+    {
+      "title": "NIST SP 800-63C-4 — Federation and Assertions",
+      "url": "https://csrc.nist.gov/pubs/sp/800/63/c/4/final",
+      "scope": "Identity-provider assertions require a verified federation trust relationship; arbitrary ticket strings are not identity proof."
+    }
+  ]
+}

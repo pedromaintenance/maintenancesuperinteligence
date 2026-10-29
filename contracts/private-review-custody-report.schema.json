@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle38 redacted local integrity audit NO GO",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "packetId",
+    "ruleId",
+    "packetDigest",
+    "submissionDigest",
+    "receiptDigest",
+    "attachmentCount",
+    "attachmentByteDigestsChecked",
+    "hmacVerifiedAgainstCustodianKey",
+    "distinctRolePseudonymsPresent",
+    "technicalDissentPresent",
+    "claimedReviewerRecords",
+    "claimedAdjudicatorRecords",
+    "verifiedHumanReviewers",
+    "externalIdentityProviderConnected",
+    "humanCredentialsVerified",
+    "organizationalAccessControlVerified",
+    "encryptionVerified",
+    "oemBySerialVerified",
+    "independentTechnicalReviewCompleted",
+    "upstreamRuleChanged",
+    "mayExecuteTest",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.private-review-custody-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "verified_local_byte_integrity_without_human_authentication"
+    },
+    "packetId": {
+      "type": "string"
+    },
+    "ruleId": {
+      "type": "string"
+    },
+    "packetDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "submissionDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "receiptDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "attachmentCount": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4
+    },
+    "attachmentByteDigestsChecked": {
+      "const": true
+    },
+    "hmacVerifiedAgainstCustodianKey": {
+      "const": true
+    },
+    "distinctRolePseudonymsPresent": {
+      "const": true
+    },
+    "technicalDissentPresent": {
+      "type": "boolean"
+    },
+    "claimedReviewerRecords": {
+      "const": 2
+    },
+    "claimedAdjudicatorRecords": {
+      "const": 1
+    },
+    "verifiedHumanReviewers": {
+      "const": 0
+    },
+    "externalIdentityProviderConnected": {
+      "const": false
+    },
+    "humanCredentialsVerified": {
+      "const": false
+    },
+    "organizationalAccessControlVerified": {
+      "const": false
+    },
+    "encryptionVerified": {
+      "const": false
+    },
+    "oemBySerialVerified": {
+      "const": false
+    },
+    "independentTechnicalReviewCompleted": {
+      "const": false
+    },
+    "upstreamRuleChanged": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_private_integrity_only_external_identity_and_authorization_required"
+    }
+  }
+}

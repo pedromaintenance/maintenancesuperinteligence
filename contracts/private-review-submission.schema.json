@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle38 private unverified technical reviewer input - never put in Git",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "packetId",
+    "ruleId",
+    "packetDigest",
+    "records",
+    "evidenceFiles",
+    "identityProofValidated",
+    "externalAuthorizationValidated",
+    "oemSeriesEffectivityValidated",
+    "humanSignoffValidated",
+    "mayExecuteTest",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.private-review-submission.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "private_unverified_reviewer_claims_not_operational"
+    },
+    "packetId": {
+      "type": "string",
+      "pattern": "^IRP-[0-9]{3}$"
+    },
+    "ruleId": {
+      "type": "string",
+      "pattern": "^DISC-[0-9]{3}-[123]$"
+    },
+    "packetDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "records": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "recordId",
+          "reviewerSlot",
+          "rolePseudonym",
+          "externalClaimReference",
+          "reviewPosition",
+          "reasoning",
+          "counterexampleHandling",
+          "sourceIds",
+          "identityVerified",
+          "competenceVerified",
+          "independenceVerified",
+          "consentVerified",
+          "digitalSignatureVerified",
+          "oemEffectivityVerified",
+          "mayAuthorizeMaintenance"
+        ],
+        "properties": {
+          "recordId": {
+            "type": "string",
+            "pattern": "^IRP-[0-9]{3}-[ABD]$"
+          },
+          "reviewerSlot": {
+            "enum": [
+              "technical_reviewer_a",
+              "technical_reviewer_b",
+              "adjudicator"
+            ]
+          },
+          "rolePseudonym": {
+            "type": "string",
+            "pattern": "^PSEUDO-[A-Z0-9]{3,24}$"
+          },
+          "externalClaimReference": {
+            "type": "string",
+            "pattern": "^REF-[A-Z0-9]{4,32}$"
+          },
+          "reviewPosition": {
+            "enum": [
+              "conditional_support",
+              "conditional_reject",
+              "request_revision",
+              "abstain",
+              "defer_unverified"
+            ]
+          },
+          "reasoning": {
+            "type": "string",
+            "minLength": 80
+          },
+          "counterexampleHandling": {
+            "type": "string",
+            "minLength": 55
+          },
+          "sourceIds": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 3,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "identityVerified": {
+            "const": false
+          },
+          "competenceVerified": {
+            "const": false
+          },
+          "independenceVerified": {
+            "const": false
+          },
+          "consentVerified": {
+            "const": false
+          },
+          "digitalSignatureVerified": {
+            "const": false
+          },
+          "oemEffectivityVerified": {
+            "const": false
+          },
+          "mayAuthorizeMaintenance": {
+            "const": false
+          }
+        }
+      }
+    },
+    "evidenceFiles": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 2
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "identityProofValidated": {
+      "const": false
+    },
+    "externalAuthorizationValidated": {
+      "const": false
+    },
+    "oemSeriesEffectivityValidated": {
+      "const": false
+    },
+    "humanSignoffValidated": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}
