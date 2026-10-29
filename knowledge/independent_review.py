@@ -67,7 +67,10 @@ REQ_KEYS = {
     "adjudicatorSeparateFromReviewers", "authorsCannotApprove",
     "reviewerQualificationEvidence", "requiredEvidenceCategories",
     "requiredDecisionFields", "acceptedEditorialActions",
-    "forbiddenAutomaticActions",
+    "forbiddenAutomaticActions", "technicalAcceptanceRequiredGates",
+    "technicalRejectionRequires", "deferredIfAnyGateMissing",
+    "deferredIfDissentUnresolved", "technicalRevisionNeedsFrozenDiff",
+    "noAutomaticTechnicalAcceptance", "noAutomaticTechnicalRejection",
 }
 WORKLIST_KEYS = {
     "schema", "version", "nature", "externalReviewInvitationsSent",
@@ -139,7 +142,18 @@ def validate_protocol(protocol):
             and requirements["requiredEvidenceCategories"] == list(CHECKS)
             and requirements["requiredDecisionFields"] == list(OPINION_FIELDS)
             and requirements["acceptedEditorialActions"] == list(ACTIONS)
-            and requirements["forbiddenAutomaticActions"] == list(FORBIDDEN),
+            and requirements["forbiddenAutomaticActions"] == list(FORBIDDEN)
+            and requirements["technicalAcceptanceRequiredGates"] == list(MISSING)
+            and requirements["technicalRejectionRequires"] == [
+                "documented_counterevidence_with_source",
+                "two_independent_written_opinions",
+                "adjudicator_reasoned_record",
+                "source_and_version_effectivity",
+            ]
+            and all(requirements[k] is True for k in (
+                "deferredIfAnyGateMissing", "deferredIfDissentUnresolved",
+                "technicalRevisionNeedsFrozenDiff", "noAutomaticTechnicalAcceptance",
+                "noAutomaticTechnicalRejection")),
             "review acceptance criteria incomplete or segregation loosened")
     return True
 

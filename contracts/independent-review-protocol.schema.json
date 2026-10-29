@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle37 unassigned review protocol",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "purpose",
+    "roleSlots",
+    "reviewRequirements",
+    "verifiedExternalReviewers",
+    "externalTechnicalReviewCompleted",
+    "realCaseDataIncluded",
+    "causalValidityEstablished",
+    "canPromoteRevision",
+    "mayExecuteTest",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.independent-review-protocol.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "synthetic_unassigned_independent_review_design"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "roleSlots": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "role",
+          "slotAlias",
+          "actualHumanAssigned",
+          "identityVerified",
+          "disciplineCredentialsVerified",
+          "conflictOfInterestCleared",
+          "independenceFromAuthorsVerified",
+          "technicalSourceAccessAuthorized"
+        ],
+        "properties": {
+          "role": {
+            "enum": [
+              "author",
+              "custodian",
+              "technical_reviewer_a",
+              "technical_reviewer_b",
+              "adjudicator"
+            ]
+          },
+          "slotAlias": {
+            "type": "string"
+          },
+          "actualHumanAssigned": {
+            "const": false
+          },
+          "identityVerified": {
+            "const": false
+          },
+          "disciplineCredentialsVerified": {
+            "const": false
+          },
+          "conflictOfInterestCleared": {
+            "const": false
+          },
+          "independenceFromAuthorsVerified": {
+            "const": false
+          },
+          "technicalSourceAccessAuthorized": {
+            "const": false
+          }
+        }
+      }
+    },
+    "reviewRequirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "independentReviewerCount",
+        "requiresDifferentTechnicalReviewers",
+        "adjudicatorSeparateFromReviewers",
+        "authorsCannotApprove",
+        "reviewerQualificationEvidence",
+        "requiredEvidenceCategories",
+        "requiredDecisionFields",
+        "acceptedEditorialActions",
+        "forbiddenAutomaticActions",
+        "technicalAcceptanceRequiredGates",
+        "technicalRejectionRequires",
+        "deferredIfAnyGateMissing",
+        "deferredIfDissentUnresolved",
+        "technicalRevisionNeedsFrozenDiff",
+        "noAutomaticTechnicalAcceptance",
+        "noAutomaticTechnicalRejection"
+      ],
+      "properties": {
+        "independentReviewerCount": {
+          "const": 2
+        },
+        "reviewerQualificationEvidence": {
+          "type": "string",
+          "minLength": 30
+        },
+        "requiredEvidenceCategories": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "enum": [
+              "oem_series_effectivity",
+              "source_provenance",
+              "field_case_custody",
+              "documentary_counterexample",
+              "independent_reviewer_opinions",
+              "conflict_of_interest",
+              "technical_adjudicator_signoff"
+            ]
+          }
+        },
+        "requiredDecisionFields": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "type": "string"
+          }
+        },
+        "acceptedEditorialActions": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbiddenAutomaticActions": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "type": "string"
+          }
+        },
+        "technicalAcceptanceRequiredGates": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "items": {
+            "enum": [
+              "verified_human_identity",
+              "verified_reviewer_competence",
+              "verified_independence_and_conflicts",
+              "oem_series_effectivity",
+              "evidence_origin_and_custody",
+              "two_independent_opinions",
+              "counterexample_resolution",
+              "independent_adjudicator_signoff"
+            ]
+          }
+        },
+        "technicalRejectionRequires": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "string"
+          }
+        },
+        "requiresDifferentTechnicalReviewers": {
+          "const": true
+        },
+        "adjudicatorSeparateFromReviewers": {
+          "const": true
+        },
+        "authorsCannotApprove": {
+          "const": true
+        },
+        "deferredIfAnyGateMissing": {
+          "const": true
+        },
+        "deferredIfDissentUnresolved": {
+          "const": true
+        },
+        "technicalRevisionNeedsFrozenDiff": {
+          "const": true
+        },
+        "noAutomaticTechnicalAcceptance": {
+          "const": true
+        },
+        "noAutomaticTechnicalRejection": {
+          "const": true
+        }
+      }
+    },
+    "verifiedExternalReviewers": {
+      "const": 0
+    },
+    "externalTechnicalReviewCompleted": {
+      "const": false
+    },
+    "realCaseDataIncluded": {
+      "const": false
+    },
+    "causalValidityEstablished": {
+      "const": false
+    },
+    "canPromoteRevision": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}

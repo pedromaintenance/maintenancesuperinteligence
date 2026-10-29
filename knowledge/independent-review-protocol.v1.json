@@ -89,7 +89,28 @@
       "authorize_test",
       "create_work_order",
       "release_equipment"
-    ]
+    ],
+    "technicalAcceptanceRequiredGates": [
+      "verified_human_identity",
+      "verified_reviewer_competence",
+      "verified_independence_and_conflicts",
+      "oem_series_effectivity",
+      "evidence_origin_and_custody",
+      "two_independent_opinions",
+      "counterexample_resolution",
+      "independent_adjudicator_signoff"
+    ],
+    "technicalRejectionRequires": [
+      "documented_counterevidence_with_source",
+      "two_independent_written_opinions",
+      "adjudicator_reasoned_record",
+      "source_and_version_effectivity"
+    ],
+    "deferredIfAnyGateMissing": true,
+    "deferredIfDissentUnresolved": true,
+    "technicalRevisionNeedsFrozenDiff": true,
+    "noAutomaticTechnicalAcceptance": true,
+    "noAutomaticTechnicalRejection": true
   },
   "verifiedExternalReviewers": 0,
   "externalTechnicalReviewCompleted": false,

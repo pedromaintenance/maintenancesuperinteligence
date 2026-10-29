@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle37 external review readiness NO GO",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "packetDigest",
+    "protocolDigest",
+    "worklistDigest",
+    "planDigest",
+    "parentMatrixDigest",
+    "sourceReviewBatchDigest",
+    "reviewTaskCount",
+    "requestedReviewerOpinionSlots",
+    "requestedAdjudicatorSlots",
+    "missingGateCounts",
+    "unassignedParticipantRoleSlots",
+    "actualVerifiedReviewers",
+    "opinionsCollected",
+    "qualifiedIndependentAdjudications",
+    "relationsEligibleForTechnicalAcceptance",
+    "relationsEligibleForTechnicalRejection",
+    "relationsPendingIndependentReview",
+    "sourceRuleVersionsModified",
+    "externalHumanCredentialVerificationComplete",
+    "oemSeriesEvidenceVerified",
+    "fieldEvidenceProvenanceValidated",
+    "independentTechnicalReviewCompleted",
+    "technicalDiagnosticAccuracyEstablished",
+    "readyToDispatchToVerifiedReviewers",
+    "mayChangeUpstreamRule",
+    "mayExecuteTest",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.independent-review-readiness.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "readiness_gap_analysis_not_real_expert_signoff"
+    },
+    "packetDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "protocolDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "worklistDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "planDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "parentMatrixDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceReviewBatchDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewTaskCount": {
+      "const": 36
+    },
+    "requestedReviewerOpinionSlots": {
+      "const": 72
+    },
+    "requestedAdjudicatorSlots": {
+      "const": 36
+    },
+    "missingGateCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verified_human_identity",
+        "verified_reviewer_competence",
+        "verified_independence_and_conflicts",
+        "oem_series_effectivity",
+        "evidence_origin_and_custody",
+        "two_independent_opinions",
+        "counterexample_resolution",
+        "independent_adjudicator_signoff"
+      ],
+      "properties": {
+        "verified_human_identity": {
+          "const": 36
+        },
+        "verified_reviewer_competence": {
+          "const": 36
+        },
+        "verified_independence_and_conflicts": {
+          "const": 36
+        },
+        "oem_series_effectivity": {
+          "const": 36
+        },
+        "evidence_origin_and_custody": {
+          "const": 36
+        },
+        "two_independent_opinions": {
+          "const": 36
+        },
+        "counterexample_resolution": {
+          "const": 36
+        },
+        "independent_adjudicator_signoff": {
+          "const": 36
+        }
+      }
+    },
+    "unassignedParticipantRoleSlots": {
+      "const": 5
+    },
+    "actualVerifiedReviewers": {
+      "const": 0
+    },
+    "opinionsCollected": {
+      "const": 0
+    },
+    "qualifiedIndependentAdjudications": {
+      "const": 0
+    },
+    "relationsEligibleForTechnicalAcceptance": {
+      "const": 0
+    },
+    "relationsEligibleForTechnicalRejection": {
+      "const": 0
+    },
+    "relationsPendingIndependentReview": {
+      "const": 36
+    },
+    "sourceRuleVersionsModified": {
+      "const": 0
+    },
+    "externalHumanCredentialVerificationComplete": {
+      "const": false
+    },
+    "oemSeriesEvidenceVerified": {
+      "const": false
+    },
+    "fieldEvidenceProvenanceValidated": {
+      "const": false
+    },
+    "independentTechnicalReviewCompleted": {
+      "const": false
+    },
+    "technicalDiagnosticAccuracyEstablished": {
+      "const": false
+    },
+    "readyToDispatchToVerifiedReviewers": {
+      "const": false
+    },
+    "mayChangeUpstreamRule": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_collect_real_credentials_and_review_evidence"
+    }
+  }
+}
