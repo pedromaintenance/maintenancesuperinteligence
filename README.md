@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: homologação entre dois serviços HTTP sintéticos isolados P&D v4.1.0 (03/11/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: ensaios distribuídos de resiliência e negação segura P&D v4.2.0 (03/11/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -79,6 +79,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 39 — Federação OIDC e política RBAC sem autenticação real](docs/CICLO_2026-10-29_FEDERACAO_RBAC_FAIL_CLOSED.md)
 - [Ciclo 40 — Laboratório isolado de identidade e autorização](docs/CICLO_2026-10-29_LABORATORIO_IDENTIDADE_ISOLADO.md)
 - [Ciclo 41 — Dois serviços HTTP isolados e testes de integração](docs/CICLO_2026-11-03_SERVICOS_HTTP_IDENTIDADE_RECURSOS.md)
+- [Ciclo 42 — Resiliência e negação segura entre serviços](docs/CICLO_2026-11-03_RESILIENCIA_DISTRIBUIDA_FAIL_CLOSED.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -462,3 +463,7 @@ O módulo `governance/isolated_identity_lab.py` executa um **laboratório real d
 ## Ciclo 41 — Integração entre processos sintéticos (127.0.0.1)
 
 Os módulos `governance/loopback_http_services.py` e `governance/loopback_service_harness.py` executam **dois processos Python distintos**, comunicando-se por HTTP exclusivamente em `127.0.0.1`. Um serviço de identidade fictícia executa login, TOTP, revogação e introspecção protegida por chave efêmera. Outro serviço consulta essa introspecção e aplica a política por papel, ação e pacote sintético. **Seis das 12 ações do laboratório são autorizadas apenas em recursos artificiais; seis são negadas.** Doze verificações adversariais exercitam senha, MFA, reutilização de código, assinatura adulterada, revogação, expiração, chave de serviço, sessão estranha, rotas e injeção de papel. Todos os processos são encerrados ao final, sem persistir credenciais ou evidências. Nenhum IdP/OIDC real, mTLS, IAM, arquivo de manutenção, sistema SAP/ECM ou usuário corporativo está conectado: **0 acessos reais e NO GO operacional**. Quatro JSON Schemas, testes e CI. [Procedimento e ameaças remanescentes](docs/CICLO_2026-11-03_SERVICOS_HTTP_IDENTIDADE_RECURSOS.md).
+
+## Ciclo 42 — Falhas distribuídas, revogação e recuperação sintéticas
+
+O módulo `governance/distributed_resilience.py` executa **15 guardas adversariais** em dois serviços HTTP exclusivamente em `127.0.0.1`, reaproveitando a identidade e a API sintéticas do Ciclo 41. Testa indisponibilidade da identidade, resposta incompleta que afirma estar ativa, HTTP 503, timeout, expiração no momento da introspecção, rotação de chave com serviços dessincronizados, recuperação sem acesso a dados reais, concorrência, revogação e rejeição de permissões em cache após queda do serviço. Os endpoints de injeção de falhas são **desligados por padrão** e exigem a chave efêmera entre processos no ensaio. A revogação só garante bloqueio das **requisições iniciadas após sua confirmação**; o código não promete linearizabilidade global de requisições já em trânsito. O resultado continua **NO GO**: zero identidades humanas, documentos, privilégios SAP/ECM ou operações reais. Quatro contratos JSON Schema, testes, relatório JSON e CI. [Escopo, execução e restrições](docs/CICLO_2026-11-03_RESILIENCIA_DISTRIBUIDA_FAIL_CLOSED.md).

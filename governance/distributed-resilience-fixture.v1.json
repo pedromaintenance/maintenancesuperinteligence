@@ -1,0 +1,31 @@
+{
+  "schema": "maintenance-superinteligence.distributed-resilience-fixture.v1",
+  "version": "1.0.0",
+  "mode": "author_generated_faults_on_synthetic_loopback_services",
+  "sourceCycle": 41,
+  "guardNames": [
+    "fault_controls_unavailable_in_default_mode",
+    "fault_control_requires_interservice_key",
+    "incomplete_active_upstream_denied",
+    "upstream_503_denied",
+    "upstream_timeout_denied",
+    "rotation_mismatch_denied",
+    "rotation_restores_only_synthetic_access",
+    "old_service_key_revoked",
+    "concurrent_cross_packet_requests_denied",
+    "concurrent_operational_requests_denied",
+    "revocation_race_has_only_allow_or_deny_results",
+    "after_revocation_ack_all_requests_denied",
+    "identity_process_outage_denied",
+    "outage_has_no_cached_authorization",
+    "expiry_during_introspection_denied"
+  ],
+  "targetSyntheticPacketId": "IRP-001",
+  "deniedCrossPacketId": "IRP-002",
+  "syntheticReviewerRole": "technical_reviewer_a",
+  "forbiddenAction": "mayCreateWorkOrder",
+  "allowedAction": "read_assigned_private_case",
+  "noRealIdentityData": true,
+  "noRealDocumentation": true,
+  "noCorporateNetworkTraffic": true
+}

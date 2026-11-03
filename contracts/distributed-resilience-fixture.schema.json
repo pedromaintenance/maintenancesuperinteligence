@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle42 all artificial fault scenarios; no actual credentials or equipment",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "sourceCycle",
+    "guardNames",
+    "targetSyntheticPacketId",
+    "deniedCrossPacketId",
+    "syntheticReviewerRole",
+    "forbiddenAction",
+    "allowedAction",
+    "noRealIdentityData",
+    "noRealDocumentation",
+    "noCorporateNetworkTraffic"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.distributed-resilience-fixture.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "author_generated_faults_on_synthetic_loopback_services"
+    },
+    "sourceCycle": {
+      "const": 41
+    },
+    "guardNames": {
+      "type": "array",
+      "minItems": 15,
+      "maxItems": 15,
+      "prefixItems": [
+        {
+          "const": "fault_controls_unavailable_in_default_mode"
+        },
+        {
+          "const": "fault_control_requires_interservice_key"
+        },
+        {
+          "const": "incomplete_active_upstream_denied"
+        },
+        {
+          "const": "upstream_503_denied"
+        },
+        {
+          "const": "upstream_timeout_denied"
+        },
+        {
+          "const": "rotation_mismatch_denied"
+        },
+        {
+          "const": "rotation_restores_only_synthetic_access"
+        },
+        {
+          "const": "old_service_key_revoked"
+        },
+        {
+          "const": "concurrent_cross_packet_requests_denied"
+        },
+        {
+          "const": "concurrent_operational_requests_denied"
+        },
+        {
+          "const": "revocation_race_has_only_allow_or_deny_results"
+        },
+        {
+          "const": "after_revocation_ack_all_requests_denied"
+        },
+        {
+          "const": "identity_process_outage_denied"
+        },
+        {
+          "const": "outage_has_no_cached_authorization"
+        },
+        {
+          "const": "expiry_during_introspection_denied"
+        }
+      ],
+      "items": false
+    },
+    "targetSyntheticPacketId": {
+      "const": "IRP-001"
+    },
+    "deniedCrossPacketId": {
+      "const": "IRP-002"
+    },
+    "syntheticReviewerRole": {
+      "const": "technical_reviewer_a"
+    },
+    "forbiddenAction": {
+      "const": "mayCreateWorkOrder"
+    },
+    "allowedAction": {
+      "const": "read_assigned_private_case"
+    },
+    "noRealIdentityData": {
+      "const": true
+    },
+    "noRealDocumentation": {
+      "const": true
+    },
+    "noCorporateNetworkTraffic": {
+      "const": true
+    }
+  }
+}

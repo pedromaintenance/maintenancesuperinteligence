@@ -81,7 +81,7 @@ def bootstrap_accounts(fixture):
     return profiles,clients
 
 
-def child_env(key,*,bootstrap=None,identity_url=None):
+def child_env(key,*,bootstrap=None,identity_url=None,faults=False):
     """Pass only minimal OS/Python settings plus synthetic lab secrets."""
     keep=("PATH","PYTHONPATH","SYSTEMROOT","WINDIR","TMP","TEMP",
           "TMPDIR","HOME","LANG","LC_ALL","PYTHONIOENCODING")
@@ -89,6 +89,8 @@ def child_env(key,*,bootstrap=None,identity_url=None):
     env["PYTHONPATH"]=str(ROOT)
     env["PYTHONUNBUFFERED"]="1"
     env["LAB_SERVICE_KEY"]=key
+    if faults:
+        env["LAB_FAULTS_ENABLED"]="1"
     if bootstrap is not None:
         env["LAB_BOOTSTRAP"]=json.dumps({"accounts":bootstrap},
                                         separators=(",",":"))
@@ -98,7 +100,7 @@ def child_env(key,*,bootstrap=None,identity_url=None):
 
 
 @contextmanager
-def running_services(policy,fixture):
+def running_services(policy,fixture,*,faults=False):
     """Always stop children. Ephemeral ports, ephemeral identity+service keys."""
     validate_policy(policy)
     validate_fixture(fixture)
@@ -113,8 +115,9 @@ def running_services(policy,fixture):
     processes=[]
     try:
         for role,port,env in (
-            ("identity",id_port,child_env(key,bootstrap=profiles)),
-            ("resource",api_port,child_env(key,identity_url=identity_url)),
+            ("identity",id_port,child_env(key,bootstrap=profiles,faults=faults)),
+            ("resource",api_port,child_env(key,identity_url=identity_url,
+                                           faults=faults)),
         ):
             cmd=[sys.executable,"-m","governance.loopback_http_services",
                  role,"--port",str(port)]
@@ -133,7 +136,10 @@ def running_services(policy,fixture):
         yield {"identity":identity_url,"resource":api_url,
                "key":key,"clients":clients,
                "identityPid":processes[0].pid,
-               "resourcePid":processes[1].pid}
+               "resourcePid":processes[1].pid,
+               # Process handles are private to the harness, never serialized.
+               "identityProcess":processes[0],
+               "resourceProcess":processes[1]}
     finally:
         for process in reversed(processes):
             if process.poll() is None:
