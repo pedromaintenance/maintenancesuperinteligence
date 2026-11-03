@@ -2313,3 +2313,45 @@ jobs:
           name: cycle40-synthetic-identity-lab-no-go
           path: build/benchmarks/cycle40-isolated-identity-lab.json
           retention-days: 14
+      - name: Validate Cycle 41 real cross-process HTTP integration on synthetic localhost only
+        run: |
+          python -m unittest tests.test_loopback_service_lab -v
+          python -m governance.loopback_service_harness \
+            --output build/benchmarks/cycle41-loopback-integration.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from governance.loopback_http_services import POLICY_PATH, load
+          from governance.loopback_service_harness import FIXTURE, verify_report
+          p=load(POLICY_PATH)
+          f=load(FIXTURE)
+          report=json.loads(Path("build/benchmarks/cycle41-loopback-integration.json").read_text(encoding="utf-8"))
+          verify_report(report,p,f)
+          assert report["scenarioCount"]==12
+          assert report["sandboxAuthorizedActions"]==6
+          assert report["sandboxDeniedActions"]==6
+          assert report["guardCount"]==12
+          assert report["guardChecksPassed"]==12
+          assert report["separateServiceProcessIdsVerified"] is True
+          assert report["identityServiceBoundToLoopback"] is True
+          assert report["resourceServiceBoundToLoopback"] is True
+          assert report["crossProcessHttpIntrospectionExercised"] is True
+          assert report["realIdentityProviderConnected"] is False
+          assert report["realUsersAuthenticated"]==0
+          assert report["realOIDCTokensValidated"]==0
+          assert report["realPrivateDocumentsAccessed"]==0
+          assert report["realPermissionsGranted"]==0
+          assert report["realOperationalActions"]==0
+          assert report["mayCreateWorkOrder"] is False
+          assert report["mayExecuteTest"] is False
+          assert report["mayModifyEcm"] is False
+          assert report["mayReleaseEquipment"] is False
+          assert all(x["passed"] for x in report["securityGuards"])
+          print("PASS: Cycle41 2 loopback processes, 12 scenarios, 12 guards, 0 real permissions")
+          PY
+      - name: Publish Cycle 41 synthetic HTTP integration audit (no secrets)
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle41-loopback-http-no-go
+          path: build/benchmarks/cycle41-loopback-integration.json
+          retention-days: 14

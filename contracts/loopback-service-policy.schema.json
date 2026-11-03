@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle41 distinct loopback-only HTTP test processes, no corporate authority",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "bindHost",
+    "scheme",
+    "tokenFormat",
+    "identityServerImplementation",
+    "resourceServerImplementation",
+    "accessPolicy",
+    "serviceIntrospectionKeyLengthBytes",
+    "maxRequestBytes",
+    "requestTimeoutSeconds",
+    "maxClockAdvanceSeconds",
+    "identityProcessRequired",
+    "resourceProcessRequired",
+    "syntheticResourceIds",
+    "expectedScenarioCount",
+    "expectedGuardCount",
+    "realIdpConnected",
+    "realOIDCImplemented",
+    "realJwtSignaturesVerified",
+    "realClientRegistrationVerified",
+    "realHumanIdentitiesAuthenticated",
+    "realMfaProviderConnected",
+    "realDocumentsAccessible",
+    "realBackendsConnected",
+    "tlsOrMutualTlsEnabled",
+    "enterpriseIAMConnected",
+    "mayApproveTechnicalRelation",
+    "mayWriteSAP",
+    "mayCreateWorkOrder",
+    "mayExecuteTest",
+    "mayModifyEcm",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.loopback-service-policy.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "separate_localhost_processes_synthetic_resources_only"
+    },
+    "bindHost": {
+      "const": "127.0.0.1"
+    },
+    "scheme": {
+      "const": "http"
+    },
+    "tokenFormat": {
+      "const": "opaque_test_only_hmac_not_jwt_or_oidc"
+    },
+    "identityServerImplementation": {
+      "const": "stdlib_httpserver_ephemeral_test_process"
+    },
+    "resourceServerImplementation": {
+      "const": "stdlib_httpserver_ephemeral_test_process"
+    },
+    "accessPolicy": {
+      "const": "deny_by_default_role_action_resource_and_mfa"
+    },
+    "serviceIntrospectionKeyLengthBytes": {
+      "const": 32
+    },
+    "maxRequestBytes": {
+      "const": 4096
+    },
+    "requestTimeoutSeconds": {
+      "const": 3
+    },
+    "maxClockAdvanceSeconds": {
+      "const": 1800
+    },
+    "identityProcessRequired": {
+      "const": true
+    },
+    "resourceProcessRequired": {
+      "const": true
+    },
+    "syntheticResourceIds": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "const": "IRP-001"
+        },
+        {
+          "const": "IRP-002"
+        }
+      ],
+      "items": false
+    },
+    "expectedScenarioCount": {
+      "const": 12
+    },
+    "expectedGuardCount": {
+      "const": 12
+    },
+    "realIdpConnected": {
+      "const": false
+    },
+    "realOIDCImplemented": {
+      "const": false
+    },
+    "realJwtSignaturesVerified": {
+      "const": false
+    },
+    "realClientRegistrationVerified": {
+      "const": false
+    },
+    "realHumanIdentitiesAuthenticated": {
+      "const": false
+    },
+    "realMfaProviderConnected": {
+      "const": false
+    },
+    "realDocumentsAccessible": {
+      "const": false
+    },
+    "realBackendsConnected": {
+      "const": false
+    },
+    "tlsOrMutualTlsEnabled": {
+      "const": false
+    },
+    "enterpriseIAMConnected": {
+      "const": false
+    },
+    "mayApproveTechnicalRelation": {
+      "const": false
+    },
+    "mayWriteSAP": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}

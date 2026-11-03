@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle41 subprocess-to-subprocess security and ACL integration report — NO GO",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "policyDigest",
+    "sourceFixtureDigest",
+    "sourceRegistryDigest",
+    "separateServiceProcessIdsVerified",
+    "identityServiceBoundToLoopback",
+    "resourceServiceBoundToLoopback",
+    "crossProcessHttpIntrospectionExercised",
+    "introspectionServiceKeyChecked",
+    "sessionMacAndMfaCheckedInIdentityService",
+    "resourceRoleAndPacketAclChecked",
+    "scenarioCount",
+    "sandboxAuthorizedActions",
+    "sandboxDeniedActions",
+    "guardCount",
+    "guardChecksPassed",
+    "scenarios",
+    "securityGuards",
+    "realIdentityProviderConnected",
+    "realUsersAuthenticated",
+    "realOIDCTokensValidated",
+    "realPrivateDocumentsAccessed",
+    "realPermissionsGranted",
+    "realOperationalActions",
+    "tlsOrMtlsEnabled",
+    "signedIdentityCertificatesVerified",
+    "mayCreateWorkOrder",
+    "mayExecuteTest",
+    "mayModifyEcm",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.loopback-service-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "two_ephemeral_loopback_http_processes_synthetic_only"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceFixtureDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceRegistryDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "separateServiceProcessIdsVerified": {
+      "const": true
+    },
+    "identityServiceBoundToLoopback": {
+      "const": true
+    },
+    "resourceServiceBoundToLoopback": {
+      "const": true
+    },
+    "crossProcessHttpIntrospectionExercised": {
+      "const": true
+    },
+    "introspectionServiceKeyChecked": {
+      "const": true
+    },
+    "sessionMacAndMfaCheckedInIdentityService": {
+      "const": true
+    },
+    "resourceRoleAndPacketAclChecked": {
+      "const": true
+    },
+    "scenarioCount": {
+      "const": 12
+    },
+    "sandboxAuthorizedActions": {
+      "const": 6
+    },
+    "sandboxDeniedActions": {
+      "const": 6
+    },
+    "guardCount": {
+      "const": 12
+    },
+    "guardChecksPassed": {
+      "const": 12
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "additionalProperties": false,
+        "title": "Cycle41 synthetic actor/action outcome, never actual private access",
+        "required": [
+          "scenarioId",
+          "kind",
+          "role",
+          "sandboxResourceActionAllowed",
+          "expectationMet",
+          "realUserAuthenticated",
+          "realDocumentAccessed",
+          "operationalAuthority"
+        ],
+        "properties": {
+          "scenarioId": {
+            "type": "string",
+            "pattern": "^LAB-[0-9]{3}$"
+          },
+          "kind": {
+            "type": "string",
+            "minLength": 8
+          },
+          "role": {
+            "enum": [
+              "author",
+              "custodian",
+              "technical_reviewer_a",
+              "technical_reviewer_b",
+              "adjudicator"
+            ]
+          },
+          "sandboxResourceActionAllowed": {
+            "type": "boolean"
+          },
+          "expectationMet": {
+            "const": true
+          },
+          "realUserAuthenticated": {
+            "const": false
+          },
+          "realDocumentAccessed": {
+            "const": false
+          },
+          "operationalAuthority": {
+            "const": false
+          }
+        }
+      }
+    },
+    "securityGuards": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "additionalProperties": false,
+        "title": "Cycle41 synthetic HTTP security guard must pass",
+        "required": [
+          "guard",
+          "passed",
+          "realPrivateDataUsed"
+        ],
+        "properties": {
+          "guard": {
+            "type": "string",
+            "minLength": 8
+          },
+          "passed": {
+            "const": true
+          },
+          "realPrivateDataUsed": {
+            "const": false
+          }
+        }
+      }
+    },
+    "realIdentityProviderConnected": {
+      "const": false
+    },
+    "tlsOrMtlsEnabled": {
+      "const": false
+    },
+    "signedIdentityCertificatesVerified": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "realUsersAuthenticated": {
+      "const": 0
+    },
+    "realOIDCTokensValidated": {
+      "const": 0
+    },
+    "realPrivateDocumentsAccessed": {
+      "const": 0
+    },
+    "realPermissionsGranted": {
+      "const": 0
+    },
+    "realOperationalActions": {
+      "const": 0
+    },
+    "decision": {
+      "const": "no_go_loopback_synthetic_http_only_no_external_idp_or_real_resources"
+    }
+  }
+}
