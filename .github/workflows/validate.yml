@@ -2355,3 +2355,43 @@ jobs:
           name: cycle41-loopback-http-no-go
           path: build/benchmarks/cycle41-loopback-integration.json
           retention-days: 14
+      - name: Validate Cycle 42 distributed fail-closed resilience under synthetic faults
+        run: |
+          python -m unittest tests.test_distributed_resilience -v
+          python -m governance.distributed_resilience \
+            --output build/benchmarks/cycle42-distributed-resilience.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from governance.distributed_resilience import POLICY, FIXTURE, verify_report
+          from governance.loopback_http_services import load
+          report=json.loads(Path("build/benchmarks/cycle42-distributed-resilience.json").read_text(encoding="utf-8"))
+          verify_report(report,load(POLICY),load(FIXTURE))
+          assert report["guardCount"]==15
+          assert report["guardChecksPassed"]==15
+          assert report["crossPacketConcurrentDenied"]==16
+          assert report["operationalConcurrentDenied"]==16
+          assert report["afterRevocationAckDenied"]==16
+          assert report["revocationRaceOutcomesBounded"] is True
+          assert report["strictGlobalLinearizabilityProven"] is False
+          assert report["faultEndpointsDefaultDisabled"] is True
+          assert report["serviceKeyRotationFailedClosed"] is True
+          assert report["serviceKeyRotationRestoredSyntheticOnly"] is True
+          assert report["realIdentityProviderConnected"] is False
+          assert report["realUsersAuthenticated"]==0
+          assert report["realDocumentsAccessed"]==0
+          assert report["realPermissionsGranted"]==0
+          assert report["realOperationalActions"]==0
+          assert report["mayCreateWorkOrder"] is False
+          assert report["mayExecuteTest"] is False
+          assert report["mayModifyEcm"] is False
+          assert report["mayReleaseEquipment"] is False
+          assert all(g["passed"] for g in report["allGuardResults"])
+          print("PASS Cycle42: 15 safeguards, concurrency and revocation, zero real authority")
+          PY
+      - name: Publish Cycle 42 synthetic fail-closed resilience report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle42-distributed-resilience-no-go
+          path: build/benchmarks/cycle42-distributed-resilience.json
+          retention-days: 14

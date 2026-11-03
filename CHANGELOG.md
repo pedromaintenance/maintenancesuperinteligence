@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.2.0 — 2026-11-03 — Ciclo 42
+
+- Criados **15 testes de resiliência** com serviços HTTP sintéticos em processos distintos, vinculados à taxonomia congelada e à política do Ciclo 41.
+- Endurecida a fronteira de confiança: resposta de introspecção incompleta, status de falha, JSON inválido, timeout ou ausência de serviço nunca conferem acesso; não há fallback para autorização antiga.
+- Introduzidos controles de injeção de falhas **somente no sandbox**, desativados por padrão e restritos por chave efêmera, para timeout, 503, expiração no momento da verificação e resposta parcial.
+- Simulada rotação do segredo entre serviços: falha segura durante dessincronização, recuperação de acesso **apenas sintético** após atualização bilateral e recusa da chave antiga.
+- Exercitadas 16 requisições concorrentes com pacote não atribuído, 16 ações operacionais proibidas, corrida com revogação (sem alegação de linearizabilidade distribuída) e 16 negações após o reconhecimento da revogação.
+- Simulada queda do processo de identidade com API ainda ativa; duas requisições subsequentes negadas, sem cache de permissão.
+- Incluídos política e fixture v1, quatro contratos JSON Schema, testes adversariais, relatórios sintéticos e CI, sem pessoas reais, documentos OEM, SAP ou acesso a equipamentos. **NO GO**.
+
+
 ## 4.1.0 — 2026-11-03 — Ciclo 41
 
 - Criado laboratório de integração de **dois processos HTTP independentes em `127.0.0.1`**, um serviço de identidade sintética e uma API de recursos artificiais.

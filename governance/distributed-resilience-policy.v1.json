@@ -1,0 +1,40 @@
+{
+  "schema": "maintenance-superinteligence.distributed-resilience-policy.v1",
+  "version": "1.0.0",
+  "mode": "loopback_fault_injection_sandbox_never_production",
+  "bindHost": "127.0.0.1",
+  "parentIdentityPolicyVersion": "1.0.0",
+  "parentLoopbackPolicyVersion": "1.0.0",
+  "expectedGuardCount": 15,
+  "concurrentRequestsPerGroup": 16,
+  "revocationRaceRequests": 16,
+  "testOnlyControlPaths": [
+    "/lab-fault-next-introspection",
+    "/lab-rotate-service-key"
+  ],
+  "allowedIntrospectionFaults": [
+    "delay_timeout",
+    "expire_before_verify",
+    "incomplete_active_response",
+    "upstream_unavailable"
+  ],
+  "keyRotationRequiresExistingKey": true,
+  "faultControlsDisabledByDefault": true,
+  "allowGrantOnUpstreamFailure": false,
+  "allowCachedAuthorizationOnOutage": false,
+  "requireCompleteIntrospectionResponse": true,
+  "requirePostRevocationDenial": true,
+  "assumeGlobalLinearizabilityAcrossProcesses": false,
+  "simulatedServiceKeyLengthHex": 64,
+  "realIdpConnected": false,
+  "realHumanIdentitiesVerified": false,
+  "realPrivateDocumentsAccessible": false,
+  "realCustomerSystemConnected": false,
+  "enterpriseSecurityApproval": false,
+  "tlsOrMtlsEnabled": false,
+  "mayWriteSAP": false,
+  "mayModifyEcm": false,
+  "mayCreateWorkOrder": false,
+  "mayExecuteTest": false,
+  "mayReleaseEquipment": false
+}

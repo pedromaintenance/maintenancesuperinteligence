@@ -9,6 +9,7 @@ Never expose these plain-HTTP demonstration services beyond 127.0.0.1.
 from __future__ import annotations
 
 import argparse
+from http.client import HTTPException
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import hmac
 import json
@@ -16,6 +17,7 @@ import os
 from pathlib import Path
 import re
 import secrets
+import threading
 import time
 from urllib.error import HTTPError, URLError
 from urllib.request import ProxyHandler, Request, build_opener
@@ -108,15 +110,22 @@ def request_json(url, path, payload, *, key=None, timeout=3):
     req=Request(url+path,data=body,headers=headers,method="POST")
     try:
         with OPENER.open(req,timeout=timeout) as response:
-            return response.status,json.loads(response.read(16384))
-    except HTTPError as error:
-        raw=error.read(16384)
-        try:
+            raw=response.read(16385)
+            if len(raw)>16384:
+                return 503,{"ok":False,"reason":"oversized_upstream_response"}
             obj=json.loads(raw)
+            if not isinstance(obj,dict):
+                return 503,{"ok":False,"reason":"invalid_upstream_response"}
+            return response.status,obj
+    except HTTPError as error:
+        raw=error.read(16385)
+        try:
+            obj=json.loads(raw) if len(raw)<=16384 else None
         except (ValueError,UnicodeError):
-            obj={"ok":False,"reason":"http_error"}
-        return error.code,obj
-    except (URLError,TimeoutError,OSError):
+            obj=None
+        return error.code,(obj if isinstance(obj,dict)
+                           else {"ok":False,"reason":"http_error"})
+    except (URLError,TimeoutError,OSError,ValueError,UnicodeError,HTTPException):
         return 503,{"ok":False,"reason":"service_unavailable"}
 
 
@@ -136,7 +145,11 @@ class LabHttpHandler(BaseHTTPRequestHandler):
         self.send_header("X-Synthetic-Only","true")
         self.send_header("Content-Length",str(len(raw)))
         self.end_headers()
-        self.wfile.write(raw)
+        try:
+            self.wfile.write(raw)
+        except (BrokenPipeError,ConnectionResetError):
+            # Client timed out. No fallback authorization and no credentials in log.
+            return
 
     def parse_body(self):
         self.connection.settimeout(self.server.lab_policy["requestTimeoutSeconds"])
@@ -173,13 +186,49 @@ class LabHttpHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         try:
             body=self.parse_body()
-            if self.server.role=="identity":
+            # LAB-ONLY controls are disabled for Cycle 41 and never authorize
+            # equipment, identity or private documents.
+            if self.path=="/lab-rotate-service-key":
+                self.lab_rotate_key(body)
+            elif self.server.role=="identity":
                 self.identity_route(body)
             else:
                 self.resource_route(body)
         except (ReviewRejected,ValueError,KeyError,TypeError,
                 UnicodeError,TimeoutError,OSError):
             self.reply(400,{"ok":False,"reason":"invalid_or_denied"})
+
+    def lab_rotate_key(self,body):
+        if not self.server.faults_enabled:
+            self.reply(404,{"ok":False,"reason":"not_found"})
+            return
+        if not self.service_key_valid():
+            self.reply(403,{"ok":False,"reason":"denied"})
+            return
+        new=body.get("nextKey")
+        require(set(body)=={"nextKey"} and isinstance(new,str)
+                and re.fullmatch(r"[a-f0-9]{64}",new)
+                and new!=self.server.service_key,
+                "invalid synthetic key rotation request")
+        with self.server.state_lock:
+            self.server.service_key=new
+        self.reply(200,{"ok":True,"syntheticRotationApplied":True})
+
+    def lab_schedule_fault(self,body):
+        if not self.server.faults_enabled:
+            self.reply(404,{"ok":False,"reason":"not_found"})
+            return
+        if not self.service_key_valid():
+            self.reply(403,{"ok":False,"reason":"denied"})
+            return
+        mode=body.get("mode")
+        require(set(body)=={"mode"}
+                and mode in ("delay_timeout","expire_before_verify",
+                             "incomplete_active_response","upstream_unavailable"),
+                "unknown synthetic fault mode")
+        with self.server.state_lock:
+            self.server.next_introspection_fault=mode
+        self.reply(200,{"ok":True,"syntheticFaultScheduled":True})
 
     def identity_route(self,body):
         lab=self.server.identity_lab
@@ -188,7 +237,8 @@ class LabHttpHandler(BaseHTTPRequestHandler):
             require(set(body)=={"subject","password"},
                     "invalid login fields")
             try:
-                token=lab.login(body["subject"],body["password"],now)
+                with self.server.state_lock:
+                    token=lab.login(body["subject"],body["password"],now)
             except (ReviewRejected,ValueError,KeyError,TypeError):
                 self.reply(403,{"ok":False,"reason":"login_denied"})
                 return
@@ -196,7 +246,8 @@ class LabHttpHandler(BaseHTTPRequestHandler):
         elif self.path=="/mfa":
             require(set(body)=={"token","otp"},"invalid MFA fields")
             try:
-                lab.step_up(body["token"],body["otp"],now)
+                with self.server.state_lock:
+                    lab.step_up(body["token"],body["otp"],now)
             except (ReviewRejected,ValueError,KeyError,TypeError):
                 self.reply(403,{"ok":False,"reason":"mfa_denied"})
                 return
@@ -204,31 +255,51 @@ class LabHttpHandler(BaseHTTPRequestHandler):
         elif self.path=="/revoke":
             require(set(body)=={"token"},"invalid revoke request")
             try:
-                lab.revoke(body["token"],now)
+                with self.server.state_lock:
+                    lab.revoke(body["token"],now)
             except (ReviewRejected,ValueError,KeyError,TypeError):
                 self.reply(403,{"ok":False,"reason":"revoke_denied"})
                 return
             self.reply(200,{"ok":True,"syntheticOnly":True})
+        elif self.path=="/lab-fault-next-introspection":
+            self.lab_schedule_fault(body)
         elif self.path=="/introspect":
             if not self.service_key_valid():
                 self.reply(403,{"active":False})
                 return
             require(set(body)=={"token"},"invalid introspection fields")
-            try:
-                s=lab._verified_session(body["token"],now)
-                if not s["mfa"]:
-                    self.reply(200,{"active":False})
-                    return
-                user=lab._users[s["sub"]]
-                self.reply(200,{
-                    "active":True,
-                    "subject":s["sub"],"role":user["role"],
-                    "assignments":sorted(user["assignments"]),
-                    "realIdentityVerified":False,
-                    "realOIDCAuthenticated":False,
-                })
-            except (ReviewRejected,ValueError,KeyError,TypeError):
-                self.reply(200,{"active":False})
+            with self.server.state_lock:
+                fault=self.server.next_introspection_fault
+                self.server.next_introspection_fault=None
+                if fault=="expire_before_verify":
+                    self.server.clock_offset+=950
+            if fault=="delay_timeout":
+                time.sleep(self.server.lab_policy["requestTimeoutSeconds"]+0.4)
+            if fault=="upstream_unavailable":
+                self.reply(503,{"active":False})
+                return
+            if fault=="incomplete_active_response":
+                self.reply(200,{"active":True,"role":"technical_reviewer_a",
+                                "assignments":["IRP-001"]})
+                return
+            with self.server.state_lock:
+                observed_at=int(time.time())+self.server.clock_offset
+                try:
+                    s=lab._verified_session(body["token"],observed_at)
+                    if not s["mfa"]:
+                        details={"active":False}
+                    else:
+                        user=lab._users[s["sub"]]
+                        details={
+                            "active":True,
+                            "subject":s["sub"],"role":user["role"],
+                            "assignments":sorted(user["assignments"]),
+                            "realIdentityVerified":False,
+                            "realOIDCAuthenticated":False,
+                        }
+                except (ReviewRejected,ValueError,KeyError,TypeError):
+                    details={"active":False}
+            self.reply(200,details)
         elif self.path=="/advance-clock":
             if not self.service_key_valid():
                 self.reply(403,{"ok":False,"reason":"denied"})
@@ -238,7 +309,8 @@ class LabHttpHandler(BaseHTTPRequestHandler):
                     and 1<=body["seconds"]<=
                        self.server.lab_policy["maxClockAdvanceSeconds"],
                     "invalid synthetic clock advance")
-            self.server.clock_offset+=body["seconds"]
+            with self.server.state_lock:
+                self.server.clock_offset+=body["seconds"]
             self.reply(200,{"ok":True,"syntheticClockAdvanced":True})
         else:
             self.reply(404,{"ok":False,"reason":"not_found"})
@@ -261,7 +333,19 @@ class LabHttpHandler(BaseHTTPRequestHandler):
             self.server.identity_url,"/introspect",
             {"token":body["token"]},key=self.server.service_key,
             timeout=self.server.lab_policy["requestTimeoutSeconds"])
-        if status!=200 or identity.get("active") is not True:
+        # Reject malformed, incomplete, contradictory or forged upstream
+        # data instead of treating a partially "active" response as authority.
+        valid={
+            "active","subject","role","assignments",
+            "realIdentityVerified","realOIDCAuthenticated",
+        }
+        if (status!=200 or not isinstance(identity,dict)
+            or set(identity)!=valid
+            or identity.get("active") is not True
+            or identity.get("realIdentityVerified") is not False
+            or identity.get("realOIDCAuthenticated") is not False
+            or not isinstance(identity.get("subject"),str)
+            or not identity["subject"].startswith("synthetic-")):
             self.reply(403,{"sandboxAllowed":False,"reason":"inactive_session"})
             return
         role=identity.get("role")
@@ -302,6 +386,9 @@ def server_main(role,port):
     server.lab_policy=policy
     server.service_key=service_key
     server.clock_offset=0
+    server.state_lock=threading.RLock()
+    server.faults_enabled=os.environ.get("LAB_FAULTS_ENABLED")=="1"
+    server.next_introspection_fault=None
     if role=="identity":
         bootstrap=json.loads(os.environ.get("LAB_BOOTSTRAP","{}"))
         require(isinstance(bootstrap,dict)

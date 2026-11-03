@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle42 cross-process fault tolerance synthetic-only evidence, NO GO",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "policyDigest",
+    "fixtureDigest",
+    "parentPacketRegistryDigest",
+    "guardCount",
+    "guardChecksPassed",
+    "crossPacketConcurrentRequests",
+    "crossPacketConcurrentDenied",
+    "operationalConcurrentRequests",
+    "operationalConcurrentDenied",
+    "revocationRaceRequests",
+    "revocationRaceOutcomesBounded",
+    "afterRevocationAckRequests",
+    "afterRevocationAckDenied",
+    "faultEndpointsDefaultDisabled",
+    "serviceKeyRotationFailedClosed",
+    "serviceKeyRotationRestoredSyntheticOnly",
+    "sourceRulesModified",
+    "allGuardResults",
+    "strictGlobalLinearizabilityProven",
+    "realIdentityProviderConnected",
+    "realUsersAuthenticated",
+    "realDocumentsAccessed",
+    "realPermissionsGranted",
+    "realOperationalActions",
+    "tlsOrMtlsEnabled",
+    "mayCreateWorkOrder",
+    "mayExecuteTest",
+    "mayModifyEcm",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.distributed-resilience-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "multi_process_loopback_fault_injection_synthetic_only"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "fixtureDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "parentPacketRegistryDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "guardCount": {
+      "const": 15
+    },
+    "guardChecksPassed": {
+      "const": 15
+    },
+    "crossPacketConcurrentRequests": {
+      "const": 16
+    },
+    "crossPacketConcurrentDenied": {
+      "const": 16
+    },
+    "operationalConcurrentRequests": {
+      "const": 16
+    },
+    "operationalConcurrentDenied": {
+      "const": 16
+    },
+    "revocationRaceRequests": {
+      "const": 16
+    },
+    "revocationRaceOutcomesBounded": {
+      "const": true
+    },
+    "afterRevocationAckRequests": {
+      "const": 16
+    },
+    "afterRevocationAckDenied": {
+      "const": 16
+    },
+    "faultEndpointsDefaultDisabled": {
+      "const": true
+    },
+    "serviceKeyRotationFailedClosed": {
+      "const": true
+    },
+    "serviceKeyRotationRestoredSyntheticOnly": {
+      "const": true
+    },
+    "sourceRulesModified": {
+      "const": false
+    },
+    "allGuardResults": {
+      "type": "array",
+      "minItems": 15,
+      "maxItems": 15,
+      "items": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "additionalProperties": false,
+        "title": "Cycle42 fail-closed guard with no external access",
+        "required": [
+          "guard",
+          "passed",
+          "realPrivateDataUsed",
+          "operationalPermissionGranted"
+        ],
+        "properties": {
+          "guard": {
+            "enum": [
+              "fault_controls_unavailable_in_default_mode",
+              "fault_control_requires_interservice_key",
+              "incomplete_active_upstream_denied",
+              "upstream_503_denied",
+              "upstream_timeout_denied",
+              "rotation_mismatch_denied",
+              "rotation_restores_only_synthetic_access",
+              "old_service_key_revoked",
+              "concurrent_cross_packet_requests_denied",
+              "concurrent_operational_requests_denied",
+              "revocation_race_has_only_allow_or_deny_results",
+              "after_revocation_ack_all_requests_denied",
+              "identity_process_outage_denied",
+              "outage_has_no_cached_authorization",
+              "expiry_during_introspection_denied"
+            ]
+          },
+          "passed": {
+            "const": true
+          },
+          "realPrivateDataUsed": {
+            "const": false
+          },
+          "operationalPermissionGranted": {
+            "const": false
+          }
+        }
+      }
+    },
+    "strictGlobalLinearizabilityProven": {
+      "const": false
+    },
+    "realIdentityProviderConnected": {
+      "const": false
+    },
+    "realUsersAuthenticated": {
+      "const": 0
+    },
+    "realDocumentsAccessed": {
+      "const": 0
+    },
+    "realPermissionsGranted": {
+      "const": 0
+    },
+    "realOperationalActions": {
+      "const": 0
+    },
+    "tlsOrMtlsEnabled": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_fault_tolerant_synthetic_loopback_not_enterprise_authorization"
+    }
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle42 synthetic loopback resilience policy; never production identity/authorization",
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "bindHost",
+    "parentIdentityPolicyVersion",
+    "parentLoopbackPolicyVersion",
+    "expectedGuardCount",
+    "concurrentRequestsPerGroup",
+    "revocationRaceRequests",
+    "testOnlyControlPaths",
+    "allowedIntrospectionFaults",
+    "keyRotationRequiresExistingKey",
+    "faultControlsDisabledByDefault",
+    "allowGrantOnUpstreamFailure",
+    "allowCachedAuthorizationOnOutage",
+    "requireCompleteIntrospectionResponse",
+    "requirePostRevocationDenial",
+    "assumeGlobalLinearizabilityAcrossProcesses",
+    "simulatedServiceKeyLengthHex",
+    "realIdpConnected",
+    "realHumanIdentitiesVerified",
+    "realPrivateDocumentsAccessible",
+    "realCustomerSystemConnected",
+    "enterpriseSecurityApproval",
+    "tlsOrMtlsEnabled",
+    "mayWriteSAP",
+    "mayModifyEcm",
+    "mayCreateWorkOrder",
+    "mayExecuteTest",
+    "mayReleaseEquipment"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.distributed-resilience-policy.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "loopback_fault_injection_sandbox_never_production"
+    },
+    "bindHost": {
+      "const": "127.0.0.1"
+    },
+    "parentIdentityPolicyVersion": {
+      "const": "1.0.0"
+    },
+    "parentLoopbackPolicyVersion": {
+      "const": "1.0.0"
+    },
+    "expectedGuardCount": {
+      "const": 15
+    },
+    "concurrentRequestsPerGroup": {
+      "const": 16
+    },
+    "revocationRaceRequests": {
+      "const": 16
+    },
+    "testOnlyControlPaths": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "const": "/lab-fault-next-introspection"
+        },
+        {
+          "const": "/lab-rotate-service-key"
+        }
+      ],
+      "items": false
+    },
+    "allowedIntrospectionFaults": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "const": "delay_timeout"
+        },
+        {
+          "const": "expire_before_verify"
+        },
+        {
+          "const": "incomplete_active_response"
+        },
+        {
+          "const": "upstream_unavailable"
+        }
+      ],
+      "items": false
+    },
+    "keyRotationRequiresExistingKey": {
+      "const": true
+    },
+    "faultControlsDisabledByDefault": {
+      "const": true
+    },
+    "allowGrantOnUpstreamFailure": {
+      "const": false
+    },
+    "allowCachedAuthorizationOnOutage": {
+      "const": false
+    },
+    "requireCompleteIntrospectionResponse": {
+      "const": true
+    },
+    "requirePostRevocationDenial": {
+      "const": true
+    },
+    "assumeGlobalLinearizabilityAcrossProcesses": {
+      "const": false
+    },
+    "simulatedServiceKeyLengthHex": {
+      "const": 64
+    },
+    "realIdpConnected": {
+      "const": false
+    },
+    "realHumanIdentitiesVerified": {
+      "const": false
+    },
+    "realPrivateDocumentsAccessible": {
+      "const": false
+    },
+    "realCustomerSystemConnected": {
+      "const": false
+    },
+    "enterpriseSecurityApproval": {
+      "const": false
+    },
+    "tlsOrMtlsEnabled": {
+      "const": false
+    },
+    "mayWriteSAP": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    }
+  }
+}
