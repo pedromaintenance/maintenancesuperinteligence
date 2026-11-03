@@ -2,7 +2,7 @@
 
 **Uma arquitetura aberta, incremental e auditável de conhecimento para gestão de ativos, engenharia de manutenção e equipamentos móveis de mineração.**
 
-> **Estado: laboratório isolado de autenticação e autorização sintéticas P&D v4.0.0 (29/10/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
+> **Estado: homologação entre dois serviços HTTP sintéticos isolados P&D v4.1.0 (03/11/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
 ## Visão
 
@@ -78,6 +78,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 38 — Custódia privada e limites da autenticação](docs/CICLO_2026-10-29_CUSTODIA_PRIVADA_PARECERES.md)
 - [Ciclo 39 — Federação OIDC e política RBAC sem autenticação real](docs/CICLO_2026-10-29_FEDERACAO_RBAC_FAIL_CLOSED.md)
 - [Ciclo 40 — Laboratório isolado de identidade e autorização](docs/CICLO_2026-10-29_LABORATORIO_IDENTIDADE_ISOLADO.md)
+- [Ciclo 41 — Dois serviços HTTP isolados e testes de integração](docs/CICLO_2026-11-03_SERVICOS_HTTP_IDENTIDADE_RECURSOS.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -457,3 +458,7 @@ O fluxo `governance/private_review_custody.py` permite **selar** e **auditar** u
 ## Ciclo 40 — Laboratório isolado de identidade (não OIDC)
 
 O módulo `governance/isolated_identity_lab.py` executa um **laboratório real de testes, porém exclusivamente em memória e com identidades fictícias**: senha sintética derivada por PBKDF2-HMAC-SHA256, código TOTP local, token de sessão proprietário com HMAC-SHA256, expiração, revogação e verificação de privilégios por papel e pacote atribuído. O ensaio inclui 12 operações sobre `IRP-001` e `IRP-002`, ambos IDs sintéticos do ciclo anterior. Uma autorização positiva é **somente acesso a um recurso artificial do laboratório** e não dá acesso à custódia privada do Ciclo 38, usuários, documentação OEM, SAP, ECM ou equipamento. Não é login OIDC/SSO, validação JWT, autenticação de profissional ou implantação de IAM. O laboratório mantém 0 autenticações humanas reais, 0 acessos a documentos reais e 0 permissões de manutenção. [Projeto, execução e riscos](docs/CICLO_2026-10-29_LABORATORIO_IDENTIDADE_ISOLADO.md).
+
+## Ciclo 41 — Integração entre processos sintéticos (127.0.0.1)
+
+Os módulos `governance/loopback_http_services.py` e `governance/loopback_service_harness.py` executam **dois processos Python distintos**, comunicando-se por HTTP exclusivamente em `127.0.0.1`. Um serviço de identidade fictícia executa login, TOTP, revogação e introspecção protegida por chave efêmera. Outro serviço consulta essa introspecção e aplica a política por papel, ação e pacote sintético. **Seis das 12 ações do laboratório são autorizadas apenas em recursos artificiais; seis são negadas.** Doze verificações adversariais exercitam senha, MFA, reutilização de código, assinatura adulterada, revogação, expiração, chave de serviço, sessão estranha, rotas e injeção de papel. Todos os processos são encerrados ao final, sem persistir credenciais ou evidências. Nenhum IdP/OIDC real, mTLS, IAM, arquivo de manutenção, sistema SAP/ECM ou usuário corporativo está conectado: **0 acessos reais e NO GO operacional**. Quatro JSON Schemas, testes e CI. [Procedimento e ameaças remanescentes](docs/CICLO_2026-11-03_SERVICOS_HTTP_IDENTIDADE_RECURSOS.md).

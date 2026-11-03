@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle41 synthetic HTTP security guard must pass",
+  "required": [
+    "guard",
+    "passed",
+    "realPrivateDataUsed"
+  ],
+  "properties": {
+    "guard": {
+      "type": "string",
+      "minLength": 8
+    },
+    "passed": {
+      "const": true
+    },
+    "realPrivateDataUsed": {
+      "const": false
+    }
+  }
+}

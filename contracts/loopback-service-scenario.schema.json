@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "title": "Cycle41 synthetic actor/action outcome, never actual private access",
+  "required": [
+    "scenarioId",
+    "kind",
+    "role",
+    "sandboxResourceActionAllowed",
+    "expectationMet",
+    "realUserAuthenticated",
+    "realDocumentAccessed",
+    "operationalAuthority"
+  ],
+  "properties": {
+    "scenarioId": {
+      "type": "string",
+      "pattern": "^LAB-[0-9]{3}$"
+    },
+    "kind": {
+      "type": "string",
+      "minLength": 8
+    },
+    "role": {
+      "enum": [
+        "author",
+        "custodian",
+        "technical_reviewer_a",
+        "technical_reviewer_b",
+        "adjudicator"
+      ]
+    },
+    "sandboxResourceActionAllowed": {
+      "type": "boolean"
+    },
+    "expectationMet": {
+      "const": true
+    },
+    "realUserAuthenticated": {
+      "const": false
+    },
+    "realDocumentAccessed": {
+      "const": false
+    },
+    "operationalAuthority": {
+      "const": false
+    }
+  }
+}

@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.1.0 — 2026-11-03 — Ciclo 41
+
+- Criado laboratório de integração de **dois processos HTTP independentes em `127.0.0.1`**, um serviço de identidade sintética e uma API de recursos artificiais.
+- O serviço de identidade autentica credenciais fictícias com PBKDF2, exige TOTP, controla sessões HMAC com revogação e expiração, e oferece introspecção restrita por segredo efêmero entre serviços.
+- A API de recursos executa autorização por papel, ação e pacote, sempre consultando o serviço de identidade; respostas expõem apenas identificadores artificiais, nunca laudos, dados OEM ou arquivos privados.
+- Doze cenários de requisição (6 permissões internas, 6 negações) e 12 verificações adversariais via HTTP, incluindo intromissão sem chave, senha/MFA inválidos, TOTP repetido, sessão adulterada, revogação, expiração, rota desconhecida, campos de papel injetados e sessão estranha.
+- Processos iniciados em portas efêmeras de loopback, credenciais geradas em memória e transportadas apenas ao ambiente dos filhos; testes de ciclo de vida e limpeza dos subprocessos, quatro JSON Schemas, saída JSON sem segredos, documentação e CI.
+- **Limites:** HTTP sem TLS, segredo local não equivale a mTLS, sessão HMAC proprietária não equivale a JWT/OIDC; nenhum IdP, identidade, armazenamento privado, autorização corporativa, SAP/ECM ou equipamento. **NO GO**.
+
+
 ## 4.0.0 — 2026-10-29 — Ciclo 40
 
 - Implementado laboratório Python local e efêmero de **autenticação sintética e autorização efetiva somente sobre recursos fictícios**. Distinção inequívoca do pré-avaliador do Ciclo 39: ações hipotéticas agora são exercitadas dentro do sandbox.
