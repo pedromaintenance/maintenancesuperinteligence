@@ -307,7 +307,7 @@ class Cycle45BlindPairwiseTests(unittest.TestCase):
 
     def test_abstain_and_tie_are_not_counted_as_preference(self):
         aa = fabricated_submission(self.packet, "REV-SYNTHA",
-                                   choices=("tie", "abstain", "B", "A"))
+                                   choices=("tie", "abstain", "A", "A"))
         bb = fabricated_submission(self.packet, "REV-SYNTHB",
                                    choices=("tie", "abstain", "B", "A"))
         report = self.invoke_score(
