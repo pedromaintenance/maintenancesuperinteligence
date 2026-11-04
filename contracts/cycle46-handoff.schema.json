@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle46-handoff.schema.json",
+  "title": "Cycle 46 private unattested triage receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "packetDigest",
+    "lockDigest",
+    "sourceReviewReportDigest",
+    "qualityReceiptDigest",
+    "neutralityPolicyDigest",
+    "submissionDigests",
+    "receiptDigests",
+    "caseCount",
+    "flaggedForAdjudicationCount",
+    "caseHandoffs",
+    "neutralityScreenPassedAsExpertProof",
+    "automatedAdjudicationsCompleted",
+    "reviewerIdentitiesAuthenticated",
+    "independentMechanicalReviewCompleted",
+    "mechanicalDiagnosticAccuracyMeasured",
+    "mayExecuteTest",
+    "mayCreateWorkOrder",
+    "mayWriteSAP",
+    "mayModifyECM",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle46-handoff.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "private_unattested_review_triage_not_external_adjudication"
+    },
+    "packetDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "lockDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceReviewReportDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "qualityReceiptDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "neutralityPolicyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "submissionDigests": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "receiptDigests": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "caseCount": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 50
+    },
+    "flaggedForAdjudicationCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "caseHandoffs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "domain",
+          "heuristicMaskWarnings",
+          "reviewReasons",
+          "requiresIndependentAdjudication",
+          "nextState",
+          "automaticallyResolved",
+          "operationallyApproved"
+        ],
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "pattern": "^HLD-[0-9]{3}$"
+          },
+          "domain": {
+            "enum": [
+              "mechanics",
+              "hydraulics",
+              "electronics",
+              "cooling",
+              "unsupported"
+            ]
+          },
+          "heuristicMaskWarnings": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "question_origin_cue",
+                "question_length_imbalance"
+              ]
+            },
+            "minItems": 0,
+            "maxItems": 2
+          },
+          "reviewReasons": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "possible_blinding_leak",
+                "reviewer_risk_flag",
+                "reviewer_disagreement",
+                "reviewer_uncertainty"
+              ]
+            },
+            "minItems": 0,
+            "maxItems": 4
+          },
+          "requiresIndependentAdjudication": {
+            "type": "boolean"
+          },
+          "nextState": {
+            "enum": [
+              "pending_external_adjudication",
+              "pending_external_validation_no_adjudication"
+            ]
+          },
+          "automaticallyResolved": {
+            "const": false
+          },
+          "operationallyApproved": {
+            "const": false
+          }
+        }
+      },
+      "minItems": 2,
+      "maxItems": 50
+    },
+    "neutralityScreenPassedAsExpertProof": {
+      "const": false
+    },
+    "automatedAdjudicationsCompleted": {
+      "const": 0
+    },
+    "reviewerIdentitiesAuthenticated": {
+      "const": false
+    },
+    "independentMechanicalReviewCompleted": {
+      "const": false
+    },
+    "mechanicalDiagnosticAccuracyMeasured": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayWriteSAP": {
+      "const": false
+    },
+    "mayModifyECM": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_adjudication_and_blinding_unverified"
+    }
+  }
+}
