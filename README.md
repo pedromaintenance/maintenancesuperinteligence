@@ -84,6 +84,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 44 — Ensaio simbólico de perguntas discriminantes (proposta)](docs/CICLO_2026-11-03_ESTUDO_DISCRIMINACAO_44.md)
 - [Ciclo 45 — Revisão cega pareada sob custódia privada (proposta)](docs/CICLO_2026-11-04_REVISAO_CEGA_PAREADA_45.md)
 - [Ciclo 46 — Auditoria de cegamento e fila de adjudicação externa (proposta)](docs/CICLO_2026-11-04_ADJUDICACAO_E_CEGAMENTO_46.md)
+- [Ciclo 47 — Red team de mascaramento e proveniência documental (proposta)](docs/CICLO_2026-11-04_RED_TEAM_MASCARAMENTO_47.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -142,6 +143,14 @@ O parâmetro opcional `--simulated-test-results examples/777e_simulated_test_res
 O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em cinco disciplinas: óleo (4), hidráulica (3), mecânica (3), vibração (2) e eletrônica (2). Seis códigos de método do FMEA (`EV-*`) são reconciliados com as **oito investigações** do caso CAT 777E; as fontes de referência e limitações são rastreadas em `data/diagnostic-method-sources.v1.json`.
 
 A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
+
+## Ciclo 47 — Red team de texto e evidência documental (proposta)
+
+A ferramenta `benchmarks/cycle47_evidence_leakage.py` revisa **sem executar testes físicos** o pacote privado dos Ciclos 45–46 e indica pistas de método ocultadas por Unicode, mistura de alfabetos, instruções contaminantes, IDs internos expostos e perguntas quase duplicadas. Também conserva em flags separadas as lacunas de prova sintética, proveniência documental e efetividade OEM. O relatório **não contém textos privados**, só códigos de alerta, identificadores e digests; continua sob custódia privada. Todos os casos do CI são fictícios. A ausência de alerta não certifica neutralidade, fonte OEM, parecer humano ou validade diagnóstica. **NO GO** para qualquer uso operacional.
+
+```bash
+python -m unittest tests.test_cycle47_evidence_leakage -v
+```
 
 ## Ciclo 46 — Triagem de cegamento e adjudicação externa (proposta)
 
