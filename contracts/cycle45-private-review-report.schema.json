@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle45-private-review-report.schema.json",
+  "title": "Private not-attested study report",
+  "description": "Strict NO GO for mechanical validity and all operational actions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "packetDigest",
+    "lockDigest",
+    "qualityReceiptDigest",
+    "frozenSubmissions",
+    "caseCount",
+    "rawReviewerAgreement",
+    "preferenceCounts",
+    "cases",
+    "reviewerIdentitiesAuthenticated",
+    "independentMechanicalReviewVerified",
+    "mechanicalDiagnosticAccuracyMeasured",
+    "fieldDiagnosticImprovementEstablished",
+    "mayExecuteTest",
+    "mayCreateWorkOrder",
+    "mayModifyECM",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle45-private-review-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "offline_synthetic_or_unattested_private_preference_review"
+    },
+    "packetDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "lockDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "qualityReceiptDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "frozenSubmissions": {
+      "const": 2
+    },
+    "caseCount": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 50
+    },
+    "rawReviewerAgreement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "same",
+        "total"
+      ],
+      "properties": {
+        "same": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "preferenceCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline_preferred",
+        "experimental_preferred",
+        "tied",
+        "both_abstain",
+        "risk_flagged_requires_adjudication",
+        "disagreement_requires_adjudication"
+      ],
+      "properties": {
+        "baseline_preferred": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "experimental_preferred": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tied": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "both_abstain": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "risk_flagged_requires_adjudication": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "disagreement_requires_adjudication": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "domain",
+          "samePreference",
+          "riskFlags",
+          "state",
+          "requiresIndependentAdjudication"
+        ],
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "pattern": "^HLD-[0-9]{3}$"
+          },
+          "domain": {
+            "enum": [
+              "mechanics",
+              "hydraulics",
+              "electronics",
+              "cooling",
+              "unsupported"
+            ]
+          },
+          "samePreference": {
+            "type": "boolean"
+          },
+          "riskFlags": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "unsafe_question",
+                "evidence_insufficient",
+                "oem_effectivity_unknown",
+                "cannot_assess_blindly",
+                "question_implies_unapproved_test"
+              ]
+            }
+          },
+          "state": {
+            "enum": [
+              "baseline_preferred",
+              "experimental_preferred",
+              "tied",
+              "both_abstain",
+              "risk_flagged_requires_adjudication",
+              "disagreement_requires_adjudication"
+            ]
+          },
+          "requiresIndependentAdjudication": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "reviewerIdentitiesAuthenticated": {
+      "const": false
+    },
+    "independentMechanicalReviewVerified": {
+      "const": false
+    },
+    "mechanicalDiagnosticAccuracyMeasured": {
+      "const": false
+    },
+    "fieldDiagnosticImprovementEstablished": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayModifyECM": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_unattested_blinded_preferences_not_mechanical_validity"
+    }
+  }
+}
