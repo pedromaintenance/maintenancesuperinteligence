@@ -1,0 +1,30 @@
+{
+  "schema": "maintenance-superinteligence.cycle46-neutrality-policy.v1",
+  "version": "1.0.0",
+  "nature": "heuristic_language_screen_not_blindness_validation",
+  "lengthRatioThreshold": 2.5,
+  "originDisclosureCues": [
+    "baseline",
+    "experimental",
+    "algoritmo",
+    "inteligencia artificial",
+    "gerado por ia",
+    "modelo automatizado",
+    "modelo anterior",
+    "modelo proposto",
+    "metodo desenvolvido"
+  ],
+  "screenedWarnings": [
+    "question_origin_cue",
+    "question_length_imbalance"
+  ],
+  "requiresReviewReasons": [
+    "possible_blinding_leak",
+    "reviewer_risk_flag",
+    "reviewer_disagreement",
+    "reviewer_uncertainty"
+  ],
+  "independentNeutralityVerified": false,
+  "independentAdjudicationCompleted": false,
+  "operationallyApproved": false
+}
