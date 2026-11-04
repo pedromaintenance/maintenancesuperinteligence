@@ -1,0 +1,48 @@
+name: Cycle 45 private blind paired review rehearsal (synthetic CI only)
+
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle45*'
+      - 'tests/test_cycle45_blinded_pairwise.py'
+      - 'contracts/cycle45-*'
+      - '.github/workflows/cycle45-blinded-review.yml'
+      - 'docs/CICLO_2026-11-04_REVISAO_CEGA_PAREADA_45.md'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle45*'
+      - 'tests/test_cycle45_blinded_pairwise.py'
+      - 'contracts/cycle45-*'
+      - '.github/workflows/cycle45-blinded-review.yml'
+      - 'docs/CICLO_2026-11-04_REVISAO_CEGA_PAREADA_45.md'
+
+permissions:
+  contents: read
+
+jobs:
+  blinded-pair-rehearsal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile source and test only artificial temporary inputs
+        run: |
+          python -m compileall -q benchmarks/cycle45_blinded_pairwise.py tests/test_cycle45_blinded_pairwise.py
+          python -m unittest tests.test_cycle45_blinded_pairwise -v
+      - name: Assert no study corpus or reviewers are published as artifacts
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          p = Path("docs/CICLO_2026-11-04_REVISAO_CEGA_PAREADA_45.md")
+          assert p.is_file()
+          text = p.read_text(encoding="utf-8")
+          assert "NO GO" in text and "humanos" in text
+          from benchmarks import cycle45_blinded_pairwise as module
+          assert module.STUDY_DENIALS
+          assert "unsafe_question" in module.ALLOWED_FLAGS
+          print("PASS: synthetic-only tests; zero private files uploaded")
+          PY

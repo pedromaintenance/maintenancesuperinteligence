@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle45-private-arm-lock.schema.json",
+  "title": "Private mapping lock",
+  "description": "NEVER publish; HMAC does not attest human identity",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "packetDigest",
+    "sourceDigest",
+    "candidateDigest",
+    "qualityReceiptDigest",
+    "armMapping",
+    "commitmentHmacSha256",
+    "humanIdentityAuthenticated",
+    "externalExpertReviewCompleted",
+    "mayExecuteTest"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle45-private-arm-lock.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "private_custodian_mapping_not_signature"
+    },
+    "packetDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "candidateDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "qualityReceiptDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "armMapping": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "baselineArm"
+        ],
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "pattern": "^HLD-[0-9]{3}$"
+          },
+          "baselineArm": {
+            "enum": [
+              "A",
+              "B"
+            ]
+          }
+        }
+      }
+    },
+    "commitmentHmacSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "humanIdentityAuthenticated": {
+      "const": false
+    },
+    "externalExpertReviewCompleted": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    }
+  }
+}
