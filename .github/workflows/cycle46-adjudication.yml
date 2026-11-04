@@ -1,0 +1,52 @@
+name: Cycle 46 private adjudication handoff and masking QA (synthetic only)
+
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle46*'
+      - 'tests/test_cycle46_adjudication.py'
+      - 'contracts/cycle46-*'
+      - 'governance/cycle46-*'
+      - '.github/workflows/cycle46-adjudication.yml'
+      - 'docs/CICLO_2026-11-04_ADJUDICACAO_E_CEGAMENTO_46.md'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle46*'
+      - 'tests/test_cycle46_adjudication.py'
+      - 'contracts/cycle46-*'
+      - 'governance/cycle46-*'
+      - '.github/workflows/cycle46-adjudication.yml'
+      - 'docs/CICLO_2026-11-04_ADJUDICACAO_E_CEGAMENTO_46.md'
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-adjudication-triage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and run synthetic adjudication tests
+        run: |
+          python -m compileall -q benchmarks/cycle46_adjudication.py tests/test_cycle46_adjudication.py
+          python -m unittest tests.test_cycle46_adjudication -v
+      - name: Confirm documented boundaries without uploading private files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          from benchmarks.cycle46_adjudication import POLICY, validate_policy, FALSE_FIELDS
+          p=json.loads(POLICY.read_text(encoding="utf-8"))
+          assert validate_policy(p)
+          assert p["independentAdjudicationCompleted"] is False
+          assert p["independentNeutralityVerified"] is False
+          assert p["operationallyApproved"] is False
+          assert "mayReleaseEquipment" in FALSE_FIELDS
+          doc=Path("docs/CICLO_2026-11-04_ADJUDICACAO_E_CEGAMENTO_46.md").read_text(encoding="utf-8")
+          assert "NO GO" in doc and "não" in doc
+          print("PASS: private adjudication rehearsal only; real engineering authority absent")
+          PY

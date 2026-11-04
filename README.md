@@ -83,6 +83,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 43 — Auditoria de maturidade e validade mecânica (proposta)](docs/CICLO_2026-11-03_AUDITORIA_MATURIDADE_43.md)
 - [Ciclo 44 — Ensaio simbólico de perguntas discriminantes (proposta)](docs/CICLO_2026-11-03_ESTUDO_DISCRIMINACAO_44.md)
 - [Ciclo 45 — Revisão cega pareada sob custódia privada (proposta)](docs/CICLO_2026-11-04_REVISAO_CEGA_PAREADA_45.md)
+- [Ciclo 46 — Auditoria de cegamento e fila de adjudicação externa (proposta)](docs/CICLO_2026-11-04_ADJUDICACAO_E_CEGAMENTO_46.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -141,6 +142,14 @@ O parâmetro opcional `--simulated-test-results examples/777e_simulated_test_res
 O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em cinco disciplinas: óleo (4), hidráulica (3), mecânica (3), vibração (2) e eletrônica (2). Seis códigos de método do FMEA (`EV-*`) são reconciliados com as **oito investigações** do caso CAT 777E; as fontes de referência e limitações são rastreadas em `data/diagnostic-method-sources.v1.json`.
 
 A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
+
+## Ciclo 46 — Triagem de cegamento e adjudicação externa (proposta)
+
+O módulo `benchmarks/cycle46_adjudication.py` reconstrói a custódia dos Ciclos 30–32 e o relatório de preferências A/B do Ciclo 45. Executa uma triagem heurística de termos que revelam o método e disparidades de comprimento das perguntas. Discordâncias, flags de risco, empates, abstenções e indícios de desmascaramento produzem **pendências para adjudicação**, nunca uma decisão técnica automática. Dossiês de providências podem ser congelados sob hash, mas não são assinaturas nem pareceres de engenheiros. O CI usa apenas dados inventados; **nenhuma revisão externa ocorreu, nenhuma causa mecânica foi confirmada e nenhuma operação foi autorizada**. [Documentação](docs/CICLO_2026-11-04_ADJUDICACAO_E_CEGAMENTO_46.md).
+
+```bash
+python -m unittest tests.test_cycle46_adjudication -v
+```
 
 ## Ciclo 45 — Comparação cega pareada sem validação humana (proposta)
 
