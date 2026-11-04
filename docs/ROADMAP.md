@@ -2,6 +2,14 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 44 (branch proposta; estudo simbólico)
+
+**Entregue em pesquisa:** oito cenários didáticos em comandos finais, hidráulica, ECM e arrefecimento, com três hipóteses rivais e três perguntas por cenário. A métrica conta somente quantos dos três pares de hipóteses teriam resultados simbólicos distintos conforme premissas criadas pelo autor; a métrica **não equivale** a probabilidade posterior, qualidade física do ensaio, valor esperado de informação, diagnóstico ou recomendação operacional. Contradição, empate ou pré-requisito ausente obrigam a abstenção/indisponibilidade.
+
+**Testes e gates:** Python offline, contratos JSON Schema, verificação de previsões incompletas, pré-requisitos, falsa prova OEM, causalidade não confirmada, claims de revisão externa e ações proibidas. Sem acesso real, sem solicitações SAP e sem execução física.
+
+**Próxima entrega não substituível pelo código:** usar, sob custódia privada e com autorização, a estrutura de casos inéditos dos Ciclos 30–32 para avaliação cega pareada de perguntas. Congelar o protocolo antes da revisão; proteger identidade, origem, direitos de uso e conflitos de interesse. Obter duas avaliações independentes reais e adjudicação dos dissensos antes de qualquer alegação de validade técnica. [Ler Ciclo 44](CICLO_2026-11-03_ESTUDO_DISCRIMINACAO_44.md).
+
 ## Marco de pesquisa: Ciclo 43 (branch proposta, sem homologação)
 
 **Papel:** consolidar rastreabilidade e limites de validação, antes de novos serviços ou de declarar competência diagnóstica. O auditor offline registra cinco afirmações de maturidade, quatro issues abertas no snapshot de 03/11/2026 e fingerprints de evidências. Executa 24 casos de regressão editorial e 128 combinações contrafactuais **estruturais**, mantendo NO GO. A regra e a expectativa ainda são autorais; não representam 128 casos inéditos validados.
