@@ -80,6 +80,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 40 — Laboratório isolado de identidade e autorização](docs/CICLO_2026-10-29_LABORATORIO_IDENTIDADE_ISOLADO.md)
 - [Ciclo 41 — Dois serviços HTTP isolados e testes de integração](docs/CICLO_2026-11-03_SERVICOS_HTTP_IDENTIDADE_RECURSOS.md)
 - [Ciclo 42 — Resiliência e negação segura entre serviços](docs/CICLO_2026-11-03_RESILIENCIA_DISTRIBUIDA_FAIL_CLOSED.md)
+- [Ciclo 43 — Auditoria de maturidade e validade mecânica (proposta)](docs/CICLO_2026-11-03_AUDITORIA_MATURIDADE_43.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -138,6 +139,15 @@ O parâmetro opcional `--simulated-test-results examples/777e_simulated_test_res
 O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em cinco disciplinas: óleo (4), hidráulica (3), mecânica (3), vibração (2) e eletrônica (2). Seis códigos de método do FMEA (`EV-*`) são reconciliados com as **oito investigações** do caso CAT 777E; as fontes de referência e limitações são rastreadas em `data/diagnostic-method-sources.v1.json`.
 
 A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
+
+## Ciclo 43 — Auditoria reproduzível de maturidade (proposta)
+
+O auditor offline `benchmarks/cycle43_readiness.py` reconstrói a concordância **autoral** de 24 casos e verifica **128 combinações sintéticas** das quatro portas documentais em cada um dos quatro domínios. Relaciona arquivos de evidência, limites de maturidade e as issues abertas #1, #4, #5 e #50 a um snapshot de 03/11/2026, sem consultar o estado vivo do GitHub. O resultado é obrigatoriamente `no_go_independent_validation_not_performed`. Nenhuma revisão mecânica independente, efetividade OEM, acurácia em campo ou alçada SAP/ECM é alegada.
+
+```bash
+python -m unittest tests.test_cycle43_readiness -v
+python -m benchmarks.cycle43_readiness --output build/benchmarks/cycle43-readiness.json --markdown build/benchmarks/cycle43-readiness.md
+```
 
 ## Verificação e desenvolvimento
 
