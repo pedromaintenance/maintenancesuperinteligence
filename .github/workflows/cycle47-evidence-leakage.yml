@@ -1,0 +1,55 @@
+name: Cycle 47 masking adversarial preflight (synthetic CI only)
+
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle47*'
+      - 'tests/test_cycle47_evidence_leakage.py'
+      - 'contracts/cycle47-*'
+      - 'governance/cycle47-*'
+      - 'docs/CICLO_2026-11-04_RED_TEAM_MASCARAMENTO_47.md'
+      - '.github/workflows/cycle47-evidence-leakage.yml'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle47*'
+      - 'tests/test_cycle47_evidence_leakage.py'
+      - 'contracts/cycle47-*'
+      - 'governance/cycle47-*'
+      - 'docs/CICLO_2026-11-04_RED_TEAM_MASCARAMENTO_47.md'
+      - '.github/workflows/cycle47-evidence-leakage.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  adversarial-masking-rehearsal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and test only synthetic, temporary cases
+        run: |
+          python -m compileall -q benchmarks/cycle47_evidence_leakage.py tests/test_cycle47_evidence_leakage.py
+          python -m unittest tests.test_cycle47_evidence_leakage -v
+      - name: Reject claims of independent expertise, source approval or operational authority
+        run: |
+          python - <<'PY'
+          from benchmarks.cycle47_evidence_leakage import (
+            POLICY, C47_NO_GO, load, validate_policy,
+          )
+          from pathlib import Path
+          policy = load(POLICY)
+          assert validate_policy(policy)
+          for name in ('expertMaskingVerified',
+                       'externalSourceProvenanceVerified',
+                       'independentEngineeringApproval',
+                       'operationallyApproved'):
+              assert policy[name] is False
+          assert C47_NO_GO == 'no_go_masking_and_provenance_not_independently_validated'
+          doc = Path('docs/CICLO_2026-11-04_RED_TEAM_MASCARAMENTO_47.md').read_text(encoding='utf-8')
+          assert 'NO GO' in doc and 'não' in doc
+          print('PASS: synthetic-only red team, external validation still required')
+          PY
