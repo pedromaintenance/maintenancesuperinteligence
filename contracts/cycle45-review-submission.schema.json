@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle45-review-submission.schema.json",
+  "title": "Private synthetic or unattended reviewer response",
+  "description": "Separate submissions but not authenticated human opinions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "packetDigest",
+    "reviewerAlias",
+    "realHumanIdentityAuthenticated",
+    "independentExpertReviewVerified",
+    "assessments"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle45-review-submission.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "packetDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reviewerAlias": {
+      "type": "string",
+      "pattern": "^REV-[A-Z0-9]{2,16}$"
+    },
+    "realHumanIdentityAuthenticated": {
+      "const": false
+    },
+    "independentExpertReviewVerified": {
+      "const": false
+    },
+    "assessments": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "preference",
+          "reason",
+          "riskFlags",
+          "physicalTestAuthorized",
+          "technicalApprovalVerified"
+        ],
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "pattern": "^HLD-[0-9]{3}$"
+          },
+          "preference": {
+            "enum": [
+              "A",
+              "B",
+              "tie",
+              "abstain"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 12,
+            "maxLength": 1200
+          },
+          "riskFlags": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "unsafe_question",
+                "evidence_insufficient",
+                "oem_effectivity_unknown",
+                "cannot_assess_blindly",
+                "question_implies_unapproved_test"
+              ]
+            }
+          },
+          "physicalTestAuthorized": {
+            "const": false
+          },
+          "technicalApprovalVerified": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}
