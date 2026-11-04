@@ -336,6 +336,40 @@ class Cycle45BlindPairwiseTests(unittest.TestCase):
         with self.assertRaises(ReviewRejected):
             verify_report(forged, *args)
 
+    def test_versioned_schemas_parse_and_prohibit_real_authority(self):
+        root = Path(__file__).resolve().parents[1] / "contracts"
+        names = (
+            "candidate-source", "reviewer-packet", "private-arm-lock",
+            "review-submission", "review-receipt", "private-review-report",
+        )
+        schemas = {}
+        for name in names:
+            schema = json.loads((root / ("cycle45-" + name + ".schema.json"))
+                                .read_text(encoding="utf-8"))
+            self.assertEqual(schema["$schema"],
+                             "https://json-schema.org/draft/2020-12/schema")
+            self.assertFalse(schema["additionalProperties"])
+            schemas[name] = schema
+        for field in ("realExpertReviewCompleted", "mayExecuteTest"):
+            self.assertIs(
+                schemas["candidate-source"]["properties"][field]["const"],
+                False
+            )
+        for field in ("reviewerIdentitiesAuthenticated",
+                      "independentMechanicalReviewVerified",
+                      "mechanicalDiagnosticAccuracyMeasured",
+                      "fieldDiagnosticImprovementEstablished",
+                      "mayExecuteTest", "mayCreateWorkOrder",
+                      "mayModifyECM", "mayReleaseEquipment"):
+            self.assertIs(
+                schemas["private-review-report"]["properties"][field]["const"],
+                False
+            )
+        self.assertEqual(
+            schemas["private-review-report"]["properties"]["decision"]["const"],
+            "no_go_unattested_blinded_preferences_not_mechanical_validity"
+        )
+
     def test_private_cli_prepare_freeze_score_no_overwrite(self):
         with tempfile.TemporaryDirectory() as tmp:
             folder = Path(tmp)
