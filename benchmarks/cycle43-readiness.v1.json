@@ -1,0 +1,128 @@
+{
+  "schema": "maintenance-superinteligence.cycle43-readiness.v1",
+  "version": "1.0.0",
+  "baseline": {
+    "mainCommit": "604c9fa2f98393ca31bef5cf31c40a60566851e7",
+    "researchVersion": "4.2.0",
+    "lastCompletedCycle": 42,
+    "snapshotDate": "2026-11-03",
+    "source": "github_main_snapshot_not_live_api"
+  },
+  "claims": [
+    {
+      "id": "question_selector",
+      "state": "implemented_synthetic",
+      "evidencePaths": [
+        "benchmarks/mechanical_reasoning.py",
+        "benchmarks/mechanical-reasoning-cases.v1.json",
+        "benchmarks/mechanical-reasoning-oracle.v1.json",
+        "tests/test_mechanical_reasoning.py",
+        "docs/CICLO_2026-10-27_BENCHMARK_RACIOCINIO_MECANICO.md"
+      ],
+      "limitation": "Regressao editorial, sem validação por especialistas independentes; a regra seleciona perguntas, não causas de falha.",
+      "externallyValidated": false
+    },
+    {
+      "id": "independent_mechanical_review",
+      "state": "not_demonstrated",
+      "evidencePaths": [
+        "knowledge/independent_review.py",
+        "docs/CICLO_2026-10-29_PROTOCOLO_REVISAO_INDEPENDENTE.md",
+        "benchmarks/blind_review_protocol.py"
+      ],
+      "limitation": "Protocolos e revisores ficticios não comprovam parecer independente, custódia ou experiencia profissional.",
+      "externallyValidated": false
+    },
+    {
+      "id": "schema_coverage",
+      "state": "partially_verified",
+      "evidencePaths": [
+        "scripts/validate.py",
+        "contracts/claim.schema.json",
+        "contracts/mechanical-reasoning-report.schema.json"
+      ],
+      "limitation": "O script basal confirma metadados selecionados e não valida todos os schemas contra todas as instancias.",
+      "externallyValidated": false
+    },
+    {
+      "id": "distributed_authorization",
+      "state": "synthetic_only",
+      "evidencePaths": [
+        "governance/distributed_resilience.py",
+        "governance/loopback_http_services.py",
+        "tests/test_distributed_resilience.py",
+        "docs/CICLO_2026-11-03_RESILIENCIA_DISTRIBUIDA_FAIL_CLOSED.md"
+      ],
+      "limitation": "A topologia HTTP usa processos locais e contas inventadas, sem autoridade ou confiabilidade de ambientes operacionais.",
+      "externallyValidated": false
+    },
+    {
+      "id": "backlog_traceability",
+      "state": "reconciliation_required",
+      "evidencePaths": [
+        "docs/ROADMAP.md",
+        "docs/CICLO_2026-10-27_DOSSIES_REVISAO_GRAFO.md",
+        "docs/COMPETENCIAS.md"
+      ],
+      "limitation": "Issues historicas permanecem abertas; conclusao documental nao equivale a aceite de escopos mais amplos.",
+      "externallyValidated": false
+    }
+  ],
+  "openIssueSnapshot": [
+    {
+      "number": 1,
+      "state": "reassess",
+      "evidencePaths": [
+        "docs/ARQUITETURA.md",
+        "contracts/claim.schema.json",
+        "scripts/validate.py"
+      ],
+      "remainingWork": "Conferir todos os subcontratos de ontologia e casos positivos e negativos para comprovar criterios originais.",
+      "mayAutoClose": false
+    },
+    {
+      "number": 4,
+      "state": "open",
+      "evidencePaths": [
+        "docs/COMPETENCIAS.md",
+        "docs/DOMINIOS.md"
+      ],
+      "remainingWork": "Transformar as 56 habilidades em trilhas verificaveis, sem equiparar jogo a certificacao profissional.",
+      "mayAutoClose": false
+    },
+    {
+      "number": 5,
+      "state": "open",
+      "evidencePaths": [
+        "docs/GOVERNANCA.md",
+        "tests/test_distributed_resilience.py"
+      ],
+      "remainingWork": "Separar testes sinteticos de pareceres humanos, auditoria de seguranca e autorizacao corporativa.",
+      "mayAutoClose": false
+    },
+    {
+      "number": 50,
+      "state": "partially_implemented",
+      "evidencePaths": [
+        "docs/CICLO_2026-10-27_DOSSIES_REVISAO_GRAFO.md",
+        "pilot/change_review_packets.py",
+        "docs/CICLO_2026-10-27_CONTESTACAO_REVOGACAO.md"
+      ],
+      "remainingWork": "Verificar validacao aninhada, custodia e parecer tecnico independente antes de promover encerramento.",
+      "mayAutoClose": false
+    }
+  ],
+  "safety": {
+    "diagnosticAccuracyMeasured": false,
+    "independentMechanicalReviewCompleted": false,
+    "realFieldMeasurementsIncluded": false,
+    "oemSeriesEffectivityVerified": false,
+    "realIdentityProviderConnected": false,
+    "realPrivateDocumentsAccessed": false,
+    "mayWriteSAP": false,
+    "mayModifyECM": false,
+    "mayExecuteTests": false,
+    "mayReleaseEquipment": false
+  },
+  "externalReviewArtifactsReceived": false
+}
