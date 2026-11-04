@@ -1,0 +1,67 @@
+name: Cycle 44 symbolic mechanical discrimination (research-only)
+
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle44*'
+      - 'tests/test_cycle44_discrimination.py'
+      - 'contracts/cycle44-*'
+      - '.github/workflows/cycle44-discrimination.yml'
+      - 'docs/CICLO_2026-11-03_ESTUDO_DISCRIMINACAO_44.md'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle44*'
+      - 'tests/test_cycle44_discrimination.py'
+      - 'contracts/cycle44-*'
+      - '.github/workflows/cycle44-discrimination.yml'
+      - 'docs/CICLO_2026-11-03_ESTUDO_DISCRIMINACAO_44.md'
+
+permissions:
+  contents: read
+
+jobs:
+  symbolic-discrimination:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile Python and run adversarial study tests
+        run: |
+          python -m compileall -q benchmarks/cycle44_discrimination.py tests/test_cycle44_discrimination.py
+          python -m unittest tests.test_cycle44_discrimination -v
+      - name: Build strictly synthetic reproducible report
+        run: |
+          python -m benchmarks.cycle44_discrimination \
+            --output build/benchmarks/cycle44-discrimination.json \
+            --markdown build/benchmarks/cycle44-discrimination.md
+      - name: Verify NO GO and non-field benchmark semantics
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          p = Path('build/benchmarks/cycle44-discrimination.json')
+          r = json.loads(p.read_text(encoding='utf-8'))
+          assert r['trialCount'] == 8
+          assert r['rankedPaperOnlyCount'] == 4
+          assert r['abstentionCount'] == 4
+          assert r['syntheticPairCoverageComparison']['independentOracleUsed'] is False
+          assert r['syntheticPairCoverageComparison']['fieldInformationGainMeasured'] is False
+          assert r['diagnosticAccuracyMeasured'] is False
+          assert r['independentMechanicalReviewCompleted'] is False
+          assert r['fieldMeasurements'] == 0 and r['confirmedRootCauses'] == 0
+          assert not any(r[k] for k in ('mayExecuteTest','mayCreateWorkOrder',
+                                      'mayModifyEcm','mayReleaseEquipment'))
+          assert r['decision'] == 'no_go_symbolic_discrimination_not_validated_in_field'
+          print('PASS: symbolic mechanical trial, explicit NO GO')
+          PY
+      - name: Upload fictional report only
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle44-symbolic-question-study
+          path: |
+            build/benchmarks/cycle44-discrimination.json
+            build/benchmarks/cycle44-discrimination.md
+          retention-days: 14
