@@ -149,6 +149,23 @@ class Cycle44DiscriminationTests(unittest.TestCase):
             with self.subTest(path=path), self.assertRaises(ReviewRejected):
                 d.verify_report(altered, self.data)
 
+    def test_schema_contracts_require_no_go(self):
+        import json
+        root = Path(__file__).resolve().parents[1] / "contracts"
+        cases = json.loads((root / "cycle44-trials.schema.json").read_text(encoding="utf-8"))
+        report = json.loads((root / "cycle44-report.schema.json").read_text(encoding="utf-8"))
+        for schema in (cases, report):
+            self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")
+            self.assertFalse(schema["additionalProperties"])
+        for key in d.DENIALS:
+            self.assertIs(cases["properties"]["claims"]["properties"][key]["const"], False)
+        for key in ("diagnosticAccuracyMeasured", "independentMechanicalReviewCompleted",
+                    "mayExecuteTest", "mayCreateWorkOrder", "mayModifyEcm",
+                    "mayReleaseEquipment"):
+            self.assertIs(report["properties"][key]["const"], False)
+        self.assertEqual(report["properties"]["decision"]["const"],
+                         "no_go_symbolic_discrimination_not_validated_in_field")
+
     def test_cli_and_report_are_reproducible_offline(self):
         note = d.markdown(self.report)
         self.assertIn("NO GO", note)
