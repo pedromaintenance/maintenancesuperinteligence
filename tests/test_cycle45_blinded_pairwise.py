@@ -249,7 +249,7 @@ class Cycle45BlindPairwiseTests(unittest.TestCase):
             (("cases", 0, "experimental", "physicalTestAuthorized"), True),
             (("cases", 0, "experimental", "questionText"),
              self.candidates["cases"][0]["baseline"]["questionText"]),
-            (("cases", 0, "experimental", "questionId"), "replace_motor"),
+            (("cases", 0, "experimental", "questionId"), "replace motor"),
             (("cases", 1, "caseId"), "HLD-999"),
         ):
             mutated = copy.deepcopy(self.candidates)
