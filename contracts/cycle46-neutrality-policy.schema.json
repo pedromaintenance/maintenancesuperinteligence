@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle46-neutrality-policy.schema.json",
+  "title": "Cycle 46 synthetic-only masking heuristic policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "lengthRatioThreshold",
+    "originDisclosureCues",
+    "screenedWarnings",
+    "requiresReviewReasons",
+    "independentNeutralityVerified",
+    "independentAdjudicationCompleted",
+    "operationallyApproved"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle46-neutrality-policy.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "heuristic_language_screen_not_blindness_validation"
+    },
+    "lengthRatioThreshold": {
+      "const": 2.5
+    },
+    "originDisclosureCues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 9,
+      "maxItems": 9
+    },
+    "screenedWarnings": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "question_origin_cue",
+          "question_length_imbalance"
+        ]
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "requiresReviewReasons": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "possible_blinding_leak",
+          "reviewer_risk_flag",
+          "reviewer_disagreement",
+          "reviewer_uncertainty"
+        ]
+      },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "independentNeutralityVerified": {
+      "const": false
+    },
+    "independentAdjudicationCompleted": {
+      "const": false
+    },
+    "operationallyApproved": {
+      "const": false
+    }
+  }
+}
