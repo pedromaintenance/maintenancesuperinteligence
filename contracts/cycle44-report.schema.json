@@ -1,0 +1,261 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle44-report.schema.json",
+  "title": "Cycle 44 symbolic question discrimination report, never clinical/field authority",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "fixtureDigest",
+    "trialCount",
+    "rankedPaperOnlyCount",
+    "abstentionCount",
+    "syntheticPairCoverageComparison",
+    "trials",
+    "limitations",
+    "diagnosticAccuracyMeasured",
+    "independentMechanicalReviewCompleted",
+    "fieldMeasurements",
+    "confirmedRootCauses",
+    "mayExecuteTest",
+    "mayCreateWorkOrder",
+    "mayModifyEcm",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle44-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "symbolic_editorial_study_not_independent_review"
+    },
+    "fixtureDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "trialCount": {
+      "const": 8
+    },
+    "rankedPaperOnlyCount": {
+      "const": 4
+    },
+    "abstentionCount": {
+      "const": 4
+    },
+    "syntheticPairCoverageComparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scoredTrials",
+        "totalTheoreticalPairDifference",
+        "fieldInformationGainMeasured",
+        "independentOracleUsed"
+      ],
+      "properties": {
+        "scoredTrials": {
+          "const": 4
+        },
+        "totalTheoreticalPairDifference": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fieldInformationGainMeasured": {
+          "const": false
+        },
+        "independentOracleUsed": {
+          "const": false
+        }
+      }
+    },
+    "trials": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "trialId",
+          "familyId",
+          "state",
+          "reason",
+          "baselineQuestionId",
+          "selectedQuestionId",
+          "theoreticalPairsBaseline",
+          "theoreticalPairsSelected",
+          "theoreticalPairDifference",
+          "symbolicQuestionCoverage",
+          "totalHypothesisPairs",
+          "unconfirmedHypotheses",
+          "physicalTestsPerformed",
+          "mayExecuteTest",
+          "mayCreateWorkOrder",
+          "mayModifyEcm",
+          "mayReleaseEquipment"
+        ],
+        "properties": {
+          "trialId": {
+            "type": "string"
+          },
+          "familyId": {
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "abstain",
+              "paper_ranking_under_author_assumptions"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "baselineQuestionId": {
+            "type": "string"
+          },
+          "selectedQuestionId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "theoreticalPairsBaseline": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "theoreticalPairsSelected": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "theoreticalPairDifference": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "symbolicQuestionCoverage": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "questionId",
+                "separablePairs",
+                "fictionalPrerequisitePresent"
+              ],
+              "properties": {
+                "questionId": {
+                  "type": "string"
+                },
+                "separablePairs": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "fictionalPrerequisitePresent": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "totalHypothesisPairs": {
+            "const": 3
+          },
+          "unconfirmedHypotheses": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "string"
+            }
+          },
+          "physicalTestsPerformed": {
+            "const": 0
+          },
+          "mayExecuteTest": {
+            "const": false
+          },
+          "mayCreateWorkOrder": {
+            "const": false
+          },
+          "mayModifyEcm": {
+            "const": false
+          },
+          "mayReleaseEquipment": {
+            "const": false
+          }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "string"
+      }
+    },
+    "diagnosticAccuracyMeasured": {
+      "const": false
+    },
+    "independentMechanicalReviewCompleted": {
+      "const": false
+    },
+    "fieldMeasurements": {
+      "const": 0
+    },
+    "confirmedRootCauses": {
+      "const": 0
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayModifyEcm": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_symbolic_discrimination_not_validated_in_field"
+    }
+  }
+}
