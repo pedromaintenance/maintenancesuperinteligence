@@ -144,10 +144,6 @@ def validate_packet(packet):
             "blind packet case count invalid")
     # Packet content is authenticated against the original source, candidate
     # source and private assignment using check_custody() before scoring.
-    expected_parent_keys = set(reviewer_packet.__globals__["validate_cases"].__globals__.get(
-        "CASE_RE", []
-    )) if False else None  # no dependency on private schema internals
-    del expected_parent_keys
     ids = set()
     for item in packet["cases"]:
         require(isinstance(item, dict) and set(item) ==
