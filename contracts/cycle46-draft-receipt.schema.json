@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle46-draft-receipt.schema.json",
+  "title": "Cycle 46 private hash receipt not signature",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "handoffDigest",
+    "draftDigest",
+    "adjudicatorAlias",
+    "frozen",
+    "authenticatesHumanIdentity",
+    "externalTechnicalAdjudicationCompleted",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle46-draft-receipt.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "handoffDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "draftDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "adjudicatorAlias": {
+      "type": "string",
+      "pattern": "^REV-[A-Z0-9]{2,16}$"
+    },
+    "frozen": {
+      "const": true
+    },
+    "authenticatesHumanIdentity": {
+      "const": false
+    },
+    "externalTechnicalAdjudicationCompleted": {
+      "const": false
+    },
+    "decision": {
+      "const": "pending_real_independent_review_no_go"
+    }
+  }
+}
