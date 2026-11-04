@@ -2,6 +2,14 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 45 (branch proposta; comparação cega pareada)
+
+**Implementado para ensaio sintético:** criação privada de pacotes A/B com posições quase balanceadas, vínculo HMAC entre fontes, candidatos e mapeamento confidencial; gate de qualidade obrigatório dos Ciclos 30–32; congelamento de duas submissões; relatório de concordância simples, preferência descritiva, empate, abstenção, flags de risco e dissenso aguardando adjudicação. Arquivos de estudo não entram no checkout público. [Ver documentação](CICLO_2026-11-04_REVISAO_CEGA_PAREADA_45.md).
+
+**Limites:** aliases sintéticos não comprovam pessoas distintas; HMAC não prova identidade; posicionamento balanceado não garante ocultação do método quando o estilo das perguntas o revela; concordância de preferência não é correção diagnóstica; não há casos de campo nem OEM por série homologados. **NO GO** para testes físicos, abertura de ordem, escrita SAP/ECM ou liberação.
+
+**Gate seguinte:** desenho e auditoria institucional de um estudo humano real. Congelar os objetivos e hipóteses, garantir independência de custódia, qualificação e alçada dos revisores, verificar o cegamento das perguntas, descrever critérios estatísticos prévios e obter consentimento/autorização. Somente depois coletar e analisar os primeiros pareceres com adjudicação externa. Sem esses requisitos, continuar apenas com pesquisa sintética, sem promover status.
+
 ## Marco de pesquisa: Ciclo 44 (branch proposta; estudo simbólico)
 
 **Entregue em pesquisa:** oito cenários didáticos em comandos finais, hidráulica, ECM e arrefecimento, com três hipóteses rivais e três perguntas por cenário. A métrica conta somente quantos dos três pares de hipóteses teriam resultados simbólicos distintos conforme premissas criadas pelo autor; a métrica **não equivale** a probabilidade posterior, qualidade física do ensaio, valor esperado de informação, diagnóstico ou recomendação operacional. Contradição, empate ou pré-requisito ausente obrigam a abstenção/indisponibilidade.
