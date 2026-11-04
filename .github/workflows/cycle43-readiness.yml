@@ -1,0 +1,63 @@
+name: Cycle 43 offline research maturity and strict NO GO
+
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle43*'
+      - 'tests/test_cycle43_readiness.py'
+      - 'docs/CICLO_2026-11-03_AUDITORIA_MATURIDADE_43.md'
+      - '.github/workflows/cycle43-readiness.yml'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle43*'
+      - 'tests/test_cycle43_readiness.py'
+      - 'docs/CICLO_2026-11-03_AUDITORIA_MATURIDADE_43.md'
+      - '.github/workflows/cycle43-readiness.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  offline-readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check Python source and run adversarial readiness tests
+        run: |
+          python -m compileall -q benchmarks/cycle43_readiness.py tests/test_cycle43_readiness.py
+          python -m unittest tests.test_cycle43_readiness -v
+      - name: Generate public audit without network or secrets
+        run: |
+          python -m benchmarks.cycle43_readiness \
+            --output build/benchmarks/cycle43-readiness.json \
+            --markdown build/benchmarks/cycle43-readiness.md
+      - name: Assert no diagnostic authority or fictitious external approval
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r = json.loads(Path('build/benchmarks/cycle43-readiness.json').read_text())
+          assert r['authoredQuestionAgreement'] == {'matched': 24, 'total': 24}
+          assert r['counterfactualStructuralChecks']['total'] == 128
+          assert r['counterfactualStructuralChecks']['independentOracleUsed'] is False
+          assert r['decision'] == 'no_go_independent_validation_not_performed'
+          assert r['mayClaimMechanicalDiagnosticCompetence'] is False
+          assert r['mayConcludeExternalTechnicalApproval'] is False
+          assert r['issueStatesAreLive'] is False
+          assert r['externalReviewArtifactsReceived'] is False
+          assert not any(r['safety'].values())
+          assert len(r['trackedOpenIssues']) == 4
+          print('PASS: structural research checks only; NO GO preserved')
+          PY
+      - name: Upload synthetic audit only
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle43-public-readiness-audit
+          path: |
+            build/benchmarks/cycle43-readiness.json
+            build/benchmarks/cycle43-readiness.md
+          retention-days: 14
