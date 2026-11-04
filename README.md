@@ -81,6 +81,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 41 — Dois serviços HTTP isolados e testes de integração](docs/CICLO_2026-11-03_SERVICOS_HTTP_IDENTIDADE_RECURSOS.md)
 - [Ciclo 42 — Resiliência e negação segura entre serviços](docs/CICLO_2026-11-03_RESILIENCIA_DISTRIBUIDA_FAIL_CLOSED.md)
 - [Ciclo 43 — Auditoria de maturidade e validade mecânica (proposta)](docs/CICLO_2026-11-03_AUDITORIA_MATURIDADE_43.md)
+- [Ciclo 44 — Ensaio simbólico de perguntas discriminantes (proposta)](docs/CICLO_2026-11-03_ESTUDO_DISCRIMINACAO_44.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -139,6 +140,15 @@ O parâmetro opcional `--simulated-test-results examples/777e_simulated_test_res
 O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em cinco disciplinas: óleo (4), hidráulica (3), mecânica (3), vibração (2) e eletrônica (2). Seis códigos de método do FMEA (`EV-*`) são reconciliados com as **oito investigações** do caso CAT 777E; as fontes de referência e limitações são rastreadas em `data/diagnostic-method-sources.v1.json`.
 
 A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
+
+## Ciclo 44 — Potencial discriminante em papel (proposta)
+
+O ensaio `benchmarks/cycle44_discrimination.py` avalia **oito cenários inteiramente inventados** em quatro domínios (quatro contextos sem contradição e quatro conflitantes). Ele conta pares de hipóteses teoricamente separáveis por respostas simbólicas autorais, exclui candidatos sem pré-requisito documental fictício e exige abstenção diante de conflito, empate ou falta de previsão. Não calcula probabilidade física, ganho real de informação, acurácia de diagnóstico ou autorização de teste. Reaproveita a futura custódia privada prevista nos Ciclos 30–32 sem introduzir dados privados. **NO GO** para aplicação operacional.
+
+```bash
+python -m unittest tests.test_cycle44_discrimination -v
+python -m benchmarks.cycle44_discrimination --output build/benchmarks/cycle44-discrimination.json --markdown build/benchmarks/cycle44-discrimination.md
+```
 
 ## Ciclo 43 — Auditoria reproduzível de maturidade (proposta)
 

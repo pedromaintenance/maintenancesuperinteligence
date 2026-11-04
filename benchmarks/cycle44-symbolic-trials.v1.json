@@ -1,0 +1,433 @@
+{
+  "schema": "maintenance-superinteligence.cycle44-trials.v1",
+  "version": "1.0.0",
+  "nature": "author_constructed_symbolic_question_rehearsal",
+  "claims": {
+    "diagnosticAccuracyMeasured": false,
+    "independentExpertReviewCompleted": false,
+    "fieldEvidenceUsed": false,
+    "oemEffectivityVerified": false,
+    "mayExecuteTest": false,
+    "mayCreateWorkOrder": false,
+    "mayModifyEcm": false,
+    "mayReleaseEquipment": false
+  },
+  "trials": [
+    {
+      "trialId": "SIM-DISC-01",
+      "familyId": "final_drive",
+      "scenarioKind": "normal",
+      "fictionalSymptom": "Relato fictício de mudança no perfil de óleo do comando final sem cadeia causal demonstrada.",
+      "hypothesisIds": [
+        "fluid_baseline_change",
+        "sample_identity_error",
+        "mechanical_wear_unconfirmed"
+      ],
+      "unresolvedContradiction": false,
+      "sourceStatus": "synthetic_context_declared",
+      "baselineQuestionId": "document_baseline_final_drive",
+      "questions": [
+        {
+          "questionId": "document_baseline_final_drive",
+          "questionText": "Que documentos identificam a formulação do fluido informado?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "fluid_baseline_change": "context_only",
+            "sample_identity_error": "context_only",
+            "mechanical_wear_unconfirmed": "context_only"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "compare_two_groups_final_drive",
+          "questionText": "Os registros independentes permitem separar hipóteses de amostragem?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "fluid_baseline_change": "group_a",
+            "sample_identity_error": "group_b",
+            "mechanical_wear_unconfirmed": "group_b"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "triangulate_three_groups_final_drive",
+          "questionText": "Há rastreabilidade completa para confrontar três previsões editoriais?",
+          "fictionalDocumentaryPrerequisitePresent": false,
+          "symbolicOutcomesByHypothesis": {
+            "fluid_baseline_change": "group_a",
+            "sample_identity_error": "group_b",
+            "mechanical_wear_unconfirmed": "group_c"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        }
+      ]
+    },
+    {
+      "trialId": "SIM-DISC-02",
+      "familyId": "final_drive",
+      "scenarioKind": "contradictory",
+      "fictionalSymptom": "Relato fictício de mudança no perfil de óleo do comando final sem cadeia causal demonstrada.",
+      "hypothesisIds": [
+        "fluid_baseline_change",
+        "sample_identity_error",
+        "mechanical_wear_unconfirmed"
+      ],
+      "unresolvedContradiction": true,
+      "sourceStatus": "contradictory",
+      "baselineQuestionId": "document_baseline_final_drive",
+      "questions": [
+        {
+          "questionId": "document_baseline_final_drive",
+          "questionText": "Que documentos identificam a formulação do fluido informado?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "fluid_baseline_change": "context_only",
+            "sample_identity_error": "context_only",
+            "mechanical_wear_unconfirmed": "context_only"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "compare_two_groups_final_drive",
+          "questionText": "Os registros independentes permitem separar hipóteses de amostragem?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "fluid_baseline_change": "group_a",
+            "sample_identity_error": "group_b",
+            "mechanical_wear_unconfirmed": "group_b"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "triangulate_three_groups_final_drive",
+          "questionText": "Há rastreabilidade completa para confrontar três previsões editoriais?",
+          "fictionalDocumentaryPrerequisitePresent": false,
+          "symbolicOutcomesByHypothesis": {
+            "fluid_baseline_change": "group_a",
+            "sample_identity_error": "group_b",
+            "mechanical_wear_unconfirmed": "group_c"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        }
+      ]
+    },
+    {
+      "trialId": "SIM-DISC-03",
+      "familyId": "hydraulics",
+      "scenarioKind": "normal",
+      "fictionalSymptom": "Relato fictício de atuação hidráulica lenta, com carga e temperatura ainda indeterminadas.",
+      "hypothesisIds": [
+        "load_context",
+        "flow_regulation_unconfirmed",
+        "temperature_dependency"
+      ],
+      "unresolvedContradiction": false,
+      "sourceStatus": "synthetic_context_declared",
+      "baselineQuestionId": "document_baseline_hydraulics",
+      "questions": [
+        {
+          "questionId": "document_baseline_hydraulics",
+          "questionText": "Quais documentos registram as condições do ciclo hidráulico?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "load_context": "context_only",
+            "flow_regulation_unconfirmed": "context_only",
+            "temperature_dependency": "context_only"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "compare_two_groups_hydraulics",
+          "questionText": "Há registros independentes de carga e temperatura para comparação?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "load_context": "group_a",
+            "flow_regulation_unconfirmed": "group_b",
+            "temperature_dependency": "group_b"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "triangulate_three_groups_hydraulics",
+          "questionText": "Existe documentação suficiente para contrapor três hipóteses editoriais?",
+          "fictionalDocumentaryPrerequisitePresent": false,
+          "symbolicOutcomesByHypothesis": {
+            "load_context": "group_a",
+            "flow_regulation_unconfirmed": "group_b",
+            "temperature_dependency": "group_c"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        }
+      ]
+    },
+    {
+      "trialId": "SIM-DISC-04",
+      "familyId": "hydraulics",
+      "scenarioKind": "contradictory",
+      "fictionalSymptom": "Relato fictício de atuação hidráulica lenta, com carga e temperatura ainda indeterminadas.",
+      "hypothesisIds": [
+        "load_context",
+        "flow_regulation_unconfirmed",
+        "temperature_dependency"
+      ],
+      "unresolvedContradiction": true,
+      "sourceStatus": "contradictory",
+      "baselineQuestionId": "document_baseline_hydraulics",
+      "questions": [
+        {
+          "questionId": "document_baseline_hydraulics",
+          "questionText": "Quais documentos registram as condições do ciclo hidráulico?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "load_context": "context_only",
+            "flow_regulation_unconfirmed": "context_only",
+            "temperature_dependency": "context_only"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "compare_two_groups_hydraulics",
+          "questionText": "Há registros independentes de carga e temperatura para comparação?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "load_context": "group_a",
+            "flow_regulation_unconfirmed": "group_b",
+            "temperature_dependency": "group_b"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "triangulate_three_groups_hydraulics",
+          "questionText": "Existe documentação suficiente para contrapor três hipóteses editoriais?",
+          "fictionalDocumentaryPrerequisitePresent": false,
+          "symbolicOutcomesByHypothesis": {
+            "load_context": "group_a",
+            "flow_regulation_unconfirmed": "group_b",
+            "temperature_dependency": "group_c"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        }
+      ]
+    },
+    {
+      "trialId": "SIM-DISC-05",
+      "familyId": "electronics",
+      "scenarioKind": "normal",
+      "fictionalSymptom": "Relato fictício de código de ECM registrado sem correspondência física evidenciada.",
+      "hypothesisIds": [
+        "event_history",
+        "signal_circuit_unconfirmed",
+        "physical_condition_unconfirmed"
+      ],
+      "unresolvedContradiction": false,
+      "sourceStatus": "synthetic_context_declared",
+      "baselineQuestionId": "document_baseline_electronics",
+      "questions": [
+        {
+          "questionId": "document_baseline_electronics",
+          "questionText": "O histórico documental identifica o módulo e evento registrado?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "event_history": "context_only",
+            "signal_circuit_unconfirmed": "context_only",
+            "physical_condition_unconfirmed": "context_only"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "compare_two_groups_electronics",
+          "questionText": "Os registros permitem separar evento transitório de circuito?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "event_history": "group_a",
+            "signal_circuit_unconfirmed": "group_b",
+            "physical_condition_unconfirmed": "group_b"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "triangulate_three_groups_electronics",
+          "questionText": "A cronologia documental distingue as três hipóteses editoriais?",
+          "fictionalDocumentaryPrerequisitePresent": false,
+          "symbolicOutcomesByHypothesis": {
+            "event_history": "group_a",
+            "signal_circuit_unconfirmed": "group_b",
+            "physical_condition_unconfirmed": "group_c"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        }
+      ]
+    },
+    {
+      "trialId": "SIM-DISC-06",
+      "familyId": "electronics",
+      "scenarioKind": "contradictory",
+      "fictionalSymptom": "Relato fictício de código de ECM registrado sem correspondência física evidenciada.",
+      "hypothesisIds": [
+        "event_history",
+        "signal_circuit_unconfirmed",
+        "physical_condition_unconfirmed"
+      ],
+      "unresolvedContradiction": true,
+      "sourceStatus": "contradictory",
+      "baselineQuestionId": "document_baseline_electronics",
+      "questions": [
+        {
+          "questionId": "document_baseline_electronics",
+          "questionText": "O histórico documental identifica o módulo e evento registrado?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "event_history": "context_only",
+            "signal_circuit_unconfirmed": "context_only",
+            "physical_condition_unconfirmed": "context_only"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "compare_two_groups_electronics",
+          "questionText": "Os registros permitem separar evento transitório de circuito?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "event_history": "group_a",
+            "signal_circuit_unconfirmed": "group_b",
+            "physical_condition_unconfirmed": "group_b"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "triangulate_three_groups_electronics",
+          "questionText": "A cronologia documental distingue as três hipóteses editoriais?",
+          "fictionalDocumentaryPrerequisitePresent": false,
+          "symbolicOutcomesByHypothesis": {
+            "event_history": "group_a",
+            "signal_circuit_unconfirmed": "group_b",
+            "physical_condition_unconfirmed": "group_c"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        }
+      ]
+    },
+    {
+      "trialId": "SIM-DISC-07",
+      "familyId": "cooling",
+      "scenarioKind": "normal",
+      "fictionalSymptom": "Relato fictício de aquecimento sob carga sem dados comparáveis de rejeição térmica.",
+      "hypothesisIds": [
+        "duty_cycle",
+        "airflow_unconfirmed",
+        "coolant_context"
+      ],
+      "unresolvedContradiction": false,
+      "sourceStatus": "synthetic_context_declared",
+      "baselineQuestionId": "document_baseline_cooling",
+      "questions": [
+        {
+          "questionId": "document_baseline_cooling",
+          "questionText": "Há documentos do ciclo térmico e condições de carga?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "duty_cycle": "context_only",
+            "airflow_unconfirmed": "context_only",
+            "coolant_context": "context_only"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "compare_two_groups_cooling",
+          "questionText": "Os registros históricos distinguem fluxo de ar e demanda térmica?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "duty_cycle": "group_a",
+            "airflow_unconfirmed": "group_b",
+            "coolant_context": "group_b"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "triangulate_three_groups_cooling",
+          "questionText": "Os registros cruzados permitiriam contrapor as três hipóteses editoriais?",
+          "fictionalDocumentaryPrerequisitePresent": false,
+          "symbolicOutcomesByHypothesis": {
+            "duty_cycle": "group_a",
+            "airflow_unconfirmed": "group_b",
+            "coolant_context": "group_c"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        }
+      ]
+    },
+    {
+      "trialId": "SIM-DISC-08",
+      "familyId": "cooling",
+      "scenarioKind": "contradictory",
+      "fictionalSymptom": "Relato fictício de aquecimento sob carga sem dados comparáveis de rejeição térmica.",
+      "hypothesisIds": [
+        "duty_cycle",
+        "airflow_unconfirmed",
+        "coolant_context"
+      ],
+      "unresolvedContradiction": true,
+      "sourceStatus": "contradictory",
+      "baselineQuestionId": "document_baseline_cooling",
+      "questions": [
+        {
+          "questionId": "document_baseline_cooling",
+          "questionText": "Há documentos do ciclo térmico e condições de carga?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "duty_cycle": "context_only",
+            "airflow_unconfirmed": "context_only",
+            "coolant_context": "context_only"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "compare_two_groups_cooling",
+          "questionText": "Os registros históricos distinguem fluxo de ar e demanda térmica?",
+          "fictionalDocumentaryPrerequisitePresent": true,
+          "symbolicOutcomesByHypothesis": {
+            "duty_cycle": "group_a",
+            "airflow_unconfirmed": "group_b",
+            "coolant_context": "group_b"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        },
+        {
+          "questionId": "triangulate_three_groups_cooling",
+          "questionText": "Os registros cruzados permitiriam contrapor as três hipóteses editoriais?",
+          "fictionalDocumentaryPrerequisitePresent": false,
+          "symbolicOutcomesByHypothesis": {
+            "duty_cycle": "group_a",
+            "airflow_unconfirmed": "group_b",
+            "coolant_context": "group_c"
+          },
+          "requiresPhysicalTest": false,
+          "operationalApprovalVerified": false
+        }
+      ]
+    }
+  ]
+}

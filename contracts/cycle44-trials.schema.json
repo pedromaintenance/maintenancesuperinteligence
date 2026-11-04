@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle44-trials.schema.json",
+  "title": "Cycle 44 author-generated symbolic mechanical question study",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "claims",
+    "trials"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle44-trials.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "author_constructed_symbolic_question_rehearsal"
+    },
+    "claims": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "diagnosticAccuracyMeasured",
+        "independentExpertReviewCompleted",
+        "fieldEvidenceUsed",
+        "oemEffectivityVerified",
+        "mayExecuteTest",
+        "mayCreateWorkOrder",
+        "mayModifyEcm",
+        "mayReleaseEquipment"
+      ],
+      "properties": {
+        "diagnosticAccuracyMeasured": {
+          "const": false
+        },
+        "independentExpertReviewCompleted": {
+          "const": false
+        },
+        "fieldEvidenceUsed": {
+          "const": false
+        },
+        "oemEffectivityVerified": {
+          "const": false
+        },
+        "mayExecuteTest": {
+          "const": false
+        },
+        "mayCreateWorkOrder": {
+          "const": false
+        },
+        "mayModifyEcm": {
+          "const": false
+        },
+        "mayReleaseEquipment": {
+          "const": false
+        }
+      }
+    },
+    "trials": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "trialId",
+          "familyId",
+          "scenarioKind",
+          "fictionalSymptom",
+          "hypothesisIds",
+          "unresolvedContradiction",
+          "sourceStatus",
+          "baselineQuestionId",
+          "questions"
+        ],
+        "properties": {
+          "trialId": {
+            "type": "string",
+            "pattern": "^SIM-DISC-0[1-8]$"
+          },
+          "familyId": {
+            "enum": [
+              "final_drive",
+              "hydraulics",
+              "electronics",
+              "cooling"
+            ]
+          },
+          "scenarioKind": {
+            "enum": [
+              "normal",
+              "contradictory"
+            ]
+          },
+          "fictionalSymptom": {
+            "type": "string",
+            "minLength": 25
+          },
+          "hypothesisIds": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{1,63}$"
+            }
+          },
+          "unresolvedContradiction": {
+            "type": "boolean"
+          },
+          "sourceStatus": {
+            "enum": [
+              "synthetic_context_declared",
+              "contradictory"
+            ]
+          },
+          "baselineQuestionId": {
+            "type": "string"
+          },
+          "questions": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "questionId",
+                "questionText",
+                "fictionalDocumentaryPrerequisitePresent",
+                "symbolicOutcomesByHypothesis",
+                "requiresPhysicalTest",
+                "operationalApprovalVerified"
+              ],
+              "properties": {
+                "questionId": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]{1,63}$"
+                },
+                "questionText": {
+                  "type": "string",
+                  "minLength": 25
+                },
+                "fictionalDocumentaryPrerequisitePresent": {
+                  "type": "boolean"
+                },
+                "symbolicOutcomesByHypothesis": {
+                  "type": "object",
+                  "minProperties": 3,
+                  "maxProperties": 3,
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9_]{1,63}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "requiresPhysicalTest": {
+                  "const": false
+                },
+                "operationalApprovalVerified": {
+                  "const": false
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
