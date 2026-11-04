@@ -2,6 +2,14 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 47 (branch proposta; red team de texto e proveniência)
+
+**Entregue em pesquisa sintética:** inspeção conservadora de pistas de identidade metodológica em perguntas pareadas, inclusive caracteres Unicode invisíveis, scripts misturados, instruções indevidas, identificadores internos e perguntas quase duplicadas. O auditor reconstrói os controles de custódia e revisão dos Ciclos 30–32, 45 e 46 antes de emitir um relatório privado de flags. Lacunas de fonte, natureza sintética e efetividade OEM permanecem separadas de alertas linguísticos, com encaminhamento para revisão externa e **NO GO permanente**.
+
+**Limites:** heurísticas de sintaxe não constituem análise semântica ou prova de cegamento; similaridade lexical não equivale a poder discriminante, histórico de manutenção ou adequação OEM. Alias, hashes e HMAC não autenticam revisores, habilitação e autorização institucional. Nenhuma mudança SAP/ECM, nota, teste ou liberação é realizada. [Documentação do Ciclo 47](CICLO_2026-11-04_RED_TEAM_MASCARAMENTO_47.md).
+
+**Prioridade posterior:** antes de crescer a suíte editorial, concluir a cadeia de PRs pendentes e estruturar um gate institucional externo para estudo independente: protocolo pré-registrado, revisão de neutralidade humana, casos com proveniência autorizada, pareceres tecnicamente qualificados e adjudicação documentada. Sem essas condições, não promover validação diagnóstica.
+
 ## Marco de pesquisa: Ciclo 46 (branch proposta; triagem e adjudicação pendente)
 
 **Implementado exclusivamente em pesquisa sintética:** auditoria heurística de potenciais pistas de origem da pergunta (termos reveladores e relação de tamanho ≥2,5), reconciliação dos dois pareceres fictícios e encaminhamento explícito de conflitos, alertas de segurança, empates e abstenções para análise externa. O programa reconstrói os insumos custodiais dos Ciclos 30–32 e 45, emite dossiê privado de pendências e permite congelar rascunhos sem promover alçada, assinatura ou decisão. [Ver Ciclo 46](CICLO_2026-11-04_ADJUDICACAO_E_CEGAMENTO_46.md).

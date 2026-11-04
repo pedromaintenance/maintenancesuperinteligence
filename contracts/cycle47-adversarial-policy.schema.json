@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle47-adversarial-policy.schema.json",
+  "title": "Heuristic adversarial masking and documentary provenance, no expertise claims",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "tokenJaccardThreshold",
+    "methodOriginCues",
+    "instructionalCues",
+    "maskWarnings",
+    "documentaryWarnings",
+    "expertMaskingVerified",
+    "externalSourceProvenanceVerified",
+    "independentEngineeringApproval",
+    "operationallyApproved"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle47-adversarial-policy.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "conservative_syntactic_research_not_expert_validation"
+    },
+    "tokenJaccardThreshold": {
+      "const": 0.9
+    },
+    "methodOriginCues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 11,
+      "maxItems": 11
+    },
+    "instructionalCues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 6,
+      "maxItems": 6
+    },
+    "maskWarnings": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "hidden_unicode_control",
+          "mixed_script_confusable",
+          "obfuscated_method_origin_cue",
+          "instructional_contamination",
+          "near_duplicate_question_pair",
+          "candidate_identifier_leak"
+        ]
+      },
+      "minItems": 6,
+      "maxItems": 6
+    },
+    "documentaryWarnings": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "synthetic_evidence_only",
+          "documentary_source_not_verified",
+          "oem_effectivity_not_verified"
+        ]
+      },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "expertMaskingVerified": {
+      "const": false
+    },
+    "externalSourceProvenanceVerified": {
+      "const": false
+    },
+    "independentEngineeringApproval": {
+      "const": false
+    },
+    "operationallyApproved": {
+      "const": false
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "maintenance-superinteligence.cycle47-adversarial-policy.v1",
+  "version": "1.0.0",
+  "nature": "conservative_syntactic_research_not_expert_validation",
+  "tokenJaccardThreshold": 0.9,
+  "methodOriginCues": [
+    "baseline",
+    "experimental",
+    "modelo anterior",
+    "modelo proposto",
+    "inteligencia artificial",
+    "gerado por ia",
+    "gpt",
+    "chatgpt",
+    "llm",
+    "algoritmo",
+    "openai"
+  ],
+  "instructionalCues": [
+    "ignore instrucoes anteriores",
+    "ignore as instrucoes",
+    "ignore previous instructions",
+    "responda apenas",
+    "system prompt",
+    "developer message"
+  ],
+  "maskWarnings": [
+    "hidden_unicode_control",
+    "mixed_script_confusable",
+    "obfuscated_method_origin_cue",
+    "instructional_contamination",
+    "near_duplicate_question_pair",
+    "candidate_identifier_leak"
+  ],
+  "documentaryWarnings": [
+    "synthetic_evidence_only",
+    "documentary_source_not_verified",
+    "oem_effectivity_not_verified"
+  ],
+  "expertMaskingVerified": false,
+  "externalSourceProvenanceVerified": false,
+  "independentEngineeringApproval": false,
+  "operationallyApproved": false
+}

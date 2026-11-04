@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle47-readiness-report.schema.json",
+  "title": "Read-only adversarial study readiness; private output, NO GO",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "packetDigest",
+    "cycle46HandoffDigest",
+    "policyDigest",
+    "caseCount",
+    "newMaskingFlagsCount",
+    "documentaryFlagsCount",
+    "casesBlockedByProvenance",
+    "casesAlreadyNeedingAdjudication",
+    "cases",
+    "humanMaskingValidationPerformed",
+    "independentExpertReviewPerformed",
+    "diagnosticAccuracyEstablished",
+    "mayExecuteTest",
+    "mayCreateWorkOrder",
+    "mayWriteSAP",
+    "mayModifyECM",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle47-readiness-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "syntactic_adversarial_review_not_external_attestation"
+    },
+    "packetDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "cycle46HandoffDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "policyDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "caseCount": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 50
+    },
+    "newMaskingFlagsCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "documentaryFlagsCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "casesBlockedByProvenance": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "casesAlreadyNeedingAdjudication": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "domain",
+          "newMaskingHeuristicFlags",
+          "documentaryProvenanceFlags",
+          "cycle46AlreadyRequiresAdjudication",
+          "nextState",
+          "requiresExternalReview",
+          "blindnessVerified",
+          "independentExpertVerified",
+          "operationallyApproved"
+        ],
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "pattern": "^HLD-[0-9]{3}$"
+          },
+          "domain": {
+            "enum": [
+              "mechanics",
+              "hydraulics",
+              "electronics",
+              "cooling",
+              "unsupported"
+            ]
+          },
+          "newMaskingHeuristicFlags": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "hidden_unicode_control",
+                "mixed_script_confusable",
+                "obfuscated_method_origin_cue",
+                "instructional_contamination",
+                "near_duplicate_question_pair",
+                "candidate_identifier_leak"
+              ]
+            },
+            "minItems": 0,
+            "maxItems": 6
+          },
+          "documentaryProvenanceFlags": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "synthetic_evidence_only",
+                "documentary_source_not_verified",
+                "oem_effectivity_not_verified"
+              ]
+            },
+            "minItems": 0,
+            "maxItems": 3
+          },
+          "cycle46AlreadyRequiresAdjudication": {
+            "type": "boolean"
+          },
+          "nextState": {
+            "enum": [
+              "pending_external_adjudication",
+              "blocked_documentary_provenance",
+              "pending_external_blinding_review",
+              "pending_external_validation_no_go"
+            ]
+          },
+          "requiresExternalReview": {
+            "const": true
+          },
+          "blindnessVerified": {
+            "const": false
+          },
+          "independentExpertVerified": {
+            "const": false
+          },
+          "operationallyApproved": {
+            "const": false
+          }
+        }
+      },
+      "minItems": 2,
+      "maxItems": 50
+    },
+    "humanMaskingValidationPerformed": {
+      "const": false
+    },
+    "independentExpertReviewPerformed": {
+      "const": false
+    },
+    "diagnosticAccuracyEstablished": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayWriteSAP": {
+      "const": false
+    },
+    "mayModifyECM": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_masking_and_provenance_not_independently_validated"
+    }
+  }
+}
