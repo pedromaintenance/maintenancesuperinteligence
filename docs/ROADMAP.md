@@ -2,6 +2,14 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 46 (branch proposta; triagem e adjudicação pendente)
+
+**Implementado exclusivamente em pesquisa sintética:** auditoria heurística de potenciais pistas de origem da pergunta (termos reveladores e relação de tamanho ≥2,5), reconciliação dos dois pareceres fictícios e encaminhamento explícito de conflitos, alertas de segurança, empates e abstenções para análise externa. O programa reconstrói os insumos custodiais dos Ciclos 30–32 e 45, emite dossiê privado de pendências e permite congelar rascunhos sem promover alçada, assinatura ou decisão. [Ver Ciclo 46](CICLO_2026-11-04_ADJUDICACAO_E_CEGAMENTO_46.md).
+
+**Limites:** análise lexical não prova neutralidade; ausência de alerta não significa cegamento efetivo. Dois aliases e um terceiro alias não confirmam três humanos distintos. Hash/HMAC não autentica pessoas, fonte OEM, autorização de empresa ou comportamento físico. Concordância de preferência permanece distinta de validade diagnóstica. Nenhuma revisão humana real aconteceu. **NO GO** para execução física, SAP, ECM, ordem ou liberação.
+
+**Próxima evidência essencial:** custódia institucional e estudo humano pré-registrado com perguntas efetivamente mascaradas, especialistas verificados, avaliação externa de segurança e critérios de adjudicação de divergência; medir não só concordância, mas qualidade técnica comparativa com incerteza, somente em casos lícitos e autorizados. Enquanto esses gates não existirem, não promover aprovação no repositório público.
+
 ## Marco de pesquisa: Ciclo 45 (branch proposta; comparação cega pareada)
 
 **Implementado para ensaio sintético:** criação privada de pacotes A/B com posições quase balanceadas, vínculo HMAC entre fontes, candidatos e mapeamento confidencial; gate de qualidade obrigatório dos Ciclos 30–32; congelamento de duas submissões; relatório de concordância simples, preferência descritiva, empate, abstenção, flags de risco e dissenso aguardando adjudicação. Arquivos de estudo não entram no checkout público. [Ver documentação](CICLO_2026-11-04_REVISAO_CEGA_PAREADA_45.md).
