@@ -309,7 +309,7 @@ class Cycle45BlindPairwiseTests(unittest.TestCase):
         aa = fabricated_submission(self.packet, "REV-SYNTHA",
                                    choices=("tie", "abstain", "A", "A"))
         bb = fabricated_submission(self.packet, "REV-SYNTHB",
-                                   choices=("tie", "abstain", "B", "A"))
+                                   choices=("tie", "abstain", "A", "A"))
         report = self.invoke_score(
             a=aa, b=bb, ra=freeze_receipt(self.packet, aa),
             rb=freeze_receipt(self.packet, bb)
@@ -375,9 +375,9 @@ class Cycle45BlindPairwiseTests(unittest.TestCase):
                 files["submission-" + suffix].write_text(
                     json.dumps(sub), encoding="utf-8"
                 )
-                cli(["freeze"] + args_for(
-                    ("packet", "submission-" + suffix, "receipt-" + suffix)
-                ))
+                cli(["freeze", "--packet", str(files["packet"]),
+                     "--submission", str(files["submission-" + suffix]),
+                     "--receipt", str(files["receipt-" + suffix])])
             cli(["score"] + args_for(
                 ("source", "candidates", "quality-metadata", "quality-policy",
                  "key", "packet", "lock", "quality-receipt",
