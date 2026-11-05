@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle49-contract-audit.schema.json",
+  "title": "Synthetic-only executable contracts audit",
+  "description": "Positive and negative C44-C48 schema checks do not prove mechanical, human, or operational maturity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "mode",
+    "cycleSpan",
+    "contractCount",
+    "syntheticSamplesAccepted",
+    "mutationsRejected",
+    "checks",
+    "schemaValidationCompleted",
+    "mechanicalDiagnosticAccuracyMeasured",
+    "independentExpertReviewPerformed",
+    "studyMayRecruitParticipants",
+    "studyMayStart",
+    "mayExecuteTests",
+    "mayCreateWorkOrder",
+    "mayWriteSAP",
+    "mayModifyECM",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle49-contract-audit.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "const": "in_memory_synthetic_contract_execution_only"
+    },
+    "cycleSpan": {
+      "const": "44-48"
+    },
+    "contractCount": {
+      "const": 16
+    },
+    "syntheticSamplesAccepted": {
+      "const": 16
+    },
+    "mutationsRejected": {
+      "type": "integer",
+      "minimum": 32
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "contract",
+          "acceptedSyntheticSample",
+          "forgedMutationsRejected",
+          "explicitFalseAuthorityFieldsExercised",
+          "schemaDraft202012Checked",
+          "realCasesUsed",
+          "humanReviewPerformed",
+          "operationallyApproved"
+        ],
+        "properties": {
+          "contract": {
+            "type": "string",
+            "pattern": "^cycle4[4-8]-[a-z0-9-]+$"
+          },
+          "acceptedSyntheticSample": {
+            "const": true
+          },
+          "forgedMutationsRejected": {
+            "type": "integer",
+            "minimum": 2
+          },
+          "explicitFalseAuthorityFieldsExercised": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "schemaDraft202012Checked": {
+            "const": true
+          },
+          "realCasesUsed": {
+            "const": false
+          },
+          "humanReviewPerformed": {
+            "const": false
+          },
+          "operationallyApproved": {
+            "const": false
+          }
+        }
+      }
+    },
+    "schemaValidationCompleted": {
+      "const": true
+    },
+    "mechanicalDiagnosticAccuracyMeasured": {
+      "const": false
+    },
+    "independentExpertReviewPerformed": {
+      "const": false
+    },
+    "studyMayRecruitParticipants": {
+      "const": false
+    },
+    "studyMayStart": {
+      "const": false
+    },
+    "mayExecuteTests": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayWriteSAP": {
+      "const": false
+    },
+    "mayModifyECM": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_contract_alignment_is_not_external_mechanical_validation"
+    }
+  }
+}
