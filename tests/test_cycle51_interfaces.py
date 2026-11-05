@@ -27,6 +27,17 @@ class Cycle51InterfacesTests(unittest.TestCase):
             self.assertNotIn("<script src=", html)
             self.assertNotIn("fetch(", html)
 
+    def test_root_machine_roadmap_is_derived_from_one_catalog(self):
+        roadmap = json.loads(ui.checked_file("ROADMAP.json").read_text(
+            encoding="utf-8"))
+        self.assertEqual(roadmap, ui.machine_roadmap(self.catalog))
+        self.assertEqual(roadmap["externalGatesPending"], 13)
+        self.assertEqual(roadmap["mainCycle"], 42)
+        self.assertEqual(roadmap["decision"], "NO GO")
+        self.assertFalse(roadmap["operationalAuthorityGranted"])
+        self.assertFalse(roadmap["humanApprovalVerified"])
+        self.assertEqual(roadmap["items"], self.catalog["roadmap"])
+
     def test_agent_roles_and_skills_are_portable_and_auditable(self):
         self.assertEqual(len(self.catalog["agents"]), 3)
         self.assertEqual(len(self.catalog["skills"]), 3)
