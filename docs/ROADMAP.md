@@ -2,6 +2,16 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 53 (branch proposta; acessibilidade e histórico incremental)
+
+**Evidência nova:** o GitHub Actions confirmou a segunda implantação dos portais no Pages (execução **42057123105**, commit `1ffa398b8d328a1f67dd49fbff7e37c3f0b82911`, três HTMLs). A primeira publicação já confirmada continua preservada em `interfaces/publications.v1.json`. `interfaces/publications.v2.json` mantém ambas as entradas com hashes dos arquivos e snapshots próprios, impedindo reescrita silenciosa do primeiro recibo. Uma publicação realizada por código neste ciclo **não será inserida antecipadamente** no registro. [Documento completo](ACESSIBILIDADE_HISTORICO_53.md).
+
+**Acessibilidade:** três portais standalone com link de salto ao conteúdo, foco visível, respeito a movimento reduzido; abas da auditoria com `aria-controls`, `aria-labelledby`, teclas ←/→, Home/End e foco itinerante. O portal de versões permite comparar o catálogo da primeira publicação, da segunda e a proposta atualmente embutida, com filtros e exportação. Testes estáticos/CI não equivalem a auditoria visual ou por leitor de tela real.
+
+**Qualidade e limites:** o validador do Ciclo 53 vincula os dois recibos a commits e execuções observados, exige que o histórico anterior permaneça imutável, verifica duas entradas JSON adicionais no portal e mantém **13 gates externos não verificados**. Nenhum diagnóstico OEM ou permissão SAP/ECM/OS é produzido. **NO GO.**
+
+**Próxima ação:** regressão completa, revisão humana desktop/mobile e publicação controlada apenas dos três HTMLs via Pages; registro de um terceiro deploy somente **depois da confirmação** da respectiva execução.
+
 ## Marco de pesquisa: Ciclo 52 (branch proposta; histórico de publicações dos portais)
 
 **Problema:** após a primeira implantação bem-sucedida no GitHub Pages, os portais não distinguiam facilmente o *conteúdo efetivamente publicado* das alterações posteriores na branch de pesquisa.
