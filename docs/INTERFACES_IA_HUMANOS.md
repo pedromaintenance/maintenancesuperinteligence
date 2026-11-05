@@ -9,7 +9,7 @@
 A Maintenance Superintelligence deve funcionar como **conhecimento versionado e verificável**, não como um chatbot ou dashboard que esconde a proveniência. A mesma organização de fatos deve poder ser consultada por:
 
 - **IAs:** instruções de entrada (`AGENTS.md`), papéis portáveis (`agents/`), procedimentos de trabalho (`.agents/skills/*/SKILL.md`), índice público (`interfaces/catalog.v1.json`), roadmap de máquina derivado (`ROADMAP.json`) e roadmap narrativo completo (`docs/ROADMAP.md`).
-- **Pessoas:** dois arquivos HTML autossuficientes, `portal/index.html` e `portal/auditoria.html`, com filtro, navegação, acesso às fontes e exportação de um snapshot JSON.
+- **Pessoas:** três arquivos HTML autossuficientes, `portal/index.html`, `portal/auditoria.html` e `portal/versoes.html`, com filtro, navegação, acesso às fontes e exportação de um snapshot JSON.
 
 O catálogo é a **fonte única de navegação e estados exibidos**, não a fonte de validade mecânica ou a fonte canônica de toda a documentação. Para regras de engenharia e risco, a fonte continua sendo `docs/GOVERNANCA.md` e os documentos de domínio; para gates, `governance/cycle48-study-readiness.v1.json`; para o histórico completo, `docs/ROADMAP.md`.
 
