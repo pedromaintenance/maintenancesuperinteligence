@@ -1,0 +1,73 @@
+{
+  "schema": "maintenance-superinteligence.machine-roadmap.v1",
+  "version": "1.0.0",
+  "snapshotDate": "2026-11-05",
+  "nature": "public_curated_navigation_snapshot_not_live_github_or_approved_study",
+  "sourceCatalog": "interfaces/catalog.v1.json",
+  "fullRoadmap": "docs/ROADMAP.md",
+  "mainCycle": 42,
+  "externalGatesPending": 13,
+  "items": [
+    {
+      "id": "marco-51",
+      "name": "Interfaces de conhecimento para IAs e humanos",
+      "stage": "in_draft",
+      "priority": "P1",
+      "detail": "Catálogo público compartilhado, AGENTS.md, skills, agentes e dois portais standalone com verificação de consistência.",
+      "source": "docs/ROADMAP.md",
+      "dependsOn": [
+        "marco-50"
+      ],
+      "acceptance": "CI de sincronização e revisão humana antes de integrar."
+    },
+    {
+      "id": "marco-50",
+      "name": "Integridade estrutural e relacional",
+      "stage": "implemented_in_draft",
+      "priority": "P1",
+      "detail": "Oito relações verificadas e recibos C49 recomputados em laboratório autoral.",
+      "source": "docs/CICLO_2026-11-05_REVISAO_RELACIONAL_50.md",
+      "dependsOn": [
+        "marco-49"
+      ],
+      "acceptance": "Revisão humana do PR #76 e execução em SHA integrado."
+    },
+    {
+      "id": "marco-49",
+      "name": "Matriz de contratos executáveis",
+      "stage": "implemented_in_draft",
+      "priority": "P1",
+      "detail": "16 contratos JSON Schema exercitados com dados sintéticos.",
+      "source": "docs/CICLO_2026-11-05_INTEGRACAO_CONTRATOS_49.md",
+      "dependsOn": [
+        "marco-48"
+      ],
+      "acceptance": "Revisão humana do PR #75."
+    },
+    {
+      "id": "marco-48",
+      "name": "Prontidão para estudo técnico independente",
+      "stage": "blocked_external_evidence",
+      "priority": "P0",
+      "detail": "13 evidências externas necessárias; nenhuma foi verificada no snapshot.",
+      "source": "docs/CICLO_2026-11-05_PRONTIDAO_ESTUDO_48.md",
+      "dependsOn": [],
+      "acceptance": "Custódia, documentos, qualificação, segurança e método aprovados externamente."
+    },
+    {
+      "id": "marco-merge",
+      "name": "Revisão e integração ordenada da cadeia",
+      "stage": "pending_human_review",
+      "priority": "P0",
+      "detail": "PRs #69–76 em cadeia e como draft na consulta de 05/11/2026.",
+      "source": "docs/ROADMAP.md",
+      "dependsOn": [
+        "marco-50"
+      ],
+      "acceptance": "Revisar individualmente e reexecutar checks após cada merge."
+    }
+  ],
+  "humanApprovalVerified": false,
+  "operationalAuthorityGranted": false,
+  "decision": "NO GO"
+}
