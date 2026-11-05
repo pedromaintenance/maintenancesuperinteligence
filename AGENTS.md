@@ -45,6 +45,6 @@ Separar resultados em:
 | Skill de investigação | Estruturar raciocínio mecânico e abstenção | [`.agents/skills/investigacao-mecanica/SKILL.md`](.agents/skills/investigacao-mecanica/SKILL.md) |
 | Skill de evolução | Atualizar backlog, roadmap e visões humanas | [`.agents/skills/curadoria-roadmap/SKILL.md`](.agents/skills/curadoria-roadmap/SKILL.md) |
 
-As descrições dos agentes são instruções portáveis em Markdown; não representam agentes executando tarefas sozinhos. A consulta humana está em `portal/index.html` e `portal/auditoria.html`, ambos **standalone/offline** e sem acesso a dados restritos.
+As descrições dos agentes são instruções portáveis em Markdown; não representam agentes executando tarefas sozinhos. A consulta humana está em `portal/index.html`, `portal/auditoria.html` e `portal/versoes.html`, todos **standalone/offline** e sem acesso a dados restritos.
 
 **Limite vigente no snapshot da pesquisa:** `main` no Ciclo 42; Ciclos 43–50 em PRs empilhados; 13 gates externos do Ciclo 48 ainda não verificados. Verifique o GitHub para o estado atual.
