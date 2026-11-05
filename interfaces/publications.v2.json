@@ -1,0 +1,81 @@
+{
+  "schema": "maintenance-superinteligence.publication-history.v2",
+  "version": "2.0.0",
+  "frozenAt": "2026-11-05",
+  "evidenceNature": "observed_github_actions_deploy_receipts_and_git_blobs_not_independent_site_or_mechanical_attestation",
+  "supersedes": "interfaces/publications.v1.json",
+  "canonicalSource": "interfaces/catalog.v1.json",
+  "siteBase": "https://pedromaintenance.github.io/maintenancesuperinteligence/",
+  "appendPolicy": "historical_release_entries_are_immutable_new_confirmed_deploys_are_appended_only",
+  "releases": [
+    {
+      "id": "PAGES-2026-11-05-001",
+      "label": "Primeira publicação — dois portais",
+      "cycle": 51,
+      "publicationDateUtc": "2026-11-05T15:11:13Z",
+      "sourceBranch": "main",
+      "sourceCommit": "ad9a9b3e321dfe696a8a816e5cdc17637f9f0afc",
+      "deploymentWorkflow": "Publish Maintenance Superintelligence portals to GitHub Pages",
+      "workflowRunId": 42052320131,
+      "workflowRunUrl": "https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42052320131",
+      "evidenceStatus": "github_actions_reported_success",
+      "pagesEnvironmentUrl": "https://pedromaintenance.github.io/maintenancesuperinteligence/",
+      "siteHttpIndependentlyVerified": false,
+      "qualifiedHumanReviewCompleted": false,
+      "operationalAuthorityGranted": false,
+      "files": [
+        {
+          "path": "index.html",
+          "gitBlobSha": "c8b9efcf6bb1f697cfe6667e33c2aedcba532bcd",
+          "nature": "standalone_public_html"
+        },
+        {
+          "path": "auditoria.html",
+          "gitBlobSha": "145a7f9a34198631708f35512f3c1cea66ac52ee",
+          "nature": "standalone_public_html"
+        }
+      ],
+      "notes": "GitHub Actions informou deploy bem-sucedido. Hashes Git de arquivos identificam conteúdo versionado; não são assinaturas ou prova de autoria independente.",
+      "catalogSnapshot": "interfaces/snapshots/c51-pages-deploy.v1.json"
+    },
+    {
+      "id": "PAGES-2026-11-05-002",
+      "label": "Segunda publicação — três portais e comparação de versões",
+      "cycle": 52,
+      "publicationDateUtc": "2026-11-05T15:42:42Z",
+      "sourceBranch": "main",
+      "sourceCommit": "1ffa398b8d328a1f67dd49fbff7e37c3f0b82911",
+      "deploymentWorkflow": "Publish Maintenance Superintelligence portals to GitHub Pages",
+      "workflowRunId": 42057123105,
+      "workflowRunUrl": "https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42057123105",
+      "evidenceStatus": "github_actions_reported_success",
+      "pagesEnvironmentUrl": "https://pedromaintenance.github.io/maintenancesuperinteligence/",
+      "siteHttpIndependentlyVerified": false,
+      "qualifiedHumanReviewCompleted": false,
+      "operationalAuthorityGranted": false,
+      "files": [
+        {
+          "path": "index.html",
+          "gitBlobSha": "ac92d08ed80901e1433bc7cb49dfee5f5ed3be91",
+          "nature": "standalone_public_html"
+        },
+        {
+          "path": "auditoria.html",
+          "gitBlobSha": "db9f0d21b6fe0f17f84bd56223610080619bf921",
+          "nature": "standalone_public_html"
+        },
+        {
+          "path": "versoes.html",
+          "gitBlobSha": "1bc2c0f3951ef25a9203d0a66faf8165ad7bee74",
+          "nature": "standalone_public_html"
+        }
+      ],
+      "catalogSnapshot": "interfaces/snapshots/c52-pages-deploy.v1.json",
+      "notes": "O GitHub Actions confirmou sucesso no SHA da main; horário registrado reflete updated_at da execução observada, não um teste HTTP independente. Artefatos são blobs Git verificados pela API de conteúdos."
+    }
+  ],
+  "restrictedEvidenceIncluded": false,
+  "externalStudyGatesVerified": 0,
+  "operationallyApproved": false,
+  "decision": "NO GO"
+}
