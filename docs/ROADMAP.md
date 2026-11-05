@@ -2,6 +2,16 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 51 (branch proposta; interfaces para IA e humanos)
+
+**Objetivo:** transformar o repositório em uma base **consultável e auditável** por agentes de IA e profissionais humanos, com navegação e status derivados de um mesmo catálogo público versionado, sem alterar a fronteira de autoridade operacional.
+
+**Entregáveis em proposta:** `AGENTS.md` (entrada para IAs), três papéis em `agents/`, três skills em `.agents/skills/`, `interfaces/catalog.v1.json` com JSON Schema e duas páginas standalone `portal/index.html` (conhecimento) e `portal/auditoria.html` (gates/PRs). O verificador `scripts/sync_interfaces.py` garante que ambas exibam o mesmo snapshot, que as fontes existam e que os 13 gates do Ciclo 48 permaneçam não verificados. [Arquitetura e instruções](INTERFACES_IA_HUMANOS.md).
+
+**Marco de validade:** o portal e os agentes não possuem backend live, não consultam SAP/ECM, não autenticam engenheiros, não validam literatura OEM por série nem concedem autorizações; toda referência a PRs é um snapshot datado de 05/11/2026, não uma consulta dinâmica. Os PRs anteriores (#69–76) continuam sujeitos à revisão e integração em sequência. **NO GO.**
+
+**Próximo passo:** validar no CI, testar consulta humana e legibilidade em dispositivos móveis, revisar a política de publicação e decidir se o portal deve ser hospedado no Pages após integração. Não converter filtros ou cliques em assinaturas, aprovações ou observações de campo.
+
 ## Marco de pesquisa: Ciclo 50 (branch proposta; revisão estrutural e relacional)
 
 **Encontrado no código e coberto por testes:** oito vínculos cruzados dos Ciclos 44, 45 e 48 não são rejeitados pela validação estritamente estrutural de um JSON Schema, embora já sejam negados pelos validadores Python. A cobertura agora testa explicitamente ambos os estágios e demonstra a necessidade de executá-los juntos. No Ciclo 49, foi adicionada a recomputação do relatório para detectar três adulterações de contagens ou identidade de contrato que poderiam permanecer formalmente válidas no schema. [Auditoria do Ciclo 50](CICLO_2026-11-05_REVISAO_RELACIONAL_50.md).
