@@ -97,6 +97,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 49 — Matriz executável de 16 contratos JSON Schema (proposta)](docs/CICLO_2026-11-05_INTEGRACAO_CONTRATOS_49.md)
 - [Ciclo 50 — Revisão estrutural × relacional de contratos (proposta)](docs/CICLO_2026-11-05_REVISAO_RELACIONAL_50.md)
 - [Ciclo 51 — Interfaces para IAs e humanos](docs/INTERFACES_IA_HUMANOS.md)
+- [Ciclo 52 — Histórico de publicações e diffs dos portais](docs/PUBLICACOES_PORTAIS.md)
 
 ## Estrutura inicial e arquitetura futura
 
