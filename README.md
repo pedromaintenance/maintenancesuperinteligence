@@ -4,6 +4,14 @@
 
 > **Estado: ensaios distribuídos de resiliência e negação segura P&D v4.2.0 (03/11/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
+## Entradas de consulta — P&D do Ciclo 51
+
+- **Para IA:** [`AGENTS.md`](AGENTS.md) · [skills](.agents/skills) · [agentes](agents) · [`ROADMAP.json`](ROADMAP.json) · [catálogo público](interfaces/catalog.v1.json).
+- **Para pessoas:** [Portal de conhecimento](portal/index.html) · [Portal de auditoria](portal/auditoria.html). São **arquivos HTML standalone**: baixe/abra localmente no navegador; clicar no arquivo dentro da interface do GitHub pode mostrar apenas o código.
+- **Para auditoria:** [Política de governança](docs/GOVERNANCA.md) · [Roadmap detalhado](docs/ROADMAP.md) · [Documentação das interfaces](docs/INTERFACES_IA_HUMANOS.md).
+
+As interfaces usam uma fotografia pública datada, **sem backend em tempo real**, revisão mecânica independente ou autoridade de operação. O projeto permanece **NO GO**.
+
 ## Visão
 
 Desenvolver, progressivamente, um sistema capaz de explicar a função de um ativo, reconhecer seus sistemas e componentes, investigar sintomas, comparar hipóteses e evidências, orientar a consulta a literatura OEM aplicável, recomendar opções de manutenção e apoiar decisões de custo, risco e ciclo de vida. Cada resposta deve expor o que é conhecido, de onde veio, a qual configuração se aplica e o que ainda precisa ser comprovado.
