@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle50-relational-review.schema.json",
+  "title": "C50: author synthetic relational checks, with 13 external gates NO GO",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "nature",
+    "integratedWithCycle49Digest",
+    "relationalProbeCount",
+    "relationalSchemaAcceptedCount",
+    "relationalRuntimeRejectedCount",
+    "relationalChecks",
+    "reportTamperProbeCount",
+    "reportTamperRejectedCount",
+    "reportTamperChecks",
+    "remainingExternalStudyGates",
+    "independentCodeReviewVerified",
+    "realReviewerAuthenticated",
+    "oemEffectivityVerified",
+    "mechanicalDiagnosticAccuracyEstablished",
+    "mayStartHumanStudy",
+    "mayExecuteTest",
+    "mayCreateWorkOrder",
+    "mayWriteSAP",
+    "mayModifyECM",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle50-integration-review.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "nature": {
+      "const": "author_executed_synthetic_relational_validation_review"
+    },
+    "integratedWithCycle49Digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "relationalProbeCount": {
+      "const": 8
+    },
+    "relationalSchemaAcceptedCount": {
+      "const": 8
+    },
+    "relationalRuntimeRejectedCount": {
+      "const": 8
+    },
+    "relationalChecks": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "probeId",
+          "contract",
+          "syntheticStructuralSchemaAccepted",
+          "relationalRuntimeValidatorRejected",
+          "requiresBothValidationLayers",
+          "usesRealCases",
+          "humanApprovalClaimed"
+        ],
+        "properties": {
+          "probeId": {
+            "enum": [
+              "c44_hypothesis_key_binding",
+              "c44_registered_baseline_binding",
+              "c44_contradiction_status_binding",
+              "c45_case_count_binding",
+              "c45_distinct_question_binding",
+              "c45_unique_case_id_binding",
+              "c48_frozen_sha_binding",
+              "c48_parent_branch_binding"
+            ]
+          },
+          "contract": {
+            "enum": [
+              "cycle44-trials",
+              "cycle45-reviewer-packet",
+              "cycle48-study-readiness"
+            ]
+          },
+          "syntheticStructuralSchemaAccepted": {
+            "const": true
+          },
+          "relationalRuntimeValidatorRejected": {
+            "const": true
+          },
+          "requiresBothValidationLayers": {
+            "const": true
+          },
+          "usesRealCases": {
+            "const": false
+          },
+          "humanApprovalClaimed": {
+            "const": false
+          }
+        }
+      }
+    },
+    "reportTamperProbeCount": {
+      "const": 3
+    },
+    "reportTamperRejectedCount": {
+      "const": 3
+    },
+    "reportTamperChecks": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "probeId",
+          "syntheticStructuralSchemaAccepted",
+          "recomputedReportRejected",
+          "independentlyAuthenticated"
+        ],
+        "properties": {
+          "probeId": {
+            "enum": [
+              "inflated_mutation_count",
+              "inflated_per_contract_mutation_count",
+              "forged_contract_identity"
+            ]
+          },
+          "syntheticStructuralSchemaAccepted": {
+            "const": true
+          },
+          "recomputedReportRejected": {
+            "const": true
+          },
+          "independentlyAuthenticated": {
+            "const": false
+          }
+        }
+      }
+    },
+    "remainingExternalStudyGates": {
+      "const": 13
+    },
+    "independentCodeReviewVerified": {
+      "const": false
+    },
+    "realReviewerAuthenticated": {
+      "const": false
+    },
+    "oemEffectivityVerified": {
+      "const": false
+    },
+    "mechanicalDiagnosticAccuracyEstablished": {
+      "const": false
+    },
+    "mayStartHumanStudy": {
+      "const": false
+    },
+    "mayExecuteTest": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayWriteSAP": {
+      "const": false
+    },
+    "mayModifyECM": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_relational_integrity_is_not_external_validation"
+    }
+  }
+}
