@@ -10,9 +10,9 @@
 4. Escolha a skill correspondente em `.agents/skills/`; habilidades são **procedimentos de pesquisa**, não competências profissionais certificadas.
 5. Para investigar **quando e o que foi publicado**, consulte `interfaces/publications.v1.json`, `interfaces/snapshots/c51-pages-deploy.v1.json` e `portal/versoes.html`. O recibo usa resultado GitHub Actions, não monitoramento HTTP. Antes de afirmar o estado atual, consulte o GitHub novamente.
 6. Para uma investigação mecânica, diferencie sempre: **função → falha funcional → sintoma → mecanismo → hipóteses → evidências/contraprovas → risco → próximo passo permitido**. Não conclua causa raiz a partir de uma narrativa sintética.
-6. Ao citar, informe o arquivo, o título, a versão/revisão e a **natureza da evidência** (fonte pública, ficção, simulação, artefato privado sob permissão, avaliação externa). Não invente dados de OEM, valores de teste ou aplicabilidade por número de série.
-7. Se dois documentos se contradizem, preserve a contradição, sinalize as diferentes revisões e solicite evidência discriminante. Não altere silenciosamente o histórico.
-8. Se a resposta depender do estado atual dos PRs, **consulte o GitHub**. O catálogo de interface registra uma fotografia, não prova que um PR continua aberto ou que o CI está verde hoje.
+7. Ao citar, informe o arquivo, o título, a versão/revisão e a **natureza da evidência** (fonte pública, ficção, simulação, artefato privado sob permissão, avaliação externa). Não invente dados de OEM, valores de teste ou aplicabilidade por número de série.
+8. Se dois documentos se contradizem, preserve a contradição, sinalize as diferentes revisões e solicite evidência discriminante. Não altere silenciosamente o histórico.
+9. Se a resposta depender do estado atual dos PRs, **consulte o GitHub**. O catálogo de interface registra uma fotografia, não prova que um PR continua aberto ou que o CI está verde hoje.
 
 ## Autoridade, privacidade e limites
 
