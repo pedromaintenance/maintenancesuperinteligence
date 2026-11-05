@@ -9,6 +9,18 @@
   "externalGatesPending": 13,
   "items": [
     {
+      "id": "marco-52",
+      "name": "Rastreabilidade de publicações e comparação de versões",
+      "stage": "in_draft",
+      "priority": "P1",
+      "detail": "Registrar publicação GitHub Pages confirmada, preservar baseline do catálogo e disponibilizar comparação de metadados com exportação.",
+      "source": "docs/PUBLICACOES_PORTAIS.md",
+      "dependsOn": [
+        "marco-51"
+      ],
+      "acceptance": "Integridade do ledger, três portais sincronizados, testes de diff e avaliação humana."
+    },
+    {
       "id": "marco-51",
       "name": "Interfaces de conhecimento para IAs e humanos",
       "stage": "in_draft",
