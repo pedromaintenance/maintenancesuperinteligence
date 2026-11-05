@@ -142,7 +142,7 @@ class Cycle52PublicationTests(unittest.TestCase):
         text = a52.VERSIONS.read_text(encoding="utf-8")
         for needle in ('id="search"', 'id="type"', 'id="download"',
                        'id="changes"', 'id="catalog"', 'id="baseline"',
-                       'id="releases"', "JSON.stringify(output,null,2)",
+                       'id="releases"', "JSON.stringify(report,null,2)",
                        "role=\""):
             if needle == "role=\"":
                 continue
