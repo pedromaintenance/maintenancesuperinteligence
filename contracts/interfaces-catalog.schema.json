@@ -1,0 +1,518 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/interfaces-catalog.schema.json",
+  "title": "Machine-human P&D navigation snapshot, not a mechanical authority",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "snapshot",
+    "project",
+    "sections",
+    "agents",
+    "skills",
+    "capabilities",
+    "roadmap",
+    "documents",
+    "gates",
+    "prs",
+    "sites"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.interfaces-catalog.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "date",
+        "nature",
+        "repo",
+        "browseBase",
+        "mainCycle",
+        "mainSha",
+        "lastResearchCycleInPredecessor",
+        "predecessorSha",
+        "externalGatesVerified",
+        "externalGatesTotal",
+        "humanExpertStudyCompleted",
+        "fieldDiagnosticAccuracyMeasured",
+        "portalHasLiveBackend",
+        "aiRolesAreRunningAgents",
+        "operationalAuthorityGranted",
+        "disclaimer"
+      ],
+      "properties": {
+        "date": {
+          "const": "2026-11-05"
+        },
+        "nature": {
+          "const": "curated_public_repository_snapshot_not_live_github"
+        },
+        "repo": {
+          "const": "pedromaintenance/maintenancesuperinteligence"
+        },
+        "browseBase": {
+          "const": "https://github.com/pedromaintenance/maintenancesuperinteligence/blob/research/cycle51-machine-human-knowledge-interfaces/"
+        },
+        "mainCycle": {
+          "const": 42
+        },
+        "mainSha": {
+          "const": "604c9fa2f98393ca31bef5cf31c40a60566851e7"
+        },
+        "lastResearchCycleInPredecessor": {
+          "const": 50
+        },
+        "predecessorSha": {
+          "const": "b38d192af613223622635953dc3d9ac66e847413"
+        },
+        "externalGatesVerified": {
+          "const": 0
+        },
+        "externalGatesTotal": {
+          "const": 13
+        },
+        "humanExpertStudyCompleted": {
+          "const": false
+        },
+        "fieldDiagnosticAccuracyMeasured": {
+          "const": false
+        },
+        "portalHasLiveBackend": {
+          "const": false
+        },
+        "aiRolesAreRunningAgents": {
+          "const": false
+        },
+        "operationalAuthorityGranted": {
+          "const": false
+        },
+        "disclaimer": {
+          "type": "string",
+          "minLength": 25
+        }
+      }
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "subtitle",
+        "mission",
+        "decision",
+        "prohibition"
+      ],
+      "properties": {
+        "name": {
+          "const": "Maintenance Superintelligence"
+        },
+        "subtitle": {
+          "type": "string",
+          "minLength": 10
+        },
+        "mission": {
+          "type": "string",
+          "minLength": 30
+        },
+        "decision": {
+          "const": "NO GO"
+        },
+        "prohibition": {
+          "type": "string",
+          "minLength": 35
+        }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "description",
+          "icon"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "visao",
+              "capacidades",
+              "agentes",
+              "roadmap",
+              "auditoria"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 20
+          },
+          "icon": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "agents": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "summary",
+          "file",
+          "skill",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "auditor",
+              "investigador",
+              "curador"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 25
+          },
+          "file": {
+            "type": "string",
+            "pattern": "^agents/[a-z-]+\\.md$"
+          },
+          "skill": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "const": "role_specification_only"
+          }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "summary",
+          "file",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "auditoria-evidencias",
+              "investigacao-mecanica",
+              "curadoria-roadmap"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 20
+          },
+          "file": {
+            "type": "string",
+            "pattern": "^\\.agents/skills/[a-z-]+/SKILL\\.md$"
+          },
+          "status": {
+            "const": "procedure_documented"
+          }
+        }
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "summary",
+          "status",
+          "source",
+          "domain"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 20
+          },
+          "status": {
+            "enum": [
+              "synthetic_research_only",
+              "design_only"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "domain": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "roadmap": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "stage",
+          "priority",
+          "detail",
+          "source",
+          "dependsOn",
+          "acceptance"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stage": {
+            "enum": [
+              "in_draft",
+              "implemented_in_draft",
+              "blocked_external_evidence",
+              "pending_human_review"
+            ]
+          },
+          "priority": {
+            "enum": [
+              "P0",
+              "P1",
+              "P2",
+              "P3"
+            ]
+          },
+          "detail": {
+            "type": "string",
+            "minLength": 25
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dependsOn": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 8,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "acceptance": {
+            "type": "string",
+            "minLength": 15
+          }
+        }
+      }
+    },
+    "documents": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "group",
+          "path",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "group": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 15
+          }
+        }
+      }
+    },
+    "gates": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "owner",
+          "requirement",
+          "status",
+          "source"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requirement": {
+            "type": "string",
+            "minLength": 20
+          },
+          "status": {
+            "const": "unverified_requires_external_evidence"
+          },
+          "source": {
+            "const": "governance/cycle48-study-readiness.v1.json"
+          }
+        }
+      }
+    },
+    "prs": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "number",
+          "cycle",
+          "title",
+          "branch",
+          "status",
+          "url"
+        ],
+        "properties": {
+          "number": {
+            "type": "integer",
+            "minimum": 69,
+            "maximum": 76
+          },
+          "cycle": {
+            "type": "integer",
+            "minimum": 43,
+            "maximum": 50
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "branch": {
+            "type": "string",
+            "pattern": "^research/cycle[0-9]+-[a-z0-9-]+$"
+          },
+          "status": {
+            "const": "draft_not_merged_snapshot"
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://github\\.com/pedromaintenance/maintenancesuperinteligence/pull/(69|70|71|72|73|74|75|76)$"
+          }
+        }
+      }
+    },
+    "sites": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "path"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "overview",
+              "audit"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "enum": [
+              "portal/index.html",
+              "portal/auditoria.html"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
