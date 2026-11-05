@@ -1,0 +1,78 @@
+name: Cycle 48 PR integration + independent study readiness (offline NO GO)
+
+on:
+  push:
+    paths:
+      - 'governance/cycle48*'
+      - 'tests/test_cycle48_readiness.py'
+      - 'contracts/cycle48-*'
+      - 'docs/CICLO_2026-11-05_PRONTIDAO_ESTUDO_48.md'
+      - '.github/workflows/cycle48-study-readiness.yml'
+  pull_request:
+    paths:
+      - 'governance/cycle48*'
+      - 'tests/test_cycle48_readiness.py'
+      - 'contracts/cycle48-*'
+      - 'docs/CICLO_2026-11-05_PRONTIDAO_ESTUDO_48.md'
+      - '.github/workflows/cycle48-study-readiness.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  no-go-readiness-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile and run strict offline inventory tests
+        run: |
+          python -m compileall -q governance/cycle48_readiness.py tests/test_cycle48_readiness.py
+          python -m unittest tests.test_cycle48_readiness -v
+      - name: Build snapshot report (public metadata only)
+        run: |
+          python -m governance.cycle48_readiness \
+            --output build/governance/cycle48-readiness.json \
+            --markdown build/governance/cycle48-readiness.md
+      - name: Validate C48 inputs and output against real JSON Schema
+        run: |
+          python -m pip install --disable-pip-version-check --no-input jsonschema==4.23.0
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          for filename, contract in (
+              ('governance/cycle48-study-readiness.v1.json',
+               'contracts/cycle48-study-readiness.schema.json'),
+              ('build/governance/cycle48-readiness.json',
+               'contracts/cycle48-readiness-report.schema.json'),
+          ):
+              data=json.loads(Path(filename).read_text(encoding='utf-8'))
+              schema=json.loads(Path(contract).read_text(encoding='utf-8'))
+              Draft202012Validator.check_schema(schema)
+              Draft202012Validator(schema).validate(data)
+          data=json.loads(Path('build/governance/cycle48-readiness.json')
+                          .read_text(encoding='utf-8'))
+          assert data['pendingStackCount']==5
+          assert data['unverifiedExternalGateCount']==13
+          assert data['metricsEstimatedFromRealCases']==0
+          assert not data['snapshotIsLive']
+          assert not data['studyMayStart']
+          assert not data['studyMayRecruitParticipants']
+          assert not any(data[k] for k in (
+              'mayExecuteTests', 'mayCreateWorkOrder',
+              'mayWriteSAP', 'mayModifyECM', 'mayReleaseEquipment'))
+          assert data['status']=='no_go_review_pr_stack_and_obtain_independent_study_evidence'
+          print('PASS: typed contracts and explicit independent-review NO GO')
+          PY
+      - name: Upload only public frozen metadata
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle48-public-research-readiness
+          path: |
+            build/governance/cycle48-readiness.json
+            build/governance/cycle48-readiness.md
+          retention-days: 14
