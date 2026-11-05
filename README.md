@@ -152,7 +152,7 @@ A CLI `python -m methods.library --snapshot ... --case ... --investigation ... -
 
 A partir de `AGENTS.md`, três perfis em `agents/` e três skills em `.agents/skills/`, uma IA pode localizar as fontes, interpretar o roadmap e seguir procedimentos que **não transformam simulações em laudos de campo**. Os humanos podem usar **`portal/index.html`** (navegação, busca, capacidades, agentes e roadmap) e **`portal/auditoria.html`** (13 gates externos pendentes, dependências de PRs e riscos), ambos HTML standalone sem servidor e com exportação do snapshot JSON.
 
-O arquivo `interfaces/catalog.v1.json` contém o índice comum para as duas experiências; `scripts/sync_interfaces.py --check` compara o catálogo embutido, caminhos de fontes e estado de gates com a base documental. A fotografia de 05/11/2026 **não é atualização live do GitHub**; o portal não possui backend, acesso SAP/ECM nem autenticação de revisores. O CI e os contratos não concedem validação mecânica independente ou autoridade de campo. **NO GO**. [Documentação completa](docs/INTERFACES_IA_HUMANOS.md).
+O arquivo `interfaces/catalog.v1.json` contém o índice comum para as duas experiências e gera `ROADMAP.json` para consulta estruturada por IAs; `scripts/sync_interfaces.py --check` compara o catálogo embutido, caminhos de fontes e estado de gates com a base documental. A fotografia de 05/11/2026 **não é atualização live do GitHub**; o portal não possui backend, acesso SAP/ECM nem autenticação de revisores. O CI e os contratos não concedem validação mecânica independente ou autoridade de campo. **NO GO**. [Documentação completa](docs/INTERFACES_IA_HUMANOS.md).
 
 ```bash
 python scripts/sync_interfaces.py --check
