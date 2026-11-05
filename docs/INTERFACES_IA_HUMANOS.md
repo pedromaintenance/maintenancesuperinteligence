@@ -26,6 +26,8 @@ O histórico de publicação está em `interfaces/publications.v1.json`; a compa
 | `contracts/interfaces-catalog.schema.json` | Ambos | Estrutura pública validável do catálogo | Verdade física do conteúdo |
 | `portal/index.html` | Humanos | Navegação e exploração com filtro e exportação JSON | Banco de dados dinâmico |
 | `portal/auditoria.html` | Humanos | Inspeção dos 13 gates e sequência de PRs | Atestação, aceite ou revisão humana |
+| `portal/versoes.html` | Humanos | Histórico de publicação e diferenças entre snapshots | Verificação HTTP independente ou assinatura externa |
+| `interfaces/publications.v1.json` | Ambos | Proveniência do primeiro deploy Pages confirmado | Homologação operacional ou status ao vivo |
 | `scripts/sync_interfaces.py` | Mantenedor/CI | Sincronização e integridade entre catálogo, portais e evidência dos gates | Avaliação independente |
 
 Os portais usam CSS e JavaScript locais. Podem ser abertos diretamente em um navegador, sem servidor. **Os links para os documentos do GitHub exigem acesso ao repositório e conexão de rede**, mas a navegação, filtros e snapshot embutido não exigem.
@@ -42,7 +44,7 @@ python -m unittest tests.test_cycle51_interfaces -v
 
 A opção `--write` **apenas reembute o catálogo** dentro do HTML standalone. Ela não atualiza PRs por API, não altera gates, não escreve em SAP e não assina resultados. A opção `--check` exige:
 
-1. Mesma estrutura de dados nas duas páginas e no catálogo;
+1. Mesma estrutura de dados nas três páginas e no catálogo;
 2. Caminhos internos existentes e sem travessia de diretórios;
 3. Três skills com frontmatter YAML e agentes ligados a skills reais;
 4. Treze IDs de gates coincidentes com a fonte do Ciclo 48, todos sem validação;
