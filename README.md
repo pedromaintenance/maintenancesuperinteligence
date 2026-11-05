@@ -4,6 +4,14 @@
 
 > **Estado: ensaios distribuídos de resiliência e negação segura P&D v4.2.0 (03/11/2026).** Este repositório ainda **não é** um sistema de diagnóstico homologado, software embarcado ou agente capaz de controlar máquinas. Os documentos definem pesquisa, requisitos, ontologia, interfaces e validação futura.
 
+## Entradas de consulta — P&D do Ciclo 51
+
+- **Para IA:** [`AGENTS.md`](AGENTS.md) · [skills](.agents/skills) · [agentes](agents) · [`ROADMAP.json`](ROADMAP.json) · [catálogo público](interfaces/catalog.v1.json).
+- **Para pessoas:** [Portal de conhecimento](portal/index.html) · [Portal de auditoria](portal/auditoria.html). São **arquivos HTML standalone**: baixe/abra localmente no navegador; clicar no arquivo dentro da interface do GitHub pode mostrar apenas o código.
+- **Para auditoria:** [Política de governança](docs/GOVERNANCA.md) · [Roadmap detalhado](docs/ROADMAP.md) · [Documentação das interfaces](docs/INTERFACES_IA_HUMANOS.md).
+
+As interfaces usam uma fotografia pública datada, **sem backend em tempo real**, revisão mecânica independente ou autoridade de operação. O projeto permanece **NO GO**.
+
 ## Visão
 
 Desenvolver, progressivamente, um sistema capaz de explicar a função de um ativo, reconhecer seus sistemas e componentes, investigar sintomas, comparar hipóteses e evidências, orientar a consulta a literatura OEM aplicável, recomendar opções de manutenção e apoiar decisões de custo, risco e ciclo de vida. Cada resposta deve expor o que é conhecido, de onde veio, a qual configuração se aplica e o que ainda precisa ser comprovado.
@@ -88,6 +96,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 48 — Prontidão de integração e estudo externo (proposta)](docs/CICLO_2026-11-05_PRONTIDAO_ESTUDO_48.md)
 - [Ciclo 49 — Matriz executável de 16 contratos JSON Schema (proposta)](docs/CICLO_2026-11-05_INTEGRACAO_CONTRATOS_49.md)
 - [Ciclo 50 — Revisão estrutural × relacional de contratos (proposta)](docs/CICLO_2026-11-05_REVISAO_RELACIONAL_50.md)
+- [Ciclo 51 — Interfaces para IAs e humanos](docs/INTERFACES_IA_HUMANOS.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -146,6 +155,17 @@ O parâmetro opcional `--simulated-test-results examples/777e_simulated_test_res
 O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em cinco disciplinas: óleo (4), hidráulica (3), mecânica (3), vibração (2) e eletrônica (2). Seis códigos de método do FMEA (`EV-*`) são reconciliados com as **oito investigações** do caso CAT 777E; as fontes de referência e limitações são rastreadas em `data/diagnostic-method-sources.v1.json`.
 
 A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
+
+## Ciclo 51 — Consulta auditável por IA e portais humanos (proposta)
+
+A partir de `AGENTS.md`, três perfis em `agents/` e três skills em `.agents/skills/`, uma IA pode localizar as fontes, interpretar o roadmap e seguir procedimentos que **não transformam simulações em laudos de campo**. Os humanos podem usar **`portal/index.html`** (navegação, busca, capacidades, agentes e roadmap) e **`portal/auditoria.html`** (13 gates externos pendentes, dependências de PRs e riscos), ambos HTML standalone sem servidor e com exportação do snapshot JSON.
+
+O arquivo `interfaces/catalog.v1.json` contém o índice comum para as duas experiências e gera `ROADMAP.json` para consulta estruturada por IAs; `scripts/sync_interfaces.py --check` compara o catálogo embutido, caminhos de fontes e estado de gates com a base documental. A fotografia de 05/11/2026 **não é atualização live do GitHub**; o portal não possui backend, acesso SAP/ECM nem autenticação de revisores. O CI e os contratos não concedem validação mecânica independente ou autoridade de campo. **NO GO**. [Documentação completa](docs/INTERFACES_IA_HUMANOS.md).
+
+```bash
+python scripts/sync_interfaces.py --check
+python -m unittest tests.test_cycle51_interfaces -v
+```
 
 ## Ciclo 50 — Integração de validação estrutural e relacional (proposta)
 
