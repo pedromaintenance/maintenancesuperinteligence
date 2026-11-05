@@ -2,6 +2,14 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 48 (branch proposta; prontidão para revisão e estudo)
+
+**Consolidação verificável:** snapshot público de 05/11/2026 registra a `main` no Ciclo 42 e cinco PRs abertos em cadeia (#69–73, Ciclos 43–47), com SHAs e CI dedicado/geral aprovados nos respectivos HEADs. Os PRs seguem *draft*, sem revisão humana concluída ou merge. O validador `governance/cycle48_readiness.py` reconstrói a cadeia declarada e os hashes dos documentos existentes; dois contratos JSON Schema são executados no CI. **Não consulta estado live nem autoriza merge.**
+
+**Prontidão para estudo externo:** inventário formal de **13 gates pendentes** (aprovação de código, congelamento, direitos de dados, custódia independente, privacidade, origem de casos, identidade/competência de revisores, efetividade OEM, SST, neutralidade humana, estatística e adjudicação). Cinco métricas em forma de numerador/denominador são propostas **somente para discussão**, sem resultados observados nem pré-registro aprovado. [Documento de prontidão](CICLO_2026-11-05_PRONTIDAO_ESTUDO_48.md).
+
+**Critério de avanço:** fechar a cadeia de revisões de PR de forma ordenada e só depois tratar recrutamento ou coleta real em ambiente privado sob custódia institucional e direitos de uso. Nenhum status externo pode ser declarado por testes autorais. **NO GO** para estudo ativo, causa raiz confirmada, SAP, ECM, OS ou liberação.
+
 ## Marco de pesquisa: Ciclo 47 (branch proposta; red team de texto e proveniência)
 
 **Entregue em pesquisa sintética:** inspeção conservadora de pistas de identidade metodológica em perguntas pareadas, inclusive caracteres Unicode invisíveis, scripts misturados, instruções indevidas, identificadores internos e perguntas quase duplicadas. O auditor reconstrói os controles de custódia e revisão dos Ciclos 30–32, 45 e 46 antes de emitir um relatório privado de flags. Lacunas de fonte, natureza sintética e efetividade OEM permanecem separadas de alertas linguísticos, com encaminhamento para revisão externa e **NO GO permanente**.
