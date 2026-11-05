@@ -18,6 +18,13 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "governance/cycle48-study-readiness.v1.json"
 PREFIX = "maintenance-superinteligence.cycle48"
 SHA = re.compile(r"^[0-9a-f]{40}$")
+FROZEN_PR_SHAS = (
+    "8c7c384fbf2fc0edfca62ded458b19efd14af7e6",
+    "a394fa525f72f82845fb9869ec959de396600167",
+    "7775e5593e3688db39b823321d61c4af9199d49f",
+    "13b1fa12eafeb8780ed1c6d663129cf2c95939ca",
+    "81467d4c359ba8a29096341cc413ba935aadc11e",
+)
 GATES = (
     "pr_chain_review", "baseline_freeze", "legal_case_authorization",
     "independent_custodian", "data_privacy_access", "corpus_leakage_review",
@@ -100,6 +107,7 @@ def validate_manifest(data, root=ROOT):
             and pr["base"] == ("main" if i == 0 else stack[i-1]["head"])
             and isinstance(pr["headSha"], str)
             and SHA.fullmatch(pr["headSha"])
+            and pr["headSha"] == FROZEN_PR_SHAS[i]
             and pr["state"] == "open_draft"
             and pr["dedicatedCiOnHead"] == "passed"
             and pr["regressionOnHead"] == "passed"
