@@ -112,7 +112,11 @@ def _schema(name):
         raise RuntimeError(
             "Cycle50 requires pinned jsonschema==4.23.0 for contract execution"
         ) from exc
-    contract_path = c49._contract_path(name)
+    if name == "cycle49-contract-audit":
+        contract_path = c49.ROOT / "contracts/cycle49-contract-audit.schema.json"
+        require(contract_path.is_file(), "Cycle49 report contract absent")
+    else:
+        contract_path = c49._contract_path(name)
     raw = json.loads(contract_path.read_text(encoding="utf-8"))
     Draft202012Validator.check_schema(raw)
     return Draft202012Validator(raw)
