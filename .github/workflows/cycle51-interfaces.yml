@@ -1,0 +1,87 @@
+name: Cycle 51 AI skills and standalone human interface audit
+
+on:
+  push:
+    paths:
+      - 'AGENTS.md'
+      - 'agents/**'
+      - '.agents/skills/**'
+      - 'interfaces/**'
+      - 'portal/**'
+      - 'scripts/sync_interfaces.py'
+      - 'tests/test_cycle51_interfaces.py'
+      - 'contracts/interfaces-catalog.schema.json'
+      - 'docs/INTERFACES_IA_HUMANOS.md'
+      - '.github/workflows/cycle51-interfaces.yml'
+  pull_request:
+    paths:
+      - 'AGENTS.md'
+      - 'agents/**'
+      - '.agents/skills/**'
+      - 'interfaces/**'
+      - 'portal/**'
+      - 'scripts/sync_interfaces.py'
+      - 'tests/test_cycle51_interfaces.py'
+      - 'contracts/interfaces-catalog.schema.json'
+      - 'docs/INTERFACES_IA_HUMANOS.md'
+      - '.github/workflows/cycle51-interfaces.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  machine-human-interface-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned JSON Schema validator
+        run: python -m pip install --disable-pip-version-check --no-input jsonschema==4.23.0
+      - name: Verify one catalog, two standalone portals and agent sources
+        run: |
+          python -m compileall -q scripts/sync_interfaces.py tests/test_cycle51_interfaces.py
+          python scripts/sync_interfaces.py --check
+          python -m unittest tests.test_cycle51_interfaces -v
+      - name: Check browser JavaScript syntax without network dependencies
+        run: |
+          python - <<'PY'
+          import re
+          import subprocess
+          import tempfile
+          from pathlib import Path
+          for path in [Path('portal/index.html'), Path('portal/auditoria.html')]:
+              content = path.read_text(encoding='utf-8')
+              scripts = re.findall(r'<script>(.*?)</script>', content, re.DOTALL)
+              assert len(scripts) == 1, path
+              assert 'fetch(' not in scripts[0]
+              with tempfile.NamedTemporaryFile(
+                  'w', suffix='.js', encoding='utf-8'
+              ) as fh:
+                  fh.write(scripts[0])
+                  fh.flush()
+                  subprocess.run(['node', '--check', fh.name], check=True)
+              print('PASS: standalone browser JS syntax', path)
+          PY
+      - name: Enforce public catalog, external evidence NOT verified and NO GO
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          data=json.loads(Path('interfaces/catalog.v1.json').read_text(encoding='utf-8'))
+          schema=json.loads(Path('contracts/interfaces-catalog.schema.json').read_text(encoding='utf-8'))
+          Draft202012Validator.check_schema(schema)
+          Draft202012Validator(schema).validate(data)
+          assert data['snapshot']['externalGatesVerified']==0
+          assert data['snapshot']['externalGatesTotal']==13
+          assert data['project']['decision']=='NO GO'
+          assert all(not data['snapshot'][key] for key in (
+             'operationalAuthorityGranted','humanExpertStudyCompleted',
+             'fieldDiagnosticAccuracyMeasured','portalHasLiveBackend',
+             'aiRolesAreRunningAgents'))
+          assert 'NO GO' in Path('docs/INTERFACES_IA_HUMANOS.md').read_text(encoding='utf-8')
+          print('PASS: indexed public navigation only; no external human validation')
+          PY
