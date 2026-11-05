@@ -82,7 +82,7 @@ def validate_manifest(data, root=ROOT):
         and data["version"] == "1.0.0"
         and data["snapshotDate"] == "2026-11-05"
         and data["source"] ==
-            "human_reviewed_github_api_snapshot_reproduced_as_public_metadata_not_live"
+            "github_api_observation_frozen_as_public_metadata_not_live"
         and isinstance(data["mainBaselineSha"], str)
         and SHA.fullmatch(data["mainBaselineSha"])
         and data["mainBaselineSha"] == "604c9fa2f98393ca31bef5cf31c40a60566851e7"
