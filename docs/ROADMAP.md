@@ -2,6 +2,14 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 49 (branch proposta; integração de contratos executáveis)
+
+**Entregue em pesquisa sintética:** execução real de 16 contratos JSON Schema dos Ciclos 44–48 contra objetos fabricados em memória, com teste de adulterações de versão, atributos inesperados e promoção de campos de autoridade falsos, inclusive aninhados. O relatório é público apenas com contagens; nenhum corpus, mapa privado, chave ou parecer real é exportado. [Auditoria executável](CICLO_2026-11-05_INTEGRACAO_CONTRATOS_49.md).
+
+**Limitação:** aderência entre instância sintética e schema confirma consistência estrutural de um cenário, não competência diagnóstica, causalidade mecânica ou autenticidade da documentação OEM. Não há estudo humano nem revisão independente dos PRs concluída. A matriz não dá autorização para inspeção, abertura de OS, SAP, ECM ou liberação. **NO GO.**
+
+**Próxima etapa de maior valor:** usar resultados do CI na revisão efetiva dos PRs #69–75 em ordem de dependências, corrigir eventuais contratos mal especificados e formalizar responsáveis pelos 13 gates de estudo externo definidos no Ciclo 48, sem reclassificar testes autorais como evidências independentes.
+
 ## Marco de pesquisa: Ciclo 48 (branch proposta; prontidão para revisão e estudo)
 
 **Consolidação verificável:** snapshot público de 05/11/2026 registra a `main` no Ciclo 42 e cinco PRs abertos em cadeia (#69–73, Ciclos 43–47), com SHAs e CI dedicado/geral aprovados nos respectivos HEADs. Os PRs seguem *draft*, sem revisão humana concluída ou merge. O validador `governance/cycle48_readiness.py` reconstrói a cadeia declarada e os hashes dos documentos existentes; dois contratos JSON Schema são executados no CI. **Não consulta estado live nem autoriza merge.**

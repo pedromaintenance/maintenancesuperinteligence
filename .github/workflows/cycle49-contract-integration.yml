@@ -1,0 +1,65 @@
+name: Cycle 49 executable JSON Schema integration (synthetic-only)
+
+on:
+  push:
+    paths:
+      - 'governance/cycle49*'
+      - 'tests/test_cycle49_contract_integration.py'
+      - 'contracts/cycle49-*'
+      - 'docs/CICLO_2026-11-05_INTEGRACAO_CONTRATOS_49.md'
+      - '.github/workflows/cycle49-contract-integration.yml'
+  pull_request:
+    paths:
+      - 'governance/cycle49*'
+      - 'tests/test_cycle49_contract_integration.py'
+      - 'contracts/cycle49-*'
+      - 'docs/CICLO_2026-11-05_INTEGRACAO_CONTRATOS_49.md'
+
+permissions:
+  contents: read
+
+jobs:
+  full-contract-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned JSON Schema validator
+        run: python -m pip install --disable-pip-version-check --no-input jsonschema==4.23.0
+      - name: Run executable cross-cycle contracts (never real data)
+        run: |
+          python -m compileall -q governance/cycle49_contract_integration.py tests/test_cycle49_contract_integration.py
+          python -m unittest tests.test_cycle49_contract_integration -v
+          python -m governance.cycle49_contract_integration \
+            --output build/governance/cycle49-contract-audit.json \
+            --markdown build/governance/cycle49-contract-audit.md
+      - name: Enforce typed NO GO, minimum scope and zero sensitive study artifacts
+        run: |
+          python - <<'PY'
+          from jsonschema import Draft202012Validator
+          from pathlib import Path
+          import json
+          report = json.loads(Path('build/governance/cycle49-contract-audit.json').read_text(encoding='utf-8'))
+          schema = json.loads(Path('contracts/cycle49-contract-audit.schema.json').read_text(encoding='utf-8'))
+          Draft202012Validator.check_schema(schema)
+          Draft202012Validator(schema).validate(report)
+          assert report['contractCount'] == 16
+          assert report['mutationsRejected'] >= 50
+          assert report['independentExpertReviewPerformed'] is False
+          assert report['mechanicalDiagnosticAccuracyMeasured'] is False
+          assert report['mayReleaseEquipment'] is False
+          assert report['studyMayStart'] is False
+          assert 'NO GO' in Path('docs/CICLO_2026-11-05_INTEGRACAO_CONTRATOS_49.md').read_text(encoding='utf-8')
+          print('PASS: 16 contracts verified against synthetic results, no real authority')
+          PY
+      - name: Upload public counts only, no private packets or inputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle49-public-contract-coverage
+          path: |
+            build/governance/cycle49-contract-audit.json
+            build/governance/cycle49-contract-audit.md
+          retention-days: 14
