@@ -156,6 +156,15 @@ O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em ci
 
 A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
 
+## Ciclo 52 — Histórico verificável de publicações (proposta)
+
+A nova página `portal/versoes.html` apresenta os artefatos e o workflow do primeiro deploy do Pages, além de comparar **dois snapshots públicos de catálogo** e exportar as diferenças. `interfaces/publications.v1.json` preserva os IDs de commit, execução e hashes Git dos arquivos originais; `governance/cycle52_publication_audit.py` detecta desvio de origem, páginas desatualizadas e campos de autoridade falsos. São **metadados de publicação**, não prova de diagnóstico, autenticidade humana ou conformidade OEM. O histórico é uma fotografia, não uma consulta live. [Documento](docs/PUBLICACOES_PORTAIS.md). **NO GO**.
+
+```bash
+python -m governance.cycle52_publication_audit --check
+python -m unittest tests.test_cycle52_publication -v
+```
+
 ## Ciclo 51 — Consulta auditável por IA e portais humanos (proposta)
 
 A partir de `AGENTS.md`, três perfis em `agents/` e três skills em `.agents/skills/`, uma IA pode localizar as fontes, interpretar o roadmap e seguir procedimentos que **não transformam simulações em laudos de campo**. Os humanos podem usar **`portal/index.html`** (navegação, busca, capacidades, agentes e roadmap) e **`portal/auditoria.html`** (13 gates externos pendentes, dependências de PRs e riscos), ambos HTML standalone sem servidor e com exportação do snapshot JSON.
