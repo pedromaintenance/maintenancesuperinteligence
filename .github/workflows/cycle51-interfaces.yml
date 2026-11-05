@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - 'AGENTS.md'
+      - 'ROADMAP.json'
+      - 'docs/ROADMAP.md'
       - 'agents/**'
       - '.agents/skills/**'
       - 'interfaces/**'
@@ -11,11 +13,14 @@ on:
       - 'scripts/sync_interfaces.py'
       - 'tests/test_cycle51_interfaces.py'
       - 'contracts/interfaces-catalog.schema.json'
+      - 'contracts/machine-roadmap.schema.json'
       - 'docs/INTERFACES_IA_HUMANOS.md'
       - '.github/workflows/cycle51-interfaces.yml'
   pull_request:
     paths:
       - 'AGENTS.md'
+      - 'ROADMAP.json'
+      - 'docs/ROADMAP.md'
       - 'agents/**'
       - '.agents/skills/**'
       - 'interfaces/**'
@@ -23,6 +28,7 @@ on:
       - 'scripts/sync_interfaces.py'
       - 'tests/test_cycle51_interfaces.py'
       - 'contracts/interfaces-catalog.schema.json'
+      - 'contracts/machine-roadmap.schema.json'
       - 'docs/INTERFACES_IA_HUMANOS.md'
       - '.github/workflows/cycle51-interfaces.yml'
 
@@ -75,6 +81,12 @@ jobs:
           schema=json.loads(Path('contracts/interfaces-catalog.schema.json').read_text(encoding='utf-8'))
           Draft202012Validator.check_schema(schema)
           Draft202012Validator(schema).validate(data)
+          machine=json.loads(Path('ROADMAP.json').read_text(encoding='utf-8'))
+          mschema=json.loads(Path('contracts/machine-roadmap.schema.json').read_text(encoding='utf-8'))
+          Draft202012Validator.check_schema(mschema)
+          Draft202012Validator(mschema).validate(machine)
+          assert machine['items']==data['roadmap']
+          assert machine['externalGatesPending']==13
           assert data['snapshot']['externalGatesVerified']==0
           assert data['snapshot']['externalGatesTotal']==13
           assert data['project']['decision']=='NO GO'
