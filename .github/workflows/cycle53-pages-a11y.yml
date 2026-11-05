@@ -1,0 +1,101 @@
+name: Cycle 53 append-only Pages history and keyboard accessibility (static only)
+
+on:
+  push:
+    paths:
+      - 'interfaces/**'
+      - 'portal/**'
+      - 'governance/cycle53_publication_history.py'
+      - 'governance/cycle52_publication_audit.py'
+      - 'scripts/sync_interfaces.py'
+      - 'tests/test_cycle5*_publication*.py'
+      - 'contracts/publications-v2.schema.json'
+      - 'contracts/cycle53-publication-a11y.schema.json'
+      - 'contracts/machine-roadmap.schema.json'
+      - 'ROADMAP.json'
+      - 'docs/ACESSIBILIDADE_HISTORICO_53.md'
+      - 'docs/ROADMAP.md'
+      - '.github/workflows/cycle53-pages-a11y.yml'
+  pull_request:
+    paths:
+      - 'interfaces/**'
+      - 'portal/**'
+      - 'governance/cycle53_publication_history.py'
+      - 'scripts/sync_interfaces.py'
+      - 'tests/**'
+      - 'contracts/publications-v2.schema.json'
+      - 'contracts/cycle53-publication-a11y.schema.json'
+      - 'contracts/machine-roadmap.schema.json'
+      - 'ROADMAP.json'
+      - 'docs/ACESSIBILIDADE_HISTORICO_53.md'
+      - 'docs/ROADMAP.md'
+      - '.github/workflows/cycle53-pages-a11y.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  offline-history-and-static-a11y:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install schema validator
+        run: python -m pip install --disable-pip-version-check --no-input jsonschema==4.23.0
+      - name: Audit two confirmed Pages releases and portal accessibility contracts
+        run: |
+          python -m compileall -q governance/cycle53_publication_history.py tests/test_cycle53_publication_a11y.py
+          python scripts/sync_interfaces.py --check
+          python -m governance.cycle52_publication_audit --check
+          python -m governance.cycle53_publication_history --output build/governance/cycle53-release-history.json
+          python -m unittest tests.test_cycle51_interfaces tests.test_cycle52_publication tests.test_cycle53_publication_a11y -v
+      - name: Validate JSON Schemas and reject authority escalation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          files=[
+           ('contracts/publications-v2.schema.json','interfaces/publications.v2.json'),
+           ('contracts/cycle53-publication-a11y.schema.json','build/governance/cycle53-release-history.json'),
+           ('contracts/machine-roadmap.schema.json','ROADMAP.json'),
+           ('contracts/interfaces-catalog.schema.json','interfaces/catalog.v1.json')
+          ]
+          for schema_path,instance_path in files:
+              schema=json.loads(Path(schema_path).read_text(encoding='utf-8'))
+              instance=json.loads(Path(instance_path).read_text(encoding='utf-8'))
+              Draft202012Validator.check_schema(schema)
+              Draft202012Validator(schema).validate(instance)
+          report=json.loads(Path('build/governance/cycle53-release-history.json').read_text(encoding='utf-8'))
+          assert report['knownGithubSuccessfulDeploys']==2
+          assert report['recordedPublicHtmlBlobs']==5
+          assert report['externalGatesVerified']==0
+          assert report['browserScreenReaderAuditCompleted'] is False
+          assert report['mayReleaseEquipment'] is False
+          print('PASS: public Github run receipts; no human or operational authority')
+          PY
+      - name: Check browser JS syntax on three standalone portals
+        run: |
+          python - <<'PY'
+          import re, subprocess, tempfile
+          from pathlib import Path
+          for path in [Path('portal/index.html'),Path('portal/auditoria.html'),Path('portal/versoes.html')]:
+              text=path.read_text(encoding='utf-8')
+              scripts=re.findall(r'<script>(.*?)</script>',text,re.DOTALL)
+              assert len(scripts)==1,path
+              assert '<script src=' not in text and 'fetch(' not in text
+              assert 'href="#main-content"' in text and 'focus-visible' in text
+              with tempfile.NamedTemporaryFile('w',suffix='.js',encoding='utf-8') as tmp:
+                  tmp.write(scripts[0]);tmp.flush()
+                  subprocess.run(['node','--check',tmp.name],check=True)
+              print('PASS static-only browser script:',path)
+          PY
+      - name: Upload only public summary, not credentials or case evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle53-public-history-and-a11y-gates
+          path: build/governance/cycle53-release-history.json
+          retention-days: 14
