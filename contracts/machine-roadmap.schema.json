@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/machine-roadmap.schema.json",
+  "title": "Machine roadmap derived from public research index, not live Github",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "snapshotDate",
+    "nature",
+    "sourceCatalog",
+    "fullRoadmap",
+    "mainCycle",
+    "externalGatesPending",
+    "items",
+    "humanApprovalVerified",
+    "operationalAuthorityGranted",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.machine-roadmap.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "snapshotDate": {
+      "const": "2026-11-05"
+    },
+    "nature": {
+      "const": "public_curated_navigation_snapshot_not_live_github_or_approved_study"
+    },
+    "sourceCatalog": {
+      "const": "interfaces/catalog.v1.json"
+    },
+    "fullRoadmap": {
+      "const": "docs/ROADMAP.md"
+    },
+    "mainCycle": {
+      "const": 42
+    },
+    "externalGatesPending": {
+      "const": 13
+    },
+    "items": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "stage",
+          "priority",
+          "detail",
+          "source",
+          "dependsOn",
+          "acceptance"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stage": {
+            "enum": [
+              "in_draft",
+              "implemented_in_draft",
+              "blocked_external_evidence",
+              "pending_human_review"
+            ]
+          },
+          "priority": {
+            "enum": [
+              "P0",
+              "P1",
+              "P2",
+              "P3"
+            ]
+          },
+          "detail": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dependsOn": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "maxItems": 8
+          },
+          "acceptance": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "humanApprovalVerified": {
+      "const": false
+    },
+    "operationalAuthorityGranted": {
+      "const": false
+    },
+    "decision": {
+      "const": "NO GO"
+    }
+  }
+}
