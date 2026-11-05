@@ -58,7 +58,7 @@ jobs:
           import subprocess
           import tempfile
           from pathlib import Path
-          for path in [Path('portal/index.html'), Path('portal/auditoria.html')]:
+          for path in [Path('portal/index.html'), Path('portal/auditoria.html'), Path('portal/versoes.html')]:
               content = path.read_text(encoding='utf-8')
               scripts = re.findall(r'<script>(.*?)</script>', content, re.DOTALL)
               assert len(scripts) == 1, path
