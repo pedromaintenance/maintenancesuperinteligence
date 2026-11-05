@@ -6,6 +6,7 @@ on:
     paths:
       - 'index.html'
       - 'auditoria.html'
+      - 'versoes.html'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -34,11 +35,14 @@ jobs:
           mkdir -p _site
           cp index.html _site/index.html
           cp auditoria.html _site/auditoria.html
+          cp versoes.html _site/versoes.html
           touch _site/.nojekyll
           test -s _site/index.html
           test -s _site/auditoria.html
+          test -s _site/versoes.html
           grep -q 'NO GO' _site/index.html
           grep -q 'NO GO' _site/auditoria.html
+          grep -q 'NO GO' _site/versoes.html
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload public portal artifact
