@@ -165,8 +165,9 @@ def validate(data):
                     for x in data["prs"]),
             "historical PR snapshot inconsistent or promoted")
     require([x["path"] for x in data["sites"]] ==
-            ["portal/index.html", "portal/auditoria.html"],
-            "two standalone portal entries required")
+            ["portal/index.html", "portal/auditoria.html",
+             "portal/versoes.html"],
+            "three standalone portal entries required")
     for site in data["sites"]:
         checked_file(site["path"])
     require("Ciclo 51" in checked_file("docs/ROADMAP.md").read_text(
