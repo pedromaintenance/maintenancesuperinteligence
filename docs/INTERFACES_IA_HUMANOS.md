@@ -13,7 +13,7 @@ A Maintenance Superintelligence deve funcionar como **conhecimento versionado e 
 
 O catálogo é a **fonte única de navegação e estados exibidos**, não a fonte de validade mecânica ou a fonte canônica de toda a documentação. Para regras de engenharia e risco, a fonte continua sendo `docs/GOVERNANCA.md` e os documentos de domínio; para gates, `governance/cycle48-study-readiness.v1.json`; para o histórico completo, `docs/ROADMAP.md`.
 
-O catálogo é uma **fotografia congelada em 05/11/2026** e registra a `main` no Ciclo 42, os PRs #69–76 abertos como *draft* no momento da consulta e os 13 gates externos não verificados. A branch do Ciclo 51 permanece fora da `main` até revisão e integração.
+O histórico de publicação está em `interfaces/publications.v1.json`; a comparação visual em `portal/versoes.html`. Ambos são metadados públicos de proveniência, não prova de validade mecânica. O catálogo é uma **fotografia congelada em 05/11/2026** e registra a `main` no Ciclo 42, os PRs #69–76 abertos como *draft* no momento da consulta e os 13 gates externos não verificados. A branch do Ciclo 51 permanece fora da `main` até revisão e integração.
 
 ## 2. Mapa de artefatos
 
