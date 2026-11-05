@@ -8,7 +8,7 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 **Entregáveis em proposta:** `AGENTS.md` (entrada para IAs), três papéis em `agents/`, três skills em `.agents/skills/`, `interfaces/catalog.v1.json` com JSON Schema e duas páginas standalone `portal/index.html` (conhecimento) e `portal/auditoria.html` (gates/PRs). O verificador `scripts/sync_interfaces.py` garante que ambas exibam o mesmo snapshot, que as fontes existam e que os 13 gates do Ciclo 48 permaneçam não verificados. [Arquitetura e instruções](INTERFACES_IA_HUMANOS.md).
 
-**Marco de validade:** o portal e os agentes não possuem backend live, não consultam SAP/ECM, não autenticam engenheiros, não validam literatura OEM por série nem concedem autorizações; toda referência a PRs é um snapshot datado de 05/11/2026, não uma consulta dinâmica. Os PRs anteriores (#69–76) continuam sujeitos à revisão e integração em sequência. **NO GO.**
+**Marco de validade:** o portal e os agentes não possuem backend live, não consultam SAP/ECM, não autenticam engenheiros, não validam literatura OEM por série nem concedem autorizações; toda referência a PRs é um snapshot datado de 05/11/2026, não uma consulta dinâmica. Os PRs anteriores (#69–76) continuam sujeitos à revisão e integração em sequência. Um `ROADMAP.json` na raiz apresenta os marcos em formato consumível por IA, derivado do catálogo público para evitar duplicação manual. **NO GO.**
 
 **Próximo passo:** validar no CI, testar consulta humana e legibilidade em dispositivos móveis, revisar a política de publicação e decidir se o portal deve ser hospedado no Pages após integração. Não converter filtros ou cliques em assinaturas, aprovações ou observações de campo.
 
