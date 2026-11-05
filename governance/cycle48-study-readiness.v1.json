@@ -1,0 +1,265 @@
+{
+  "schema": "maintenance-superinteligence.cycle48-research-gate.v1",
+  "version": "1.0.0",
+  "snapshotDate": "2026-11-05",
+  "source": "human_reviewed_github_api_snapshot_reproduced_as_public_metadata_not_live",
+  "mainBaselineSha": "604c9fa2f98393ca31bef5cf31c40a60566851e7",
+  "stack": [
+    {
+      "number": 69,
+      "cycle": 43,
+      "base": "main",
+      "head": "research/cycle43-evidence-readiness-audit",
+      "headSha": "8c7c384fbf2fc0edfca62ded458b19efd14af7e6",
+      "documentPath": "docs/CICLO_2026-11-03_AUDITORIA_MATURIDADE_43.md",
+      "state": "open_draft",
+      "dedicatedCiOnHead": "passed",
+      "regressionOnHead": "passed",
+      "independentCodeReviewApproved": false,
+      "mergedIntoMain": false,
+      "mayAutomaticallyMerge": false
+    },
+    {
+      "number": 70,
+      "cycle": 44,
+      "base": "research/cycle43-evidence-readiness-audit",
+      "head": "research/cycle44-discriminant-study-design",
+      "headSha": "a394fa525f72f82845fb9869ec959de396600167",
+      "documentPath": "docs/CICLO_2026-11-03_ESTUDO_DISCRIMINACAO_44.md",
+      "state": "open_draft",
+      "dedicatedCiOnHead": "passed",
+      "regressionOnHead": "passed",
+      "independentCodeReviewApproved": false,
+      "mergedIntoMain": false,
+      "mayAutomaticallyMerge": false
+    },
+    {
+      "number": 71,
+      "cycle": 45,
+      "base": "research/cycle44-discriminant-study-design",
+      "head": "research/cycle45-blinded-pairwise-review",
+      "headSha": "7775e5593e3688db39b823321d61c4af9199d49f",
+      "documentPath": "docs/CICLO_2026-11-04_REVISAO_CEGA_PAREADA_45.md",
+      "state": "open_draft",
+      "dedicatedCiOnHead": "passed",
+      "regressionOnHead": "passed",
+      "independentCodeReviewApproved": false,
+      "mergedIntoMain": false,
+      "mayAutomaticallyMerge": false
+    },
+    {
+      "number": 72,
+      "cycle": 46,
+      "base": "research/cycle45-blinded-pairwise-review",
+      "head": "research/cycle46-masking-adjudication-gates",
+      "headSha": "13b1fa12eafeb8780ed1c6d663129cf2c95939ca",
+      "documentPath": "docs/CICLO_2026-11-04_ADJUDICACAO_E_CEGAMENTO_46.md",
+      "state": "open_draft",
+      "dedicatedCiOnHead": "passed",
+      "regressionOnHead": "passed",
+      "independentCodeReviewApproved": false,
+      "mergedIntoMain": false,
+      "mayAutomaticallyMerge": false
+    },
+    {
+      "number": 73,
+      "cycle": 47,
+      "base": "research/cycle46-masking-adjudication-gates",
+      "head": "research/cycle47-adversarial-masking-provenance",
+      "headSha": "81467d4c359ba8a29096341cc413ba935aadc11e",
+      "documentPath": "docs/CICLO_2026-11-04_RED_TEAM_MASCARAMENTO_47.md",
+      "state": "open_draft",
+      "dedicatedCiOnHead": "passed",
+      "regressionOnHead": "passed",
+      "independentCodeReviewApproved": false,
+      "mergedIntoMain": false,
+      "mayAutomaticallyMerge": false
+    }
+  ],
+  "researchAim": "Comparar em estudo cego pareado a qualidade de perguntas para discriminar hipóteses mecânicas, sem executar testes físicos nem validar causas raiz.",
+  "studyDesign": {
+    "design": "paired_blind_technical_question_preference_proposed",
+    "realDataCollected": false,
+    "protocolPreRegistered": false,
+    "sampleSizeJustified": false,
+    "comparisonFrozen": false,
+    "reviewerRecruitmentAuthorized": false,
+    "blindnessHumanValidated": false,
+    "caseProvenanceVerified": false,
+    "independentExpertsConfirmed": false,
+    "operationallyApproved": false
+  },
+  "gates": [
+    {
+      "id": "pr_chain_review",
+      "ownerRole": "Maintainer / reviewer de código",
+      "requirement": "Aprovação humana dos PRs #69–73, na ordem das bases.",
+      "requestedArtifact": "Registros das revisões e plano de merge sem conflitos.",
+      "state": "unverified_requires_external_evidence",
+      "artifactReceived": false,
+      "externallyVerified": false
+    },
+    {
+      "id": "baseline_freeze",
+      "ownerRole": "Responsável P&D",
+      "requirement": "Congelar versões do seletor, perguntas, métricas e hipóteses antes do estudo.",
+      "requestedArtifact": "Release/commit de estudo, preregistro imutável e critérios de alteração.",
+      "state": "unverified_requires_external_evidence",
+      "artifactReceived": false,
+      "externallyVerified": false
+    },
+    {
+      "id": "legal_case_authorization",
+      "ownerRole": "Responsável legal e custodiante",
+      "requirement": "Comprovar autorização de uso, finalidade, retenção e confidencialidade por caso.",
+      "requestedArtifact": "Autorizações privadas assinadas e matriz de titularidade.",
+      "state": "unverified_requires_external_evidence",
+      "artifactReceived": false,
+      "externallyVerified": false
+    },
+    {
+      "id": "independent_custodian",
+      "ownerRole": "Instituição custodiante",
+      "requirement": "Nomear custodiante independente dos desenvolvedores e validar suas competências.",
+      "requestedArtifact": "Termo institucional de custódia, acesso e conflito de interesses.",
+      "state": "unverified_requires_external_evidence",
+      "artifactReceived": false,
+      "externallyVerified": false
+    },
+    {
+      "id": "data_privacy_access",
+      "ownerRole": "Segurança da informação",
+      "requirement": "Definir armazenamento segregado, segredo, permissões, descarte e acesso auditável.",
+      "requestedArtifact": "Política privada de acesso e exercício de restauração/revogação.",
+      "state": "unverified_requires_external_evidence",
+      "artifactReceived": false,
+      "externallyVerified": false
+    },
+    {
+      "id": "corpus_leakage_review",
+      "ownerRole": "Auditor de dados",
+      "requirement": "Auditar linhagens, duplicidade semântica e vazamento train/dev/test.",
+      "requestedArtifact": "Relatório de origem e independência com amostragem revisada.",
+      "state": "unverified_requires_external_evidence",
+      "artifactReceived": false,
+      "externallyVerified": false
+    },
+    {
+      "id": "reviewer_identity_independence",
+      "ownerRole": "Coordenador do estudo",
+      "requirement": "Autenticar dois revisores humanos distintos e conflitos de interesses.",
+      "requestedArtifact": "Registros externos de identidade, recusas e conflitos, sem dados públicos.",
+      "state": "unverified_requires_external_evidence",
+      "artifactReceived": false,
+      "externallyVerified": false
+    },
+    {
+      "id": "mechanical_competence",
+      "ownerRole": "Liderança de engenharia",
+      "requirement": "Comprovar especialidade mecânica nos sistemas e competência em segurança.",
+      "requestedArtifact": "Matriz privada de qualificação, escopo e autorização institucional.",
+      "state": "unverified_requires_external_evidence",
+      "artifactReceived": false,
+      "externallyVerified": false
+    },
+    {
+      "id": "oem_case_effectivity",
+      "ownerRole": "Especialista OEM autorizado",
+      "requirement": "Comprovar aplicabilidade por modelo, série, configuração e revisão documental.",
+      "requestedArtifact": "Mapa de efetividade e permissões de documentos, por caso.",
+      "state": "unverified_requires_external_evidence",
+      "artifactReceived": false,
+      "externallyVerified": false
+    },
+    {
+      "id": "safety_and_stop_rules",
+      "ownerRole": "Responsável SST / engenharia",
+      "requirement": "Definir riscos e interrupção do estudo, sem permitir intervenção operacional.",
+      "requestedArtifact": "Análise de risco independente, vetos e protocolo de suspensão.",
+      "state": "unverified_requires_external_evidence",
+      "artifactReceived": false,
+      "externallyVerified": false
+    },
+    {
+      "id": "blinding_qualified_audit",
+      "ownerRole": "Auditor metodológico",
+      "requirement": "Revisar mascaramento semântico e vazamento de estilo das perguntas A/B.",
+      "requestedArtifact": "Parecer de cegamento distinto de triagens lexicais automáticas.",
+      "state": "unverified_requires_external_evidence",
+      "artifactReceived": false,
+      "externallyVerified": false
+    },
+    {
+      "id": "design_statistics_approval",
+      "ownerRole": "Metodologista independente",
+      "requirement": "Justificar N, estratos, comparador, randomização, desfechos e análise prévia.",
+      "requestedArtifact": "Pré-registro aprovado com análise e denominadores antes da coleta.",
+      "state": "unverified_requires_external_evidence",
+      "artifactReceived": false,
+      "externallyVerified": false
+    },
+    {
+      "id": "adjudicator_independence",
+      "ownerRole": "Coordenador de qualidade",
+      "requirement": "Autenticar terceiro adjudicador distinto e protocolo de dissensos.",
+      "requestedArtifact": "Termo de atuação e fluxo privado de adjudicação com registro de vetos.",
+      "state": "unverified_requires_external_evidence",
+      "artifactReceived": false,
+      "externallyVerified": false
+    }
+  ],
+  "metrics": [
+    {
+      "id": "case_level_preference",
+      "numerator": "Número de casos com preferência final admissível pela pergunta experimental",
+      "denominator": "Número de casos com decisão final admissível entre pergunta base e experimental",
+      "interpretationRule": "Não contar empates, abstenções, flags pendentes ou casos não elegíveis; descrever exclusões",
+      "registeredForDesignDiscussionOnly": true,
+      "estimatedFromRealCases": false
+    },
+    {
+      "id": "pairwise_raw_agreement",
+      "numerator": "Número de casos cujas duas respostas cegas coincidem",
+      "denominator": "Número de casos com duas avaliações completas",
+      "interpretationRule": "Concordância não é acurácia; reportar também concordância esperada apenas se justificado",
+      "registeredForDesignDiscussionOnly": true,
+      "estimatedFromRealCases": false
+    },
+    {
+      "id": "safety_flag_incidence",
+      "numerator": "Número de casos completos com ao menos um alerta de segurança",
+      "denominator": "Número de casos com duas avaliações completas",
+      "interpretationRule": "Não inferir ausência de riscos a partir de falta de flags",
+      "registeredForDesignDiscussionOnly": true,
+      "estimatedFromRealCases": false
+    },
+    {
+      "id": "case_abstention_fraction",
+      "numerator": "Número de casos completos com ao menos uma abstenção",
+      "denominator": "Número de casos com duas avaliações completas",
+      "interpretationRule": "Abstenção é resultado legítimo; reportar razões e faltantes separadamente",
+      "registeredForDesignDiscussionOnly": true,
+      "estimatedFromRealCases": false
+    },
+    {
+      "id": "blinding_rejection_fraction",
+      "numerator": "Número de casos excluídos por auditoria humana de cegamento",
+      "denominator": "Número de casos submetidos à auditoria humana de cegamento",
+      "interpretationRule": "Triagem automática não conta como auditoria humana",
+      "registeredForDesignDiscussionOnly": true,
+      "estimatedFromRealCases": false
+    }
+  ],
+  "safety": {
+    "mayExecuteTests": false,
+    "mayCreateWorkOrder": false,
+    "mayWriteSAP": false,
+    "mayModifyECM": false,
+    "mayReleaseEquipment": false,
+    "mayDeclareRootCause": false,
+    "mayClaimDiagnosticAccuracy": false,
+    "mayClaimIndependentReview": false
+  },
+  "independentCaseStudyPerformed": false,
+  "status": "no_go_pending_integration_and_external_study_prerequisites"
+}
