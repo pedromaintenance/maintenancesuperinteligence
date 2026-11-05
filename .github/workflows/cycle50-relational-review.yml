@@ -1,0 +1,70 @@
+name: Cycle 50 relational-vs-schema integration review (synthetic only)
+
+on:
+  push:
+    paths:
+      - 'governance/cycle50*'
+      - 'governance/cycle49_contract_integration.py'
+      - 'tests/test_cycle50_relational_review.py'
+      - 'contracts/cycle50-*'
+      - 'docs/CICLO_2026-11-05_REVISAO_RELACIONAL_50.md'
+      - '.github/workflows/cycle50-relational-review.yml'
+  pull_request:
+    paths:
+      - 'governance/cycle50*'
+      - 'governance/cycle49_contract_integration.py'
+      - 'tests/test_cycle50_relational_review.py'
+      - 'contracts/cycle50-*'
+      - 'docs/CICLO_2026-11-05_REVISAO_RELACIONAL_50.md'
+      - '.github/workflows/cycle50-relational-review.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-relational-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install JSON Schema Draft 2020-12 validator
+        run: python -m pip install --disable-pip-version-check --no-input jsonschema==4.23.0
+      - name: Exercise eight schema/runtime boundary probes and three C49 integrity probes
+        run: |
+          python -m compileall -q governance/cycle49_contract_integration.py governance/cycle50_relational_review.py tests/test_cycle50_relational_review.py
+          python -m unittest tests.test_cycle49_contract_integration tests.test_cycle50_relational_review -v
+          python -m governance.cycle50_relational_review \
+            --output build/governance/cycle50-relational-review.json \
+            --markdown build/governance/cycle50-relational-review.md
+      - name: Validate report and enforce NO GO
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          from governance.cycle50_relational_review import verify_report
+          path = Path('build/governance/cycle50-relational-review.json')
+          report = json.loads(path.read_text(encoding='utf-8'))
+          schema = json.loads(Path('contracts/cycle50-relational-review.schema.json').read_text(encoding='utf-8'))
+          Draft202012Validator.check_schema(schema)
+          Draft202012Validator(schema).validate(report)
+          assert verify_report(report)
+          assert report['remainingExternalStudyGates'] == 13
+          assert report['relationalRuntimeRejectedCount'] == 8
+          assert report['reportTamperRejectedCount'] == 3
+          assert report['mayReleaseEquipment'] is False
+          assert report['mayStartHumanStudy'] is False
+          assert 'NO GO' in Path('docs/CICLO_2026-11-05_REVISAO_RELACIONAL_50.md').read_text(encoding='utf-8')
+          print('PASS: synthetic structural/relational separation; no independent review claimed')
+          PY
+      - name: Upload only public probe outcomes, never input cases or keys
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle50-public-relational-review
+          path: |
+            build/governance/cycle50-relational-review.json
+            build/governance/cycle50-relational-review.md
+          retention-days: 14
