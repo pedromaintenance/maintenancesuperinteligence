@@ -8,10 +8,11 @@
 2. Leia [`ROADMAP.json`](ROADMAP.json) para o roteiro estruturado consumível por IA e [`docs/ROADMAP.md`](docs/ROADMAP.md) para os objetivos, contexto e histórico completos. O arquivo JSON é derivado do catálogo, não uma fonte independente de progresso.
 3. Leia [`docs/ARQUITETURA.md`](docs/ARQUITETURA.md), [`docs/GOVERNANCA.md`](docs/GOVERNANCA.md), [`SECURITY.md`](SECURITY.md) e [`CONTRIBUTING.md`](CONTRIBUTING.md) antes de sugerir integrações com sistemas reais.
 4. Escolha a skill correspondente em `.agents/skills/`; habilidades são **procedimentos de pesquisa**, não competências profissionais certificadas.
-5. Para uma investigação mecânica, diferencie sempre: **função → falha funcional → sintoma → mecanismo → hipóteses → evidências/contraprovas → risco → próximo passo permitido**. Não conclua causa raiz a partir de uma narrativa sintética.
-6. Ao citar, informe o arquivo, o título, a versão/revisão e a **natureza da evidência** (fonte pública, ficção, simulação, artefato privado sob permissão, avaliação externa). Não invente dados de OEM, valores de teste ou aplicabilidade por número de série.
-7. Se dois documentos se contradizem, preserve a contradição, sinalize as diferentes revisões e solicite evidência discriminante. Não altere silenciosamente o histórico.
-8. Se a resposta depender do estado atual dos PRs, **consulte o GitHub**. O catálogo de interface registra uma fotografia, não prova que um PR continua aberto ou que o CI está verde hoje.
+5. Para investigar **quando e o que foi publicado**, consulte `interfaces/publications.v1.json`, `interfaces/snapshots/c51-pages-deploy.v1.json` e `portal/versoes.html`. O recibo usa resultado GitHub Actions, não monitoramento HTTP. Antes de afirmar o estado atual, consulte o GitHub novamente.
+6. Para uma investigação mecânica, diferencie sempre: **função → falha funcional → sintoma → mecanismo → hipóteses → evidências/contraprovas → risco → próximo passo permitido**. Não conclua causa raiz a partir de uma narrativa sintética.
+7. Ao citar, informe o arquivo, o título, a versão/revisão e a **natureza da evidência** (fonte pública, ficção, simulação, artefato privado sob permissão, avaliação externa). Não invente dados de OEM, valores de teste ou aplicabilidade por número de série.
+8. Se dois documentos se contradizem, preserve a contradição, sinalize as diferentes revisões e solicite evidência discriminante. Não altere silenciosamente o histórico.
+9. Se a resposta depender do estado atual dos PRs, **consulte o GitHub**. O catálogo de interface registra uma fotografia, não prova que um PR continua aberto ou que o CI está verde hoje.
 
 ## Autoridade, privacidade e limites
 
@@ -44,6 +45,6 @@ Separar resultados em:
 | Skill de investigação | Estruturar raciocínio mecânico e abstenção | [`.agents/skills/investigacao-mecanica/SKILL.md`](.agents/skills/investigacao-mecanica/SKILL.md) |
 | Skill de evolução | Atualizar backlog, roadmap e visões humanas | [`.agents/skills/curadoria-roadmap/SKILL.md`](.agents/skills/curadoria-roadmap/SKILL.md) |
 
-As descrições dos agentes são instruções portáveis em Markdown; não representam agentes executando tarefas sozinhos. A consulta humana está em `portal/index.html` e `portal/auditoria.html`, ambos **standalone/offline** e sem acesso a dados restritos.
+As descrições dos agentes são instruções portáveis em Markdown; não representam agentes executando tarefas sozinhos. A consulta humana está em `portal/index.html`, `portal/auditoria.html` e `portal/versoes.html`, todos **standalone/offline** e sem acesso a dados restritos.
 
 **Limite vigente no snapshot da pesquisa:** `main` no Ciclo 42; Ciclos 43–50 em PRs empilhados; 13 gates externos do Ciclo 48 ainda não verificados. Verifique o GitHub para o estado atual.

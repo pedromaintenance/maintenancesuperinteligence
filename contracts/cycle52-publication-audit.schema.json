@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle52-publication-audit.schema.json",
+  "title": "Offline Pages provenance audit — NOT independent engineering validation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "evidenceNature",
+    "baselineDeployRunId",
+    "baselineSourceCommit",
+    "confirmedGithubDeployRecords",
+    "historicalPublishedFiles",
+    "standalonePortalsInSync",
+    "catalogChangeCount",
+    "catalogChangedPaths",
+    "externalStudyGatesVerified",
+    "liveHttpIndependentlyVerified",
+    "independentHumanQACompleted",
+    "mechanicalDiagnosticAccuracyValidated",
+    "mayWriteSAP",
+    "mayModifyECM",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle52-publication-audit.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "evidenceNature": {
+      "const": "github_actions_success_and_repository_blobs_not_live_http_or_human_approval"
+    },
+    "baselineDeployRunId": {
+      "const": 42052320131
+    },
+    "baselineSourceCommit": {
+      "const": "ad9a9b3e321dfe696a8a816e5cdc17637f9f0afc"
+    },
+    "confirmedGithubDeployRecords": {
+      "const": 1
+    },
+    "historicalPublishedFiles": {
+      "const": 2
+    },
+    "standalonePortalsInSync": {
+      "const": 3
+    },
+    "catalogChangeCount": {
+      "type": "integer",
+      "minimum": 3
+    },
+    "catalogChangedPaths": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "change"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "change": {
+            "enum": [
+              "added",
+              "removed",
+              "modified"
+            ]
+          }
+        }
+      }
+    },
+    "externalStudyGatesVerified": {
+      "const": 0
+    },
+    "liveHttpIndependentlyVerified": {
+      "const": false
+    },
+    "independentHumanQACompleted": {
+      "const": false
+    },
+    "mechanicalDiagnosticAccuracyValidated": {
+      "const": false
+    },
+    "mayWriteSAP": {
+      "const": false
+    },
+    "mayModifyECM": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_publication_receipt_is_not_mechanical_or_human_certification"
+    }
+  }
+}

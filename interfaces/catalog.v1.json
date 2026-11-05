@@ -159,6 +159,18 @@
   ],
   "roadmap": [
     {
+      "id": "marco-52",
+      "name": "Rastreabilidade de publicações e comparação de versões",
+      "stage": "in_draft",
+      "priority": "P1",
+      "detail": "Registrar publicação GitHub Pages confirmada, preservar baseline do catálogo e disponibilizar comparação de metadados com exportação.",
+      "source": "docs/PUBLICACOES_PORTAIS.md",
+      "dependsOn": [
+        "marco-51"
+      ],
+      "acceptance": "Integridade do ledger, três portais sincronizados, testes de diff e avaliação humana."
+    },
+    {
       "id": "marco-51",
       "name": "Interfaces de conhecimento para IAs e humanos",
       "stage": "in_draft",
@@ -273,6 +285,13 @@
       "group": "Fundamentos",
       "path": "SECURITY.md",
       "description": "Proibições de publicação e tratamento restrito."
+    },
+    {
+      "id": "releases",
+      "name": "Publicações dos portais",
+      "group": "Auditoria",
+      "path": "docs/PUBLICACOES_PORTAIS.md",
+      "description": "Registro de deploys, diferenças entre snapshots e limites da evidência."
     }
   ],
   "gates": [
@@ -444,6 +463,11 @@
       "id": "audit",
       "title": "Portal de auditoria",
       "path": "portal/auditoria.html"
+    },
+    {
+      "id": "versions",
+      "title": "Histórico de publicações",
+      "path": "portal/versoes.html"
     }
   ]
 }

@@ -9,11 +9,11 @@
 A Maintenance Superintelligence deve funcionar como **conhecimento versionado e verificável**, não como um chatbot ou dashboard que esconde a proveniência. A mesma organização de fatos deve poder ser consultada por:
 
 - **IAs:** instruções de entrada (`AGENTS.md`), papéis portáveis (`agents/`), procedimentos de trabalho (`.agents/skills/*/SKILL.md`), índice público (`interfaces/catalog.v1.json`), roadmap de máquina derivado (`ROADMAP.json`) e roadmap narrativo completo (`docs/ROADMAP.md`).
-- **Pessoas:** dois arquivos HTML autossuficientes, `portal/index.html` e `portal/auditoria.html`, com filtro, navegação, acesso às fontes e exportação de um snapshot JSON.
+- **Pessoas:** três arquivos HTML autossuficientes, `portal/index.html`, `portal/auditoria.html` e `portal/versoes.html`, com filtro, navegação, acesso às fontes e exportação de um snapshot JSON.
 
 O catálogo é a **fonte única de navegação e estados exibidos**, não a fonte de validade mecânica ou a fonte canônica de toda a documentação. Para regras de engenharia e risco, a fonte continua sendo `docs/GOVERNANCA.md` e os documentos de domínio; para gates, `governance/cycle48-study-readiness.v1.json`; para o histórico completo, `docs/ROADMAP.md`.
 
-O catálogo é uma **fotografia congelada em 05/11/2026** e registra a `main` no Ciclo 42, os PRs #69–76 abertos como *draft* no momento da consulta e os 13 gates externos não verificados. A branch do Ciclo 51 permanece fora da `main` até revisão e integração.
+O histórico de publicação está em `interfaces/publications.v1.json`; a comparação visual em `portal/versoes.html`. Ambos são metadados públicos de proveniência, não prova de validade mecânica. O catálogo é uma **fotografia congelada em 05/11/2026** e registra a `main` no Ciclo 42, os PRs #69–76 abertos como *draft* no momento da consulta e os 13 gates externos não verificados. A branch do Ciclo 51 permanece fora da `main` até revisão e integração.
 
 ## 2. Mapa de artefatos
 
@@ -26,6 +26,8 @@ O catálogo é uma **fotografia congelada em 05/11/2026** e registra a `main` no
 | `contracts/interfaces-catalog.schema.json` | Ambos | Estrutura pública validável do catálogo | Verdade física do conteúdo |
 | `portal/index.html` | Humanos | Navegação e exploração com filtro e exportação JSON | Banco de dados dinâmico |
 | `portal/auditoria.html` | Humanos | Inspeção dos 13 gates e sequência de PRs | Atestação, aceite ou revisão humana |
+| `portal/versoes.html` | Humanos | Histórico de publicação e diferenças entre snapshots | Verificação HTTP independente ou assinatura externa |
+| `interfaces/publications.v1.json` | Ambos | Proveniência do primeiro deploy Pages confirmado | Homologação operacional ou status ao vivo |
 | `scripts/sync_interfaces.py` | Mantenedor/CI | Sincronização e integridade entre catálogo, portais e evidência dos gates | Avaliação independente |
 
 Os portais usam CSS e JavaScript locais. Podem ser abertos diretamente em um navegador, sem servidor. **Os links para os documentos do GitHub exigem acesso ao repositório e conexão de rede**, mas a navegação, filtros e snapshot embutido não exigem.
@@ -42,7 +44,7 @@ python -m unittest tests.test_cycle51_interfaces -v
 
 A opção `--write` **apenas reembute o catálogo** dentro do HTML standalone. Ela não atualiza PRs por API, não altera gates, não escreve em SAP e não assina resultados. A opção `--check` exige:
 
-1. Mesma estrutura de dados nas duas páginas e no catálogo;
+1. Mesma estrutura de dados nas três páginas e no catálogo;
 2. Caminhos internos existentes e sem travessia de diretórios;
 3. Três skills com frontmatter YAML e agentes ligados a skills reais;
 4. Treze IDs de gates coincidentes com a fonte do Ciclo 48, todos sem validação;

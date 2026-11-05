@@ -1,0 +1,99 @@
+name: Cycle 52 Pages publication provenance and offline catalog diff
+
+on:
+  push:
+    paths:
+      - 'governance/cycle52_publication_audit.py'
+      - 'interfaces/**'
+      - 'portal/**'
+      - 'ROADMAP.json'
+      - 'scripts/sync_interfaces.py'
+      - 'docs/ROADMAP.md'
+      - 'docs/PUBLICACOES_PORTAIS.md'
+      - 'contracts/publications.schema.json'
+      - 'contracts/cycle52-publication-audit.schema.json'
+      - 'contracts/interfaces-catalog.schema.json'
+      - 'contracts/machine-roadmap.schema.json'
+      - 'tests/test_cycle52_publication.py'
+      - '.github/workflows/cycle52-publications.yml'
+  pull_request:
+    paths:
+      - 'governance/cycle52_publication_audit.py'
+      - 'interfaces/**'
+      - 'portal/**'
+      - 'ROADMAP.json'
+      - 'scripts/sync_interfaces.py'
+      - 'docs/ROADMAP.md'
+      - 'docs/PUBLICACOES_PORTAIS.md'
+      - 'contracts/publications.schema.json'
+      - 'contracts/cycle52-publication-audit.schema.json'
+      - 'tests/test_cycle52_publication.py'
+      - '.github/workflows/cycle52-publications.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  provenance-and-diff:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned JSON Schema validation
+        run: python -m pip install --disable-pip-version-check --no-input jsonschema==4.23.0
+      - name: Run synchronized portal and publication checks (public metadata only)
+        run: |
+          python -m compileall -q governance/cycle52_publication_audit.py scripts/sync_interfaces.py tests/test_cycle52_publication.py
+          python scripts/sync_interfaces.py --check
+          python -m governance.cycle52_publication_audit \
+            --output build/governance/cycle52-publication.json
+          python -m unittest tests.test_cycle51_interfaces tests.test_cycle52_publication -v
+      - name: Validate strict NO GO report and publication ledger
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          for name, path in [
+              ('publications.schema.json','interfaces/publications.v1.json'),
+              ('cycle52-publication-audit.schema.json','build/governance/cycle52-publication.json'),
+              ('machine-roadmap.schema.json','ROADMAP.json'),
+              ('interfaces-catalog.schema.json','interfaces/catalog.v1.json'),
+          ]:
+              schema=json.loads(Path('contracts',name).read_text(encoding='utf-8'))
+              instance=json.loads(Path(path).read_text(encoding='utf-8'))
+              Draft202012Validator.check_schema(schema)
+              Draft202012Validator(schema).validate(instance)
+          report=json.loads(Path('build/governance/cycle52-publication.json').read_text(encoding='utf-8'))
+          assert report['standalonePortalsInSync']==3
+          assert report['confirmedGithubDeployRecords']==1
+          assert report['externalStudyGatesVerified']==0
+          assert report['liveHttpIndependentlyVerified'] is False
+          assert report['mayReleaseEquipment'] is False
+          assert report['mayWriteSAP'] is False
+          print('PASS: publication history provenance pinned; no physical authority')
+          PY
+      - name: Validate all three inline browser scripts without loading CDN
+        run: |
+          python - <<'PY'
+          import re, subprocess, tempfile
+          from pathlib import Path
+          for path in [Path('portal/index.html'), Path('portal/auditoria.html'), Path('portal/versoes.html')]:
+              text=path.read_text(encoding='utf-8')
+              blocks=re.findall(r'<script>(.*?)</script>', text, re.DOTALL)
+              assert len(blocks)==1, path
+              assert 'fetch(' not in text and '<script src=' not in text
+              with tempfile.NamedTemporaryFile('w',suffix='.js',encoding='utf-8') as f:
+                  f.write(blocks[0]); f.flush()
+                  subprocess.run(['node','--check',f.name],check=True)
+              print('PASS: offline JavaScript',path)
+          PY
+      - name: Publish only public aggregate validation counts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle52-public-provenance-audit
+          path: build/governance/cycle52-publication.json
+          retention-days: 14

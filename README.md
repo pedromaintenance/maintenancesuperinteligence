@@ -7,7 +7,7 @@
 ## Entradas de consulta — P&D do Ciclo 51
 
 - **Para IA:** [`AGENTS.md`](AGENTS.md) · [skills](.agents/skills) · [agentes](agents) · [`ROADMAP.json`](ROADMAP.json) · [catálogo público](interfaces/catalog.v1.json).
-- **Para pessoas:** [Portal de conhecimento](portal/index.html) · [Portal de auditoria](portal/auditoria.html). São **arquivos HTML standalone**: baixe/abra localmente no navegador; clicar no arquivo dentro da interface do GitHub pode mostrar apenas o código.
+- **Para pessoas:** [Portal de conhecimento](portal/index.html) · [Portal de auditoria](portal/auditoria.html) · [Versões e publicações](portal/versoes.html). São **arquivos HTML standalone**: baixe/abra localmente no navegador; clicar no arquivo dentro da interface do GitHub pode mostrar apenas o código.
 - **Para auditoria:** [Política de governança](docs/GOVERNANCA.md) · [Roadmap detalhado](docs/ROADMAP.md) · [Documentação das interfaces](docs/INTERFACES_IA_HUMANOS.md).
 
 As interfaces usam uma fotografia pública datada, **sem backend em tempo real**, revisão mecânica independente ou autoridade de operação. O projeto permanece **NO GO**.
@@ -97,6 +97,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 49 — Matriz executável de 16 contratos JSON Schema (proposta)](docs/CICLO_2026-11-05_INTEGRACAO_CONTRATOS_49.md)
 - [Ciclo 50 — Revisão estrutural × relacional de contratos (proposta)](docs/CICLO_2026-11-05_REVISAO_RELACIONAL_50.md)
 - [Ciclo 51 — Interfaces para IAs e humanos](docs/INTERFACES_IA_HUMANOS.md)
+- [Ciclo 52 — Histórico de publicações e diffs dos portais](docs/PUBLICACOES_PORTAIS.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -155,6 +156,15 @@ O parâmetro opcional `--simulated-test-results examples/777e_simulated_test_res
 O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em cinco disciplinas: óleo (4), hidráulica (3), mecânica (3), vibração (2) e eletrônica (2). Seis códigos de método do FMEA (`EV-*`) são reconciliados com as **oito investigações** do caso CAT 777E; as fontes de referência e limitações são rastreadas em `data/diagnostic-method-sources.v1.json`.
 
 A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
+
+## Ciclo 52 — Histórico verificável de publicações (proposta)
+
+A nova página `portal/versoes.html` apresenta os artefatos e o workflow do primeiro deploy do Pages, além de comparar **dois snapshots públicos de catálogo** e exportar as diferenças. `interfaces/publications.v1.json` preserva os IDs de commit, execução e hashes Git dos arquivos originais; `governance/cycle52_publication_audit.py` detecta desvio de origem, páginas desatualizadas e campos de autoridade falsos. São **metadados de publicação**, não prova de diagnóstico, autenticidade humana ou conformidade OEM. O histórico é uma fotografia, não uma consulta live. [Documento](docs/PUBLICACOES_PORTAIS.md). **NO GO**.
+
+```bash
+python -m governance.cycle52_publication_audit --check
+python -m unittest tests.test_cycle52_publication -v
+```
 
 ## Ciclo 51 — Consulta auditável por IA e portais humanos (proposta)
 

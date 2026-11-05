@@ -484,8 +484,8 @@
     },
     "sites": {
       "type": "array",
-      "minItems": 2,
-      "maxItems": 2,
+      "minItems": 3,
+      "maxItems": 3,
       "items": {
         "type": "object",
         "additionalProperties": false,
@@ -498,7 +498,8 @@
           "id": {
             "enum": [
               "overview",
-              "audit"
+              "audit",
+              "versions"
             ]
           },
           "title": {
@@ -508,7 +509,8 @@
           "path": {
             "enum": [
               "portal/index.html",
-              "portal/auditoria.html"
+              "portal/auditoria.html",
+              "portal/versoes.html"
             ]
           }
         }

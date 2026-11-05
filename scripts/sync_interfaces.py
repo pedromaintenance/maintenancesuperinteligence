@@ -1,6 +1,6 @@
 """Cycle 51 — verify/synchronize the offline AI + human interface catalog.
 
-The single versioned index is interfaces/catalog.v1.json. Both standalone
+The single versioned index is interfaces/catalog.v1.json. Three standalone
 portals embed that catalog; they do NOT query GitHub, SAP, ECM, or private data.
 --write only re-embeds catalog JSON. --check rejects stale embedded snapshots,
 broken repo paths, mismatched Cycle48 external gates, and authority inflation.
@@ -18,6 +18,7 @@ MACHINE_ROADMAP = ROOT / "ROADMAP.json"
 PORTALS = (
     ROOT / "portal/index.html",
     ROOT / "portal/auditoria.html",
+    ROOT / "portal/versoes.html",
 )
 EMBED = re.compile(
     r'(<script id="catalog" type="application/json">\s*)(.*?)(\s*</script>)',
@@ -164,12 +165,13 @@ def validate(data):
                     for x in data["prs"]),
             "historical PR snapshot inconsistent or promoted")
     require([x["path"] for x in data["sites"]] ==
-            ["portal/index.html", "portal/auditoria.html"],
-            "two standalone portal entries required")
+            ["portal/index.html", "portal/auditoria.html",
+             "portal/versoes.html"],
+            "three standalone portal entries required")
     for site in data["sites"]:
         checked_file(site["path"])
-    require("Ciclo 51" in checked_file("docs/ROADMAP.md").read_text(
-        encoding="utf-8"), "human roadmap does not mention new interface cycle")
+    require("Ciclo 52" in checked_file("docs/ROADMAP.md").read_text(
+        encoding="utf-8"), "human roadmap does not mention publication traceability cycle")
     for path in ("AGENTS.md", "docs/GOVERNANCA.md", "SECURITY.md",
                  "CONTRIBUTING.md", "docs/ARQUITETURA.md"):
         checked_file(path)
