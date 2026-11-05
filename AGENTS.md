@@ -5,7 +5,7 @@
 ## Como consultar o projeto sem criar autoridade fictícia
 
 1. Consulte [`interfaces/catalog.v1.json`](interfaces/catalog.v1.json) para localizar agentes, skills, documentos, roadmap e fontes. É um **índice versionado**, não uma fonte técnica OEM nem uma consulta dinâmica do GitHub.
-2. Leia [`docs/ROADMAP.md`](docs/ROADMAP.md) para os objetivos e a ordem histórica. O resumo de interface não substitui o texto completo do roadmap.
+2. Leia [`ROADMAP.json`](ROADMAP.json) para o roteiro estruturado consumível por IA e [`docs/ROADMAP.md`](docs/ROADMAP.md) para os objetivos, contexto e histórico completos. O arquivo JSON é derivado do catálogo, não uma fonte independente de progresso.
 3. Leia [`docs/ARQUITETURA.md`](docs/ARQUITETURA.md), [`docs/GOVERNANCA.md`](docs/GOVERNANCA.md), [`SECURITY.md`](SECURITY.md) e [`CONTRIBUTING.md`](CONTRIBUTING.md) antes de sugerir integrações com sistemas reais.
 4. Escolha a skill correspondente em `.agents/skills/`; habilidades são **procedimentos de pesquisa**, não competências profissionais certificadas.
 5. Para uma investigação mecânica, diferencie sempre: **função → falha funcional → sintoma → mecanismo → hipóteses → evidências/contraprovas → risco → próximo passo permitido**. Não conclua causa raiz a partir de uma narrativa sintética.
