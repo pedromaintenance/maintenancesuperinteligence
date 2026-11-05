@@ -67,7 +67,7 @@ class Cycle52PublicationTests(unittest.TestCase):
         report = a52.check()
         self.assertEqual(report["confirmedGithubDeployRecords"], 1)
         self.assertEqual(report["standalonePortalsInSync"], 3)
-        self.assertEqual(report["catalogChangeCount"], 3)
+        self.assertEqual(report["catalogChangeCount"], 5)
         self.assertEqual(report["externalStudyGatesVerified"], 0)
         self.assertFalse(report["liveHttpIndependentlyVerified"])
         self.assertFalse(report["independentHumanQACompleted"])
