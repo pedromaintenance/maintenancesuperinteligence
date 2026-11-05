@@ -2,7 +2,7 @@
   "schema": "maintenance-superinteligence.cycle48-research-gate.v1",
   "version": "1.0.0",
   "snapshotDate": "2026-11-05",
-  "source": "human_reviewed_github_api_snapshot_reproduced_as_public_metadata_not_live",
+  "source": "github_api_observation_frozen_as_public_metadata_not_live",
   "mainBaselineSha": "604c9fa2f98393ca31bef5cf31c40a60566851e7",
   "stack": [
     {
