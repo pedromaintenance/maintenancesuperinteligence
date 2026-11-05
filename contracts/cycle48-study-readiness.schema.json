@@ -30,7 +30,7 @@
       "const": "2026-11-05"
     },
     "source": {
-      "const": "human_reviewed_github_api_snapshot_reproduced_as_public_metadata_not_live"
+      "const": "github_api_observation_frozen_as_public_metadata_not_live"
     },
     "mainBaselineSha": {
       "type": "string",
