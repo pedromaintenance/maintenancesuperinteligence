@@ -25,7 +25,8 @@ class Cycle53PublicationA11yTests(unittest.TestCase):
         self.assertEqual([r["workflowRunId"] for r in self.history["releases"]],
                          [42052320131,42057123105])
         self.assertEqual([len(r["files"]) for r in self.history["releases"]],[2,3])
-        self.assertEqual(evidence["v2"],ui.load())
+        self.assertEqual({x["path"] for x in c52.compare(evidence["v2"], ui.load())},
+                         {"roadmap[marco-53]","documents[a11y53]"})
         self.assertEqual(self.history["externalStudyGatesVerified"],0)
 
     def test_immutable_first_receipt_and_recorded_git_blobs(self):
