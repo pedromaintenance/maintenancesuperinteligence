@@ -46,7 +46,7 @@ jobs:
           python-version: '3.12'
       - name: Install pinned JSON Schema validator
         run: python -m pip install --disable-pip-version-check --no-input jsonschema==4.23.0
-      - name: Verify one catalog, two standalone portals and agent sources
+      - name: Verify one catalog, three standalone portals and agent sources
         run: |
           python -m compileall -q scripts/sync_interfaces.py tests/test_cycle51_interfaces.py
           python scripts/sync_interfaces.py --check
