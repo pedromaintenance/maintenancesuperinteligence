@@ -85,6 +85,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 45 — Revisão cega pareada sob custódia privada (proposta)](docs/CICLO_2026-11-04_REVISAO_CEGA_PAREADA_45.md)
 - [Ciclo 46 — Auditoria de cegamento e fila de adjudicação externa (proposta)](docs/CICLO_2026-11-04_ADJUDICACAO_E_CEGAMENTO_46.md)
 - [Ciclo 47 — Red team de mascaramento e proveniência documental (proposta)](docs/CICLO_2026-11-04_RED_TEAM_MASCARAMENTO_47.md)
+- [Ciclo 48 — Prontidão de integração e estudo externo (proposta)](docs/CICLO_2026-11-05_PRONTIDAO_ESTUDO_48.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -143,6 +144,15 @@ O parâmetro opcional `--simulated-test-results examples/777e_simulated_test_res
 O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em cinco disciplinas: óleo (4), hidráulica (3), mecânica (3), vibração (2) e eletrônica (2). Seis códigos de método do FMEA (`EV-*`) são reconciliados com as **oito investigações** do caso CAT 777E; as fontes de referência e limitações são rastreadas em `data/diagnostic-method-sources.v1.json`.
 
 A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
+
+## Ciclo 48 — Revisão da cadeia de PRs e evidências externas pendentes (proposta)
+
+O relatório `governance/cycle48_readiness.py` documenta a cadeia de cinco PRs #69–73 ainda em *draft* e exige **13 evidências externas** antes de considerar estudo humano: revisão de código, custódia independente, autorização de uso de dados, especialistas qualificados, efetividade OEM por caso, plano estatístico, segregação de papéis e aprovação de segurança. Congela apenas um snapshot público de 05/11/2026: **não consulta automaticamente o GitHub**. Propõe cinco métricas com numerador e denominador, mas não afirma resultados nem pré-registro aprovado. O CI valida o inventário e os dois novos contratos JSON Schema. **NO GO** para recrutamento, diagnóstico ou manutenção operacional. [Estudo completo](docs/CICLO_2026-11-05_PRONTIDAO_ESTUDO_48.md).
+
+```bash
+python -m unittest tests.test_cycle48_readiness -v
+python -m governance.cycle48_readiness --output build/governance/cycle48-readiness.json --markdown build/governance/cycle48-readiness.md
+```
 
 ## Ciclo 47 — Red team de texto e evidência documental (proposta)
 

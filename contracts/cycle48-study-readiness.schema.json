@@ -1,0 +1,289 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle48-study-readiness.schema.json",
+  "title": "Cycle 48 public offline inventory; external review absent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "snapshotDate",
+    "source",
+    "mainBaselineSha",
+    "stack",
+    "researchAim",
+    "studyDesign",
+    "gates",
+    "metrics",
+    "safety",
+    "independentCaseStudyPerformed",
+    "status"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle48-research-gate.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "snapshotDate": {
+      "const": "2026-11-05"
+    },
+    "source": {
+      "const": "github_api_observation_frozen_as_public_metadata_not_live"
+    },
+    "mainBaselineSha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "stack": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "number",
+          "cycle",
+          "base",
+          "head",
+          "headSha",
+          "documentPath",
+          "state",
+          "dedicatedCiOnHead",
+          "regressionOnHead",
+          "independentCodeReviewApproved",
+          "mergedIntoMain",
+          "mayAutomaticallyMerge"
+        ],
+        "properties": {
+          "number": {
+            "type": "integer",
+            "minimum": 69,
+            "maximum": 73
+          },
+          "cycle": {
+            "type": "integer",
+            "minimum": 43,
+            "maximum": 47
+          },
+          "base": {
+            "type": "string"
+          },
+          "head": {
+            "type": "string"
+          },
+          "headSha": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "documentPath": {
+            "type": "string",
+            "pattern": "^docs/CICLO_[A-Za-z0-9_\\-]+\\.md$"
+          },
+          "state": {
+            "const": "open_draft"
+          },
+          "dedicatedCiOnHead": {
+            "const": "passed"
+          },
+          "regressionOnHead": {
+            "const": "passed"
+          },
+          "independentCodeReviewApproved": {
+            "const": false
+          },
+          "mergedIntoMain": {
+            "const": false
+          },
+          "mayAutomaticallyMerge": {
+            "const": false
+          }
+        }
+      }
+    },
+    "researchAim": {
+      "type": "string",
+      "minLength": 60
+    },
+    "studyDesign": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "design",
+        "realDataCollected",
+        "protocolPreRegistered",
+        "sampleSizeJustified",
+        "comparisonFrozen",
+        "reviewerRecruitmentAuthorized",
+        "blindnessHumanValidated",
+        "caseProvenanceVerified",
+        "independentExpertsConfirmed",
+        "operationallyApproved"
+      ],
+      "properties": {
+        "design": {
+          "const": "paired_blind_technical_question_preference_proposed"
+        },
+        "realDataCollected": {
+          "const": false
+        },
+        "protocolPreRegistered": {
+          "const": false
+        },
+        "sampleSizeJustified": {
+          "const": false
+        },
+        "comparisonFrozen": {
+          "const": false
+        },
+        "reviewerRecruitmentAuthorized": {
+          "const": false
+        },
+        "blindnessHumanValidated": {
+          "const": false
+        },
+        "caseProvenanceVerified": {
+          "const": false
+        },
+        "independentExpertsConfirmed": {
+          "const": false
+        },
+        "operationallyApproved": {
+          "const": false
+        }
+      }
+    },
+    "gates": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "ownerRole",
+          "requirement",
+          "requestedArtifact",
+          "state",
+          "artifactReceived",
+          "externallyVerified"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "ownerRole": {
+            "type": "string",
+            "minLength": 10
+          },
+          "requirement": {
+            "type": "string",
+            "minLength": 25
+          },
+          "requestedArtifact": {
+            "type": "string",
+            "minLength": 25
+          },
+          "state": {
+            "const": "unverified_requires_external_evidence"
+          },
+          "artifactReceived": {
+            "const": false
+          },
+          "externallyVerified": {
+            "const": false
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "numerator",
+          "denominator",
+          "interpretationRule",
+          "registeredForDesignDiscussionOnly",
+          "estimatedFromRealCases"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "numerator": {
+            "type": "string",
+            "minLength": 30
+          },
+          "denominator": {
+            "type": "string",
+            "minLength": 30
+          },
+          "interpretationRule": {
+            "type": "string",
+            "minLength": 30
+          },
+          "registeredForDesignDiscussionOnly": {
+            "const": true
+          },
+          "estimatedFromRealCases": {
+            "const": false
+          }
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mayExecuteTests",
+        "mayCreateWorkOrder",
+        "mayWriteSAP",
+        "mayModifyECM",
+        "mayReleaseEquipment",
+        "mayDeclareRootCause",
+        "mayClaimDiagnosticAccuracy",
+        "mayClaimIndependentReview"
+      ],
+      "properties": {
+        "mayExecuteTests": {
+          "const": false
+        },
+        "mayCreateWorkOrder": {
+          "const": false
+        },
+        "mayWriteSAP": {
+          "const": false
+        },
+        "mayModifyECM": {
+          "const": false
+        },
+        "mayReleaseEquipment": {
+          "const": false
+        },
+        "mayDeclareRootCause": {
+          "const": false
+        },
+        "mayClaimDiagnosticAccuracy": {
+          "const": false
+        },
+        "mayClaimIndependentReview": {
+          "const": false
+        }
+      }
+    },
+    "independentCaseStudyPerformed": {
+      "const": false
+    },
+    "status": {
+      "const": "no_go_pending_integration_and_external_study_prerequisites"
+    }
+  }
+}

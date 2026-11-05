@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle48-readiness-report.schema.json",
+  "title": "Cycle 48 public offline inventory; external review absent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "sourceSnapshotDigest",
+    "snapshotIsLive",
+    "mainBaselineSha",
+    "pendingStackCount",
+    "pendingIntegration",
+    "unverifiedExternalGateCount",
+    "pendingEvidenceRequests",
+    "proposedMetricCount",
+    "metricsEstimatedFromRealCases",
+    "independentStudyCompleted",
+    "externallyVerified",
+    "prChainApproved",
+    "studyMayRecruitParticipants",
+    "studyMayStart",
+    "diagnosticAccuracyEstablished",
+    "mayExecuteTests",
+    "mayCreateWorkOrder",
+    "mayWriteSAP",
+    "mayModifyECM",
+    "mayReleaseEquipment",
+    "status"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle48-readiness-report.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "sourceSnapshotDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "snapshotIsLive": {
+      "const": false
+    },
+    "mainBaselineSha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "pendingStackCount": {
+      "const": 5
+    },
+    "pendingIntegration": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "number",
+          "cycle",
+          "base",
+          "head",
+          "headSha",
+          "documentPath",
+          "documentSha256"
+        ],
+        "properties": {
+          "number": {
+            "type": "integer",
+            "minimum": 69,
+            "maximum": 73
+          },
+          "cycle": {
+            "type": "integer",
+            "minimum": 43,
+            "maximum": 47
+          },
+          "base": {
+            "type": "string"
+          },
+          "head": {
+            "type": "string"
+          },
+          "headSha": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "documentPath": {
+            "type": "string"
+          },
+          "documentSha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "unverifiedExternalGateCount": {
+      "const": 13
+    },
+    "pendingEvidenceRequests": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "gateId",
+          "ownerRole",
+          "request"
+        ],
+        "properties": {
+          "gateId": {
+            "type": "string"
+          },
+          "ownerRole": {
+            "type": "string",
+            "minLength": 10
+          },
+          "request": {
+            "type": "string",
+            "minLength": 25
+          }
+        }
+      }
+    },
+    "proposedMetricCount": {
+      "const": 5
+    },
+    "metricsEstimatedFromRealCases": {
+      "const": 0
+    },
+    "independentStudyCompleted": {
+      "const": false
+    },
+    "externallyVerified": {
+      "const": false
+    },
+    "prChainApproved": {
+      "const": false
+    },
+    "studyMayRecruitParticipants": {
+      "const": false
+    },
+    "studyMayStart": {
+      "const": false
+    },
+    "diagnosticAccuracyEstablished": {
+      "const": false
+    },
+    "mayExecuteTests": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayWriteSAP": {
+      "const": false
+    },
+    "mayModifyECM": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "status": {
+      "const": "no_go_review_pr_stack_and_obtain_independent_study_evidence"
+    }
+  }
+}
