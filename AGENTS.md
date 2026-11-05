@@ -40,7 +40,7 @@ Separar resultados em:
 | Auditor de evidências | Classificar fonte, contradição e ausência de prova | [`agents/auditor-evidencias.md`](agents/auditor-evidencias.md) |
 | Curador de roadmap | Conectar demandas, dependências e gates | [`agents/curador-roadmap.md`](agents/curador-roadmap.md) |
 | Investigador consultivo | Formular hipóteses mecânicas sem liberar testes | [`agents/investigador-mecanico.md`](agents/investigador-mecanico.md) |
-| Skill de auditoria | Rastrear afirmações e restrições | [` .agents/skills/auditoria-evidencias/SKILL.md`](.agents/skills/auditoria-evidencias/SKILL.md) |
+| Skill de auditoria | Rastrear afirmações e restrições | [`.agents/skills/auditoria-evidencias/SKILL.md`](.agents/skills/auditoria-evidencias/SKILL.md) |
 | Skill de investigação | Estruturar raciocínio mecânico e abstenção | [`.agents/skills/investigacao-mecanica/SKILL.md`](.agents/skills/investigacao-mecanica/SKILL.md) |
 | Skill de evolução | Atualizar backlog, roadmap e visões humanas | [`.agents/skills/curadoria-roadmap/SKILL.md`](.agents/skills/curadoria-roadmap/SKILL.md) |
 
