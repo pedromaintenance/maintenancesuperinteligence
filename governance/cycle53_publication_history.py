@@ -63,8 +63,11 @@ def verify(history=None):
     current=ui.load()
     if history is None:history=load(HISTORY)
     c52.validate(old,previous,current)
-    require(second==current,
-            "published second snapshot must match the versioned Cycle52 catalog")
+    historical_delta=c52.compare(second,current)
+    require({x["path"] for x in historical_delta}==
+                {"roadmap[marco-53]","documents[a11y53]"}
+            and all(x["change"]=="added" for x in historical_delta),
+            "active catalog may add only the unreviewed Cycle53 proposal")
     require(second["snapshot"]==previous["snapshot"]
             and second["gates"]==previous["gates"]
             and second["project"]==previous["project"]
