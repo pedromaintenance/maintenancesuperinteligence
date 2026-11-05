@@ -14,6 +14,7 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "interfaces/catalog.v1.json"
+MACHINE_ROADMAP = ROOT / "ROADMAP.json"
 PORTALS = (
     ROOT / "portal/index.html",
     ROOT / "portal/auditoria.html",
@@ -186,9 +187,29 @@ def embedded(path):
     return html, parts[0], json.loads(parts[0].group(2))
 
 
+def machine_roadmap(data):
+    """Derived machine-readable research plan; no duplicate manual status."""
+    return {
+        "schema": "maintenance-superinteligence.machine-roadmap.v1",
+        "version": "1.0.0",
+        "snapshotDate": data["snapshot"]["date"],
+        "nature": "public_curated_navigation_snapshot_not_live_github_or_approved_study",
+        "sourceCatalog": "interfaces/catalog.v1.json",
+        "fullRoadmap": "docs/ROADMAP.md",
+        "mainCycle": data["snapshot"]["mainCycle"],
+        "externalGatesPending": len(data["gates"]),
+        "items": data["roadmap"],
+        "humanApprovalVerified": False,
+        "operationalAuthorityGranted": False,
+        "decision": "NO GO",
+    }
+
+
 def check():
     data = load()
     validate(data)
+    require(machine_roadmap(data) == json.loads(MACHINE_ROADMAP.read_text(encoding="utf-8")),
+            "machine-readable ROADMAP.json differs from source catalog")
     for path in PORTALS:
         html, _, value = embedded(path)
         require(value == data, "portal catalog stale: " + path.name)
@@ -202,6 +223,7 @@ def check():
         "catalogVersion": data["version"],
         "snapshotDate": data["snapshot"]["date"],
         "portalsInSync": len(PORTALS),
+        "machineRoadmapInSync": True,
         "agentRoles": len(data["agents"]),
         "proceduralSkills": len(data["skills"]),
         "unverifiedExternalGates": len(data["gates"]),
@@ -214,6 +236,7 @@ def check():
 def write():
     data = load()
     validate(data)
+    MACHINE_ROADMAP.write_text(json.dumps(machine_roadmap(data), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     compact = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
     # The catalog is metadata, never arbitrary HTML or private evidence.
     require("</script" not in compact.lower(),
