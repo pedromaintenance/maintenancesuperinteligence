@@ -7,7 +7,7 @@
 ## Entradas de consulta — P&D do Ciclo 51
 
 - **Para IA:** [`AGENTS.md`](AGENTS.md) · [skills](.agents/skills) · [agentes](agents) · [`ROADMAP.json`](ROADMAP.json) · [catálogo público](interfaces/catalog.v1.json).
-- **Para pessoas:** [Portal de conhecimento](portal/index.html) · [Portal de auditoria](portal/auditoria.html). São **arquivos HTML standalone**: baixe/abra localmente no navegador; clicar no arquivo dentro da interface do GitHub pode mostrar apenas o código.
+- **Para pessoas:** [Portal de conhecimento](portal/index.html) · [Portal de auditoria](portal/auditoria.html) · [Versões e publicações](portal/versoes.html). São **arquivos HTML standalone**: baixe/abra localmente no navegador; clicar no arquivo dentro da interface do GitHub pode mostrar apenas o código.
 - **Para auditoria:** [Política de governança](docs/GOVERNANCA.md) · [Roadmap detalhado](docs/ROADMAP.md) · [Documentação das interfaces](docs/INTERFACES_IA_HUMANOS.md).
 
 As interfaces usam uma fotografia pública datada, **sem backend em tempo real**, revisão mecânica independente ou autoridade de operação. O projeto permanece **NO GO**.
