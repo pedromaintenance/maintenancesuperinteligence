@@ -159,6 +159,18 @@
   ],
   "roadmap": [
     {
+      "id": "marco-53",
+      "name": "Acessibilidade estática e histórico incremental de publicações",
+      "stage": "in_draft",
+      "priority": "P1",
+      "detail": "Registra dois deploys confirmados, preserva histórico imutável e melhora navegação por teclado, foco e comparação offline de versões.",
+      "source": "docs/ACESSIBILIDADE_HISTORICO_53.md",
+      "dependsOn": [
+        "marco-52"
+      ],
+      "acceptance": "CI, inspeção de segurança e avaliação humana de acessibilidade antes de publicação."
+    },
+    {
       "id": "marco-52",
       "name": "Rastreabilidade de publicações e comparação de versões",
       "stage": "in_draft",
@@ -292,6 +304,13 @@
       "group": "Auditoria",
       "path": "docs/PUBLICACOES_PORTAIS.md",
       "description": "Registro de deploys, diferenças entre snapshots e limites da evidência."
+    },
+    {
+      "id": "a11y53",
+      "name": "Acessibilidade e histórico do Ciclo 53",
+      "group": "Auditoria",
+      "path": "docs/ACESSIBILIDADE_HISTORICO_53.md",
+      "description": "Recibos de duas publicações, testes de teclado e limites da validação."
     }
   ],
   "gates": [

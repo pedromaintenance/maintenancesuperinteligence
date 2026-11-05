@@ -53,7 +53,9 @@ class Cycle52PublicationTests(unittest.TestCase):
         self.assertIn("sites[versions]", paths)
         self.assertIn("roadmap[marco-52]", paths)
         self.assertIn("documents[releases]", paths)
-        self.assertEqual(len(changes), 3)
+        self.assertIn("roadmap[marco-53]", paths)
+        self.assertIn("documents[a11y53]", paths)
+        self.assertEqual(len(changes), 5)
         self.assertEqual({x["change"] for x in changes}, {"added"})
         self.assertEqual(a52.compare(self.baseline, self.baseline), [])
         self.assertEqual(a52.compare({"a": 1}, {"a": 2}),
@@ -65,7 +67,7 @@ class Cycle52PublicationTests(unittest.TestCase):
         report = a52.check()
         self.assertEqual(report["confirmedGithubDeployRecords"], 1)
         self.assertEqual(report["standalonePortalsInSync"], 3)
-        self.assertEqual(report["catalogChangeCount"], 3)
+        self.assertEqual(report["catalogChangeCount"], 5)
         self.assertEqual(report["externalStudyGatesVerified"], 0)
         self.assertFalse(report["liveHttpIndependentlyVerified"])
         self.assertFalse(report["independentHumanQACompleted"])
@@ -140,7 +142,7 @@ class Cycle52PublicationTests(unittest.TestCase):
         text = a52.VERSIONS.read_text(encoding="utf-8")
         for needle in ('id="search"', 'id="type"', 'id="download"',
                        'id="changes"', 'id="catalog"', 'id="baseline"',
-                       'id="releases"', "JSON.stringify(output,null,2)",
+                       'id="releases"', "JSON.stringify(report,null,2)",
                        "role=\""):
             if needle == "role=\"":
                 continue

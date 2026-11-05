@@ -1,0 +1,277 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/publications-v2.schema.json",
+  "title": "Cycle53 public Pages receipts; not a professional safety attestation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "frozenAt",
+    "evidenceNature",
+    "supersedes",
+    "canonicalSource",
+    "siteBase",
+    "appendPolicy",
+    "releases",
+    "restrictedEvidenceIncluded",
+    "externalStudyGatesVerified",
+    "operationallyApproved",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.publication-history.v2"
+    },
+    "version": {
+      "const": "2.0.0"
+    },
+    "frozenAt": {
+      "const": "2026-11-05"
+    },
+    "evidenceNature": {
+      "const": "observed_github_actions_deploy_receipts_and_git_blobs_not_independent_site_or_mechanical_attestation"
+    },
+    "supersedes": {
+      "const": "interfaces/publications.v1.json"
+    },
+    "canonicalSource": {
+      "const": "interfaces/catalog.v1.json"
+    },
+    "siteBase": {
+      "const": "https://pedromaintenance.github.io/maintenancesuperinteligence/"
+    },
+    "appendPolicy": {
+      "const": "historical_release_entries_are_immutable_new_confirmed_deploys_are_appended_only"
+    },
+    "releases": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "label",
+            "cycle",
+            "publicationDateUtc",
+            "sourceBranch",
+            "sourceCommit",
+            "deploymentWorkflow",
+            "workflowRunId",
+            "workflowRunUrl",
+            "evidenceStatus",
+            "pagesEnvironmentUrl",
+            "siteHttpIndependentlyVerified",
+            "qualifiedHumanReviewCompleted",
+            "operationalAuthorityGranted",
+            "files",
+            "catalogSnapshot",
+            "notes"
+          ],
+          "properties": {
+            "id": {
+              "const": "PAGES-2026-11-05-001"
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1
+            },
+            "cycle": {
+              "const": 51
+            },
+            "publicationDateUtc": {
+              "const": "2026-11-05T15:11:13Z"
+            },
+            "sourceBranch": {
+              "const": "main"
+            },
+            "sourceCommit": {
+              "const": "ad9a9b3e321dfe696a8a816e5cdc17637f9f0afc"
+            },
+            "deploymentWorkflow": {
+              "const": "Publish Maintenance Superintelligence portals to GitHub Pages"
+            },
+            "workflowRunId": {
+              "const": 42052320131
+            },
+            "workflowRunUrl": {
+              "const": "https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42052320131"
+            },
+            "evidenceStatus": {
+              "const": "github_actions_reported_success"
+            },
+            "pagesEnvironmentUrl": {
+              "const": "https://pedromaintenance.github.io/maintenancesuperinteligence/"
+            },
+            "siteHttpIndependentlyVerified": {
+              "const": false
+            },
+            "qualifiedHumanReviewCompleted": {
+              "const": false
+            },
+            "operationalAuthorityGranted": {
+              "const": false
+            },
+            "files": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "path",
+                  "gitBlobSha",
+                  "nature"
+                ],
+                "properties": {
+                  "path": {
+                    "enum": [
+                      "index.html",
+                      "auditoria.html"
+                    ]
+                  },
+                  "gitBlobSha": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{40}$"
+                  },
+                  "nature": {
+                    "const": "standalone_public_html"
+                  }
+                }
+              }
+            },
+            "catalogSnapshot": {
+              "const": "interfaces/snapshots/c51-pages-deploy.v1.json"
+            },
+            "notes": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "label",
+            "cycle",
+            "publicationDateUtc",
+            "sourceBranch",
+            "sourceCommit",
+            "deploymentWorkflow",
+            "workflowRunId",
+            "workflowRunUrl",
+            "evidenceStatus",
+            "pagesEnvironmentUrl",
+            "siteHttpIndependentlyVerified",
+            "qualifiedHumanReviewCompleted",
+            "operationalAuthorityGranted",
+            "files",
+            "catalogSnapshot",
+            "notes"
+          ],
+          "properties": {
+            "id": {
+              "const": "PAGES-2026-11-05-002"
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1
+            },
+            "cycle": {
+              "const": 52
+            },
+            "publicationDateUtc": {
+              "const": "2026-11-05T15:42:42Z"
+            },
+            "sourceBranch": {
+              "const": "main"
+            },
+            "sourceCommit": {
+              "const": "1ffa398b8d328a1f67dd49fbff7e37c3f0b82911"
+            },
+            "deploymentWorkflow": {
+              "const": "Publish Maintenance Superintelligence portals to GitHub Pages"
+            },
+            "workflowRunId": {
+              "const": 42057123105
+            },
+            "workflowRunUrl": {
+              "const": "https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42057123105"
+            },
+            "evidenceStatus": {
+              "const": "github_actions_reported_success"
+            },
+            "pagesEnvironmentUrl": {
+              "const": "https://pedromaintenance.github.io/maintenancesuperinteligence/"
+            },
+            "siteHttpIndependentlyVerified": {
+              "const": false
+            },
+            "qualifiedHumanReviewCompleted": {
+              "const": false
+            },
+            "operationalAuthorityGranted": {
+              "const": false
+            },
+            "files": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "path",
+                  "gitBlobSha",
+                  "nature"
+                ],
+                "properties": {
+                  "path": {
+                    "enum": [
+                      "index.html",
+                      "auditoria.html",
+                      "versoes.html"
+                    ]
+                  },
+                  "gitBlobSha": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{40}$"
+                  },
+                  "nature": {
+                    "const": "standalone_public_html"
+                  }
+                }
+              }
+            },
+            "catalogSnapshot": {
+              "const": "interfaces/snapshots/c52-pages-deploy.v1.json"
+            },
+            "notes": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "restrictedEvidenceIncluded": {
+      "const": false
+    },
+    "externalStudyGatesVerified": {
+      "const": 0
+    },
+    "operationallyApproved": {
+      "const": false
+    },
+    "decision": {
+      "const": "NO GO"
+    }
+  }
+}

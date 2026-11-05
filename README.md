@@ -157,6 +157,17 @@ O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em ci
 
 A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
 
+## Ciclo 53 — Acessibilidade de portais e recibos incrementais (proposta)
+
+A auditoria `governance/cycle53_publication_history.py` verifica **dois deploys realmente confirmados pelo GitHub Actions** e protege o registro anterior contra alteração retrospectiva. O `portal/versoes.html` mostra ambos os recibos e compara C51, C52 e a versão de pesquisa atual. Nos três HTMLs, foram acrescentados links de salto, foco visível, modo de movimento reduzido e avisos de resultados acessíveis; as abas da auditoria oferecem navegação por teclas direcionais. São controles **implementados e testados estaticamente**, não uma certificação WCAG, revisão humana ou comprovação de efetividade OEM. [Documentação](docs/ACESSIBILIDADE_HISTORICO_53.md).
+
+```bash
+python -m governance.cycle53_publication_history --check
+python -m unittest tests.test_cycle53_publication_a11y -v
+```
+
+**NO GO:** interfaces e hashes não autorizam testes físicos, SAP, ECM, ordens ou liberação.
+
 ## Ciclo 52 — Histórico verificável de publicações (proposta)
 
 A nova página `portal/versoes.html` apresenta os artefatos e o workflow do primeiro deploy do Pages, além de comparar **dois snapshots públicos de catálogo** e exportar as diferenças. `interfaces/publications.v1.json` preserva os IDs de commit, execução e hashes Git dos arquivos originais; `governance/cycle52_publication_audit.py` detecta desvio de origem, páginas desatualizadas e campos de autoridade falsos. São **metadados de publicação**, não prova de diagnóstico, autenticidade humana ou conformidade OEM. O histórico é uma fotografia, não uma consulta live. [Documento](docs/PUBLICACOES_PORTAIS.md). **NO GO**.

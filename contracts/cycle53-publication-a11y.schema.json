@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle53-publication-a11y.schema.json",
+  "title": "Cycle53 public Pages receipts; not a professional safety attestation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "knownGithubSuccessfulDeploys",
+    "recordedPublicHtmlBlobs",
+    "versionsHtmlEmbeddedHistoryConsistent",
+    "staticKeyboardSemanticsChecked",
+    "browserScreenReaderAuditCompleted",
+    "liveHttpIndependentlyVerified",
+    "qualifiedHumanReviewCompleted",
+    "externalGatesVerified",
+    "mayWriteSAP",
+    "mayModifyECM",
+    "mayCreateWorkOrder",
+    "mayReleaseEquipment",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle53-publication-a11y-audit.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "knownGithubSuccessfulDeploys": {
+      "const": 2
+    },
+    "recordedPublicHtmlBlobs": {
+      "const": 5
+    },
+    "versionsHtmlEmbeddedHistoryConsistent": {
+      "const": true
+    },
+    "staticKeyboardSemanticsChecked": {
+      "const": true
+    },
+    "browserScreenReaderAuditCompleted": {
+      "const": false
+    },
+    "liveHttpIndependentlyVerified": {
+      "const": false
+    },
+    "qualifiedHumanReviewCompleted": {
+      "const": false
+    },
+    "externalGatesVerified": {
+      "const": 0
+    },
+    "mayWriteSAP": {
+      "const": false
+    },
+    "mayModifyECM": {
+      "const": false
+    },
+    "mayCreateWorkOrder": {
+      "const": false
+    },
+    "mayReleaseEquipment": {
+      "const": false
+    },
+    "decision": {
+      "const": "no_go_static_a11y_checks_are_not_human_or_mechanical_validation"
+    }
+  }
+}
