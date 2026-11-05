@@ -87,6 +87,7 @@ Desenvolver, progressivamente, um sistema capaz de explicar a função de um ati
 - [Ciclo 47 — Red team de mascaramento e proveniência documental (proposta)](docs/CICLO_2026-11-04_RED_TEAM_MASCARAMENTO_47.md)
 - [Ciclo 48 — Prontidão de integração e estudo externo (proposta)](docs/CICLO_2026-11-05_PRONTIDAO_ESTUDO_48.md)
 - [Ciclo 49 — Matriz executável de 16 contratos JSON Schema (proposta)](docs/CICLO_2026-11-05_INTEGRACAO_CONTRATOS_49.md)
+- [Ciclo 50 — Revisão estrutural × relacional de contratos (proposta)](docs/CICLO_2026-11-05_REVISAO_RELACIONAL_50.md)
 
 ## Estrutura inicial e arquitetura futura
 
@@ -145,6 +146,16 @@ O parâmetro opcional `--simulated-test-results examples/777e_simulated_test_res
 O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em cinco disciplinas: óleo (4), hidráulica (3), mecânica (3), vibração (2) e eletrônica (2). Seis códigos de método do FMEA (`EV-*`) são reconciliados com as **oito investigações** do caso CAT 777E; as fontes de referência e limitações são rastreadas em `data/diagnostic-method-sources.v1.json`.
 
 A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
+
+## Ciclo 50 — Integração de validação estrutural e relacional (proposta)
+
+A auditoria `governance/cycle50_relational_review.py` demonstra **oito situações em que uma instância passa no JSON Schema dos Ciclos 44, 45 ou 48, mas contradiz relações verificadas pelo validador Python**. Acrescenta `verify_report` ao Ciclo 49 para recalcular sua matriz e detectar três adulterações de contagens ou identidade de contrato que mantêm formato JSON válido. Somente fixtures sintéticas; **não há review independente, validade mecânica ou autorização operacional**. [Detalhes](docs/CICLO_2026-11-05_REVISAO_RELACIONAL_50.md).
+
+```bash
+python -m pip install jsonschema==4.23.0
+python -m unittest tests.test_cycle50_relational_review -v
+python -m governance.cycle50_relational_review --output build/governance/cycle50-relational-review.json
+```
 
 ## Ciclo 49 — Auditoria executável dos contratos JSON Schema (proposta)
 

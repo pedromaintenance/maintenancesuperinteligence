@@ -256,6 +256,19 @@ def execute_contract_review():
     }
 
 
+def verify_report(report):
+    """Recompute the *synthetic-only* schema matrix, rejecting inflated counts.
+
+    The recomputation is independent of the report bytes but still uses the
+    SAME author-written code, fixtures and contracts. It is NOT a second
+    expert review, signature, approval, or proof of real-world diagnostic truth.
+    """
+    require(isinstance(report, dict)
+            and report == execute_contract_review(),
+            "C49 schema review report is stale, inflated or tampered")
+    return True
+
+
 def format_markdown(report):
     lines = [
         "# Ciclo 49 — Auditoria executável de contratos (NO GO)", "",

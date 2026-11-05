@@ -2,6 +2,14 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 50 (branch proposta; revisão estrutural e relacional)
+
+**Encontrado no código e coberto por testes:** oito vínculos cruzados dos Ciclos 44, 45 e 48 não são rejeitados pela validação estritamente estrutural de um JSON Schema, embora já sejam negados pelos validadores Python. A cobertura agora testa explicitamente ambos os estágios e demonstra a necessidade de executá-los juntos. No Ciclo 49, foi adicionada a recomputação do relatório para detectar três adulterações de contagens ou identidade de contrato que poderiam permanecer formalmente válidas no schema. [Auditoria do Ciclo 50](CICLO_2026-11-05_REVISAO_RELACIONAL_50.md).
+
+**Escopo:** provas sintéticas, sem dados privados, engenharia de campo ou identidade humana validada. O relatório não promove diagnóstico, prontidão de estudo ou autorização SAP/ECM/OS. Os 13 gates externos de validação continuam abertos; **NO GO**.
+
+**Prioridade:** revisão humana e integração dos PRs #69–76 em ordem, com novas verificações após cada merge ou rebase. Avaliar semântica de domínio e requisitos externos antes de expandir mecanismos de pesquisa.
+
 ## Marco de pesquisa: Ciclo 49 (branch proposta; integração de contratos executáveis)
 
 **Entregue em pesquisa sintética:** execução real de 16 contratos JSON Schema dos Ciclos 44–48 contra objetos fabricados em memória, com teste de adulterações de versão, atributos inesperados e promoção de campos de autoridade falsos, inclusive aninhados. O relatório é público apenas com contagens; nenhum corpus, mapa privado, chave ou parecer real é exportado. [Auditoria executável](CICLO_2026-11-05_INTEGRACAO_CONTRATOS_49.md).
