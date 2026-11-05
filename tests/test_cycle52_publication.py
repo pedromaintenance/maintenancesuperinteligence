@@ -53,7 +53,9 @@ class Cycle52PublicationTests(unittest.TestCase):
         self.assertIn("sites[versions]", paths)
         self.assertIn("roadmap[marco-52]", paths)
         self.assertIn("documents[releases]", paths)
-        self.assertEqual(len(changes), 3)
+        self.assertIn("roadmap[marco-53]", paths)
+        self.assertIn("documents[a11y53]", paths)
+        self.assertEqual(len(changes), 5)
         self.assertEqual({x["change"] for x in changes}, {"added"})
         self.assertEqual(a52.compare(self.baseline, self.baseline), [])
         self.assertEqual(a52.compare({"a": 1}, {"a": 2}),
