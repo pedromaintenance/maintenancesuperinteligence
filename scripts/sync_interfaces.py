@@ -18,6 +18,7 @@ MACHINE_ROADMAP = ROOT / "ROADMAP.json"
 PORTALS = (
     ROOT / "portal/index.html",
     ROOT / "portal/auditoria.html",
+    ROOT / "portal/versoes.html",
 )
 EMBED = re.compile(
     r'(<script id="catalog" type="application/json">\s*)(.*?)(\s*</script>)',
