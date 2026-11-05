@@ -2,6 +2,16 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 52 (branch proposta; histórico de publicações dos portais)
+
+**Problema:** após a primeira implantação bem-sucedida no GitHub Pages, os portais não distinguiam facilmente o *conteúdo efetivamente publicado* das alterações posteriores na branch de pesquisa.
+
+**Entrega proposta:** `interfaces/publications.v1.json` registra a execução GitHub Actions **42052320131**, o commit público de publicação `ad9a9b3e...` e os identificadores Git dos dois HTMLs do deploy inicial. `interfaces/snapshots/c51-pages-deploy.v1.json` preserva o catálogo daquele ciclo. O terceiro portal `portal/versoes.html` mostra o recibo e uma comparação navegável e exportável do catálogo anterior com o atual. O script `governance/cycle52_publication_audit.py` verifica vínculos entre ledger, baseline, catálogos incorporados e limites de NO GO. [Documentação](PUBLICACOES_PORTAIS.md).
+
+**Limite:** essa trilha deriva de um resultado informado pelo GitHub Actions, não de um auditor externo ou verificação HTTP independente. Git blobs não são assinaturas. Diferenças de catálogo não demonstram melhoria diagnóstica. Os 13 gates externos permanecem não verificados. **NO GO.**
+
+**Próxima etapa:** testar os três portais no CI, revisão humana desktop/mobile e apenas então publicar os HTMLs selecionados no Pages, sem integrar automaticamente os PRs anteriores.
+
 ## Marco de pesquisa: Ciclo 51 (branch proposta; interfaces para IA e humanos)
 
 **Objetivo:** transformar o repositório em uma base **consultável e auditável** por agentes de IA e profissionais humanos, com navegação e status derivados de um mesmo catálogo público versionado, sem alterar a fronteira de autoridade operacional.
