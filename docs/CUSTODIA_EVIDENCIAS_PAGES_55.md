@@ -2,6 +2,10 @@
 
 **Data de recuperação: 07/11/2026 · P&D · proposta em PR draft sobre o Ciclo 54.**
 
+## Atualização confirmada no Ciclo 56
+
+A evidência binária original e os dois JSONs foram **promovidos isoladamente à `main`**, sem a cadeia de PRs de pesquisa, no commit `81275aa778b82038fe0f1d50a49d4f0c73598ce4`. Um workflow limitado a leitura verifica SHA-256 do ZIP, os dois JSONs e correspondência entre seus membros: [execução #42420972270](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42420972270) concluiu com sucesso. Essa promoção assegura disponibilidade dos bytes originais no histórico Git; não significa merge do manifesto de custódia completo nem execução do QA humano.
+
 ## Questão que este ciclo enfrenta
 
 O deploy do Pages foi comprovado por workflow e verificação HTTP no Ciclo 54, mas os artefatos `pages-release-evidence-<run-id>` têm prazo de retenção **de 30 dias**. Sem um registro persistente, perderíamos acesso ao manifesto e ao recibo originais assim que o GitHub descartasse o ZIP.
