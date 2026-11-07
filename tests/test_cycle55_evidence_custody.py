@@ -104,7 +104,8 @@ class Cycle55EvidenceCustodyTests(unittest.TestCase):
             self.assertEqual((output / importer.FILES[1]).read_bytes(), receipt)
             self.assertFalse(manifest["humanQASignOff"])
             self.assertFalse(manifest["operationalAuthorityGranted"])
-            self.assertFalse(manifest["source"]["archiveZipRetainedInGit"])
+            self.assertTrue(manifest["source"]["archiveZipRetainedInGit"])
+            self.assertEqual((output / "source-artifact.zip").read_bytes(), archive.read_bytes())
             self.assertEqual(manifest["decision"], "NO GO")
             with self.assertRaises(importer.ImportRejected):
                 importer.prepare(
