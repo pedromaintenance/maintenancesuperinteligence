@@ -23,10 +23,11 @@ O artefato do workflow foi baixado do GitHub e o ZIP foi conferido em **07/11/20
 | JSON candidato | `9bd547dae00b6d59a9dad0c91493e9d1f399fbca0844a2757dd6f610aa02257b` |
 | JSON recibo HTTP | `729a14ee3f9f595223729516a76251294eded07b270d7594c5c5f8b7812cf483` |
 
-O ZIP original **não foi armazenado no Git**. Foram preservados seus **dois arquivos JSON originais byte a byte**, com os hashes de cada um e o digest de origem do arquivo ZIP. Depois da expiração no Actions, o próprio ZIP não poderá ser reconstruído ou revalidado independentemente a partir destes dois arquivos, pois seus metadados binários não estão preservados. Essa limitação consta expressamente do manifesto.
+O **ZIP binário original também foi preservado no Git** como `source-artifact.zip`, com SHA-256 `58b0b05a...` e Git blob `5346143119a21443462ded761b220b6260c49b5e`. Portanto, mesmo após a expiração no GitHub Actions, o auditor pode verificar o ZIP completo, reabrir os dois membros originais e comprovar que são idênticos aos JSONs versionados. Essa verificação de bytes não substitui a validação independente da origem do arquivo no GitHub.
 
 Os documentos estão em `archives/pages/2026-11-07-run-42412015125/`:
 
+- `source-artifact.zip` — ZIP original completo do GitHub Actions, armazenado como arquivo binário no repositório;
 - `pages-release-candidate.json` — resultado da preparação antes do deploy (`liveHttpBytesVerified=false`);
 - `pages-http-receipt.json` — resultado da comparação HTTP pós-deploy (`liveHttpBytesVerified=true`);
 - `custody-manifest.v1.json` — proveniência e digests conferidos, três hashes SHA-256 de HTML e respectivos Git blobs no commit de origem.
@@ -54,7 +55,7 @@ python scripts/import_pages_evidence.py \
   --output-dir archives/pages/AAAA-MM-DD-run-ID
 ```
 
-5. Revisar a saída. O importador **não consulta o GitHub** para confirmar que os valores informados são verdadeiros, apenas os confronta com o ZIP. Portanto, deve existir validação humana dos IDs, URLs e blobs.
+5. Revisar a saída, incluindo o ZIP copiado sem alterações. O importador **não consulta o GitHub** para confirmar que os valores informados são verdadeiros, apenas os confronta com o ZIP. Portanto, deve existir validação humana dos IDs, URLs e blobs.
 6. Adicionar uma nova entrada ao índice **sem alterar os registros anteriores**. Abrir PR de revisão com ambos os JSONs e manifesto; passar pelo CI de custódia. Proibir segredos, conteúdo corporativo ou dados de manutenção restritos.
 7. Fazer merge somente depois de revisão explícita. **Não publicar automaticamente essa evidência no GitHub Pages, nem atualizar `main` por um job com privilégios de escrita.**
 
