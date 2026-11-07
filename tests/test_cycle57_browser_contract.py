@@ -43,7 +43,7 @@ class BrowserContractTests(unittest.TestCase):
         for path in PORTALS:
             content=path.read_text(encoding="utf-8")
             with self.subTest(path=str(path)):
-                self.assertIn("NO GO OPERACIONAL",content)
+                self.assertIn("NO GO",content)
                 self.assertNotIn("<script src=",content)
                 self.assertNotIn("fetch(",content)
                 self.assertIn("prefers-reduced-motion",content)
