@@ -1,0 +1,83 @@
+name: Cycle 56 offline human QA workbench and negative authority controls
+
+on:
+  push:
+    paths:
+      - 'review/qa_portais_56.html'
+      - 'review/portal_qa_template.v1.json'
+      - 'governance/cycle56_qa_workbench.py'
+      - 'tests/test_cycle56_qa_workbench.py'
+      - 'contracts/human-qa-session.schema.json'
+      - 'docs/BANCADA_QA_PORTAIS_56.md'
+      - '.github/workflows/cycle56-human-qa.yml'
+  pull_request:
+    paths:
+      - 'review/qa_portais_56.html'
+      - 'review/portal_qa_template.v1.json'
+      - 'governance/cycle56_qa_workbench.py'
+      - 'tests/test_cycle56_qa_workbench.py'
+      - 'contracts/human-qa-session.schema.json'
+      - 'docs/BANCADA_QA_PORTAIS_56.md'
+      - '.github/workflows/cycle56-human-qa.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  offline-qa-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install JSON Schema validator
+        run: python -m pip install --disable-pip-version-check --no-input jsonschema==4.23.0
+      - name: Validate portable QA workbench against untouched eight-item template
+        run: |
+          python -m compileall -q governance/cycle56_qa_workbench.py tests/test_cycle56_qa_workbench.py
+          python -m governance.cycle56_qa_workbench --output build/governance/cycle56-qa-static.json
+          python -m unittest tests.test_cycle55_evidence_custody tests.test_cycle56_qa_workbench -v
+      - name: Validate partial JSON contract without inventing human signoff
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          from jsonschema import Draft202012Validator
+          schema=json.loads(Path('contracts/human-qa-session.schema.json').read_text(encoding='utf-8'))
+          original=json.loads(Path('review/portal_qa_template.v1.json').read_text(encoding='utf-8'))
+          audit=json.loads(Path('build/governance/cycle56-qa-static.json').read_text(encoding='utf-8'))
+          Draft202012Validator.check_schema(schema)
+          Draft202012Validator(schema).validate(original)
+          assert audit['humanChecksActuallyExecuted']==0
+          assert audit['qualifiedHumanSignoff'] is False
+          assert audit['browserAccessibilityVerified'] is False
+          assert audit['operationalAuthorityGranted'] is False
+          assert audit['externalStudyGatesVerified']==0
+          assert audit['decision']=='NO GO'
+          print('PASS: QA template untouched; no automatic human or engineering approvals')
+          PY
+      - name: Check embedded standalone JavaScript syntax without invoking browser QA
+        run: |
+          python - <<'PY'
+          import re
+          import subprocess
+          import tempfile
+          from pathlib import Path
+          html=Path('review/qa_portais_56.html').read_text(encoding='utf-8')
+          snippets=re.findall(r'<script>(.*?)</script>',html,re.DOTALL)
+          assert len(snippets)==1
+          assert '<script src=' not in html and 'fetch(' not in html
+          with tempfile.NamedTemporaryFile('w',suffix='.js',encoding='utf-8') as tmp:
+              tmp.write(snippets[0])
+              tmp.flush()
+              subprocess.run(['node','--check',tmp.name],check=True)
+          print('PASS: syntactic JS validity only; no visual or screen-reader test run')
+          PY
+      - name: Store only public aggregate counts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle56-qa-static-contract
+          path: build/governance/cycle56-qa-static.json
+          retention-days: 14
