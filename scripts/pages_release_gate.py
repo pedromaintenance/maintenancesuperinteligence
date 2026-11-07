@@ -67,6 +67,9 @@ def inspect_html(raw: bytes, expected_name: str) -> dict:
         "focus-visible", "prefers-reduced-motion", "versoes.html",
     ):
         require(snippet in html, expected_name + ": missing " + snippet)
+    visible_section = html.split('<script id="catalog"', 1)[0]
+    require("NO GO" in visible_section,
+            expected_name + ": visible operational NO GO banner missing")
     require("<script src=" not in lower and "fetch(" not in html,
             "external JavaScript or dynamic fetch not permitted in public Pages")
     matches = CATALOG_RE.findall(html)
