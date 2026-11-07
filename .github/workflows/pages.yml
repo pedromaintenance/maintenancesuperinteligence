@@ -1,0 +1,78 @@
+name: Publish Maintenance Superintelligence portals to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'auditoria.html'
+      - 'versoes.html'
+      - '.github/workflows/pages.yml'
+      - 'scripts/pages_release_gate.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out published static files
+        uses: actions/checkout@v4
+      - name: Stage ONLY public standalone portals
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          cp index.html _site/index.html
+          cp auditoria.html _site/auditoria.html
+          cp versoes.html _site/versoes.html
+          touch _site/.nojekyll
+          test -s _site/index.html
+          test -s _site/auditoria.html
+          test -s _site/versoes.html
+          grep -q 'NO GO' _site/index.html
+          grep -q 'NO GO' _site/auditoria.html
+          grep -q 'NO GO' _site/versoes.html
+      - name: Prepare SHA-256 manifest of exactly three public HTML files
+        run: |
+          python3 scripts/pages_release_gate.py prepare \
+            --site-dir _site \
+            --source-sha "$GITHUB_SHA" \
+            --run-id "$GITHUB_RUN_ID" \
+            --output build/pages-release-candidate.json
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload public portal artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify deployed HTTP response bytes match staged SHA-256
+        run: |
+          python3 scripts/pages_release_gate.py verify \
+            --candidate build/pages-release-candidate.json \
+            --base-url "${{ steps.deployment.outputs.page_url }}" \
+            --output build/pages-http-receipt.json
+      - name: Preserve public candidate and receipt as per-run evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pages-release-evidence-${{ github.run_id }}
+          path: |
+            build/pages-release-candidate.json
+            build/pages-http-receipt.json
+          if-no-files-found: warn
+          retention-days: 30

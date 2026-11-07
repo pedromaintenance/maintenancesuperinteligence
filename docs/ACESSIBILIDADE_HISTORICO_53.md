@@ -47,6 +47,10 @@ python -m governance.cycle53_publication_history --check
 python -m unittest tests.test_cycle51_interfaces tests.test_cycle52_publication tests.test_cycle53_publication_a11y -v
 ```
 
+## Continuidade: Ciclo 54
+
+A próxima etapa é implementar uma conferência de **entrega de bytes por HTTP** após o deploy no Pages, com manifesto de SHA-256 e recibo separado, além de roteiro de revisão humana. Consulte [Ciclo 54](RELEASE_PORTAIS_54.md). Isso não comprova acessibilidade nem eficácia de diagnóstico.
+
 ## Próximas verificações necessárias
 
 - Teste real de leitura por teclado e leitor de tela (NVDA/VoiceOver) e ensaio visual em dispositivos móveis;

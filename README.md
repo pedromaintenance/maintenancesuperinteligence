@@ -157,6 +157,16 @@ O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em ci
 
 A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
 
+## Ciclo 54 — Integridade de publicação e revisão humana (proposta)
+
+O processo de Pages passa a distinguir **candidato preparado**, **deploy informado pelo GitHub** e **conteúdo efetivamente recebido por HTTP com SHA-256 idêntico**. O primeiro [deploy com verificação HTTP](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42412015125), em 07/11/2026, foi aprovado para os três HTMLs no commit `b930a177...`, com manifesto e recibo preservados como artefato do workflow. O script `scripts/pages_release_gate.py` valida o manifesto e confere as três URLs após o deploy; não transforma um resultado HTTP em avaliação de acessibilidade, validação OEM, aprovação humana ou operação de equipamento. Veja [o procedimento](docs/RELEASE_PORTAIS_54.md) e [o checklist humano](docs/QA_HUMANA_PORTAIS_54.md).
+
+```bash
+python -m unittest tests.test_cycle54_pages_release_gate -v
+```
+
+**NO GO:** o teste de publicação não habilita SAP/ECM, ordens ou liberação.
+
 ## Ciclo 53 — Acessibilidade de portais e recibos incrementais (proposta)
 
 A auditoria `governance/cycle53_publication_history.py` verifica **dois deploys realmente confirmados pelo GitHub Actions** e protege o registro anterior contra alteração retrospectiva. O `portal/versoes.html` mostra ambos os recibos e compara C51, C52 e a versão de pesquisa atual. Nos três HTMLs, foram acrescentados links de salto, foco visível, modo de movimento reduzido e avisos de resultados acessíveis; as abas da auditoria oferecem navegação por teclas direcionais. São controles **implementados e testados estaticamente**, não uma certificação WCAG, revisão humana ou comprovação de efetividade OEM. [Documentação](docs/ACESSIBILIDADE_HISTORICO_53.md).

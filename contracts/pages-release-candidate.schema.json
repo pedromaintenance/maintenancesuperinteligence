@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/pages-release-candidate.schema.json",
+  "title": "Pages delivery evidence only, not human/field attestation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "sourceCommit",
+    "workflowRunId",
+    "siteBase",
+    "browserAccessibilityVerified",
+    "humanQualifiedReviewVerified",
+    "mechanicalAccuracyVerified",
+    "externalStudyGatesVerified",
+    "operationalAuthorityGranted",
+    "decision",
+    "files",
+    "contentStage",
+    "liveHttpBytesVerified"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.pages-release-candidate.v1"
+    },
+    "sourceCommit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "workflowRunId": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "siteBase": {
+      "const": "https://pedromaintenance.github.io/maintenancesuperinteligence/"
+    },
+    "browserAccessibilityVerified": {
+      "const": false
+    },
+    "humanQualifiedReviewVerified": {
+      "const": false
+    },
+    "mechanicalAccuracyVerified": {
+      "const": false
+    },
+    "externalStudyGatesVerified": {
+      "const": 0
+    },
+    "operationalAuthorityGranted": {
+      "const": false
+    },
+    "decision": {
+      "const": "NO GO"
+    },
+    "files": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256",
+          "sizeBytes"
+        ],
+        "properties": {
+          "path": {
+            "enum": [
+              "index.html",
+              "auditoria.html",
+              "versoes.html"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "minimum": 1025
+          }
+        }
+      }
+    },
+    "contentStage": {
+      "const": "candidate_staged_not_http_verified"
+    },
+    "liveHttpBytesVerified": {
+      "const": false
+    }
+  }
+}
