@@ -11,8 +11,10 @@
     "artifactName": "pages-release-evidence-42412015125",
     "artifactArchiveSha256": "58b0b05a15589ddeec6f9f25cd6f57d3a7c10031300cee86734b2aa58646101b",
     "artifactExpiresAtUtc": "2026-12-07T20:38:33Z",
-    "archiveZipRetainedInGit": false,
-    "observedFrom": "GitHub Actions artifact ZIP downloaded and locally SHA-256 verified on 2026-11-07"
+    "archiveZipRetainedInGit": true,
+    "observedFrom": "GitHub Actions original artifact ZIP downloaded on 2026-11-07; SHA-256 and exact binary Git blob verified",
+    "archiveZipFile": "source-artifact.zip",
+    "archiveZipGitBlobSha": "5346143119a21443462ded761b220b6260c49b5e"
   },
   "files": [
     {
