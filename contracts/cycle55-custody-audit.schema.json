@@ -44,8 +44,9 @@
       "const": true
     },
     "sourceZipArchiveRetained": {
-      "const": false
+      "const": true
     },
+    "sourceZipSha256Matched": {"const":true},
     "rechecksCurrentPagesHttp": {
       "const": false
     },
