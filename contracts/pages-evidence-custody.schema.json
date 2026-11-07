@@ -45,7 +45,9 @@
         "artifactArchiveSha256",
         "artifactExpiresAtUtc",
         "archiveZipRetainedInGit",
-        "observedFrom"
+        "observedFrom",
+        "archiveZipFile",
+        "archiveZipGitBlobSha"
       ],
       "properties": {
         "repository": {
@@ -73,11 +75,17 @@
           "const": "2026-12-07T20:38:33Z"
         },
         "archiveZipRetainedInGit": {
-          "const": false
+          "const": true
         },
         "observedFrom": {
           "type": "string",
           "minLength": 1
+        },
+        "archiveZipFile": {
+          "const": "source-artifact.zip"
+        },
+        "archiveZipGitBlobSha": {
+          "const": "5346143119a21443462ded761b220b6260c49b5e"
         }
       }
     },
