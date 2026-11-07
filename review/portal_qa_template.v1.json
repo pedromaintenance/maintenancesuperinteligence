@@ -1,0 +1,79 @@
+{
+  "schema": "maintenance-superinteligence.human-pages-qa-template.v1",
+  "version": "1.0.0",
+  "purpose": "manual_review_template_not_attestation",
+  "source": "docs/QA_HUMANA_PORTAIS_54.md",
+  "observedPlatform": "not_recorded",
+  "reviewedRelease": "not_selected",
+  "humanReviewerIdentityCollectedHere": false,
+  "checks": [
+    {
+      "id": "mobile_layout",
+      "expected": "Em 320–390 px, menus e conteúdos devem permanecer legíveis sem sobreposição de controles",
+      "method": "Navegador em smartphone real ou emulação de viewport, com capturas das três páginas",
+      "status": "not_tested",
+      "evidenceReference": "",
+      "observations": ""
+    },
+    {
+      "id": "zoom_reflow",
+      "expected": "A 200% e 400% de zoom, leitura e ações continuam acessíveis",
+      "method": "Navegador com zoom e quebra de linhas, com evidências",
+      "status": "not_tested",
+      "evidenceReference": "",
+      "observations": ""
+    },
+    {
+      "id": "keyboard_skip_focus",
+      "expected": "Tab alcança o salto ao conteúdo, mantém foco visível e navega por links/botões",
+      "method": "Usar exclusivamente teclado, gravando sequência e bloqueios",
+      "status": "not_tested",
+      "evidenceReference": "",
+      "observations": ""
+    },
+    {
+      "id": "audit_tabs",
+      "expected": "Setas esquerda/direita, Home e End alternam as abas e preservam sentido do painel",
+      "method": "Usar teclado, confirmar aria-selected e conteúdo exibido",
+      "status": "not_tested",
+      "evidenceReference": "",
+      "observations": ""
+    },
+    {
+      "id": "screen_reader",
+      "expected": "Leitor de tela lê títulos, estados, links, filtros e alterações anunciadas",
+      "method": "NVDA/VoiceOver real; registrar ambiente e ocorrências",
+      "status": "not_tested",
+      "evidenceReference": "",
+      "observations": ""
+    },
+    {
+      "id": "status_clarity",
+      "expected": "Há distinção inequívoca entre deploy HTTP, revisão humana e validade mecânica",
+      "method": "Ler os três portais e verificar NO GO, gates e snapshot histórico",
+      "status": "not_tested",
+      "evidenceReference": "",
+      "observations": ""
+    },
+    {
+      "id": "export_integrity",
+      "expected": "JSON exportado de cada portal corresponde ao que está exibido",
+      "method": "Acionar exportações e confrontar contagens/identificadores",
+      "status": "not_tested",
+      "evidenceReference": "",
+      "observations": ""
+    },
+    {
+      "id": "sources_permissions",
+      "expected": "Links públicos não expõem dados corporativos restritos, credenciais ou literatura OEM licenciada",
+      "method": "Revisão humana de conteúdo e permissões por custodiante autorizado",
+      "status": "not_tested",
+      "evidenceReference": "",
+      "observations": ""
+    }
+  ],
+  "humanReviewCompleted": false,
+  "operationalAuthorityGranted": false,
+  "mechanicalDiagnosticAccuracyValidated": false,
+  "decision": "NO GO"
+}
