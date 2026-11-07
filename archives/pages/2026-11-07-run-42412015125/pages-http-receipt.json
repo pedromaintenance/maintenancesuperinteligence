@@ -1,0 +1,38 @@
+{
+  "schema": "maintenance-superinteligence.pages-http-delivery-receipt.v1",
+  "sourceCommit": "b930a177cc9ba1c94c32785f8fa0b16c37723afb",
+  "workflowRunId": 42412015125,
+  "siteBase": "https://pedromaintenance.github.io/maintenancesuperinteligence/",
+  "verifiedAtUtc": "2026-11-07T20:38:33.178533+00:00",
+  "deliveryStatus": "three_public_http_body_digests_match_staged_artifacts",
+  "files": [
+    {
+      "path": "index.html",
+      "httpStatus": 200,
+      "sha256": "86b62ffd8721e5c263360286aaa17cd8119c41815eda89ac7ef4564be82b58dd",
+      "bytesMatched": true,
+      "sizeBytes": 29101
+    },
+    {
+      "path": "auditoria.html",
+      "httpStatus": 200,
+      "sha256": "8533b2025fa8c1fb1396110512067af73a23cc598da74ae99ad9b805b4a64b1f",
+      "bytesMatched": true,
+      "sizeBytes": 29831
+    },
+    {
+      "path": "versoes.html",
+      "httpStatus": 200,
+      "sha256": "099b39dd2911bbfd8c38d5d235e65b6ca080b429aadb653899eace979f90310a",
+      "bytesMatched": true,
+      "sizeBytes": 59714
+    }
+  ],
+  "liveHttpBytesVerified": true,
+  "browserAccessibilityVerified": false,
+  "humanQualifiedReviewVerified": false,
+  "mechanicalAccuracyVerified": false,
+  "externalStudyGatesVerified": 0,
+  "operationalAuthorityGranted": false,
+  "decision": "NO GO"
+}

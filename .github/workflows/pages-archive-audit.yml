@@ -1,0 +1,67 @@
+name: Audit public immutable Pages evidence on main
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'archives/pages/**'
+      - '.github/workflows/pages-archive-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify original ZIP and exact JSON bytes without network calls
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import io
+          import json
+          import zipfile
+          root = Path("archives/pages/2026-11-07-run-42412015125")
+          expected = {
+              "source-artifact.zip": "58b0b05a15589ddeec6f9f25cd6f57d3a7c10031300cee86734b2aa58646101b",
+              "pages-release-candidate.json": "9bd547dae00b6d59a9dad0c91493e9d1f399fbca0844a2757dd6f610aa02257b",
+              "pages-http-receipt.json": "729a14ee3f9f595223729516a76251294eded07b270d7594c5c5f8b7812cf483",
+          }
+          assert {x.name for x in root.iterdir()} == set(expected), "unexpected content in public evidence archive"
+          for file, digest in expected.items():
+              p = root / file
+              assert p.is_file() and not p.is_symlink()
+              assert hashlib.sha256(p.read_bytes()).hexdigest() == digest, file
+          with zipfile.ZipFile(io.BytesIO((root / "source-artifact.zip").read_bytes())) as archive:
+              assert sorted(archive.namelist()) == sorted(expected.keys() - {"source-artifact.zip"})
+              for name in archive.namelist():
+                  assert archive.read(name) == (root / name).read_bytes(), name
+          prepared=json.loads((root/"pages-release-candidate.json").read_text())
+          served=json.loads((root/"pages-http-receipt.json").read_text())
+          run=42412015125
+          sha="b930a177cc9ba1c94c32785f8fa0b16c37723afb"
+          assert prepared["workflowRunId"] == served["workflowRunId"] == run
+          assert prepared["sourceCommit"] == served["sourceCommit"] == sha
+          assert prepared["liveHttpBytesVerified"] is False
+          assert served["liveHttpBytesVerified"] is True
+          assert len(prepared["files"]) == len(served["files"]) == 3
+          for before, after in zip(prepared["files"], served["files"]):
+              assert before["path"] == after["path"]
+              assert before["sha256"] == after["sha256"]
+              assert before["sizeBytes"] == after["sizeBytes"]
+              assert after["bytesMatched"] is True and after["httpStatus"] == 200
+          for doc in (prepared, served):
+              assert doc["decision"] == "NO GO"
+              assert doc["operationalAuthorityGranted"] is False
+              assert doc["humanQualifiedReviewVerified"] is False
+              assert doc["mechanicalAccuracyVerified"] is False
+              assert doc["externalStudyGatesVerified"] == 0
+          print("PASS: original GitHub Pages ZIP and two receipts are preserved byte-for-byte; NO GO")
+          PY

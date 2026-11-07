@@ -1,0 +1,31 @@
+{
+  "schema": "maintenance-superinteligence.pages-release-candidate.v1",
+  "sourceCommit": "b930a177cc9ba1c94c32785f8fa0b16c37723afb",
+  "workflowRunId": 42412015125,
+  "siteBase": "https://pedromaintenance.github.io/maintenancesuperinteligence/",
+  "files": [
+    {
+      "path": "index.html",
+      "sha256": "86b62ffd8721e5c263360286aaa17cd8119c41815eda89ac7ef4564be82b58dd",
+      "sizeBytes": 29101
+    },
+    {
+      "path": "auditoria.html",
+      "sha256": "8533b2025fa8c1fb1396110512067af73a23cc598da74ae99ad9b805b4a64b1f",
+      "sizeBytes": 29831
+    },
+    {
+      "path": "versoes.html",
+      "sha256": "099b39dd2911bbfd8c38d5d235e65b6ca080b429aadb653899eace979f90310a",
+      "sizeBytes": 59714
+    }
+  ],
+  "contentStage": "candidate_staged_not_http_verified",
+  "liveHttpBytesVerified": false,
+  "browserAccessibilityVerified": false,
+  "humanQualifiedReviewVerified": false,
+  "mechanicalAccuracyVerified": false,
+  "externalStudyGatesVerified": 0,
+  "operationalAuthorityGranted": false,
+  "decision": "NO GO"
+}
