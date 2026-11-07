@@ -161,7 +161,7 @@ A CLI `python -m methods.library --snapshot ... --case ... --investigation ... -
 
 O primeiro ZIP de evidências do Pages com verificação HTTP foi **recuperado do GitHub, teve seu digest validado**, e o ZIP original e os dois JSONs originais foram copiados byte a byte para `archives/pages/2026-11-07-run-42412015125/`. O índice `archives/pages/index.v1.json` disponibiliza uma entrada de consulta para IAs. O script `governance/cycle55_evidence_custody.py` valida hashes e vínculos; o `scripts/import_pages_evidence.py` prepara novos arquivos para revisão humana, sem executar `git push`, sem acesso SAP/ECM e sem elevar autoridade.
 
-A cópia permanece em PR *draft*; o ZIP original **também está no Git**, com SHA-256 e Git blob conferidos e as evidências no Actions expiram conforme política de retenção. O processo e os limites estão em [Custódia dos recibos Pages](docs/CUSTODIA_EVIDENCIAS_PAGES_55.md).
+A cópia permanece em PR *draft*; o ZIP original está preservado na branch com SHA-256 e Git blob conferidos. Os artefatos no Actions continuam sujeitos à política de retenção. O processo e os limites estão em [Custódia dos recibos Pages](docs/CUSTODIA_EVIDENCIAS_PAGES_55.md).
 
 ```bash
 python -m governance.cycle55_evidence_custody --check
