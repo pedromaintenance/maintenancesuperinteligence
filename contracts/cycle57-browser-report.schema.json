@@ -1,0 +1,328 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle57-browser-report.schema.json",
+  "title": "Real headless Chromium interaction evidence, NOT human accessibility attestation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "browser",
+    "testFramework",
+    "testedLocalOfflineHtmlFiles",
+    "executedBrowserScenarios",
+    "passedBrowserScenarios",
+    "failedBrowserScenarios",
+    "responsiveWidthsCssPx",
+    "screenshots",
+    "results",
+    "actualHumanQAExecutions",
+    "screenReaderAudited",
+    "WCAGConformanceCertified",
+    "mechanicalReliabilityValidated",
+    "externalStudyGatesVerified",
+    "SAPWriteAuthorized",
+    "operationalAuthorityGranted",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle57-real-browser-automation.v1"
+    },
+    "browser": {
+      "const": "Chromium headless via Playwright"
+    },
+    "testFramework": {
+      "const": "Node.js + Playwright 1.56.1"
+    },
+    "testedLocalOfflineHtmlFiles": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "const": "review/qa_portais_56.html"
+        },
+        {
+          "const": "portal/index.html"
+        },
+        {
+          "const": "portal/auditoria.html"
+        },
+        {
+          "const": "portal/versoes.html"
+        }
+      ],
+      "items": false
+    },
+    "executedBrowserScenarios": {
+      "const": 9
+    },
+    "passedBrowserScenarios": {
+      "const": 9
+    },
+    "failedBrowserScenarios": {
+      "const": 0
+    },
+    "responsiveWidthsCssPx": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "const": 320
+        },
+        {
+          "const": 375
+        },
+        {
+          "const": 390
+        },
+        {
+          "const": 768
+        }
+      ],
+      "items": false
+    },
+    "screenshots": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "prefixItems": [
+        {
+          "const": "workbench-375.png"
+        },
+        {
+          "const": "knowledge-375.png"
+        },
+        {
+          "const": "audit-375.png"
+        },
+        {
+          "const": "versions-375.png"
+        }
+      ],
+      "items": false
+    },
+    "results": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "passed",
+            "detail"
+          ],
+          "properties": {
+            "name": {
+              "const": "qa_initial_eight_unexecuted"
+            },
+            "passed": {
+              "const": true
+            },
+            "detail": {
+              "type": "string",
+              "maxLength": 450
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "passed",
+            "detail"
+          ],
+          "properties": {
+            "name": {
+              "const": "qa_export_import_resume_failed_and_passed"
+            },
+            "passed": {
+              "const": true
+            },
+            "detail": {
+              "type": "string",
+              "maxLength": 450
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "passed",
+            "detail"
+          ],
+          "properties": {
+            "name": {
+              "const": "qa_forged_signoff_import_rejected"
+            },
+            "passed": {
+              "const": true
+            },
+            "detail": {
+              "type": "string",
+              "maxLength": 450
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "passed",
+            "detail"
+          ],
+          "properties": {
+            "name": {
+              "const": "qa_eight_self_reported_passed_never_signoff"
+            },
+            "passed": {
+              "const": true
+            },
+            "detail": {
+              "type": "string",
+              "maxLength": 450
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "passed",
+            "detail"
+          ],
+          "properties": {
+            "name": {
+              "const": "audit_keyboard_tabs_and_gate_filter"
+            },
+            "passed": {
+              "const": true
+            },
+            "detail": {
+              "type": "string",
+              "maxLength": 450
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "passed",
+            "detail"
+          ],
+          "properties": {
+            "name": {
+              "const": "knowledge_filter_theme_export"
+            },
+            "passed": {
+              "const": true
+            },
+            "detail": {
+              "type": "string",
+              "maxLength": 450
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "passed",
+            "detail"
+          ],
+          "properties": {
+            "name": {
+              "const": "versions_comparison_and_diff_export"
+            },
+            "passed": {
+              "const": true
+            },
+            "detail": {
+              "type": "string",
+              "maxLength": 450
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "passed",
+            "detail"
+          ],
+          "properties": {
+            "name": {
+              "const": "all_four_responsive_320_375_390_768"
+            },
+            "passed": {
+              "const": true
+            },
+            "detail": {
+              "type": "string",
+              "maxLength": 450
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "passed",
+            "detail"
+          ],
+          "properties": {
+            "name": {
+              "const": "keyboard_skip_links_reach_main"
+            },
+            "passed": {
+              "const": true
+            },
+            "detail": {
+              "type": "string",
+              "maxLength": 450
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "actualHumanQAExecutions": {
+      "const": 0
+    },
+    "screenReaderAudited": {
+      "const": false
+    },
+    "WCAGConformanceCertified": {
+      "const": false
+    },
+    "mechanicalReliabilityValidated": {
+      "const": false
+    },
+    "externalStudyGatesVerified": {
+      "const": 0
+    },
+    "SAPWriteAuthorized": {
+      "const": false
+    },
+    "operationalAuthorityGranted": {
+      "const": false
+    },
+    "decision": {
+      "const": "NO GO"
+    }
+  }
+}
