@@ -64,7 +64,8 @@ jobs:
               Draft202012Validator(schema).validate(evidence)
           report=json.loads(Path("build/governance/cycle55-custody.json").read_text(encoding="utf-8"))
           assert report["verifiedOriginalJsonFiles"]==2
-          assert report["sourceZipArchiveRetained"] is False
+          assert report["sourceZipArchiveRetained"] is True
+          assert report["sourceZipSha256Matched"] is True
           assert report["humanReviewCompleted"] is False
           assert report["operationalAuthorityGranted"] is False
           print("PASS: original public receipts preserved, no GO or human validation")
