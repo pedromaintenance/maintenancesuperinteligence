@@ -75,7 +75,8 @@ async function checkViewport(which,width){
   assert.ok(stats.headings.length>=1,which+": no h1");
   assert.ok(stats.document<=width+2,
     which+" "+width+"px: unexpected document overflow "+JSON.stringify(stats));
-  assert.equal(await page.getByText("NO GO OPERACIONAL",{exact:false}).count()>0,true);
+  assert.match(await page.locator("body").innerText(),/NO GO/,
+    which+": operational warning not visible in page text");
   if(width===375){
    const name=which+"-375.png";
    await page.screenshot({path:path.join(REPORT_DIR,name),fullPage:false});
