@@ -73,6 +73,15 @@ async function checkViewport(which,width){
    headings:[...document.querySelectorAll("h1")].map(x=>x.textContent.trim()),
   }));
   assert.ok(stats.headings.length>=1,which+": no h1");
+  if(stats.document>width+2){
+   const overs=await page.evaluate(()=>[...document.body.querySelectorAll("*")].map(el=>{
+    const r=el.getBoundingClientRect();return {element:el.tagName.toLowerCase(),id:el.id,
+     className:typeof el.className==="string"?el.className.slice(0,60):"",
+     left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width),
+     text:(el.textContent||"").trim().slice(0,55)};
+   }).filter(x=>x.right>innerWidth+2&&x.width>0).slice(0,24));
+   console.error("OVERFLOW DIAGNOSTIC",which,width,JSON.stringify(overs));
+  }
   assert.ok(stats.document<=width+2,
     which+" "+width+"px: unexpected document overflow "+JSON.stringify(stats));
   assert.match(await page.locator("body").innerText(),/NO GO/,
