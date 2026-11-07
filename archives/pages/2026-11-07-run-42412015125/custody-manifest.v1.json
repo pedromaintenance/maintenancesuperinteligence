@@ -1,0 +1,59 @@
+{
+  "schema": "maintenance-superinteligence.pages-evidence-custody.v1",
+  "version": "1.0.0",
+  "custodyState": "git_versioned_draft_not_merged_not_independently_attested",
+  "source": {
+    "repository": "pedromaintenance/maintenancesuperinteligence",
+    "workflowRunId": 42412015125,
+    "workflowUrl": "https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42412015125",
+    "commit": "b930a177cc9ba1c94c32785f8fa0b16c37723afb",
+    "artifactId": 13589439429,
+    "artifactName": "pages-release-evidence-42412015125",
+    "artifactArchiveSha256": "58b0b05a15589ddeec6f9f25cd6f57d3a7c10031300cee86734b2aa58646101b",
+    "artifactExpiresAtUtc": "2026-12-07T20:38:33Z",
+    "archiveZipRetainedInGit": false,
+    "observedFrom": "GitHub Actions artifact ZIP downloaded and locally SHA-256 verified on 2026-11-07"
+  },
+  "files": [
+    {
+      "path": "pages-release-candidate.json",
+      "sha256": "9bd547dae00b6d59a9dad0c91493e9d1f399fbca0844a2757dd6f610aa02257b",
+      "sizeBytes": 1031
+    },
+    {
+      "path": "pages-http-receipt.json",
+      "sha256": "729a14ee3f9f595223729516a76251294eded07b270d7594c5c5f8b7812cf483",
+      "sizeBytes": 1269
+    }
+  ],
+  "publishedHtml": [
+    {
+      "path": "index.html",
+      "sha256": "86b62ffd8721e5c263360286aaa17cd8119c41815eda89ac7ef4564be82b58dd",
+      "sizeBytes": 29101,
+      "gitBlobSha": "11a8ade824affa0a96ac5be17fff673c2a122d07"
+    },
+    {
+      "path": "auditoria.html",
+      "sha256": "8533b2025fa8c1fb1396110512067af73a23cc598da74ae99ad9b805b4a64b1f",
+      "sizeBytes": 29831,
+      "gitBlobSha": "beff22c50d27ad116d72e9452792313828a1046d"
+    },
+    {
+      "path": "versoes.html",
+      "sha256": "099b39dd2911bbfd8c38d5d235e65b6ca080b429aadb653899eace979f90310a",
+      "sizeBytes": 59714,
+      "gitBlobSha": "90104fbb92edea753317a10d45766a0d8fa893bf"
+    }
+  ],
+  "evidenceScope": "three_http_200_content_hash_matches_at_one_observed_time_not_continuous_monitoring",
+  "liveHttpAtSourceVerified": true,
+  "independentCurrentHttpVerified": false,
+  "humanQASignOff": false,
+  "browserScreenReaderAuditCompleted": false,
+  "corporateDataApproval": false,
+  "fieldDiagnosticAccuracyVerified": false,
+  "externalStudyGatesVerified": 0,
+  "operationalAuthorityGranted": false,
+  "decision": "NO GO"
+}
