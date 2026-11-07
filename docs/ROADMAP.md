@@ -2,6 +2,16 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 56 (branch proposta; custódia na main e bancada humana de QA)
+
+**Estado material verificado:** o Ciclo 55 terminou com regressão geral e CI específico aprovados. As três evidências públicas (ZIP binário original, candidato e recibo HTTP do run #42412015125) foram copiadas de forma isolada para a `main` no commit `81275aa778b82038fe0f1d50a49d4f0c73598ce4`; o workflow [pages-archive-audit #42420972270](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42420972270) confirmou hashes e correspondência entre ZIP e JSONs. Nenhum PR de pesquisa foi integrado à `main` e os três HTMLs públicos não foram modificados.
+
+**Proposta C56:** `review/qa_portais_56.html` torna executável, por pessoa e offline, o checklist de oito verificações criado no C54. Registra contexto não pessoal, status, observação e referência por item. Exporta/importa JSON parcial, sem backend, sem armazenamento persistente e **sem atribuir homologação**. `contracts/human-qa-session.schema.json` impõe IDs e escopos originais e recusa qualquer `humanReviewCompleted: true`, `operationalAuthorityGranted: true` ou `decision: GO`. `governance/cycle56_qa_workbench.py` verifica que os oito itens continuam não testados em fonte. Consulte [bancada de QA](BANCADA_QA_PORTAIS_56.md).
+
+**Limites:** verificação de HTML, sintaxe JavaScript e estrutura JSON não substitui inspeção humana real de layout, zoom, navegação por teclado e leitor de tela. Até que alguém execute os ensaios, a contagem verdadeira permanece **0/8**. Os 13 gates externos mecânicos continuam não verificados. **NO GO**.
+
+**Próximo passo:** revisar o PR de pesquisa, executar os oito testes em aparelhos reais e tratar achados via issues. Não confundir comprovante de bytes preservados com qualidade de interface ou responsabilidade de engenharia.
+
 ## Marco de pesquisa: Ciclo 55 (branch proposta; custódia versionada de evidências públicas)
 
 **Problema:** o GitHub Actions conserva por apenas 30 dias os recibos de publicação, dificultando a auditoria futura do vínculo entre arquivo submetido, resposta HTTP e commit da `main`.
