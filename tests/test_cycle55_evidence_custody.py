@@ -53,6 +53,17 @@ class Cycle55EvidenceCustodyTests(unittest.TestCase):
                 with self.assertRaises(custody.CustodyRejected):
                     custody.verify()
 
+    def test_original_binary_zip_mutation_is_rejected_even_if_jsons_are_untouched(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            for file in custody.ARCHIVE.iterdir():
+                shutil.copy2(file, root / file.name)
+            binary = root / "source-artifact.zip"
+            original = binary.read_bytes()
+            binary.write_bytes(original + b"X")
+            with patch.object(custody, "ARCHIVE", root), self.assertRaises(custody.CustodyRejected):
+                custody.verify()
+
     def test_false_source_artifact_id_and_authority_are_rejected(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
