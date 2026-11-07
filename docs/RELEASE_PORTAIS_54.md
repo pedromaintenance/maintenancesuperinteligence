@@ -64,6 +64,10 @@ python scripts/pages_release_gate.py verify \
 
 O exemplo com SHA de `a` e run ID `1` **é um exercício de preparação**, não uma publicação real. No workflow, esses campos são substituídos pelo SHA e run ID do próprio GitHub Actions.
 
+## Retenção e arquivamento
+
+O workflow restringe explicitamente a guarda dos artefatos de evidência a **30 dias** (`retention-days: 30`). O recibo `pages-release-evidence-42412015125` tem expiração prevista pelo GitHub para **07/12/2026**. Esse mecanismo é um **registro transitório vinculado à execução**, não um arquivo permanente; antes da expiração, um custodiante autorizado deve decidir a política de preservação do manifesto e do recibo (por exemplo, repositório versionado sujeito a revisão e sem dados privados, ou armazenamento institucional apropriado). **Não realizar commit automático de recibos na `main` ou convertê-los em atestados humanos.**
+
 ## Critérios de aceite e limitações
 
 **Aceite automatizado:** os três bytes-fonte foram validados e o servidor do Pages devolveu bytes com hashes idênticos, comprovados por um recibo vinculado ao commit e run ID de publicação. O artefato pode ser recuperado do GitHub Actions e comparado com o commit correspondente.
