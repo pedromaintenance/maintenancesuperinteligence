@@ -2,6 +2,16 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 55 (branch proposta; custódia versionada de evidências públicas)
+
+**Problema:** o GitHub Actions conserva por apenas 30 dias os recibos de publicação, dificultando a auditoria futura do vínculo entre arquivo submetido, resposta HTTP e commit da `main`.
+
+**Entrega:** o ZIP original do deploy [#42412015125](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42412015125) foi recuperado e seu SHA-256 comparado com o digest informado pelo GitHub. Os **dois JSONs originais**, preservados byte a byte, foram colocados em `archives/pages/2026-11-07-run-42412015125/`, acompanhados por manifesto de custódia e `archives/pages/index.v1.json` para consulta por IA. O script `governance/cycle55_evidence_custody.py` rejeita modificações de hashes, IDs, origens ou elevação de alçada. O importador `scripts/import_pages_evidence.py` permite preparar futuras revisões com ZIP, digest, commit e blobs conferidos. [Procedimento](CUSTODIA_EVIDENCIAS_PAGES_55.md).
+
+**Limite:** o ZIP original não está armazenado no Git; seu digest de origem foi registrado, mas a verificação binária independente depois da expiração dependeria de outra cópia do ZIP. O repositório conserva os dois JSONs e hashes. Como a evidência está em **PR draft**, sua permanência na `main` ainda depende de revisão. A custódia não certifica humanos, normas, OEM ou falhas mecânicas. Os 13 gates externos continuam sem validação. **NO GO.**
+
+**Próxima ação:** garantir revisão do PR de custódia e estabelecer rotina de arquivamento de cada novo run antes da expiração; executar o checklist humano dos três portais sem misturá-lo às provas HTTP.
+
 ## Marco de pesquisa: Ciclo 54 (branch proposta; gate de integridade HTTP de publicação)
 
 **Problema material:** um workflow de GitHub Pages concluído não demonstra, por si só, que os três arquivos públicos servidos por HTTP correspondem aos arquivos submetidos. O histórico até o Ciclo 53 preserva recibos de deploy, mas não inclui comparação automatizada entre resposta HTTP e SHA-256 do conteúdo publicado.
