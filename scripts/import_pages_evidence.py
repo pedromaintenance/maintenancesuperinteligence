@@ -4,7 +4,8 @@ The operator MUST obtain expected digest, run ID, commit, artifact ID, expiry,
 and Git blob SHAs independently from GitHub. This tool checks the ZIP
 contents against the supplied expectations; it cannot certify that the
 operator-supplied values correspond to GitHub or confer human approval.
-It never runs Git commands or pushes to any branch.
+It never runs Git commands or pushes to any branch. The exact source ZIP
+is also preserved so its digest remains independently checkable later.
 """
 from __future__ import annotations
 
@@ -34,6 +35,10 @@ def require(condition, explanation):
 
 def sha256(raw):
     return hashlib.sha256(raw).hexdigest()
+
+
+def git_blob_sha(raw):
+    return hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + b"\x00" + raw).hexdigest()
 
 
 def extract(zip_bytes):
@@ -127,7 +132,9 @@ def prepare(*, archive: Path, archive_sha256: str, commit: str, run_id: int,
             "artifactName": "pages-release-evidence-" + str(run_id),
             "artifactArchiveSha256": archive_sha256,
             "artifactExpiresAtUtc": expires_at,
-            "archiveZipRetainedInGit": False,
+            "archiveZipRetainedInGit": True,
+            "archiveZipFile": "source-artifact.zip",
+            "archiveZipGitBlobSha": git_blob_sha(source_zip),
             "observedFrom": "Operator-supplied GitHub artifact URL/digest/blobs; check source independently before PR acceptance",
         },
         "files": [
@@ -148,6 +155,7 @@ def prepare(*, archive: Path, archive_sha256: str, commit: str, run_id: int,
         "decision": "NO GO",
     }
     output_dir.mkdir(parents=True)
+    (output_dir / "source-artifact.zip").write_bytes(source_zip)
     for name in FILES:
         (output_dir / name).write_bytes(data[name])
     (output_dir / "custody-manifest.v1.json").write_text(
