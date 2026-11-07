@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maintenance Superintelligence | Bancada de revisão humana C56</title>
+<style>
+:root{color-scheme:dark;--bg:#07151d;--card:#132631;--rise:#203946;--border:#37505e;--white:#f1f7f7;--dim:#acc4cb;--mint:#8ce5ce;--amber:#f4d18c;--red:#ffb0a6}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--white);font:15px/1.57 system-ui,Segoe UI,Arial,sans-serif;margin:0}
+main{width:min(1200px,100%);margin:auto;padding:24px clamp(16px,4vw,58px) 85px}
+a{color:var(--mint)}.skip{position:fixed;top:8px;left:8px;padding:12px 16px;background:var(--card);transform:translateY(-160%);z-index:10}.skip:focus{transform:translateY(0)}
+:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+nav{border-bottom:1px solid var(--border);padding:10px 0 20px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+nav strong{font-size:13px;letter-spacing:.1em}nav div{display:flex;gap:18px;flex-wrap:wrap}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.16em;font-weight:800;color:var(--mint)}
+h1{font-size:clamp(34px,5vw,59px);line-height:1.08;max-width:850px;margin:14px 0}h2{font-size:24px;letter-spacing:-.03em}p{max-width:890px}.lead{font-size:18px;color:var(--dim)}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;margin:16px 0}
+.warning{border-left:3px solid var(--red);background:#ffb0a610;padding:17px 20px;border-radius:7px;margin:18px 0}.warning b{color:var(--red)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0 28px}
+.metric{padding:18px;background:var(--card);border:1px solid var(--border);border-radius:12px}
+.metric b{display:block;font-size:29px}.metric span{color:var(--dim);font-size:12px}
+label{font-size:13px;font-weight:700;display:block;margin:0 0 7px}input,textarea,select{background:var(--bg);color:var(--white);font:inherit;border:1px solid var(--border);border-radius:9px;padding:11px 12px;width:100%}
+textarea{resize:vertical;min-height:92px}small,.muted{color:var(--dim)}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.btn{font:inherit;font-weight:750;border:1px solid var(--border);border-radius:9px;padding:11px 16px;cursor:pointer;color:var(--white);background:var(--rise)}
+.btn.primary{background:var(--mint);color:#082024;border-color:var(--mint)}.btn:hover{filter:brightness(1.08)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.cardhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.cardhead h3{margin:0;font-size:19px}
+.tag{display:inline-block;font-size:11px;border:1px solid var(--border);border-radius:30px;color:var(--amber);padding:5px 9px;white-space:nowrap}
+.test{scroll-margin-top:20px}.test p{color:var(--dim)}
+.check-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}.check-fields>div{min-width:0}
+.validation{border-top:1px solid var(--border);margin-top:14px;padding-top:13px;color:var(--amber);font-size:13px}
+#message{min-height:24px;color:var(--amber);margin:10px 0}#message[aria-invalid="true"]{color:var(--red)}
+kbd{font:inherit;background:var(--rise);border-radius:5px;padding:2px 7px}
+footer{margin-top:30px;color:var(--dim);border-top:1px solid var(--border);padding-top:24px}
+@media(max-width:750px){.metrics{grid-template-columns:repeat(2,1fr)}.grid,.check-fields{grid-template-columns:1fr}.panel{padding:17px}.cardhead{flex-direction:column}}
+</style>
+</head>
+<body><a class="skip" href="#content">Pular para a revisão</a><main id="content" tabindex="-1">
+<nav><strong>MS / QA HUMANA · CICLO 56</strong><div><a href="https://pedromaintenance.github.io/maintenancesuperinteligence/" target="_blank" rel="noopener noreferrer">Conhecimento ↗</a><a href="https://pedromaintenance.github.io/maintenancesuperinteligence/auditoria.html" target="_blank" rel="noopener noreferrer">Auditoria ↗</a><a href="https://pedromaintenance.github.io/maintenancesuperinteligence/versoes.html" target="_blank" rel="noopener noreferrer">Versões ↗</a></div></nav>
+<header style="margin:36px 0"><span class="eyebrow">Checklist executável · laboratório de interface</span><h1>Revisão humana dos portais</h1><p class="lead">Oito verificações práticas, registro de evidências e exportação parcial em JSON. Esta bancada não possui backend e não executa testes por conta própria.</p></header>
+<div class="warning"><b>NO GO OPERACIONAL.</b> Resultados preenchidos aqui não constituem aprovação do estudo, do software ou de operação. Nenhum dado é transmitido pela bancada. Não insira dados pessoais, credenciais, documentos internos ou informações de mina.</div>
+<section aria-label="Identificação não pessoal da sessão" class="panel">
+<h2>Contexto da sessão</h2>
+<div class="grid"><div><label for="platform">Ambiente de teste (sem identificadores pessoais)</label><input id="platform" maxlength="240" placeholder="Windows 11, Firefox, zoom 200%, NVDA…"></div><div><label for="release">Commit ou versão efetivamente examinada</label><input id="release" maxlength="240" placeholder="SHA do deploy ou versão do Pages"></div></div>
+<p class="muted" style="margin-top:14px">Especifique o ambiente; não declare que a sessão foi executada em outro dispositivo. Um relatório pode ser salvo incompleto e retomado depois.</p>
+</section>
+<section aria-label="Estado do checklist"><div class="metrics" id="metrics" role="status" aria-live="polite" aria-atomic="true"></div></section>
+<section><div class="actions"><button class="btn primary" id="export" type="button">Exportar JSON parcial</button><button class="btn" id="import" type="button">Importar JSON anterior</button><button class="btn" id="reset" type="button">Reiniciar sessão</button><input id="file" type="file" accept=".json,application/json" hidden aria-label="Arquivo JSON da sessão anterior"></div>
+<div id="message" role="status" aria-live="polite"></div>
+<p class="muted">Salvar gera um arquivo local; a bancada não usa localStorage nem envia informações. Importe esse arquivo para continuar em outra sessão.</p></section>
+<section id="tests" aria-label="Oito ensaios humanos"><h2>Ensaios a executar</h2><p>Para um resultado diferente de “Não testado”, registre a observação. Resultados “Passou” também exigem uma referência de evidência. Teste os três portais conforme o método descrito.</p></section>
+<section class="panel"><h2>Interpretação dos resultados</h2><p id="interpretation"></p><p class="muted"><b>Atenção:</b> mesmo que oito testes estejam marcados como “Passou”, esta bancada não transforma o relatório em certificado. O campo <code>humanReviewCompleted</code> permanece <code>false</code>; qualquer aceite exige um fluxo de revisão independente e explícito. Os 13 gates externos do estudo mecânico permanecem pendentes.</p></section>
+<footer>Arquivo independente, offline e sem dependências externas · Ciclo 56 · Testes com leitor de tela e viewport somente acontecem quando uma pessoa os executar · Decisão: NO GO.</footer>
+</main>
+<script id="qa-template" type="application/json">{"schema":"maintenance-superinteligence.human-pages-qa-template.v1","version":"1.0.0","purpose":"manual_review_template_not_attestation","source":"docs/QA_HUMANA_PORTAIS_54.md","observedPlatform":"not_recorded","reviewedRelease":"not_selected","humanReviewerIdentityCollectedHere":false,"checks":[{"id":"mobile_layout","expected":"Em 320–390 px, menus e conteúdos devem permanecer legíveis sem sobreposição de controles","method":"Navegador em smartphone real ou emulação de viewport, com capturas das três páginas","status":"not_tested","evidenceReference":"","observations":""},{"id":"zoom_reflow","expected":"A 200% e 400% de zoom, leitura e ações continuam acessíveis","method":"Navegador com zoom e quebra de linhas, com evidências","status":"not_tested","evidenceReference":"","observations":""},{"id":"keyboard_skip_focus","expected":"Tab alcança o salto ao conteúdo, mantém foco visível e navega por links/botões","method":"Usar exclusivamente teclado, gravando sequência e bloqueios","status":"not_tested","evidenceReference":"","observations":""},{"id":"audit_tabs","expected":"Setas esquerda/direita, Home e End alternam as abas e preservam sentido do painel","method":"Usar teclado, confirmar aria-selected e conteúdo exibido","status":"not_tested","evidenceReference":"","observations":""},{"id":"screen_reader","expected":"Leitor de tela lê títulos, estados, links, filtros e alterações anunciadas","method":"NVDA/VoiceOver real; registrar ambiente e ocorrências","status":"not_tested","evidenceReference":"","observations":""},{"id":"status_clarity","expected":"Há distinção inequívoca entre deploy HTTP, revisão humana e validade mecânica","method":"Ler os três portais e verificar NO GO, gates e snapshot histórico","status":"not_tested","evidenceReference":"","observations":""},{"id":"export_integrity","expected":"JSON exportado de cada portal corresponde ao que está exibido","method":"Acionar exportações e confrontar contagens/identificadores","status":"not_tested","evidenceReference":"","observations":""},{"id":"sources_permissions","expected":"Links públicos não expõem dados corporativos restritos, credenciais ou literatura OEM licenciada","method":"Revisão humana de conteúdo e permissões por custodiante autorizado","status":"not_tested","evidenceReference":"","observations":""}],"humanReviewCompleted":false,"operationalAuthorityGranted":false,"mechanicalDiagnosticAccuracyValidated":false,"decision":"NO GO"}</script>
+<script>
+(()=>{
+"use strict";
+const qaTemplate=JSON.parse(document.getElementById("qa-template").textContent);
+const $=id=>document.getElementById(id),labels={
+ not_tested:"Não testado",passed:"Passou",failed:"Falhou",blocked:"Bloqueado",not_applicable:"Não aplicável"};
+const statuses=Object.keys(labels),initial=()=>JSON.parse(JSON.stringify(qaTemplate));
+let state=initial();
+function el(tag,attrs={},value=""){
+ const node=document.createElement(tag);
+ Object.entries(attrs).forEach(([k,v])=>node.setAttribute(k,String(v)));
+ if(value)node.textContent=value;
+ return node;
+}
+function message(txt,bad=false){$("message").textContent=txt;$("message").setAttribute("aria-invalid",String(bad))}
+function safeString(s,max=5000){return typeof s==="string"&&s.length<=max}
+function validateImport(doc){
+ if(!doc||typeof doc!=="object"||Array.isArray(doc))throw Error("O arquivo não contém um relatório JSON válido.");
+ const exact=["schema","version","purpose","source","observedPlatform","reviewedRelease",
+  "humanReviewerIdentityCollectedHere","checks","humanReviewCompleted",
+  "operationalAuthorityGranted","mechanicalDiagnosticAccuracyValidated","decision"];
+ if(Object.keys(doc).sort().join()!==exact.sort().join())throw Error("Estrutura de relatório inesperada.");
+ for(const key of ["schema","version","purpose","source"]){
+  if(doc[key]!==qaTemplate[key])throw Error("Modelo ou revisão incompatível: "+key);
+ }
+ if(doc.humanReviewerIdentityCollectedHere!==false||doc.humanReviewCompleted!==false||
+    doc.operationalAuthorityGranted!==false||doc.mechanicalDiagnosticAccuracyValidated!==false||
+    doc.decision!=="NO GO")throw Error("O arquivo tenta atribuir aprovação humana ou operacional.");
+ if(!safeString(doc.observedPlatform,240)||!safeString(doc.reviewedRelease,240))throw Error("Metadados incompatíveis.");
+ if(!Array.isArray(doc.checks)||doc.checks.length!==qaTemplate.checks.length)throw Error("Oito verificações são obrigatórias.");
+ for(let i=0;i<doc.checks.length;i++){
+  const a=doc.checks[i],expected=qaTemplate.checks[i];
+  if(!a||typeof a!=="object"||Array.isArray(a))throw Error("Ensaio inválido.");
+  if(Object.keys(a).sort().join()!==Object.keys(expected).sort().join() ||
+     a.id!==expected.id||a.expected!==expected.expected||a.method!==expected.method||
+     !statuses.includes(a.status)||!safeString(a.observations)||!safeString(a.evidenceReference,1000))
+     throw Error("Ensaio inválido ou adulterado: "+expected.id);
+ }
+ return doc;
+}
+function syncInputs(){state.observedPlatform=$("platform").value;state.reviewedRelease=$("release").value}
+function missingEvidence(item){
+ if(item.status==="not_tested")return "Ainda não testado.";
+ if(item.status==="passed"&&!item.evidenceReference.trim())return "Falta referência de evidência para o resultado positivo.";
+ if(!item.observations.trim())return "Falta descrição do ensaio ou do impedimento.";
+ return "";
+}
+function redrawMetrics(){
+ const counts={not_tested:0,passed:0,failed:0,blocked:0,not_applicable:0};
+ state.checks.forEach(x=>counts[x.status]++);
+ const incomplete=state.checks.filter(x=>missingEvidence(x)).length;
+ $("metrics").replaceChildren(...[
+  [String(counts.passed),"Passaram (autodeclarados)"],
+  [String(counts.failed+counts.blocked),"Falhas / bloqueios"],
+  [String(counts.not_tested),"Não testados"],
+  [String(incomplete),"Registros incompletos"]
+ ].map(([n,label])=>{const card=el("div",{class:"metric"}),big=el("b",{},n);
+ card.append(big,el("span",{},label));return card;}));
+ $("interpretation").textContent=counts.failed+counts.blocked>0?
+  "Há falhas ou bloqueios a tratar. Preserve o relatório como evidência de revisão parcial; nenhuma aprovação pode ser inferida.":
+  counts.not_tested>0||incomplete>0?
+  "Revisão parcial: existem testes não executados ou sem evidência suficiente. Exportação é permitida para retomada posterior.":
+  "Todos os ensaios receberam um status e documentação mínima, mas ainda não há aprovação profissional. O relatório permanece NO GO.";
+}
+function render(){
+ $("platform").value=state.observedPlatform==="not_recorded"?"":state.observedPlatform;
+ $("release").value=state.reviewedRelease==="not_selected"?"":state.reviewedRelease;
+ const parent=$("tests");parent.querySelectorAll(".test").forEach(n=>n.remove());
+ state.checks.forEach((item,i)=>{
+  const section=el("section",{class:"panel test",id:"check-"+item.id});
+  const header=el("div",{class:"cardhead"});
+  const h=el("h3",{id:"heading-"+item.id},String(i+1).padStart(2,"0")+" · "+item.id.replaceAll("_"," "));
+  const badge=el("span",{class:"tag",id:"tag-"+item.id},labels[item.status]);
+  header.append(h,badge);
+  section.append(header,el("p",{},item.expected),el("p",{},"Método: "+item.method));
+  const fields=el("div",{class:"check-fields"});
+  const one=el("div"),two=el("div"),three=el("div"),four=el("div");
+  const statId="status-"+item.id,refId="evidence-"+item.id,obsId="notes-"+item.id;
+  const select=el("select",{id:statId,"aria-describedby":"hint-"+item.id});
+  statuses.forEach(s=>{const opt=el("option",{value:s},labels[s]);select.append(opt)});
+  select.value=item.status;
+  one.append(el("label",{for:statId},"Resultado declarado"),select);
+  const evidence=el("input",{id:refId,type:"text",maxlength:1000,placeholder:"ID de issue, arquivo local, captura autorizada…"});
+  evidence.value=item.evidenceReference;
+  two.append(el("label",{for:refId},"Referência de evidência"),evidence);
+  const notes=el("textarea",{id:obsId,maxlength:5000,rows:3,placeholder:"Procedimento executado, ambiente, achados ou por que foi bloqueado"});
+  notes.value=item.observations;
+  three.append(el("label",{for:obsId},"Observações verificáveis"),notes);
+  const tip=el("p",{class:"validation",id:"hint-"+item.id},missingEvidence(item));
+  fields.append(one,two);
+  section.append(fields,three,tip);
+  parent.append(section);
+  function changed(){
+   item.status=select.value;item.evidenceReference=evidence.value;item.observations=notes.value;
+   badge.textContent=labels[item.status];tip.textContent=missingEvidence(item);redrawMetrics();
+  }
+  [select,evidence,notes].forEach(n=>n.addEventListener("input",changed));
+ });
+ redrawMetrics();
+}
+["platform","release"].forEach(id=>$(id).addEventListener("input",syncInputs));
+$("export").addEventListener("click",()=>{
+ syncInputs();
+ const payload=JSON.stringify(state,null,2)+"\n";
+ const blob=new Blob([payload],{type:"application/json"});
+ const url=URL.createObjectURL(blob),link=el("a",{href:url,download:"maintenance-qa-c56-parcial.json"});
+ document.body.append(link);link.click();link.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+ message("Relatório parcial exportado. Não equivale a aprovação ou conclusão dos testes.");
+});
+$("import").addEventListener("click",()=>$("file").click());
+$("file").addEventListener("change",async ()=>{
+ const file=$("file").files?.[0];if(!file)return;
+ try{
+  if(file.size>120000)throw Error("Arquivo excede o limite de 120 KB.");
+  const payload=JSON.parse(await file.text());
+  state=JSON.parse(JSON.stringify(validateImport(payload)));
+  render();message("Relatório importado e restaurado. Continue os ensaios sem atribuir aprovação.");
+ }catch(error){message("Importação recusada: "+error.message,true)}
+ $("file").value="";
+});
+$("reset").addEventListener("click",()=>{
+ if(!window.confirm("Reiniciar a sessão? Exporte antes para guardar seus registros."))return;
+ state=initial();render();message("Sessão reiniciada. Todos os ensaios voltaram a 'Não testado'.");
+});
+render();
+})();
+</script>
+</body></html>
