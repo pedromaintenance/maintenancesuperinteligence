@@ -157,6 +157,17 @@ O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em ci
 
 A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
 
+## Ciclo 56 — Evidências preservadas na main e bancada de QA humano (proposta)
+
+A cópia pública e **original** do ZIP do GitHub Actions e de seus dois JSONs foi integrada **isoladamente** na `main` pelo [commit `81275aa`](https://github.com/pedromaintenance/maintenancesuperinteligence/commit/81275aa778b82038fe0f1d50a49d4f0c73598ce4), sem merge dos PRs de pesquisa. O workflow de [integridade do arquivo #42420972270](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42420972270) passou. A `main` mantém o arquivo em `archives/pages/`; os validadores mais amplos do PR continuam em pesquisa.
+
+A nova bancada `review/qa_portais_56.html` organiza oito testes manuais, registra resultados, exporta/importa JSON parcial e permanece **offline e sem qualquer assinatura automática**. Nem a publicação no Pages, nem um formulário preenchido concedem validade mecânica, aprovação humana independente ou direito de escrever em SAP/ECM. Leia [o procedimento](docs/BANCADA_QA_PORTAIS_56.md). **NO GO.**
+
+```bash
+python -m governance.cycle56_qa_workbench --check
+python -m unittest tests.test_cycle56_qa_workbench -v
+```
+
 ## Ciclo 55 — Preservação dos recibos HTTP (proposta)
 
 O primeiro ZIP de evidências do Pages com verificação HTTP foi **recuperado do GitHub, teve seu digest validado**, e o ZIP original e os dois JSONs originais foram copiados byte a byte para `archives/pages/2026-11-07-run-42412015125/`. O índice `archives/pages/index.v1.json` disponibiliza uma entrada de consulta para IAs. O script `governance/cycle55_evidence_custody.py` valida hashes e vínculos; o `scripts/import_pages_evidence.py` prepara novos arquivos para revisão humana, sem executar `git push`, sem acesso SAP/ECM e sem elevar autoridade.
