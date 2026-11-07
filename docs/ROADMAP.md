@@ -2,6 +2,17 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 43 (branch proposta, sem homologação)
+
+**Papel:** consolidar rastreabilidade e limites de validação, antes de novos serviços ou de declarar competência diagnóstica. O auditor offline registra cinco afirmações de maturidade, quatro issues abertas no snapshot de 03/11/2026 e fingerprints de evidências. Executa 24 casos de regressão editorial e 128 combinações contrafactuais **estruturais**, mantendo NO GO. A regra e a expectativa ainda são autorais; não representam 128 casos inéditos validados.
+
+**Critérios de aceite internos:** testes adversariais contra promoção indevida, travessia de caminhos, adulteração de relatório e fechamento automático; CI exclusivo sem rede; reconstrução determinística; compatibilidade com a suíte anterior.
+
+**Dependências externas não atendidas:** casos independentes sob custódia adequada, dois pareceres técnicos efetivamente autônomos, qualificação e conflito de interesses verificados, literatura OEM com efetividade comprovada, autorização corporativa para eventual piloto. Sem esses requisitos, não promover estados de validade causal.
+
+**Foco seguinte:** corpus inédito, protocolo de avaliação cega com revisão de terceiros, métricas de discordância e comparação com o seletor documental simples; especificações OEM e dados corporativos permanecem fora deste repositório público. [Ver auditoria](CICLO_2026-11-03_AUDITORIA_MATURIDADE_43.md).
+
+
 ## Fase 0 — Fundação documental (v0.1, em curso)
 
 **Entrega:** missão, catálogo das 56 competências do jogo, domínio expandido, contrato de integração FMEA, arquitetura, governança, fontes e caso-piloto. **Aceite:** links íntegros, fontes e status claros, sem alegar serviço funcional inexistente.
