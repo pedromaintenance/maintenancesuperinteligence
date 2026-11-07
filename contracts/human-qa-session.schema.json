@@ -1,0 +1,386 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/human-qa-session.schema.json",
+  "title": "Cycle 56 partial manual QA report (never a human signoff)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "source",
+    "observedPlatform",
+    "reviewedRelease",
+    "humanReviewerIdentityCollectedHere",
+    "checks",
+    "humanReviewCompleted",
+    "operationalAuthorityGranted",
+    "mechanicalDiagnosticAccuracyValidated",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.human-pages-qa-template.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "manual_review_template_not_attestation"
+    },
+    "source": {
+      "const": "docs/QA_HUMANA_PORTAIS_54.md"
+    },
+    "observedPlatform": {
+      "type": "string",
+      "maxLength": 240
+    },
+    "reviewedRelease": {
+      "type": "string",
+      "maxLength": 240
+    },
+    "humanReviewerIdentityCollectedHere": {
+      "const": false
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expected",
+            "method",
+            "status",
+            "evidenceReference",
+            "observations"
+          ],
+          "properties": {
+            "id": {
+              "const": "mobile_layout"
+            },
+            "expected": {
+              "const": "Em 320–390 px, menus e conteúdos devem permanecer legíveis sem sobreposição de controles"
+            },
+            "method": {
+              "const": "Navegador em smartphone real ou emulação de viewport, com capturas das três páginas"
+            },
+            "status": {
+              "enum": [
+                "not_tested",
+                "passed",
+                "failed",
+                "blocked",
+                "not_applicable"
+              ]
+            },
+            "evidenceReference": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "observations": {
+              "type": "string",
+              "maxLength": 5000
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expected",
+            "method",
+            "status",
+            "evidenceReference",
+            "observations"
+          ],
+          "properties": {
+            "id": {
+              "const": "zoom_reflow"
+            },
+            "expected": {
+              "const": "A 200% e 400% de zoom, leitura e ações continuam acessíveis"
+            },
+            "method": {
+              "const": "Navegador com zoom e quebra de linhas, com evidências"
+            },
+            "status": {
+              "enum": [
+                "not_tested",
+                "passed",
+                "failed",
+                "blocked",
+                "not_applicable"
+              ]
+            },
+            "evidenceReference": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "observations": {
+              "type": "string",
+              "maxLength": 5000
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expected",
+            "method",
+            "status",
+            "evidenceReference",
+            "observations"
+          ],
+          "properties": {
+            "id": {
+              "const": "keyboard_skip_focus"
+            },
+            "expected": {
+              "const": "Tab alcança o salto ao conteúdo, mantém foco visível e navega por links/botões"
+            },
+            "method": {
+              "const": "Usar exclusivamente teclado, gravando sequência e bloqueios"
+            },
+            "status": {
+              "enum": [
+                "not_tested",
+                "passed",
+                "failed",
+                "blocked",
+                "not_applicable"
+              ]
+            },
+            "evidenceReference": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "observations": {
+              "type": "string",
+              "maxLength": 5000
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expected",
+            "method",
+            "status",
+            "evidenceReference",
+            "observations"
+          ],
+          "properties": {
+            "id": {
+              "const": "audit_tabs"
+            },
+            "expected": {
+              "const": "Setas esquerda/direita, Home e End alternam as abas e preservam sentido do painel"
+            },
+            "method": {
+              "const": "Usar teclado, confirmar aria-selected e conteúdo exibido"
+            },
+            "status": {
+              "enum": [
+                "not_tested",
+                "passed",
+                "failed",
+                "blocked",
+                "not_applicable"
+              ]
+            },
+            "evidenceReference": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "observations": {
+              "type": "string",
+              "maxLength": 5000
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expected",
+            "method",
+            "status",
+            "evidenceReference",
+            "observations"
+          ],
+          "properties": {
+            "id": {
+              "const": "screen_reader"
+            },
+            "expected": {
+              "const": "Leitor de tela lê títulos, estados, links, filtros e alterações anunciadas"
+            },
+            "method": {
+              "const": "NVDA/VoiceOver real; registrar ambiente e ocorrências"
+            },
+            "status": {
+              "enum": [
+                "not_tested",
+                "passed",
+                "failed",
+                "blocked",
+                "not_applicable"
+              ]
+            },
+            "evidenceReference": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "observations": {
+              "type": "string",
+              "maxLength": 5000
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expected",
+            "method",
+            "status",
+            "evidenceReference",
+            "observations"
+          ],
+          "properties": {
+            "id": {
+              "const": "status_clarity"
+            },
+            "expected": {
+              "const": "Há distinção inequívoca entre deploy HTTP, revisão humana e validade mecânica"
+            },
+            "method": {
+              "const": "Ler os três portais e verificar NO GO, gates e snapshot histórico"
+            },
+            "status": {
+              "enum": [
+                "not_tested",
+                "passed",
+                "failed",
+                "blocked",
+                "not_applicable"
+              ]
+            },
+            "evidenceReference": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "observations": {
+              "type": "string",
+              "maxLength": 5000
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expected",
+            "method",
+            "status",
+            "evidenceReference",
+            "observations"
+          ],
+          "properties": {
+            "id": {
+              "const": "export_integrity"
+            },
+            "expected": {
+              "const": "JSON exportado de cada portal corresponde ao que está exibido"
+            },
+            "method": {
+              "const": "Acionar exportações e confrontar contagens/identificadores"
+            },
+            "status": {
+              "enum": [
+                "not_tested",
+                "passed",
+                "failed",
+                "blocked",
+                "not_applicable"
+              ]
+            },
+            "evidenceReference": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "observations": {
+              "type": "string",
+              "maxLength": 5000
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expected",
+            "method",
+            "status",
+            "evidenceReference",
+            "observations"
+          ],
+          "properties": {
+            "id": {
+              "const": "sources_permissions"
+            },
+            "expected": {
+              "const": "Links públicos não expõem dados corporativos restritos, credenciais ou literatura OEM licenciada"
+            },
+            "method": {
+              "const": "Revisão humana de conteúdo e permissões por custodiante autorizado"
+            },
+            "status": {
+              "enum": [
+                "not_tested",
+                "passed",
+                "failed",
+                "blocked",
+                "not_applicable"
+              ]
+            },
+            "evidenceReference": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "observations": {
+              "type": "string",
+              "maxLength": 5000
+            }
+          }
+        }
+      ],
+      "items": false
+    },
+    "humanReviewCompleted": {
+      "const": false
+    },
+    "operationalAuthorityGranted": {
+      "const": false
+    },
+    "mechanicalDiagnosticAccuracyValidated": {
+      "const": false
+    },
+    "decision": {
+      "const": "NO GO"
+    }
+  }
+}
