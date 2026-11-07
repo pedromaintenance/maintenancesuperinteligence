@@ -57,7 +57,10 @@ class Cycle56WorkbenchTests(unittest.TestCase):
         self.assertTrue(qa.check()["staticJsAndMarkupContractsChecked"])
 
     def test_partial_reports_can_be_saved_but_never_signed_off_by_schema(self):
-        from jsonschema import Draft202012Validator
+        try:
+            from jsonschema import Draft202012Validator
+        except ImportError:
+            self.skipTest("The dedicated C56 CI installs jsonschema==4.23.0")
         validator=Draft202012Validator(self.schema)
         self.assertTrue(validator.is_valid(self.template))
         partial=copy.deepcopy(self.template)
