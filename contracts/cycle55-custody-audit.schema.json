@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/cycle55-custody-audit.schema.json",
+  "title": "Cycle 55 static evidence custody — never an industrial authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "runId",
+    "sourceCommit",
+    "sourceArtifactId",
+    "verifiedOriginalJsonFiles",
+    "matchedPublicHtmlFilesFromRecordedReceipt",
+    "originalJsonSha256Matched",
+    "sourceZipArchiveRetained",
+    "rechecksCurrentPagesHttp",
+    "humanReviewCompleted",
+    "fieldDiagnosticAccuracyValidated",
+    "externalStudyGatesVerified",
+    "operationalAuthorityGranted",
+    "decision",
+    "files"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.cycle55-custody-audit.v1"
+    },
+    "runId": {
+      "const": 42412015125
+    },
+    "sourceCommit": {
+      "const": "b930a177cc9ba1c94c32785f8fa0b16c37723afb"
+    },
+    "sourceArtifactId": {
+      "const": 13589439429
+    },
+    "verifiedOriginalJsonFiles": {
+      "const": 2
+    },
+    "matchedPublicHtmlFilesFromRecordedReceipt": {
+      "const": 3
+    },
+    "originalJsonSha256Matched": {
+      "const": true
+    },
+    "sourceZipArchiveRetained": {
+      "const": false
+    },
+    "rechecksCurrentPagesHttp": {
+      "const": false
+    },
+    "humanReviewCompleted": {
+      "const": false
+    },
+    "fieldDiagnosticAccuracyValidated": {
+      "const": false
+    },
+    "externalStudyGatesVerified": {
+      "const": 0
+    },
+    "operationalAuthorityGranted": {
+      "const": false
+    },
+    "decision": {
+      "const": "NO GO"
+    },
+    "files": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "file",
+          "sha256"
+        ],
+        "properties": {
+          "file": {
+            "enum": [
+              "pages-release-candidate.json",
+              "pages-http-receipt.json"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    }
+  }
+}
