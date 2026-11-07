@@ -1,0 +1,90 @@
+name: Cycle 54 Pages release candidate and HTTP evidence contract
+
+on:
+  push:
+    paths:
+      - 'scripts/pages_release_gate.py'
+      - 'tests/test_cycle54_pages_release_gate.py'
+      - 'contracts/pages-release-candidate.schema.json'
+      - 'contracts/pages-http-receipt.schema.json'
+      - 'review/portal_qa_template.v1.json'
+      - 'docs/QA_HUMANA_PORTAIS_54.md'
+      - 'docs/RELEASE_PORTAIS_54.md'
+      - '.github/workflows/cycle54-release-gate.yml'
+  pull_request:
+    paths:
+      - 'scripts/pages_release_gate.py'
+      - 'tests/test_cycle54_pages_release_gate.py'
+      - 'contracts/pages-release-candidate.schema.json'
+      - 'contracts/pages-http-receipt.schema.json'
+      - 'review/portal_qa_template.v1.json'
+      - 'docs/QA_HUMANA_PORTAIS_54.md'
+      - 'docs/RELEASE_PORTAIS_54.md'
+      - '.github/workflows/cycle54-release-gate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  release-candidate-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned JSON Schema dependency
+        run: python -m pip install --disable-pip-version-check --no-input jsonschema==4.23.0
+      - name: Validate preparation and rejected network/authority mutations without network
+        run: |
+          python -m compileall -q scripts/pages_release_gate.py tests/test_cycle54_pages_release_gate.py
+          python -m unittest tests.test_cycle54_pages_release_gate -v
+          python scripts/pages_release_gate.py prepare \
+            --site-dir portal --source-sha "$GITHUB_SHA" \
+            --run-id "$GITHUB_RUN_ID" \
+            --output build/pages-release-candidate.json
+      - name: Check manifest, safety flags and manual review template contracts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          p=Path('build/pages-release-candidate.json')
+          candidate=json.loads(p.read_text(encoding='utf-8'))
+          schema=json.loads(Path('contracts/pages-release-candidate.schema.json').read_text(encoding='utf-8'))
+          Draft202012Validator.check_schema(schema)
+          Draft202012Validator(schema).validate(candidate)
+          assert [p['path'] for p in candidate['files']]==['index.html','auditoria.html','versoes.html']
+          assert candidate['operationalAuthorityGranted'] is False
+          assert candidate['humanQualifiedReviewVerified'] is False
+          assert candidate['liveHttpBytesVerified'] is False
+          qa=json.loads(Path('review/portal_qa_template.v1.json').read_text(encoding='utf-8'))
+          assert qa['decision']=='NO GO'
+          assert qa['humanReviewCompleted'] is False
+          assert qa['operationalAuthorityGranted'] is False
+          assert len(qa['checks'])>=8
+          assert all(c['status']=='not_tested' and not c['evidenceReference'] for c in qa['checks'])
+          print('PASS: candidate staged, no human/HTTP/physical authorization implied')
+          PY
+      - name: Check static browser JS syntax and navigation surfaces
+        run: |
+          python - <<'PY'
+          import subprocess, tempfile, re
+          from pathlib import Path
+          for path in sorted(Path('portal').glob('*.html')):
+              source=path.read_text(encoding='utf-8')
+              assert '<script src=' not in source and 'fetch(' not in source
+              scripts=re.findall(r'<script>(.*?)</script>', source, re.DOTALL)
+              assert len(scripts)==1,path
+              with tempfile.NamedTemporaryFile('w',suffix='.js',encoding='utf-8') as f:
+                  f.write(scripts[0]);f.flush()
+                  subprocess.run(['node','--check',f.name],check=True)
+          print('PASS: offline HTML scripts have valid JavaScript syntax')
+          PY
+      - name: Upload public staged manifest only
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle54-candidate-public-only
+          path: build/pages-release-candidate.json
+          retention-days: 14
