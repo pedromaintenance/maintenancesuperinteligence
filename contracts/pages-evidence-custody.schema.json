@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/pages-evidence-custody.schema.json",
+  "title": "Cycle 55 static evidence custody — never an industrial authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "custodyState",
+    "source",
+    "files",
+    "publishedHtml",
+    "evidenceScope",
+    "liveHttpAtSourceVerified",
+    "independentCurrentHttpVerified",
+    "humanQASignOff",
+    "browserScreenReaderAuditCompleted",
+    "corporateDataApproval",
+    "fieldDiagnosticAccuracyVerified",
+    "externalStudyGatesVerified",
+    "operationalAuthorityGranted",
+    "decision"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.pages-evidence-custody.v1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "custodyState": {
+      "const": "git_versioned_draft_not_merged_not_independently_attested"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "workflowRunId",
+        "workflowUrl",
+        "commit",
+        "artifactId",
+        "artifactName",
+        "artifactArchiveSha256",
+        "artifactExpiresAtUtc",
+        "archiveZipRetainedInGit",
+        "observedFrom",
+        "archiveZipFile",
+        "archiveZipGitBlobSha"
+      ],
+      "properties": {
+        "repository": {
+          "const": "pedromaintenance/maintenancesuperinteligence"
+        },
+        "workflowRunId": {
+          "const": 42412015125
+        },
+        "workflowUrl": {
+          "const": "https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42412015125"
+        },
+        "commit": {
+          "const": "b930a177cc9ba1c94c32785f8fa0b16c37723afb"
+        },
+        "artifactId": {
+          "const": 13589439429
+        },
+        "artifactName": {
+          "const": "pages-release-evidence-42412015125"
+        },
+        "artifactArchiveSha256": {
+          "const": "58b0b05a15589ddeec6f9f25cd6f57d3a7c10031300cee86734b2aa58646101b"
+        },
+        "artifactExpiresAtUtc": {
+          "const": "2026-12-07T20:38:33Z"
+        },
+        "archiveZipRetainedInGit": {
+          "const": true
+        },
+        "observedFrom": {
+          "type": "string",
+          "minLength": 1
+        },
+        "archiveZipFile": {
+          "const": "source-artifact.zip"
+        },
+        "archiveZipGitBlobSha": {
+          "const": "5346143119a21443462ded761b220b6260c49b5e"
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256",
+          "sizeBytes"
+        ],
+        "properties": {
+          "path": {
+            "enum": [
+              "pages-release-candidate.json",
+              "pages-http-receipt.json"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "publishedHtml": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256",
+          "sizeBytes",
+          "gitBlobSha"
+        ],
+        "properties": {
+          "path": {
+            "enum": [
+              "index.html",
+              "auditoria.html",
+              "versoes.html"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "minimum": 1000
+          },
+          "gitBlobSha": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          }
+        }
+      }
+    },
+    "evidenceScope": {
+      "const": "three_http_200_content_hash_matches_at_one_observed_time_not_continuous_monitoring"
+    },
+    "liveHttpAtSourceVerified": {
+      "const": true
+    },
+    "independentCurrentHttpVerified": {
+      "const": false
+    },
+    "humanQASignOff": {
+      "const": false
+    },
+    "browserScreenReaderAuditCompleted": {
+      "const": false
+    },
+    "corporateDataApproval": {
+      "const": false
+    },
+    "fieldDiagnosticAccuracyVerified": {
+      "const": false
+    },
+    "externalStudyGatesVerified": {
+      "const": 0
+    },
+    "operationalAuthorityGranted": {
+      "const": false
+    },
+    "decision": {
+      "const": "NO GO"
+    }
+  }
+}

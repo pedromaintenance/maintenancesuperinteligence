@@ -1,0 +1,20 @@
+{
+  "schema": "maintenance-superinteligence.pages-custody-index.v1",
+  "version": "1.0.0",
+  "evidenceType": "archived_original_zip_and_original_json",
+  "entries": [
+    {
+      "runId": 42412015125,
+      "commit": "b930a177cc9ba1c94c32785f8fa0b16c37723afb",
+      "manifest": "archives/pages/2026-11-07-run-42412015125/custody-manifest.v1.json",
+      "candidate": "archives/pages/2026-11-07-run-42412015125/pages-release-candidate.json",
+      "receipt": "archives/pages/2026-11-07-run-42412015125/pages-http-receipt.json",
+      "custody": "draft_git_review_required_before_main",
+      "sourceZip": "archives/pages/2026-11-07-run-42412015125/source-artifact.zip"
+    }
+  ],
+  "externalStudyGatesVerified": 0,
+  "humanReviewCompleted": false,
+  "operationalAuthorityGranted": false,
+  "decision": "NO GO"
+}

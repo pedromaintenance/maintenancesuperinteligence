@@ -157,6 +157,18 @@ O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em ci
 
 A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
 
+## Ciclo 55 — Preservação dos recibos HTTP (proposta)
+
+O primeiro ZIP de evidências do Pages com verificação HTTP foi **recuperado do GitHub, teve seu digest validado**, e o ZIP original e os dois JSONs originais foram copiados byte a byte para `archives/pages/2026-11-07-run-42412015125/`. O índice `archives/pages/index.v1.json` disponibiliza uma entrada de consulta para IAs. O script `governance/cycle55_evidence_custody.py` valida hashes e vínculos; o `scripts/import_pages_evidence.py` prepara novos arquivos para revisão humana, sem executar `git push`, sem acesso SAP/ECM e sem elevar autoridade.
+
+A cópia permanece em PR *draft*; o ZIP original está preservado na branch com SHA-256 e Git blob conferidos. Os artefatos no Actions continuam sujeitos à política de retenção. O processo e os limites estão em [Custódia dos recibos Pages](docs/CUSTODIA_EVIDENCIAS_PAGES_55.md).
+
+```bash
+python -m governance.cycle55_evidence_custody --check
+```
+
+**NO GO:** não constitui comprovação de eficácia mecânica ou aceite humano.
+
 ## Ciclo 54 — Integridade de publicação e revisão humana (proposta)
 
 O processo de Pages passa a distinguir **candidato preparado**, **deploy informado pelo GitHub** e **conteúdo efetivamente recebido por HTTP com SHA-256 idêntico**. O primeiro [deploy com verificação HTTP](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42412015125), em 07/11/2026, foi aprovado para os três HTMLs no commit `b930a177...`, com manifesto e recibo preservados como artefato do workflow. O script `scripts/pages_release_gate.py` valida o manifesto e confere as três URLs após o deploy; não transforma um resultado HTTP em avaliação de acessibilidade, validação OEM, aprovação humana ou operação de equipamento. Veja [o procedimento](docs/RELEASE_PORTAIS_54.md) e [o checklist humano](docs/QA_HUMANA_PORTAIS_54.md).
