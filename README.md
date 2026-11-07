@@ -159,7 +159,7 @@ A CLI `python -m methods.library --snapshot ... --case ... --investigation ... -
 
 ## Ciclo 54 — Integridade de publicação e revisão humana (proposta)
 
-O processo de Pages passa a distinguir **candidato preparado**, **deploy informado pelo GitHub** e **conteúdo efetivamente recebido por HTTP com SHA-256 idêntico**. O script `scripts/pages_release_gate.py` valida o manifesto e confere as três URLs após o deploy; não transforma um resultado HTTP em avaliação de acessibilidade, validação OEM, aprovação humana ou operação de equipamento. Veja [o procedimento](docs/RELEASE_PORTAIS_54.md) e [o checklist humano](docs/QA_HUMANA_PORTAIS_54.md).
+O processo de Pages passa a distinguir **candidato preparado**, **deploy informado pelo GitHub** e **conteúdo efetivamente recebido por HTTP com SHA-256 idêntico**. O primeiro [deploy com verificação HTTP](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42412015125), em 07/11/2026, foi aprovado para os três HTMLs no commit `b930a177...`, com manifesto e recibo preservados como artefato do workflow. O script `scripts/pages_release_gate.py` valida o manifesto e confere as três URLs após o deploy; não transforma um resultado HTTP em avaliação de acessibilidade, validação OEM, aprovação humana ou operação de equipamento. Veja [o procedimento](docs/RELEASE_PORTAIS_54.md) e [o checklist humano](docs/QA_HUMANA_PORTAIS_54.md).
 
 ```bash
 python -m unittest tests.test_cycle54_pages_release_gate -v
