@@ -10,6 +10,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 **Gate de revisão humana:** `docs/QA_HUMANA_PORTAIS_54.md` e `review/portal_qa_template.v1.json` organizam inspeções manuais de mobile, zoom, teclado, leitor de tela, fontes e restrições de divulgação. O modelo começa 100% `not_tested`. O HTTP verificado é uma evidência de *entrega de bytes*, não de usabilidade, engenharia ou aprovação de campo.
 
+**Risco de retenção:** recibos em artefatos GitHub Actions estão configurados para expirar após **30 dias**; preservar evidência de longo prazo exige política e revisão próprias, ainda pendentes.
+
 **Execução confirmada:** workflow [#42412015125](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42412015125), `success` em 07/11/2026, commit `b930a177...` na `main`, conferência HTTP de três arquivos com SHA-256 idêntico e artefato `pages-release-evidence-42412015125` preservado no GitHub Actions. Nenhuma avaliação humana foi realizada pelo workflow.
 
 **Aceite:** testes locais e regressão aprovados; script e workflow restrito integrados; um novo deploy com confirmação HTTP real e recibo recuperável por execução. O site pode continuar exibindo o snapshot histórico até que um novo recibo seja incorporado deliberadamente. **NO GO** para OS, SAP/ECM, testes físicos e liberação.
