@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pedromaintenance/maintenancesuperinteligence/contracts/pages-http-receipt.schema.json",
+  "title": "Pages delivery evidence only, not human/field attestation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "sourceCommit",
+    "workflowRunId",
+    "siteBase",
+    "browserAccessibilityVerified",
+    "humanQualifiedReviewVerified",
+    "mechanicalAccuracyVerified",
+    "externalStudyGatesVerified",
+    "operationalAuthorityGranted",
+    "decision",
+    "verifiedAtUtc",
+    "deliveryStatus",
+    "files",
+    "liveHttpBytesVerified"
+  ],
+  "properties": {
+    "schema": {
+      "const": "maintenance-superinteligence.pages-http-delivery-receipt.v1"
+    },
+    "sourceCommit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "workflowRunId": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "siteBase": {
+      "const": "https://pedromaintenance.github.io/maintenancesuperinteligence/"
+    },
+    "browserAccessibilityVerified": {
+      "const": false
+    },
+    "humanQualifiedReviewVerified": {
+      "const": false
+    },
+    "mechanicalAccuracyVerified": {
+      "const": false
+    },
+    "externalStudyGatesVerified": {
+      "const": 0
+    },
+    "operationalAuthorityGranted": {
+      "const": false
+    },
+    "decision": {
+      "const": "NO GO"
+    },
+    "verifiedAtUtc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deliveryStatus": {
+      "const": "three_public_http_body_digests_match_staged_artifacts"
+    },
+    "files": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "httpStatus",
+          "sha256",
+          "bytesMatched",
+          "sizeBytes"
+        ],
+        "properties": {
+          "path": {
+            "enum": [
+              "index.html",
+              "auditoria.html",
+              "versoes.html"
+            ]
+          },
+          "httpStatus": {
+            "const": 200
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "bytesMatched": {
+            "const": true
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "minimum": 1025
+          }
+        }
+      }
+    },
+    "liveHttpBytesVerified": {
+      "const": true
+    }
+  }
+}
