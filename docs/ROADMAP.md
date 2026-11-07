@@ -10,6 +10,8 @@ O sucesso da primeira versão não é possuir todas as respostas; é **provar qu
 
 **Dependência descoberta:** o `ubuntu-latest` passou a Ubuntu 26.04 no runner; Playwright 1.56.1 não suporta esse alvo. O job foi fixado em `ubuntu-24.04` para reproduzir as verificações. Um primeiro teste levantou uma expectativa de texto excessivamente específica no aviso NO GO da auditoria; a expectativa foi ajustada para verificar aviso visível sem depender da frase idêntica em cada página.
 
+**Resultado final C57:** [Chromium #42422866865](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42422866865) aprovou **9/9 cenários**, incluindo a largura de 320px após a correção. [Regressão geral #42422944440](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42422944440) também passou. O commit isolado `e0789a7` atualizou somente o CSS de `versoes.html` na `main`; [Pages #42423090773](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42423090773) confirmou HTTP/SHA-256 de três arquivos. O PR de pesquisa continua draft, sem merge.
+
 **Próximo passo:** confirmar nove cenários verdes no HEAD final, registrar e corrigir overflow real se detectado, e executar revisão humana separada sobre os screenshots e testes manuais. Os 13 gates externos da engenharia continuam não verificados. **NO GO.**
 
 ## Marco de pesquisa: Ciclo 56 (branch proposta; custódia na main e bancada humana de QA)

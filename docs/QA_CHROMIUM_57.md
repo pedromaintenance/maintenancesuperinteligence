@@ -40,6 +40,14 @@ O artefato `build/browser-cycle57/summary.json` inclui resultados por cenário, 
 - `.github/workflows/cycle57-browser-tests.yml`: instala Chromium real num runner **Ubuntu 24.04 fixado**; a instalação no `ubuntu-latest` falhou inicialmente porque o runner foi atualizado para Ubuntu 26.04, incompatível com `playwright@1.56.1`.
 - O workflow carrega apenas fontes HTML sintéticas e scripts auditáveis. Qualquer erro na execução faz o job falhar, e seu relatório permanece para diagnóstico.
 
+## Execução final confirmada — navegador e publicação
+
+A [execução de Chromium #42422866865](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42422866865) concluiu com **success** no commit de pesquisa `76836c964cd2ef9af2baab916262b2d139590ef7`, com **9/9 cenários aprovados, 0 falhas**. Seu artefato público e sintético `cycle57-browser-qa-synthetic-public` contém `summary.json` e quatro capturas de 375px (bancada, conhecimento, auditoria e versões), retidas por 14 dias. A regressão geral do mesmo commit [#42422944440](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42422944440) também passou.
+
+O teste detectou, antes da correção, overflow horizontal real no portal de versões: `documentElement.scrollWidth = 834px` para viewport de 320px, provocado pelo `span#limit` com identificador de proveniência longo sem quebra. A correção local `overflow-wrap:anywhere;word-break:break-word` eliminou o problema nas larguras ensaiadas, preservando todo o texto. A publicação isolada de **somente `versoes.html`** na `main` ocorreu no commit `e0789a780c07cdd19ea1ddf3f11a1f24481c7ad0`, sem merge dos PRs de pesquisa. O [deploy Pages #42423090773](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42423090773) concluiu com sucesso e confirmou **três respostas HTTP com SHA-256 idêntico ao conteúdo enviado**; o recibo `pages-release-evidence-42423090773` está temporariamente retido no GitHub Actions, até sua política de expiração.
+
+**Nenhum dos oito testes humanos foi realizado pela automação.** Capturas e resultados são sintéticos; não se afirma WCAG, NVDA/VoiceOver, competência de profissional ou qualquer validade de manutenção.
+
 ## Critérios de conclusão
 
 O ciclo estará pronto para revisão quando **todos os nove cenários** passarem no HEAD final e a regressão geral também estiver verde. Se a inspeção identificar defeitos, eles devem ser corrigidos na branch com novo commit e novos testes, nunca ocultados nem classificados como `passed` por conveniência.

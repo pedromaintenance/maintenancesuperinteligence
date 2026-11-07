@@ -166,6 +166,8 @@ A suíte `tests/browser_cycle57.mjs` abre os três portais e a bancada de QA **e
 node tests/browser_cycle57.mjs
 ```
 
+**Resultado verificado:** [Chromium C57 #42422866865](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42422866865) passou **9/9** em quatro HTMLs e larguras de 320–768px; foi detectado e corrigido overflow de 834px em viewport de 320px no rodapé do portal de versões. A [correção isolada na main](https://github.com/pedromaintenance/maintenancesuperinteligence/commit/e0789a780c07cdd19ea1ddf3f11a1f24481c7ad0) passou pelo [Pages com hash HTTP #42423090773](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42423090773). Nenhuma avaliação humana foi feita.
+
 **Diferença de evidência:** testes de navegador demonstram comportamentos automatizados; `actualHumanQAExecutions` continua **0**, não há teste de leitor de tela, certificação WCAG nem validação mecânica. Veja [documentação do Ciclo 57](docs/QA_CHROMIUM_57.md). **NO GO.**
 
 ## Ciclo 56 — Evidências preservadas na main e bancada de QA humano (proposta)
