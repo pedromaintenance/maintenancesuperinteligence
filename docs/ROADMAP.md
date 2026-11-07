@@ -2,6 +2,16 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 54 (branch proposta; gate de integridade HTTP de publicação)
+
+**Problema material:** um workflow de GitHub Pages concluído não demonstra, por si só, que os três arquivos públicos servidos por HTTP correspondem aos arquivos submetidos. O histórico até o Ciclo 53 preserva recibos de deploy, mas não inclui comparação automatizada entre resposta HTTP e SHA-256 do conteúdo publicado.
+
+**Implementação proposta:** `scripts/pages_release_gate.py` prepara um manifesto com três hashes SHA-256 e proíbe arquivos adicionais, fontes inconsistentes, JavaScript externo e ausência de NO GO visível. Após `deploy-pages@v4`, verifica HTTP 200, origem final autorizada, tamanho e SHA-256 de cada URL. O workflow arquiva manifesto e recibo como artefatos do GitHub Actions, **sem gravar automaticamente no repositório**. Os contratos de candidato e recibo bloqueiam afirmações falsas de aprovação. [Procedimento completo](RELEASE_PORTAIS_54.md).
+
+**Gate de revisão humana:** `docs/QA_HUMANA_PORTAIS_54.md` e `review/portal_qa_template.v1.json` organizam inspeções manuais de mobile, zoom, teclado, leitor de tela, fontes e restrições de divulgação. O modelo começa 100% `not_tested`. O HTTP verificado é uma evidência de *entrega de bytes*, não de usabilidade, engenharia ou aprovação de campo.
+
+**Aceite:** testes locais e regressão aprovados; script e workflow restrito integrados; um novo deploy com confirmação HTTP real e recibo recuperável por execução. O site pode continuar exibindo o snapshot histórico até que um novo recibo seja incorporado deliberadamente. **NO GO** para OS, SAP/ECM, testes físicos e liberação.
+
 ## Marco de pesquisa: Ciclo 53 (branch proposta; acessibilidade e histórico incremental)
 
 **Evidência nova:** o GitHub Actions confirmou a segunda implantação dos portais no Pages (execução **42057123105**, commit `1ffa398b8d328a1f67dd49fbff7e37c3f0b82911`, três HTMLs). A primeira publicação já confirmada continua preservada em `interfaces/publications.v1.json`. `interfaces/publications.v2.json` mantém ambas as entradas com hashes dos arquivos e snapshots próprios, impedindo reescrita silenciosa do primeiro recibo. Uma publicação realizada por código neste ciclo **não será inserida antecipadamente** no registro. [Documento completo](ACESSIBILIDADE_HISTORICO_53.md).
