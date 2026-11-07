@@ -2,7 +2,7 @@
 
 Exact archived original JSON bytes, GitHub artifact metadata, and the three
 HTTP delivery digests are checked. This is a public draft Git snapshot only;
-the original ZIP itself is NOT stored in Git. A passing report does not prove
+the original binary ZIP IS stored in Git with its verified Git blob SHA. A passing report does not prove
 continuous availability, independent human QA, equipment safety, or source
 authenticity beyond the already observed GitHub Actions run.
 """
@@ -14,6 +14,7 @@ import json
 from pathlib import Path
 
 from scripts import pages_release_gate as pages
+from scripts import import_pages_evidence as importer
 
 ROOT = Path(__file__).resolve().parents[1]
 ARCHIVE = ROOT / "archives/pages/2026-11-07-run-42412015125"
@@ -21,6 +22,8 @@ INDEX = ROOT / "archives/pages/index.v1.json"
 CANDIDATE = "pages-release-candidate.json"
 RECEIPT = "pages-http-receipt.json"
 MANIFEST = "custody-manifest.v1.json"
+SOURCE_ZIP = "source-artifact.zip"
+SOURCE_ZIP_BLOB = "5346143119a21443462ded761b220b6260c49b5e"
 ORIGINAL_HASHES = {
     CANDIDATE: "9bd547dae00b6d59a9dad0c91493e9d1f399fbca0844a2757dd6f610aa02257b",
     RECEIPT: "729a14ee3f9f595223729516a76251294eded07b270d7594c5c5f8b7812cf483",
@@ -56,7 +59,7 @@ def _read_json(name: str) -> dict:
 def verify():
     require(ARCHIVE.is_dir()
             and {p.name for p in ARCHIVE.iterdir()} ==
-            {CANDIDATE, RECEIPT, MANIFEST}
+            {CANDIDATE, RECEIPT, MANIFEST, SOURCE_ZIP}
             and not any(p.is_symlink() for p in ARCHIVE.iterdir()),
             "source archive changed, contains unknown files or symlinks")
     manifest = _read_json(MANIFEST)
@@ -93,7 +96,7 @@ def verify():
         "repository", "workflowRunId", "workflowUrl", "commit",
         "artifactId", "artifactName", "artifactArchiveSha256",
         "artifactExpiresAtUtc", "archiveZipRetainedInGit",
-        "observedFrom",
+        "archiveZipFile", "archiveZipGitBlobSha", "observedFrom",
     }, "archive source fields changed")
     require(source["repository"] == "pedromaintenance/maintenancesuperinteligence"
             and source["workflowRunId"] == RUN
@@ -104,8 +107,21 @@ def verify():
             and source["artifactName"] == "pages-release-evidence-42412015125"
             and source["artifactArchiveSha256"] == ARTIFACT_HASH
             and source["artifactExpiresAtUtc"] == "2026-12-07T20:38:33Z"
-            and source["archiveZipRetainedInGit"] is False,
+            and source["archiveZipRetainedInGit"] is True
+            and source["archiveZipFile"] == SOURCE_ZIP
+            and source["archiveZipGitBlobSha"] == SOURCE_ZIP_BLOB,
             "source metadata not tied to verified first HTTP receipt")
+
+    source_zip_bytes = (ARCHIVE / SOURCE_ZIP).read_bytes()
+    require(sha256(source_zip_bytes) == ARTIFACT_HASH,
+            "archived original source ZIP SHA-256 differs from GitHub artifact")
+    raw_git_blob = b"blob " + str(len(source_zip_bytes)).encode("ascii") + b"\x00" + source_zip_bytes
+    require(hashlib.sha1(raw_git_blob).hexdigest() == SOURCE_ZIP_BLOB,
+            "archived binary ZIP Git blob does not match observed SHA")
+    zip_members = importer.extract(source_zip_bytes)
+    require(all(zip_members[name] == (ARCHIVE / name).read_bytes()
+                for name in (CANDIDATE, RECEIPT)),
+            "archived JSONs do not equal original ZIP members")
 
     checks = []
     require(isinstance(manifest["files"], list)
@@ -164,13 +180,14 @@ def verify():
     require(index == {
         "schema": "maintenance-superinteligence.pages-custody-index.v1",
         "version": "1.0.0",
-        "evidenceType": "archived_original_json_not_original_zip",
+        "evidenceType": "archived_original_zip_and_original_json",
         "entries": [{
             "runId": RUN,
             "commit": COMMIT,
             "manifest": "archives/pages/2026-11-07-run-42412015125/custody-manifest.v1.json",
             "candidate": "archives/pages/2026-11-07-run-42412015125/pages-release-candidate.json",
             "receipt": "archives/pages/2026-11-07-run-42412015125/pages-http-receipt.json",
+            "sourceZip": "archives/pages/2026-11-07-run-42412015125/source-artifact.zip",
             "custody": "draft_git_review_required_before_main",
         }],
         "externalStudyGatesVerified": 0,
@@ -187,7 +204,8 @@ def verify():
         "verifiedOriginalJsonFiles": 2,
         "matchedPublicHtmlFilesFromRecordedReceipt": 3,
         "originalJsonSha256Matched": True,
-        "sourceZipArchiveRetained": False,
+        "sourceZipArchiveRetained": True,
+        "sourceZipSha256Matched": True,
         "rechecksCurrentPagesHttp": False,
         "humanReviewCompleted": False,
         "fieldDiagnosticAccuracyValidated": False,
