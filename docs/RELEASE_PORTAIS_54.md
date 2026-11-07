@@ -4,6 +4,12 @@
 
 > **NO GO para operação industrial.** Essa entrega mede integridade de entrega de três arquivos públicos por HTTP. Não mede qualidade de diagnóstico, semântica mecânica, acessibilidade real em leitor de tela, licença OEM nem autorização para intervir em equipamentos.
 
+## Evidência do primeiro deploy com verificação HTTP real
+
+Em **07/11/2026**, o workflow [GitHub Pages #42412015125](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42412015125) concluiu com `success` para o commit `b930a177cc9ba1c94c32785f8fa0b16c37723afb` da `main`. O log registra duas etapas distintas: `prepare` com `liveHttpBytesVerified: false` e `verify` com `filesChecked: 3`, `liveHttpBytesVerified: true`, `humanQualifiedReviewVerified: false` e `operationalAuthorityGranted: false`.
+
+O artefato **`pages-release-evidence-42412015125`**, criado pela execução, contém o manifesto preparado e o recibo de conferência HTTP (hashes de resposta iguais aos arquivos fonte). O workflow publicou os mesmos três HTMLs já existentes; alterou-se apenas a **infraestrutura de publicação**. Essa evidência comprova igualdade de conteúdo por HTTP na janela de teste, não usabilidade humana nem diagnóstico de campo.
+
 ## Falha de processo identificada
 
 Até o Ciclo 53, o GitHub Actions confirmava que **a ação de publicação havia terminado**, mas o projeto não exigia evidência automatizada de que os três HTMLs estavam efetivamente sendo servidos com o mesmo conteúdo do deploy. A inspeção dos recibos era manual e a revisão humana de ergonomia não tinha um checklist reprodutível.
