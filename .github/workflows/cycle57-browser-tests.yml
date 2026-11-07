@@ -1,0 +1,74 @@
+name: Cycle 57 real headless Chromium QA of public offline portals
+
+on:
+  push:
+    paths:
+      - 'tests/browser_cycle57.mjs'
+      - 'review/qa_portais_56.html'
+      - 'portal/index.html'
+      - 'portal/auditoria.html'
+      - 'portal/versoes.html'
+      - 'contracts/cycle57-browser-report.schema.json'
+      - 'tests/test_cycle57_browser_contract.py'
+      - '.github/workflows/cycle57-browser-tests.yml'
+  pull_request:
+    paths:
+      - 'tests/browser_cycle57.mjs'
+      - 'review/qa_portais_56.html'
+      - 'portal/index.html'
+      - 'portal/auditoria.html'
+      - 'portal/versoes.html'
+      - 'contracts/cycle57-browser-report.schema.json'
+      - 'tests/test_cycle57_browser_contract.py'
+      - '.github/workflows/cycle57-browser-tests.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  chromium-offline-interactions:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned Playwright and Chromium dependencies
+        run: |
+          npm install --no-save --ignore-scripts --no-audit --no-fund playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Run actual headless Chromium interactions (NOT a human usability audit)
+        run: |
+          node tests/browser_cycle57.mjs
+      - name: Validate strict NO GO and public-only browser report
+        run: |
+          python -m pip install --disable-pip-version-check --no-input jsonschema==4.23.0
+          python -m unittest tests.test_cycle57_browser_contract -v
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          from jsonschema import Draft202012Validator
+          schema=json.loads(Path('contracts/cycle57-browser-report.schema.json').read_text(encoding='utf-8'))
+          report=json.loads(Path('build/browser-cycle57/summary.json').read_text(encoding='utf-8'))
+          Draft202012Validator.check_schema(schema)
+          Draft202012Validator(schema).validate(report)
+          assert report['actualHumanQAExecutions']==0
+          assert report['screenReaderAudited'] is False
+          assert report['WCAGConformanceCertified'] is False
+          assert report['SAPWriteAuthorized'] is False
+          assert report['operationalAuthorityGranted'] is False
+          assert report['failedBrowserScenarios']==0
+          print('PASS: real Chromium behavior only; NO GO; no human or mechanical evaluation claimed')
+          PY
+      - name: Preserve synthetic public Chromium observations even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle57-browser-qa-synthetic-public
+          path: build/browser-cycle57/
+          if-no-files-found: warn
+          retention-days: 14

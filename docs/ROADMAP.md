@@ -2,6 +2,18 @@
 
 O sucesso da primeira versão não é possuir todas as respostas; é **provar que o método para adquiri-las funciona**.
 
+## Marco de pesquisa: Ciclo 57 (PR draft; ensaio real em Chromium headless)
+
+**Escopo:** transformar testes de sintaxe JavaScript e de HTML estático em **execução automatizada num navegador real**. A suíte `tests/browser_cycle57.mjs` usa Playwright/Chromium em runner Ubuntu 24.04 pinado e percorre nove cenários de execução, incluindo sessão de QA, round-trip de JSON, rejeição de falsificação de alçada, abas por teclado, filtros, diff entre versões, exportações e renderização em 320/375/390/768 px.
+
+**Evidências:** resultado `build/browser-cycle57/summary.json` e capturas de telas sintéticas/sem dados pessoais, arquivadas pelo GitHub Actions por 14 dias. Contrato estrito `contracts/cycle57-browser-report.schema.json` exige `actualHumanQAExecutions:0`, `screenReaderAudited:false`, ausência de alçada SAP/ECM e decisão `NO GO`. Nenhum teste de navegador substitui NVDA/VoiceOver ou julgamento profissional. Consulte [Ciclo 57 — regressão real](QA_CHROMIUM_57.md).
+
+**Dependência descoberta:** o `ubuntu-latest` passou a Ubuntu 26.04 no runner; Playwright 1.56.1 não suporta esse alvo. O job foi fixado em `ubuntu-24.04` para reproduzir as verificações. Um primeiro teste levantou uma expectativa de texto excessivamente específica no aviso NO GO da auditoria; a expectativa foi ajustada para verificar aviso visível sem depender da frase idêntica em cada página.
+
+**Resultado final C57:** [Chromium #42422866865](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42422866865) aprovou **9/9 cenários**, incluindo a largura de 320px após a correção. [Regressão geral #42422944440](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42422944440) também passou. O commit isolado `e0789a7` atualizou somente o CSS de `versoes.html` na `main`; [Pages #42423090773](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42423090773) confirmou HTTP/SHA-256 de três arquivos. O PR de pesquisa continua draft, sem merge.
+
+**Próximo passo:** confirmar nove cenários verdes no HEAD final, registrar e corrigir overflow real se detectado, e executar revisão humana separada sobre os screenshots e testes manuais. Os 13 gates externos da engenharia continuam não verificados. **NO GO.**
+
 ## Marco de pesquisa: Ciclo 56 (branch proposta; custódia na main e bancada humana de QA)
 
 **Estado material verificado:** o Ciclo 55 terminou com regressão geral e CI específico aprovados. As três evidências públicas (ZIP binário original, candidato e recibo HTTP do run #42412015125) foram copiadas de forma isolada para a `main` no commit `81275aa778b82038fe0f1d50a49d4f0c73598ce4`; o workflow [pages-archive-audit #42420972270](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42420972270) confirmou hashes e correspondência entre ZIP e JSONs. Nenhum PR de pesquisa foi integrado à `main` e os três HTMLs públicos não foram modificados.
