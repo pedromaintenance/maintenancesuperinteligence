@@ -157,6 +157,17 @@ O catálogo `methods/catalog.v1.json` registra **14 métodos conceituais** em ci
 
 A CLI `python -m methods.library --snapshot ... --case ... --investigation ... --output ...` gera perguntas e campos a levantar, nunca medições ou procedimentos autorizados. Cada método traz requisitos de contexto, riscos que exigem avaliação e limites da inferência. O relatório original precisa coincidir integralmente com a investigação reconstruída do snapshot autenticado. [Detalhes do Ciclo 05](docs/CICLO_2026-10-23_METODOS_DIAGNOSTICOS.md).
 
+## Ciclo 57 — Regressão em Chromium headless (proposta)
+
+A suíte `tests/browser_cycle57.mjs` abre os três portais e a bancada de QA **em Chromium de verdade**, offline, e executa nove cenários: round-trip de relatórios, bloqueio de falsa aprovação, abas acessíveis por teclado, filtros, comparação de snapshots, exportação JSON e mobile 320/375/390/768 px. O job [`.github/workflows/cycle57-browser-tests.yml`](.github/workflows/cycle57-browser-tests.yml) grava screenshots sintéticas e relatório, sem dados privados. O runner foi fixado em Ubuntu 24.04 para compatibilidade com Playwright 1.56.1.
+
+```bash
+# Requer Node e Playwright/Chromium instalados:
+node tests/browser_cycle57.mjs
+```
+
+**Diferença de evidência:** testes de navegador demonstram comportamentos automatizados; `actualHumanQAExecutions` continua **0**, não há teste de leitor de tela, certificação WCAG nem validação mecânica. Veja [documentação do Ciclo 57](docs/QA_CHROMIUM_57.md). **NO GO.**
+
 ## Ciclo 56 — Evidências preservadas na main e bancada de QA humano (proposta)
 
 A cópia pública e **original** do ZIP do GitHub Actions e de seus dois JSONs foi integrada **isoladamente** na `main` pelo [commit `81275aa`](https://github.com/pedromaintenance/maintenancesuperinteligence/commit/81275aa778b82038fe0f1d50a49d4f0c73598ce4), sem merge dos PRs de pesquisa. O workflow de [integridade do arquivo #42420972270](https://github.com/pedromaintenance/maintenancesuperinteligence/actions/runs/42420972270) passou. A `main` mantém o arquivo em `archives/pages/`; os validadores mais amplos do PR continuam em pesquisa.
