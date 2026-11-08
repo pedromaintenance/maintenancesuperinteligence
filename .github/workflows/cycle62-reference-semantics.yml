@@ -1,0 +1,24 @@
+name: Cycle 62 synthetic reference semantics
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle62_reference_semantics.py'
+      - 'tests/test_cycle62_reference_semantics.py'
+      - '.github/workflows/cycle62-reference-semantics.yml'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle62_reference_semantics.py'
+      - 'tests/test_cycle62_reference_semantics.py'
+      - '.github/workflows/cycle62-reference-semantics.yml'
+permissions:
+  contents: read
+jobs:
+  offline-reference-semantics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run C58-C62 synthetic regressions (never equipment acceptance)
+        run: python -m unittest tests.test_cycle58_causal_gate tests.test_cycle59_observation_consistency tests.test_cycle60_metrology tests.test_cycle61_metrology_context tests.test_cycle62_reference_semantics -v
