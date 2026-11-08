@@ -1,0 +1,24 @@
+name: Cycle 58 causal evidence structural gate
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle58_causal_gate.py'
+      - 'tests/test_cycle58_causal_gate.py'
+      - '.github/workflows/cycle58-causal-gate.yml'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle58_causal_gate.py'
+      - 'tests/test_cycle58_causal_gate.py'
+      - '.github/workflows/cycle58-causal-gate.yml'
+permissions:
+  contents: read
+jobs:
+  structural-only:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify synthetic structural tests; no expert signoff
+        run: python -m unittest tests.test_cycle58_causal_gate -v
