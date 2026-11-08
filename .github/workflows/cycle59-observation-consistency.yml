@@ -1,0 +1,28 @@
+name: Cycle 59 fictional observation consistency
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle58_causal_gate.py'
+      - 'benchmarks/cycle59_observation_consistency.py'
+      - 'tests/test_cycle58_causal_gate.py'
+      - 'tests/test_cycle59_observation_consistency.py'
+      - '.github/workflows/cycle59-observation-consistency.yml'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle58_causal_gate.py'
+      - 'benchmarks/cycle59_observation_consistency.py'
+      - 'tests/test_cycle58_causal_gate.py'
+      - 'tests/test_cycle59_observation_consistency.py'
+      - '.github/workflows/cycle59-observation-consistency.yml'
+permissions:
+  contents: read
+jobs:
+  offline-synthetic:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Structural and fictional-label regression (not mechanical approval)
+        run: python -m unittest tests.test_cycle58_causal_gate tests.test_cycle59_observation_consistency -v
