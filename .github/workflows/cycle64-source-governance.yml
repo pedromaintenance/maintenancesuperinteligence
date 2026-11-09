@@ -1,0 +1,24 @@
+name: Cycle 64 synthetic document source governance
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle64_source_governance.py'
+      - 'tests/test_cycle64_source_governance.py'
+      - '.github/workflows/cycle64-source-governance.yml'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle64_source_governance.py'
+      - 'tests/test_cycle64_source_governance.py'
+      - '.github/workflows/cycle64-source-governance.yml'
+permissions:
+  contents: read
+jobs:
+  offline-governance:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run C58-C64 synthetic regression; no OEM or human attestation
+        run: python -m unittest tests.test_cycle58_causal_gate tests.test_cycle59_observation_consistency tests.test_cycle60_metrology tests.test_cycle61_metrology_context tests.test_cycle62_reference_semantics tests.test_cycle63_effectivity tests.test_cycle64_source_governance -v
