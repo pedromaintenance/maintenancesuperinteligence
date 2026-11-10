@@ -1,0 +1,278 @@
+{
+  "schema": "maintenance-superinteligence.consolidation-inventory.v1",
+  "snapshotDate": "2026-11-09",
+  "snapshotNature": "github_metadata_snapshot_not_live_repository_state",
+  "repository": "pedromaintenance/maintenancesuperinteligence",
+  "baseComparison": {
+    "base": "main",
+    "head": "research/cycle66-independent-study-preregistration",
+    "status": "diverged",
+    "aheadBy": 286,
+    "behindBy": 11,
+    "changedFileCount": 159,
+    "baseCommit": "e0789a780c07cdd19ea1ddf3f11a1f24481c7ad0"
+  },
+  "stack": [
+    {
+      "pr": 83,
+      "cycle": 57,
+      "base": "research/cycle56-human-qa-workbench-and-promoted-custody",
+      "head": "research/cycle57-browser-replay-qa-and-static-fixes",
+      "headSha": "229d3cbf80d552b2add118c4625a39469e9e1a80",
+      "state": "open",
+      "draft": true,
+      "merged": false
+    },
+    {
+      "pr": 84,
+      "cycle": 58,
+      "base": "research/cycle57-browser-replay-qa-and-static-fixes",
+      "head": "research/cycle58-causal-evidence-gate",
+      "headSha": "f9d7670a8f6b5cf7bd6f0401e476118224027c8b",
+      "state": "open",
+      "draft": true,
+      "merged": false
+    },
+    {
+      "pr": 85,
+      "cycle": 59,
+      "base": "research/cycle58-causal-evidence-gate",
+      "head": "research/cycle59-observation-prediction-consistency",
+      "headSha": "59a3e0b2c0a8469c3de523aa1ad2286676b74244",
+      "state": "open",
+      "draft": true,
+      "merged": false
+    },
+    {
+      "pr": 86,
+      "cycle": 60,
+      "base": "research/cycle59-observation-prediction-consistency",
+      "head": "research/cycle60-dimensional-metrology-lab",
+      "headSha": "036c1fd045e1c5e853d25cc484386a24030f6c87",
+      "state": "open",
+      "draft": true,
+      "merged": false
+    },
+    {
+      "pr": 87,
+      "cycle": 61,
+      "base": "research/cycle60-dimensional-metrology-lab",
+      "head": "research/cycle61-metrology-context-provenance",
+      "headSha": "192884f58f083d75f69d426884f77ce40b3f4513",
+      "state": "open",
+      "draft": true,
+      "merged": false
+    },
+    {
+      "pr": 88,
+      "cycle": 62,
+      "base": "research/cycle61-metrology-context-provenance",
+      "head": "research/cycle62-reference-semantics",
+      "headSha": "a8fb271757eaef478890a280964ed94e974aafb5",
+      "state": "open",
+      "draft": true,
+      "merged": false
+    },
+    {
+      "pr": 89,
+      "cycle": 63,
+      "base": "research/cycle62-reference-semantics",
+      "head": "research/cycle63-oem-effectivity-gate",
+      "headSha": "49e83aa85838aa52433679aa6de31dfc5f3906cc",
+      "state": "open",
+      "draft": true,
+      "merged": false
+    },
+    {
+      "pr": 90,
+      "cycle": 64,
+      "base": "research/cycle63-oem-effectivity-gate",
+      "head": "research/cycle64-source-revision-conflict-gate",
+      "headSha": "60437ad178681c549018b3ac223e510fbf59e4a9",
+      "state": "open",
+      "draft": true,
+      "merged": false
+    },
+    {
+      "pr": 91,
+      "cycle": 65,
+      "base": "research/cycle64-source-revision-conflict-gate",
+      "head": "research/cycle65-synthetic-conflict-review-ledger",
+      "headSha": "f92d7ae321e4d45a303784fe002f6f4f05db67a3",
+      "state": "open",
+      "draft": true,
+      "merged": false
+    },
+    {
+      "pr": 92,
+      "cycle": 66,
+      "base": "research/cycle65-synthetic-conflict-review-ledger",
+      "head": "research/cycle66-independent-study-preregistration",
+      "headSha": "10461c785f682bbd11460149f802733fe5dbb680",
+      "state": "open",
+      "draft": true,
+      "merged": false
+    }
+  ],
+  "inventory": [
+    {
+      "cycle": 58,
+      "domain": "causal_gate",
+      "code": "benchmarks/cycle58_causal_gate.py",
+      "test": "tests/test_cycle58_causal_gate.py",
+      "workflow": ".github/workflows/cycle58-causal-gate.yml",
+      "doc": "docs/CICLO_2026-11-07_PORTAO_EVIDENCIA_CAUSAL_58.md",
+      "upstream": null,
+      "pr": 84,
+      "dependencies": []
+    },
+    {
+      "cycle": 59,
+      "domain": "observation_consistency",
+      "code": "benchmarks/cycle59_observation_consistency.py",
+      "test": "tests/test_cycle59_observation_consistency.py",
+      "workflow": ".github/workflows/cycle59-observation-consistency.yml",
+      "doc": "docs/CICLO_2026-11-08_OBSERVACOES_PREVISOES_59.md",
+      "upstream": 58,
+      "pr": 85,
+      "dependencies": [
+        58
+      ]
+    },
+    {
+      "cycle": 60,
+      "domain": "dimensional_metrology",
+      "code": "benchmarks/cycle60_metrology.py",
+      "test": "tests/test_cycle60_metrology.py",
+      "workflow": ".github/workflows/cycle60-metrology.yml",
+      "doc": "docs/CICLO_2026-11-08_METROLOGIA_DIMENSIONAL_60.md",
+      "upstream": null,
+      "pr": 86,
+      "dependencies": []
+    },
+    {
+      "cycle": 61,
+      "domain": "metrology_context",
+      "code": "benchmarks/cycle61_metrology_context.py",
+      "test": "tests/test_cycle61_metrology_context.py",
+      "workflow": ".github/workflows/cycle61-metrology-context.yml",
+      "doc": "docs/CICLO_2026-11-08_CONTEXTUALIZACAO_METROLOGICA_61.md",
+      "upstream": 60,
+      "pr": 87,
+      "dependencies": [
+        60
+      ]
+    },
+    {
+      "cycle": 62,
+      "domain": "reference_semantics",
+      "code": "benchmarks/cycle62_reference_semantics.py",
+      "test": "tests/test_cycle62_reference_semantics.py",
+      "workflow": ".github/workflows/cycle62-reference-semantics.yml",
+      "doc": "docs/CICLO_2026-11-08_SEMANTICA_REFERENCIAS_62.md",
+      "upstream": 61,
+      "pr": 88,
+      "dependencies": [
+        60,
+        61
+      ]
+    },
+    {
+      "cycle": 63,
+      "domain": "effectivity_metadata",
+      "code": "benchmarks/cycle63_effectivity.py",
+      "test": "tests/test_cycle63_effectivity.py",
+      "workflow": ".github/workflows/cycle63-effectivity.yml",
+      "doc": "docs/CICLO_2026-11-08_MATRIZ_APLICABILIDADE_63.md",
+      "upstream": 62,
+      "pr": 89,
+      "dependencies": [
+        62
+      ]
+    },
+    {
+      "cycle": 64,
+      "domain": "document_source_governance",
+      "code": "benchmarks/cycle64_source_governance.py",
+      "test": "tests/test_cycle64_source_governance.py",
+      "workflow": ".github/workflows/cycle64-source-governance.yml",
+      "doc": "docs/CICLO_2026-11-08_GOVERNANCA_FONTES_64.md",
+      "upstream": 63,
+      "pr": 90,
+      "dependencies": [
+        63
+      ]
+    },
+    {
+      "cycle": 65,
+      "domain": "synthetic_review_ledger",
+      "code": "benchmarks/cycle65_review_ledger.py",
+      "test": "tests/test_cycle65_review_ledger.py",
+      "workflow": ".github/workflows/cycle65-review-ledger.yml",
+      "doc": "docs/CICLO_2026-11-08_TRILHA_REVISAO_CONFLITOS_65.md",
+      "upstream": 64,
+      "pr": 91,
+      "dependencies": [
+        64
+      ]
+    },
+    {
+      "cycle": 66,
+      "domain": "independent_study_preregistration",
+      "code": "benchmarks/cycle66_study_preregistration.py",
+      "test": "tests/test_cycle66_study_preregistration.py",
+      "workflow": ".github/workflows/cycle66-study-preregistration.yml",
+      "doc": "docs/CICLO_2026-11-08_PRE_REGISTRO_ESTUDO_INDEPENDENTE_66.md",
+      "upstream": 65,
+      "pr": 92,
+      "dependencies": [
+        65
+      ]
+    }
+  ],
+  "previousControls": [
+    "docs/CICLO_2026-10-28_PROTOCOLO_REVISAO_INDEPENDENTE.md",
+    "docs/CICLO_2026-10-28_CUSTODIA_AVALIACAO_EXTERNA.md",
+    "docs/CICLO_2026-10-28_QUALIDADE_CUSTODIA_PRIVADA.md",
+    "docs/QA_CHROMIUM_57.md"
+  ],
+  "knownOverlaps": [
+    {
+      "cycles": [
+        58,
+        59
+      ],
+      "topic": "prediction and observation contracts; distinct but coupled models"
+    },
+    {
+      "cycles": [
+        60,
+        61,
+        62
+      ],
+      "topic": "units/context/reference semantics; shared quantity contracts"
+    },
+    {
+      "cycles": [
+        64,
+        65,
+        66
+      ],
+      "topic": "source conflict, simulated review, study prerequisites; distinct approval gates"
+    },
+    {
+      "cycles": [
+        65,
+        66
+      ],
+      "topic": "human review rehearsal overlaps existing Cycle 29-32 protocols; reconcile before consolidation"
+    }
+  ],
+  "nonTechnicalPrerequisites": {
+    "humanPortalQaItemsNotExecuted": 8,
+    "externalEvidenceGatesUnverified": 13,
+    "independentExpertReviewCompleted": false,
+    "oemEffectivityValidated": false,
+    "operationalAuthorityGranted": false
+  }
+}
