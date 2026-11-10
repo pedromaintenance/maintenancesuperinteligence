@@ -1,0 +1,48 @@
+name: Cycle 67 offline consolidation and dependency audit
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle5*.py'
+      - 'benchmarks/cycle6*.py'
+      - 'benchmarks/cycle67-consolidation-inventory.v1.json'
+      - 'tests/test_cycle5*.py'
+      - 'tests/test_cycle6*.py'
+      - 'docs/CICLO_2026-11-*.md'
+      - '.github/workflows/cycle5*.yml'
+      - '.github/workflows/cycle6*.yml'
+      - '.github/workflows/cycle67-consolidation-audit.yml'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle5*.py'
+      - 'benchmarks/cycle6*.py'
+      - 'benchmarks/cycle67-consolidation-inventory.v1.json'
+      - 'tests/test_cycle5*.py'
+      - 'tests/test_cycle6*.py'
+      - 'docs/CICLO_2026-11-*.md'
+      - '.github/workflows/cycle5*.yml'
+      - '.github/workflows/cycle6*.yml'
+      - '.github/workflows/cycle67-consolidation-audit.yml'
+permissions:
+  contents: read
+jobs:
+  research-integration-audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run cumulative synthetic regression C58-C67
+        run: python -m unittest tests.test_cycle58_causal_gate tests.test_cycle59_observation_consistency tests.test_cycle60_metrology tests.test_cycle61_metrology_context tests.test_cycle62_reference_semantics tests.test_cycle63_effectivity tests.test_cycle64_source_governance tests.test_cycle65_review_ledger tests.test_cycle66_study_preregistration tests.test_cycle67_architecture_audit -v
+      - name: Generate structural audit receipt, always NO GO for merge/operation
+        run: |
+          mkdir -p build/cycle67
+          python -m benchmarks.cycle67_architecture_audit --output build/cycle67/consolidation-audit.json
+      - name: Publish reproducible synthetic-only receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle67-consolidation-audit-synthetic
+          path: build/cycle67/consolidation-audit.json
+          if-no-files-found: warn
+          retention-days: 14
