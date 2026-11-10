@@ -103,7 +103,11 @@ def audit(root, manifest, run_smoke=True):
                "testMethodDefinitions": 0, "importedUpstreamCycles": [],
                "fixtureSmoke": "not_run", "missingArtifacts": []}
         if (entry["pr"] != number + 26 or
-                (entry["upstream"] is not None and entry["upstream"] not in EXPECTED_CYCLES)):
+                (entry["upstream"] is not None and entry["upstream"] not in EXPECTED_CYCLES) or
+                type(entry["dependencies"]) is not list or
+                entry["dependencies"] != sorted(set(entry["dependencies"])) or
+                any(dep not in EXPECTED_CYCLES or dep >= number for dep in entry["dependencies"]) or
+                (entry["upstream"] is not None and entry["upstream"] not in entry["dependencies"])):
             errors.append("invalid inventory link for cycle " + str(number))
         paths = {key: _safe_file(root, entry[key])
                  for key in ("code", "test", "workflow", "doc")}
@@ -127,7 +131,7 @@ def audit(root, manifest, run_smoke=True):
                 if not any(isinstance(node, ast.FunctionDef) and node.name == name
                            for node in code_ast.body):
                     errors.append("C" + str(number) + ": missing " + name)
-            expected = [] if entry["upstream"] is None else [entry["upstream"]]
+            expected = entry["dependencies"]
             if deps != expected:
                 errors.append("C" + str(number) +
                               ": code imports disagree with dependency manifest")
@@ -139,8 +143,8 @@ def audit(root, manifest, run_smoke=True):
                     errors.append("C" + str(number) +
                                   ": own file missing from workflow trigger: " + own)
             # Downstream CI should rerun when upstream code or upstream tests change.
-            if entry["upstream"] is not None:
-                parent = cycles[entry["upstream"] - EXPECTED_CYCLES[0]]
+            for direct_dependency in expected:
+                parent = cycles[direct_dependency - EXPECTED_CYCLES[0]]
                 trigger_missing = [key for key in ("code", "test")
                                    if "- '" + parent[key] + "'" not in workflow]
                 if trigger_missing:
@@ -148,7 +152,7 @@ def audit(root, manifest, run_smoke=True):
                         "cycle": number, "severity": "review_before_merge",
                         "code": "upstream_path_filter_gap",
                         "missingUpstreamTriggers": trigger_missing,
-                        "upstreamCycle": entry["upstream"],
+                        "upstreamCycle": direct_dependency,
                     })
             for prior in range(58, number + 1):
                 item = cycles[prior - 58]
