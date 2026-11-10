@@ -3,11 +3,15 @@ on:
   push:
     paths:
       - 'benchmarks/cycle61_metrology_context.py'
+      - 'benchmarks/cycle60_metrology.py'
+      - 'tests/test_cycle60_metrology.py'
       - 'tests/test_cycle61_metrology_context.py'
       - '.github/workflows/cycle61-metrology-context.yml'
   pull_request:
     paths:
       - 'benchmarks/cycle61_metrology_context.py'
+      - 'benchmarks/cycle60_metrology.py'
+      - 'tests/test_cycle60_metrology.py'
       - 'tests/test_cycle61_metrology_context.py'
       - '.github/workflows/cycle61-metrology-context.yml'
 permissions:

@@ -3,11 +3,15 @@ on:
   push:
     paths:
       - 'benchmarks/cycle63_effectivity.py'
+      - 'benchmarks/cycle62_reference_semantics.py'
+      - 'tests/test_cycle62_reference_semantics.py'
       - 'tests/test_cycle63_effectivity.py'
       - '.github/workflows/cycle63-effectivity.yml'
   pull_request:
     paths:
       - 'benchmarks/cycle63_effectivity.py'
+      - 'benchmarks/cycle62_reference_semantics.py'
+      - 'tests/test_cycle62_reference_semantics.py'
       - 'tests/test_cycle63_effectivity.py'
       - '.github/workflows/cycle63-effectivity.yml'
 permissions:

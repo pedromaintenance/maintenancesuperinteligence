@@ -1,0 +1,177 @@
+{
+  "schema": "maintenance-superinteligence.integration-interface-contract.v1",
+  "contractScope": "synthetic_research_offline_only",
+  "snapshotNature": "author_asserted_structure_not_mechanical_validation",
+  "researchStages": [
+    {
+      "cycle": 58,
+      "domain": "causal_gate",
+      "module": "benchmarks.cycle58_causal_gate",
+      "fixtureModule": "tests.test_cycle58_causal_gate",
+      "fixtureFunction": "sample",
+      "resultSchema": "maintenance-superinteligence.causal-gate-result.v1",
+      "outputFields": {
+        "hypothesesCompared": "int",
+        "discriminatingChecks": "int"
+      },
+      "mustRemainFalse": [
+        "causeConfirmed",
+        "diagnosticAccuracyValidated",
+        "independentExpertReviewCompleted",
+        "operationalAuthorityGranted"
+      ]
+    },
+    {
+      "cycle": 59,
+      "domain": "observation_consistency",
+      "module": "benchmarks.cycle59_observation_consistency",
+      "fixtureModule": "tests.test_cycle59_observation_consistency",
+      "fixtureFunction": "fixture",
+      "resultSchema": "maintenance-superinteligence.observation-prediction-result.v1",
+      "outputFields": {
+        "labelComparisons": "int",
+        "labelConflicts": "int"
+      },
+      "mustRemainFalse": [
+        "mechanicalValidityValidated",
+        "causeConfirmed",
+        "operationalAuthorityGranted"
+      ]
+    },
+    {
+      "cycle": 60,
+      "domain": "dimensional_metrology",
+      "module": "benchmarks.cycle60_metrology",
+      "fixtureModule": "tests.test_cycle60_metrology",
+      "fixtureFunction": "fixture",
+      "resultSchema": "maintenance-superinteligence.synthetic-metrology-result.v1",
+      "outputFields": {
+        "predictedSIInterval": "list",
+        "reportedSIInterval": "list",
+        "intervalsOverlap": "bool"
+      },
+      "mustRemainFalse": [
+        "realMeasurementVerified",
+        "oemApplicabilityVerified",
+        "operationalAuthorityGranted"
+      ]
+    },
+    {
+      "cycle": 61,
+      "domain": "metrology_context",
+      "module": "benchmarks.cycle61_metrology_context",
+      "fixtureModule": "tests.test_cycle61_metrology_context",
+      "fixtureFunction": "fixture",
+      "resultSchema": "maintenance-superinteligence.synthetic-metrology-context-result.v1",
+      "outputFields": {
+        "contextComparable": "bool",
+        "comparisonAllowed": "bool",
+        "reportedIntervalOverlap": "bool"
+      },
+      "mustRemainFalse": [
+        "calibrationVerified",
+        "realMeasurementVerified",
+        "operationalAuthorityGranted"
+      ]
+    },
+    {
+      "cycle": 62,
+      "domain": "reference_semantics",
+      "module": "benchmarks.cycle62_reference_semantics",
+      "fixtureModule": "tests.test_cycle62_reference_semantics",
+      "fixtureFunction": "fixture",
+      "resultSchema": "maintenance-superinteligence.synthetic-reference-result.v1",
+      "outputFields": {
+        "comparisons": "list",
+        "referenceAuthority": "str"
+      },
+      "mustRemainFalse": [
+        "actualAlarmEvaluated",
+        "actualSafetyLimitEvaluated",
+        "acceptanceOrRejectionIssued",
+        "operationalAuthorityGranted"
+      ]
+    },
+    {
+      "cycle": 63,
+      "domain": "effectivity_metadata",
+      "module": "benchmarks.cycle63_effectivity",
+      "fixtureModule": "tests.test_cycle63_effectivity",
+      "fixtureFunction": "fixture",
+      "resultSchema": "maintenance-superinteligence.synthetic-effectivity-result.v1",
+      "outputFields": {
+        "results": "list",
+        "referencesEvaluated": "int"
+      },
+      "mustRemainFalse": [
+        "oemEffectivityVerified",
+        "referenceApproved",
+        "operationalAuthorityGranted"
+      ]
+    },
+    {
+      "cycle": 64,
+      "domain": "document_source_governance",
+      "module": "benchmarks.cycle64_source_governance",
+      "fixtureModule": "tests.test_cycle64_source_governance",
+      "fixtureFunction": "fixture",
+      "resultSchema": "maintenance-superinteligence.synthetic-source-governance-result.v1",
+      "outputFields": {
+        "references": "list",
+        "unresolvedConflicts": "int"
+      },
+      "mustRemainFalse": [
+        "sourceAuthenticityVerified",
+        "revisionApproved",
+        "operationalAuthorityGranted"
+      ]
+    },
+    {
+      "cycle": 65,
+      "domain": "synthetic_review_ledger",
+      "module": "benchmarks.cycle65_review_ledger",
+      "fixtureModule": "tests.test_cycle65_review_ledger",
+      "fixtureFunction": "fixture",
+      "resultSchema": "maintenance-superinteligence.synthetic-conflict-review-result.v1",
+      "outputFields": {
+        "tracks": "list",
+        "chainHeadDigest": "str"
+      },
+      "mustRemainFalse": [
+        "realHumanReviewCompleted",
+        "technicalConflictResolved",
+        "operationalAuthorityGranted"
+      ]
+    },
+    {
+      "cycle": 66,
+      "domain": "independent_study_preregistration",
+      "module": "benchmarks.cycle66_study_preregistration",
+      "fixtureModule": "tests.test_cycle66_study_preregistration",
+      "fixtureFunction": "fixture",
+      "resultSchema": "maintenance-superinteligence.synthetic-study-gap-report.v1",
+      "outputFields": {
+        "unverifiedControls": "list",
+        "studyControlsRequired": "int",
+        "readyForIndependentStudy": "bool"
+      },
+      "mustRemainFalse": [
+        "independentStudyExecuted",
+        "mechanicalAccuracyValidated",
+        "readyForIndependentStudy",
+        "operationalAuthorityGranted"
+      ]
+    }
+  ],
+  "workflowTriggerPolicy": "all_direct_imported_upstream_code_and_tests_for_push_and_pull_request",
+  "authority": {
+    "mechanicalDiagnosisValidated": false,
+    "oemEffectivityVerified": false,
+    "independentExpertReviewCompleted": false,
+    "mayWriteSap": false,
+    "mayModifyEcm": false,
+    "mayReleaseEquipment": false,
+    "readyForMerge": false,
+    "decision": "NO GO"
+  }
+}
