@@ -111,12 +111,15 @@ def audit(root, manifest, previous, inventory):
             "imported code dependencies do not match isolated plan")
     workflow = (root / rec["workflow"]).read_text(encoding="utf-8")
     for event in ("push", "pull_request"):
-        start = "  " + event + ":\n    paths:\n"
-        require(start in workflow, "workflow trigger missing: " + event)
-        block = workflow.split(start, 1)[1].split("\n  ", 1)[0]
+        match = re.search(
+            r"(?m)^  " + re.escape(event) +
+            r":\n    paths:\n((?:      - '[^']+'\n)+)", workflow
+        )
+        require(match is not None, "workflow trigger missing: " + event)
+        event_paths = set(re.findall(r"(?m)^      - '([^']+)'$", match.group(1)))
         for path in (rec["code"], rec["test"], records[62]["code"],
                      records[62]["test"]):
-            require("      - '" + path + "'" in block,
+            require(path in event_paths,
                     "missing dependency trigger " + event + " " + path)
     cmd = [line.strip() for line in workflow.splitlines()
            if line.strip().startswith("run: python -m unittest ")]
