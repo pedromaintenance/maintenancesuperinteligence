@@ -1,0 +1,46 @@
+name: Cycle 68 integration interface and CI dependency remediation
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle5*.py'
+      - 'benchmarks/cycle6*.py'
+      - 'benchmarks/cycle67-consolidation-inventory.v1.json'
+      - 'contracts/cycle68-research-interfaces.v1.json'
+      - 'tests/test_cycle5*.py'
+      - 'tests/test_cycle6*.py'
+      - '.github/workflows/cycle6*.yml'
+      - 'docs/CICLO_2026-11-09_REMEDIACAO_INTEGRACAO_68.md'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle5*.py'
+      - 'benchmarks/cycle6*.py'
+      - 'benchmarks/cycle67-consolidation-inventory.v1.json'
+      - 'contracts/cycle68-research-interfaces.v1.json'
+      - 'tests/test_cycle5*.py'
+      - 'tests/test_cycle6*.py'
+      - '.github/workflows/cycle6*.yml'
+      - 'docs/CICLO_2026-11-09_REMEDIACAO_INTEGRACAO_68.md'
+permissions:
+  contents: read
+jobs:
+  synthetic-interface-audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate C68 structural interface receipt, always NO GO
+        run: |
+          mkdir -p build/cycle68
+          python -m benchmarks.cycle68_integration_gate --output build/cycle68/interface-audit.json
+      - name: Run cumulative synthetic regression C58-C68
+        run: python -m unittest tests.test_cycle58_causal_gate tests.test_cycle59_observation_consistency tests.test_cycle60_metrology tests.test_cycle61_metrology_context tests.test_cycle62_reference_semantics tests.test_cycle63_effectivity tests.test_cycle64_source_governance tests.test_cycle65_review_ledger tests.test_cycle66_study_preregistration tests.test_cycle67_architecture_audit tests.test_cycle68_integration_gate -v
+      - name: Publish synthetic interface audit receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle68-integration-interface-audit-synthetic
+          path: build/cycle68/interface-audit.json
+          if-no-files-found: warn
+          retention-days: 14
