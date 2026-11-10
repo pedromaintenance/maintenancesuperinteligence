@@ -3,11 +3,15 @@ on:
   push:
     paths:
       - 'benchmarks/cycle64_source_governance.py'
+      - 'benchmarks/cycle63_effectivity.py'
+      - 'tests/test_cycle63_effectivity.py'
       - 'tests/test_cycle64_source_governance.py'
       - '.github/workflows/cycle64-source-governance.yml'
   pull_request:
     paths:
       - 'benchmarks/cycle64_source_governance.py'
+      - 'benchmarks/cycle63_effectivity.py'
+      - 'tests/test_cycle63_effectivity.py'
       - 'tests/test_cycle64_source_governance.py'
       - '.github/workflows/cycle64-source-governance.yml'
 permissions:
