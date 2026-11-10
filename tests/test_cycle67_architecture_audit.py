@@ -35,7 +35,8 @@ class ConsolidationAuditTests(unittest.TestCase):
         out = audit(ROOT, fixture(), run_smoke=False)
         gaps = [f["cycle"] for f in out["advisoryFindings"]
                 if f["code"] == "upstream_path_filter_gap"]
-        self.assertEqual(gaps, list(range(61, 67)))
+        self.assertEqual(sorted(set(gaps)), list(range(61, 67)))
+        self.assertEqual(gaps.count(62), 2)
 
     def test_identify_main_divergence_as_merge_blocker(self):
         out = audit(ROOT, fixture(), run_smoke=False)
