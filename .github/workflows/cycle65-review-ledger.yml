@@ -3,11 +3,15 @@ on:
   push:
     paths:
       - 'benchmarks/cycle65_review_ledger.py'
+      - 'benchmarks/cycle64_source_governance.py'
+      - 'tests/test_cycle64_source_governance.py'
       - 'tests/test_cycle65_review_ledger.py'
       - '.github/workflows/cycle65-review-ledger.yml'
   pull_request:
     paths:
       - 'benchmarks/cycle65_review_ledger.py'
+      - 'benchmarks/cycle64_source_governance.py'
+      - 'tests/test_cycle64_source_governance.py'
       - 'tests/test_cycle65_review_ledger.py'
       - '.github/workflows/cycle65-review-ledger.yml'
 permissions:
