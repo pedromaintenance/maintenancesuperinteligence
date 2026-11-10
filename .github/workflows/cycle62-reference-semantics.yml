@@ -1,0 +1,32 @@
+name: Cycle 62 synthetic reference semantics
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle62_reference_semantics.py'
+      - 'benchmarks/cycle60_metrology.py'
+      - 'tests/test_cycle60_metrology.py'
+      - 'benchmarks/cycle61_metrology_context.py'
+      - 'tests/test_cycle61_metrology_context.py'
+      - 'tests/test_cycle62_reference_semantics.py'
+      - '.github/workflows/cycle62-reference-semantics.yml'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle62_reference_semantics.py'
+      - 'benchmarks/cycle60_metrology.py'
+      - 'tests/test_cycle60_metrology.py'
+      - 'benchmarks/cycle61_metrology_context.py'
+      - 'tests/test_cycle61_metrology_context.py'
+      - 'tests/test_cycle62_reference_semantics.py'
+      - '.github/workflows/cycle62-reference-semantics.yml'
+permissions:
+  contents: read
+jobs:
+  offline-reference-semantics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run isolated C60-C62 synthetic regression (never equipment acceptance)
+        run: python -m unittest tests.test_cycle60_metrology tests.test_cycle61_metrology_context tests.test_cycle62_reference_semantics -v
