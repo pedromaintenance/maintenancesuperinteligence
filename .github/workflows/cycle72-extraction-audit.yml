@@ -1,0 +1,48 @@
+name: Cycle 72 isolated C63 effectivity extraction audit
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle72-effectivity-extraction.v1.json'
+      - 'benchmarks/cycle72_extraction_audit.py'
+      - 'tests/test_cycle72_extraction_audit.py'
+      - 'benchmarks/cycle71-reference-extraction.v1.json'
+      - 'benchmarks/cycle67-consolidation-inventory.v1.json'
+      - 'benchmarks/cycle63_effectivity.py'
+      - '.github/workflows/cycle63-effectivity.yml'
+      - 'docs/CICLO_2026-11-10_EXTRACAO_EFETIVIDADE_72.md'
+      - '.github/workflows/cycle72-extraction-audit.yml'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle72-effectivity-extraction.v1.json'
+      - 'benchmarks/cycle72_extraction_audit.py'
+      - 'tests/test_cycle72_extraction_audit.py'
+      - 'benchmarks/cycle71-reference-extraction.v1.json'
+      - 'benchmarks/cycle67-consolidation-inventory.v1.json'
+      - 'benchmarks/cycle63_effectivity.py'
+      - '.github/workflows/cycle63-effectivity.yml'
+      - 'docs/CICLO_2026-11-10_EXTRACAO_EFETIVIDADE_72.md'
+      - '.github/workflows/cycle72-extraction-audit.yml'
+permissions:
+  contents: read
+jobs:
+  offline-effectivity-extraction:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Produce C72 audit receipt, not live OEM validation
+        run: |
+          mkdir -p build/cycle72
+          python -m benchmarks.cycle72_extraction_audit --output build/cycle72/effectivity-extraction-audit.json
+      - name: Run cumulative synthetic regression C58-C72
+        run: python -m unittest tests.test_cycle58_causal_gate tests.test_cycle59_observation_consistency tests.test_cycle60_metrology tests.test_cycle61_metrology_context tests.test_cycle62_reference_semantics tests.test_cycle63_effectivity tests.test_cycle64_source_governance tests.test_cycle65_review_ledger tests.test_cycle66_study_preregistration tests.test_cycle67_architecture_audit tests.test_cycle68_integration_gate tests.test_cycle69_release_plan tests.test_cycle70_extraction_audit tests.test_cycle71_extraction_audit tests.test_cycle72_extraction_audit -v
+      - name: Publish synthetic snapshot report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle72-c63-effectivity-extraction-synthetic
+          path: build/cycle72/effectivity-extraction-audit.json
+          if-no-files-found: warn
+          retention-days: 14
