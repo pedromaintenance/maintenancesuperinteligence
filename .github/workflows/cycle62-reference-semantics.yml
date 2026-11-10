@@ -3,11 +3,19 @@ on:
   push:
     paths:
       - 'benchmarks/cycle62_reference_semantics.py'
+      - 'benchmarks/cycle60_metrology.py'
+      - 'tests/test_cycle60_metrology.py'
+      - 'benchmarks/cycle61_metrology_context.py'
+      - 'tests/test_cycle61_metrology_context.py'
       - 'tests/test_cycle62_reference_semantics.py'
       - '.github/workflows/cycle62-reference-semantics.yml'
   pull_request:
     paths:
       - 'benchmarks/cycle62_reference_semantics.py'
+      - 'benchmarks/cycle60_metrology.py'
+      - 'tests/test_cycle60_metrology.py'
+      - 'benchmarks/cycle61_metrology_context.py'
+      - 'tests/test_cycle61_metrology_context.py'
       - 'tests/test_cycle62_reference_semantics.py'
       - '.github/workflows/cycle62-reference-semantics.yml'
 permissions:
