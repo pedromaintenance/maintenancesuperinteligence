@@ -1,0 +1,221 @@
+{
+  "schema": "maintenance-superinteligence.cycle69-integration-decomposition.v1",
+  "snapshotDate": "2026-11-10",
+  "snapshotNature": "connector_snapshot_not_live_branch_protection_or_authentication",
+  "repository": "pedromaintenance/maintenancesuperinteligence",
+  "sourceRef": "research/cycle68-integration-ci-remediation",
+  "mainSnapshot": {
+    "commit": "e0789a780c07cdd19ea1ddf3f11a1f24481c7ad0",
+    "comparisonStatus": "diverged",
+    "researchAhead": 311,
+    "researchBehind": 11,
+    "changedFiles": 169
+  },
+  "integrationOrder": [
+    58,
+    60,
+    59,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66
+  ],
+  "groups": [
+    {
+      "id": "causal_structure",
+      "cycles": [
+        58,
+        59
+      ],
+      "meaning": "structural hypotheses and textual evidence"
+    },
+    {
+      "id": "dimensional_metrology",
+      "cycles": [
+        60,
+        61,
+        62,
+        63
+      ],
+      "meaning": "units, context, references and synthetic effectivity"
+    },
+    {
+      "id": "source_and_study_governance",
+      "cycles": [
+        64,
+        65,
+        66
+      ],
+      "meaning": "revision conflicts, fictitious review, preregistration"
+    }
+  ],
+  "units": [
+    {
+      "cycle": 58,
+      "sourcePr": 84,
+      "code": "benchmarks/cycle58_causal_gate.py",
+      "test": "tests/test_cycle58_causal_gate.py",
+      "workflow": ".github/workflows/cycle58-causal-gate.yml",
+      "doc": "docs/CICLO_2026-11-07_PORTAO_EVIDENCIA_CAUSAL_58.md",
+      "dependencies": [],
+      "integrationState": "draft_pilot_on_main",
+      "pilot": {
+        "pr": 95,
+        "branch": "integration/cycle69-pilot-c58-causal-gate",
+        "sha": "c43a89777b184b589a11e84fc26b468237b43b22",
+        "base": "main",
+        "draft": true,
+        "merged": false,
+        "expectedFiles": [
+          "benchmarks/cycle58_causal_gate.py",
+          "tests/test_cycle58_causal_gate.py",
+          ".github/workflows/cycle58-causal-gate.yml",
+          "docs/CICLO_2026-11-07_PORTAO_EVIDENCIA_CAUSAL_58.md"
+        ]
+      }
+    },
+    {
+      "cycle": 60,
+      "sourcePr": 86,
+      "code": "benchmarks/cycle60_metrology.py",
+      "test": "tests/test_cycle60_metrology.py",
+      "workflow": ".github/workflows/cycle60-metrology.yml",
+      "doc": "docs/CICLO_2026-11-08_METROLOGIA_DIMENSIONAL_60.md",
+      "dependencies": [],
+      "integrationState": "draft_pilot_on_main",
+      "pilot": {
+        "pr": 96,
+        "branch": "integration/cycle69-pilot-c60-metrology",
+        "sha": "37965c7ec118356df182a8e2786cd3aec799cd3c",
+        "base": "main",
+        "draft": true,
+        "merged": false,
+        "expectedFiles": [
+          "benchmarks/cycle60_metrology.py",
+          "tests/test_cycle60_metrology.py",
+          ".github/workflows/cycle60-metrology.yml",
+          "docs/CICLO_2026-11-08_METROLOGIA_DIMENSIONAL_60.md"
+        ]
+      }
+    },
+    {
+      "cycle": 59,
+      "sourcePr": 85,
+      "code": "benchmarks/cycle59_observation_consistency.py",
+      "test": "tests/test_cycle59_observation_consistency.py",
+      "workflow": ".github/workflows/cycle59-observation-consistency.yml",
+      "doc": "docs/CICLO_2026-11-08_OBSERVACOES_PREVISOES_59.md",
+      "dependencies": [
+        58
+      ],
+      "integrationState": "not_opened",
+      "pilot": null
+    },
+    {
+      "cycle": 61,
+      "sourcePr": 87,
+      "code": "benchmarks/cycle61_metrology_context.py",
+      "test": "tests/test_cycle61_metrology_context.py",
+      "workflow": ".github/workflows/cycle61-metrology-context.yml",
+      "doc": "docs/CICLO_2026-11-08_CONTEXTUALIZACAO_METROLOGICA_61.md",
+      "dependencies": [
+        60
+      ],
+      "integrationState": "not_opened",
+      "pilot": null
+    },
+    {
+      "cycle": 62,
+      "sourcePr": 88,
+      "code": "benchmarks/cycle62_reference_semantics.py",
+      "test": "tests/test_cycle62_reference_semantics.py",
+      "workflow": ".github/workflows/cycle62-reference-semantics.yml",
+      "doc": "docs/CICLO_2026-11-08_SEMANTICA_REFERENCIAS_62.md",
+      "dependencies": [
+        60,
+        61
+      ],
+      "integrationState": "not_opened",
+      "pilot": null
+    },
+    {
+      "cycle": 63,
+      "sourcePr": 89,
+      "code": "benchmarks/cycle63_effectivity.py",
+      "test": "tests/test_cycle63_effectivity.py",
+      "workflow": ".github/workflows/cycle63-effectivity.yml",
+      "doc": "docs/CICLO_2026-11-08_MATRIZ_APLICABILIDADE_63.md",
+      "dependencies": [
+        62
+      ],
+      "integrationState": "not_opened",
+      "pilot": null
+    },
+    {
+      "cycle": 64,
+      "sourcePr": 90,
+      "code": "benchmarks/cycle64_source_governance.py",
+      "test": "tests/test_cycle64_source_governance.py",
+      "workflow": ".github/workflows/cycle64-source-governance.yml",
+      "doc": "docs/CICLO_2026-11-08_GOVERNANCA_FONTES_64.md",
+      "dependencies": [
+        63
+      ],
+      "integrationState": "not_opened",
+      "pilot": null
+    },
+    {
+      "cycle": 65,
+      "sourcePr": 91,
+      "code": "benchmarks/cycle65_review_ledger.py",
+      "test": "tests/test_cycle65_review_ledger.py",
+      "workflow": ".github/workflows/cycle65-review-ledger.yml",
+      "doc": "docs/CICLO_2026-11-08_TRILHA_REVISAO_CONFLITOS_65.md",
+      "dependencies": [
+        64
+      ],
+      "integrationState": "not_opened",
+      "pilot": null
+    },
+    {
+      "cycle": 66,
+      "sourcePr": 92,
+      "code": "benchmarks/cycle66_study_preregistration.py",
+      "test": "tests/test_cycle66_study_preregistration.py",
+      "workflow": ".github/workflows/cycle66-study-preregistration.yml",
+      "doc": "docs/CICLO_2026-11-08_PRE_REGISTRO_ESTUDO_INDEPENDENTE_66.md",
+      "dependencies": [
+        65
+      ],
+      "integrationState": "not_opened",
+      "pilot": null
+    }
+  ],
+  "deferredResearchTooling": {
+    "cycles": [
+      67,
+      68
+    ],
+    "state": "not_rebased_or_merged",
+    "reason": "audit and interface checker reference research-stack source history and need new baseline inventory after each isolated extraction"
+  },
+  "requiredReview": {
+    "codeReviewCompleted": false,
+    "licensingAndPrivacyReviewCompleted": false,
+    "humanPortalQACompleted": false,
+    "independentEngineeringReviewCompleted": false,
+    "oemEffectivityVerified": false,
+    "noMergeUntilBaseRechecked": true
+  },
+  "authority": {
+    "operationalAuthorityGranted": false,
+    "readyForMerge": false,
+    "mayExecuteTest": false,
+    "mayWriteSap": false,
+    "mayModifyEcm": false,
+    "mayReleaseEquipment": false,
+    "decision": "NO GO"
+  }
+}
