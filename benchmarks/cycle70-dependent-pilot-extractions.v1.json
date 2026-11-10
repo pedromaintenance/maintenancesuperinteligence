@@ -1,0 +1,67 @@
+{
+  "schema": "maintenance-superinteligence.cycle70-dependent-pilot-extractions.v1",
+  "snapshotDate": "2026-11-10",
+  "snapshotNature": "github_connector_snapshot_not_live",
+  "repository": "pedromaintenance/maintenancesuperinteligence",
+  "researchBase": "research/cycle69-research-stack-decomposition",
+  "pilots": [
+    {
+      "cycle": 59,
+      "pr": 98,
+      "head": "integration/cycle70-c59-observation-consistency",
+      "headSha": "6347437f7f3d12edc069e7eb5c3b215d66aaa7db",
+      "base": "integration/cycle69-pilot-c58-causal-gate",
+      "basePr": 95,
+      "dependencies": [
+        58
+      ],
+      "draft": true,
+      "merged": false,
+      "sourceCycle": 59,
+      "paths": [
+        ".github/workflows/cycle59-observation-consistency.yml",
+        "benchmarks/cycle59_observation_consistency.py",
+        "docs/CICLO_2026-11-08_OBSERVACOES_PREVISOES_59.md",
+        "tests/test_cycle59_observation_consistency.py"
+      ],
+      "specificCiAtSnapshot": "success",
+      "generalSecurityCiAtSnapshot": "in_progress"
+    },
+    {
+      "cycle": 61,
+      "pr": 99,
+      "head": "integration/cycle70-c61-metrology-context",
+      "headSha": "8539594593d929f9466bd4fed0017c20162b02df",
+      "base": "integration/cycle69-pilot-c60-metrology",
+      "basePr": 96,
+      "dependencies": [
+        60
+      ],
+      "draft": true,
+      "merged": false,
+      "sourceCycle": 61,
+      "paths": [
+        ".github/workflows/cycle61-metrology-context.yml",
+        "benchmarks/cycle61_metrology_context.py",
+        "docs/CICLO_2026-11-08_CONTEXTUALIZACAO_METROLOGICA_61.md",
+        "tests/test_cycle61_metrology_context.py"
+      ],
+      "specificCiAtSnapshot": "success",
+      "generalSecurityCiAtSnapshot": "in_progress"
+    }
+  ],
+  "remainingCycles": [
+    62,
+    63,
+    64,
+    65,
+    66
+  ],
+  "mergesPerformed": false,
+  "humanCodeReviewVerified": false,
+  "oemEffectivityVerified": false,
+  "independentMechanicalValidationVerified": false,
+  "operationalAuthorityGranted": false,
+  "readyForMerge": false,
+  "decision": "NO GO"
+}
