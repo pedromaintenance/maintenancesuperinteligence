@@ -63,6 +63,7 @@ class ConsolidationAuditTests(unittest.TestCase):
     def test_changed_dependency_must_be_reviewed(self):
         data = fixture()
         data["inventory"][-1]["upstream"] = 64
+        data["inventory"][-1]["dependencies"] = [64]
         out = audit(ROOT, data, run_smoke=False)
         self.assertEqual(out["inventoryStatus"], "fail")
         self.assertTrue(any("imports disagree" in e for e in out["inventoryErrors"]))
