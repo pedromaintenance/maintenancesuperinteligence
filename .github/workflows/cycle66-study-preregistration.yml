@@ -3,11 +3,15 @@ on:
   push:
     paths:
       - 'benchmarks/cycle66_study_preregistration.py'
+      - 'benchmarks/cycle65_review_ledger.py'
+      - 'tests/test_cycle65_review_ledger.py'
       - 'tests/test_cycle66_study_preregistration.py'
       - '.github/workflows/cycle66-study-preregistration.yml'
   pull_request:
     paths:
       - 'benchmarks/cycle66_study_preregistration.py'
+      - 'benchmarks/cycle65_review_ledger.py'
+      - 'tests/test_cycle65_review_ledger.py'
       - 'tests/test_cycle66_study_preregistration.py'
       - '.github/workflows/cycle66-study-preregistration.yml'
 permissions:
