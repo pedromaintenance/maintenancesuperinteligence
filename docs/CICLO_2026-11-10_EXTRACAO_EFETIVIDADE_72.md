@@ -25,7 +25,7 @@ Esse procedimento **não autentica manual, revisão documental, placa de identif
 ## Artefatos adicionais deste PR de pesquisa
 
 - `benchmarks/cycle72-effectivity-extraction.v1.json`: snapshot dos PRs #96, #99, #101 e #103, dois níveis de dependência, CI e escopo dos quatro arquivos. Os dados não são live.
-- `benchmarks/cycle72_extraction_audit.py`: verifica topologia dos PRs, imports estáticos do C63, compatibilidade com inventário C67, condições de disparo do CI e comando isolado da regressão.
+- `benchmarks/cycle72_extraction_audit.py`: verifica topologia dos PRs, imports estáticos do C63, compatibilidade com inventário C67 e estrutura do workflow **histórico da pesquisa**. O workflow isolado C60–C63 está no PR #103 e seu CI foi conferido separadamente por consulta ao GitHub; o auditor offline não autentica arquivos de outra branch.
 - `tests/test_cycle72_extraction_audit.py`: 18 testes adversariais de alteração de base, SHA, dependência, status e autoridade.
 - `.github/workflows/cycle72-extraction-audit.yml`: reexecuta C58–C72 na branch de pesquisa e publica recibo JSON.
 
