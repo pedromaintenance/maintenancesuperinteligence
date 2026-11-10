@@ -3,6 +3,13 @@ on:
   push:
     paths:
       - 'benchmarks/cycle72-effectivity-extraction.v1.json'
+      - 'benchmarks/cycle60_metrology.py'
+      - 'tests/test_cycle60_metrology.py'
+      - 'benchmarks/cycle61_metrology_context.py'
+      - 'tests/test_cycle61_metrology_context.py'
+      - 'benchmarks/cycle62_reference_semantics.py'
+      - 'tests/test_cycle62_reference_semantics.py'
+      - 'tests/test_cycle63_effectivity.py'
       - 'benchmarks/cycle72_extraction_audit.py'
       - 'tests/test_cycle72_extraction_audit.py'
       - 'benchmarks/cycle71-reference-extraction.v1.json'
@@ -14,6 +21,13 @@ on:
   pull_request:
     paths:
       - 'benchmarks/cycle72-effectivity-extraction.v1.json'
+      - 'benchmarks/cycle60_metrology.py'
+      - 'tests/test_cycle60_metrology.py'
+      - 'benchmarks/cycle61_metrology_context.py'
+      - 'tests/test_cycle61_metrology_context.py'
+      - 'benchmarks/cycle62_reference_semantics.py'
+      - 'tests/test_cycle62_reference_semantics.py'
+      - 'tests/test_cycle63_effectivity.py'
       - 'benchmarks/cycle72_extraction_audit.py'
       - 'tests/test_cycle72_extraction_audit.py'
       - 'benchmarks/cycle71-reference-extraction.v1.json'
