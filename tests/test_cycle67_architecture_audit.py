@@ -31,12 +31,13 @@ class ConsolidationAuditTests(unittest.TestCase):
         self.assertFalse(out["humanIndependentReviewCompleted"])
         self.assertEqual(out["decision"], "NO GO")
 
-    def test_identify_dependency_path_filter_debt(self):
+    def test_repaired_dependency_paths_have_no_remaining_direct_gaps(self):
+        # C68 repairs the workflows; C67 still audits the actual files,
+        # rather than replacing this historical observation with a false claim.
         out = audit(ROOT, fixture(), run_smoke=False)
-        gaps = [f["cycle"] for f in out["advisoryFindings"]
+        gaps = [f for f in out["advisoryFindings"]
                 if f["code"] == "upstream_path_filter_gap"]
-        self.assertEqual(sorted(set(gaps)), list(range(61, 67)))
-        self.assertEqual(gaps.count(62), 2)
+        self.assertEqual(gaps, [])
 
     def test_identify_main_divergence_as_merge_blocker(self):
         out = audit(ROOT, fixture(), run_smoke=False)
