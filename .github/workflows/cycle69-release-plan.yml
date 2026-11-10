@@ -1,0 +1,42 @@
+name: Cycle 69 isolated PR decomposition audit
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle69-isolated-integration-plan.v1.json'
+      - 'benchmarks/cycle69_release_plan.py'
+      - 'tests/test_cycle69_release_plan.py'
+      - 'benchmarks/cycle67-consolidation-inventory.v1.json'
+      - 'docs/CICLO_2026-11-10_DECOMPOSICAO_INTEGRACAO_69.md'
+      - '.github/workflows/cycle69-release-plan.yml'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle69-isolated-integration-plan.v1.json'
+      - 'benchmarks/cycle69_release_plan.py'
+      - 'tests/test_cycle69_release_plan.py'
+      - 'benchmarks/cycle67-consolidation-inventory.v1.json'
+      - 'docs/CICLO_2026-11-10_DECOMPOSICAO_INTEGRACAO_69.md'
+      - '.github/workflows/cycle69-release-plan.yml'
+permissions:
+  contents: read
+jobs:
+  synthetic-release-plan:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build dated decomposition receipt (not GitHub live verification)
+        run: |
+          mkdir -p build/cycle69
+          python -m benchmarks.cycle69_release_plan --output build/cycle69/decomposition-audit.json
+      - name: Run synthetic research regressions C58-C69
+        run: python -m unittest tests.test_cycle58_causal_gate tests.test_cycle59_observation_consistency tests.test_cycle60_metrology tests.test_cycle61_metrology_context tests.test_cycle62_reference_semantics tests.test_cycle63_effectivity tests.test_cycle64_source_governance tests.test_cycle65_review_ledger tests.test_cycle66_study_preregistration tests.test_cycle67_architecture_audit tests.test_cycle68_integration_gate tests.test_cycle69_release_plan -v
+      - name: Publish dated synthetic-only decomposition receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle69-integration-decomposition-synthetic
+          path: build/cycle69/decomposition-audit.json
+          if-no-files-found: warn
+          retention-days: 14
