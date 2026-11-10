@@ -1,0 +1,59 @@
+{
+  "schema": "maintenance-superinteligence.cycle72-effectivity-extraction.v1",
+  "snapshotDate": "2026-11-10",
+  "snapshotNature": "github_connector_snapshot_not_live",
+  "repository": "pedromaintenance/maintenancesuperinteligence",
+  "researchBase": "research/cycle71-c62-isolated-extraction-audit",
+  "extraction": {
+    "cycle": 63,
+    "pr": 103,
+    "head": "integration/cycle72-c63-synthetic-effectivity",
+    "headSha": "741c58db2c81107af95a1b18d93b1b18c3a148a1",
+    "base": "integration/cycle71-c62-reference-semantics",
+    "basePr": 101,
+    "baseCycle": 62,
+    "parentPrs": [
+      96,
+      99,
+      101
+    ],
+    "directDependencies": [
+      62
+    ],
+    "transitiveDependencies": [
+      60,
+      61
+    ],
+    "draft": true,
+    "merged": false,
+    "files": [
+      ".github/workflows/cycle63-effectivity.yml",
+      "benchmarks/cycle63_effectivity.py",
+      "docs/CICLO_2026-11-08_MATRIZ_APLICABILIDADE_63.md",
+      "tests/test_cycle63_effectivity.py"
+    ],
+    "isolatedTests": [
+      "tests.test_cycle60_metrology",
+      "tests.test_cycle61_metrology_context",
+      "tests.test_cycle62_reference_semantics",
+      "tests.test_cycle63_effectivity"
+    ],
+    "specificCiAtSnapshot": "success",
+    "generalSecurityCiAtSnapshot": "in_progress",
+    "dataScope": "synthetic_training_only",
+    "realOemEffectivityVerified": false
+  },
+  "remainingResearchCycles": [
+    64,
+    65,
+    66
+  ],
+  "humanReviewCompleted": false,
+  "mergeAuthorized": false,
+  "operationalAuthorityGranted": false,
+  "mayWriteSap": false,
+  "mayModifyEcm": false,
+  "mayReleaseEquipment": false,
+  "mayExecuteTest": false,
+  "decision": "NO GO"
+}
