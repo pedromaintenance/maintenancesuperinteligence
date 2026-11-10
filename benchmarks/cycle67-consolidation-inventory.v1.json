@@ -123,7 +123,8 @@
       "workflow": ".github/workflows/cycle58-causal-gate.yml",
       "doc": "docs/CICLO_2026-11-07_PORTAO_EVIDENCIA_CAUSAL_58.md",
       "upstream": null,
-      "pr": 84
+      "pr": 84,
+      "dependencies": []
     },
     {
       "cycle": 59,
@@ -133,7 +134,10 @@
       "workflow": ".github/workflows/cycle59-observation-consistency.yml",
       "doc": "docs/CICLO_2026-11-08_OBSERVACOES_PREVISOES_59.md",
       "upstream": 58,
-      "pr": 85
+      "pr": 85,
+      "dependencies": [
+        58
+      ]
     },
     {
       "cycle": 60,
@@ -143,7 +147,8 @@
       "workflow": ".github/workflows/cycle60-metrology.yml",
       "doc": "docs/CICLO_2026-11-08_METROLOGIA_DIMENSIONAL_60.md",
       "upstream": null,
-      "pr": 86
+      "pr": 86,
+      "dependencies": []
     },
     {
       "cycle": 61,
@@ -153,7 +158,10 @@
       "workflow": ".github/workflows/cycle61-metrology-context.yml",
       "doc": "docs/CICLO_2026-11-08_CONTEXTUALIZACAO_METROLOGICA_61.md",
       "upstream": 60,
-      "pr": 87
+      "pr": 87,
+      "dependencies": [
+        60
+      ]
     },
     {
       "cycle": 62,
@@ -163,7 +171,11 @@
       "workflow": ".github/workflows/cycle62-reference-semantics.yml",
       "doc": "docs/CICLO_2026-11-08_SEMANTICA_REFERENCIAS_62.md",
       "upstream": 61,
-      "pr": 88
+      "pr": 88,
+      "dependencies": [
+        60,
+        61
+      ]
     },
     {
       "cycle": 63,
@@ -173,7 +185,10 @@
       "workflow": ".github/workflows/cycle63-effectivity.yml",
       "doc": "docs/CICLO_2026-11-08_MATRIZ_APLICABILIDADE_63.md",
       "upstream": 62,
-      "pr": 89
+      "pr": 89,
+      "dependencies": [
+        62
+      ]
     },
     {
       "cycle": 64,
@@ -183,7 +198,10 @@
       "workflow": ".github/workflows/cycle64-source-governance.yml",
       "doc": "docs/CICLO_2026-11-08_GOVERNANCA_FONTES_64.md",
       "upstream": 63,
-      "pr": 90
+      "pr": 90,
+      "dependencies": [
+        63
+      ]
     },
     {
       "cycle": 65,
@@ -193,7 +211,10 @@
       "workflow": ".github/workflows/cycle65-review-ledger.yml",
       "doc": "docs/CICLO_2026-11-08_TRILHA_REVISAO_CONFLITOS_65.md",
       "upstream": 64,
-      "pr": 91
+      "pr": 91,
+      "dependencies": [
+        64
+      ]
     },
     {
       "cycle": 66,
@@ -203,7 +224,10 @@
       "workflow": ".github/workflows/cycle66-study-preregistration.yml",
       "doc": "docs/CICLO_2026-11-08_PRE_REGISTRO_ESTUDO_INDEPENDENTE_66.md",
       "upstream": 65,
-      "pr": 92
+      "pr": 92,
+      "dependencies": [
+        65
+      ]
     }
   ],
   "previousControls": [
