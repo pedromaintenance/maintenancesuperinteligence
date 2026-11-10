@@ -25,7 +25,7 @@ O status `inventoryStatus=pass` significa **consistência estrutural do inventá
 | 59 | Rótulos de observação versus previsões | C58 |
 | 60 | Dimensões e incerteza intervalar | Independente |
 | 61 | Contexto da medida e instrumento fictício | C60 |
-| 62 | Semântica de referências | C61 |
+| 62 | Semântica de referências | C60 (conversões SI) e C61 (contexto) |
 | 63 | Metadados de aplicabilidade | C62 |
 | 64 | Linhagens, revogação e conflitos de fonte | C63 |
 | 65 | Pareceres e contestação simulados | C64 |
@@ -36,7 +36,7 @@ O status `inventoryStatus=pass` significa **consistência estrutural do inventá
 ## Achados e riscos a resolver
 
 1. **Integração divergiu da `main` (bloqueante para merge indiscriminado):** 286 ahead/11 behind no snapshot. A diferença inclui trabalho de muitos ciclos, não apenas C58–66. É necessário comparar, revisar e reduzir escopo antes de reaplicar commits.
-2. **Gatilhos de CI incompletos em dependências:** C61–C66 executam testes cumulativos, mas seus filtros `paths` não incluem o módulo/teste imediatamente anterior. A auditoria marca esses seis casos como `upstream_path_filter_gap`. Uma modificação posterior de C60, por exemplo, não garante a execução do workflow específico de C61. Corrigir os filtros ou adotar um workflow único de regressão obrigatório antes do merge.
+2. **Gatilhos de CI incompletos em dependências:** C61–C66 executam testes cumulativos, mas seus filtros `paths` não incluem o módulo/teste imediatamente anterior. A auditoria marca esses seis workflows como `upstream_path_filter_gap` (sete relações ausentes: C62 depende diretamente de C60 e C61). Uma modificação posterior de C60, por exemplo, não garante a execução do workflow específico de C61. Corrigir os filtros ou adotar um workflow único de regressão obrigatório antes do merge.
 3. **Sobreposição deliberada:** C58–59 compartilham semântica de hipótese; C60–62 trabalham a mesma estrutura de quantidades; C64–66 formalizam partes de um fluxo documental. Não são necessariamente duplicações erradas, mas ainda carecem de interfaces e dono de contrato formal.
 4. **Revisão e custódia já existem na pesquisa anterior:** C29–30–32 descrevem cegamento e custódia privados. C65–66 são simulações de conflito e pré-registro e não devem substituí-los. Conciliar denominadores, escopo, taxonomia e controle de identidade.
 5. **Evidência humana e externa ausente:** o relatório C57 registra oito verificações humanas `not_tested` e 13 gates externos não verificados. Não houve homologação independente de precisão mecânica nem efetividade OEM em C58–66.
