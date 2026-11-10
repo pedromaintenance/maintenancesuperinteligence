@@ -1,0 +1,28 @@
+name: Cycle 63 synthetic effectivity matrix
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle63_effectivity.py'
+      - 'benchmarks/cycle62_reference_semantics.py'
+      - 'tests/test_cycle62_reference_semantics.py'
+      - 'tests/test_cycle63_effectivity.py'
+      - '.github/workflows/cycle63-effectivity.yml'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle63_effectivity.py'
+      - 'benchmarks/cycle62_reference_semantics.py'
+      - 'tests/test_cycle62_reference_semantics.py'
+      - 'tests/test_cycle63_effectivity.py'
+      - '.github/workflows/cycle63-effectivity.yml'
+permissions:
+  contents: read
+jobs:
+  synthetic-effectivity:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run isolated synthetic regression C60-C63, no OEM claims
+        run: python -m unittest tests.test_cycle60_metrology tests.test_cycle61_metrology_context tests.test_cycle62_reference_semantics tests.test_cycle63_effectivity -v
