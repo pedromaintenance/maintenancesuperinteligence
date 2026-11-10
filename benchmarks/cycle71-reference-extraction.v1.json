@@ -1,0 +1,57 @@
+{
+  "schema": "maintenance-superinteligence.cycle71-reference-extraction.v1",
+  "snapshotDate": "2026-11-10",
+  "snapshotNature": "github_connector_snapshot_not_live_verification",
+  "repository": "pedromaintenance/maintenancesuperinteligence",
+  "researchBase": "research/cycle70-isolated-dependent-extractions",
+  "extraction": {
+    "cycle": 62,
+    "pr": 101,
+    "base": "integration/cycle70-c61-metrology-context",
+    "basePr": 99,
+    "baseCycle": 61,
+    "head": "integration/cycle71-c62-reference-semantics",
+    "headSha": "1ca0d11ccce90a2d30853f311726d085d08bbbcb",
+    "draft": true,
+    "merged": false,
+    "dependencies": [
+      60,
+      61
+    ],
+    "ancestorPrs": [
+      96,
+      99
+    ],
+    "files": [
+      ".github/workflows/cycle62-reference-semantics.yml",
+      "benchmarks/cycle62_reference_semantics.py",
+      "docs/CICLO_2026-11-08_SEMANTICA_REFERENCIAS_62.md",
+      "tests/test_cycle62_reference_semantics.py"
+    ],
+    "specificCiAtSnapshot": "success",
+    "generalSecurityCiAtSnapshot": "in_progress",
+    "isolatedTests": [
+      "tests.test_cycle60_metrology",
+      "tests.test_cycle61_metrology_context",
+      "tests.test_cycle62_reference_semantics"
+    ],
+    "sourceData": "synthetic_training_only",
+    "realOemSourceIncluded": false
+  },
+  "remainingResearchCycles": [
+    63,
+    64,
+    65,
+    66
+  ],
+  "mergeAuthorized": false,
+  "humanCodeReviewVerified": false,
+  "independentMechanicalValidationVerified": false,
+  "oemEffectivityVerified": false,
+  "mayExecuteTest": false,
+  "mayWriteSap": false,
+  "mayModifyEcm": false,
+  "mayReleaseEquipment": false,
+  "operationalAuthorityGranted": false,
+  "decision": "NO GO"
+}

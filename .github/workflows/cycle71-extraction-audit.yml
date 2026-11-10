@@ -1,0 +1,46 @@
+name: Cycle 71 isolated C62 dependency extraction audit
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle71-reference-extraction.v1.json'
+      - 'benchmarks/cycle71_extraction_audit.py'
+      - 'tests/test_cycle71_extraction_audit.py'
+      - 'benchmarks/cycle70-dependent-pilot-extractions.v1.json'
+      - 'benchmarks/cycle67-consolidation-inventory.v1.json'
+      - 'benchmarks/cycle62_reference_semantics.py'
+      - 'docs/CICLO_2026-11-10_EXTRACAO_REFERENCIAS_71.md'
+      - '.github/workflows/cycle71-extraction-audit.yml'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle71-reference-extraction.v1.json'
+      - 'benchmarks/cycle71_extraction_audit.py'
+      - 'tests/test_cycle71_extraction_audit.py'
+      - 'benchmarks/cycle70-dependent-pilot-extractions.v1.json'
+      - 'benchmarks/cycle67-consolidation-inventory.v1.json'
+      - 'benchmarks/cycle62_reference_semantics.py'
+      - 'docs/CICLO_2026-11-10_EXTRACAO_REFERENCIAS_71.md'
+      - '.github/workflows/cycle71-extraction-audit.yml'
+permissions:
+  contents: read
+jobs:
+  synthetic-reference-extraction:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate dated C71 extraction audit (not live GitHub verification)
+        run: |
+          mkdir -p build/cycle71
+          python -m benchmarks.cycle71_extraction_audit --output build/cycle71/reference-extraction-audit.json
+      - name: Run cumulative synthetic regression C58-C71
+        run: python -m unittest tests.test_cycle58_causal_gate tests.test_cycle59_observation_consistency tests.test_cycle60_metrology tests.test_cycle61_metrology_context tests.test_cycle62_reference_semantics tests.test_cycle63_effectivity tests.test_cycle64_source_governance tests.test_cycle65_review_ledger tests.test_cycle66_study_preregistration tests.test_cycle67_architecture_audit tests.test_cycle68_integration_gate tests.test_cycle69_release_plan tests.test_cycle70_extraction_audit tests.test_cycle71_extraction_audit -v
+      - name: Publish synthetic-only extraction receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle71-c62-extraction-audit-synthetic
+          path: build/cycle71/reference-extraction-audit.json
+          if-no-files-found: warn
+          retention-days: 14
