@@ -88,7 +88,7 @@
       "pilot": {
         "pr": 96,
         "branch": "integration/cycle69-pilot-c60-metrology",
-        "sha": "547e3a8268e0e796e76c3148e7a9f79eecfe303c",
+        "sha": "37965c7ec118356df182a8e2786cd3aec799cd3c",
         "base": "main",
         "draft": true,
         "merged": false,
