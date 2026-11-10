@@ -28,6 +28,8 @@ class Cycle72Tests(unittest.TestCase):
         self.assertEqual(r["ownFiles"], 4)
         self.assertEqual(r["isolatedTests"], 4)
         self.assertEqual(r["decision"], "NO GO")
+        self.assertTrue(r["historicalResearchWorkflowVerified"])
+        self.assertFalse(r["isolatedPilotWorkflowVerifiedByThisAudit"])
         self.assertFalse(r["readyForMerge"])
 
     def test_snapshot_is_not_live_confirmation(self):
