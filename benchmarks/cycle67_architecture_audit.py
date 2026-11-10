@@ -102,8 +102,8 @@ def audit(root, manifest, run_smoke=True):
         row = {"cycle": number, "domain": entry["domain"], "pr": entry["pr"],
                "testMethodDefinitions": 0, "importedUpstreamCycles": [],
                "fixtureSmoke": "not_run", "missingArtifacts": []}
-        if entry["pr"] != number + 26 or
-           (entry["upstream"] is not None and entry["upstream"] not in EXPECTED_CYCLES):
+        if (entry["pr"] != number + 26 or
+                (entry["upstream"] is not None and entry["upstream"] not in EXPECTED_CYCLES)):
             errors.append("invalid inventory link for cycle " + str(number))
         paths = {key: _safe_file(root, entry[key])
                  for key in ("code", "test", "workflow", "doc")}
