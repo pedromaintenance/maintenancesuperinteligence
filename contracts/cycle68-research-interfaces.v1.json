@@ -111,7 +111,7 @@
     },
     {
       "cycle": 64,
-      "domain": "source_governance",
+      "domain": "document_source_governance",
       "module": "benchmarks.cycle64_source_governance",
       "fixtureModule": "tests.test_cycle64_source_governance",
       "fixtureFunction": "fixture",
@@ -128,7 +128,7 @@
     },
     {
       "cycle": 65,
-      "domain": "review_ledger",
+      "domain": "synthetic_review_ledger",
       "module": "benchmarks.cycle65_review_ledger",
       "fixtureModule": "tests.test_cycle65_review_ledger",
       "fixtureFunction": "fixture",
@@ -145,7 +145,7 @@
     },
     {
       "cycle": 66,
-      "domain": "study_preregistration",
+      "domain": "independent_study_preregistration",
       "module": "benchmarks.cycle66_study_preregistration",
       "fixtureModule": "tests.test_cycle66_study_preregistration",
       "fixtureFunction": "fixture",
