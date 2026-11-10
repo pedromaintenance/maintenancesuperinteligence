@@ -1,0 +1,28 @@
+name: Cycle 61 synthetic metrology provenance and context
+on:
+  push:
+    paths:
+      - 'benchmarks/cycle61_metrology_context.py'
+      - 'benchmarks/cycle60_metrology.py'
+      - 'tests/test_cycle60_metrology.py'
+      - 'tests/test_cycle61_metrology_context.py'
+      - '.github/workflows/cycle61-metrology-context.yml'
+  pull_request:
+    paths:
+      - 'benchmarks/cycle61_metrology_context.py'
+      - 'benchmarks/cycle60_metrology.py'
+      - 'tests/test_cycle60_metrology.py'
+      - 'tests/test_cycle61_metrology_context.py'
+      - '.github/workflows/cycle61-metrology-context.yml'
+permissions:
+  contents: read
+jobs:
+  offline-context-gates:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Isolated C60-C61 regression (not instrument calibration)
+        run: python -m unittest tests.test_cycle60_metrology tests.test_cycle61_metrology_context -v
