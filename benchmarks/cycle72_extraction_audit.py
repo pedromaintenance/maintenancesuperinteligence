@@ -123,9 +123,18 @@ def audit(root, manifest, previous, inventory):
                     "missing dependency trigger " + event + " " + path)
     cmd = [line.strip() for line in workflow.splitlines()
            if line.strip().startswith("run: python -m unittest ")]
+    # This research branch still holds the ORIGINAL cumulative workflow.
+    # The detached C63 PR has a DIFFERENT, isolated C60-C63 workflow.
+    # Its contents and current CI must be checked against PR #103 live;
+    # the offline inventory cannot authenticate that other branch.
+    research_tests = [
+        "tests.test_cycle58_causal_gate",
+        "tests.test_cycle59_observation_consistency",
+        *EXPECTED_TESTS,
+    ]
     require(len(cmd) == 1 and
-            cmd[0] == "run: python -m unittest " + " ".join(EXPECTED_TESTS) + " -v",
-            "workflow must test only C60-C63, without prior unrelated branches")
+            cmd[0] == "run: python -m unittest " + " ".join(research_tests) + " -v",
+            "historical research workflow changed unexpectedly")
     return {
         "schema": "maintenance-superinteligence.cycle72-extraction-audit-result.v1",
         "pilotPr": item["pr"],
@@ -133,6 +142,8 @@ def audit(root, manifest, previous, inventory):
         "transitiveDependencies": item["transitiveDependencies"],
         "ownFiles": len(item["files"]),
         "isolatedTests": len(EXPECTED_TESTS),
+        "historicalResearchWorkflowVerified": True,
+        "isolatedPilotWorkflowVerifiedByThisAudit": False,
         "snapshotNotLive": True,
         "liveCIAuthenticatedByThisAudit": False,
         "realHumanReviewCompleted": False,
